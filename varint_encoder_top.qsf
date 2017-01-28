@@ -53,3 +53,5 @@ set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda
 set_global_assignment -name VERILOG_FILE varint_encoder_top.v
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name QSYS_FILE in_fifo.qsys
+set_global_assignment -name SEARCH_PATH /home/mladmon/workspace/firework/varint_encoder/in_fifo
