@@ -28,4 +28,4 @@ DATE = "15:13:50  January 27, 2017"
 
 # Revisions
 
-PROJECT_REVISION = "varint_encoder_top"
+PROJECT_REVISION = "varint_encoder"
