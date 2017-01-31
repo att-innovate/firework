@@ -1,2 +1,4 @@
 *.qws
 *.bak
+db/*.flock
+db/*.sci
