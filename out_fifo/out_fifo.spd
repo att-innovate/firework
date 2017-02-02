@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="fifo_160/sim/out_fifo_fifo_160_rvmcgly.v"
+   type="VERILOG"
+   library="out_fifo_fifo_160" />
+ <file path="sim/out_fifo.v" type="VERILOG" hasInlineConfiguration="true" />
+ <topLevel name="out_fifo" />
+ <deviceFamily name="arria10" />
+</simPackage>

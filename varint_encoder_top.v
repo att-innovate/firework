@@ -35,7 +35,7 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		input  wire        axs_s0_rready,  //       .rready
 	);
 	 
-	in_fifo u0 (
+	in_fifo in0 (
 		.data  (<connected-to-data>),  //  fifo_input.datain
 		.wrreq (<connected-to-wrreq>), //            .wrreq
 		.rdreq (<connected-to-rdreq>), //            .rdreq
@@ -47,6 +47,17 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		.empty (<connected-to-empty>)  //            .empty
 	);
 
+	out_fifo out0 (
+		.data  (<connected-to-data>),  //  fifo_input.datain
+		.wrreq (<connected-to-wrreq>), //            .wrreq
+		.rdreq (<connected-to-rdreq>), //            .rdreq
+		.clock (<connected-to-clock>), //            .clk
+		.q     (<connected-to-q>),     // fifo_output.dataout
+		.usedw (<connected-to-usedw>), //            .usedw
+		.full  (<connected-to-full>),  //            .full
+		.empty (<connected-to-empty>)  //            .empty
+	);
+	
     // TODO: Auto-generated HDL template
     assign axs_s0_wready = 1'b0;
     assign axs_s0_rid = 4'b0000;
