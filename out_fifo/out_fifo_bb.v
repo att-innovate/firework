@@ -4,8 +4,8 @@ module out_fifo (
 	wrreq,
 	rdreq,
 	clock,
+	sclr,
 	q,
-	usedw,
 	full,
 	empty);	
 
@@ -13,8 +13,8 @@ module out_fifo (
 	input		wrreq;
 	input		rdreq;
 	input		clock;
+	input		sclr;
 	output	[7:0]	q;
-	output	[11:0]	usedw;
 	output		full;
 	output		empty;
 endmodule

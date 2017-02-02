@@ -6,7 +6,7 @@
    version="1.0"
    description=""
    tags="INTERNAL_COMPONENT=true"
-   categories="" />
+   categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
    element fifo_0
@@ -31,7 +31,7 @@
  <parameter name="hideFromIPCatalog" value="true" />
  <parameter name="lockedInterfaceDefinition" value="" />
  <parameter name="maxAdditionalLatency" value="1" />
- <parameter name="projectName" value="" />
+ <parameter name="projectName" value="varint_encoder.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="0" />
  <parameter name="testBenchDutName" value="" />
@@ -55,7 +55,6 @@
    type="conduit"
    dir="end">
   <port name="q" internal="q" />
-  <port name="usedw" internal="usedw" />
   <port name="full" internal="full" />
   <port name="empty" internal="empty" />
  </interface>
@@ -81,7 +80,7 @@
   <parameter name="GUI_Optimize_max" value="0" />
   <parameter name="GUI_RAM_BLOCK_TYPE" value="M20K" />
   <parameter name="GUI_UNDERFLOW_CHECKING" value="false" />
-  <parameter name="GUI_UsedW" value="true" />
+  <parameter name="GUI_UsedW" value="false" />
   <parameter name="GUI_Width" value="32" />
   <parameter name="GUI_dc_aclr" value="false" />
   <parameter name="GUI_delaypipe" value="4" />

@@ -5,4 +5,4 @@ set_global_assignment -library "lib_out_fifo" -name SPD_FILE [file join $::quart
 set_global_assignment -library "lib_out_fifo" -name MISC_FILE [file join $::quartus(sip_path) "../out_fifo.qsys"]
 
 set_global_assignment -library "lib_out_fifo" -name MISC_FILE [file join $::quartus(sip_path) "sim/out_fifo.v"]
-set_global_assignment -library "lib_out_fifo" -name MISC_FILE [file join $::quartus(sip_path) "fifo_160/sim/out_fifo_fifo_160_rvmcgly.v"]
+set_global_assignment -library "lib_out_fifo" -name MISC_FILE [file join $::quartus(sip_path) "fifo_160/sim/out_fifo_fifo_160_sbgry4a.v"]

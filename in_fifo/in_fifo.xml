@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2017.01.27.15:57:10"
+ date="2017.02.02.13:33:34"
  outputDirectory="/home/mladmon/workspace/firework/varint_encoder/in_fifo/">
  <perimeter>
   <parameter
@@ -46,13 +46,12 @@
    <property name="associatedClock" value="" />
    <property name="associatedReset" value="" />
    <port name="q" direction="output" role="dataout" width="32" />
-   <port name="usedw" direction="output" role="usedw" width="10" />
    <port name="full" direction="output" role="full" width="1" />
    <port name="empty" direction="output" role="empty" width="1" />
   </interface>
  </perimeter>
  <entity kind="in_fifo" version="1.0" name="in_fifo">
-  <parameter name="AUTO_GENERATION_ID" value="1485561430" />
+  <parameter name="AUTO_GENERATION_ID" value="1486071214" />
   <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SGE2" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Arria 10" />
   <parameter name="AUTO_UNIQUE_ID" value="" />
@@ -82,10 +81,10 @@
   </childSourceFiles>
   <messages>
    <message level="Info" culprit="in_fifo">"Generating: in_fifo"</message>
-   <message level="Info" culprit="in_fifo">"Generating: in_fifo_fifo_160_mnfmh2i"</message>
+   <message level="Info" culprit="in_fifo">"Generating: in_fifo_fifo_160_2524una"</message>
   </messages>
  </entity>
- <entity kind="fifo" version="16.0" name="in_fifo_fifo_160_mnfmh2i">
+ <entity kind="fifo" version="16.0" name="in_fifo_fifo_160_2524una">
   <parameter name="GUI_Full" value="true" />
   <parameter name="GUI_RdUsedw_width" value="8" />
   <parameter name="GUI_AlmostFullThr" value="1" />
@@ -100,7 +99,7 @@
   <parameter name="GUI_Optimize" value="1" />
   <parameter name="GUI_Depth" value="1024" />
   <parameter name="GUI_LE_BasedFIFO" value="false" />
-  <parameter name="GUI_UsedW" value="true" />
+  <parameter name="GUI_UsedW" value="false" />
   <parameter name="GUI_wsUsedW" value="false" />
   <parameter name="GUI_LegacyRREQ" value="1" />
   <parameter name="GUI_Usedw_width" value="10" />
@@ -130,12 +129,12 @@
   <parameter name="GUI_Width" value="32" />
   <generatedFiles>
    <file
-       path="/home/mladmon/workspace/firework/varint_encoder/in_fifo/fifo_160/synth/in_fifo_fifo_160_mnfmh2i.v"
+       path="/home/mladmon/workspace/firework/varint_encoder/in_fifo/fifo_160/synth/in_fifo_fifo_160_2524una.v"
        attributes="" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="/home/mladmon/workspace/firework/varint_encoder/in_fifo/fifo_160/synth/in_fifo_fifo_160_mnfmh2i.v"
+       path="/home/mladmon/workspace/firework/varint_encoder/in_fifo/fifo_160/synth/in_fifo_fifo_160_2524una.v"
        attributes="" />
   </childGeneratedFiles>
   <sourceFiles>
@@ -145,7 +144,7 @@
   <childSourceFiles/>
   <instantiator instantiator="in_fifo" as="fifo_0" />
   <messages>
-   <message level="Info" culprit="in_fifo">"Generating: in_fifo_fifo_160_mnfmh2i"</message>
+   <message level="Info" culprit="in_fifo">"Generating: in_fifo_fifo_160_2524una"</message>
   </messages>
  </entity>
 </deploy>

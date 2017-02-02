@@ -6,7 +6,6 @@ module in_fifo (
 	clock,
 	sclr,
 	q,
-	usedw,
 	full,
 	empty);	
 
@@ -16,7 +15,6 @@ module in_fifo (
 	input		clock;
 	input		sclr;
 	output	[31:0]	q;
-	output	[9:0]	usedw;
 	output		full;
 	output		empty;
 endmodule

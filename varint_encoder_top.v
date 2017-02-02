@@ -36,26 +36,25 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	);
 	 
 	in_fifo in0 (
-		.data  (<connected-to-data>),  //  fifo_input.datain
-		.wrreq (<connected-to-wrreq>), //            .wrreq
-		.rdreq (<connected-to-rdreq>), //            .rdreq
-		.clock (<connected-to-clock>), //            .clk
-		.sclr  (<connected-to-sclr>),  //            .sclr
-		.q     (<connected-to-q>),     // fifo_output.dataout
-		.usedw (<connected-to-usedw>), //            .usedw
-		.full  (<connected-to-full>),  //            .full
-		.empty (<connected-to-empty>)  //            .empty
+		.data  (axs_s0_wdata),  		 	//  fifo_input.datain
+		.wrreq (axs_s0_wvalid), 		 	//            .wrreq
+		.rdreq (in_pop),						//            .rdreq
+		.clock (clock_clk),				 	//            .clk
+		.sclr  (reset_reset),  				//            .sclr
+		.q     (in_q), 				    	// fifo_output.dataout
+		.full  (in_full), 				 	//            .full
+		.empty (in_empty) 				 	//            .empty
 	);
-
+	
 	out_fifo out0 (
-		.data  (<connected-to-data>),  //  fifo_input.datain
-		.wrreq (<connected-to-wrreq>), //            .wrreq
-		.rdreq (<connected-to-rdreq>), //            .rdreq
-		.clock (<connected-to-clock>), //            .clk
-		.q     (<connected-to-q>),     // fifo_output.dataout
-		.usedw (<connected-to-usedw>), //            .usedw
-		.full  (<connected-to-full>),  //            .full
-		.empty (<connected-to-empty>)  //            .empty
+		.data  (out_data),					//  fifo_input.datain
+		.wrreq (out_push),					//            .wrreq
+		.rdreq (out_pop),						//            .rdreq
+		.clock (clock_clk),					//            .clk
+		.sclr  (reset_reset),				//            .sclr
+		.q     (out_q),						// fifo_output.dataout
+		.full  (out_full),					//            .full
+		.empty (out_empty)					//            .empty
 	);
 	
     // TODO: Auto-generated HDL template

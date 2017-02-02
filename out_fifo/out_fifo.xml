@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2017.02.02.10:51:46"
+ date="2017.02.02.13:35:03"
  outputDirectory="/home/mladmon/workspace/firework/varint_encoder/out_fifo/">
  <perimeter>
   <parameter
@@ -40,18 +40,18 @@
    <port name="wrreq" direction="input" role="wrreq" width="1" />
    <port name="rdreq" direction="input" role="rdreq" width="1" />
    <port name="clock" direction="input" role="clk" width="1" />
+   <port name="sclr" direction="input" role="sclr" width="1" />
   </interface>
   <interface name="fifo_output" kind="conduit" start="0">
    <property name="associatedClock" value="" />
    <property name="associatedReset" value="" />
    <port name="q" direction="output" role="dataout" width="8" />
-   <port name="usedw" direction="output" role="usedw" width="12" />
    <port name="full" direction="output" role="full" width="1" />
    <port name="empty" direction="output" role="empty" width="1" />
   </interface>
  </perimeter>
  <entity kind="out_fifo" version="1.0" name="out_fifo">
-  <parameter name="AUTO_GENERATION_ID" value="1486061506" />
+  <parameter name="AUTO_GENERATION_ID" value="1486071303" />
   <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SGE2" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Arria 10" />
   <parameter name="AUTO_UNIQUE_ID" value="" />
@@ -81,10 +81,10 @@
   </childSourceFiles>
   <messages>
    <message level="Info" culprit="out_fifo">"Generating: out_fifo"</message>
-   <message level="Info" culprit="out_fifo">"Generating: out_fifo_fifo_160_rvmcgly"</message>
+   <message level="Info" culprit="out_fifo">"Generating: out_fifo_fifo_160_sbgry4a"</message>
   </messages>
  </entity>
- <entity kind="fifo" version="16.0" name="out_fifo_fifo_160_rvmcgly">
+ <entity kind="fifo" version="16.0" name="out_fifo_fifo_160_sbgry4a">
   <parameter name="GUI_Full" value="true" />
   <parameter name="GUI_RdUsedw_width" value="8" />
   <parameter name="GUI_AlmostFullThr" value="1" />
@@ -99,7 +99,7 @@
   <parameter name="GUI_Optimize" value="1" />
   <parameter name="GUI_Depth" value="4096" />
   <parameter name="GUI_LE_BasedFIFO" value="false" />
-  <parameter name="GUI_UsedW" value="true" />
+  <parameter name="GUI_UsedW" value="false" />
   <parameter name="GUI_wsUsedW" value="false" />
   <parameter name="GUI_LegacyRREQ" value="1" />
   <parameter name="GUI_Usedw_width" value="12" />
@@ -118,7 +118,7 @@
   <parameter name="GUI_Clock" value="0" />
   <parameter name="GUI_dc_aclr" value="false" />
   <parameter name="GUI_rsFull" value="false" />
-  <parameter name="GUI_sc_sclr" value="false" />
+  <parameter name="GUI_sc_sclr" value="true" />
   <parameter name="GUI_diff_widths" value="false" />
   <parameter name="GUI_MAX_DEPTH_BY_9" value="false" />
   <parameter name="GUI_AlmostEmptyThr" value="1" />
@@ -129,12 +129,12 @@
   <parameter name="GUI_Width" value="8" />
   <generatedFiles>
    <file
-       path="/home/mladmon/workspace/firework/varint_encoder/out_fifo/fifo_160/synth/out_fifo_fifo_160_rvmcgly.v"
+       path="/home/mladmon/workspace/firework/varint_encoder/out_fifo/fifo_160/synth/out_fifo_fifo_160_sbgry4a.v"
        attributes="" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="/home/mladmon/workspace/firework/varint_encoder/out_fifo/fifo_160/synth/out_fifo_fifo_160_rvmcgly.v"
+       path="/home/mladmon/workspace/firework/varint_encoder/out_fifo/fifo_160/synth/out_fifo_fifo_160_sbgry4a.v"
        attributes="" />
   </childGeneratedFiles>
   <sourceFiles>
@@ -144,7 +144,7 @@
   <childSourceFiles/>
   <instantiator instantiator="out_fifo" as="fifo_0" />
   <messages>
-   <message level="Info" culprit="out_fifo">"Generating: out_fifo_fifo_160_rvmcgly"</message>
+   <message level="Info" culprit="out_fifo">"Generating: out_fifo_fifo_160_sbgry4a"</message>
   </messages>
  </entity>
 </deploy>

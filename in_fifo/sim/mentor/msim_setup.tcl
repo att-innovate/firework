@@ -92,7 +92,7 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Altera IP within the design.
 # ----------------------------------------
-# ACDS 16.0 211 linux 2017.01.27.15:57:09
+# ACDS 16.0 211 linux 2017.02.02.13:33:33
 
 # ----------------------------------------
 # Initialize variables
@@ -186,7 +186,7 @@ alias dev_com {
 # Compile the design files in correct order
 alias com {
   echo "\[exec\] com"
-  eval  vlog $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/../fifo_160/sim/in_fifo_fifo_160_mnfmh2i.v" -work in_fifo_fifo_160
+  eval  vlog $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/../fifo_160/sim/in_fifo_fifo_160_2524una.v" -work in_fifo_fifo_160
   eval  vlog $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/in_fifo.v"                                                        
 }
 

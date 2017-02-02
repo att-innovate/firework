@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="out_fifo" kind="out_fifo" version="1.0" fabric="QSYS">
  <!-- Format version 16.0 211 (Future versions may contain additional information.) -->
- <!-- 2017.02.02.10:51:46 -->
+ <!-- 2017.02.02.13:35:03 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1486061506</value>
+  <value>1486071303</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -223,7 +223,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="GUI_UsedW">
    <type>boolean</type>
-   <value>true</value>
+   <value>false</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -255,7 +255,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="GUI_sc_sclr">
    <type>boolean</type>
-   <value>false</value>
+   <value>true</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -487,6 +487,12 @@ parameters are a RESULT of the module parameters. -->
     <width>1</width>
     <role>clk</role>
    </port>
+   <port>
+    <name>sclr</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>sclr</role>
+   </port>
   </interface>
   <interface name="fifo_output" kind="conduit_end" version="16.0">
    <!-- The connection points exposed by a module instance for the
@@ -535,12 +541,6 @@ parameters are a RESULT of the module parameters. -->
     <direction>Output</direction>
     <width>8</width>
     <role>dataout</role>
-   </port>
-   <port>
-    <name>usedw</name>
-    <direction>Output</direction>
-    <width>12</width>
-    <role>usedw</role>
    </port>
    <port>
     <name>full</name>

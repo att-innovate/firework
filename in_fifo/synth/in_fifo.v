@@ -10,19 +10,17 @@ module in_fifo (
 		input  wire        clock, //            .clk
 		input  wire        sclr,  //            .sclr
 		output wire [31:0] q,     // fifo_output.dataout
-		output wire [9:0]  usedw, //            .usedw
 		output wire        full,  //            .full
 		output wire        empty  //            .empty
 	);
 
-	in_fifo_fifo_160_mnfmh2i fifo_0 (
+	in_fifo_fifo_160_2524una fifo_0 (
 		.data  (data),  //  fifo_input.datain
 		.wrreq (wrreq), //            .wrreq
 		.rdreq (rdreq), //            .rdreq
 		.clock (clock), //            .clk
 		.sclr  (sclr),  //            .sclr
 		.q     (q),     // fifo_output.dataout
-		.usedw (usedw), //            .usedw
 		.full  (full),  //            .full
 		.empty (empty)  //            .empty
 	);

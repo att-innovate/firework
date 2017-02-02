@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <simPackage>
  <file
-   path="fifo_160/sim/out_fifo_fifo_160_rvmcgly.v"
+   path="fifo_160/sim/out_fifo_fifo_160_sbgry4a.v"
    type="VERILOG"
    library="out_fifo_fifo_160" />
  <file path="sim/out_fifo.v" type="VERILOG" hasInlineConfiguration="true" />

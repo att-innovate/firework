@@ -15,7 +15,7 @@
 // synopsys translate_off
 `timescale 1 ps / 1 ps
 // synopsys translate_on
-module  in_fifo_fifo_160_mnfmh2i  (
+module  in_fifo_fifo_160_2524una  (
     clock,
     data,
     rdreq,
@@ -23,8 +23,7 @@ module  in_fifo_fifo_160_mnfmh2i  (
     wrreq,
     empty,
     full,
-    q,
-    usedw);
+    q);
 
     input    clock;
     input  [31:0]  data;
@@ -34,16 +33,13 @@ module  in_fifo_fifo_160_mnfmh2i  (
     output   empty;
     output   full;
     output [31:0]  q;
-    output [9:0]  usedw;
 
     wire  sub_wire0;
     wire  sub_wire1;
     wire [31:0] sub_wire2;
-    wire [9:0] sub_wire3;
     wire  empty = sub_wire0;
     wire  full = sub_wire1;
     wire [31:0] q = sub_wire2[31:0];
-    wire [9:0] usedw = sub_wire3[9:0];
 
     scfifo  scfifo_component (
                 .clock (clock),
@@ -54,11 +50,11 @@ module  in_fifo_fifo_160_mnfmh2i  (
                 .empty (sub_wire0),
                 .full (sub_wire1),
                 .q (sub_wire2),
-                .usedw (sub_wire3),
                 .aclr (),
                 .almost_empty (),
                 .almost_full (),
-                .eccstatus ());
+                .eccstatus (),
+                .usedw ());
     defparam
         scfifo_component.add_ram_output_register  = "ON",
         scfifo_component.enable_ecc  = "FALSE",

@@ -12,7 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
-# ACDS 16.0 211 linux 2017.01.27.15:57:09
+# ACDS 16.0 211 linux 2017.02.02.13:33:33
 
 # ----------------------------------------
 # vcsmx - auto-generated simulation script
@@ -101,7 +101,7 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Altera IP within the design.
 # ----------------------------------------
-# ACDS 16.0 211 linux 2017.01.27.15:57:09
+# ACDS 16.0 211 linux 2017.02.02.13:33:33
 # ----------------------------------------
 # initialize variables
 TOP_LEVEL_NAME="in_fifo"
@@ -173,7 +173,7 @@ fi
 # ----------------------------------------
 # compile design files in correct order
 if [ $SKIP_COM -eq 0 ]; then
-  vlogan +v2k $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/../fifo_160/sim/in_fifo_fifo_160_mnfmh2i.v" -work in_fifo_fifo_160
+  vlogan +v2k $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/../fifo_160/sim/in_fifo_fifo_160_2524una.v" -work in_fifo_fifo_160
   vlogan +v2k $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/in_fifo.v"                                                        
 fi
 

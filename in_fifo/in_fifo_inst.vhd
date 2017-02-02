@@ -6,7 +6,6 @@
 			clock : in  std_logic                     := 'X';             -- clk
 			sclr  : in  std_logic                     := 'X';             -- sclr
 			q     : out std_logic_vector(31 downto 0);                    -- dataout
-			usedw : out std_logic_vector(9 downto 0);                     -- usedw
 			full  : out std_logic;                                        -- full
 			empty : out std_logic                                         -- empty
 		);
@@ -20,7 +19,6 @@
 			clock => CONNECTED_TO_clock, --            .clk
 			sclr  => CONNECTED_TO_sclr,  --            .sclr
 			q     => CONNECTED_TO_q,     -- fifo_output.dataout
-			usedw => CONNECTED_TO_usedw, --            .usedw
 			full  => CONNECTED_TO_full,  --            .full
 			empty => CONNECTED_TO_empty  --            .empty
 		);

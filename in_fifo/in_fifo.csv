@@ -1,18 +1,18 @@
-# system info in_fifo on 2017.01.27.15:57:08
+# system info in_fifo on 2017.02.02.13:33:32
 system_info:
 name,value
 DEVICE,10AS066N3F40E2SGE2
 DEVICE_FAMILY,Arria 10
-GENERATION_ID,1485561428
+GENERATION_ID,1486071212
 #
 #
-# Files generated for in_fifo on 2017.01.27.15:57:08
+# Files generated for in_fifo on 2017.02.02.13:33:32
 files:
 filepath,kind,attributes,module,is_top
 sim/in_fifo.v,VERILOG,CONTAINS_INLINE_CONFIGURATION,in_fifo,true
-fifo_160/sim/in_fifo_fifo_160_mnfmh2i.v,VERILOG,,in_fifo_fifo_160_mnfmh2i,false
+fifo_160/sim/in_fifo_fifo_160_2524una.v,VERILOG,,in_fifo_fifo_160_2524una,false
 #
 # Map from instance-path to kind of module
 instances:
 instancePath,module
-in_fifo.fifo_0,in_fifo_fifo_160_mnfmh2i
+in_fifo.fifo_0,in_fifo_fifo_160_2524una

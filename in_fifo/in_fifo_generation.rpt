@@ -21,7 +21,7 @@ Info: in_fifo: Running transform merlin_avalon_transform took 0.033s
 Info: in_fifo: "Naming system components in system: in_fifo"
 Info: in_fifo: "Processing generation queue"
 Info: in_fifo: "Generating: in_fifo"
-Info: in_fifo: "Generating: in_fifo_fifo_160_mnfmh2i"
+Info: in_fifo: "Generating: in_fifo_fifo_160_2524una"
 Info: in_fifo: Done "in_fifo" with 2 modules, 2 files
 Info: qsys-generate succeeded.
 Info: Finished: Create simulation model
@@ -83,7 +83,7 @@ Info: in_fifo: Running transform merlin_avalon_transform took 0.008s
 Info: in_fifo: "Naming system components in system: in_fifo"
 Info: in_fifo: "Processing generation queue"
 Info: in_fifo: "Generating: in_fifo"
-Info: in_fifo: "Generating: in_fifo_fifo_160_mnfmh2i"
+Info: in_fifo: "Generating: in_fifo_fifo_160_2524una"
 Info: in_fifo: Done "in_fifo" with 2 modules, 3 files
 Info: qsys-generate succeeded.
 Info: Finished: Create HDL design files for synthesis
