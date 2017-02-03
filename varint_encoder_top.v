@@ -34,7 +34,10 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		output wire        axs_s0_rvalid,  //       .rvalid
 		input  wire        axs_s0_rready,  //       .rready
 	);
-	 
+	
+	// TODO: declare wires and connect submodule signals
+	wire [31:0] in_q;
+	
 	in_fifo in0 (
 		.data  (axs_s0_wdata),  		 	//  fifo_input.datain
 		.wrreq (axs_s0_wvalid), 		 	//            .wrreq
@@ -44,6 +47,15 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		.q     (in_q), 				    	// fifo_output.dataout
 		.full  (in_full), 				 	//            .full
 		.empty (in_empty) 				 	//            .empty
+	);
+	
+	controller c0 (
+		// TODO: assign connections
+	);
+	
+	datapath d0 (
+		// TODO: assign connections
+		.raw_data (in_q),
 	);
 	
 	out_fifo out0 (
@@ -57,16 +69,20 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		.empty (out_empty)					//            .empty
 	);
 	
-    // TODO: Auto-generated HDL template
-    assign axs_s0_wready = 1'b0;
-    assign axs_s0_rid = 4'b0000;
-    assign axs_s0_arready = 1'b0;
-    assign axs_s0_rdata = 32'b00000000000000000000000000000000;
-    assign axs_s0_awready = 1'b0;
-    assign axs_s0_rlast = 1'b0;
-    assign axs_s0_bid = 4'b0000;
-    assign axs_s0_bvalid = 1'b0;
-    assign axs_s0_rvalid = 1'b0;
+	extender_8to32 e0 (
+		// TODO: assign connections
+	);
+	
+	// TODO: Auto-generated HDL template
+	assign axs_s0_wready = 1'b0;
+	assign axs_s0_rid = 4'b0000;
+	assign axs_s0_arready = 1'b0;
+	assign axs_s0_rdata = 32'b00000000000000000000000000000000;
+	assign axs_s0_awready = 1'b0;
+	assign axs_s0_rlast = 1'b0;
+	assign axs_s0_bid = 4'b0000;
+	assign axs_s0_bvalid = 1'b0;
+	assign axs_s0_rvalid = 1'b0;
 
 endmodule
 
@@ -81,21 +97,9 @@ endmodule
 		output wire        asi_in0_ready, // 		  .ready
 	);
 
-	in_fifo u0 (
-		.data  (<connected-to-data>),  //  fifo_input.datain
-		.wrreq (<connected-to-wrreq>), //            .wrreq
-		.rdreq (<connected-to-rdreq>), //            .rdreq
-		.clock (<connected-to-clock>), //            .clk
-		.sclr  (<connected-to-sclr>),  //            .sclr
-		.q     (<connected-to-q>),     // fifo_output.dataout
-		.usedw (<connected-to-usedw>), //            .usedw
-		.full  (<connected-to-full>),  //            .full
-		.empty (<connected-to-empty>)  //            .empty
-	);
+endmodule
 
-endmodule */
-
-/*// Avalon-ST sink
+// Avalon-ST sink
 `timescale 1 ps / 1 ps
 module new_component (
         input  wire [31:0] asi_in0_data,  // asi_in0.data
