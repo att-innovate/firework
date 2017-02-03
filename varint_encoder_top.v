@@ -35,9 +35,15 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		input  wire        axs_s0_rready,  //       .rready
 	);
 	
-	// TODO: declare wires and connect submodule signals
+	// Internal wires
 	wire [31:0] in_q;
+	wire        data_in_sel, data_clr, data_load, data_out_sel, gt_eq_128;
+	wire [7:0]  out_data;
+	wire        out_empty, out_full, out_pop, out_push;
+	wire        in_empty, in_full, in_pop;
+	// TODO: add extender logic wires
 	
+	// Submodule instances
 	in_fifo in0 (
 		.data  (axs_s0_wdata),  		 	//  fifo_input.datain
 		.wrreq (axs_s0_wvalid), 		 	//            .wrreq
@@ -50,12 +56,56 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	);
 	
 	controller c0 (
-		// TODO: assign connections
+		.clk            (clock_clk),
+		.reset          (reset_reset),
+		.axs_s0_awid    (axs_s0_awid),
+		.axs_s0_awaddr  (axs_s0_awaddr),
+		.axs_s0_awlen   (axs_s0_awlen),
+		.axs_s0_awsize  (axs_s0_awsize),
+		.axs_s0_awburst (axs_s0_awburst),
+		.axs_s0_awvalid (axs_s0_awvalid),
+		.axs_s0_awready (axs_s0_awready),
+		.axs_s0_wstrb   (axs_s0_wstrb),
+		.axs_s0_wready  (axs_s0_wready),
+		.axs_s0_bready  (axs_s0_bready),
+		.axs_s0_bid     (axs_s0_bid),
+		.axs_s0_bvalid  (axs_s0_bvalid),
+		.axs_s0_arid    (axs_s0_arid),
+		.axs_s0_araddr  (axs_s0_araddr),
+		.axs_s0_arlen   (axs_s0_arlen),
+		.axs_s0_arsize  (axs_s0_arsize),
+		.axs_s0_arburst (axs_s0_arburst),
+		.axs_s0_arvalid (axs_s0_arvalid),
+		.axs_s0_arready (axs_s0_arready),
+		.axs_s0_rready  (axs_s0_rready),
+		.axs_s0_rid     (axs_s0_rid),
+		.axs_s0_rlast   (axs_s0_rlast),
+		.axs_s0_rvalid  (axs_s0_rvalid),
+		.in_empty       (in_empty),
+		.in_full        (in_full),
+		.in_pop         (in_pop),
+		.data_in_sel    (data_in_sel),
+		.data_clr       (data_clr),
+		.data_load      (data_load),
+		.data_out_sel   (data_out_sel),
+		.gt_eq_128      (gt_eq_128),
+		.out_empty      (out_empty),
+		.out_full       (out_full),
+		.out_pop        (out_pop),
+		.out_push       (out_push),
+		// TODO: add extender logic ports
 	);
 	
 	datapath d0 (
-		// TODO: assign connections
-		.raw_data (in_q),
+		.clk          (clock_clk),
+		.reset        (reset_reset),
+		.raw_data     (in_q),
+		.data_in_sel  (data_in_sel),
+		.data_clr     (data_clr),
+		.data_load    (data_load),
+		.data_out_sel (data_out_sel),
+		.gt_eq_128    (gt_eq_128),
+		.encoded_byte (out_data),
 	);
 	
 	out_fifo out0 (
@@ -70,7 +120,9 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	);
 	
 	extender_8to32 e0 (
-		// TODO: assign connections
+		.clk   (clock_clk),
+		.reset (reset_reset),
+		// TODO: add ports & assign connections
 	);
 	
 	// TODO: Auto-generated HDL template
