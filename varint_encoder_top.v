@@ -1,7 +1,7 @@
 module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		
 		input  wire        clock_clk,      //  clock.clk
-		input  wire        reset_reset     //  reset.reset
+		input  wire        reset_reset,     //  reset.reset
 
 		input  wire [3:0]  axs_s0_awid,    // axs_s0.awid
 		input  wire [31:0] axs_s0_awaddr,  //       .awaddr
@@ -32,7 +32,7 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		output wire [31:0] axs_s0_rdata,   //       .rdata
 		output wire        axs_s0_rlast,   //       .rlast
 		output wire        axs_s0_rvalid,  //       .rvalid
-		input  wire        axs_s0_rready,  //       .rready
+		input  wire        axs_s0_rready   //       .rready
 	);
 	
 	// Internal wires

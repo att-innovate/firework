@@ -7,7 +7,7 @@ module datapath (
 
 		// Data I/O
 		input  wire [31:0] raw_data,
-		output wire [7:0]  encoded_byte
+		output wire [7:0]  encoded_byte,
 
 		// Control signals
 		input  wire        data_in_sel,

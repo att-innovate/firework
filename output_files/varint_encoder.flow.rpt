@@ -1,0 +1,130 @@
+Flow report for varint_encoder
+Mon Feb  6 11:58:49 2017
+Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+  8. Flow Messages
+  9. Flow Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2016 Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Altera and sold by Altera or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++-------------------------------------------------------------------------------+
+; Flow Summary                                                                  ;
++-----------------------------+-------------------------------------------------+
+; Flow Status                 ; Flow Failed - Mon Feb  6 11:58:49 2017          ;
+; Quartus Prime Version       ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
+; Revision Name               ; varint_encoder                                  ;
+; Top-level Entity Name       ; varint_encoder_top                              ;
+; Family                      ; Arria 10                                        ;
+; Device                      ; 10AS066N3F40E2SGE2                              ;
+; Timing Models               ; Preliminary                                     ;
+; Logic utilization (in ALMs) ; N/A until Partition Merge                       ;
+; Total registers             ; N/A until Partition Merge                       ;
+; Total pins                  ; N/A until Partition Merge                       ;
+; Total virtual pins          ; N/A until Partition Merge                       ;
+; Total block memory bits     ; N/A until Partition Merge                       ;
+; Total PLLs                  ; N/A until Partition Merge                       ;
++-----------------------------+-------------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 02/06/2017 11:58:38 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; varint_encoder      ;
++-------------------+---------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                        ;
++-------------------------------------+------------------------------------------------------------+----------------+--------------------+----------------+
+; Assignment Name                     ; Value                                                      ; Default Value  ; Entity Name        ; Section Id     ;
++-------------------------------------+------------------------------------------------------------+----------------+--------------------+----------------+
+; COMPILER_SIGNATURE_ID               ; 203178701995592.148641111815356                            ; --             ; --                 ; --             ;
+; EDA_OUTPUT_DATA_FORMAT              ; Verilog Hdl                                                ; --             ; --                 ; eda_simulation ;
+; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (Verilog)                                  ; <None>         ; --                 ; --             ;
+; EDA_TIME_SCALE                      ; 1 ps                                                       ; --             ; --                 ; eda_simulation ;
+; MAX_CORE_JUNCTION_TEMP              ; 100                                                        ; --             ; --                 ; --             ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                                                          ; --             ; --                 ; --             ;
+; MISC_FILE                           ; in_fifo/in_fifo.cmp                                        ; --             ; --                 ; --             ;
+; MISC_FILE                           ; in_fifo/../in_fifo.qsys                                    ; --             ; --                 ; --             ;
+; MISC_FILE                           ; out_fifo/out_fifo.cmp                                      ; --             ; --                 ; --             ;
+; MISC_FILE                           ; out_fifo/../out_fifo.qsys                                  ; --             ; --                 ; --             ;
+; PARTITION_COLOR                     ; 16764057                                                   ; --             ; varint_encoder_top ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT                                                  ; --             ; varint_encoder_top ; Top            ;
+; PARTITION_NETLIST_TYPE              ; SOURCE                                                     ; --             ; varint_encoder_top ; Top            ;
+; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                                        ; --             ; --                 ; --             ;
+; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                      ; --             ; --                 ; --             ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                                               ; --             ; --                 ; --             ;
+; SEARCH_PATH                         ; /home/mladmon/workspace/firework/varint_encoder/in_fifo    ; --             ; --                 ; --             ;
+; SLD_FILE                            ; in_fifo/in_fifo.debuginfo                                  ; --             ; --                 ; --             ;
+; SLD_FILE                            ; out_fifo/out_fifo.debuginfo                                ; --             ; --                 ; --             ;
+; SLD_INFO                            ; QSYS_NAME in_fifo HAS_SOPCINFO 1 GENERATION_ID 1486071214  ; --             ; in_fifo            ; --             ;
+; SLD_INFO                            ; QSYS_NAME out_fifo HAS_SOPCINFO 1 GENERATION_ID 1486071303 ; --             ; out_fifo           ; --             ;
+; SOPCINFO_FILE                       ; in_fifo/../in_fifo.sopcinfo                                ; --             ; --                 ; --             ;
+; SOPCINFO_FILE                       ; out_fifo/../out_fifo.sopcinfo                              ; --             ; --                 ; --             ;
+; SYNTHESIS_ONLY_QIP                  ; On                                                         ; --             ; --                 ; --             ;
+; SYNTHESIS_ONLY_QIP                  ; On                                                         ; --             ; --                 ; --             ;
+; TOP_LEVEL_ENTITY                    ; varint_encoder_top                                         ; varint_encoder ; --                 ; --             ;
++-------------------------------------+------------------------------------------------------------+----------------+--------------------+----------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                          ;
++------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name            ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Elaboration ; 00:00:12     ; 1.0                     ; 1658 MB             ; 00:00:33                           ;
+; Total                  ; 00:00:12     ; --                      ; --                  ; 00:00:33                           ;
++------------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++------------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                          ;
++------------------------+------------------+--------------+--------------+----------------+
+; Module Name            ; Machine Hostname ; OS Name      ; OS Version   ; Processor type ;
++------------------------+------------------+--------------+--------------+----------------+
+; Analysis & Elaboration ; cl3.dvmco.met    ; CentOS Linux ; CentOS Linux ; x86_64         ;
++------------------------+------------------+--------------+--------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --write_settings_files=off varint_encoder -c varint_encoder --analysis_and_elaboration
+
+
+
