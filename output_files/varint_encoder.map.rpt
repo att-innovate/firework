@@ -1,5 +1,5 @@
 Analysis & Elaboration report for varint_encoder
-Mon Feb  6 11:58:49 2017
+Mon Feb 13 15:18:10 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -16,8 +16,7 @@ Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
   8. Parameter Settings for User Entity Instance: out_fifo:out0|out_fifo_fifo_160_sbgry4a:fifo_0|scfifo:scfifo_component
   9. scfifo Parameter Settings by Entity Instance
  10. Analysis & Elaboration Settings
- 11. Port Connectivity Checks: "out_fifo:out0"
- 12. Analysis & Elaboration Messages
+ 11. Analysis & Elaboration Messages
 
 
 
@@ -44,7 +43,7 @@ agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Elaboration Summary                                                  ;
 +-------------------------------+-------------------------------------------------+
-; Analysis & Elaboration Status ; Failed - Mon Feb  6 11:58:49 2017               ;
+; Analysis & Elaboration Status ; Successful - Mon Feb 13 15:18:10 2017           ;
 ; Quartus Prime Version         ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
 ; Revision Name                 ; varint_encoder                                  ;
 ; Top-level Entity Name         ; varint_encoder_top                              ;
@@ -271,23 +270,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "out_fifo:out0"                                                                                                       ;
-+------+--------+----------+----------------------------------------------------------------------------------------------------------------------+
-; Port ; Type   ; Severity ; Details                                                                                                              ;
-+------+--------+----------+----------------------------------------------------------------------------------------------------------------------+
-; q    ; Output ; Warning  ; Output or bidir port (8 bits) is wider than the port expression (1 bits) it drives; bit(s) "q[7..1]" have no fanouts ;
-; q    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                  ;
-+------+--------+----------+----------------------------------------------------------------------------------------------------------------------+
-
-
 +---------------------------------+
 ; Analysis & Elaboration Messages ;
 +---------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Elaboration
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
-    Info: Processing started: Mon Feb  6 11:58:37 2017
+    Info: Processing started: Mon Feb 13 15:17:59 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off varint_encoder -c varint_encoder --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
@@ -295,9 +284,6 @@ Info (16260): Previously generated files were detected in the Qsys file generati
 Info (16261): Skipped generation of the Qsys file "/home/mladmon/workspace/firework/varint_encoder/in_fifo.qsys" based on the current IP regeneration policy. You can review your IP regeneration policy in the IP Settings page of the Settings dialog box.
 Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/varint_encoder/out_fifo/").
 Info (16261): Skipped generation of the Qsys file "/home/mladmon/workspace/firework/varint_encoder/out_fifo.qsys" based on the current IP regeneration policy. You can review your IP regeneration policy in the IP Settings page of the Settings dialog box.
-Warning (10275): Verilog HDL Module Instantiation warning at varint_encoder_top.v(97): ignored dangling comma in List of Port Connections File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 97
-Warning (10275): Verilog HDL Module Instantiation warning at varint_encoder_top.v(109): ignored dangling comma in List of Port Connections File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 109
-Warning (10275): Verilog HDL Module Instantiation warning at varint_encoder_top.v(126): ignored dangling comma in List of Port Connections File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 126
 Info (12021): Found 1 design units, including 1 entities, in source file varint_encoder_top.v
     Info (12023): Found entity 1: varint_encoder_top File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file in_fifo/synth/in_fifo.v
@@ -316,11 +302,9 @@ Info (12021): Found 1 design units, including 1 entities, in source file control
     Info (12023): Found entity 1: controller File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file datapath.v
     Info (12023): Found entity 1: datapath File: /home/mladmon/workspace/firework/varint_encoder/datapath.v Line: 3
-Info (12021): Found 1 design units, including 1 entities, in source file extender_8to32.v
-    Info (12023): Found entity 1: extender_8to32 File: /home/mladmon/workspace/firework/varint_encoder/extender_8to32.v Line: 3
-Warning (10236): Verilog HDL Implicit Net warning at varint_encoder_top.v(117): created implicit net for "out_q" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 117
+Warning (12019): Can't analyze file -- file extender_8to32.v is missing
 Info (12127): Elaborating entity "varint_encoder_top" for the top level hierarchy
-Info (12128): Elaborating entity "in_fifo" for hierarchy "in_fifo:in0" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 56
+Info (12128): Elaborating entity "in_fifo" for hierarchy "in_fifo:in0" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 57
 Info (12128): Elaborating entity "in_fifo_fifo_160_2524una" for hierarchy "in_fifo:in0|in_fifo_fifo_160_2524una:fifo_0" File: /home/mladmon/workspace/firework/varint_encoder/in_fifo/synth/in_fifo.v Line: 26
 Info (12128): Elaborating entity "scfifo" for hierarchy "in_fifo:in0|in_fifo_fifo_160_2524una:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/in_fifo/fifo_160/synth/in_fifo_fifo_160_2524una.v Line: 57
 Info (12130): Elaborated megafunction instantiation "in_fifo:in0|in_fifo_fifo_160_2524una:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/in_fifo/fifo_160/synth/in_fifo_fifo_160_2524una.v Line: 57
@@ -359,28 +343,31 @@ Info (12128): Elaborating entity "cntr_ls6" for hierarchy "in_fifo:in0|in_fifo_f
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_9sa.tdf
     Info (12023): Found entity 1: cntr_9sa File: /home/mladmon/workspace/firework/varint_encoder/db/cntr_9sa.tdf Line: 26
 Info (12128): Elaborating entity "cntr_9sa" for hierarchy "in_fifo:in0|in_fifo_fifo_160_2524una:fifo_0|scfifo:scfifo_component|scfifo_off1:auto_generated|a_dpfifo_5ad1:dpfifo|cntr_9sa:wr_ptr" File: /home/mladmon/workspace/firework/varint_encoder/db/a_dpfifo_5ad1.tdf Line: 57
-Info (12128): Elaborating entity "controller" for hierarchy "controller:c0" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 97
-Warning (10034): Output port "axs_s0_bid" at controller.v(21) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 21
-Warning (10034): Output port "axs_s0_rid" at controller.v(33) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 33
+Info (12128): Elaborating entity "controller" for hierarchy "controller:c0" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 103
+Warning (10034): Output port "axs_s0_bid" at controller.v(22) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 22
+Warning (10034): Output port "axs_s0_rid" at controller.v(34) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 34
+Warning (10034): Output port "raw_data_sel" at controller.v(52) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 52
 Warning (10034): Output port "axs_s0_awready" at controller.v(15) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 15
-Warning (10034): Output port "axs_s0_wready" at controller.v(18) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 18
-Warning (10034): Output port "axs_s0_bvalid" at controller.v(22) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 22
-Warning (10034): Output port "axs_s0_arready" at controller.v(30) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 30
-Warning (10034): Output port "axs_s0_rlast" at controller.v(34) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 34
-Warning (10034): Output port "axs_s0_rvalid" at controller.v(35) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 35
-Warning (10034): Output port "in_pop" at controller.v(40) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 40
-Warning (10034): Output port "data_in_sel" at controller.v(42) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 42
-Warning (10034): Output port "data_clr" at controller.v(43) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 43
-Warning (10034): Output port "data_load" at controller.v(44) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 44
-Warning (10034): Output port "data_out_sel" at controller.v(45) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 45
-Warning (10034): Output port "out_pop" at controller.v(50) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 50
-Warning (10034): Output port "out_push" at controller.v(55) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 55
-Warning (12158): Entity "controller" contains only dangling pins File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 97
-Info (12128): Elaborating entity "datapath" for hierarchy "datapath:d0" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 109
-Warning (10034): Output port "encoded_byte" at datapath.v(10) has no driver File: /home/mladmon/workspace/firework/varint_encoder/datapath.v Line: 10
+Warning (10034): Output port "axs_s0_wready" at controller.v(19) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 19
+Warning (10034): Output port "axs_s0_bvalid" at controller.v(23) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 23
+Warning (10034): Output port "axs_s0_arready" at controller.v(31) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 31
+Warning (10034): Output port "axs_s0_rlast" at controller.v(35) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 35
+Warning (10034): Output port "axs_s0_rvalid" at controller.v(36) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 36
+Warning (10034): Output port "in_pop" at controller.v(41) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 41
+Warning (10034): Output port "in_push" at controller.v(42) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 42
+Warning (10034): Output port "varint_in_sel" at controller.v(44) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 44
+Warning (10034): Output port "varint_clr" at controller.v(45) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 45
+Warning (10034): Output port "varint_ld" at controller.v(46) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 46
+Warning (10034): Output port "varint_out_sel" at controller.v(47) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 47
+Warning (10034): Output port "raw_data_clr" at controller.v(50) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 50
+Warning (10034): Output port "raw_data_ld" at controller.v(51) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 51
+Warning (10034): Output port "byte_sel" at controller.v(54) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 54
+Warning (10034): Output port "out_pop" at controller.v(58) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 58
+Warning (10034): Output port "out_push" at controller.v(60) has no driver File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 60
+Info (12128): Elaborating entity "datapath" for hierarchy "datapath:d0" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 120
+Warning (10034): Output port "out" at datapath.v(11) has no driver File: /home/mladmon/workspace/firework/varint_encoder/datapath.v Line: 11
 Warning (10034): Output port "gt_eq_128" at datapath.v(18) has no driver File: /home/mladmon/workspace/firework/varint_encoder/datapath.v Line: 18
-Warning (12158): Entity "datapath" contains only dangling pins File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 109
-Info (12128): Elaborating entity "out_fifo" for hierarchy "out_fifo:out0" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 120
+Info (12128): Elaborating entity "out_fifo" for hierarchy "out_fifo:out0" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 131
 Info (12128): Elaborating entity "out_fifo_fifo_160_sbgry4a" for hierarchy "out_fifo:out0|out_fifo_fifo_160_sbgry4a:fifo_0" File: /home/mladmon/workspace/firework/varint_encoder/out_fifo/synth/out_fifo.v Line: 26
 Info (12128): Elaborating entity "scfifo" for hierarchy "out_fifo:out0|out_fifo_fifo_160_sbgry4a:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/out_fifo/fifo_160/synth/out_fifo_fifo_160_sbgry4a.v Line: 57
 Info (12130): Elaborated megafunction instantiation "out_fifo:out0|out_fifo_fifo_160_sbgry4a:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/out_fifo/fifo_160/synth/out_fifo_fifo_160_sbgry4a.v Line: 57
@@ -419,55 +406,10 @@ Info (12128): Elaborating entity "cntr_ns6" for hierarchy "out_fifo:out0|out_fif
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_bsa.tdf
     Info (12023): Found entity 1: cntr_bsa File: /home/mladmon/workspace/firework/varint_encoder/db/cntr_bsa.tdf Line: 26
 Info (12128): Elaborating entity "cntr_bsa" for hierarchy "out_fifo:out0|out_fifo_fifo_160_sbgry4a:fifo_0|scfifo:scfifo_component|scfifo_pef1:auto_generated|a_dpfifo_69d1:dpfifo|cntr_bsa:wr_ptr" File: /home/mladmon/workspace/firework/varint_encoder/db/a_dpfifo_69d1.tdf Line: 57
-Info (12128): Elaborating entity "extender_8to32" for hierarchy "extender_8to32:e0" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 126
-Warning (12158): Entity "extender_8to32" contains only dangling pins File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 126
-Error (12014): Net "axs_s0_awready", which fans out to "axs_s0_awready", cannot be assigned more than one value File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 12
-    Error (12015): Net is fed by "GND"
-    Error (12015): Net is fed by "controller:c0|axs_s0_awready" File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 15
-Error (12014): Net "axs_s0_wready", which fans out to "axs_s0_wready", cannot be assigned more than one value File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 17
-    Error (12015): Net is fed by "GND"
-    Error (12015): Net is fed by "controller:c0|axs_s0_wready" File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 18
-Error (12014): Net "axs_s0_bid[3]", which fans out to "axs_s0_bid[3]", cannot be assigned more than one value File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 20
-    Error (12015): Net is fed by "GND"
-    Error (12015): Net is fed by "controller:c0|axs_s0_bid[3]" File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 21
-Error (12014): Net "axs_s0_bid[2]", which fans out to "axs_s0_bid[2]", cannot be assigned more than one value File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 20
-    Error (12015): Net is fed by "GND"
-    Error (12015): Net is fed by "controller:c0|axs_s0_bid[2]" File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 21
-Error (12014): Net "axs_s0_bid[1]", which fans out to "axs_s0_bid[1]", cannot be assigned more than one value File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 20
-    Error (12015): Net is fed by "GND"
-    Error (12015): Net is fed by "controller:c0|axs_s0_bid[1]" File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 21
-Error (12014): Net "axs_s0_bid[0]", which fans out to "axs_s0_bid[0]", cannot be assigned more than one value File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 20
-    Error (12015): Net is fed by "GND"
-    Error (12015): Net is fed by "controller:c0|axs_s0_bid[0]" File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 21
-Error (12014): Net "axs_s0_bvalid", which fans out to "axs_s0_bvalid", cannot be assigned more than one value File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 21
-    Error (12015): Net is fed by "GND"
-    Error (12015): Net is fed by "controller:c0|axs_s0_bvalid" File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 22
-Error (12014): Net "axs_s0_arready", which fans out to "axs_s0_arready", cannot be assigned more than one value File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 29
-    Error (12015): Net is fed by "GND"
-    Error (12015): Net is fed by "controller:c0|axs_s0_arready" File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 30
-Error (12014): Net "axs_s0_rid[3]", which fans out to "axs_s0_rid[3]", cannot be assigned more than one value File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
-    Error (12015): Net is fed by "GND"
-    Error (12015): Net is fed by "controller:c0|axs_s0_rid[3]" File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 33
-Error (12014): Net "axs_s0_rid[2]", which fans out to "axs_s0_rid[2]", cannot be assigned more than one value File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
-    Error (12015): Net is fed by "GND"
-    Error (12015): Net is fed by "controller:c0|axs_s0_rid[2]" File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 33
-Error (12014): Net "axs_s0_rid[1]", which fans out to "axs_s0_rid[1]", cannot be assigned more than one value File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
-    Error (12015): Net is fed by "GND"
-    Error (12015): Net is fed by "controller:c0|axs_s0_rid[1]" File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 33
-Error (12014): Net "axs_s0_rid[0]", which fans out to "axs_s0_rid[0]", cannot be assigned more than one value File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
-    Error (12015): Net is fed by "GND"
-    Error (12015): Net is fed by "controller:c0|axs_s0_rid[0]" File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 33
-Error (12014): Net "axs_s0_rlast", which fans out to "axs_s0_rlast", cannot be assigned more than one value File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 33
-    Error (12015): Net is fed by "GND"
-    Error (12015): Net is fed by "controller:c0|axs_s0_rlast" File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 34
-Error (12014): Net "axs_s0_rvalid", which fans out to "axs_s0_rvalid", cannot be assigned more than one value File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 34
-    Error (12015): Net is fed by "GND"
-    Error (12015): Net is fed by "controller:c0|axs_s0_rvalid" File: /home/mladmon/workspace/firework/varint_encoder/controller.v Line: 35
-Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
-Error: Quartus Prime Analysis & Elaboration was unsuccessful. 42 errors, 26 warnings
-    Error: Peak virtual memory: 1658 megabytes
-    Error: Processing ended: Mon Feb  6 11:58:49 2017
-    Error: Elapsed time: 00:00:12
-    Error: Total CPU time (on all processors): 00:00:33
+Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 24 warnings
+    Info: Peak virtual memory: 1662 megabytes
+    Info: Processing ended: Mon Feb 13 15:18:10 2017
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:32
 
 

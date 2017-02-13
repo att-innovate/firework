@@ -1,5 +1,4 @@
 module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
-		
 		input  wire        clock_clk,      //  clock.clk
 		input  wire        reset_reset,    //  reset.reset
 
@@ -131,16 +130,7 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		.empty (out_empty)					//            .empty
 	);
 	
-	// TODO: Auto-generated HDL template
-	assign axs_s0_wready = 1'b0;
-	assign axs_s0_rid = 4'b0000;
-	assign axs_s0_arready = 1'b0;
 	assign axs_s0_rdata[31:8] = 24'b000000000000000000000000;
-	assign axs_s0_awready = 1'b0;
-	assign axs_s0_rlast = 1'b0;
-	assign axs_s0_bid = 4'b0000;
-	assign axs_s0_bvalid = 1'b0;
-	assign axs_s0_rvalid = 1'b0;
 
 endmodule
 
