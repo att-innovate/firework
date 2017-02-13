@@ -15,6 +15,7 @@ module controller (
 		output wire        axs_s0_awready, //       .awready
 
 		input  wire [3:0]  axs_s0_wstrb,   //       .wstrb
+		input  wire        axs_s0_wvalid,  //       .wvalid
 		output wire        axs_s0_wready,  //       .wready
 		
 		input  wire        axs_s0_bready,  //       .bready
@@ -38,20 +39,24 @@ module controller (
 		input  wire        in_empty,
 		input  wire        in_full,
 		output wire        in_pop,
+		output wire        in_push,
 		
-		output wire        data_in_sel,
-		output wire        data_clr,
-		output wire        data_load,
-		output wire        data_out_sel,
+		output wire        varint_in_sel,
+		output wire        varint_clr,
+		output wire        varint_ld,
+		output wire        varint_out_sel,
 		input  wire        gt_eq_128,
+		
+		output wire        raw_data_clr,
+		output wire        raw_data_ld,
+		output wire [1:0]  raw_data_sel,
+		
+		output wire        byte_sel,
 		
 		input  wire        out_empty,
 		input  wire        out_full,
 		output wire        out_pop,
 		output wire        out_push
-		
-		// Logic extender control signals
-		// TODO: define interface siganls
 	);
 	
 	// TODO: implement controller FSM

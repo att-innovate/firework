@@ -1,7 +1,7 @@
 module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		
 		input  wire        clock_clk,      //  clock.clk
-		input  wire        reset_reset,     //  reset.reset
+		input  wire        reset_reset,    //  reset.reset
 
 		input  wire [3:0]  axs_s0_awid,    // axs_s0.awid
 		input  wire [31:0] axs_s0_awaddr,  //       .awaddr
@@ -36,17 +36,19 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	);
 	
 	// Internal wires
+	wire        in_empty, in_full, in_pop, in_push;
 	wire [31:0] in_q;
-	wire        data_in_sel, data_clr, data_load, data_out_sel, gt_eq_128;
-	wire [7:0]  out_data;
+	wire        varint_in_sel, varint_clr, varint_ld, gt_eq_128, varint_out_sel;
+	wire        raw_data_clr, raw_data_ld;
+	wire [1:0]  raw_data_sel;
+	wire        byte_sel;
 	wire        out_empty, out_full, out_pop, out_push;
-	wire        in_empty, in_full, in_pop;
-	// TODO: add extender logic wires
+	wire [7:0]  out_data;	
 	
 	// Submodule instances
 	in_fifo in0 (
 		.data  (axs_s0_wdata),  		 	//  fifo_input.datain
-		.wrreq (axs_s0_wvalid), 		 	//            .wrreq
+		.wrreq (in_push), 		 			//            .wrreq
 		.rdreq (in_pop),						//            .rdreq
 		.clock (clock_clk),				 	//            .clk
 		.sclr  (reset_reset),  				//            .sclr
@@ -66,6 +68,7 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		.axs_s0_awvalid (axs_s0_awvalid),
 		.axs_s0_awready (axs_s0_awready),
 		.axs_s0_wstrb   (axs_s0_wstrb),
+		.axs_s0_wvalid  (axs_s0_wvalid),
 		.axs_s0_wready  (axs_s0_wready),
 		.axs_s0_bready  (axs_s0_bready),
 		.axs_s0_bid     (axs_s0_bid),
@@ -84,28 +87,37 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		.in_empty       (in_empty),
 		.in_full        (in_full),
 		.in_pop         (in_pop),
-		.data_in_sel    (data_in_sel),
-		.data_clr       (data_clr),
-		.data_load      (data_load),
-		.data_out_sel   (data_out_sel),
+		.in_push        (in_push),
+		.varint_in_sel  (varint_in_sel),
+		.varint_clr     (varint_clr),
+		.varint_ld      (varint_ld),
+		.varint_out_sel (varint_out_sel),
 		.gt_eq_128      (gt_eq_128),
+		.raw_data_clr   (raw_data_clr),
+		.raw_data_ld    (raw_data_ld),
+		.raw_data_sel   (raw_data_sel),
+		.byte_sel       (byte_sel),
 		.out_empty      (out_empty),
 		.out_full       (out_full),
 		.out_pop        (out_pop),
-		.out_push       (out_push),
-		// TODO: add extender logic ports
+		.out_push       (out_push)
 	);
 	
 	datapath d0 (
-		.clk          (clock_clk),
-		.reset        (reset_reset),
-		.raw_data     (in_q),
-		.data_in_sel  (data_in_sel),
-		.data_clr     (data_clr),
-		.data_load    (data_load),
-		.data_out_sel (data_out_sel),
-		.gt_eq_128    (gt_eq_128),
-		.encoded_byte (out_data),
+		.clk            (clock_clk),
+		.reset          (reset_reset),
+		.varint_data    (in_q),
+		.raw_data       (axs_s0_wdata),
+		.out            (out_data),
+		.varint_in_sel  (varint_in_sel),
+		.varint_clr     (varint_clr),
+		.varint_ld      (varint_ld),
+		.varint_out_sel (varint_out_sel),
+		.gt_eq_128      (gt_eq_128),
+		.raw_data_clr   (raw_data_clr),
+		.raw_data_ld    (raw_data_ld),
+		.raw_data_sel   (raw_data_sel),
+		.byte_sel       (byte_sel)
 	);
 	
 	out_fifo out0 (
@@ -114,22 +126,16 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		.rdreq (out_pop),						//            .rdreq
 		.clock (clock_clk),					//            .clk
 		.sclr  (reset_reset),				//            .sclr
-		.q     (out_q),						// fifo_output.dataout
+		.q     (axs_s0_rdata[7:0]),		// fifo_output.dataout
 		.full  (out_full),					//            .full
 		.empty (out_empty)					//            .empty
-	);
-	
-	extender_8to32 e0 (
-		.clk   (clock_clk),
-		.reset (reset_reset),
-		// TODO: add ports & assign connections
 	);
 	
 	// TODO: Auto-generated HDL template
 	assign axs_s0_wready = 1'b0;
 	assign axs_s0_rid = 4'b0000;
 	assign axs_s0_arready = 1'b0;
-	assign axs_s0_rdata = 32'b00000000000000000000000000000000;
+	assign axs_s0_rdata[31:8] = 24'b000000000000000000000000;
 	assign axs_s0_awready = 1'b0;
 	assign axs_s0_rlast = 1'b0;
 	assign axs_s0_bid = 4'b0000;
