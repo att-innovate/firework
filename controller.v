@@ -56,7 +56,9 @@ module controller (
 		input  wire        out_empty,
 		input  wire        out_full,
 		output wire        out_pop,
-		output wire        out_push
+		output wire        out_push,
+		
+		output wire        fifo_clr
 	);
 	
 	// TODO: implement controller FSM

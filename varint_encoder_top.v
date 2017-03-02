@@ -42,18 +42,19 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	wire [1:0]  raw_data_sel;
 	wire        byte_sel;
 	wire        out_empty, out_full, out_pop, out_push;
-	wire [7:0]  out_data;	
+	wire [7:0]  out_data;
+	wire        fifo_clr;
 	
 	// Submodule instances
 	in_fifo in0 (
-		.data  (axs_s0_wdata),  		 	//  fifo_input.datain
-		.wrreq (in_push), 		 			//            .wrreq
-		.rdreq (in_pop),						//            .rdreq
-		.clock (clock_clk),				 	//            .clk
-		.sclr  (reset_reset),  				//            .sclr
-		.q     (in_q), 				    	// fifo_output.dataout
-		.full  (in_full), 				 	//            .full
-		.empty (in_empty) 				 	//            .empty
+		.data  (axs_s0_wdata),           //  fifo_input.datain
+		.wrreq (in_push),                //            .wrreq
+		.rdreq (in_pop),                 //            .rdreq
+		.clock (clock_clk),              //            .clk
+		.sclr  (fifo_clr),               //            .sclr
+		.q     (in_q),                   // fifo_output.dataout
+		.full  (in_full),                //            .full
+		.empty (in_empty)                //            .empty
 	);
 	
 	controller c0 (
@@ -99,7 +100,8 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		.out_empty      (out_empty),
 		.out_full       (out_full),
 		.out_pop        (out_pop),
-		.out_push       (out_push)
+		.out_push       (out_push),
+		.fifo_clr       (fifo_clr)
 	);
 	
 	datapath d0 (
@@ -120,14 +122,14 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	);
 	
 	out_fifo out0 (
-		.data  (out_data),					//  fifo_input.datain
-		.wrreq (out_push),					//            .wrreq
-		.rdreq (out_pop),						//            .rdreq
-		.clock (clock_clk),					//            .clk
-		.sclr  (reset_reset),				//            .sclr
-		.q     (axs_s0_rdata[7:0]),		// fifo_output.dataout
-		.full  (out_full),					//            .full
-		.empty (out_empty)					//            .empty
+		.data  (out_data),               //  fifo_input.datain
+		.wrreq (out_push),               //            .wrreq
+		.rdreq (out_pop),                //            .rdreq
+		.clock (clock_clk),              //            .clk
+		.sclr  (fifo_clr),               //            .sclr
+		.q     (axs_s0_rdata[7:0]),      // fifo_output.dataout
+		.full  (out_full),               //            .full
+		.empty (out_empty)               //            .empty
 	);
 	
 	assign axs_s0_rdata[31:8] = 24'b000000000000000000000000;
