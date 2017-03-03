@@ -47,52 +47,52 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	
 	// Submodule instances
 	varint_in_fifo in0 (
-		.data  (axs_s0_wdata),           //  fifo_input.datain
-		.wrreq (in_push),                //            .wrreq
-		.rdreq (in_pop),                 //            .rdreq
+		.data  (<connected-to-data>),    //  fifo_input.datain
+		.wrreq (varint_in_fifo_push),    //            .wrreq
+		.rdreq (varint_in_fifo_pop),     //            .rdreq
 		.clock (clock_clk),              //            .clk
-		.sclr  (fifo_clr),               //            .sclr
-		.q     (in_q),                   // fifo_output.dataout
-		.full  (in_full),                //            .full
-		.empty (in_empty)                //            .empty
+		.sclr  (varint_in_fifo_clr),     //            .sclr
+		.q     (varint_in_fifo_q),       // fifo_output.dataout
+		.full  (varint_in_fifo_full),    //            .full
+		.empty (varint_in_fifo_empty)    //            .empty
 	);
 	
-	varint_in_index u0 (
-		.data  (<connected-to-data>),  //  fifo_input.datain
-		.wrreq (<connected-to-wrreq>), //            .wrreq
-		.rdreq (<connected-to-rdreq>), //            .rdreq
-		.clock (<connected-to-clock>), //            .clk
-		.sclr  (<connected-to-sclr>),  //            .sclr
-		.q     (<connected-to-q>)      // fifo_output.dataout
+	varint_in_index in1 (
+		.data  (<connected-to-data>),    //  fifo_input.datain
+		.wrreq (varint_in_index_push),   //            .wrreq
+		.rdreq (varint_in_index_pop),    //            .rdreq
+		.clock (clock_clk),              //            .clk
+		.sclr  (varint_in_index_clr),    //            .sclr
+		.q     (varint_in_index_q)       // fifo_output.dataout
 	);
 	
-	raw_data_in_fifo u0 (
-		.data  (<connected-to-data>),  //  fifo_input.datain
-		.wrreq (<connected-to-wrreq>), //            .wrreq
-		.rdreq (<connected-to-rdreq>), //            .rdreq
-		.clock (<connected-to-clock>), //            .clk
-		.sclr  (<connected-to-sclr>),  //            .sclr
-		.q     (<connected-to-q>),     // fifo_output.dataout
-		.full  (<connected-to-full>),  //            .full
-		.empty (<connected-to-empty>)  //            .empty
+	raw_data_in_fifo in2 (
+		.data  (<connected-to-data>),    //  fifo_input.datain
+		.wrreq (raw_data_in_fifo_push),  //            .wrreq
+		.rdreq (raw_data_in_fifo_pop),   //            .rdreq
+		.clock (clock_clk),              //            .clk
+		.sclr  (raw_data_in_fifo_clr),   //            .sclr
+		.q     (raw_data_in_fifo_q),     // fifo_output.dataout
+		.full  (raw_data_in_fifo_full),  //            .full
+		.empty (raw_data_in_fifo_empty)  //            .empty
 	);
 	
-	raw_data_in_index u0 (
-		.data  (<connected-to-data>),  //  fifo_input.datain
-		.wrreq (<connected-to-wrreq>), //            .wrreq
-		.rdreq (<connected-to-rdreq>), //            .rdreq
-		.clock (<connected-to-clock>), //            .clk
-		.sclr  (<connected-to-sclr>),  //            .sclr
-		.q     (<connected-to-q>)      // fifo_output.dataout
+	raw_data_in_index in3 (
+		.data  (<connected-to-data>),    //  fifo_input.datain
+		.wrreq (raw_data_in_index_push), //            .wrreq
+		.rdreq (raw_data_in_index_pop),  //            .rdreq
+		.clock (clock_clk),              //            .clk
+		.sclr  (raw_data_in_index_clr),  //            .sclr
+		.q     (raw_data_in_index_q)     // fifo_output.dataout
 	); 
 	
-	raw_data_in_wstrb u0 (
-		.data  (<connected-to-data>),  //  fifo_input.datain
-		.wrreq (<connected-to-wrreq>), //            .wrreq
-		.rdreq (<connected-to-rdreq>), //            .rdreq
-		.clock (<connected-to-clock>), //            .clk
-		.sclr  (<connected-to-sclr>),  //            .sclr
-		.q     (<connected-to-q>)      // fifo_output.dataout
+	raw_data_in_wstrb in4 (
+		.data  (<connected-to-data>),    //  fifo_input.datain
+		.wrreq (raw_data_in_wstrb_push), //            .wrreq
+		.rdreq (raw_data_in_wstrb_pop),  //            .rdreq
+		.clock (clock_clk),              //            .clk
+		.sclr  (raw_data_in_wstrb_clr),  //            .sclr
+		.q     (raw_data_in_wstrb_q)     // fifo_output.dataout
 	);
 	
 	controller c0 (
@@ -159,56 +159,56 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		.byte_sel       (byte_sel)
 	);
 	
-	varint_out_fifo u0 (
-		.data  (<connected-to-data>),  //  fifo_input.datain
-		.wrreq (<connected-to-wrreq>), //            .wrreq
-		.rdreq (<connected-to-rdreq>), //            .rdreq
-		.clock (<connected-to-clock>), //            .clk
-		.sclr  (<connected-to-sclr>),  //            .sclr
-		.q     (<connected-to-q>),     // fifo_output.dataout
-		.full  (<connected-to-full>),  //            .full
-		.empty (<connected-to-empty>)  //            .empty
-	);
-
-	varint_out_index u0 (
-		.data  (<connected-to-data>),  //  fifo_input.datain
-		.wrreq (<connected-to-wrreq>), //            .wrreq
-		.rdreq (<connected-to-rdreq>), //            .rdreq
-		.clock (<connected-to-clock>), //            .clk
-		.sclr  (<connected-to-sclr>),  //            .sclr
-		.q     (<connected-to-q>)      // fifo_output.dataout
-	);
-
-	raw_data_out_fifo u0 (
-		.data  (<connected-to-data>),  //  fifo_input.datain
-		.wrreq (<connected-to-wrreq>), //            .wrreq
-		.rdreq (<connected-to-rdreq>), //            .rdreq
-		.clock (<connected-to-clock>), //            .clk
-		.sclr  (<connected-to-sclr>),  //            .sclr
-		.q     (<connected-to-q>),     // fifo_output.dataout
-		.full  (<connected-to-full>),  //            .full
-		.empty (<connected-to-empty>)  //            .empty
-	);
-
-	raw_data_out_index u0 (
-		.data  (<connected-to-data>),  //  fifo_input.datain
-		.wrreq (<connected-to-wrreq>), //            .wrreq
-		.rdreq (<connected-to-rdreq>), //            .rdreq
-		.clock (<connected-to-clock>), //            .clk
-		.sclr  (<connected-to-sclr>),  //            .sclr
-		.q     (<connected-to-q>)      // fifo_output.dataout
-	);
-
-	out_fifo out0 (
-		.data  (out_data),               //  fifo_input.datain
-		.wrreq (out_push),               //            .wrreq
-		.rdreq (out_pop),                //            .rdreq
+	varint_out_fifo out0 (
+		.data  (<connected-to-data>),    //  fifo_input.datain
+		.wrreq (varint_out_fifo_push),   //            .wrreq
+		.rdreq (varint_out_fifo_pop),    //            .rdreq
 		.clock (clock_clk),              //            .clk
-		.sclr  (fifo_clr),               //            .sclr
+		.sclr  (varint_out_fifo_clr),    //            .sclr
+		.q     (varint_out_fifo_q),      // fifo_output.dataout
+		.full  (varint_out_fifo_full),   //            .full
+		.empty (varint_out_fifo_empty)   //            .empty
+	);
+
+	varint_out_index out1 (
+		.data  (<connected-to-data>),    //  fifo_input.datain
+		.wrreq (varint_out_index_push),  //            .wrreq
+		.rdreq (varint_out_index_pop),   //            .rdreq
+		.clock (clock_clk),              //            .clk
+		.sclr  (varint_out_index_clr),   //            .sclr
+		.q     (varint_out_index_q)      // fifo_output.dataout
+	);
+
+	raw_data_out_fifo out2 (
+		.data  (<connected-to-data>),    //  fifo_input.datain
+		.wrreq (raw_data_out_fifo_push), //            .wrreq
+		.rdreq (raw_data_out_fifo_pop),  //            .rdreq
+		.clock (clock_clk),              //            .clk
+		.sclr  (raw_data_out_fifo_clr),  //            .sclr
+		.q     (raw_data_out_fifo_q),    // fifo_output.dataout
+		.full  (raw_data_out_fifo_full), //            .full
+		.empty (raw_data_out_fifo_empty) //            .empty
+	);
+
+	raw_data_out_index out3 (
+		.data  (<connected-to-data>),    //  fifo_input.datain
+		.wrreq (raw_data_out_index_push),//            .wrreq
+		.rdreq (raw_data_out_index_pop), //            .rdreq
+		.clock (clock_clk),              //            .clk
+		.sclr  (raw_data_out_index_clr), //            .sclr
+		.q     (raw_data_out_index_q)    // fifo_output.dataout
+	);
+
+	out_fifo out4 (
+		.data  (out_fifo_data),          //  fifo_input.datain
+		.wrreq (out_fifo_push),          //            .wrreq
+		.rdreq (out_fifo_pop),           //            .rdreq
+		.clock (clock_clk),              //            .clk
+		.sclr  (out_fifo_clr),           //            .sclr
 		.q     (axs_s0_rdata[7:0]),      // fifo_output.dataout
 		.usedw (<connected-to-usedw>),   //            .usedw
-		.full  (out_full),               //            .full
-		.empty (out_empty)               //            .empty
+		.full  (out_fifo_full),          //            .full
+		.empty (out_fifo_empty)          //            .empty
 	);
 	
 	assign axs_s0_rdata[31:8] = 24'b000000000000000000000000;
