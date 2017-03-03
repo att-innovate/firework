@@ -57,6 +57,44 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		.empty (in_empty)                //            .empty
 	);
 	
+	varint_in_index u0 (
+		.data  (<connected-to-data>),  //  fifo_input.datain
+		.wrreq (<connected-to-wrreq>), //            .wrreq
+		.rdreq (<connected-to-rdreq>), //            .rdreq
+		.clock (<connected-to-clock>), //            .clk
+		.sclr  (<connected-to-sclr>),  //            .sclr
+		.q     (<connected-to-q>)      // fifo_output.dataout
+	);
+	
+	raw_data_in_fifo u0 (
+		.data  (<connected-to-data>),  //  fifo_input.datain
+		.wrreq (<connected-to-wrreq>), //            .wrreq
+		.rdreq (<connected-to-rdreq>), //            .rdreq
+		.clock (<connected-to-clock>), //            .clk
+		.sclr  (<connected-to-sclr>),  //            .sclr
+		.q     (<connected-to-q>),     // fifo_output.dataout
+		.full  (<connected-to-full>),  //            .full
+		.empty (<connected-to-empty>)  //            .empty
+	);
+	
+	raw_data_in_index u0 (
+		.data  (<connected-to-data>),  //  fifo_input.datain
+		.wrreq (<connected-to-wrreq>), //            .wrreq
+		.rdreq (<connected-to-rdreq>), //            .rdreq
+		.clock (<connected-to-clock>), //            .clk
+		.sclr  (<connected-to-sclr>),  //            .sclr
+		.q     (<connected-to-q>)      // fifo_output.dataout
+	); 
+	
+	raw_data_in_wstrb u0 (
+		.data  (<connected-to-data>),  //  fifo_input.datain
+		.wrreq (<connected-to-wrreq>), //            .wrreq
+		.rdreq (<connected-to-rdreq>), //            .rdreq
+		.clock (<connected-to-clock>), //            .clk
+		.sclr  (<connected-to-sclr>),  //            .sclr
+		.q     (<connected-to-q>)      // fifo_output.dataout
+	);
+	
 	controller c0 (
 		.clk            (clock_clk),
 		.reset          (reset_reset),
@@ -121,6 +159,46 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		.byte_sel       (byte_sel)
 	);
 	
+	varint_out_fifo u0 (
+		.data  (<connected-to-data>),  //  fifo_input.datain
+		.wrreq (<connected-to-wrreq>), //            .wrreq
+		.rdreq (<connected-to-rdreq>), //            .rdreq
+		.clock (<connected-to-clock>), //            .clk
+		.sclr  (<connected-to-sclr>),  //            .sclr
+		.q     (<connected-to-q>),     // fifo_output.dataout
+		.full  (<connected-to-full>),  //            .full
+		.empty (<connected-to-empty>)  //            .empty
+	);
+
+	varint_out_index u0 (
+		.data  (<connected-to-data>),  //  fifo_input.datain
+		.wrreq (<connected-to-wrreq>), //            .wrreq
+		.rdreq (<connected-to-rdreq>), //            .rdreq
+		.clock (<connected-to-clock>), //            .clk
+		.sclr  (<connected-to-sclr>),  //            .sclr
+		.q     (<connected-to-q>)      // fifo_output.dataout
+	);
+
+	raw_data_out_fifo u0 (
+		.data  (<connected-to-data>),  //  fifo_input.datain
+		.wrreq (<connected-to-wrreq>), //            .wrreq
+		.rdreq (<connected-to-rdreq>), //            .rdreq
+		.clock (<connected-to-clock>), //            .clk
+		.sclr  (<connected-to-sclr>),  //            .sclr
+		.q     (<connected-to-q>),     // fifo_output.dataout
+		.full  (<connected-to-full>),  //            .full
+		.empty (<connected-to-empty>)  //            .empty
+	);
+
+	raw_data_out_index u0 (
+		.data  (<connected-to-data>),  //  fifo_input.datain
+		.wrreq (<connected-to-wrreq>), //            .wrreq
+		.rdreq (<connected-to-rdreq>), //            .rdreq
+		.clock (<connected-to-clock>), //            .clk
+		.sclr  (<connected-to-sclr>),  //            .sclr
+		.q     (<connected-to-q>)      // fifo_output.dataout
+	);
+
 	out_fifo out0 (
 		.data  (out_data),               //  fifo_input.datain
 		.wrreq (out_push),               //            .wrreq
@@ -128,6 +206,7 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		.clock (clock_clk),              //            .clk
 		.sclr  (fifo_clr),               //            .sclr
 		.q     (axs_s0_rdata[7:0]),      // fifo_output.dataout
+		.usedw (<connected-to-usedw>),   //            .usedw
 		.full  (out_full),               //            .full
 		.empty (out_empty)               //            .empty
 	);
