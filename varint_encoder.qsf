@@ -63,3 +63,12 @@ set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name QSYS_FILE varint_in_fifo.qsys
+set_global_assignment -name QSYS_FILE varint_in_index.qsys
+set_global_assignment -name QSYS_FILE raw_data_in_fifo.qsys
+set_global_assignment -name QSYS_FILE raw_data_in_index.qsys
+set_global_assignment -name QSYS_FILE raw_data_in_wstrb.qsys
+set_global_assignment -name QSYS_FILE varint_out_fifo.qsys
+set_global_assignment -name QSYS_FILE varint_out_index.qsys
+set_global_assignment -name QSYS_FILE raw_data_out_fifo.qsys
+set_global_assignment -name QSYS_FILE raw_data_out_index.qsys

@@ -6,6 +6,7 @@ module out_fifo (
 	clock,
 	sclr,
 	q,
+	usedw,
 	full,
 	empty);	
 
@@ -15,6 +16,7 @@ module out_fifo (
 	input		clock;
 	input		sclr;
 	output	[7:0]	q;
+	output	[12:0]	usedw;
 	output		full;
 	output		empty;
 endmodule

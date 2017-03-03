@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="out_fifo" kind="out_fifo" version="1.0" fabric="QSYS">
  <!-- Format version 16.0 211 (Future versions may contain additional information.) -->
- <!-- 2017.02.02.13:35:03 -->
+ <!-- 2017.03.02.18:56:10 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1486071303</value>
+  <value>1488509770</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -119,7 +119,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="GUI_RAM_BLOCK_TYPE">
    <type>java.lang.String</type>
-   <value>M20K</value>
+   <value>Auto</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -151,7 +151,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="GUI_Depth">
    <type>int</type>
-   <value>4096</value>
+   <value>8192</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -223,7 +223,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="GUI_UsedW">
    <type>boolean</type>
-   <value>false</value>
+   <value>true</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -383,7 +383,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="GUI_Usedw_width">
    <type>int</type>
-   <value>12</value>
+   <value>13</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -541,6 +541,12 @@ parameters are a RESULT of the module parameters. -->
     <direction>Output</direction>
     <width>8</width>
     <role>dataout</role>
+   </port>
+   <port>
+    <name>usedw</name>
+    <direction>Output</direction>
+    <width>13</width>
+    <role>usedw</role>
    </port>
    <port>
     <name>full</name>

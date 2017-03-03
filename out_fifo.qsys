@@ -55,6 +55,7 @@
    type="conduit"
    dir="end">
   <port name="q" internal="q" />
+  <port name="usedw" internal="usedw" />
   <port name="full" internal="full" />
   <port name="empty" internal="empty" />
  </interface>
@@ -67,7 +68,7 @@
   <parameter name="GUI_CLOCKS_ARE_SYNCHRONIZED" value="0" />
   <parameter name="GUI_Clock" value="0" />
   <parameter name="GUI_DISABLE_DCFIFO_EMBEDDED_TIMING_CONSTRAINT" value="true" />
-  <parameter name="GUI_Depth" value="4096" />
+  <parameter name="GUI_Depth" value="8192" />
   <parameter name="GUI_ENABLE_ECC" value="false" />
   <parameter name="GUI_Empty" value="true" />
   <parameter name="GUI_Full" value="true" />
@@ -78,9 +79,9 @@
   <parameter name="GUI_OVERFLOW_CHECKING" value="false" />
   <parameter name="GUI_Optimize" value="1" />
   <parameter name="GUI_Optimize_max" value="0" />
-  <parameter name="GUI_RAM_BLOCK_TYPE" value="M20K" />
+  <parameter name="GUI_RAM_BLOCK_TYPE" value="Auto" />
   <parameter name="GUI_UNDERFLOW_CHECKING" value="false" />
-  <parameter name="GUI_UsedW" value="false" />
+  <parameter name="GUI_UsedW" value="true" />
   <parameter name="GUI_Width" value="8" />
   <parameter name="GUI_dc_aclr" value="false" />
   <parameter name="GUI_delaypipe" value="4" />

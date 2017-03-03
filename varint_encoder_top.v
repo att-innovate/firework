@@ -46,7 +46,7 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	wire        fifo_clr;
 	
 	// Submodule instances
-	in_fifo in0 (
+	varint_in_fifo in0 (
 		.data  (axs_s0_wdata),           //  fifo_input.datain
 		.wrreq (in_push),                //            .wrreq
 		.rdreq (in_pop),                 //            .rdreq

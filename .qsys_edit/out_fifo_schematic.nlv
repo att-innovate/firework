@@ -2,7 +2,7 @@
 # 
 preplace inst out_fifo -pg 1 -lvl 1 -y 40 -regy -20
 preplace inst out_fifo.fifo_0 -pg 1 -lvl 1 -y 30
-preplace netloc EXPORT<net_container>out_fifo</net_container>(SLAVE)out_fifo.fifo_output,(SLAVE)fifo_0.fifo_output) 1 0 1 NJ
-preplace netloc EXPORT<net_container>out_fifo</net_container>(SLAVE)out_fifo.fifo_input,(SLAVE)fifo_0.fifo_input) 1 0 1 NJ
+preplace netloc EXPORT<net_container>out_fifo</net_container>(SLAVE)fifo_0.fifo_input,(SLAVE)out_fifo.fifo_input) 1 0 1 NJ
+preplace netloc EXPORT<net_container>out_fifo</net_container>(SLAVE)fifo_0.fifo_output,(SLAVE)out_fifo.fifo_output) 1 0 1 NJ
 levelinfo -pg 1 0 80 230
 levelinfo -hier out_fifo 90 120 220

@@ -1,0 +1,18 @@
+# system info raw_data_in_index on 2017.03.02.18:40:16
+system_info:
+name,value
+DEVICE,10AS066N3F40E2SGE2
+DEVICE_FAMILY,Arria 10
+GENERATION_ID,1488508815
+#
+#
+# Files generated for raw_data_in_index on 2017.03.02.18:40:16
+files:
+filepath,kind,attributes,module,is_top
+sim/raw_data_in_index.v,VERILOG,CONTAINS_INLINE_CONFIGURATION,raw_data_in_index,true
+fifo_160/sim/raw_data_in_index_fifo_160_kjjiney.v,VERILOG,,raw_data_in_index_fifo_160_kjjiney,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+raw_data_in_index.fifo_0,raw_data_in_index_fifo_160_kjjiney
