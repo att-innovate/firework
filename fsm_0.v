@@ -107,7 +107,6 @@ module fsm_0 (
 						raw_data_in_index_clr = 1'b1;
 						raw_data_in_wstrb_clr = 1'b1;
 
-						index = 10'b0000000000;
 						awid = 4'h0;
 						awaddr = 32'h0000_0000;
 						awlen = 8'h00;
@@ -115,6 +114,7 @@ module fsm_0 (
 						awburst = 2'b00;
 						wdata = 32'h0000_0000;
 						wstrb = 4'h0;
+						index = 10'b0000000000;
 
 						next_state = AW_READY;
 					end
@@ -263,6 +263,7 @@ module fsm_0 (
 
 						varint_in_fifo_push = 1'b1;
 						varint_in_index_push = 1'b1;
+						
 						index = (index == 1023) ? 0 : index + 1;
 					
 						if (~axs_s0_bready)
@@ -296,6 +297,7 @@ module fsm_0 (
 						raw_data_in_fifo_push = 1'b1;
 						raw_data_in_index_push = 1'b1;
 						raw_data_in_wstrb_push = 1'b1;
+						
 						index = (index == 1023) ? 0 : index + 1;
 					
 						if (~axs_s0_bready)
@@ -319,5 +321,4 @@ module fsm_0 (
 					next_state = INIT;
 			endcase
 		end
-
 endmodule

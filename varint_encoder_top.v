@@ -46,6 +46,14 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	wire raw_data_in_index_clr, raw_data_in_index_push;
 	wire raw_data_in_wstrb_clr, raw_data_in_wstrb_push;
 	
+	wire [1:0]  raw_data_sel;
+	wire [31:0] raw_data_in_fifo_q;
+	wire [7:0]  raw_data_mux;
+	
+	wire [3:0]  raw_data_in_wstrb_q;
+	wire        raw_data_push_mux;
+		
+	
 	// Submodule instances
 	varint_in_fifo in0 (
 		.data  (wdata),                  //  fifo_input.datain
@@ -130,6 +138,16 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		.index                  (index)
 	);
 	
+	raw_data_mux =  (raw_data_sel == 2'b00) ? raw_data_in_fifo_q[7:0]   :
+	               ((raw_data_sel == 2'b01) ? raw_data_in_fifo_q[15:8]  :
+	               ((raw_data_sel == 2'b10) ? raw_data_in_fifo_q[23:16] :
+	                                          raw_data_in_fifo_q[31:24]));
+															
+	raw_data_push_mux =  (raw_data_sel == 2'b00) ? raw_data_in_wstrb_q[0] :
+	                    ((raw_data_sel == 2'b01) ? raw_data_in_wstrb_q[1] : 
+	                    ((raw_data_sel == 1'b10) ? raw_data_in_wstrb_q[2] : 
+	                                               raw_data_in_wstrb_q[3]));
+
 	varint_out_fifo out0 (
 		.data  (<connected-to-data>),    //  fifo_input.datain
 		.wrreq (varint_out_fifo_push),   //            .wrreq
@@ -142,7 +160,7 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	);
 
 	varint_out_index out1 (
-		.data  (varint_in_index_q),    //  fifo_input.datain
+		.data  (varint_in_index_q),      //  fifo_input.datain
 		.wrreq (varint_out_index_push),  //            .wrreq
 		.rdreq (varint_out_index_pop),   //            .rdreq
 		.clock (clock_clk),              //            .clk
@@ -151,8 +169,8 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	);
 
 	raw_data_out_fifo out2 (
-		.data  (<connected-to-data>),    //  fifo_input.datain
-		.wrreq (raw_data_out_fifo_push), //            .wrreq
+		.data  (raw_data_mux),           //  fifo_input.datain
+		.wrreq (raw_data_push_mux),      //            .wrreq
 		.rdreq (raw_data_out_fifo_pop),  //            .rdreq
 		.clock (clock_clk),              //            .clk
 		.sclr  (raw_data_out_fifo_clr),  //            .sclr
@@ -163,7 +181,7 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 
 	raw_data_out_index out3 (
 		.data  (raw_data_in_index_q),    //  fifo_input.datain
-		.wrreq (raw_data_out_index_push),//            .wrreq
+		.wrreq (raw_data_push_mux),      //            .wrreq
 		.rdreq (raw_data_out_index_pop), //            .rdreq
 		.clock (clock_clk),              //            .clk
 		.sclr  (raw_data_out_index_clr), //            .sclr
