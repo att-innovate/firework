@@ -72,3 +72,4 @@ set_global_assignment -name QSYS_FILE varint_out_fifo.qsys
 set_global_assignment -name QSYS_FILE varint_out_index.qsys
 set_global_assignment -name QSYS_FILE raw_data_out_fifo.qsys
 set_global_assignment -name QSYS_FILE raw_data_out_index.qsys
+set_global_assignment -name VERILOG_FILE fsm_0.v
