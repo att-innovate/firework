@@ -35,29 +35,35 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	);
 	
 	// Internal wires
-	wire [31:0] wdata;
+	wire [31:0] wdata, varint_in_fifo_q;
 	wire [3:0]  wstrb;
 	wire [9:0]  index, varint_in_index_q, raw_data_in_index_q;
 
-	wire varint_in_fifo_full, varint_in_fifo_clr, varint_in_fifo_push;
-	wire varint_in_index_clr, varint_in_index_push;
+	wire varint_in_fifo_full, varint_in_fifo_empty,
+	     varint_in_fifo_clr, varint_in_fifo_push, varint_in_fifo_pop;
+	wire varint_in_index_clr, varint_in_index_push, varint_in_index_pop;
 
 	wire raw_data_in_fifo_full, raw_data_in_fifo_empty,
 	     raw_data_in_fifo_clr, raw_data_in_fifo_push, raw_data_in_fifo_pop;
 	wire raw_data_in_index_clr, raw_data_in_index_push, raw_data_in_index_pop;
 	wire raw_data_in_wstrb_clr, raw_data_in_wstrb_push, raw_data_in_wstrb_pop;
-	
+
 	wire [1:0]  raw_data_sel;
 	wire [31:0] raw_data_in_fifo_q;
 	wire [7:0]  raw_data_mux;
-	
+
 	wire [3:0]  raw_data_in_wstrb_q;
 	wire        raw_data_push_mux;
-		
+
 	wire raw_data_out_fifo_full, raw_data_out_fifo_empty,
 	     raw_data_out_fifo_clr, raw_data_out_fifo_push, raw_data_out_fifo_pop;
 	wire raw_data_out_index_clr, raw_data_out_index_push, raw_data_out_index_pop;
-	
+
+	wire varint_out_fifo_full, varint_out_fifo_empty,
+	     varint_out_fifo_clr, varint_out_fifo_push, varint_out_fifo_pop;
+	wire varint_out_index_clr, varint_out_index_push, varint_out_index_pop;
+
+	wire [7:0]  encoded_byte, varint_out_fifo_q;
 	
 	// Submodule instances
 	varint_in_fifo in0 (
@@ -72,7 +78,7 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	);
 	
 	varint_in_index in1 (
-		.data  (index),               //  fifo_input.datain
+		.data  (index),                  //  fifo_input.datain
 		.wrreq (varint_in_index_push),   //            .wrreq
 		.rdreq (varint_in_index_pop),    //            .rdreq
 		.clock (clock_clk),              //            .clk
@@ -92,7 +98,7 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	);
 	
 	raw_data_in_index in3 (
-		.data  (index),               //  fifo_input.datain
+		.data  (index),                  //  fifo_input.datain
 		.wrreq (raw_data_in_index_push), //            .wrreq
 		.rdreq (raw_data_in_index_pop),  //            .rdreq
 		.clock (clock_clk),              //            .clk
@@ -166,8 +172,23 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	                    ((raw_data_sel == 1'b10) ? raw_data_in_wstrb_q[2] : 
 	                                               raw_data_in_wstrb_q[3]));
 
+	fsm_2 f2 (
+		.clk                   (clock_clk),
+		.reset                 (reset_reset),
+		.varint_in_fifo_empty  (varint_in_fifo_empty),
+		.varint_in_fifo_pop    (varint_in_fifo_pop),
+		.varint_in_index_pop   (varint_in_index_pop),
+		.varint_out_fifo_full  (varint_out_fifo_full),
+		.varint_out_fifo_clr   (varint_out_fifo_clr),
+		.varint_out_fifo_push  (varint_out_fifo_push),
+		.varint_out_index_clr  (varint_out_index_clr),
+		.varint_out_index_push (varint_out_index_push),
+		.varint_data_in        (varint_in_fifo_q),
+		.varint_data_out       (encoded_byte)
+	);
+
 	varint_out_fifo out0 (
-		.data  (<connected-to-data>),    //  fifo_input.datain
+		.data  (encoded_byte),           //  fifo_input.datain
 		.wrreq (varint_out_fifo_push),   //            .wrreq
 		.rdreq (varint_out_fifo_pop),    //            .rdreq
 		.clock (clock_clk),              //            .clk
