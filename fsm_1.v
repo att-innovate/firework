@@ -17,7 +17,9 @@ module fsm_1 (
 
 		output reg  [1:0] raw_data_sel
 	);
-
+	// internal wires
+	reg index_inc, index_clr;
+	
 	// internal registers
 	reg [1:0] index;
 
@@ -38,8 +40,12 @@ module fsm_1 (
 	begin
 		if (reset)
 			state <= INIT;
-		else
+		else begin
+			index <= (index_inc) ? index + 1 :
+			         ((index_clr) ? 2'b00 : index);
+					  
 			state <= next_state;
+		end
 	end
 	
 	// next state, output logic
@@ -49,18 +55,20 @@ module fsm_1 (
 		raw_data_in_fifo_pop = 1'b0;
 		raw_data_in_index_pop = 1'b0;
 		raw_data_in_wstrb_pop = 1'b0;
-
 		raw_data_out_fifo_clr = 1'b0;
 		raw_data_out_index_clr = 1'b0;
-		
+
 		raw_data_sel = index;
+
+		index_inc = 1'b0;
+		index_clr = 1'b0;
 
 		case (state)
 			INIT:
 				begin
 					raw_data_out_fifo_clr = 1'b1;
 					raw_data_out_index_clr = 1'b1;
-					index = 2'b00;
+					index_clr = 1'b1;
 
 					next_state = RD_READY;
 				end
@@ -98,7 +106,7 @@ module fsm_1 (
 			ENCODE_0:
 				begin
 					// raw_data_sel == 2'b00
-					index = index + 1;
+					index_inc = 1'b1;
 					
 					next_state = RF_FULL;
 				end
@@ -106,7 +114,7 @@ module fsm_1 (
 			ENCODE_1:
 				begin
 					// raw_data_sel == 2'b01
-					index = index + 1;
+					index_inc = 1'b1;
 					
 					next_state = RF_FULL;
 				end
@@ -114,7 +122,7 @@ module fsm_1 (
 			ENCODE_2:
 				begin
 					// raw_data_sel == 2'b10
-					index = index + 1;
+					index_inc = 1'b1;
 					
 					next_state = RF_FULL;
 				end
@@ -122,7 +130,7 @@ module fsm_1 (
 			ENCODE_3:
 				begin 
 					// raw_data_sel == 2'b11
-					index = 2'b00;
+					index_clr = 1'b1;
 					
 					next_state = RD_READY;
 				end
