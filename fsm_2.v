@@ -17,6 +17,7 @@ module fsm_2 (
 		output reg  varint_out_index_push,
 		
 		// TODO: figure out where to build the datapath
+		// hi
 	);
 
 endmodule
