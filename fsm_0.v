@@ -90,6 +90,7 @@ module fsm_0 (
 			          ((awaddr_clr) ? 32'h0000_0000 : awaddr);
 			awlen  <= (awlen_ld) ? axs_s0_awlen : ((awlen_clr) ? 8'h00 : awlen);
 			awsize <= (awsize_ld) ? axs_s0_awsize : ((awsize_clr) ? 3'b000 : awsize);
+			awburst <= (awburst_ld) ? axs_s0_awburst : ((awburst_clr) ? 2'b00 : awburst);
 
 			wdata  <= (wdata_ld) ? axs_s0_wdata : 
 			          ((wdata_clr) ? 32'h0000_0000 : wdata);
@@ -154,7 +155,7 @@ module fsm_0 (
 					awaddr_clr = 1'b1;
 					awlen_clr = 1'b1;
 					awsize_clr = 1'b1;
-					awburst = 2'b00;
+					awburst_clr = 1'b1;
 					
 					wdata_clr = 1'b1;
 					wstrb_clr = 1'b1;
@@ -171,7 +172,7 @@ module fsm_0 (
 					awaddr_ld = 1'b1;
 					awlen_ld = 1'b1;
 					awsize_ld = 1'b1;
-					awburst = axs_s0_awburst;
+					awburst_ld = 1'b1;
 				
 					if (~axs_s0_awvalid)
 						next_state = AW_READY;
