@@ -86,9 +86,9 @@ module fsm_0 (
 			                      ((index_clr) ? 10'b0000000000 : index);
 
 			awid   <= (awid_ld) ? axs_s0_awid : ((awid_clr) ? 4'h0 : awid);
-
 			awaddr <= (awaddr_ld) ? axs_s0_awaddr :
 			          ((awaddr_clr) ? 32'h0000_0000 : awaddr);
+			awlen  <= (awlen_ld) ? axs_s0_awlen : ((awlen_clr) ? 8'h00 : awlen);
 
 			wdata  <= (wdata_ld) ? axs_s0_wdata : 
 			          ((wdata_clr) ? 32'h0000_0000 : wdata);
@@ -151,9 +151,10 @@ module fsm_0 (
 
 					awid_clr = 1'b1;
 					awaddr_clr = 1'b1;
-					awlen = 8'h00;
+					awlen_clr = 1'b1;
 					awsize = 3'b000;
 					awburst = 2'b00;
+					
 					wdata_clr = 1'b1;
 					wstrb_clr = 1'b1;
 
@@ -167,7 +168,7 @@ module fsm_0 (
 					
 					awid_ld = 1'b1;
 					awaddr_ld = 1'b1;
-					awlen = axs_s0_awlen;
+					awlen_ld = 1'b1;
 					awsize = axs_s0_awsize;
 					awburst = axs_s0_awburst;
 				
