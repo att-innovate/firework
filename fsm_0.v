@@ -39,17 +39,21 @@ module fsm_0 (
 		output reg         raw_data_in_wstrb_push,
 
 		// datapath registers
+		output reg  [9:0]  index,
+		
 		output reg  [31:0] wdata,
-		output reg  [3:0]  wstrb,
-		output reg  [9:0]  index
+		output reg  [3:0]  wstrb
 	);
 
-	// internal registers
+	// datapath registers
 	reg [3:0]  awid;
 	reg [31:0] awaddr;
 	reg [7:0]  awlen;
 	reg [2:0]  awsize;
 	reg [1:0]  awburst;
+	
+	// internal wires
+	reg index_clr, index_inc;
 
 	// state definitions (one-hot encoding)
 	parameter INIT        = 16'h0001,
@@ -74,31 +78,38 @@ module fsm_0 (
 	begin
 		if (reset)
 			state <= INIT;
-		else
+		else begin
+			index <= (index_inc) ? ((index == 1023) ? 10'b0000000000 : index + 1) : 
+			                      ((index_clr) ? 10'b0000000000 : index);
+
 			state <= next_state;
+		end
 	end
 
 	// next state, output logic
 	always @*
 	begin
 		// default values (may be overwritten)
-		axs_s0_awready = 1'b0;
-		axs_s0_wready = 1'b0;
-		axs_s0_bvalid = 1'b0;
-		axs_s0_bid = awid;
-
 		varint_in_fifo_clr = 1'b0;
 		varint_in_index_clr = 1'b0;
 		raw_data_in_fifo_clr = 1'b0;
 		raw_data_in_index_clr = 1'b0;
 		raw_data_in_wstrb_clr = 1'b0;
-
+		
 		varint_in_fifo_push = 1'b0;
 		varint_in_index_push = 1'b0;
 		raw_data_in_fifo_push = 1'b0;
 		raw_data_in_index_push = 1'b0;
 		raw_data_in_wstrb_push = 1'b0;
+
+		axs_s0_awready = 1'b0;
+		axs_s0_wready = 1'b0;
+		axs_s0_bvalid = 1'b0;
+		axs_s0_bid = awid;
 		
+		index_clr = 1'b0;
+		index_inc = 1'b0;
+
 		case (state)
 			INIT:		
 				begin
@@ -108,6 +119,8 @@ module fsm_0 (
 					raw_data_in_index_clr = 1'b1;
 					raw_data_in_wstrb_clr = 1'b1;
 
+					index_clr = 1'b1;
+
 					awid = 4'h0;
 					awaddr = 32'h0000_0000;
 					awlen = 8'h00;
@@ -115,7 +128,6 @@ module fsm_0 (
 					awburst = 2'b00;
 					wdata = 32'h0000_0000;
 					wstrb = 4'h0;
-					index = 10'b0000000000;
 
 					next_state = AW_READY;
 				end
@@ -245,7 +257,6 @@ module fsm_0 (
 				begin
 					axs_s0_wready = 1'b0;
 					axs_s0_bvalid = 1'b1;
-					axs_s0_bid = awid;
 
 					varint_in_fifo_push = 1'b1;
 					varint_in_index_push = 1'b1;
@@ -260,12 +271,11 @@ module fsm_0 (
 				begin
 					axs_s0_wready = 1'b0;
 					axs_s0_bvalid = 1'b1;
-					axs_s0_bid = awid;
 
 					varint_in_fifo_push = 1'b1;
 					varint_in_index_push = 1'b1;
 					
-					index = (index == 1023) ? 0 : index + 1;
+					index_inc = 1'b1;
 				
 					if (~axs_s0_bready)
 						next_state = MASTER_WAIT;
@@ -277,7 +287,6 @@ module fsm_0 (
 				begin
 					axs_s0_wready = 1'b0;
 					axs_s0_bvalid = 1'b1;
-					axs_s0_bid = awid;
 
 					raw_data_in_fifo_push = 1'b1;
 					raw_data_in_index_push = 1'b1;
@@ -293,13 +302,12 @@ module fsm_0 (
 				begin
 					axs_s0_wready = 1'b0;
 					axs_s0_bvalid = 1'b1;
-					axs_s0_bid = awid;
 
 					raw_data_in_fifo_push = 1'b1;
 					raw_data_in_index_push = 1'b1;
 					raw_data_in_wstrb_push = 1'b1;
 					
-					index = (index == 1023) ? 0 : index + 1;
+					index_inc = 1'b1;
 				
 					if (~axs_s0_bready)
 						next_state = MASTER_WAIT;
@@ -310,7 +318,6 @@ module fsm_0 (
 			MASTER_WAIT:
 				begin
 					axs_s0_bvalid = 1'b1;
-					axs_s0_bid = awid;
 				
 					if (~axs_s0_bready)
 						next_state = MASTER_WAIT;
