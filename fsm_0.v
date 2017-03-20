@@ -87,6 +87,8 @@ module fsm_0 (
 			
 			wdata <= (wdata_ld) ? axs_s0_wdata : 
 			         ((wdata_clr) ? 32'h0000_0000 : wdata);
+			
+			wstrb <= (wstrb_ld) ? axs_s0_wstrb : ((wstrb_clr) ? 4'h0 : wstrb);
 
 			state <= next_state;
 		end
@@ -149,7 +151,7 @@ module fsm_0 (
 					awsize = 3'b000;
 					awburst = 2'b00;
 					wdata_clr = 1'b1;
-					wstrb = 4'h0;
+					wstrb_clr = 1'b1;
 
 					next_state = AW_READY;
 				end
@@ -195,7 +197,7 @@ module fsm_0 (
 					axs_s0_wready = 1'b1;
 					
 					wdata_ld = 1'b1;
-					wstrb = axs_s0_wstrb;
+					wstrb_ld = 1'b1;
 				
 					if (~axs_s0_wvalid)
 						next_state = W_READY_VN;
@@ -209,7 +211,7 @@ module fsm_0 (
 					axs_s0_wready = 1'b1;
 					
 					wdata_ld = 1'b1;
-					wstrb = axs_s0_wstrb;
+					wstrb_ld = 1'b1;
 				
 					if (~axs_s0_wvalid)
 						next_state = W_READY_VL;
@@ -223,7 +225,7 @@ module fsm_0 (
 					axs_s0_wready = 1'b1;
 					
 					wdata_ld = 1'b1;
-					wstrb = axs_s0_wstrb;
+					wstrb_ld = 1'b1;
 				
 					if (~axs_s0_wvalid)
 						next_state = W_READY_RN;
@@ -237,7 +239,7 @@ module fsm_0 (
 					axs_s0_wready = 1'b1;
 					
 					wdata_ld = 1'b1;
-					wstrb = axs_s0_wstrb;
+					wstrb_ld = 1'b1;
 				
 					if (~axs_s0_wvalid)
 						next_state = W_READY_RL;
