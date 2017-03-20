@@ -21,18 +21,18 @@ module fsm_2 (
 		output reg [7:0]  varint_data_out
 	);
 
-	// varint datapath: control signals
+	// datapath registers
+	reg varint_in_sel;
+	reg [31:0] varint_data;
+
+	// datapath control signals
 	reg varint_in_sel_ld, varint_in_sel_clr;
 	reg varint_data_ld, varint_data_clr;
 	reg varint_out_sel;
 
-	// varint datapath: data signals
+	// datapath data signals
 	reg [31:0] varint_shifted, varint_in_mux, check_cond_mux;
 	reg varint_out_mux;
-
-	// varint datapath: internal registers
-	reg varint_in_sel;
-	reg [31:0] varint_data;
 	
 	// state definitions (one-hot encoding)
 	parameter INIT       = 8'h01,
@@ -51,10 +51,10 @@ module fsm_2 (
 		if (reset)
 			state <= INIT;
 		else begin
-			varint_in_sel  <= (varint_in_sel_ld) ? 1'b1 :
-			                  ((varint_in_sel_clr) ? 1'b0 : varint_in_sel);
-			varint_data    <= (varint_data_ld) ? varint_in_mux : 
-			                  ((varint_data_clr) ? 32'h0000_0000 : varint_data);
+			varint_in_sel <= (varint_in_sel_ld) ? 1'b1 :
+			                 ((varint_in_sel_clr) ? 1'b0 : varint_in_sel);
+			varint_data   <= (varint_data_ld) ? varint_in_mux : 
+			                 ((varint_data_clr) ? 32'h0000_0000 : varint_data);
 				
 			state <= next_state;
 		end

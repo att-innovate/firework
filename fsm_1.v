@@ -17,11 +17,12 @@ module fsm_1 (
 
 		output reg  [1:0] raw_data_sel
 	);
-	// internal wires
-	reg index_inc, index_clr;
-	
-	// internal registers
+
+	// datapath registers
 	reg [1:0] index;
+
+	// datapath control signals
+	reg index_inc, index_clr;
 
 	// state definitions (one-hot encoding)
 	parameter INIT      = 8'h01,
@@ -41,8 +42,7 @@ module fsm_1 (
 		if (reset)
 			state <= INIT;
 		else begin
-			index <= (index_inc) ? index + 1 :
-			         ((index_clr) ? 2'b00 : index);
+			index <= (index_inc) ? index + 1 : ((index_clr) ? 2'b00 : index);
 					  
 			state <= next_state;
 		end

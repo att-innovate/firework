@@ -52,7 +52,7 @@ module fsm_0 (
 	reg [2:0]  awsize;
 	reg [1:0]  awburst;
 	
-	// internal wires
+	// datapath control signals
 	reg index_clr, index_inc;
 	reg awid_clr, awaddr_clr, awlen_clr, awsize_clr, awburst_clr;
 	reg awid_ld, awaddr_ld, awlen_ld, awsize_ld, awburst_ld;
@@ -82,19 +82,19 @@ module fsm_0 (
 		if (reset)
 			state <= INIT;
 		else begin
-			index  <= (index_inc) ? ((index == 1023) ? 10'b0000000000 : index + 1) : 
+			index   <= (index_inc) ? ((index == 1023) ? 10'b0000000000 : index + 1) : 
 			                      ((index_clr) ? 10'b0000000000 : index);
 
-			awid   <= (awid_ld) ? axs_s0_awid : ((awid_clr) ? 4'h0 : awid);
-			awaddr <= (awaddr_ld) ? axs_s0_awaddr :
-			          ((awaddr_clr) ? 32'h0000_0000 : awaddr);
-			awlen  <= (awlen_ld) ? axs_s0_awlen : ((awlen_clr) ? 8'h00 : awlen);
-			awsize <= (awsize_ld) ? axs_s0_awsize : ((awsize_clr) ? 3'b000 : awsize);
+			awid    <= (awid_ld) ? axs_s0_awid : ((awid_clr) ? 4'h0 : awid);
+			awaddr  <= (awaddr_ld) ? axs_s0_awaddr :
+			           ((awaddr_clr) ? 32'h0000_0000 : awaddr);
+			awlen   <= (awlen_ld) ? axs_s0_awlen : ((awlen_clr) ? 8'h00 : awlen);
+			awsize  <= (awsize_ld) ? axs_s0_awsize : ((awsize_clr) ? 3'b000 : awsize);
 			awburst <= (awburst_ld) ? axs_s0_awburst : ((awburst_clr) ? 2'b00 : awburst);
 
-			wdata  <= (wdata_ld) ? axs_s0_wdata : 
-			          ((wdata_clr) ? 32'h0000_0000 : wdata);
-			wstrb  <= (wstrb_ld) ? axs_s0_wstrb : ((wstrb_clr) ? 4'h0 : wstrb);
+			wdata   <= (wdata_ld) ? axs_s0_wdata : 
+			           ((wdata_clr) ? 32'h0000_0000 : wdata);
+			wstrb   <= (wstrb_ld) ? axs_s0_wstrb : ((wstrb_clr) ? 4'h0 : wstrb);
 
 			state <= next_state;
 		end
