@@ -82,15 +82,17 @@ module fsm_0 (
 		if (reset)
 			state <= INIT;
 		else begin
-			index <= (index_inc) ? ((index == 1023) ? 10'b0000000000 : index + 1) : 
+			index  <= (index_inc) ? ((index == 1023) ? 10'b0000000000 : index + 1) : 
 			                      ((index_clr) ? 10'b0000000000 : index);
 
-			awid  <= (awid_ld) ? axs_s0_awid : ((awid_clr) ? 4'h0 : awid);
+			awid   <= (awid_ld) ? axs_s0_awid : ((awid_clr) ? 4'h0 : awid);
 
-			wdata <= (wdata_ld) ? axs_s0_wdata : 
-			         ((wdata_clr) ? 32'h0000_0000 : wdata);
+			awaddr <= (awaddr_ld) ? axs_s0_awaddr :
+			          ((awaddr_clr) ? 32'h0000_0000 : awaddr);
 
-			wstrb <= (wstrb_ld) ? axs_s0_wstrb : ((wstrb_clr) ? 4'h0 : wstrb);
+			wdata  <= (wdata_ld) ? axs_s0_wdata : 
+			          ((wdata_clr) ? 32'h0000_0000 : wdata);
+			wstrb  <= (wstrb_ld) ? axs_s0_wstrb : ((wstrb_clr) ? 4'h0 : wstrb);
 
 			state <= next_state;
 		end
@@ -148,7 +150,7 @@ module fsm_0 (
 					index_clr = 1'b1;
 
 					awid_clr = 1'b1;
-					awaddr = 32'h0000_0000;
+					awaddr_clr = 1'b1;
 					awlen = 8'h00;
 					awsize = 3'b000;
 					awburst = 2'b00;
@@ -164,7 +166,7 @@ module fsm_0 (
 					axs_s0_awready = 1'b1;
 					
 					awid_ld = 1'b1;
-					awaddr = axs_s0_awaddr;
+					awaddr_ld = 1'b1;
 					awlen = axs_s0_awlen;
 					awsize = axs_s0_awsize;
 					awburst = axs_s0_awburst;
