@@ -60,7 +60,7 @@ module fsm_2 (
 		end
 	end
 	
-	// next state, datapath, output logic
+	// datapath, next state, output logic
 	always @*
 	begin
 		// default values (may be overwritten)
@@ -77,7 +77,7 @@ module fsm_2 (
 		varint_data_clr = 1'b0;
 		varint_out_sel = 1'b0;
 
-		// datapath logic 
+		// datapath logic
 		varint_shifted = varint_data >> 7;
 		
 		varint_in_mux  = (varint_in_sel) ? varint_shifted : varint_data_in;
