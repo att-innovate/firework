@@ -33,5 +33,30 @@ module fsm_3 (
 	
 	// datapath data signals
 	reg [9:0] out_index_plus1;
+	
+	// state definitions (one-hot encoding)
+	parameter INIT       = 8'h01,
+	          WAIT_DATA  = 8'h02,
+	          R_PUSH     = 8'h04,
+	          R_PUSH_INC = 8'h08,
+	          V_PUSH     = 8'h10,
+	          V_PUSH_INC = 8'h20,
+	          OF_FULL    = 8'h40;
+	
+	// state memory logic
+	reg [7:0] state;
+	reg [7:0] next_state;
+
+	always @(posedge clk)
+	begin
+		if (reset)
+			state <= INIT;
+		else begin
+			out_index <= (out_index_ld) ? out_index_plus1 : 
+			             ((out_index_clr) ? 10'b0000000000 : out_index);
+
+			state <= next_state;
+		end
+	end
 
 endmodule
