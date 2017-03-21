@@ -73,8 +73,8 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	     out_fifo_clr, out_fifo_push, out_fifo_pop;
 	wire [7:0] out_fifo_data;
 	
-	wire varint_data_valid, varint_data_accepted;
-	wire raw_data_valid, raw_data_accepted;
+	wire varint_data_valid, varint_data_accepted, varint_enable;
+	wire raw_data_valid, raw_data_accepted, raw_data_enable;
 	
 	// Submodule instances
 	varint_in_fifo in0 (
@@ -173,15 +173,15 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		.raw_data_sel           (raw_data_sel)
 	);
 	
-	raw_data_mux = (raw_data_sel == 2'b00) ? raw_data_in_fifo_q[7:0] :
-	               ((raw_data_sel == 2'b01) ? raw_data_in_fifo_q[15:8] :
-	               ((raw_data_sel == 2'b10) ? raw_data_in_fifo_q[23:16] :
-	                                          raw_data_in_fifo_q[31:24]));
+	assign raw_data_mux = (raw_data_sel == 2'b00) ? raw_data_in_fifo_q[7:0] :
+	                      ((raw_data_sel == 2'b01) ? raw_data_in_fifo_q[15:8] :
+	                      ((raw_data_sel == 2'b10) ? raw_data_in_fifo_q[23:16] :
+	                                                 raw_data_in_fifo_q[31:24]));
 															
-	raw_data_push_mux = (raw_data_sel == 2'b00) ? raw_data_in_wstrb_q[0] :
-	                    ((raw_data_sel == 2'b01) ? raw_data_in_wstrb_q[1] : 
-	                    ((raw_data_sel == 1'b10) ? raw_data_in_wstrb_q[2] : 
-	                                               raw_data_in_wstrb_q[3]));
+	assign raw_data_push_mux = (raw_data_sel == 2'b00) ? raw_data_in_wstrb_q[0] :
+	                           ((raw_data_sel == 2'b01) ? raw_data_in_wstrb_q[1] : 
+	                           ((raw_data_sel == 1'b10) ? raw_data_in_wstrb_q[2] : 
+	                                                      raw_data_in_wstrb_q[3]));
 
 	fsm_2 f2 (
 		.clk                   (clock_clk),
@@ -224,16 +224,18 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		.out_fifo_full        (out_fifo_full),
 		.out_fifo_clr         (out_fifo_clr),
 		.out_fifo_push        (out_fifo_push),
-		.varint_out_fifo_q    (varint_out_fifo_q),
+		.varint_enable        (varint_enable),
+		.raw_data_enable      (raw_data_enable),
 		.varint_out_index_q   (varint_out_index_q),
-		.raw_data_out_fifo_q  (raw_data_out_fifo_q),
 		.raw_data_out_index_q (raw_data_out_index_q),
-		.out_fifo_data        (out_fifo_data),
 		.varint_data_valid    (varint_data_valid),
 		.raw_data_valid       (raw_data_valid),
 		.varint_data_accepted (varint_data_accepted),
 		.raw_data_accepted    (raw_data_accepted)
 	);
+
+	assign out_fifo_data = (varint_enable) ? varint_out_fifo_q : 8'hzz;
+	assign out_fifo_data = (raw_data_enable) ? raw_data_out_fifo_q : 8'hzz;
 
 	varint_out_fifo out0 (
 		.data  (encoded_byte),           //  fifo_input.datain
@@ -287,7 +289,7 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		.empty (out_fifo_empty)          //            .empty
 	);
 	
-	assign axs_s0_rdata[31:8] = 24'b000000000000000000000000;
+	assign axs_s0_rdata[31:8] = 24'h000000;
 
 endmodule
 
