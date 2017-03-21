@@ -37,7 +37,7 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	// Internal wires
 	wire [31:0] wdata, varint_in_fifo_q;
 	wire [3:0]  wstrb;
-	wire [9:0]  index, varint_in_index_q, raw_data_in_index_q;
+	wire [9:0]  index;
 
 	wire varint_in_fifo_full, varint_in_fifo_empty,
 	     varint_in_fifo_clr, varint_in_fifo_push, varint_in_fifo_pop;
@@ -48,9 +48,11 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	wire raw_data_in_index_clr, raw_data_in_index_push, raw_data_in_index_pop;
 	wire raw_data_in_wstrb_clr, raw_data_in_wstrb_push, raw_data_in_wstrb_pop;
 
+	wire [9:0] raw_data_in_index_q, varint_in_index_q;
+
 	wire [1:0]  raw_data_sel;
 	wire [31:0] raw_data_in_fifo_q;
-	wire [7:0]  raw_data_mux;
+	wire [7:0]  raw_data_mux, raw_data_out_fifo_q;
 
 	wire [3:0]  raw_data_in_wstrb_q;
 	wire        raw_data_push_mux;
@@ -63,7 +65,13 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	     varint_out_fifo_clr, varint_out_fifo_push, varint_out_fifo_pop;
 	wire varint_out_index_clr, varint_out_index_push, varint_out_index_pop;
 
-	wire [7:0]  encoded_byte, varint_out_fifo_q;
+	wire [9:0] raw_data_out_index_q, varint_out_index_q;
+
+	wire [7:0] encoded_byte, varint_out_fifo_q;
+	
+	wire out_fifo_full, out_fifo_empty,
+	     out_fifo_clr, out_fifo_push, out_fifo_pop;
+	wire [7:0] out_fifo_data;
 	
 	wire varint_data_valid, varint_data_accepted;
 	wire raw_data_valid, raw_data_accepted;
@@ -208,6 +216,23 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		.raw_data_out_index_pop  (raw_data_out_index_pop),
 		.raw_data_accepted       (raw_data_accepted),
 		.raw_data_valid          (raw_data_valid)
+	);
+
+	fsm_3 f3 (
+		.clk                  (clock_clk),
+		.reset                (reset_reset),
+		.out_fifo_full        (out_fifo_full),
+		.out_fifo_clr         (out_fifo_clr),
+		.out_fifo_push        (out_fifo_push),
+		.varint_out_fifo_q    (varint_out_fifo_q),
+		.varint_out_index_q   (varint_out_index_q),
+		.raw_data_out_fifo_q  (raw_data_out_fifo_q),
+		.raw_data_out_index_q (raw_data_out_index_q),
+		.out_fifo_data        (out_fifo_data),
+		.varint_data_valid    (varint_data_valid),
+		.raw_data_valid       (raw_data_valid),
+		.varint_data_accepted (varint_data_accepted),
+		.raw_data_accepted    (raw_data_accepted)
 	);
 
 	varint_out_fifo out0 (
