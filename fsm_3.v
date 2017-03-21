@@ -59,4 +59,54 @@ module fsm_3 (
 		end
 	end
 
+	// datapath, next state, output logic
+	always @*
+	begin
+		// default values (may be overwritten)
+		out_fifo_clr = 1'b0;
+		out_fifo_push = 1'b0;
+		varint_enable = 1'b0;
+		raw_data_enable = 1'b0;
+		varint_data_accepted = 1'b0;
+		raw_data_accepted = 1'b0;
+
+		out_index_ld = 1'b0;		
+		out_index_clr = 1'b0;
+
+		// datapath logic
+		out_index_plus1 = out_index + 1;
+		
+		varint_eq_index = (varint_out_index_q == out_index) ? 1'b1 : 1'b0;
+		varint_eq_next = (varint_out_index_q == out_index_plus1) ? 1'b1 : 1'b0;
+		raw_data_eq_index = (raw_data_out_index_q == out_index) ? 1'b1 : 1'b0;
+		raw_data_eq_next = (raw_data_out_index_q == out_index_plus1) ? 1'b1 : 1'b0;
+		
+		case (state)
+			INIT:
+				begin
+					
+				end
+
+			WAIT_DATA:
+			
+
+			R_PUSH:
+			
+
+			R_PUSH_INC:
+			
+
+			V_PUSH:
+			
+
+			V_PUSH_INC:
+			
+
+			OF_FULL:
+			
+
+			default:
+				next_state = INIT;
+		endcase
+	end
 endmodule
