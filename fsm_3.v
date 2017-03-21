@@ -84,26 +84,84 @@ module fsm_3 (
 		case (state)
 			INIT:
 				begin
-					
+					out_fifo_clr = 1'b1;
+					out_index_clr = 1'b1;
+
+					next_state = WAIT_DATA;
 				end
 
 			WAIT_DATA:
-			
+				begin
+					if (~out_fifo_full && varint_data_valid && varint_eq_index)
+						next_state = V_PUSH;
+					else if (~out_fifo_full && varint_data_valid && varint_eq_next)
+						next_state = V_PUSH_INC;
+					else if (~out_fifo_full && raw_data_valid && raw_data_eq_index)
+						next_state = R_PUSH;
+					else if (~out_fifo_full && raw_data_valid && raw_data_eq_next)
+						next_state = R_PUSH_INC;
+					else if (out_fifo_full && (varint_data_valid && varint_eq_index +
+					                           varint_data_valid && varint_eq_next  +
+					                           raw_data_valid && raw_data_eq_index  +
+					                           raw_data_valid && raw_data_eq_next))
+						next_state = OF_FULL;
+					else
+						next_state = WAIT_DATA;
+				end
 
 			R_PUSH:
-			
+				begin
+					raw_data_enable = 1'b1;
+					out_fifo_push = 1'b1;
+					raw_data_accepted = 1'b1;
+
+					next_state = WAIT_DATA;
+				end
 
 			R_PUSH_INC:
-			
+				begin
+					raw_data_enable = 1'b1;
+					out_fifo_push = 1'b1;
+					raw_data_accepted = 1'b1;
+					out_index_ld = 1'b1;
+
+					next_state = WAIT_DATA;
+				end
 
 			V_PUSH:
-			
+				begin
+					varint_enable = 1'b1;
+					out_fifo_push = 1'b1;
+					varint_data_accepted = 1'b1;
+
+					next_state = WAIT_DATA;
+				end
 
 			V_PUSH_INC:
-			
+				begin
+					varint_enable = 1'b1;
+					out_fifo_push = 1'b1;
+					varint_data_accepted = 1'b1;
+					out_index_ld = 1'b1;
+
+					next_state = WAIT_DATA;
+				end
 
 			OF_FULL:
-			
+				begin
+					if (out_fifo_full)
+						next_state = OF_FULL;
+					else if (~out_fifo_full && varint_eq_index)
+						next_state = V_PUSH;
+					else if (~out_fifo_full && varint_eq_next)
+						next_state = V_PUSH_INC;
+					else if (~out_fifo_full && raw_data_eq_index)
+						next_state = R_PUSH;
+					else if (~out_fifo_full && raw_data_eq_next)
+						next_state = R_PUSH_INC;
+					else // error
+						next_state = INIT;
+				end
 
 			default:
 				next_state = INIT;
