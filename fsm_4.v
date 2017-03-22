@@ -142,23 +142,82 @@ module fsm_4 (
 				begin
 					axs_s0_arready = 1'b0;
 					axs_s0_rvalid = 1'b0;
+
 					out_fifo_pop_sel = 2'b00;
-					// TODO: own this shit
+					out_fifo_pop = 1'b1;
+
+					if (out_fifo_empty)
+						next_state = OF_EMPTY;
+					else if (~out_fifo_empty && arlen == 0)
+						next_state = R_VALID_LAST;
+					else if (~out_fifo_empty && arlen != 0 && ~axs_s0_rready)
+						next_state = MASTER_WAIT;
+					else if (~out_fifo_empty && arlen != 0 && axs_s0_rready)
+						next_state = R_VALID;
+					else // error
+						next_state = INIT;
 				end
 
 			R_VALID_LAST:
 				begin
-					
+					axs_s0_arready = 1'b0;
+					axs_s0_rlast = 1'b1;
+					axs_s0_rvalid = 1'b1;
+
+					out_fifo_pop_sel = 2'b00;
+					out_fifo_pop = 1'b0;
+
+					if (axs_s0_rready)
+						next_state = AR_READY;
+					else
+						next_state = R_VALID_LAST;
 				end
 
 			MASTER_WAIT:
 				begin
-					
+					axs_s0_arready = 1'b0;
+					axs_s0_rlast = 1'b0;
+					axs_s0_rvalid = 1'b1;
+
+					out_fifo_pop_sel = 2'b10;
+					arlen_ld_sel = 1'b1;
+					arlen_data_sel = 1'b1;
+
+					if (~axs_s0_rready)
+						next_state = MASTER_WAIT;
+					else if (axs_s0_rready && out_fifo_empty)
+						next_state = OF_EMPTY;
+					else if (axs_s0_rready && ~out_fifo_empty && ~(arlen > 1))
+						next_state = R_VALID_LAST;
+					else if (axs_s0_rready && ~out_fifo_empty && (arlen > 1))
+						next_state = R_VALID;
+					else // error
+						next_state = INIT;
 				end
 
 			R_VALID:
 				begin
+					axs_s0_arready = 1'b0;
+					axs_s0_rlast = 1'b0;
+					axs_s0_rvalid = 1'b1;
 					
+					out_fifo_pop_sel = 2'b00;
+					out_fifo_pop = 1'b1;
+					
+					arlen_ld_sel = 1'b0;
+					arlen_ld = 1'b1;
+					arlen_data_sel = 1'b1;
+
+					if (out_fifo_empty)
+						next_state = OF_EMPTY;
+					else if (~out_fifo_empty && ~(arlen > 1))
+						next_state = R_VALID_LAST;
+					else if (~out_fifo_empty && (arlen > 1) && ~axs_s0_rready)
+						next_state = MASTER_WAIT;
+					else if (~out_fifo_empty && (arlen > 1) && axs_s0_rready)
+						next_state = R_VALID;
+					else // error
+						next_state = INIT;
 				end
 
 			default:
