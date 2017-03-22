@@ -103,6 +103,10 @@ module fsm_0 (
 	always @*
 	begin
 		// default values (may be overwritten)
+		axs_s0_awready = 1'b0;
+		axs_s0_wready = 1'b0;
+		axs_s0_bvalid = 1'b0;
+
 		varint_in_fifo_clr = 1'b0;
 		varint_in_fifo_push = 1'b0;
 		varint_in_index_clr = 1'b0;
@@ -113,10 +117,6 @@ module fsm_0 (
 		raw_data_in_index_push = 1'b0;
 		raw_data_in_wstrb_clr = 1'b0;
 		raw_data_in_wstrb_push = 1'b0;
-
-		axs_s0_awready = 1'b0;
-		axs_s0_wready = 1'b0;
-		axs_s0_bvalid = 1'b0;
 
 		index_clr = 1'b0;
 		index_inc = 1'b0;
