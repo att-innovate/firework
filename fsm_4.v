@@ -25,4 +25,43 @@ module fsm_4 (
 		output reg  [1:0]  out_fifo_pop_sel
 	);
 
+	// datapath registers
+	reg [3:0]  arid;
+	reg [31:0] araddr;
+	reg [7:0]  arlen;
+	reg [2:0]  arsize;
+	reg [1:0]  arburst;
+
+	// datapath control signals
+	reg arid_clr, araddr_clr, arlen_clr, arsize_clr, arburst_clr;
+	reg arid_ld, araddr_ld, arlen_ld, arsize_ld, arburst_ld;
+	
+	// state definitions (one-hot encoding)
+	parameter INIT        = 8'h01,
+	          AR_READY    = 8'h02,
+	          OF_EMPTY    = 8'h04,
+	          R_VALID_N   = 8'h08,
+	          R_VALID_L   = 8'h10,
+	          MASTER_WAIT = 8'h20;
+
+	// state memory logic
+	reg [7:0] state;
+	reg [7:0] next_state;
+	
+	always @(posedge clk)
+	begin
+		if (reset)
+			state <= INIT;
+		else begin
+			arid    <= (arid_ld) ? axs_s0_arid : ((arid_clr) ? 4'h0 : arid);
+			araddr  <= (araddr_ld) ? axs_s0_araddr : 
+			           ((araddr_clr) ? 32'h0000_0000 : araddr);
+			arlen   <= (arlen_ld) ? axs_s0_arlen : ((arlen_clr) ? 8'h00 : arlen);
+			arsize  <= (arsize_ld) ? axs_s0_arsize : ((arsize_clr) ? 3'b000 : arsize);
+			arburst <= (arburst_ld) ? axs_s0_arburst : ((arburst_clr) ? 2'b00 : arburst);
+
+			state <= next_state;
+		end
+	end
+
 endmodule
