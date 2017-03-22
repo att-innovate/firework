@@ -92,8 +92,7 @@ module fsm_0 (
 			awsize  <= (awsize_ld) ? axs_s0_awsize : ((awsize_clr) ? 3'b000 : awsize);
 			awburst <= (awburst_ld) ? axs_s0_awburst : ((awburst_clr) ? 2'b00 : awburst);
 
-			wdata   <= (wdata_ld) ? axs_s0_wdata : 
-			           ((wdata_clr) ? 32'h0000_0000 : wdata);
+			wdata   <= (wdata_ld) ? axs_s0_wdata : ((wdata_clr) ? 32'h0000_0000 : wdata);
 			wstrb   <= (wstrb_ld) ? axs_s0_wstrb : ((wstrb_clr) ? 4'h0 : wstrb);
 
 			state <= next_state;
