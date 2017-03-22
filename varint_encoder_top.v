@@ -70,9 +70,11 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	wire [7:0] encoded_byte, varint_out_fifo_q;
 	
 	wire out_fifo_full, out_fifo_empty,
-	     out_fifo_clr, out_fifo_push, out_fifo_pop;
+	     out_fifo_clr, out_fifo_push, out_fifo_pop, out_fifo_pop_mux;
+
 	wire [7:0] out_fifo_data;
-	
+	wire [1:0] out_fifo_pop_sel;
+
 	wire varint_data_valid, varint_data_accepted, varint_enable;
 	wire raw_data_valid, raw_data_accepted, raw_data_enable;
 	
@@ -236,6 +238,29 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 
 	assign out_fifo_data = (varint_enable) ? varint_out_fifo_q : 8'hzz;
 	assign out_fifo_data = (raw_data_enable) ? raw_data_out_fifo_q : 8'hzz;
+	
+	fsm_4 f4 (
+		.clk              (clock_clk),
+		.reset            (reset_reset),
+		.axs_s0_arid      (axs_s0_arid),
+		.axs_s0_araddr    (axs_s0_araddr),
+		.axs_s0_arlen     (axs_s0_arlen),
+		.axs_s0_arsize    (axs_s0_arsize),
+		.axs_s0_arburst   (axs_s0_arburst),
+		.axs_s0_arvalid   (axs_s0_arvalid),
+		.axs_s0_arready   (axs_s0_arready),
+		.axs_s0_rid       (axs_s0_rid),
+		.axs_s0_rlast     (axs_s0_rlast),
+		.axs_s0_rvalid    (axs_s0_rvalid),
+		.axs_s0_rready    (axs_s0_rready),
+		.out_fifo_empty   (out_fifo_empty),
+		.out_fifo_pop     (out_fifo_pop),
+		.out_fifo_pop_sel (out_fifo_pop_sel)
+	);
+	
+	assign out_fifo_pop_mux = (out_fifo_pop_sel == 2'b00) ? out_fifo_pop :
+	                          ((out_fifo_pop_sel == 2'b01) ? axs_s0_arvalid : 
+							        ((out_fifo_pop_sel == 2'b10) ? axs_s0_rready : 1'bx));
 
 	varint_out_fifo out0 (
 		.data  (encoded_byte),           //  fifo_input.datain
@@ -280,7 +305,7 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	out_fifo out4 (
 		.data  (out_fifo_data),          //  fifo_input.datain
 		.wrreq (out_fifo_push),          //            .wrreq
-		.rdreq (out_fifo_pop),           //            .rdreq
+		.rdreq (out_fifo_pop_mux),           //            .rdreq
 		.clock (clock_clk),              //            .clk
 		.sclr  (out_fifo_clr),           //            .sclr
 		.q     (axs_s0_rdata[7:0]),      // fifo_output.dataout
