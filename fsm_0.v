@@ -137,6 +137,7 @@ module fsm_0 (
 		wstrb_clr = 1'b0;
 		wstrb_ld = 1'b0;
 
+		// datapath logic
 		axs_s0_bid = awid;
 
 		case (state)

@@ -58,10 +58,11 @@ module fsm_1 (
 		raw_data_out_fifo_clr = 1'b0;
 		raw_data_out_index_clr = 1'b0;
 
-		raw_data_sel = index;
-
 		index_inc = 1'b0;
 		index_clr = 1'b0;
+
+		// datapath logic
+		raw_data_sel = index;
 
 		case (state)
 			INIT:
