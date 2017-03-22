@@ -5,7 +5,7 @@ module fsm_1 (
 		input  wire       clk,
 		input  wire       reset,
 
-		// datapath control signals
+		// FIFO control signals
 		input  wire       raw_data_in_fifo_empty,
 		output reg        raw_data_in_fifo_pop,
 		output reg        raw_data_in_index_pop,

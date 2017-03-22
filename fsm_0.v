@@ -23,7 +23,7 @@ module fsm_0 (
 		output reg [3:0]   axs_s0_bid,
 		output reg         axs_s0_bvalid,
 
-		// datapath control signals
+		// FIFO control signals
 		input  wire        varint_in_fifo_full,
 		output reg         varint_in_fifo_clr,
 		output reg         varint_in_fifo_push,
@@ -38,7 +38,7 @@ module fsm_0 (
 		output reg         raw_data_in_wstrb_clr,
 		output reg         raw_data_in_wstrb_push,
 
-		// datapath registers
+		// FIFO data signals
 		output reg  [9:0]  index,
 		
 		output reg  [31:0] wdata,
