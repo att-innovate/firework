@@ -305,7 +305,7 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	out_fifo out4 (
 		.data  (out_fifo_data),          //  fifo_input.datain
 		.wrreq (out_fifo_push),          //            .wrreq
-		.rdreq (out_fifo_pop_mux),           //            .rdreq
+		.rdreq (out_fifo_pop_mux),       //            .rdreq
 		.clock (clock_clk),              //            .clk
 		.sclr  (out_fifo_clr),           //            .sclr
 		.q     (axs_s0_rdata[7:0]),      // fifo_output.dataout
@@ -317,31 +317,3 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	assign axs_s0_rdata[31:8] = 24'h000000;
 
 endmodule
-
-
-/*module varint_encoder_top (
-		input  wire			clock_clk,		 //	clock.clk
-		input  wire			reset_reset		 //	reset.reset
-
-		// Avalon-ST sink interface
-		input  wire [31:0] asi_in0_data,	 // asi_in0.data
-		input  wire        asi_in0_valid, //		  .valid
-		output wire        asi_in0_ready, // 		  .ready
-	);
-
-endmodule
-
-// Avalon-ST sink
-`timescale 1 ps / 1 ps
-module new_component (
-        input  wire [31:0] asi_in0_data,  // asi_in0.data
-        output wire        asi_in0_ready, //        .ready
-        input  wire        asi_in0_valid, //        .valid
-        input  wire        clock_clk,     //   clock.clk
-        input  wire        reset_reset    //   reset.reset
-    );
-
-    // TODO: Auto-generated HDL template
-    assign asi_in0_ready = 1'b0;
-
-endmodule */
