@@ -42,7 +42,7 @@ module fsm_1 (
 		if (reset)
 			state <= INIT;
 		else begin
-			index <= (index_inc) ? index + 1 : ((index_clr) ? 2'b00 : index);
+			index <= (index_inc) ? index + 2'b01 : ((index_clr) ? 2'b00 : index);
 					  
 			state <= next_state;
 		end
