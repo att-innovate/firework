@@ -12,7 +12,7 @@ module fsm_3a (
 
 		// FSM handshake signals
 		input  wire  varint_data_accepted,
-		output wire  varint_data_valid
+		output reg   varint_data_valid
 	);
 
 	// state definitions (one-hot encoding)
