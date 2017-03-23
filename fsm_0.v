@@ -82,7 +82,7 @@ module fsm_0 (
 		if (reset)
 			state <= INIT;
 		else begin
-			index   <= (index_inc) ? ((index == 1023) ? 10'b0000000000 : index + 1) : 
+			index   <= (index_inc) ? ((index == 10'd1023) ? 10'b0000000000 : index + 10'd1) : 
 			                      ((index_clr) ? 10'b0000000000 : index);
 
 			awid    <= (awid_ld) ? axs_s0_awid : ((awid_clr) ? 4'h0 : awid);
