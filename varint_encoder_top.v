@@ -182,7 +182,7 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 															
 	assign raw_data_push_mux = (raw_data_sel == 2'b00) ? raw_data_in_wstrb_q[0] :
 	                           ((raw_data_sel == 2'b01) ? raw_data_in_wstrb_q[1] : 
-	                           ((raw_data_sel == 1'b10) ? raw_data_in_wstrb_q[2] : 
+	                           ((raw_data_sel == 2'b10) ? raw_data_in_wstrb_q[2] : 
 	                                                      raw_data_in_wstrb_q[3]));
 
 	fsm_2 f2 (
@@ -309,7 +309,7 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		.clock (clock_clk),              //            .clk
 		.sclr  (out_fifo_clr),           //            .sclr
 		.q     (axs_s0_rdata[7:0]),      // fifo_output.dataout
-		.usedw (<connected-to-usedw>),   //            .usedw
+		.usedw (/*<connect-to-usedw>*/), //            .usedw
 		.full  (out_fifo_full),          //            .full
 		.empty (out_fifo_empty)          //            .empty
 	);
