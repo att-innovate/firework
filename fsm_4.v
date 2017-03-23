@@ -227,7 +227,7 @@ module fsm_4 (
 		// datapath logic
 		arlen_ld_mux = (arlen_ld_sel) ? axs_s0_rready : arlen_ld;
 		
-		arlen_data_mux = (arlen_data_sel) ? arlen - 1 : axs_s0_arlen;
+		arlen_data_mux = (arlen_data_sel) ? arlen - 8'd1 : axs_s0_arlen;
 		
 	end
 endmodule
