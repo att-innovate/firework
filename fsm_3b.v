@@ -12,7 +12,7 @@ module fsm_3b (
 
 		// FSM handshake signals
 		input  wire  raw_data_accepted,
-		output wire  raw_data_valid
+		output reg   raw_data_valid
 	);
 
 	// state definitions (one-hot encoding)
