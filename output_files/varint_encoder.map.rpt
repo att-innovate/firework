@@ -1,5 +1,5 @@
 Analysis & Elaboration report for varint_encoder
-Thu Mar 23 14:41:04 2017
+Fri Mar 24 11:37:24 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -67,7 +67,7 @@ agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Elaboration Summary                                                  ;
 +-------------------------------+-------------------------------------------------+
-; Analysis & Elaboration Status ; Successful - Thu Mar 23 14:41:04 2017           ;
+; Analysis & Elaboration Status ; Successful - Fri Mar 24 11:37:24 2017           ;
 ; Quartus Prime Version         ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
 ; Revision Name                 ; varint_encoder                                  ;
 ; Top-level Entity Name         ; varint_encoder_top                              ;
@@ -779,7 +779,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Elaboration
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
-    Info: Processing started: Thu Mar 23 14:40:51 2017
+    Info: Processing started: Fri Mar 24 11:37:11 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off varint_encoder -c varint_encoder --analysis_and_elaboration
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/varint_encoder/out_fifo/").
@@ -879,7 +879,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file fsm_3.v
 Info (12021): Found 1 design units, including 1 entities, in source file fsm_4.v
     Info (12023): Found entity 1: fsm_4 File: /home/mladmon/workspace/firework/varint_encoder/fsm_4.v Line: 3
 Info (12127): Elaborating entity "varint_encoder_top" for the top level hierarchy
-Info (12128): Elaborating entity "varint_in_fifo" for hierarchy "varint_in_fifo:in0" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 91
+Info (12128): Elaborating entity "varint_in_fifo" for hierarchy "varint_in_fifo:in0" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 92
 Info (12128): Elaborating entity "varint_in_fifo_fifo_160_v2ho2aa" for hierarchy "varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0" File: /home/mladmon/workspace/firework/varint_encoder/varint_in_fifo/synth/varint_in_fifo.v Line: 26
 Info (12128): Elaborating entity "scfifo" for hierarchy "varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/varint_in_fifo/fifo_160/synth/varint_in_fifo_fifo_160_v2ho2aa.v Line: 57
 Info (12130): Elaborated megafunction instantiation "varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/varint_in_fifo/fifo_160/synth/varint_in_fifo_fifo_160_v2ho2aa.v Line: 57
@@ -917,7 +917,7 @@ Info (12128): Elaborating entity "cntr_ls6" for hierarchy "varint_in_fifo:in0|va
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_9sa.tdf
     Info (12023): Found entity 1: cntr_9sa File: /home/mladmon/workspace/firework/varint_encoder/db/cntr_9sa.tdf Line: 26
 Info (12128): Elaborating entity "cntr_9sa" for hierarchy "varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_9sa:wr_ptr" File: /home/mladmon/workspace/firework/varint_encoder/db/a_dpfifo_7ga1.tdf Line: 57
-Info (12128): Elaborating entity "varint_in_index" for hierarchy "varint_in_index:in1" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 100
+Info (12128): Elaborating entity "varint_in_index" for hierarchy "varint_in_index:in1" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 101
 Info (12128): Elaborating entity "varint_in_index_fifo_160_kjjiney" for hierarchy "varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0" File: /home/mladmon/workspace/firework/varint_encoder/varint_in_index/synth/varint_in_index.v Line: 22
 Info (12128): Elaborating entity "scfifo" for hierarchy "varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/varint_in_index/fifo_160/synth/varint_in_index_fifo_160_kjjiney.v Line: 49
 Info (12130): Elaborated megafunction instantiation "varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/varint_in_index/fifo_160/synth/varint_in_index_fifo_160_kjjiney.v Line: 49
@@ -942,7 +942,7 @@ Info (12128): Elaborating entity "a_dpfifo_1f91" for hierarchy "varint_in_index:
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_shn1.tdf
     Info (12023): Found entity 1: altsyncram_shn1 File: /home/mladmon/workspace/firework/varint_encoder/db/altsyncram_shn1.tdf Line: 28
 Info (12128): Elaborating entity "altsyncram_shn1" for hierarchy "varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram" File: /home/mladmon/workspace/firework/varint_encoder/db/a_dpfifo_1f91.tdf Line: 43
-Info (12128): Elaborating entity "raw_data_in_fifo" for hierarchy "raw_data_in_fifo:in2" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 111
+Info (12128): Elaborating entity "raw_data_in_fifo" for hierarchy "raw_data_in_fifo:in2" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 112
 Info (12128): Elaborating entity "raw_data_in_fifo_fifo_160_v2ho2aa" for hierarchy "raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0" File: /home/mladmon/workspace/firework/varint_encoder/raw_data_in_fifo/synth/raw_data_in_fifo.v Line: 26
 Info (12128): Elaborating entity "scfifo" for hierarchy "raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/raw_data_in_fifo/fifo_160/synth/raw_data_in_fifo_fifo_160_v2ho2aa.v Line: 57
 Info (12130): Elaborated megafunction instantiation "raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/raw_data_in_fifo/fifo_160/synth/raw_data_in_fifo_fifo_160_v2ho2aa.v Line: 57
@@ -958,7 +958,7 @@ Info (12133): Instantiated megafunction "raw_data_in_fifo:in2|raw_data_in_fifo_f
     Info (12134): Parameter "overflow_checking" = "ON"
     Info (12134): Parameter "underflow_checking" = "ON"
     Info (12134): Parameter "use_eab" = "ON"
-Info (12128): Elaborating entity "raw_data_in_index" for hierarchy "raw_data_in_index:in3" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 120
+Info (12128): Elaborating entity "raw_data_in_index" for hierarchy "raw_data_in_index:in3" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 121
 Info (12128): Elaborating entity "raw_data_in_index_fifo_160_kjjiney" for hierarchy "raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0" File: /home/mladmon/workspace/firework/varint_encoder/raw_data_in_index/synth/raw_data_in_index.v Line: 22
 Info (12128): Elaborating entity "scfifo" for hierarchy "raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/raw_data_in_index/fifo_160/synth/raw_data_in_index_fifo_160_kjjiney.v Line: 49
 Info (12130): Elaborated megafunction instantiation "raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/raw_data_in_index/fifo_160/synth/raw_data_in_index_fifo_160_kjjiney.v Line: 49
@@ -974,7 +974,7 @@ Info (12133): Instantiated megafunction "raw_data_in_index:in3|raw_data_in_index
     Info (12134): Parameter "overflow_checking" = "ON"
     Info (12134): Parameter "underflow_checking" = "ON"
     Info (12134): Parameter "use_eab" = "ON"
-Info (12128): Elaborating entity "raw_data_in_wstrb" for hierarchy "raw_data_in_wstrb:in4" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 129
+Info (12128): Elaborating entity "raw_data_in_wstrb" for hierarchy "raw_data_in_wstrb:in4" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 130
 Info (12128): Elaborating entity "raw_data_in_wstrb_fifo_160_sconavq" for hierarchy "raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0" File: /home/mladmon/workspace/firework/varint_encoder/raw_data_in_wstrb/synth/raw_data_in_wstrb.v Line: 22
 Info (12128): Elaborating entity "scfifo" for hierarchy "raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/raw_data_in_wstrb/fifo_160/synth/raw_data_in_wstrb_fifo_160_sconavq.v Line: 49
 Info (12130): Elaborated megafunction instantiation "raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/raw_data_in_wstrb/fifo_160/synth/raw_data_in_wstrb_fifo_160_sconavq.v Line: 49
@@ -999,14 +999,14 @@ Info (12128): Elaborating entity "a_dpfifo_kd91" for hierarchy "raw_data_in_wstr
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_2fn1.tdf
     Info (12023): Found entity 1: altsyncram_2fn1 File: /home/mladmon/workspace/firework/varint_encoder/db/altsyncram_2fn1.tdf Line: 28
 Info (12128): Elaborating entity "altsyncram_2fn1" for hierarchy "raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram" File: /home/mladmon/workspace/firework/varint_encoder/db/a_dpfifo_kd91.tdf Line: 43
-Info (12128): Elaborating entity "fsm_0" for hierarchy "fsm_0:f0" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 163
-Info (12128): Elaborating entity "fsm_1" for hierarchy "fsm_1:f1" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 176
-Info (12128): Elaborating entity "fsm_2" for hierarchy "fsm_2:f2" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 201
-Info (12128): Elaborating entity "fsm_3a" for hierarchy "fsm_3a:f3a" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 211
-Info (12128): Elaborating entity "fsm_3b" for hierarchy "fsm_3b:f3b" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 221
-Info (12128): Elaborating entity "fsm_3" for hierarchy "fsm_3:f3" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 237
-Info (12128): Elaborating entity "fsm_4" for hierarchy "fsm_4:f4" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 259
-Info (12128): Elaborating entity "varint_out_fifo" for hierarchy "varint_out_fifo:out0" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 274
+Info (12128): Elaborating entity "fsm_0" for hierarchy "fsm_0:f0" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 164
+Info (12128): Elaborating entity "fsm_1" for hierarchy "fsm_1:f1" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 177
+Info (12128): Elaborating entity "fsm_2" for hierarchy "fsm_2:f2" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 202
+Info (12128): Elaborating entity "fsm_3a" for hierarchy "fsm_3a:f3a" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 212
+Info (12128): Elaborating entity "fsm_3b" for hierarchy "fsm_3b:f3b" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 222
+Info (12128): Elaborating entity "fsm_3" for hierarchy "fsm_3:f3" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 238
+Info (12128): Elaborating entity "fsm_4" for hierarchy "fsm_4:f4" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 260
+Info (12128): Elaborating entity "varint_out_fifo" for hierarchy "varint_out_fifo:out0" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 275
 Info (12128): Elaborating entity "varint_out_fifo_fifo_160_q2auapq" for hierarchy "varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0" File: /home/mladmon/workspace/firework/varint_encoder/varint_out_fifo/synth/varint_out_fifo.v Line: 26
 Info (12128): Elaborating entity "scfifo" for hierarchy "varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/varint_out_fifo/fifo_160/synth/varint_out_fifo_fifo_160_q2auapq.v Line: 57
 Info (12130): Elaborated megafunction instantiation "varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/varint_out_fifo/fifo_160/synth/varint_out_fifo_fifo_160_q2auapq.v Line: 57
@@ -1044,7 +1044,7 @@ Info (12128): Elaborating entity "cntr_ns6" for hierarchy "varint_out_fifo:out0|
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_bsa.tdf
     Info (12023): Found entity 1: cntr_bsa File: /home/mladmon/workspace/firework/varint_encoder/db/cntr_bsa.tdf Line: 26
 Info (12128): Elaborating entity "cntr_bsa" for hierarchy "varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_bsa:wr_ptr" File: /home/mladmon/workspace/firework/varint_encoder/db/a_dpfifo_8fa1.tdf Line: 57
-Info (12128): Elaborating entity "varint_out_index" for hierarchy "varint_out_index:out1" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 283
+Info (12128): Elaborating entity "varint_out_index" for hierarchy "varint_out_index:out1" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 284
 Info (12128): Elaborating entity "varint_out_index_fifo_160_tgkntjy" for hierarchy "varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0" File: /home/mladmon/workspace/firework/varint_encoder/varint_out_index/synth/varint_out_index.v Line: 22
 Info (12128): Elaborating entity "scfifo" for hierarchy "varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/varint_out_index/fifo_160/synth/varint_out_index_fifo_160_tgkntjy.v Line: 49
 Info (12130): Elaborated megafunction instantiation "varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/varint_out_index/fifo_160/synth/varint_out_index_fifo_160_tgkntjy.v Line: 49
@@ -1069,7 +1069,7 @@ Info (12128): Elaborating entity "a_dpfifo_ff91" for hierarchy "varint_out_index
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_oin1.tdf
     Info (12023): Found entity 1: altsyncram_oin1 File: /home/mladmon/workspace/firework/varint_encoder/db/altsyncram_oin1.tdf Line: 28
 Info (12128): Elaborating entity "altsyncram_oin1" for hierarchy "varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram" File: /home/mladmon/workspace/firework/varint_encoder/db/a_dpfifo_ff91.tdf Line: 43
-Info (12128): Elaborating entity "raw_data_out_fifo" for hierarchy "raw_data_out_fifo:out2" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 294
+Info (12128): Elaborating entity "raw_data_out_fifo" for hierarchy "raw_data_out_fifo:out2" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 295
 Info (12128): Elaborating entity "raw_data_out_fifo_fifo_160_q2auapq" for hierarchy "raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0" File: /home/mladmon/workspace/firework/varint_encoder/raw_data_out_fifo/synth/raw_data_out_fifo.v Line: 26
 Info (12128): Elaborating entity "scfifo" for hierarchy "raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/raw_data_out_fifo/fifo_160/synth/raw_data_out_fifo_fifo_160_q2auapq.v Line: 57
 Info (12130): Elaborated megafunction instantiation "raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/raw_data_out_fifo/fifo_160/synth/raw_data_out_fifo_fifo_160_q2auapq.v Line: 57
@@ -1085,7 +1085,7 @@ Info (12133): Instantiated megafunction "raw_data_out_fifo:out2|raw_data_out_fif
     Info (12134): Parameter "overflow_checking" = "ON"
     Info (12134): Parameter "underflow_checking" = "ON"
     Info (12134): Parameter "use_eab" = "ON"
-Info (12128): Elaborating entity "raw_data_out_index" for hierarchy "raw_data_out_index:out3" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 303
+Info (12128): Elaborating entity "raw_data_out_index" for hierarchy "raw_data_out_index:out3" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 304
 Info (12128): Elaborating entity "raw_data_out_index_fifo_160_tgkntjy" for hierarchy "raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0" File: /home/mladmon/workspace/firework/varint_encoder/raw_data_out_index/synth/raw_data_out_index.v Line: 22
 Info (12128): Elaborating entity "scfifo" for hierarchy "raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/raw_data_out_index/fifo_160/synth/raw_data_out_index_fifo_160_tgkntjy.v Line: 49
 Info (12130): Elaborated megafunction instantiation "raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/raw_data_out_index/fifo_160/synth/raw_data_out_index_fifo_160_tgkntjy.v Line: 49
@@ -1101,7 +1101,7 @@ Info (12133): Instantiated megafunction "raw_data_out_index:out3|raw_data_out_in
     Info (12134): Parameter "overflow_checking" = "ON"
     Info (12134): Parameter "underflow_checking" = "ON"
     Info (12134): Parameter "use_eab" = "ON"
-Info (12128): Elaborating entity "out_fifo" for hierarchy "out_fifo:out4" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 315
+Info (12128): Elaborating entity "out_fifo" for hierarchy "out_fifo:out4" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 316
 Info (12128): Elaborating entity "out_fifo_fifo_160_otpqnty" for hierarchy "out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0" File: /home/mladmon/workspace/firework/varint_encoder/out_fifo/synth/out_fifo.v Line: 28
 Info (12128): Elaborating entity "scfifo" for hierarchy "out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/out_fifo/fifo_160/synth/out_fifo_fifo_160_otpqnty.v Line: 61
 Info (12130): Elaborated megafunction instantiation "out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/varint_encoder/out_fifo/fifo_160/synth/out_fifo_fifo_160_otpqnty.v Line: 61
@@ -1137,8 +1137,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/cntr
     Info (12023): Found entity 1: cntr_csa File: /home/mladmon/workspace/firework/varint_encoder/db/cntr_csa.tdf Line: 26
 Info (12128): Elaborating entity "cntr_csa" for hierarchy "out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cntr_csa:wr_ptr" File: /home/mladmon/workspace/firework/varint_encoder/db/a_dpfifo_i1b1.tdf Line: 58
 Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 1681 megabytes
-    Info: Processing ended: Thu Mar 23 14:41:04 2017
+    Info: Peak virtual memory: 1679 megabytes
+    Info: Processing ended: Fri Mar 24 11:37:24 2017
     Info: Elapsed time: 00:00:13
     Info: Total CPU time (on all processors): 00:00:35
 
