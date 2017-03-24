@@ -153,10 +153,10 @@ module fsm_3 (
 						next_state = OF_FULL;
 					else if (~out_fifo_full && varint_eq_index)
 						next_state = V_PUSH;
-					else if (~out_fifo_full && varint_eq_next)
-						next_state = V_PUSH_INC;
 					else if (~out_fifo_full && raw_data_eq_index)
 						next_state = R_PUSH;
+					else if (~out_fifo_full && varint_eq_next)
+						next_state = V_PUSH_INC;
 					else if (~out_fifo_full && raw_data_eq_next)
 						next_state = R_PUSH_INC;
 					else // error
