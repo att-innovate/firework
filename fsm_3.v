@@ -74,7 +74,7 @@ module fsm_3 (
 		out_index_clr = 1'b0;
 
 		// datapath logic
-		out_index_plus1 = (out_index == 10'd1023) ? 10'b0000000000 : out_index + 10'd1;
+		out_index_plus1 = (out_index == 10'd1023) ? 10'd0 : out_index + 10'd1;
 		
 		varint_eq_index = (varint_out_index_q == out_index) ? 1'b1 : 1'b0;
 		varint_eq_next = (varint_out_index_q == out_index_plus1) ? 1'b1 : 1'b0;
