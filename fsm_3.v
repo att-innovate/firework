@@ -94,10 +94,10 @@ module fsm_3 (
 				begin
 					if (~out_fifo_full && varint_data_valid && varint_eq_index)
 						next_state = V_PUSH;
-					else if (~out_fifo_full && varint_data_valid && varint_eq_next)
-						next_state = V_PUSH_INC;
 					else if (~out_fifo_full && raw_data_valid && raw_data_eq_index)
 						next_state = R_PUSH;
+					else if (~out_fifo_full && varint_data_valid && varint_eq_next)
+						next_state = V_PUSH_INC;
 					else if (~out_fifo_full && raw_data_valid && raw_data_eq_next)
 						next_state = R_PUSH_INC;
 					else if (out_fifo_full && (varint_data_valid && varint_eq_index +
