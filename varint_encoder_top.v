@@ -35,49 +35,50 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 	);
 	
 	// Internal wires
-	wire [31:0] wdata, varint_in_fifo_q;
+	wire [31:0] wdata;
 	wire [3:0]  wstrb;
 	wire [9:0]  index;
 
-	wire varint_in_fifo_full, varint_in_fifo_empty,
-	     varint_in_fifo_clr, varint_in_fifo_push, varint_in_fifo_pop;
+	wire varint_in_fifo_full, varint_in_fifo_empty;
+	wire varint_in_fifo_clr, varint_in_fifo_push, varint_in_fifo_pop;
 	wire varint_in_index_clr, varint_in_index_push, varint_in_index_pop;
 
-	wire raw_data_in_fifo_full, raw_data_in_fifo_empty,
-	     raw_data_in_fifo_clr, raw_data_in_fifo_push, raw_data_in_fifo_pop;
+	wire raw_data_in_fifo_full, raw_data_in_fifo_empty;
+	wire raw_data_in_fifo_clr, raw_data_in_fifo_push, raw_data_in_fifo_pop;
 	wire raw_data_in_index_clr, raw_data_in_index_push, raw_data_in_index_pop;
 	wire raw_data_in_wstrb_clr, raw_data_in_wstrb_push, raw_data_in_wstrb_pop;
 
-	wire [9:0] raw_data_in_index_q, varint_in_index_q;
+	wire [31:0] varint_in_fifo_q, raw_data_in_fifo_q;
+	wire [9:0]  varint_in_index_q, raw_data_in_index_q;
+	wire [3:0]  raw_data_in_wstrb_q;
 
 	wire [1:0]  raw_data_sel;
-	wire [31:0] raw_data_in_fifo_q;
-	wire [7:0]  raw_data_mux, raw_data_out_fifo_q;
-
-	wire [3:0]  raw_data_in_wstrb_q;
 	wire        raw_data_push_mux;
 
-	wire raw_data_out_fifo_full, raw_data_out_fifo_empty,
-	     raw_data_out_fifo_clr, raw_data_out_fifo_push, raw_data_out_fifo_pop;
-	wire raw_data_out_index_clr, raw_data_out_index_push, raw_data_out_index_pop;
+	wire [7:0]  raw_data_mux, encoded_byte;
 
-	wire varint_out_fifo_full, varint_out_fifo_empty,
-	     varint_out_fifo_clr, varint_out_fifo_push, varint_out_fifo_pop;
+	wire varint_out_fifo_full, varint_out_fifo_empty;
+	wire varint_out_fifo_clr, varint_out_fifo_push, varint_out_fifo_pop;
 	wire varint_out_index_clr, varint_out_index_push, varint_out_index_pop;
 
-	wire [9:0] raw_data_out_index_q, varint_out_index_q;
+	wire raw_data_out_fifo_full, raw_data_out_fifo_empty;
+	wire raw_data_out_fifo_clr, raw_data_out_fifo_push, raw_data_out_fifo_pop;
+	wire raw_data_out_index_clr, raw_data_out_index_push, raw_data_out_index_pop;
 
-	wire [7:0] encoded_byte, varint_out_fifo_q;
-	
-	wire out_fifo_full, out_fifo_empty,
-	     out_fifo_clr, out_fifo_push, out_fifo_pop, out_fifo_pop_mux;
-
-	wire [7:0] out_fifo_data;
-	wire [1:0] out_fifo_pop_sel;
+	wire [7:0] varint_out_fifo_q, raw_data_out_fifo_q;
+	wire [9:0] varint_out_index_q, raw_data_out_index_q;
 
 	wire varint_data_valid, varint_data_accepted, varint_enable;
 	wire raw_data_valid, raw_data_accepted, raw_data_enable;
-	
+
+	wire [7:0] out_fifo_data;
+
+	wire out_fifo_full, out_fifo_empty;
+	wire out_fifo_clr, out_fifo_push, out_fifo_pop;
+
+	wire [1:0] out_fifo_pop_sel;
+	wire out_fifo_pop_mux;
+
 	// Submodule instances
 	varint_in_fifo in0 (
 		.data  (wdata),                  //  fifo_input.datain
@@ -174,16 +175,16 @@ module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
 		.raw_data_out_index_clr (raw_data_out_index_clr),
 		.raw_data_sel           (raw_data_sel)
 	);
-	
-	assign raw_data_mux = (raw_data_sel == 2'b00) ? raw_data_in_fifo_q[7:0] :
-	                      ((raw_data_sel == 2'b01) ? raw_data_in_fifo_q[15:8] :
-	                      ((raw_data_sel == 2'b10) ? raw_data_in_fifo_q[23:16] :
-	                                                 raw_data_in_fifo_q[31:24]));
-															
+
 	assign raw_data_push_mux = (raw_data_sel == 2'b00) ? raw_data_in_wstrb_q[0] :
 	                           ((raw_data_sel == 2'b01) ? raw_data_in_wstrb_q[1] : 
 	                           ((raw_data_sel == 2'b10) ? raw_data_in_wstrb_q[2] : 
 	                                                      raw_data_in_wstrb_q[3]));
+
+	assign raw_data_mux = (raw_data_sel == 2'b00) ? raw_data_in_fifo_q[7:0] :
+	                      ((raw_data_sel == 2'b01) ? raw_data_in_fifo_q[15:8] :
+	                      ((raw_data_sel == 2'b10) ? raw_data_in_fifo_q[23:16] :
+	                                                 raw_data_in_fifo_q[31:24]));
 
 	fsm_2 f2 (
 		.clk                   (clock_clk),
