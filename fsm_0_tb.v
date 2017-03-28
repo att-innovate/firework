@@ -1,5 +1,7 @@
 // fsm_0_tb.v
 
+`timescale 1 ns / 1 ps
+
 module fsm_0_tb ();
 	reg         clk;
 	reg         reset;
@@ -72,27 +74,38 @@ module fsm_0_tb ();
 	// generate the clock signal
 	initial begin
 		clk = 1'b0;
-		forever #10 clk = ~clk;
+		forever #1 clk = ~clk;
 	end
 
-	// reset the sequential logic
+	// assert reset for 4 cycles (initialize the FSM)
 	initial begin
 		reset = 1'b1;
 		repeat (4) @(negedge clk);
 		reset = 1'b0;
 	end
-	
+
 	// simulate the DUT
 	initial begin
-		// TODO: set all inputs to 0
-		
+		// initial input values
+		axs_s0_awid = 4'b0000;
+		axs_s0_awaddr = 32'h0000_0000;
+		axs_s0_awlen = 8'h00;
+		axs_s0_awsize = 3'b000;
+		axs_s0_awburst = 2'b00;
+		axs_s0_awvalid = 1'b0;
+		axs_s0_wdata = 32'h0000_0000;
+		axs_s0_wstrb = 4'b0000;
+		axs_s0_wvalid = 1'b0;
+		axs_s0_bready = 1'b0;
+		varint_in_fifo_full = 1'b0;
+		raw_data_in_fifo_full = 1'b0;
+
+		// wait for reset to finish
 		@(negedge reset);
-		// do stuff
-		repeat (/*wait ### cycles*/) @(negedge clk);
-		// do stuff
-		repeat (/*wait ### cycles*/) @(negedge clk);
-		// do stuff
-		repeat (/*wait ### cycles*/) @(negedge clk);
+		
+		// test cases (navigate the FSM)
+		// TODO: set awxxx signals, assert awvalid
+		repeat (/*num cycles*/) @(negedge clk); // sit in this state for num cycles
 		
 		#10 $finish;
 	end
