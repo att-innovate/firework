@@ -1,6 +1,6 @@
 // fsm_0_tb.v
 
-`timescale 1 ns / 1 ps
+`timescale 1 ps / 1 ps
 
 module fsm_0_tb ();
 	reg         clk;
@@ -103,10 +103,23 @@ module fsm_0_tb ();
 		// wait for reset to finish
 		@(negedge reset);
 		
-		// test cases (navigate the FSM)
-		// TODO: set awxxx signals, assert awvalid
-		repeat (/*num cycles*/) @(negedge clk); // sit in this state for num cycles
+		// Should be in INIT state for 1 cycle, then transition to AW_READY
+		repeat (4) @(negedge clk); // stall for a few cycles
 		
+		axs_s0_awid = 4'b0110;
+		axs_s0_awaddr = 32'hF1;
+		axs_s0_awlen = 8'h00;
+		axs_s0_awsize = 3'b010;
+		axs_s0_awburst = 2'b00;
+		axs_s0_awvalid = 1'b1;
+
+		// Should be in W_READY_RL until axs_s0_wvalid is asserted
+		repeat (4) @(negedge clk); // stall for a few cycles
+		
+		
+		/* $finish halts the simulation and opens a dialog box asking if you'd
+		   like to terminate ModelSim. Select no to view the waveform after the 
+		   simulation has completed. */
 		#10 $finish;
 	end
 endmodule

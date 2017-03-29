@@ -1,5 +1,5 @@
 Analysis & Synthesis report for varint_encoder
-Tue Mar 28 16:19:52 2017
+Wed Mar 29 11:48:09 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -84,7 +84,7 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Tue Mar 28 16:19:52 2017           ;
+; Analysis & Synthesis Status ; Successful - Wed Mar 29 11:48:09 2017           ;
 ; Quartus Prime Version       ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
 ; Revision Name               ; varint_encoder                                  ;
 ; Top-level Entity Name       ; varint_encoder_top                              ;
@@ -1262,7 +1262,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
-    Info: Processing started: Tue Mar 28 16:19:35 2017
+    Info: Processing started: Wed Mar 29 11:47:52 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off varint_encoder -c varint_encoder
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/varint_encoder/out_fifo/").
@@ -1361,8 +1361,6 @@ Info (12021): Found 1 design units, including 1 entities, in source file fsm_3.v
     Info (12023): Found entity 1: fsm_3 File: /home/mladmon/workspace/firework/varint_encoder/fsm_3.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file fsm_4.v
     Info (12023): Found entity 1: fsm_4 File: /home/mladmon/workspace/firework/varint_encoder/fsm_4.v Line: 3
-Info (12021): Found 1 design units, including 1 entities, in source file fsm_0_tb.v
-    Info (12023): Found entity 1: fsm_0_tb File: /home/mladmon/workspace/firework/varint_encoder/fsm_0_tb.v Line: 5
 Info (12127): Elaborating entity "varint_encoder_top" for the top level hierarchy
 Info (12128): Elaborating entity "varint_in_fifo" for hierarchy "varint_in_fifo:in0" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 92
 Info (12128): Elaborating entity "varint_in_fifo_fifo_160_v2ho2aa" for hierarchy "varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0" File: /home/mladmon/workspace/firework/varint_encoder/varint_in_fifo/synth/varint_in_fifo.v Line: 26
@@ -1738,8 +1736,8 @@ Info (21057): Implemented 1343 device resources after synthesis - the final reso
     Info (21061): Implemented 1024 logic cells
     Info (21064): Implemented 132 RAM segments
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 109 warnings
-    Info: Peak virtual memory: 1522 megabytes
-    Info: Processing ended: Tue Mar 28 16:19:52 2017
+    Info: Peak virtual memory: 1518 megabytes
+    Info: Processing ended: Wed Mar 29 11:48:09 2017
     Info: Elapsed time: 00:00:17
     Info: Total CPU time (on all processors): 00:00:38
 

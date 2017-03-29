@@ -47,7 +47,6 @@ source_file = 1, /home/mladmon/workspace/firework/varint_encoder/fsm_3a.v
 source_file = 1, /home/mladmon/workspace/firework/varint_encoder/fsm_3b.v
 source_file = 1, /home/mladmon/workspace/firework/varint_encoder/fsm_3.v
 source_file = 1, /home/mladmon/workspace/firework/varint_encoder/fsm_4.v
-source_file = 1, /home/mladmon/workspace/firework/varint_encoder/fsm_0_tb.v
 source_file = 1, /home/mladmon/workspace/firework/varint_encoder/out_fifo/out_fifo.sip
 source_file = 1, /home/mladmon/workspace/firework/varint_encoder/varint_in_fifo/varint_in_fifo.sip
 source_file = 1, /home/mladmon/workspace/firework/varint_encoder/varint_in_index/varint_in_index.sip

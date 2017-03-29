@@ -17,7 +17,7 @@
 // PROGRAM "Quartus Prime"
 // VERSION "Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition"
 
-// DATE "03/28/2017 16:24:26"
+// DATE "03/29/2017 11:52:43"
 
 // 
 // Device: Altera 10AS066N3F40E2SGE2 Package FBGA1517
@@ -27,7 +27,7 @@
 // This Verilog file should be used for ModelSim-Altera (Verilog) only
 // 
 
-`timescale 1 ns/ 1 ps
+`timescale 1 ps/ 1 ps
 
 module varint_encoder_top (
 	clock_clk,
