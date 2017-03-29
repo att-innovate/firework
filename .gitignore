@@ -1,4 +1,4 @@
 *.qws
-*.bak
+*.bak*
 db/*.flock
 db/*.sci

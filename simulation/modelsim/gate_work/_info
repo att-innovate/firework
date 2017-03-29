@@ -1,0 +1,52 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/mladmon/workspace/firework/varint_encoder/simulation/modelsim
+vfsm_0_tb
+Z1 !s110 1490743650
+!i10b 1
+!s100 k]HTd^on3>0zQ_NTF2O=i0
+I_=F=h0C<ka<G5iYK<Fd8:1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1490734515
+8/home/mladmon/workspace/firework/varint_encoder/fsm_0_tb.v
+F/home/mladmon/workspace/firework/varint_encoder/fsm_0_tb.v
+L0 5
+Z3 OV;L;10.4d;61
+r1
+!s85 0
+31
+!s108 1490743650.000000
+!s107 /home/mladmon/workspace/firework/varint_encoder/fsm_0_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/mladmon/workspace/firework/varint_encoder|/home/mladmon/workspace/firework/varint_encoder/fsm_0_tb.v|
+!i113 1
+Z4 o-vlog01compat -work work
+!s92 -vlog01compat -work work +incdir+/home/mladmon/workspace/firework/varint_encoder
+vvarint_encoder_top
+R1
+!i10b 1
+!s100 UlHCiXF20=KiNMDBX<7=R1
+I?2jCE;YmkQP9mJ0?YWh1o2
+R2
+R0
+w1490743466
+8varint_encoder.vo
+Fvarint_encoder.vo
+L0 32
+R3
+r1
+!s85 0
+31
+!s108 1490743649.000000
+!s107 varint_encoder.vo|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+.|varint_encoder.vo|
+!i113 1
+R4
+!s92 -vlog01compat -work work +incdir+.

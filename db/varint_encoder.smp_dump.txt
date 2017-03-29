@@ -1,0 +1,66 @@
+
+State Machine - |varint_encoder_top|fsm_4:f4|state
+Name state.R_VALID state.MASTER_WAIT state.R_VALID_LAST state.OF_EMPTY state.AR_READY state.INIT 
+state.INIT 0 0 0 0 0 0 
+state.AR_READY 0 0 0 0 1 1 
+state.OF_EMPTY 0 0 0 1 0 1 
+state.R_VALID_LAST 0 0 1 0 0 1 
+state.MASTER_WAIT 0 1 0 0 0 1 
+state.R_VALID 1 0 0 0 0 1 
+
+State Machine - |varint_encoder_top|fsm_3:f3|state
+Name state.OF_FULL state.V_PUSH_INC state.V_PUSH state.R_PUSH_INC state.R_PUSH state.WAIT_DATA state.INIT 
+state.INIT 0 0 0 0 0 0 0 
+state.WAIT_DATA 0 0 0 0 0 1 1 
+state.R_PUSH 0 0 0 0 1 0 1 
+state.R_PUSH_INC 0 0 0 1 0 0 1 
+state.V_PUSH 0 0 1 0 0 0 1 
+state.V_PUSH_INC 0 1 0 0 0 0 1 
+state.OF_FULL 1 0 0 0 0 0 1 
+
+State Machine - |varint_encoder_top|fsm_3b:f3b|state
+Name state.R_READY state.R_FETCH state.INIT 
+state.INIT 0 0 0 
+state.R_FETCH 0 1 1 
+state.R_READY 1 0 1 
+
+State Machine - |varint_encoder_top|fsm_3a:f3a|state
+Name state.V_READY state.V_FETCH state.INIT 
+state.INIT 0 0 0 
+state.V_FETCH 0 1 1 
+state.V_READY 1 0 1 
+
+State Machine - |varint_encoder_top|fsm_2:f2|state
+Name state.ENCODE_L state.ENCODE_N state.VF_FULL state.LOAD_COND state.V_READY state.INIT 
+state.INIT 0 0 0 0 0 0 
+state.V_READY 0 0 0 0 1 1 
+state.LOAD_COND 0 0 0 1 0 1 
+state.VF_FULL 0 0 1 0 0 1 
+state.ENCODE_N 0 1 0 0 0 1 
+state.ENCODE_L 1 0 0 0 0 1 
+
+State Machine - |varint_encoder_top|fsm_1:f1|state
+Name state.ENCODE_3 state.ENCODE_2 state.ENCODE_1 state.ENCODE_0 state.RF_FULL state.RD_READY state.INIT 
+state.INIT 0 0 0 0 0 0 0 
+state.RD_READY 0 0 0 0 0 1 1 
+state.RF_FULL 0 0 0 0 1 0 1 
+state.ENCODE_0 0 0 0 1 0 0 1 
+state.ENCODE_1 0 0 1 0 0 0 1 
+state.ENCODE_2 0 1 0 0 0 0 1 
+state.ENCODE_3 1 0 0 0 0 0 1 
+
+State Machine - |varint_encoder_top|fsm_0:f0|state
+Name state.MASTER_WAIT state.B_READY_RL state.B_READY_RN state.B_READY_VL state.B_READY_VN state.RF_FULL state.VF_FULL state.W_READY_RL state.W_READY_RN state.W_READY_VL state.W_READY_VN state.AW_READY state.INIT 
+state.INIT 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.AW_READY 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state.W_READY_VN 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state.W_READY_VL 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state.W_READY_RN 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state.W_READY_RL 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state.VF_FULL 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state.RF_FULL 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state.B_READY_VN 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state.B_READY_VL 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state.B_READY_RN 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state.B_READY_RL 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state.MASTER_WAIT 1 0 0 0 0 0 0 0 0 0 0 0 1 

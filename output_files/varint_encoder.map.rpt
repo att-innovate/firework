@@ -1,5 +1,5 @@
-Analysis & Elaboration report for varint_encoder
-Tue Mar 28 11:16:25 2017
+Analysis & Synthesis report for varint_encoder
+Tue Mar 28 16:19:52 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -7,40 +7,57 @@ Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 ; Table of Contents ;
 ---------------------
   1. Legal Notice
-  2. Analysis & Elaboration Summary
-  3. Parallel Compilation
-  4. Analysis & Elaboration IP Cores Summary
-  5. Source assignments for varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|altsyncram_4in1:FIFOram
-  6. Source assignments for varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram
-  7. Source assignments for raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|altsyncram_4in1:FIFOram
-  8. Source assignments for raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram
-  9. Source assignments for raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram
- 10. Source assignments for varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|altsyncram_6gn1:FIFOram
- 11. Source assignments for varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram
- 12. Source assignments for raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|altsyncram_6gn1:FIFOram
- 13. Source assignments for raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram
- 14. Source assignments for out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|altsyncram_agn1:FIFOram
- 15. Parameter Settings for User Entity Instance: varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component
- 16. Parameter Settings for User Entity Instance: varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component
- 17. Parameter Settings for User Entity Instance: raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component
- 18. Parameter Settings for User Entity Instance: raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component
- 19. Parameter Settings for User Entity Instance: raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component
- 20. Parameter Settings for User Entity Instance: fsm_0:f0
- 21. Parameter Settings for User Entity Instance: fsm_1:f1
- 22. Parameter Settings for User Entity Instance: fsm_2:f2
- 23. Parameter Settings for User Entity Instance: fsm_3a:f3a
- 24. Parameter Settings for User Entity Instance: fsm_3b:f3b
- 25. Parameter Settings for User Entity Instance: fsm_3:f3
- 26. Parameter Settings for User Entity Instance: fsm_4:f4
- 27. Parameter Settings for User Entity Instance: varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component
- 28. Parameter Settings for User Entity Instance: varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component
- 29. Parameter Settings for User Entity Instance: raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component
- 30. Parameter Settings for User Entity Instance: raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component
- 31. Parameter Settings for User Entity Instance: out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component
- 32. scfifo Parameter Settings by Entity Instance
- 33. Analysis & Elaboration Settings
- 34. Port Connectivity Checks: "out_fifo:out4"
- 35. Analysis & Elaboration Messages
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. Analysis & Synthesis IP Cores Summary
+ 10. State Machine - |varint_encoder_top|fsm_4:f4|state
+ 11. State Machine - |varint_encoder_top|fsm_3:f3|state
+ 12. State Machine - |varint_encoder_top|fsm_3b:f3b|state
+ 13. State Machine - |varint_encoder_top|fsm_3a:f3a|state
+ 14. State Machine - |varint_encoder_top|fsm_2:f2|state
+ 15. State Machine - |varint_encoder_top|fsm_1:f1|state
+ 16. State Machine - |varint_encoder_top|fsm_0:f0|state
+ 17. Registers Removed During Synthesis
+ 18. Removed Registers Triggering Further Register Optimizations
+ 19. General Register Statistics
+ 20. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 21. Source assignments for varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|altsyncram_4in1:FIFOram
+ 22. Source assignments for varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram
+ 23. Source assignments for raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|altsyncram_4in1:FIFOram
+ 24. Source assignments for raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram
+ 25. Source assignments for raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram
+ 26. Source assignments for varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|altsyncram_6gn1:FIFOram
+ 27. Source assignments for varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram
+ 28. Source assignments for raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|altsyncram_6gn1:FIFOram
+ 29. Source assignments for raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram
+ 30. Source assignments for out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|altsyncram_agn1:FIFOram
+ 31. Parameter Settings for User Entity Instance: varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component
+ 32. Parameter Settings for User Entity Instance: varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component
+ 33. Parameter Settings for User Entity Instance: raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component
+ 34. Parameter Settings for User Entity Instance: raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component
+ 35. Parameter Settings for User Entity Instance: raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component
+ 36. Parameter Settings for User Entity Instance: fsm_0:f0
+ 37. Parameter Settings for User Entity Instance: fsm_1:f1
+ 38. Parameter Settings for User Entity Instance: fsm_2:f2
+ 39. Parameter Settings for User Entity Instance: fsm_3a:f3a
+ 40. Parameter Settings for User Entity Instance: fsm_3b:f3b
+ 41. Parameter Settings for User Entity Instance: fsm_3:f3
+ 42. Parameter Settings for User Entity Instance: fsm_4:f4
+ 43. Parameter Settings for User Entity Instance: varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component
+ 44. Parameter Settings for User Entity Instance: varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component
+ 45. Parameter Settings for User Entity Instance: raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component
+ 46. Parameter Settings for User Entity Instance: raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component
+ 47. Parameter Settings for User Entity Instance: out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component
+ 48. scfifo Parameter Settings by Entity Instance
+ 49. Port Connectivity Checks: "out_fifo:out4"
+ 50. Post-Synthesis Netlist Statistics for Top Partition
+ 51. Elapsed Time Per Partition
+ 52. Analysis & Synthesis Messages
 
 
 
@@ -64,21 +81,116 @@ agreement for further details.
 
 
 
-+---------------------------------------------------------------------------------+
-; Analysis & Elaboration Summary                                                  ;
-+-------------------------------+-------------------------------------------------+
-; Analysis & Elaboration Status ; Successful - Tue Mar 28 11:16:25 2017           ;
-; Quartus Prime Version         ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
-; Revision Name                 ; varint_encoder                                  ;
-; Top-level Entity Name         ; varint_encoder_top                              ;
-; Family                        ; Arria 10                                        ;
-; Logic utilization (in ALMs)   ; N/A until Partition Merge                       ;
-; Total registers               ; N/A until Partition Merge                       ;
-; Total pins                    ; N/A until Partition Merge                       ;
-; Total virtual pins            ; N/A until Partition Merge                       ;
-; Total block memory bits       ; N/A until Partition Merge                       ;
-; Total PLLs                    ; N/A until Partition Merge                       ;
-+-------------------------------+-------------------------------------------------+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++-----------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status ; Successful - Tue Mar 28 16:19:52 2017           ;
+; Quartus Prime Version       ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
+; Revision Name               ; varint_encoder                                  ;
+; Top-level Entity Name       ; varint_encoder_top                              ;
+; Family                      ; Arria 10                                        ;
+; Logic utilization (in ALMs) ; N/A                                             ;
+; Total registers             ; 632                                             ;
+; Total pins                  ; 187                                             ;
+; Total virtual pins          ; 0                                               ;
+; Total block memory bits     ; 303,104                                         ;
+; Total DSP Blocks            ; 0                                               ;
+; Total HSSI RX channels      ; 0                                               ;
+; Total HSSI TX channels      ; 0                                               ;
+; Total PLLs                  ; 0                                               ;
++-----------------------------+-------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 10AS066N3F40E2SGE2 ;                    ;
+; Top-level entity name                                                           ; varint_encoder_top ; varint_encoder     ;
+; Family name                                                                     ; Arria 10           ; Cyclone V          ;
+; Maximum processors allowed for parallel compilation                             ; All                ;                    ;
+; Verilog Show LMF Mapping Messages                                               ; Off                ;                    ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation      ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                       ; Off                ; Off                ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; PowerPlay Power Optimization During Synthesis                                   ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Rows Reported in Synthesis Migration Checks                           ; 5000               ; 5000               ;
+; Synthesis Migration Checks for Stratix 10                                       ; Off                ; Off                ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Synthesis Seed                                                                  ; 1                  ; 1                  ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
+; Disable DSP Negate Inferencing                                                  ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
 
 
 +------------------------------------------+
@@ -89,16 +201,262 @@ agreement for further details.
 ; Number detected on machine ; 32          ;
 ; Maximum allowed            ; 16          ;
 ;                            ;             ;
-; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
+; Average used               ; 1.02        ;
+; Maximum used               ; 16          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.1%      ;
+;     Processor 3            ;   0.1%      ;
+;     Processor 4            ;   0.1%      ;
+;     Processor 5            ;   0.1%      ;
+;     Processor 6            ;   0.1%      ;
+;     Processor 7            ;   0.1%      ;
+;     Processor 8            ;   0.1%      ;
+;     Processors 9-16        ;   0.1%      ;
 +----------------------------+-------------+
 
 
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                                           ;
++-------------------------------------------------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------------------------------+-----------------------------+
+; File Name with User-Entered Path                                        ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                                            ; Library                     ;
++-------------------------------------------------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------------------------------+-----------------------------+
+; varint_encoder_top.v                                                    ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v                                                    ;                             ;
+; out_fifo/synth/out_fifo.v                                               ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/out_fifo/synth/out_fifo.v                                               ; out_fifo                    ;
+; out_fifo/synth/out_fifo_cfg.v                                           ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/out_fifo/synth/out_fifo_cfg.v                                           ; out_fifo                    ;
+; out_fifo/fifo_160/synth/out_fifo_fifo_160_otpqnty.v                     ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/out_fifo/fifo_160/synth/out_fifo_fifo_160_otpqnty.v                     ; out_fifo_fifo_160           ;
+; varint_in_fifo/synth/varint_in_fifo.v                                   ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/varint_in_fifo/synth/varint_in_fifo.v                                   ; varint_in_fifo              ;
+; varint_in_fifo/synth/varint_in_fifo_cfg.v                               ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/varint_in_fifo/synth/varint_in_fifo_cfg.v                               ; varint_in_fifo              ;
+; varint_in_fifo/fifo_160/synth/varint_in_fifo_fifo_160_v2ho2aa.v         ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/varint_in_fifo/fifo_160/synth/varint_in_fifo_fifo_160_v2ho2aa.v         ; varint_in_fifo_fifo_160     ;
+; varint_in_index/synth/varint_in_index.v                                 ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/varint_in_index/synth/varint_in_index.v                                 ; varint_in_index             ;
+; varint_in_index/synth/varint_in_index_cfg.v                             ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/varint_in_index/synth/varint_in_index_cfg.v                             ; varint_in_index             ;
+; varint_in_index/fifo_160/synth/varint_in_index_fifo_160_kjjiney.v       ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/varint_in_index/fifo_160/synth/varint_in_index_fifo_160_kjjiney.v       ; varint_in_index_fifo_160    ;
+; raw_data_in_fifo/synth/raw_data_in_fifo.v                               ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/raw_data_in_fifo/synth/raw_data_in_fifo.v                               ; raw_data_in_fifo            ;
+; raw_data_in_fifo/synth/raw_data_in_fifo_cfg.v                           ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/raw_data_in_fifo/synth/raw_data_in_fifo_cfg.v                           ; raw_data_in_fifo            ;
+; raw_data_in_fifo/fifo_160/synth/raw_data_in_fifo_fifo_160_v2ho2aa.v     ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/raw_data_in_fifo/fifo_160/synth/raw_data_in_fifo_fifo_160_v2ho2aa.v     ; raw_data_in_fifo_fifo_160   ;
+; raw_data_in_index/synth/raw_data_in_index.v                             ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/raw_data_in_index/synth/raw_data_in_index.v                             ; raw_data_in_index           ;
+; raw_data_in_index/synth/raw_data_in_index_cfg.v                         ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/raw_data_in_index/synth/raw_data_in_index_cfg.v                         ; raw_data_in_index           ;
+; raw_data_in_index/fifo_160/synth/raw_data_in_index_fifo_160_kjjiney.v   ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/raw_data_in_index/fifo_160/synth/raw_data_in_index_fifo_160_kjjiney.v   ; raw_data_in_index_fifo_160  ;
+; raw_data_in_wstrb/synth/raw_data_in_wstrb.v                             ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/raw_data_in_wstrb/synth/raw_data_in_wstrb.v                             ; raw_data_in_wstrb           ;
+; raw_data_in_wstrb/synth/raw_data_in_wstrb_cfg.v                         ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/raw_data_in_wstrb/synth/raw_data_in_wstrb_cfg.v                         ; raw_data_in_wstrb           ;
+; raw_data_in_wstrb/fifo_160/synth/raw_data_in_wstrb_fifo_160_sconavq.v   ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/raw_data_in_wstrb/fifo_160/synth/raw_data_in_wstrb_fifo_160_sconavq.v   ; raw_data_in_wstrb_fifo_160  ;
+; varint_out_fifo/synth/varint_out_fifo.v                                 ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/varint_out_fifo/synth/varint_out_fifo.v                                 ; varint_out_fifo             ;
+; varint_out_fifo/synth/varint_out_fifo_cfg.v                             ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/varint_out_fifo/synth/varint_out_fifo_cfg.v                             ; varint_out_fifo             ;
+; varint_out_fifo/fifo_160/synth/varint_out_fifo_fifo_160_q2auapq.v       ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/varint_out_fifo/fifo_160/synth/varint_out_fifo_fifo_160_q2auapq.v       ; varint_out_fifo_fifo_160    ;
+; varint_out_index/synth/varint_out_index.v                               ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/varint_out_index/synth/varint_out_index.v                               ; varint_out_index            ;
+; varint_out_index/synth/varint_out_index_cfg.v                           ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/varint_out_index/synth/varint_out_index_cfg.v                           ; varint_out_index            ;
+; varint_out_index/fifo_160/synth/varint_out_index_fifo_160_tgkntjy.v     ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/varint_out_index/fifo_160/synth/varint_out_index_fifo_160_tgkntjy.v     ; varint_out_index_fifo_160   ;
+; raw_data_out_fifo/synth/raw_data_out_fifo.v                             ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/raw_data_out_fifo/synth/raw_data_out_fifo.v                             ; raw_data_out_fifo           ;
+; raw_data_out_fifo/synth/raw_data_out_fifo_cfg.v                         ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/raw_data_out_fifo/synth/raw_data_out_fifo_cfg.v                         ; raw_data_out_fifo           ;
+; raw_data_out_fifo/fifo_160/synth/raw_data_out_fifo_fifo_160_q2auapq.v   ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/raw_data_out_fifo/fifo_160/synth/raw_data_out_fifo_fifo_160_q2auapq.v   ; raw_data_out_fifo_fifo_160  ;
+; raw_data_out_index/synth/raw_data_out_index.v                           ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/raw_data_out_index/synth/raw_data_out_index.v                           ; raw_data_out_index          ;
+; raw_data_out_index/synth/raw_data_out_index_cfg.v                       ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/raw_data_out_index/synth/raw_data_out_index_cfg.v                       ; raw_data_out_index          ;
+; raw_data_out_index/fifo_160/synth/raw_data_out_index_fifo_160_tgkntjy.v ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/raw_data_out_index/fifo_160/synth/raw_data_out_index_fifo_160_tgkntjy.v ; raw_data_out_index_fifo_160 ;
+; fsm_0.v                                                                 ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/fsm_0.v                                                                 ;                             ;
+; fsm_1.v                                                                 ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/fsm_1.v                                                                 ;                             ;
+; fsm_2.v                                                                 ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/fsm_2.v                                                                 ;                             ;
+; fsm_3a.v                                                                ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/fsm_3a.v                                                                ;                             ;
+; fsm_3b.v                                                                ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/fsm_3b.v                                                                ;                             ;
+; fsm_3.v                                                                 ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/fsm_3.v                                                                 ;                             ;
+; fsm_4.v                                                                 ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/varint_encoder/fsm_4.v                                                                 ;                             ;
+; scfifo.tdf                                                              ; yes             ; Megafunction                 ; /home/mladmon/workspace/altera/16.0/quartus/libraries/megafunctions/scfifo.tdf                                          ;                             ;
+; a_regfifo.inc                                                           ; yes             ; Megafunction                 ; /home/mladmon/workspace/altera/16.0/quartus/libraries/megafunctions/a_regfifo.inc                                       ;                             ;
+; a_dpfifo.inc                                                            ; yes             ; Megafunction                 ; /home/mladmon/workspace/altera/16.0/quartus/libraries/megafunctions/a_dpfifo.inc                                        ;                             ;
+; a_i2fifo.inc                                                            ; yes             ; Megafunction                 ; /home/mladmon/workspace/altera/16.0/quartus/libraries/megafunctions/a_i2fifo.inc                                        ;                             ;
+; a_fffifo.inc                                                            ; yes             ; Megafunction                 ; /home/mladmon/workspace/altera/16.0/quartus/libraries/megafunctions/a_fffifo.inc                                        ;                             ;
+; a_f2fifo.inc                                                            ; yes             ; Megafunction                 ; /home/mladmon/workspace/altera/16.0/quartus/libraries/megafunctions/a_f2fifo.inc                                        ;                             ;
+; aglobal160.inc                                                          ; yes             ; Megafunction                 ; /home/mladmon/workspace/altera/16.0/quartus/libraries/megafunctions/aglobal160.inc                                      ;                             ;
+; db/scfifo_koa1.tdf                                                      ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/scfifo_koa1.tdf                                                      ;                             ;
+; db/a_dpfifo_7ga1.tdf                                                    ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/a_dpfifo_7ga1.tdf                                                    ;                             ;
+; db/altsyncram_4in1.tdf                                                  ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/altsyncram_4in1.tdf                                                  ;                             ;
+; db/cmpr_te8.tdf                                                         ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/cmpr_te8.tdf                                                         ;                             ;
+; db/cntr_1ra.tdf                                                         ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/cntr_1ra.tdf                                                         ;                             ;
+; db/cntr_ls6.tdf                                                         ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/cntr_ls6.tdf                                                         ;                             ;
+; db/cntr_9sa.tdf                                                         ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/cntr_9sa.tdf                                                         ;                             ;
+; db/scfifo_en91.tdf                                                      ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/scfifo_en91.tdf                                                      ;                             ;
+; db/a_dpfifo_1f91.tdf                                                    ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/a_dpfifo_1f91.tdf                                                    ;                             ;
+; db/altsyncram_shn1.tdf                                                  ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/altsyncram_shn1.tdf                                                  ;                             ;
+; db/scfifo_1m91.tdf                                                      ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/scfifo_1m91.tdf                                                      ;                             ;
+; db/a_dpfifo_kd91.tdf                                                    ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/a_dpfifo_kd91.tdf                                                    ;                             ;
+; db/altsyncram_2fn1.tdf                                                  ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/altsyncram_2fn1.tdf                                                  ;                             ;
+; db/scfifo_lna1.tdf                                                      ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/scfifo_lna1.tdf                                                      ;                             ;
+; db/a_dpfifo_8fa1.tdf                                                    ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/a_dpfifo_8fa1.tdf                                                    ;                             ;
+; db/altsyncram_6gn1.tdf                                                  ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/altsyncram_6gn1.tdf                                                  ;                             ;
+; db/cmpr_ve8.tdf                                                         ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/cmpr_ve8.tdf                                                         ;                             ;
+; db/cntr_asa.tdf                                                         ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/cntr_asa.tdf                                                         ;                             ;
+; db/cntr_ns6.tdf                                                         ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/cntr_ns6.tdf                                                         ;                             ;
+; db/cntr_bsa.tdf                                                         ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/cntr_bsa.tdf                                                         ;                             ;
+; db/scfifo_sn91.tdf                                                      ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/scfifo_sn91.tdf                                                      ;                             ;
+; db/a_dpfifo_ff91.tdf                                                    ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/a_dpfifo_ff91.tdf                                                    ;                             ;
+; db/altsyncram_oin1.tdf                                                  ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/altsyncram_oin1.tdf                                                  ;                             ;
+; db/scfifo_v9b1.tdf                                                      ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/scfifo_v9b1.tdf                                                      ;                             ;
+; db/a_dpfifo_i1b1.tdf                                                    ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/a_dpfifo_i1b1.tdf                                                    ;                             ;
+; db/altsyncram_agn1.tdf                                                  ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/altsyncram_agn1.tdf                                                  ;                             ;
+; db/cmpr_0f8.tdf                                                         ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/cmpr_0f8.tdf                                                         ;                             ;
+; db/cntr_os6.tdf                                                         ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/cntr_os6.tdf                                                         ;                             ;
+; db/cntr_csa.tdf                                                         ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/varint_encoder/db/cntr_csa.tdf                                                         ;                             ;
++-------------------------------------------------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------------------------------+-----------------------------+
+
+
++---------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                   ;
++---------------------------------------------+-----------------+
+; Resource                                    ; Usage           ;
++---------------------------------------------+-----------------+
+; Estimate of Logic utilization (ALMs needed) ; 532             ;
+;                                             ;                 ;
+; Combinational ALUT usage for logic          ; 945             ;
+;     -- 7 input functions                    ; 0               ;
+;     -- 6 input functions                    ; 114             ;
+;     -- 5 input functions                    ; 64              ;
+;     -- 4 input functions                    ; 173             ;
+;     -- <=3 input functions                  ; 594             ;
+;                                             ;                 ;
+; Dedicated logic registers                   ; 632             ;
+;                                             ;                 ;
+; I/O pins                                    ; 187             ;
+; Total MLAB memory bits                      ; 0               ;
+; Total block memory bits                     ; 303104          ;
+;                                             ;                 ;
+; Total DSP Blocks                            ; 0               ;
+;     -- Total Fixed Point DSP Blocks         ; 0               ;
+;     -- Total Floating Point DSP Blocks      ; 0               ;
+;                                             ;                 ;
+; Maximum fan-out node                        ; clock_clk~input ;
+; Maximum fan-out                             ; 764             ;
+; Total fan-out                               ; 8783            ;
+; Average fan-out                             ; 4.22            ;
++---------------------------------------------+-----------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                                                       ;
++----------------------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------+-----------------------------+
+; Compilation Hierarchy Node                         ; LC Combinationals ; LC Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                    ; Entity Name                         ; Library Name                ;
++----------------------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------+-----------------------------+
+; |varint_encoder_top                                ; 945 (17)          ; 632 (0)      ; 303104            ; 0          ; 187  ; 0            ; |varint_encoder_top                                                                                                                                                                    ; varint_encoder_top                  ; work                        ;
+;    |fsm_0:f0|                                      ; 32 (32)           ; 61 (61)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|fsm_0:f0                                                                                                                                                           ; fsm_0                               ; work                        ;
+;    |fsm_1:f1|                                      ; 11 (11)           ; 9 (9)        ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|fsm_1:f1                                                                                                                                                           ; fsm_1                               ; work                        ;
+;    |fsm_2:f2|                                      ; 56 (56)           ; 39 (39)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|fsm_2:f2                                                                                                                                                           ; fsm_2                               ; work                        ;
+;    |fsm_3:f3|                                      ; 51 (51)           ; 17 (17)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|fsm_3:f3                                                                                                                                                           ; fsm_3                               ; work                        ;
+;    |fsm_3a:f3a|                                    ; 3 (3)             ; 2 (2)        ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|fsm_3a:f3a                                                                                                                                                         ; fsm_3a                              ; work                        ;
+;    |fsm_3b:f3b|                                    ; 3 (3)             ; 2 (2)        ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|fsm_3b:f3b                                                                                                                                                         ; fsm_3b                              ; work                        ;
+;    |fsm_4:f4|                                      ; 45 (45)           ; 18 (18)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|fsm_4:f4                                                                                                                                                           ; fsm_4                               ; work                        ;
+;    |out_fifo:out4|                                 ; 82 (0)            ; 56 (0)       ; 65536             ; 0          ; 0    ; 0            ; |varint_encoder_top|out_fifo:out4                                                                                                                                                      ; out_fifo                            ; out_fifo                    ;
+;       |out_fifo_fifo_160_otpqnty:fifo_0|           ; 82 (0)            ; 56 (0)       ; 65536             ; 0          ; 0    ; 0            ; |varint_encoder_top|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0                                                                                                                     ; out_fifo_fifo_160_otpqnty           ; out_fifo_fifo_160           ;
+;          |scfifo:scfifo_component|                 ; 82 (0)            ; 56 (0)       ; 65536             ; 0          ; 0    ; 0            ; |varint_encoder_top|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component                                                                                             ; scfifo                              ; work                        ;
+;             |scfifo_v9b1:auto_generated|           ; 82 (0)            ; 56 (0)       ; 65536             ; 0          ; 0    ; 0            ; |varint_encoder_top|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated                                                                  ; scfifo_v9b1                         ; work                        ;
+;                |a_dpfifo_i1b1:dpfifo|              ; 82 (43)           ; 56 (18)      ; 65536             ; 0          ; 0    ; 0            ; |varint_encoder_top|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo                                             ; a_dpfifo_i1b1                       ; work                        ;
+;                   |altsyncram_agn1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 65536             ; 0          ; 0    ; 0            ; |varint_encoder_top|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|altsyncram_agn1:FIFOram                     ; altsyncram_agn1                     ; work                        ;
+;                   |cntr_bsa:rd_ptr_msb|            ; 13 (13)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cntr_bsa:rd_ptr_msb                         ; cntr_bsa                            ; work                        ;
+;                   |cntr_csa:wr_ptr|                ; 13 (13)           ; 13 (13)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cntr_csa:wr_ptr                             ; cntr_csa                            ; work                        ;
+;                   |cntr_os6:usedw_counter|         ; 13 (13)           ; 13 (13)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cntr_os6:usedw_counter                      ; cntr_os6                            ; work                        ;
+;    |raw_data_in_fifo:in2|                          ; 68 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_fifo:in2                                                                                                                                               ; raw_data_in_fifo                    ; raw_data_in_fifo            ;
+;       |raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|   ; 68 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0                                                                                                      ; raw_data_in_fifo_fifo_160_v2ho2aa   ; raw_data_in_fifo_fifo_160   ;
+;          |scfifo:scfifo_component|                 ; 68 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component                                                                              ; scfifo                              ; work                        ;
+;             |scfifo_koa1:auto_generated|           ; 68 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated                                                   ; scfifo_koa1                         ; work                        ;
+;                |a_dpfifo_7ga1:dpfifo|              ; 68 (36)           ; 44 (15)      ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo                              ; a_dpfifo_7ga1                       ; work                        ;
+;                   |altsyncram_4in1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|altsyncram_4in1:FIFOram      ; altsyncram_4in1                     ; work                        ;
+;                   |cntr_1ra:rd_ptr_msb|            ; 10 (10)           ; 9 (9)        ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_1ra:rd_ptr_msb          ; cntr_1ra                            ; work                        ;
+;                   |cntr_9sa:wr_ptr|                ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_9sa:wr_ptr              ; cntr_9sa                            ; work                        ;
+;                   |cntr_ls6:usedw_counter|         ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_ls6:usedw_counter       ; cntr_ls6                            ; work                        ;
+;    |raw_data_in_index:in3|                         ; 68 (0)            ; 44 (0)       ; 10240             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_index:in3                                                                                                                                              ; raw_data_in_index                   ; raw_data_in_index           ;
+;       |raw_data_in_index_fifo_160_kjjiney:fifo_0|  ; 68 (0)            ; 44 (0)       ; 10240             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0                                                                                                    ; raw_data_in_index_fifo_160_kjjiney  ; raw_data_in_index_fifo_160  ;
+;          |scfifo:scfifo_component|                 ; 68 (0)            ; 44 (0)       ; 10240             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component                                                                            ; scfifo                              ; work                        ;
+;             |scfifo_en91:auto_generated|           ; 68 (0)            ; 44 (0)       ; 10240             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated                                                 ; scfifo_en91                         ; work                        ;
+;                |a_dpfifo_1f91:dpfifo|              ; 68 (36)           ; 44 (15)      ; 10240             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo                            ; a_dpfifo_1f91                       ; work                        ;
+;                   |altsyncram_shn1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 10240             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram    ; altsyncram_shn1                     ; work                        ;
+;                   |cntr_1ra:rd_ptr_msb|            ; 10 (10)           ; 9 (9)        ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_1ra:rd_ptr_msb        ; cntr_1ra                            ; work                        ;
+;                   |cntr_9sa:wr_ptr|                ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_9sa:wr_ptr            ; cntr_9sa                            ; work                        ;
+;                   |cntr_ls6:usedw_counter|         ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_ls6:usedw_counter     ; cntr_ls6                            ; work                        ;
+;    |raw_data_in_wstrb:in4|                         ; 68 (0)            ; 44 (0)       ; 4096              ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_wstrb:in4                                                                                                                                              ; raw_data_in_wstrb                   ; raw_data_in_wstrb           ;
+;       |raw_data_in_wstrb_fifo_160_sconavq:fifo_0|  ; 68 (0)            ; 44 (0)       ; 4096              ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0                                                                                                    ; raw_data_in_wstrb_fifo_160_sconavq  ; raw_data_in_wstrb_fifo_160  ;
+;          |scfifo:scfifo_component|                 ; 68 (0)            ; 44 (0)       ; 4096              ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component                                                                            ; scfifo                              ; work                        ;
+;             |scfifo_1m91:auto_generated|           ; 68 (0)            ; 44 (0)       ; 4096              ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated                                                 ; scfifo_1m91                         ; work                        ;
+;                |a_dpfifo_kd91:dpfifo|              ; 68 (36)           ; 44 (15)      ; 4096              ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo                            ; a_dpfifo_kd91                       ; work                        ;
+;                   |altsyncram_2fn1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 4096              ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram    ; altsyncram_2fn1                     ; work                        ;
+;                   |cntr_1ra:rd_ptr_msb|            ; 10 (10)           ; 9 (9)        ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cntr_1ra:rd_ptr_msb        ; cntr_1ra                            ; work                        ;
+;                   |cntr_9sa:wr_ptr|                ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cntr_9sa:wr_ptr            ; cntr_9sa                            ; work                        ;
+;                   |cntr_ls6:usedw_counter|         ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cntr_ls6:usedw_counter     ; cntr_ls6                            ; work                        ;
+;    |raw_data_out_fifo:out2|                        ; 74 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_out_fifo:out2                                                                                                                                             ; raw_data_out_fifo                   ; raw_data_out_fifo           ;
+;       |raw_data_out_fifo_fifo_160_q2auapq:fifo_0|  ; 74 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0                                                                                                   ; raw_data_out_fifo_fifo_160_q2auapq  ; raw_data_out_fifo_fifo_160  ;
+;          |scfifo:scfifo_component|                 ; 74 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component                                                                           ; scfifo                              ; work                        ;
+;             |scfifo_lna1:auto_generated|           ; 74 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated                                                ; scfifo_lna1                         ; work                        ;
+;                |a_dpfifo_8fa1:dpfifo|              ; 74 (37)           ; 52 (17)      ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo                           ; a_dpfifo_8fa1                       ; work                        ;
+;                   |altsyncram_6gn1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|altsyncram_6gn1:FIFOram   ; altsyncram_6gn1                     ; work                        ;
+;                   |cntr_asa:rd_ptr_msb|            ; 12 (12)           ; 11 (11)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_asa:rd_ptr_msb       ; cntr_asa                            ; work                        ;
+;                   |cntr_bsa:wr_ptr|                ; 13 (13)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_bsa:wr_ptr           ; cntr_bsa                            ; work                        ;
+;                   |cntr_ns6:usedw_counter|         ; 12 (12)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_ns6:usedw_counter    ; cntr_ns6                            ; work                        ;
+;    |raw_data_out_index:out3|                       ; 75 (0)            ; 52 (0)       ; 40960             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_out_index:out3                                                                                                                                            ; raw_data_out_index                  ; raw_data_out_index          ;
+;       |raw_data_out_index_fifo_160_tgkntjy:fifo_0| ; 75 (0)            ; 52 (0)       ; 40960             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0                                                                                                 ; raw_data_out_index_fifo_160_tgkntjy ; raw_data_out_index_fifo_160 ;
+;          |scfifo:scfifo_component|                 ; 75 (0)            ; 52 (0)       ; 40960             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component                                                                         ; scfifo                              ; work                        ;
+;             |scfifo_sn91:auto_generated|           ; 75 (0)            ; 52 (0)       ; 40960             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated                                              ; scfifo_sn91                         ; work                        ;
+;                |a_dpfifo_ff91:dpfifo|              ; 75 (38)           ; 52 (17)      ; 40960             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo                         ; a_dpfifo_ff91                       ; work                        ;
+;                   |altsyncram_oin1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 40960             ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram ; altsyncram_oin1                     ; work                        ;
+;                   |cntr_asa:rd_ptr_msb|            ; 12 (12)           ; 11 (11)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_asa:rd_ptr_msb     ; cntr_asa                            ; work                        ;
+;                   |cntr_bsa:wr_ptr|                ; 13 (13)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_bsa:wr_ptr         ; cntr_bsa                            ; work                        ;
+;                   |cntr_ns6:usedw_counter|         ; 12 (12)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_ns6:usedw_counter  ; cntr_ns6                            ; work                        ;
+;    |varint_in_fifo:in0|                            ; 67 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_in_fifo:in0                                                                                                                                                 ; varint_in_fifo                      ; varint_in_fifo              ;
+;       |varint_in_fifo_fifo_160_v2ho2aa:fifo_0|     ; 67 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0                                                                                                          ; varint_in_fifo_fifo_160_v2ho2aa     ; varint_in_fifo_fifo_160     ;
+;          |scfifo:scfifo_component|                 ; 67 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component                                                                                  ; scfifo                              ; work                        ;
+;             |scfifo_koa1:auto_generated|           ; 67 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated                                                       ; scfifo_koa1                         ; work                        ;
+;                |a_dpfifo_7ga1:dpfifo|              ; 67 (35)           ; 44 (15)      ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo                                  ; a_dpfifo_7ga1                       ; work                        ;
+;                   |altsyncram_4in1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|altsyncram_4in1:FIFOram          ; altsyncram_4in1                     ; work                        ;
+;                   |cntr_1ra:rd_ptr_msb|            ; 10 (10)           ; 9 (9)        ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_1ra:rd_ptr_msb              ; cntr_1ra                            ; work                        ;
+;                   |cntr_9sa:wr_ptr|                ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_9sa:wr_ptr                  ; cntr_9sa                            ; work                        ;
+;                   |cntr_ls6:usedw_counter|         ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_ls6:usedw_counter           ; cntr_ls6                            ; work                        ;
+;    |varint_in_index:in1|                           ; 68 (0)            ; 44 (0)       ; 10240             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_in_index:in1                                                                                                                                                ; varint_in_index                     ; varint_in_index             ;
+;       |varint_in_index_fifo_160_kjjiney:fifo_0|    ; 68 (0)            ; 44 (0)       ; 10240             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0                                                                                                        ; varint_in_index_fifo_160_kjjiney    ; varint_in_index_fifo_160    ;
+;          |scfifo:scfifo_component|                 ; 68 (0)            ; 44 (0)       ; 10240             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component                                                                                ; scfifo                              ; work                        ;
+;             |scfifo_en91:auto_generated|           ; 68 (0)            ; 44 (0)       ; 10240             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated                                                     ; scfifo_en91                         ; work                        ;
+;                |a_dpfifo_1f91:dpfifo|              ; 68 (36)           ; 44 (15)      ; 10240             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo                                ; a_dpfifo_1f91                       ; work                        ;
+;                   |altsyncram_shn1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 10240             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram        ; altsyncram_shn1                     ; work                        ;
+;                   |cntr_1ra:rd_ptr_msb|            ; 10 (10)           ; 9 (9)        ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_1ra:rd_ptr_msb            ; cntr_1ra                            ; work                        ;
+;                   |cntr_9sa:wr_ptr|                ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_9sa:wr_ptr                ; cntr_9sa                            ; work                        ;
+;                   |cntr_ls6:usedw_counter|         ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_ls6:usedw_counter         ; cntr_ls6                            ; work                        ;
+;    |varint_out_fifo:out0|                          ; 78 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_out_fifo:out0                                                                                                                                               ; varint_out_fifo                     ; varint_out_fifo             ;
+;       |varint_out_fifo_fifo_160_q2auapq:fifo_0|    ; 78 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0                                                                                                       ; varint_out_fifo_fifo_160_q2auapq    ; varint_out_fifo_fifo_160    ;
+;          |scfifo:scfifo_component|                 ; 78 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component                                                                               ; scfifo                              ; work                        ;
+;             |scfifo_lna1:auto_generated|           ; 78 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated                                                    ; scfifo_lna1                         ; work                        ;
+;                |a_dpfifo_8fa1:dpfifo|              ; 78 (40)           ; 52 (17)      ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo                               ; a_dpfifo_8fa1                       ; work                        ;
+;                   |altsyncram_6gn1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 32768             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|altsyncram_6gn1:FIFOram       ; altsyncram_6gn1                     ; work                        ;
+;                   |cntr_asa:rd_ptr_msb|            ; 12 (12)           ; 11 (11)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_asa:rd_ptr_msb           ; cntr_asa                            ; work                        ;
+;                   |cntr_bsa:wr_ptr|                ; 13 (13)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_bsa:wr_ptr               ; cntr_bsa                            ; work                        ;
+;                   |cntr_ns6:usedw_counter|         ; 13 (13)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_ns6:usedw_counter        ; cntr_ns6                            ; work                        ;
+;    |varint_out_index:out1|                         ; 79 (0)            ; 52 (0)       ; 40960             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_out_index:out1                                                                                                                                              ; varint_out_index                    ; varint_out_index            ;
+;       |varint_out_index_fifo_160_tgkntjy:fifo_0|   ; 79 (0)            ; 52 (0)       ; 40960             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0                                                                                                     ; varint_out_index_fifo_160_tgkntjy   ; varint_out_index_fifo_160   ;
+;          |scfifo:scfifo_component|                 ; 79 (0)            ; 52 (0)       ; 40960             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component                                                                             ; scfifo                              ; work                        ;
+;             |scfifo_sn91:auto_generated|           ; 79 (0)            ; 52 (0)       ; 40960             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated                                                  ; scfifo_sn91                         ; work                        ;
+;                |a_dpfifo_ff91:dpfifo|              ; 79 (41)           ; 52 (17)      ; 40960             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo                             ; a_dpfifo_ff91                       ; work                        ;
+;                   |altsyncram_oin1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 40960             ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram     ; altsyncram_oin1                     ; work                        ;
+;                   |cntr_asa:rd_ptr_msb|            ; 12 (12)           ; 11 (11)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_asa:rd_ptr_msb         ; cntr_asa                            ; work                        ;
+;                   |cntr_bsa:wr_ptr|                ; 13 (13)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_bsa:wr_ptr             ; cntr_bsa                            ; work                        ;
+;                   |cntr_ns6:usedw_counter|         ; 13 (13)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |varint_encoder_top|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_ns6:usedw_counter      ; cntr_ns6                            ; work                        ;
++----------------------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------+-----------------------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                                                                                                   ;
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
+; Name                                                                                                                                                                          ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size  ; MIF  ;
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
+; out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|altsyncram_agn1:FIFOram|ALTSYNCRAM                     ; AUTO ; Simple Dual Port ; 8192         ; 8            ; 8192         ; 8            ; 65536 ; None ;
+; raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|altsyncram_4in1:FIFOram|ALTSYNCRAM      ; AUTO ; Simple Dual Port ; 1024         ; 32           ; 1024         ; 32           ; 32768 ; None ;
+; raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram|ALTSYNCRAM    ; AUTO ; Simple Dual Port ; 1024         ; 10           ; 1024         ; 10           ; 10240 ; None ;
+; raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram|ALTSYNCRAM    ; AUTO ; Simple Dual Port ; 1024         ; 4            ; 1024         ; 4            ; 4096  ; None ;
+; raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|altsyncram_6gn1:FIFOram|ALTSYNCRAM   ; AUTO ; Simple Dual Port ; 4096         ; 8            ; 4096         ; 8            ; 32768 ; None ;
+; raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 4096         ; 10           ; 4096         ; 10           ; 40960 ; None ;
+; varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|altsyncram_4in1:FIFOram|ALTSYNCRAM          ; AUTO ; Simple Dual Port ; 1024         ; 32           ; 1024         ; 32           ; 32768 ; None ;
+; varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram|ALTSYNCRAM        ; AUTO ; Simple Dual Port ; 1024         ; 10           ; 1024         ; 10           ; 10240 ; None ;
+; varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|altsyncram_6gn1:FIFOram|ALTSYNCRAM       ; AUTO ; Simple Dual Port ; 4096         ; 8            ; 4096         ; 8            ; 32768 ; None ;
+; varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram|ALTSYNCRAM     ; AUTO ; Simple Dual Port ; 4096         ; 10           ; 4096         ; 10           ; 40960 ; None ;
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
+
+
 +---------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Elaboration IP Cores Summary                                                                                               ;
+; Analysis & Synthesis IP Cores Summary                                                                                                 ;
 +--------+--------------+---------+--------------+--------------+---------------------------------------------+-------------------------+
 ; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance                             ; IP Include File         ;
 +--------+--------------+---------+--------------+--------------+---------------------------------------------+-------------------------+
@@ -113,6 +471,182 @@ agreement for further details.
 ; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |varint_encoder_top|raw_data_out_index:out3 ; raw_data_out_index.qsys ;
 ; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |varint_encoder_top|out_fifo:out4           ; out_fifo.qsys           ;
 +--------+--------------+---------+--------------+--------------+---------------------------------------------+-------------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |varint_encoder_top|fsm_4:f4|state                                                                         ;
++--------------------+---------------+-------------------+--------------------+----------------+----------------+------------+
+; Name               ; state.R_VALID ; state.MASTER_WAIT ; state.R_VALID_LAST ; state.OF_EMPTY ; state.AR_READY ; state.INIT ;
++--------------------+---------------+-------------------+--------------------+----------------+----------------+------------+
+; state.INIT         ; 0             ; 0                 ; 0                  ; 0              ; 0              ; 0          ;
+; state.AR_READY     ; 0             ; 0                 ; 0                  ; 0              ; 1              ; 1          ;
+; state.OF_EMPTY     ; 0             ; 0                 ; 0                  ; 1              ; 0              ; 1          ;
+; state.R_VALID_LAST ; 0             ; 0                 ; 1                  ; 0              ; 0              ; 1          ;
+; state.MASTER_WAIT  ; 0             ; 1                 ; 0                  ; 0              ; 0              ; 1          ;
+; state.R_VALID      ; 1             ; 0                 ; 0                  ; 0              ; 0              ; 1          ;
++--------------------+---------------+-------------------+--------------------+----------------+----------------+------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |varint_encoder_top|fsm_3:f3|state                                                                                  ;
++------------------+---------------+------------------+--------------+------------------+--------------+-----------------+------------+
+; Name             ; state.OF_FULL ; state.V_PUSH_INC ; state.V_PUSH ; state.R_PUSH_INC ; state.R_PUSH ; state.WAIT_DATA ; state.INIT ;
++------------------+---------------+------------------+--------------+------------------+--------------+-----------------+------------+
+; state.INIT       ; 0             ; 0                ; 0            ; 0                ; 0            ; 0               ; 0          ;
+; state.WAIT_DATA  ; 0             ; 0                ; 0            ; 0                ; 0            ; 1               ; 1          ;
+; state.R_PUSH     ; 0             ; 0                ; 0            ; 0                ; 1            ; 0               ; 1          ;
+; state.R_PUSH_INC ; 0             ; 0                ; 0            ; 1                ; 0            ; 0               ; 1          ;
+; state.V_PUSH     ; 0             ; 0                ; 1            ; 0                ; 0            ; 0               ; 1          ;
+; state.V_PUSH_INC ; 0             ; 1                ; 0            ; 0                ; 0            ; 0               ; 1          ;
+; state.OF_FULL    ; 1             ; 0                ; 0            ; 0                ; 0            ; 0               ; 1          ;
++------------------+---------------+------------------+--------------+------------------+--------------+-----------------+------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------+
+; State Machine - |varint_encoder_top|fsm_3b:f3b|state       ;
++---------------+---------------+---------------+------------+
+; Name          ; state.R_READY ; state.R_FETCH ; state.INIT ;
++---------------+---------------+---------------+------------+
+; state.INIT    ; 0             ; 0             ; 0          ;
+; state.R_FETCH ; 0             ; 1             ; 1          ;
+; state.R_READY ; 1             ; 0             ; 1          ;
++---------------+---------------+---------------+------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------+
+; State Machine - |varint_encoder_top|fsm_3a:f3a|state       ;
++---------------+---------------+---------------+------------+
+; Name          ; state.V_READY ; state.V_FETCH ; state.INIT ;
++---------------+---------------+---------------+------------+
+; state.INIT    ; 0             ; 0             ; 0          ;
+; state.V_FETCH ; 0             ; 1             ; 1          ;
+; state.V_READY ; 1             ; 0             ; 1          ;
++---------------+---------------+---------------+------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------+
+; State Machine - |varint_encoder_top|fsm_2:f2|state                                                               ;
++-----------------+----------------+----------------+---------------+-----------------+---------------+------------+
+; Name            ; state.ENCODE_L ; state.ENCODE_N ; state.VF_FULL ; state.LOAD_COND ; state.V_READY ; state.INIT ;
++-----------------+----------------+----------------+---------------+-----------------+---------------+------------+
+; state.INIT      ; 0              ; 0              ; 0             ; 0               ; 0             ; 0          ;
+; state.V_READY   ; 0              ; 0              ; 0             ; 0               ; 1             ; 1          ;
+; state.LOAD_COND ; 0              ; 0              ; 0             ; 1               ; 0             ; 1          ;
+; state.VF_FULL   ; 0              ; 0              ; 1             ; 0               ; 0             ; 1          ;
+; state.ENCODE_N  ; 0              ; 1              ; 0             ; 0               ; 0             ; 1          ;
+; state.ENCODE_L  ; 1              ; 0              ; 0             ; 0               ; 0             ; 1          ;
++-----------------+----------------+----------------+---------------+-----------------+---------------+------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |varint_encoder_top|fsm_1:f1|state                                                                               ;
++----------------+----------------+----------------+----------------+----------------+---------------+----------------+------------+
+; Name           ; state.ENCODE_3 ; state.ENCODE_2 ; state.ENCODE_1 ; state.ENCODE_0 ; state.RF_FULL ; state.RD_READY ; state.INIT ;
++----------------+----------------+----------------+----------------+----------------+---------------+----------------+------------+
+; state.INIT     ; 0              ; 0              ; 0              ; 0              ; 0             ; 0              ; 0          ;
+; state.RD_READY ; 0              ; 0              ; 0              ; 0              ; 0             ; 1              ; 1          ;
+; state.RF_FULL  ; 0              ; 0              ; 0              ; 0              ; 1             ; 0              ; 1          ;
+; state.ENCODE_0 ; 0              ; 0              ; 0              ; 1              ; 0             ; 0              ; 1          ;
+; state.ENCODE_1 ; 0              ; 0              ; 1              ; 0              ; 0             ; 0              ; 1          ;
+; state.ENCODE_2 ; 0              ; 1              ; 0              ; 0              ; 0             ; 0              ; 1          ;
+; state.ENCODE_3 ; 1              ; 0              ; 0              ; 0              ; 0             ; 0              ; 1          ;
++----------------+----------------+----------------+----------------+----------------+---------------+----------------+------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |varint_encoder_top|fsm_0:f0|state                                                                                                                                                                                                          ;
++-------------------+-------------------+------------------+------------------+------------------+------------------+---------------+---------------+------------------+------------------+------------------+------------------+----------------+------------+
+; Name              ; state.MASTER_WAIT ; state.B_READY_RL ; state.B_READY_RN ; state.B_READY_VL ; state.B_READY_VN ; state.RF_FULL ; state.VF_FULL ; state.W_READY_RL ; state.W_READY_RN ; state.W_READY_VL ; state.W_READY_VN ; state.AW_READY ; state.INIT ;
++-------------------+-------------------+------------------+------------------+------------------+------------------+---------------+---------------+------------------+------------------+------------------+------------------+----------------+------------+
+; state.INIT        ; 0                 ; 0                ; 0                ; 0                ; 0                ; 0             ; 0             ; 0                ; 0                ; 0                ; 0                ; 0              ; 0          ;
+; state.AW_READY    ; 0                 ; 0                ; 0                ; 0                ; 0                ; 0             ; 0             ; 0                ; 0                ; 0                ; 0                ; 1              ; 1          ;
+; state.W_READY_VN  ; 0                 ; 0                ; 0                ; 0                ; 0                ; 0             ; 0             ; 0                ; 0                ; 0                ; 1                ; 0              ; 1          ;
+; state.W_READY_VL  ; 0                 ; 0                ; 0                ; 0                ; 0                ; 0             ; 0             ; 0                ; 0                ; 1                ; 0                ; 0              ; 1          ;
+; state.W_READY_RN  ; 0                 ; 0                ; 0                ; 0                ; 0                ; 0             ; 0             ; 0                ; 1                ; 0                ; 0                ; 0              ; 1          ;
+; state.W_READY_RL  ; 0                 ; 0                ; 0                ; 0                ; 0                ; 0             ; 0             ; 1                ; 0                ; 0                ; 0                ; 0              ; 1          ;
+; state.VF_FULL     ; 0                 ; 0                ; 0                ; 0                ; 0                ; 0             ; 1             ; 0                ; 0                ; 0                ; 0                ; 0              ; 1          ;
+; state.RF_FULL     ; 0                 ; 0                ; 0                ; 0                ; 0                ; 1             ; 0             ; 0                ; 0                ; 0                ; 0                ; 0              ; 1          ;
+; state.B_READY_VN  ; 0                 ; 0                ; 0                ; 0                ; 1                ; 0             ; 0             ; 0                ; 0                ; 0                ; 0                ; 0              ; 1          ;
+; state.B_READY_VL  ; 0                 ; 0                ; 0                ; 1                ; 0                ; 0             ; 0             ; 0                ; 0                ; 0                ; 0                ; 0              ; 1          ;
+; state.B_READY_RN  ; 0                 ; 0                ; 1                ; 0                ; 0                ; 0             ; 0             ; 0                ; 0                ; 0                ; 0                ; 0              ; 1          ;
+; state.B_READY_RL  ; 0                 ; 1                ; 0                ; 0                ; 0                ; 0             ; 0             ; 0                ; 0                ; 0                ; 0                ; 0              ; 1          ;
+; state.MASTER_WAIT ; 1                 ; 0                ; 0                ; 0                ; 0                ; 0             ; 0             ; 0                ; 0                ; 0                ; 0                ; 0              ; 1          ;
++-------------------+-------------------+------------------+------------------+------------------+------------------+---------------+---------------+------------------+------------------+------------------+------------------+----------------+------------+
+
+
++---------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                              ;
++----------------------------------------+----------------------------------------+
+; Register name                          ; Reason for Removal                     ;
++----------------------------------------+----------------------------------------+
+; fsm_4:f4|state~8                       ; Lost fanout                            ;
+; fsm_4:f4|state~9                       ; Lost fanout                            ;
+; fsm_3:f3|state~9                       ; Lost fanout                            ;
+; fsm_2:f2|state~8                       ; Lost fanout                            ;
+; fsm_2:f2|state~9                       ; Lost fanout                            ;
+; fsm_1:f1|state~9                       ; Lost fanout                            ;
+; fsm_0:f0|state~15                      ; Lost fanout                            ;
+; fsm_0:f0|state~16                      ; Lost fanout                            ;
+; fsm_0:f0|state~17                      ; Lost fanout                            ;
+; fsm_3a:f3a|state.INIT                  ; Lost fanout                            ;
+; fsm_3b:f3b|state.INIT                  ; Lost fanout                            ;
+; fsm_0:f0|state.VF_FULL                 ; Stuck at GND due to stuck port data_in ;
+; fsm_0:f0|state.RF_FULL                 ; Stuck at GND due to stuck port data_in ;
+; fsm_0:f0|awaddr[0..7]                  ; Lost fanout                            ;
+; Total Number of Removed Registers = 21 ;                                        ;
++----------------------------------------+----------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                          ;
++------------------------+---------------------------+---------------------------------------------------------------------------------+
+; Register name          ; Reason for Removal        ; Registers Removed due to This Register                                          ;
++------------------------+---------------------------+---------------------------------------------------------------------------------+
+; fsm_0:f0|state.VF_FULL ; Stuck at GND              ; fsm_0:f0|awaddr[0], fsm_0:f0|awaddr[1], fsm_0:f0|awaddr[2], fsm_0:f0|awaddr[3], ;
+;                        ; due to stuck port data_in ; fsm_0:f0|awaddr[4], fsm_0:f0|awaddr[5], fsm_0:f0|awaddr[6], fsm_0:f0|awaddr[7]  ;
++------------------------+---------------------------+---------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 632   ;
+; Number of registers using Synchronous Clear  ; 456   ;
+; Number of registers using Synchronous Load   ; 9     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 440   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------+
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |varint_encoder_top|fsm_4:f4|arid[3]         ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |varint_encoder_top|fsm_3:f3|out_index[5]    ;
+; 3:1                ; 25 bits   ; 50 LEs        ; 0 LEs                ; 50 LEs                 ; Yes        ; |varint_encoder_top|fsm_2:f2|varint_data[18] ;
+; 3:1                ; 12 bits   ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |varint_encoder_top|fsm_0:f0|awid[0]         ;
+; 3:1                ; 36 bits   ; 72 LEs        ; 0 LEs                ; 72 LEs                 ; Yes        ; |varint_encoder_top|fsm_0:f0|wdata[7]        ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |varint_encoder_top|fsm_1:f1|index[1]        ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |varint_encoder_top|fsm_4:f4|arlen[2]        ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |varint_encoder_top|fsm_2:f2|varint_data[2]  ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |varint_encoder_top|fsm_0:f0|index[0]        ;
+; 4:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |varint_encoder_top|raw_data_mux[1]          ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |varint_encoder_top|fsm_1:f1|state           ;
+; 19:1               ; 2 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |varint_encoder_top|fsm_4:f4|state           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -672,98 +1206,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------------------+--------------------------------------------------------------------------------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Elaboration Settings                                                                                           ;
-+---------------------------------------------------------------------------------+--------------------+--------------------+
-; Option                                                                          ; Setting            ; Default Value      ;
-+---------------------------------------------------------------------------------+--------------------+--------------------+
-; Device                                                                          ; 10AS066N3F40E2SGE2 ;                    ;
-; Top-level entity name                                                           ; varint_encoder_top ; varint_encoder     ;
-; Family name                                                                     ; Arria 10           ; Cyclone V          ;
-; Maximum processors allowed for parallel compilation                             ; All                ;                    ;
-; Verilog Show LMF Mapping Messages                                               ; Off                ;                    ;
-; Use smart compilation                                                           ; Off                ; Off                ;
-; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation      ; On                 ; On                 ;
-; Enable compact report table                                                     ; Off                ; Off                ;
-; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
-; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
-; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
-; Preserve fewer node names                                                       ; On                 ; On                 ;
-; Disable OpenCore Plus hardware evaluation                                       ; Off                ; Off                ;
-; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
-; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
-; State Machine Processing                                                        ; Auto               ; Auto               ;
-; Safe State Machine                                                              ; Off                ; Off                ;
-; Extract Verilog State Machines                                                  ; On                 ; On                 ;
-; Extract VHDL State Machines                                                     ; On                 ; On                 ;
-; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
-; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
-; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
-; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
-; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
-; Parallel Synthesis                                                              ; On                 ; On                 ;
-; DSP Block Balancing                                                             ; Auto               ; Auto               ;
-; NOT Gate Push-Back                                                              ; On                 ; On                 ;
-; Power-Up Don't Care                                                             ; On                 ; On                 ;
-; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
-; Remove Duplicate Registers                                                      ; On                 ; On                 ;
-; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
-; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
-; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
-; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
-; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
-; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
-; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
-; Optimization Technique                                                          ; Balanced           ; Balanced           ;
-; Carry Chain Length                                                              ; 70                 ; 70                 ;
-; Auto Carry Chains                                                               ; On                 ; On                 ;
-; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
-; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
-; Auto ROM Replacement                                                            ; On                 ; On                 ;
-; Auto RAM Replacement                                                            ; On                 ; On                 ;
-; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
-; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
-; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
-; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
-; Strict RAM Replacement                                                          ; Off                ; Off                ;
-; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
-; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
-; Auto Resource Sharing                                                           ; Off                ; Off                ;
-; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
-; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
-; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
-; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
-; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
-; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
-; Report Parameter Settings                                                       ; On                 ; On                 ;
-; Report Source Assignments                                                       ; On                 ; On                 ;
-; Report Connectivity Checks                                                      ; On                 ; On                 ;
-; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
-; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
-; PowerPlay Power Optimization During Synthesis                                   ; Normal compilation ; Normal compilation ;
-; HDL message level                                                               ; Level2             ; Level2             ;
-; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
-; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
-; Number of Rows Reported in Synthesis Migration Checks                           ; 5000               ; 5000               ;
-; Synthesis Migration Checks for Stratix 10                                       ; Off                ; Off                ;
-; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
-; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
-; Clock MUX Protection                                                            ; On                 ; On                 ;
-; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
-; Block Design Naming                                                             ; Auto               ; Auto               ;
-; SDC constraint protection                                                       ; Off                ; Off                ;
-; Synthesis Effort                                                                ; Auto               ; Auto               ;
-; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
-; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
-; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
-; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
-; Synthesis Seed                                                                  ; 1                  ; 1                  ;
-; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
-; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
-; Disable DSP Negate Inferencing                                                  ; Off                ; Off                ;
-+---------------------------------------------------------------------------------+--------------------+--------------------+
-
-
 +----------------------------------------------------+
 ; Port Connectivity Checks: "out_fifo:out4"          ;
 +-------+--------+----------+------------------------+
@@ -773,14 +1215,55 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------+--------+----------+------------------------+
 
 
-+---------------------------------+
-; Analysis & Elaboration Messages ;
-+---------------------------------+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 187                         ;
+; twentynm_ff           ; 632                         ;
+;     ENA               ; 16                          ;
+;     ENA SCLR          ; 415                         ;
+;     ENA SCLR SLD      ; 8                           ;
+;     ENA SLD           ; 1                           ;
+;     SCLR              ; 33                          ;
+;     plain             ; 159                         ;
+; twentynm_lcell_comb   ; 947                         ;
+;     arith             ; 351                         ;
+;         1 data inputs ; 250                         ;
+;         2 data inputs ; 101                         ;
+;     normal            ; 596                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 3                           ;
+;         2 data inputs ; 154                         ;
+;         3 data inputs ; 87                          ;
+;         4 data inputs ; 173                         ;
+;         5 data inputs ; 64                          ;
+;         6 data inputs ; 114                         ;
+; twentynm_ram_block    ; 132                         ;
+;                       ;                             ;
+; Max LUT depth         ; 5.80                        ;
+; Average LUT depth     ; 2.14                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:02     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
 Info: *******************************************************************
-Info: Running Quartus Prime Analysis & Elaboration
+Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
-    Info: Processing started: Tue Mar 28 11:16:09 2017
-Info: Command: quartus_map --read_settings_files=on --write_settings_files=off varint_encoder -c varint_encoder --analysis_and_elaboration
+    Info: Processing started: Tue Mar 28 16:19:35 2017
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off varint_encoder -c varint_encoder
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/varint_encoder/out_fifo/").
 Info (16261): Skipped generation of the Qsys file "/home/mladmon/workspace/firework/varint_encoder/out_fifo.qsys" based on the current IP regeneration policy. You can review your IP regeneration policy in the IP Settings page of the Settings dialog box.
@@ -878,6 +1361,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file fsm_3.v
     Info (12023): Found entity 1: fsm_3 File: /home/mladmon/workspace/firework/varint_encoder/fsm_3.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file fsm_4.v
     Info (12023): Found entity 1: fsm_4 File: /home/mladmon/workspace/firework/varint_encoder/fsm_4.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file fsm_0_tb.v
+    Info (12023): Found entity 1: fsm_0_tb File: /home/mladmon/workspace/firework/varint_encoder/fsm_0_tb.v Line: 5
 Info (12127): Elaborating entity "varint_encoder_top" for the top level hierarchy
 Info (12128): Elaborating entity "varint_in_fifo" for hierarchy "varint_in_fifo:in0" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 92
 Info (12128): Elaborating entity "varint_in_fifo_fifo_160_v2ho2aa" for hierarchy "varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0" File: /home/mladmon/workspace/firework/varint_encoder/varint_in_fifo/synth/varint_in_fifo.v Line: 26
@@ -1136,10 +1621,126 @@ Info (12128): Elaborating entity "cntr_os6" for hierarchy "out_fifo:out4|out_fif
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_csa.tdf
     Info (12023): Found entity 1: cntr_csa File: /home/mladmon/workspace/firework/varint_encoder/db/cntr_csa.tdf Line: 26
 Info (12128): Elaborating entity "cntr_csa" for hierarchy "out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cntr_csa:wr_ptr" File: /home/mladmon/workspace/firework/varint_encoder/db/a_dpfifo_i1b1.tdf Line: 58
-Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 1681 megabytes
-    Info: Processing ended: Tue Mar 28 11:16:25 2017
-    Info: Elapsed time: 00:00:16
-    Info: Total CPU time (on all processors): 00:00:35
+Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
+    Warning (13048): Converted tri-state node "out_fifo_data[7]" into a selector File: /home/mladmon/workspace/firework/varint_encoder/db/altsyncram_agn1.tdf Line: 36
+    Warning (13048): Converted tri-state node "out_fifo_data[6]" into a selector File: /home/mladmon/workspace/firework/varint_encoder/db/altsyncram_agn1.tdf Line: 36
+    Warning (13048): Converted tri-state node "out_fifo_data[5]" into a selector File: /home/mladmon/workspace/firework/varint_encoder/db/altsyncram_agn1.tdf Line: 36
+    Warning (13048): Converted tri-state node "out_fifo_data[4]" into a selector File: /home/mladmon/workspace/firework/varint_encoder/db/altsyncram_agn1.tdf Line: 36
+    Warning (13048): Converted tri-state node "out_fifo_data[3]" into a selector File: /home/mladmon/workspace/firework/varint_encoder/db/altsyncram_agn1.tdf Line: 36
+    Warning (13048): Converted tri-state node "out_fifo_data[2]" into a selector File: /home/mladmon/workspace/firework/varint_encoder/db/altsyncram_agn1.tdf Line: 36
+    Warning (13048): Converted tri-state node "out_fifo_data[1]" into a selector File: /home/mladmon/workspace/firework/varint_encoder/db/altsyncram_agn1.tdf Line: 36
+    Warning (13048): Converted tri-state node "out_fifo_data[0]" into a selector File: /home/mladmon/workspace/firework/varint_encoder/db/altsyncram_agn1.tdf Line: 36
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "axs_s0_rdata[8]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[9]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[10]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[11]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[12]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[13]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[14]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[15]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[16]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[17]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[18]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[19]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[20]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[21]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[22]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[23]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[24]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[25]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[26]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[27]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[28]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[29]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[30]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+    Warning (13410): Pin "axs_s0_rdata[31]" is stuck at GND File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 31
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 19 registers lost all their fanouts during netlist optimizations.
+Warning (21074): Design contains 74 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[8]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[9]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[10]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[11]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[12]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[13]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[14]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[15]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[16]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[17]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[18]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[19]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[20]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[21]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[22]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[23]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[24]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[25]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[26]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[27]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[28]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[29]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[30]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awaddr[31]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 6
+    Warning (15610): No output dependent on input pin "axs_s0_awlen[0]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 7
+    Warning (15610): No output dependent on input pin "axs_s0_awlen[1]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 7
+    Warning (15610): No output dependent on input pin "axs_s0_awlen[2]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 7
+    Warning (15610): No output dependent on input pin "axs_s0_awlen[3]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 7
+    Warning (15610): No output dependent on input pin "axs_s0_awlen[4]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 7
+    Warning (15610): No output dependent on input pin "axs_s0_awlen[5]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 7
+    Warning (15610): No output dependent on input pin "axs_s0_awlen[6]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 7
+    Warning (15610): No output dependent on input pin "axs_s0_awlen[7]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 7
+    Warning (15610): No output dependent on input pin "axs_s0_awsize[0]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 8
+    Warning (15610): No output dependent on input pin "axs_s0_awsize[1]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 8
+    Warning (15610): No output dependent on input pin "axs_s0_awsize[2]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 8
+    Warning (15610): No output dependent on input pin "axs_s0_awburst[0]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 9
+    Warning (15610): No output dependent on input pin "axs_s0_awburst[1]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 9
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[0]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[1]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[2]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[3]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[4]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[5]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[6]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[7]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[8]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[9]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[10]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[11]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[12]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[13]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[14]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[15]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[16]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[17]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[18]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[19]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[20]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[21]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[22]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[23]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[24]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[25]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[26]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[27]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[28]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[29]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[30]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_araddr[31]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 23
+    Warning (15610): No output dependent on input pin "axs_s0_arsize[0]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 25
+    Warning (15610): No output dependent on input pin "axs_s0_arsize[1]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 25
+    Warning (15610): No output dependent on input pin "axs_s0_arsize[2]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 25
+    Warning (15610): No output dependent on input pin "axs_s0_arburst[0]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 26
+    Warning (15610): No output dependent on input pin "axs_s0_arburst[1]" File: /home/mladmon/workspace/firework/varint_encoder/varint_encoder_top.v Line: 26
+Info (21057): Implemented 1343 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 141 input pins
+    Info (21059): Implemented 46 output pins
+    Info (21061): Implemented 1024 logic cells
+    Info (21064): Implemented 132 RAM segments
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 109 warnings
+    Info: Peak virtual memory: 1522 megabytes
+    Info: Processing ended: Tue Mar 28 16:19:52 2017
+    Info: Elapsed time: 00:00:17
+    Info: Total CPU time (on all processors): 00:00:38
 
 
