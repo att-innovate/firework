@@ -11,40 +11,94 @@
 # 
 # vlog -vlog01compat -work work +incdir+. {varint_encoder.vo}
 # Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
-# Start time: 11:57:38 on Mar 29,2017
+# Start time: 13:24:44 on Mar 30,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+." varint_encoder.vo 
 # -- Compiling module varint_encoder_top
 # 
 # Top level modules:
 # 	varint_encoder_top
-# End time: 11:57:39 on Mar 29,2017, Elapsed time: 0:00:01
+# End time: 13:24:45 on Mar 30,2017, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # 
 # vlog -vlog01compat -work work +incdir+/home/mladmon/workspace/firework/varint_encoder {/home/mladmon/workspace/firework/varint_encoder/fsm_0_tb.v}
 # Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
-# Start time: 11:57:39 on Mar 29,2017
+# Start time: 13:24:45 on Mar 30,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/mladmon/workspace/firework/varint_encoder" /home/mladmon/workspace/firework/varint_encoder/fsm_0_tb.v 
 # -- Compiling module fsm_0_tb
 # 
 # Top level modules:
 # 	fsm_0_tb
-# End time: 11:57:39 on Mar 29,2017, Elapsed time: 0:00:00
+# End time: 13:24:45 on Mar 30,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vsim -t 1ps -L altera_ver -L altera_lnsim_ver -L twentynm_ver -L lpm_ver -L sgate_ver -L twentynm_hssi_ver -L twentynm_hip_ver -L gate_work -L work -voptargs="+acc"  fsm_0_tb
 # vsim -t 1ps -L altera_ver -L altera_lnsim_ver -L twentynm_ver -L lpm_ver -L sgate_ver -L twentynm_hssi_ver -L twentynm_hip_ver -L gate_work -L work -voptargs=""+acc"" fsm_0_tb 
-# Start time: 11:57:39 on Mar 29,2017
-# ** Error: License checkout has been disallowed because
-# only one session is allowed to run on an uncounted nodelocked
-# license and an instance of ModelSim is already running with a
-# nodelocked license on this machine.
+# Start time: 13:24:45 on Mar 30,2017
+# //  ModelSim ALTERA 10.4d Dec 30 2015 Linux 3.10.0-327.el7.x86_64
+# //
+# //  Copyright 1991-2015 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //  THIS DOCUMENT CONTAINS TRADE SECRETS AND COMMERCIAL OR FINANCIAL
+# //  INFORMATION THAT ARE PRIVILEGED, CONFIDENTIAL, AND EXEMPT FROM
+# //  DISCLOSURE UNDER THE FREEDOM OF INFORMATION ACT, 5 U.S.C. SECTION 552.
+# //  FURTHERMORE, THIS INFORMATION IS PROHIBITED FROM DISCLOSURE UNDER
+# //  THE TRADE SECRETS ACT, 18 U.S.C. SECTION 1905.
+# //
+# Loading work.fsm_0_tb
+# ** Error: (vsim-3033) /home/mladmon/workspace/firework/varint_encoder/fsm_0_tb.v(40): Instantiation of 'fsm_0' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /fsm_0_tb File: /home/mladmon/workspace/firework/varint_encoder/fsm_0_tb.v
+#         Searched libraries:
+#             /home/mladmon/workspace/altera/16.0/modelsim_ae/altera/verilog/altera
+#             /home/mladmon/workspace/altera/16.0/modelsim_ae/altera/verilog/altera_lnsim
+#             /home/mladmon/workspace/altera/16.0/modelsim_ae/altera/verilog/twentynm
+#             /home/mladmon/workspace/altera/16.0/modelsim_ae/altera/verilog/220model
+#             /home/mladmon/workspace/altera/16.0/modelsim_ae/altera/verilog/sgate
+#             /home/mladmon/workspace/altera/16.0/modelsim_ae/altera/verilog/twentynm_hssi
+#             /home/mladmon/workspace/altera/16.0/modelsim_ae/altera/verilog/twentynm_hip
+#             /home/mladmon/workspace/firework/varint_encoder/simulation/modelsim/gate_work
+#             /home/mladmon/workspace/firework/varint_encoder/simulation/modelsim/gate_work
+#             /home/mladmon/workspace/firework/varint_encoder/simulation/modelsim/gate_work
 # Error loading design
 # Error: Error loading design
 #        Pausing macro execution
 # MACRO ./varint_encoder_run_msim_gate_verilog.do PAUSED at line 12
+vsim -t 1ps -L altera_ver -L altera_lnsim_ver -L twentynm_ver -L lpm_ver -L sgate_ver -L twentynm_hssi_ver -L twentynm_hip_ver -L gate_work -L work -voptargs=\"+acc\" work.fsm_0_tb
+# vsim -t 1ps -L altera_ver -L altera_lnsim_ver -L twentynm_ver -L lpm_ver -L sgate_ver -L twentynm_hssi_ver -L twentynm_hip_ver -L gate_work -L work -voptargs=""+acc"" work.fsm_0_tb 
+# Start time: 13:24:45 on Mar 30,2017
+# Loading work.fsm_0_tb
+# ** Error: (vsim-3033) /home/mladmon/workspace/firework/varint_encoder/fsm_0_tb.v(40): Instantiation of 'fsm_0' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /fsm_0_tb File: /home/mladmon/workspace/firework/varint_encoder/fsm_0_tb.v
+#         Searched libraries:
+#             /home/mladmon/workspace/altera/16.0/modelsim_ae/altera/verilog/altera
+#             /home/mladmon/workspace/altera/16.0/modelsim_ae/altera/verilog/altera_lnsim
+#             /home/mladmon/workspace/altera/16.0/modelsim_ae/altera/verilog/twentynm
+#             /home/mladmon/workspace/altera/16.0/modelsim_ae/altera/verilog/220model
+#             /home/mladmon/workspace/altera/16.0/modelsim_ae/altera/verilog/sgate
+#             /home/mladmon/workspace/altera/16.0/modelsim_ae/altera/verilog/twentynm_hssi
+#             /home/mladmon/workspace/altera/16.0/modelsim_ae/altera/verilog/twentynm_hip
+#             /home/mladmon/workspace/firework/varint_encoder/simulation/modelsim/gate_work
+#             /home/mladmon/workspace/firework/varint_encoder/simulation/modelsim/gate_work
+#             /home/mladmon/workspace/firework/varint_encoder/simulation/modelsim/gate_work
+# Error loading design
+# Error: Error loading design
+#        Pausing macro execution
+# MACRO ./varint_encoder_run_msim_gate_verilog.do PAUSED at line 12
+# ERROR: No extended dataflow license exists
+verror 3033
+# 
+# vsim Message # 3033:
+# The specified design unit could not be found for instantiation. If the
+# specified design unit does not contain a library indication then this
+# message should be followed by a list of libraries that were searched
+# when trying to locate a matching design unit.
+# 
 vsim work.fsm_0_tb
 # vsim work.fsm_0_tb 
-# Start time: 11:57:39 on Mar 29,2017
+# Start time: 13:24:45 on Mar 30,2017
 # Loading work.fsm_0_tb
 # ** Error: (vsim-3033) /home/mladmon/workspace/firework/varint_encoder/fsm_0_tb.v(40): Instantiation of 'fsm_0' failed. The design unit was not found.
 #    Time: 0 ps  Iteration: 0  Instance: /fsm_0_tb File: /home/mladmon/workspace/firework/varint_encoder/fsm_0_tb.v
@@ -54,5 +108,3 @@ vsim work.fsm_0_tb
 # Error: Error loading design
 #        Pausing macro execution
 # MACRO ./varint_encoder_run_msim_gate_verilog.do PAUSED at line 12
-# End time: 13:15:48 on Mar 29,2017, Elapsed time: 1:18:09
-# Errors: 1, Warnings: 0
