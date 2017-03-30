@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "Arria 10"
 set_global_assignment -name DEVICE 10AS066N3F40E2SGE2
-set_global_assignment -name TOP_LEVEL_ENTITY varint_encoder_top
+set_global_assignment -name TOP_LEVEL_ENTITY protobuf_serializer
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 16.0.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "15:13:50  JANUARY 27, 2017"
 set_global_assignment -name LAST_QUARTUS_VERSION 16.0.0
@@ -52,9 +52,6 @@ set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name OPTIMIZATION_MODE BALANCED
 set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
 set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
@@ -65,7 +62,11 @@ set_global_assignment -name EDA_TEST_BENCH_NAME fsm_0_tb -section_id eda_simulat
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id fsm_0_tb
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME fsm_0_tb -section_id fsm_0_tb
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST ON -section_id eda_simulation
-set_global_assignment -name VERILOG_FILE varint_encoder_top.v
+set_global_assignment -name PROJECT_IP_REGENERATION_POLICY NEVER_REGENERATE_IP
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VERILOG_FILE protobuf_serializer.v
 set_global_assignment -name QSYS_FILE out_fifo.qsys
 set_global_assignment -name QSYS_FILE varint_in_fifo.qsys
 set_global_assignment -name QSYS_FILE varint_in_index.qsys
@@ -83,6 +84,5 @@ set_global_assignment -name VERILOG_FILE fsm_3a.v
 set_global_assignment -name VERILOG_FILE fsm_3b.v
 set_global_assignment -name VERILOG_FILE fsm_3.v
 set_global_assignment -name VERILOG_FILE fsm_4.v
-set_global_assignment -name PROJECT_IP_REGENERATION_POLICY NEVER_REGENERATE_IP
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name EDA_TEST_BENCH_FILE fsm_0_tb.v -section_id fsm_0_tb
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

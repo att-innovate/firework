@@ -1,4 +1,4 @@
-|varint_encoder_top
+|protobuf_serializer
 clock_clk => clock_clk.IN17
 reset_reset => reset_reset.IN7
 axs_s0_awid[0] => axs_s0_awid[0].IN1
@@ -188,7 +188,7 @@ axs_s0_rvalid <= fsm_4:f4.axs_s0_rvalid
 axs_s0_rready => axs_s0_rready.IN1
 
 
-|varint_encoder_top|varint_in_fifo:in0
+|protobuf_serializer|varint_in_fifo:in0
 data[0] => data[0].IN1
 data[1] => data[1].IN1
 data[2] => data[2].IN1
@@ -261,7 +261,7 @@ full <= varint_in_fifo_fifo_160_v2ho2aa:fifo_0.full
 empty <= varint_in_fifo_fifo_160_v2ho2aa:fifo_0.empty
 
 
-|varint_encoder_top|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0
+|protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0
 clock => clock.IN1
 data[0] => data[0].IN1
 data[1] => data[1].IN1
@@ -334,7 +334,7 @@ q[30] <= scfifo:scfifo_component.q
 q[31] <= scfifo:scfifo_component.q
 
 
-|varint_encoder_top|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component
+|protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component
 data[0] => scfifo_koa1:auto_generated.data[0]
 data[1] => scfifo_koa1:auto_generated.data[1]
 data[2] => scfifo_koa1:auto_generated.data[2]
@@ -422,7 +422,7 @@ usedw[8] <= <GND>
 usedw[9] <= <GND>
 
 
-|varint_encoder_top|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated
+|protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated
 clock => a_dpfifo_7ga1:dpfifo.clock
 data[0] => a_dpfifo_7ga1:dpfifo.data[0]
 data[1] => a_dpfifo_7ga1:dpfifo.data[1]
@@ -495,7 +495,7 @@ sclr => a_dpfifo_7ga1:dpfifo.sclr
 wrreq => a_dpfifo_7ga1:dpfifo.wreq
 
 
-|varint_encoder_top|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo
+|protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo
 clock => altsyncram_4in1:FIFOram.clock0
 clock => altsyncram_4in1:FIFOram.clock1
 clock => cntr_1ra:rd_ptr_msb.clock
@@ -598,7 +598,7 @@ sclr => usedw_will_be_1.IN0
 wreq => valid_wreq.IN0
 
 
-|varint_encoder_top|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|altsyncram_4in1:FIFOram
+|protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|altsyncram_4in1:FIFOram
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -1465,7 +1465,7 @@ wren_a => ram_block1a31.PORTAWE
 wren_a => ram_block1a31.ENA0
 
 
-|varint_encoder_top|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cmpr_te8:almost_full_comparer
+|protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cmpr_te8:almost_full_comparer
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -1489,7 +1489,7 @@ datab[8] => data_wire[6].IN1
 datab[9] => data_wire[6].IN1
 
 
-|varint_encoder_top|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cmpr_te8:two_comparison
+|protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cmpr_te8:two_comparison
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -1513,7 +1513,7 @@ datab[8] => data_wire[6].IN1
 datab[9] => data_wire[6].IN1
 
 
-|varint_encoder_top|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_1ra:rd_ptr_msb
+|protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_1ra:rd_ptr_msb
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
 clock => counter_reg_bit[6].CLK
@@ -1545,7 +1545,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|varint_encoder_top|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_ls6:usedw_counter
+|protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_ls6:usedw_counter
 clock => counter_reg_bit[9].CLK
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
@@ -1582,7 +1582,7 @@ updown => updown_other_bits.IN1
 updown => counter_comb_bita0.DATAF
 
 
-|varint_encoder_top|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_9sa:wr_ptr
+|protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_9sa:wr_ptr
 clock => counter_reg_bit[9].CLK
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
@@ -1617,7 +1617,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|varint_encoder_top|varint_in_index:in1
+|protobuf_serializer|varint_in_index:in1
 data[0] => data[0].IN1
 data[1] => data[1].IN1
 data[2] => data[2].IN1
@@ -1644,7 +1644,7 @@ q[8] <= varint_in_index_fifo_160_kjjiney:fifo_0.q
 q[9] <= varint_in_index_fifo_160_kjjiney:fifo_0.q
 
 
-|varint_encoder_top|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0
+|protobuf_serializer|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0
 clock => clock.IN1
 data[0] => data[0].IN1
 data[1] => data[1].IN1
@@ -1671,7 +1671,7 @@ q[8] <= scfifo:scfifo_component.q
 q[9] <= scfifo:scfifo_component.q
 
 
-|varint_encoder_top|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component
+|protobuf_serializer|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component
 data[0] => scfifo_en91:auto_generated.data[0]
 data[1] => scfifo_en91:auto_generated.data[1]
 data[2] => scfifo_en91:auto_generated.data[2]
@@ -1715,7 +1715,7 @@ usedw[8] <= <GND>
 usedw[9] <= <GND>
 
 
-|varint_encoder_top|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated
+|protobuf_serializer|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated
 clock => a_dpfifo_1f91:dpfifo.clock
 data[0] => a_dpfifo_1f91:dpfifo.data[0]
 data[1] => a_dpfifo_1f91:dpfifo.data[1]
@@ -1742,7 +1742,7 @@ sclr => a_dpfifo_1f91:dpfifo.sclr
 wrreq => a_dpfifo_1f91:dpfifo.wreq
 
 
-|varint_encoder_top|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo
+|protobuf_serializer|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo
 clock => altsyncram_shn1:FIFOram.clock0
 clock => altsyncram_shn1:FIFOram.clock1
 clock => cntr_1ra:rd_ptr_msb.clock
@@ -1799,7 +1799,7 @@ sclr => usedw_will_be_1.IN0
 wreq => valid_wreq.IN0
 
 
-|varint_encoder_top|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram
+|protobuf_serializer|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -2072,7 +2072,7 @@ wren_a => ram_block1a9.PORTAWE
 wren_a => ram_block1a9.ENA0
 
 
-|varint_encoder_top|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cmpr_te8:almost_full_comparer
+|protobuf_serializer|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cmpr_te8:almost_full_comparer
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -2096,7 +2096,7 @@ datab[8] => data_wire[6].IN1
 datab[9] => data_wire[6].IN1
 
 
-|varint_encoder_top|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cmpr_te8:two_comparison
+|protobuf_serializer|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cmpr_te8:two_comparison
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -2120,7 +2120,7 @@ datab[8] => data_wire[6].IN1
 datab[9] => data_wire[6].IN1
 
 
-|varint_encoder_top|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_1ra:rd_ptr_msb
+|protobuf_serializer|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_1ra:rd_ptr_msb
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
 clock => counter_reg_bit[6].CLK
@@ -2152,7 +2152,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|varint_encoder_top|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_ls6:usedw_counter
+|protobuf_serializer|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_ls6:usedw_counter
 clock => counter_reg_bit[9].CLK
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
@@ -2189,7 +2189,7 @@ updown => updown_other_bits.IN1
 updown => counter_comb_bita0.DATAF
 
 
-|varint_encoder_top|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_9sa:wr_ptr
+|protobuf_serializer|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_9sa:wr_ptr
 clock => counter_reg_bit[9].CLK
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
@@ -2224,7 +2224,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|varint_encoder_top|raw_data_in_fifo:in2
+|protobuf_serializer|raw_data_in_fifo:in2
 data[0] => data[0].IN1
 data[1] => data[1].IN1
 data[2] => data[2].IN1
@@ -2297,7 +2297,7 @@ full <= raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0.full
 empty <= raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0.empty
 
 
-|varint_encoder_top|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0
+|protobuf_serializer|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0
 clock => clock.IN1
 data[0] => data[0].IN1
 data[1] => data[1].IN1
@@ -2370,7 +2370,7 @@ q[30] <= scfifo:scfifo_component.q
 q[31] <= scfifo:scfifo_component.q
 
 
-|varint_encoder_top|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component
+|protobuf_serializer|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component
 data[0] => scfifo_koa1:auto_generated.data[0]
 data[1] => scfifo_koa1:auto_generated.data[1]
 data[2] => scfifo_koa1:auto_generated.data[2]
@@ -2458,7 +2458,7 @@ usedw[8] <= <GND>
 usedw[9] <= <GND>
 
 
-|varint_encoder_top|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated
+|protobuf_serializer|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated
 clock => a_dpfifo_7ga1:dpfifo.clock
 data[0] => a_dpfifo_7ga1:dpfifo.data[0]
 data[1] => a_dpfifo_7ga1:dpfifo.data[1]
@@ -2531,7 +2531,7 @@ sclr => a_dpfifo_7ga1:dpfifo.sclr
 wrreq => a_dpfifo_7ga1:dpfifo.wreq
 
 
-|varint_encoder_top|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo
+|protobuf_serializer|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo
 clock => altsyncram_4in1:FIFOram.clock0
 clock => altsyncram_4in1:FIFOram.clock1
 clock => cntr_1ra:rd_ptr_msb.clock
@@ -2634,7 +2634,7 @@ sclr => usedw_will_be_1.IN0
 wreq => valid_wreq.IN0
 
 
-|varint_encoder_top|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|altsyncram_4in1:FIFOram
+|protobuf_serializer|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|altsyncram_4in1:FIFOram
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -3501,7 +3501,7 @@ wren_a => ram_block1a31.PORTAWE
 wren_a => ram_block1a31.ENA0
 
 
-|varint_encoder_top|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cmpr_te8:almost_full_comparer
+|protobuf_serializer|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cmpr_te8:almost_full_comparer
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -3525,7 +3525,7 @@ datab[8] => data_wire[6].IN1
 datab[9] => data_wire[6].IN1
 
 
-|varint_encoder_top|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cmpr_te8:two_comparison
+|protobuf_serializer|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cmpr_te8:two_comparison
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -3549,7 +3549,7 @@ datab[8] => data_wire[6].IN1
 datab[9] => data_wire[6].IN1
 
 
-|varint_encoder_top|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_1ra:rd_ptr_msb
+|protobuf_serializer|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_1ra:rd_ptr_msb
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
 clock => counter_reg_bit[6].CLK
@@ -3581,7 +3581,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|varint_encoder_top|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_ls6:usedw_counter
+|protobuf_serializer|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_ls6:usedw_counter
 clock => counter_reg_bit[9].CLK
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
@@ -3618,7 +3618,7 @@ updown => updown_other_bits.IN1
 updown => counter_comb_bita0.DATAF
 
 
-|varint_encoder_top|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_9sa:wr_ptr
+|protobuf_serializer|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_9sa:wr_ptr
 clock => counter_reg_bit[9].CLK
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
@@ -3653,7 +3653,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|varint_encoder_top|raw_data_in_index:in3
+|protobuf_serializer|raw_data_in_index:in3
 data[0] => data[0].IN1
 data[1] => data[1].IN1
 data[2] => data[2].IN1
@@ -3680,7 +3680,7 @@ q[8] <= raw_data_in_index_fifo_160_kjjiney:fifo_0.q
 q[9] <= raw_data_in_index_fifo_160_kjjiney:fifo_0.q
 
 
-|varint_encoder_top|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0
+|protobuf_serializer|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0
 clock => clock.IN1
 data[0] => data[0].IN1
 data[1] => data[1].IN1
@@ -3707,7 +3707,7 @@ q[8] <= scfifo:scfifo_component.q
 q[9] <= scfifo:scfifo_component.q
 
 
-|varint_encoder_top|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component
+|protobuf_serializer|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component
 data[0] => scfifo_en91:auto_generated.data[0]
 data[1] => scfifo_en91:auto_generated.data[1]
 data[2] => scfifo_en91:auto_generated.data[2]
@@ -3751,7 +3751,7 @@ usedw[8] <= <GND>
 usedw[9] <= <GND>
 
 
-|varint_encoder_top|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated
+|protobuf_serializer|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated
 clock => a_dpfifo_1f91:dpfifo.clock
 data[0] => a_dpfifo_1f91:dpfifo.data[0]
 data[1] => a_dpfifo_1f91:dpfifo.data[1]
@@ -3778,7 +3778,7 @@ sclr => a_dpfifo_1f91:dpfifo.sclr
 wrreq => a_dpfifo_1f91:dpfifo.wreq
 
 
-|varint_encoder_top|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo
+|protobuf_serializer|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo
 clock => altsyncram_shn1:FIFOram.clock0
 clock => altsyncram_shn1:FIFOram.clock1
 clock => cntr_1ra:rd_ptr_msb.clock
@@ -3835,7 +3835,7 @@ sclr => usedw_will_be_1.IN0
 wreq => valid_wreq.IN0
 
 
-|varint_encoder_top|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram
+|protobuf_serializer|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -4108,7 +4108,7 @@ wren_a => ram_block1a9.PORTAWE
 wren_a => ram_block1a9.ENA0
 
 
-|varint_encoder_top|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cmpr_te8:almost_full_comparer
+|protobuf_serializer|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cmpr_te8:almost_full_comparer
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -4132,7 +4132,7 @@ datab[8] => data_wire[6].IN1
 datab[9] => data_wire[6].IN1
 
 
-|varint_encoder_top|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cmpr_te8:two_comparison
+|protobuf_serializer|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cmpr_te8:two_comparison
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -4156,7 +4156,7 @@ datab[8] => data_wire[6].IN1
 datab[9] => data_wire[6].IN1
 
 
-|varint_encoder_top|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_1ra:rd_ptr_msb
+|protobuf_serializer|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_1ra:rd_ptr_msb
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
 clock => counter_reg_bit[6].CLK
@@ -4188,7 +4188,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|varint_encoder_top|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_ls6:usedw_counter
+|protobuf_serializer|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_ls6:usedw_counter
 clock => counter_reg_bit[9].CLK
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
@@ -4225,7 +4225,7 @@ updown => updown_other_bits.IN1
 updown => counter_comb_bita0.DATAF
 
 
-|varint_encoder_top|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_9sa:wr_ptr
+|protobuf_serializer|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_9sa:wr_ptr
 clock => counter_reg_bit[9].CLK
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
@@ -4260,7 +4260,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|varint_encoder_top|raw_data_in_wstrb:in4
+|protobuf_serializer|raw_data_in_wstrb:in4
 data[0] => data[0].IN1
 data[1] => data[1].IN1
 data[2] => data[2].IN1
@@ -4275,7 +4275,7 @@ q[2] <= raw_data_in_wstrb_fifo_160_sconavq:fifo_0.q
 q[3] <= raw_data_in_wstrb_fifo_160_sconavq:fifo_0.q
 
 
-|varint_encoder_top|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0
+|protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0
 clock => clock.IN1
 data[0] => data[0].IN1
 data[1] => data[1].IN1
@@ -4290,7 +4290,7 @@ q[2] <= scfifo:scfifo_component.q
 q[3] <= scfifo:scfifo_component.q
 
 
-|varint_encoder_top|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component
+|protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component
 data[0] => scfifo_1m91:auto_generated.data[0]
 data[1] => scfifo_1m91:auto_generated.data[1]
 data[2] => scfifo_1m91:auto_generated.data[2]
@@ -4322,7 +4322,7 @@ usedw[8] <= <GND>
 usedw[9] <= <GND>
 
 
-|varint_encoder_top|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated
+|protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated
 clock => a_dpfifo_kd91:dpfifo.clock
 data[0] => a_dpfifo_kd91:dpfifo.data[0]
 data[1] => a_dpfifo_kd91:dpfifo.data[1]
@@ -4337,7 +4337,7 @@ sclr => a_dpfifo_kd91:dpfifo.sclr
 wrreq => a_dpfifo_kd91:dpfifo.wreq
 
 
-|varint_encoder_top|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo
+|protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo
 clock => altsyncram_2fn1:FIFOram.clock0
 clock => altsyncram_2fn1:FIFOram.clock1
 clock => cntr_1ra:rd_ptr_msb.clock
@@ -4382,7 +4382,7 @@ sclr => usedw_will_be_1.IN0
 wreq => valid_wreq.IN0
 
 
-|varint_encoder_top|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram
+|protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -4493,7 +4493,7 @@ wren_a => ram_block1a3.PORTAWE
 wren_a => ram_block1a3.ENA0
 
 
-|varint_encoder_top|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cmpr_te8:almost_full_comparer
+|protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cmpr_te8:almost_full_comparer
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -4517,7 +4517,7 @@ datab[8] => data_wire[6].IN1
 datab[9] => data_wire[6].IN1
 
 
-|varint_encoder_top|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cmpr_te8:two_comparison
+|protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cmpr_te8:two_comparison
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -4541,7 +4541,7 @@ datab[8] => data_wire[6].IN1
 datab[9] => data_wire[6].IN1
 
 
-|varint_encoder_top|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cntr_1ra:rd_ptr_msb
+|protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cntr_1ra:rd_ptr_msb
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
 clock => counter_reg_bit[6].CLK
@@ -4573,7 +4573,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|varint_encoder_top|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cntr_ls6:usedw_counter
+|protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cntr_ls6:usedw_counter
 clock => counter_reg_bit[9].CLK
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
@@ -4610,7 +4610,7 @@ updown => updown_other_bits.IN1
 updown => counter_comb_bita0.DATAF
 
 
-|varint_encoder_top|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cntr_9sa:wr_ptr
+|protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cntr_9sa:wr_ptr
 clock => counter_reg_bit[9].CLK
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
@@ -4645,7 +4645,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|varint_encoder_top|fsm_0:f0
+|protobuf_serializer|fsm_0:f0
 clk => wstrb[0]~reg0.CLK
 clk => wstrb[1]~reg0.CLK
 clk => wstrb[2]~reg0.CLK
@@ -4998,7 +4998,7 @@ wstrb[2] <= wstrb[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 wstrb[3] <= wstrb[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|varint_encoder_top|fsm_1:f1
+|protobuf_serializer|fsm_1:f1
 clk => index[0].CLK
 clk => index[1].CLK
 clk => state~1.DATAIN
@@ -5035,7 +5035,7 @@ raw_data_sel[0] <= index[0].DB_MAX_OUTPUT_PORT_TYPE
 raw_data_sel[1] <= index[1].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|varint_encoder_top|fsm_2:f2
+|protobuf_serializer|fsm_2:f2
 clk => varint_data[0].CLK
 clk => varint_data[1].CLK
 clk => varint_data[2].CLK
@@ -5166,7 +5166,7 @@ varint_data_out[6] <= varint_data[6].DB_MAX_OUTPUT_PORT_TYPE
 varint_data_out[7] <= varint_out_mux.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|varint_encoder_top|fsm_3a:f3a
+|protobuf_serializer|fsm_3a:f3a
 clk => state~1.DATAIN
 reset => state.OUTPUTSELECT
 reset => state.OUTPUTSELECT
@@ -5180,7 +5180,7 @@ varint_data_accepted => Selector1.IN2
 varint_data_valid <= varint_data_valid.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|varint_encoder_top|fsm_3b:f3b
+|protobuf_serializer|fsm_3b:f3b
 clk => state~1.DATAIN
 reset => state.OUTPUTSELECT
 reset => state.OUTPUTSELECT
@@ -5194,7 +5194,7 @@ raw_data_accepted => Selector1.IN2
 raw_data_valid <= raw_data_valid.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|varint_encoder_top|fsm_3:f3
+|protobuf_serializer|fsm_3:f3
 clk => out_index[0].CLK
 clk => out_index[1].CLK
 clk => out_index[2].CLK
@@ -5290,7 +5290,7 @@ varint_data_accepted <= varint_enable.DB_MAX_OUTPUT_PORT_TYPE
 raw_data_accepted <= raw_data_enable.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|varint_encoder_top|fsm_4:f4
+|protobuf_serializer|fsm_4:f4
 clk => arlen[0].CLK
 clk => arlen[1].CLK
 clk => arlen[2].CLK
@@ -5433,7 +5433,7 @@ out_fifo_pop_sel[0] <= out_fifo_pop_sel[0].DB_MAX_OUTPUT_PORT_TYPE
 out_fifo_pop_sel[1] <= out_fifo_pop_sel[1].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|varint_encoder_top|varint_out_fifo:out0
+|protobuf_serializer|varint_out_fifo:out0
 data[0] => data[0].IN1
 data[1] => data[1].IN1
 data[2] => data[2].IN1
@@ -5458,7 +5458,7 @@ full <= varint_out_fifo_fifo_160_q2auapq:fifo_0.full
 empty <= varint_out_fifo_fifo_160_q2auapq:fifo_0.empty
 
 
-|varint_encoder_top|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0
+|protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0
 clock => clock.IN1
 data[0] => data[0].IN1
 data[1] => data[1].IN1
@@ -5483,7 +5483,7 @@ q[6] <= scfifo:scfifo_component.q
 q[7] <= scfifo:scfifo_component.q
 
 
-|varint_encoder_top|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component
+|protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component
 data[0] => scfifo_lna1:auto_generated.data[0]
 data[1] => scfifo_lna1:auto_generated.data[1]
 data[2] => scfifo_lna1:auto_generated.data[2]
@@ -5525,7 +5525,7 @@ usedw[10] <= <GND>
 usedw[11] <= <GND>
 
 
-|varint_encoder_top|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated
+|protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated
 clock => a_dpfifo_8fa1:dpfifo.clock
 data[0] => a_dpfifo_8fa1:dpfifo.data[0]
 data[1] => a_dpfifo_8fa1:dpfifo.data[1]
@@ -5550,7 +5550,7 @@ sclr => a_dpfifo_8fa1:dpfifo.sclr
 wrreq => a_dpfifo_8fa1:dpfifo.wreq
 
 
-|varint_encoder_top|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo
+|protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo
 clock => altsyncram_6gn1:FIFOram.clock0
 clock => altsyncram_6gn1:FIFOram.clock1
 clock => cntr_asa:rd_ptr_msb.clock
@@ -5607,7 +5607,7 @@ sclr => usedw_will_be_1.IN0
 wreq => valid_wreq.IN0
 
 
-|varint_encoder_top|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|altsyncram_6gn1:FIFOram
+|protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|altsyncram_6gn1:FIFOram
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -5858,7 +5858,7 @@ wren_a => ram_block1a7.PORTAWE
 wren_a => ram_block1a7.ENA0
 
 
-|varint_encoder_top|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cmpr_ve8:almost_full_comparer
+|protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cmpr_ve8:almost_full_comparer
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -5886,7 +5886,7 @@ datab[10] => data_wire[7].IN1
 datab[11] => data_wire[7].IN1
 
 
-|varint_encoder_top|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cmpr_ve8:two_comparison
+|protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cmpr_ve8:two_comparison
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -5914,7 +5914,7 @@ datab[10] => data_wire[7].IN1
 datab[11] => data_wire[7].IN1
 
 
-|varint_encoder_top|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_asa:rd_ptr_msb
+|protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_asa:rd_ptr_msb
 clock => counter_reg_bit[10].CLK
 clock => counter_reg_bit[9].CLK
 clock => counter_reg_bit[8].CLK
@@ -5952,7 +5952,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|varint_encoder_top|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_ns6:usedw_counter
+|protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_ns6:usedw_counter
 clock => counter_reg_bit[11].CLK
 clock => counter_reg_bit[10].CLK
 clock => counter_reg_bit[9].CLK
@@ -5995,7 +5995,7 @@ updown => updown_other_bits.IN1
 updown => counter_comb_bita0.DATAF
 
 
-|varint_encoder_top|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_bsa:wr_ptr
+|protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_bsa:wr_ptr
 clock => counter_reg_bit[11].CLK
 clock => counter_reg_bit[10].CLK
 clock => counter_reg_bit[9].CLK
@@ -6036,7 +6036,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|varint_encoder_top|varint_out_index:out1
+|protobuf_serializer|varint_out_index:out1
 data[0] => data[0].IN1
 data[1] => data[1].IN1
 data[2] => data[2].IN1
@@ -6063,7 +6063,7 @@ q[8] <= varint_out_index_fifo_160_tgkntjy:fifo_0.q
 q[9] <= varint_out_index_fifo_160_tgkntjy:fifo_0.q
 
 
-|varint_encoder_top|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0
+|protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0
 clock => clock.IN1
 data[0] => data[0].IN1
 data[1] => data[1].IN1
@@ -6090,7 +6090,7 @@ q[8] <= scfifo:scfifo_component.q
 q[9] <= scfifo:scfifo_component.q
 
 
-|varint_encoder_top|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component
+|protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component
 data[0] => scfifo_sn91:auto_generated.data[0]
 data[1] => scfifo_sn91:auto_generated.data[1]
 data[2] => scfifo_sn91:auto_generated.data[2]
@@ -6136,7 +6136,7 @@ usedw[10] <= <GND>
 usedw[11] <= <GND>
 
 
-|varint_encoder_top|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated
+|protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated
 clock => a_dpfifo_ff91:dpfifo.clock
 data[0] => a_dpfifo_ff91:dpfifo.data[0]
 data[1] => a_dpfifo_ff91:dpfifo.data[1]
@@ -6163,7 +6163,7 @@ sclr => a_dpfifo_ff91:dpfifo.sclr
 wrreq => a_dpfifo_ff91:dpfifo.wreq
 
 
-|varint_encoder_top|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo
+|protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo
 clock => altsyncram_oin1:FIFOram.clock0
 clock => altsyncram_oin1:FIFOram.clock1
 clock => cntr_asa:rd_ptr_msb.clock
@@ -6222,7 +6222,7 @@ sclr => usedw_will_be_1.IN0
 wreq => valid_wreq.IN0
 
 
-|varint_encoder_top|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram
+|protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -6535,7 +6535,7 @@ wren_a => ram_block1a9.PORTAWE
 wren_a => ram_block1a9.ENA0
 
 
-|varint_encoder_top|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cmpr_ve8:almost_full_comparer
+|protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cmpr_ve8:almost_full_comparer
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -6563,7 +6563,7 @@ datab[10] => data_wire[7].IN1
 datab[11] => data_wire[7].IN1
 
 
-|varint_encoder_top|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cmpr_ve8:two_comparison
+|protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cmpr_ve8:two_comparison
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -6591,7 +6591,7 @@ datab[10] => data_wire[7].IN1
 datab[11] => data_wire[7].IN1
 
 
-|varint_encoder_top|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_asa:rd_ptr_msb
+|protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_asa:rd_ptr_msb
 clock => counter_reg_bit[10].CLK
 clock => counter_reg_bit[9].CLK
 clock => counter_reg_bit[8].CLK
@@ -6629,7 +6629,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|varint_encoder_top|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_ns6:usedw_counter
+|protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_ns6:usedw_counter
 clock => counter_reg_bit[11].CLK
 clock => counter_reg_bit[10].CLK
 clock => counter_reg_bit[9].CLK
@@ -6672,7 +6672,7 @@ updown => updown_other_bits.IN1
 updown => counter_comb_bita0.DATAF
 
 
-|varint_encoder_top|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_bsa:wr_ptr
+|protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_bsa:wr_ptr
 clock => counter_reg_bit[11].CLK
 clock => counter_reg_bit[10].CLK
 clock => counter_reg_bit[9].CLK
@@ -6713,7 +6713,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|varint_encoder_top|raw_data_out_fifo:out2
+|protobuf_serializer|raw_data_out_fifo:out2
 data[0] => data[0].IN1
 data[1] => data[1].IN1
 data[2] => data[2].IN1
@@ -6738,7 +6738,7 @@ full <= raw_data_out_fifo_fifo_160_q2auapq:fifo_0.full
 empty <= raw_data_out_fifo_fifo_160_q2auapq:fifo_0.empty
 
 
-|varint_encoder_top|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0
+|protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0
 clock => clock.IN1
 data[0] => data[0].IN1
 data[1] => data[1].IN1
@@ -6763,7 +6763,7 @@ q[6] <= scfifo:scfifo_component.q
 q[7] <= scfifo:scfifo_component.q
 
 
-|varint_encoder_top|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component
+|protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component
 data[0] => scfifo_lna1:auto_generated.data[0]
 data[1] => scfifo_lna1:auto_generated.data[1]
 data[2] => scfifo_lna1:auto_generated.data[2]
@@ -6805,7 +6805,7 @@ usedw[10] <= <GND>
 usedw[11] <= <GND>
 
 
-|varint_encoder_top|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated
+|protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated
 clock => a_dpfifo_8fa1:dpfifo.clock
 data[0] => a_dpfifo_8fa1:dpfifo.data[0]
 data[1] => a_dpfifo_8fa1:dpfifo.data[1]
@@ -6830,7 +6830,7 @@ sclr => a_dpfifo_8fa1:dpfifo.sclr
 wrreq => a_dpfifo_8fa1:dpfifo.wreq
 
 
-|varint_encoder_top|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo
+|protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo
 clock => altsyncram_6gn1:FIFOram.clock0
 clock => altsyncram_6gn1:FIFOram.clock1
 clock => cntr_asa:rd_ptr_msb.clock
@@ -6887,7 +6887,7 @@ sclr => usedw_will_be_1.IN0
 wreq => valid_wreq.IN0
 
 
-|varint_encoder_top|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|altsyncram_6gn1:FIFOram
+|protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|altsyncram_6gn1:FIFOram
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -7138,7 +7138,7 @@ wren_a => ram_block1a7.PORTAWE
 wren_a => ram_block1a7.ENA0
 
 
-|varint_encoder_top|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cmpr_ve8:almost_full_comparer
+|protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cmpr_ve8:almost_full_comparer
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -7166,7 +7166,7 @@ datab[10] => data_wire[7].IN1
 datab[11] => data_wire[7].IN1
 
 
-|varint_encoder_top|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cmpr_ve8:two_comparison
+|protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cmpr_ve8:two_comparison
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -7194,7 +7194,7 @@ datab[10] => data_wire[7].IN1
 datab[11] => data_wire[7].IN1
 
 
-|varint_encoder_top|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_asa:rd_ptr_msb
+|protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_asa:rd_ptr_msb
 clock => counter_reg_bit[10].CLK
 clock => counter_reg_bit[9].CLK
 clock => counter_reg_bit[8].CLK
@@ -7232,7 +7232,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|varint_encoder_top|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_ns6:usedw_counter
+|protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_ns6:usedw_counter
 clock => counter_reg_bit[11].CLK
 clock => counter_reg_bit[10].CLK
 clock => counter_reg_bit[9].CLK
@@ -7275,7 +7275,7 @@ updown => updown_other_bits.IN1
 updown => counter_comb_bita0.DATAF
 
 
-|varint_encoder_top|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_bsa:wr_ptr
+|protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_bsa:wr_ptr
 clock => counter_reg_bit[11].CLK
 clock => counter_reg_bit[10].CLK
 clock => counter_reg_bit[9].CLK
@@ -7316,7 +7316,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|varint_encoder_top|raw_data_out_index:out3
+|protobuf_serializer|raw_data_out_index:out3
 data[0] => data[0].IN1
 data[1] => data[1].IN1
 data[2] => data[2].IN1
@@ -7343,7 +7343,7 @@ q[8] <= raw_data_out_index_fifo_160_tgkntjy:fifo_0.q
 q[9] <= raw_data_out_index_fifo_160_tgkntjy:fifo_0.q
 
 
-|varint_encoder_top|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0
+|protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0
 clock => clock.IN1
 data[0] => data[0].IN1
 data[1] => data[1].IN1
@@ -7370,7 +7370,7 @@ q[8] <= scfifo:scfifo_component.q
 q[9] <= scfifo:scfifo_component.q
 
 
-|varint_encoder_top|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component
+|protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component
 data[0] => scfifo_sn91:auto_generated.data[0]
 data[1] => scfifo_sn91:auto_generated.data[1]
 data[2] => scfifo_sn91:auto_generated.data[2]
@@ -7416,7 +7416,7 @@ usedw[10] <= <GND>
 usedw[11] <= <GND>
 
 
-|varint_encoder_top|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated
+|protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated
 clock => a_dpfifo_ff91:dpfifo.clock
 data[0] => a_dpfifo_ff91:dpfifo.data[0]
 data[1] => a_dpfifo_ff91:dpfifo.data[1]
@@ -7443,7 +7443,7 @@ sclr => a_dpfifo_ff91:dpfifo.sclr
 wrreq => a_dpfifo_ff91:dpfifo.wreq
 
 
-|varint_encoder_top|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo
+|protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo
 clock => altsyncram_oin1:FIFOram.clock0
 clock => altsyncram_oin1:FIFOram.clock1
 clock => cntr_asa:rd_ptr_msb.clock
@@ -7502,7 +7502,7 @@ sclr => usedw_will_be_1.IN0
 wreq => valid_wreq.IN0
 
 
-|varint_encoder_top|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram
+|protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -7815,7 +7815,7 @@ wren_a => ram_block1a9.PORTAWE
 wren_a => ram_block1a9.ENA0
 
 
-|varint_encoder_top|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cmpr_ve8:almost_full_comparer
+|protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cmpr_ve8:almost_full_comparer
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -7843,7 +7843,7 @@ datab[10] => data_wire[7].IN1
 datab[11] => data_wire[7].IN1
 
 
-|varint_encoder_top|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cmpr_ve8:two_comparison
+|protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cmpr_ve8:two_comparison
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -7871,7 +7871,7 @@ datab[10] => data_wire[7].IN1
 datab[11] => data_wire[7].IN1
 
 
-|varint_encoder_top|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_asa:rd_ptr_msb
+|protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_asa:rd_ptr_msb
 clock => counter_reg_bit[10].CLK
 clock => counter_reg_bit[9].CLK
 clock => counter_reg_bit[8].CLK
@@ -7909,7 +7909,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|varint_encoder_top|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_ns6:usedw_counter
+|protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_ns6:usedw_counter
 clock => counter_reg_bit[11].CLK
 clock => counter_reg_bit[10].CLK
 clock => counter_reg_bit[9].CLK
@@ -7952,7 +7952,7 @@ updown => updown_other_bits.IN1
 updown => counter_comb_bita0.DATAF
 
 
-|varint_encoder_top|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_bsa:wr_ptr
+|protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_bsa:wr_ptr
 clock => counter_reg_bit[11].CLK
 clock => counter_reg_bit[10].CLK
 clock => counter_reg_bit[9].CLK
@@ -7993,7 +7993,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|varint_encoder_top|out_fifo:out4
+|protobuf_serializer|out_fifo:out4
 data[0] => data[0].IN1
 data[1] => data[1].IN1
 data[2] => data[2].IN1
@@ -8031,7 +8031,7 @@ full <= out_fifo_fifo_160_otpqnty:fifo_0.full
 empty <= out_fifo_fifo_160_otpqnty:fifo_0.empty
 
 
-|varint_encoder_top|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0
+|protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0
 clock => clock.IN1
 data[0] => data[0].IN1
 data[1] => data[1].IN1
@@ -8069,7 +8069,7 @@ usedw[11] <= scfifo:scfifo_component.usedw
 usedw[12] <= scfifo:scfifo_component.usedw
 
 
-|varint_encoder_top|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component
+|protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component
 data[0] => scfifo_v9b1:auto_generated.data[0]
 data[1] => scfifo_v9b1:auto_generated.data[1]
 data[2] => scfifo_v9b1:auto_generated.data[2]
@@ -8112,7 +8112,7 @@ usedw[11] <= scfifo_v9b1:auto_generated.usedw[11]
 usedw[12] <= scfifo_v9b1:auto_generated.usedw[12]
 
 
-|varint_encoder_top|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated
+|protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated
 clock => a_dpfifo_i1b1:dpfifo.clock
 data[0] => a_dpfifo_i1b1:dpfifo.data[0]
 data[1] => a_dpfifo_i1b1:dpfifo.data[1]
@@ -8150,7 +8150,7 @@ usedw[12] <= a_dpfifo_i1b1:dpfifo.usedw[12]
 wrreq => a_dpfifo_i1b1:dpfifo.wreq
 
 
-|varint_encoder_top|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo
+|protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo
 clock => altsyncram_agn1:FIFOram.clock0
 clock => altsyncram_agn1:FIFOram.clock1
 clock => cntr_bsa:rd_ptr_msb.clock
@@ -8221,7 +8221,7 @@ usedw[12] <= cntr_os6:usedw_counter.q[12]
 wreq => valid_wreq.IN0
 
 
-|varint_encoder_top|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|altsyncram_agn1:FIFOram
+|protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|altsyncram_agn1:FIFOram
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -8488,7 +8488,7 @@ wren_a => ram_block1a7.PORTAWE
 wren_a => ram_block1a7.ENA0
 
 
-|varint_encoder_top|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cmpr_0f8:almost_full_comparer
+|protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cmpr_0f8:almost_full_comparer
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -8518,7 +8518,7 @@ datab[11] => data_wire[7].IN1
 datab[12] => data_wire[8].IN1
 
 
-|varint_encoder_top|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cmpr_0f8:two_comparison
+|protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cmpr_0f8:two_comparison
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -8548,7 +8548,7 @@ datab[11] => data_wire[7].IN1
 datab[12] => data_wire[8].IN1
 
 
-|varint_encoder_top|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cntr_bsa:rd_ptr_msb
+|protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cntr_bsa:rd_ptr_msb
 clock => counter_reg_bit[11].CLK
 clock => counter_reg_bit[10].CLK
 clock => counter_reg_bit[9].CLK
@@ -8589,7 +8589,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|varint_encoder_top|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cntr_os6:usedw_counter
+|protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cntr_os6:usedw_counter
 clock => counter_reg_bit[12].CLK
 clock => counter_reg_bit[11].CLK
 clock => counter_reg_bit[10].CLK
@@ -8635,7 +8635,7 @@ updown => updown_other_bits.IN1
 updown => counter_comb_bita0.DATAF
 
 
-|varint_encoder_top|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cntr_csa:wr_ptr
+|protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cntr_csa:wr_ptr
 clock => counter_reg_bit[12].CLK
 clock => counter_reg_bit[11].CLK
 clock => counter_reg_bit[10].CLK

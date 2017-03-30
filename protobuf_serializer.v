@@ -1,4 +1,4 @@
-module varint_encoder_top ( /* Implements AMBA AXI4 slave interface */
+module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 		input  wire        clock_clk,      //  clock.clk
 		input  wire        reset_reset,    //  reset.reset
 
