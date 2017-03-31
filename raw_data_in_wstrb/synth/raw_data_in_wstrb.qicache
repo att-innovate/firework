@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='us-ascii'?>
 <qsys_generation_info>
-<qsys_file path="/home/mladmon/workspace/firework/varint_encoder/raw_data_in_wstrb.qsys" />
-<gen_dir path="/home/mladmon/workspace/firework/varint_encoder/raw_data_in_wstrb/" />
+<qsys_file path="/home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_wstrb.qsys" />
+<gen_dir path="/home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_wstrb/" />
 <user_regen_policy value="Never Regenerate Existing IP" />
 <actual_regen_policy value="Never Regenerate Existing IP" />
 <gen_action value="IP Generation Skipped" />

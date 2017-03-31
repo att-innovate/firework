@@ -67,7 +67,6 @@ set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name EDA_TEST_BENCH_FILE fsm_0_tb.v -section_id fsm_0_tb
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name VERILOG_FILE protobuf_serializer.v
 set_global_assignment -name QSYS_FILE varint_in_fifo.qsys
 set_global_assignment -name QSYS_FILE varint_in_index.qsys
@@ -86,3 +85,4 @@ set_global_assignment -name VERILOG_FILE fsm_3a.v
 set_global_assignment -name VERILOG_FILE fsm_3b.v
 set_global_assignment -name VERILOG_FILE fsm_3.v
 set_global_assignment -name VERILOG_FILE fsm_4.v
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

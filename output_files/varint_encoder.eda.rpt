@@ -1,5 +1,5 @@
 EDA Netlist Writer report for varint_encoder
-Wed Mar 29 11:52:44 2017
+Fri Mar 31 13:20:36 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -37,9 +37,9 @@ agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Wed Mar 29 11:52:44 2017 ;
+; EDA Netlist Writer Status ; Successful - Fri Mar 31 13:20:36 2017 ;
 ; Revision Name             ; varint_encoder                        ;
-; Top-level Entity Name     ; varint_encoder_top                    ;
+; Top-level Entity Name     ; protobuf_serializer                   ;
 ; Family                    ; Arria 10                              ;
 ; Simulation Files Creation ; Successful                            ;
 +---------------------------+---------------------------------------+
@@ -66,13 +66,13 @@ agreement for further details.
 +---------------------------------------------------------------------------------------------------+---------------------------+
 
 
-+---------------------------------------------------------------------------------------+
-; Simulation Generated Files                                                            ;
-+---------------------------------------------------------------------------------------+
-; Generated Files                                                                       ;
-+---------------------------------------------------------------------------------------+
-; /home/mladmon/workspace/firework/varint_encoder/simulation/modelsim/varint_encoder.vo ;
-+---------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------+
+; Simulation Generated Files                                                                 ;
++--------------------------------------------------------------------------------------------+
+; Generated Files                                                                            ;
++--------------------------------------------------------------------------------------------+
+; /home/mladmon/workspace/firework/protobuf-serializer/simulation/modelsim/varint_encoder.vo ;
++--------------------------------------------------------------------------------------------+
 
 
 +-----------------------------+
@@ -81,12 +81,12 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime EDA Netlist Writer
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
-    Info: Processing started: Wed Mar 29 11:52:42 2017
+    Info: Processing started: Fri Mar 31 13:20:35 2017
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off varint_encoder -c varint_encoder
-Info (204019): Generated file varint_encoder.vo in folder "/home/mladmon/workspace/firework/varint_encoder/simulation/modelsim/" for EDA simulation tool
+Info (204019): Generated file varint_encoder.vo in folder "/home/mladmon/workspace/firework/protobuf-serializer/simulation/modelsim/" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 1513 megabytes
-    Info: Processing ended: Wed Mar 29 11:52:44 2017
+    Info: Processing ended: Fri Mar 31 13:20:37 2017
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:01
 

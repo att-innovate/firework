@@ -1,4 +1,3 @@
-set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) ../../out_fifo/out_fifo.qip]
 set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) ../../varint_in_fifo/varint_in_fifo.qip]
 set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) ../../varint_in_index/varint_in_index.qip]
 set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) ../../raw_data_in_fifo/raw_data_in_fifo.qip]
@@ -8,3 +7,4 @@ set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) ../../varin
 set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) ../../varint_out_index/varint_out_index.qip]
 set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) ../../raw_data_out_fifo/raw_data_out_fifo.qip]
 set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) ../../raw_data_out_index/raw_data_out_index.qip]
+set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) ../../out_fifo/out_fifo.qip]
