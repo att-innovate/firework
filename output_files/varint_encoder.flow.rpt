@@ -1,5 +1,5 @@
 Flow report for varint_encoder
-Fri Mar 31 13:20:36 2017
+Fri Mar 31 15:52:18 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -41,7 +41,7 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Flow Status                 ; Successful - Fri Mar 31 13:20:36 2017           ;
+; Flow Status                 ; Successful - Fri Mar 31 15:52:18 2017           ;
 ; Quartus Prime Version       ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
 ; Revision Name               ; varint_encoder                                  ;
 ; Top-level Entity Name       ; protobuf_serializer                             ;
@@ -172,7 +172,8 @@ agreement for further details.
 ; Assembler                 ; 00:00:47     ; 1.0                     ; 5411 MB             ; 00:00:47                           ;
 ; TimeQuest Timing Analyzer ; 00:00:32     ; 5.5                     ; 4397 MB             ; 00:00:38                           ;
 ; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 1513 MB             ; 00:00:01                           ;
-; Total                     ; 00:04:40     ; --                      ; --                  ; 00:11:09                           ;
+; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 1510 MB             ; 00:00:01                           ;
+; Total                     ; 00:04:41     ; --                      ; --                  ; 00:11:10                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -186,6 +187,7 @@ agreement for further details.
 ; Assembler                 ; cl3.dvmco.met    ; CentOS Linux ; CentOS Linux ; x86_64         ;
 ; TimeQuest Timing Analyzer ; cl3.dvmco.met    ; CentOS Linux ; CentOS Linux ; x86_64         ;
 ; EDA Netlist Writer        ; cl3.dvmco.met    ; CentOS Linux ; CentOS Linux ; x86_64         ;
+; EDA Netlist Writer        ; cl3.dvmco.met    ; CentOS Linux ; CentOS Linux ; x86_64         ;
 +---------------------------+------------------+--------------+--------------+----------------+
 
 
@@ -197,6 +199,7 @@ quartus_fit --read_settings_files=off --write_settings_files=off varint_encoder 
 quartus_asm --read_settings_files=off --write_settings_files=off varint_encoder -c varint_encoder
 quartus_sta varint_encoder -c varint_encoder
 quartus_eda --read_settings_files=off --write_settings_files=off varint_encoder -c varint_encoder
+quartus_eda --read_settings_files=on --write_settings_files=off varint_encoder -c varint_encoder
 
 
 
