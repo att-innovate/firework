@@ -56,14 +56,17 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 	wire        raw_data_push_mux;
 
 	wire [7:0]  raw_data_mux, encoded_byte;
+	
+	wire varint_out_pop, varint_pop_mux;
+	wire raw_data_out_pop, raw_data_pop_mux;
 
 	wire varint_out_fifo_full, varint_out_fifo_empty;
-	wire varint_out_fifo_clr, varint_out_fifo_push, varint_out_fifo_pop;
-	wire varint_out_index_clr, varint_out_index_push, varint_out_index_pop;
+	wire varint_out_fifo_clr, varint_out_fifo_push;
+	wire varint_out_index_clr, varint_out_index_push;
 
 	wire raw_data_out_fifo_full, raw_data_out_fifo_empty;
-	wire raw_data_out_fifo_clr, raw_data_out_fifo_push, raw_data_out_fifo_pop;
-	wire raw_data_out_index_clr, raw_data_out_index_push, raw_data_out_index_pop;
+	wire raw_data_out_fifo_clr;
+	wire raw_data_out_index_clr;
 
 	wire [7:0] varint_out_fifo_q, raw_data_out_fifo_q;
 	wire [9:0] varint_out_index_q, raw_data_out_index_q;
@@ -205,8 +208,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 		.clk                   (clock_clk),
 		.reset                 (reset_reset),
 		.varint_out_fifo_empty (varint_out_fifo_empty),
-		.varint_out_fifo_pop   (varint_out_fifo_pop),
-		.varint_out_index_pop  (varint_out_index_pop),
+		.varint_out_pop        (varint_out_pop),
 		.varint_data_accepted  (varint_data_accepted),
 		.varint_data_valid     (varint_data_valid)
 	);
@@ -215,8 +217,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 		.clk                     (clock_clk),
 		.reset                   (reset_reset),
 		.raw_data_out_fifo_empty (raw_data_out_fifo_empty),
-		.raw_data_out_fifo_pop   (raw_data_out_fifo_pop),
-		.raw_data_out_index_pop  (raw_data_out_index_pop),
+		.raw_data_out_pop        (raw_data_out_pop),
 		.raw_data_accepted       (raw_data_accepted),
 		.raw_data_valid          (raw_data_valid)
 	);
@@ -236,6 +237,9 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 		.varint_data_accepted (varint_data_accepted),
 		.raw_data_accepted    (raw_data_accepted)
 	);
+	
+	assign varint_pop_mux = (varint_data_accepted) ? 1'b1 : varint_out_pop;
+	assign raw_data_pop_mux = (raw_data_accepted) ? 1'b1 : raw_data_out_pop;
 
 	assign out_fifo_data = (varint_enable) ? varint_out_fifo_q : 8'hzz;
 	assign out_fifo_data = (raw_data_enable) ? raw_data_out_fifo_q : 8'hzz;
@@ -266,7 +270,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 	varint_out_fifo out0 (
 		.data  (encoded_byte),           //  fifo_input.datain
 		.wrreq (varint_out_fifo_push),   //            .wrreq
-		.rdreq (varint_out_fifo_pop),    //            .rdreq
+		.rdreq (varint_pop_mux),         //            .rdreq
 		.clock (clock_clk),              //            .clk
 		.sclr  (varint_out_fifo_clr),    //            .sclr
 		.q     (varint_out_fifo_q),      // fifo_output.dataout
@@ -277,7 +281,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 	varint_out_index out1 (
 		.data  (varint_in_index_q),      //  fifo_input.datain
 		.wrreq (varint_out_index_push),  //            .wrreq
-		.rdreq (varint_out_index_pop),   //            .rdreq
+		.rdreq (varint_pop_mux),         //            .rdreq
 		.clock (clock_clk),              //            .clk
 		.sclr  (varint_out_index_clr),   //            .sclr
 		.q     (varint_out_index_q)      // fifo_output.dataout
@@ -286,7 +290,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 	raw_data_out_fifo out2 (
 		.data  (raw_data_mux),           //  fifo_input.datain
 		.wrreq (raw_data_push_mux),      //            .wrreq
-		.rdreq (raw_data_out_fifo_pop),  //            .rdreq
+		.rdreq (raw_data_pop_mux),       //            .rdreq
 		.clock (clock_clk),              //            .clk
 		.sclr  (raw_data_out_fifo_clr),  //            .sclr
 		.q     (raw_data_out_fifo_q),    // fifo_output.dataout
@@ -297,7 +301,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 	raw_data_out_index out3 (
 		.data  (raw_data_in_index_q),    //  fifo_input.datain
 		.wrreq (raw_data_push_mux),      //            .wrreq
-		.rdreq (raw_data_out_index_pop), //            .rdreq
+		.rdreq (raw_data_pop_mux),       //            .rdreq
 		.clock (clock_clk),              //            .clk
 		.sclr  (raw_data_out_index_clr), //            .sclr
 		.q     (raw_data_out_index_q)    // fifo_output.dataout

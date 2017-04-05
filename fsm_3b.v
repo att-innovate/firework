@@ -7,8 +7,7 @@ module fsm_3b (
 
 		// FIFO control signals
 		input  wire  raw_data_out_fifo_empty,
-		output reg   raw_data_out_fifo_pop,
-		output reg   raw_data_out_index_pop,
+		output reg   raw_data_out_pop,
 
 		// FSM handshake signals
 		input  wire  raw_data_accepted,
@@ -36,8 +35,7 @@ module fsm_3b (
 	always @*
 	begin
 		// default values (may be overwritten)
-		raw_data_out_fifo_pop = 1'b0;
-		raw_data_out_index_pop = 1'b0;
+		raw_data_out_pop = 1'b0;
 		raw_data_valid = 1'b0;
 
 		case (state)
@@ -46,8 +44,7 @@ module fsm_3b (
 
 			R_FETCH:
 				begin
-					raw_data_out_fifo_pop = 1'b1;
-					raw_data_out_index_pop = 1'b1;
+					raw_data_out_pop = 1'b1;
 					
 					if (raw_data_out_fifo_empty)
 						next_state = R_FETCH;
@@ -59,7 +56,7 @@ module fsm_3b (
 				begin
 					raw_data_valid = 1'b1;
 					
-					if (raw_data_accepted)
+					if (raw_data_accepted && raw_data_out_fifo_empty)
 						next_state = R_FETCH;
 					else
 						next_state = R_READY;

@@ -1,5 +1,5 @@
 Flow report for varint_encoder
-Fri Mar 31 15:52:18 2017
+Tue Apr  4 18:48:40 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -41,15 +41,15 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Flow Status                 ; Successful - Fri Mar 31 15:52:18 2017           ;
+; Flow Status                 ; Successful - Tue Apr  4 18:48:40 2017           ;
 ; Quartus Prime Version       ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
 ; Revision Name               ; varint_encoder                                  ;
 ; Top-level Entity Name       ; protobuf_serializer                             ;
 ; Family                      ; Arria 10                                        ;
 ; Device                      ; 10AS066N3F40E2SGE2                              ;
 ; Timing Models               ; Preliminary                                     ;
-; Logic utilization (in ALMs) ; 532 / 251,680 ( < 1 % )                         ;
-; Total registers             ; 660                                             ;
+; Logic utilization (in ALMs) ; 526 / 251,680 ( < 1 % )                         ;
+; Total registers             ; 664                                             ;
 ; Total pins                  ; 187 / 812 ( 23 % )                              ;
 ; Total virtual pins          ; 0                                               ;
 ; Total block memory bits     ; 303,104 / 43,642,880 ( < 1 % )                  ;
@@ -65,101 +65,101 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/31/2017 13:15:45 ;
+; Start date & time ; 04/04/2017 18:43:47 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; varint_encoder      ;
 +-------------------+---------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                                                                                          ;
-+--------------------------------------+----------------------------------------------------------------------+--------------------------------------+---------------------+----------------+
-; Assignment Name                      ; Value                                                                ; Default Value                        ; Entity Name         ; Section Id     ;
-+--------------------------------------+----------------------------------------------------------------------+--------------------------------------+---------------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 203178701995592.149099134518685                                      ; --                                   ; --                  ; --             ;
-; EDA_DESIGN_INSTANCE_NAME             ; NA                                                                   ; --                                   ; --                  ; fsm_0_tb       ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST      ; On                                                                   ; --                                   ; --                  ; eda_simulation ;
-; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; fsm_0_tb                                                             ; --                                   ; --                  ; eda_simulation ;
-; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                                                          ; --                                   ; --                  ; eda_simulation ;
-; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (Verilog)                                            ; <None>                               ; --                  ; --             ;
-; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                                                      ; --                                   ; --                  ; eda_simulation ;
-; EDA_TEST_BENCH_FILE                  ; fsm_0_tb.v                                                           ; --                                   ; --                  ; fsm_0_tb       ;
-; EDA_TEST_BENCH_MODULE_NAME           ; fsm_0_tb                                                             ; --                                   ; --                  ; fsm_0_tb       ;
-; EDA_TEST_BENCH_NAME                  ; fsm_0_tb                                                             ; --                                   ; --                  ; eda_simulation ;
-; EDA_TIME_SCALE                       ; 1 ps                                                                 ; --                                   ; --                  ; eda_simulation ;
-; MAX_CORE_JUNCTION_TEMP               ; 100                                                                  ; --                                   ; --                  ; --             ;
-; MIN_CORE_JUNCTION_TEMP               ; 0                                                                    ; --                                   ; --                  ; --             ;
-; MISC_FILE                            ; varint_in_fifo/varint_in_fifo.cmp                                    ; --                                   ; --                  ; --             ;
-; MISC_FILE                            ; varint_in_fifo/../varint_in_fifo.qsys                                ; --                                   ; --                  ; --             ;
-; MISC_FILE                            ; varint_in_index/varint_in_index.cmp                                  ; --                                   ; --                  ; --             ;
-; MISC_FILE                            ; varint_in_index/../varint_in_index.qsys                              ; --                                   ; --                  ; --             ;
-; MISC_FILE                            ; raw_data_in_fifo/raw_data_in_fifo.cmp                                ; --                                   ; --                  ; --             ;
-; MISC_FILE                            ; raw_data_in_fifo/../raw_data_in_fifo.qsys                            ; --                                   ; --                  ; --             ;
-; MISC_FILE                            ; raw_data_in_index/raw_data_in_index.cmp                              ; --                                   ; --                  ; --             ;
-; MISC_FILE                            ; raw_data_in_index/../raw_data_in_index.qsys                          ; --                                   ; --                  ; --             ;
-; MISC_FILE                            ; raw_data_in_wstrb/raw_data_in_wstrb.cmp                              ; --                                   ; --                  ; --             ;
-; MISC_FILE                            ; raw_data_in_wstrb/../raw_data_in_wstrb.qsys                          ; --                                   ; --                  ; --             ;
-; MISC_FILE                            ; varint_out_fifo/varint_out_fifo.cmp                                  ; --                                   ; --                  ; --             ;
-; MISC_FILE                            ; varint_out_fifo/../varint_out_fifo.qsys                              ; --                                   ; --                  ; --             ;
-; MISC_FILE                            ; varint_out_index/varint_out_index.cmp                                ; --                                   ; --                  ; --             ;
-; MISC_FILE                            ; varint_out_index/../varint_out_index.qsys                            ; --                                   ; --                  ; --             ;
-; MISC_FILE                            ; raw_data_out_fifo/raw_data_out_fifo.cmp                              ; --                                   ; --                  ; --             ;
-; MISC_FILE                            ; raw_data_out_fifo/../raw_data_out_fifo.qsys                          ; --                                   ; --                  ; --             ;
-; MISC_FILE                            ; raw_data_out_index/raw_data_out_index.cmp                            ; --                                   ; --                  ; --             ;
-; MISC_FILE                            ; raw_data_out_index/../raw_data_out_index.qsys                        ; --                                   ; --                  ; --             ;
-; MISC_FILE                            ; out_fifo/out_fifo.cmp                                                ; --                                   ; --                  ; --             ;
-; MISC_FILE                            ; out_fifo/../out_fifo.qsys                                            ; --                                   ; --                  ; --             ;
-; NUM_PARALLEL_PROCESSORS              ; All                                                                  ; --                                   ; --                  ; --             ;
-; PARTITION_COLOR                      ; 16764057                                                             ; --                                   ; protobuf_serializer ; Top            ;
-; PARTITION_FITTER_PRESERVATION_LEVEL  ; PLACEMENT                                                            ; --                                   ; protobuf_serializer ; Top            ;
-; PARTITION_NETLIST_TYPE               ; SOURCE                                                               ; --                                   ; protobuf_serializer ; Top            ;
-; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                                                  ; --                                   ; --                  ; --             ;
-; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                                ; --                                   ; --                  ; --             ;
-; PROJECT_IP_REGENERATION_POLICY       ; NEVER_REGENERATE_IP                                                  ; SKIP_REGENERATING_IP_IF_HDL_MODIFIED ; --                  ; --             ;
-; PROJECT_OUTPUT_DIRECTORY             ; output_files                                                         ; --                                   ; --                  ; --             ;
-; SLD_FILE                             ; varint_in_fifo/varint_in_fifo.debuginfo                              ; --                                   ; --                  ; --             ;
-; SLD_FILE                             ; varint_in_index/varint_in_index.debuginfo                            ; --                                   ; --                  ; --             ;
-; SLD_FILE                             ; raw_data_in_fifo/raw_data_in_fifo.debuginfo                          ; --                                   ; --                  ; --             ;
-; SLD_FILE                             ; raw_data_in_index/raw_data_in_index.debuginfo                        ; --                                   ; --                  ; --             ;
-; SLD_FILE                             ; raw_data_in_wstrb/raw_data_in_wstrb.debuginfo                        ; --                                   ; --                  ; --             ;
-; SLD_FILE                             ; varint_out_fifo/varint_out_fifo.debuginfo                            ; --                                   ; --                  ; --             ;
-; SLD_FILE                             ; varint_out_index/varint_out_index.debuginfo                          ; --                                   ; --                  ; --             ;
-; SLD_FILE                             ; raw_data_out_fifo/raw_data_out_fifo.debuginfo                        ; --                                   ; --                  ; --             ;
-; SLD_FILE                             ; raw_data_out_index/raw_data_out_index.debuginfo                      ; --                                   ; --                  ; --             ;
-; SLD_FILE                             ; out_fifo/out_fifo.debuginfo                                          ; --                                   ; --                  ; --             ;
-; SLD_INFO                             ; QSYS_NAME out_fifo HAS_SOPCINFO 1 GENERATION_ID 1488509770           ; --                                   ; out_fifo            ; --             ;
-; SLD_INFO                             ; QSYS_NAME raw_data_in_fifo HAS_SOPCINFO 1 GENERATION_ID 1488502505   ; --                                   ; raw_data_in_fifo    ; --             ;
-; SLD_INFO                             ; QSYS_NAME raw_data_in_index HAS_SOPCINFO 1 GENERATION_ID 1488508817  ; --                                   ; raw_data_in_index   ; --             ;
-; SLD_INFO                             ; QSYS_NAME raw_data_in_wstrb HAS_SOPCINFO 1 GENERATION_ID 1488508916  ; --                                   ; raw_data_in_wstrb   ; --             ;
-; SLD_INFO                             ; QSYS_NAME raw_data_out_fifo HAS_SOPCINFO 1 GENERATION_ID 1488509071  ; --                                   ; raw_data_out_fifo   ; --             ;
-; SLD_INFO                             ; QSYS_NAME raw_data_out_index HAS_SOPCINFO 1 GENERATION_ID 1488509169 ; --                                   ; raw_data_out_index  ; --             ;
-; SLD_INFO                             ; QSYS_NAME varint_in_fifo HAS_SOPCINFO 1 GENERATION_ID 1488501637     ; --                                   ; varint_in_fifo      ; --             ;
-; SLD_INFO                             ; QSYS_NAME varint_in_index HAS_SOPCINFO 1 GENERATION_ID 1488508747    ; --                                   ; varint_in_index     ; --             ;
-; SLD_INFO                             ; QSYS_NAME varint_out_fifo HAS_SOPCINFO 1 GENERATION_ID 1488506152    ; --                                   ; varint_out_fifo     ; --             ;
-; SLD_INFO                             ; QSYS_NAME varint_out_index HAS_SOPCINFO 1 GENERATION_ID 1488508581   ; --                                   ; varint_out_index    ; --             ;
-; SOPCINFO_FILE                        ; varint_in_fifo/../varint_in_fifo.sopcinfo                            ; --                                   ; --                  ; --             ;
-; SOPCINFO_FILE                        ; varint_in_index/../varint_in_index.sopcinfo                          ; --                                   ; --                  ; --             ;
-; SOPCINFO_FILE                        ; raw_data_in_fifo/../raw_data_in_fifo.sopcinfo                        ; --                                   ; --                  ; --             ;
-; SOPCINFO_FILE                        ; raw_data_in_index/../raw_data_in_index.sopcinfo                      ; --                                   ; --                  ; --             ;
-; SOPCINFO_FILE                        ; raw_data_in_wstrb/../raw_data_in_wstrb.sopcinfo                      ; --                                   ; --                  ; --             ;
-; SOPCINFO_FILE                        ; varint_out_fifo/../varint_out_fifo.sopcinfo                          ; --                                   ; --                  ; --             ;
-; SOPCINFO_FILE                        ; varint_out_index/../varint_out_index.sopcinfo                        ; --                                   ; --                  ; --             ;
-; SOPCINFO_FILE                        ; raw_data_out_fifo/../raw_data_out_fifo.sopcinfo                      ; --                                   ; --                  ; --             ;
-; SOPCINFO_FILE                        ; raw_data_out_index/../raw_data_out_index.sopcinfo                    ; --                                   ; --                  ; --             ;
-; SOPCINFO_FILE                        ; out_fifo/../out_fifo.sopcinfo                                        ; --                                   ; --                  ; --             ;
-; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --             ;
-; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --             ;
-; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --             ;
-; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --             ;
-; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --             ;
-; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --             ;
-; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --             ;
-; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --             ;
-; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --             ;
-; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --             ;
-; TOP_LEVEL_ENTITY                     ; protobuf_serializer                                                  ; varint_encoder                       ; --                  ; --             ;
-; VERILOG_SHOW_LMF_MAPPING_MESSAGES    ; Off                                                                  ; --                                   ; --                  ; --             ;
-+--------------------------------------+----------------------------------------------------------------------+--------------------------------------+---------------------+----------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                                                                  ;
++--------------------------------------+----------------------------------------------------------------------+--------------------------------------+---------------------+------------------------+
+; Assignment Name                      ; Value                                                                ; Default Value                        ; Entity Name         ; Section Id             ;
++--------------------------------------+----------------------------------------------------------------------+--------------------------------------+---------------------+------------------------+
+; COMPILER_SIGNATURE_ID                ; 203178701995592.149135662609293                                      ; --                                   ; --                  ; --                     ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                                                   ; --                                   ; --                  ; protobuf_serializer_tb ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST      ; On                                                                   ; --                                   ; --                  ; eda_simulation         ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; protobuf_serializer_tb                                               ; --                                   ; --                  ; eda_simulation         ;
+; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                                                          ; --                                   ; --                  ; eda_simulation         ;
+; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (Verilog)                                            ; <None>                               ; --                  ; --                     ;
+; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                                                      ; --                                   ; --                  ; eda_simulation         ;
+; EDA_TEST_BENCH_FILE                  ; protobuf_serializer_tb.v                                             ; --                                   ; --                  ; protobuf_serializer_tb ;
+; EDA_TEST_BENCH_MODULE_NAME           ; protobuf_serializer_tb                                               ; --                                   ; --                  ; protobuf_serializer_tb ;
+; EDA_TEST_BENCH_NAME                  ; protobuf_serializer_tb                                               ; --                                   ; --                  ; eda_simulation         ;
+; EDA_TIME_SCALE                       ; 1 ps                                                                 ; --                                   ; --                  ; eda_simulation         ;
+; MAX_CORE_JUNCTION_TEMP               ; 100                                                                  ; --                                   ; --                  ; --                     ;
+; MIN_CORE_JUNCTION_TEMP               ; 0                                                                    ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; varint_in_fifo/varint_in_fifo.cmp                                    ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; varint_in_fifo/../varint_in_fifo.qsys                                ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; varint_in_index/varint_in_index.cmp                                  ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; varint_in_index/../varint_in_index.qsys                              ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; raw_data_in_fifo/raw_data_in_fifo.cmp                                ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; raw_data_in_fifo/../raw_data_in_fifo.qsys                            ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; raw_data_in_index/raw_data_in_index.cmp                              ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; raw_data_in_index/../raw_data_in_index.qsys                          ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; raw_data_in_wstrb/raw_data_in_wstrb.cmp                              ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; raw_data_in_wstrb/../raw_data_in_wstrb.qsys                          ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; varint_out_fifo/varint_out_fifo.cmp                                  ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; varint_out_fifo/../varint_out_fifo.qsys                              ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; varint_out_index/varint_out_index.cmp                                ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; varint_out_index/../varint_out_index.qsys                            ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; raw_data_out_fifo/raw_data_out_fifo.cmp                              ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; raw_data_out_fifo/../raw_data_out_fifo.qsys                          ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; raw_data_out_index/raw_data_out_index.cmp                            ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; raw_data_out_index/../raw_data_out_index.qsys                        ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; out_fifo/out_fifo.cmp                                                ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; out_fifo/../out_fifo.qsys                                            ; --                                   ; --                  ; --                     ;
+; NUM_PARALLEL_PROCESSORS              ; All                                                                  ; --                                   ; --                  ; --                     ;
+; PARTITION_COLOR                      ; 16764057                                                             ; --                                   ; protobuf_serializer ; Top                    ;
+; PARTITION_FITTER_PRESERVATION_LEVEL  ; PLACEMENT                                                            ; --                                   ; protobuf_serializer ; Top                    ;
+; PARTITION_NETLIST_TYPE               ; SOURCE                                                               ; --                                   ; protobuf_serializer ; Top                    ;
+; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                                                  ; --                                   ; --                  ; --                     ;
+; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                                ; --                                   ; --                  ; --                     ;
+; PROJECT_IP_REGENERATION_POLICY       ; NEVER_REGENERATE_IP                                                  ; SKIP_REGENERATING_IP_IF_HDL_MODIFIED ; --                  ; --                     ;
+; PROJECT_OUTPUT_DIRECTORY             ; output_files                                                         ; --                                   ; --                  ; --                     ;
+; SLD_FILE                             ; varint_in_fifo/varint_in_fifo.debuginfo                              ; --                                   ; --                  ; --                     ;
+; SLD_FILE                             ; varint_in_index/varint_in_index.debuginfo                            ; --                                   ; --                  ; --                     ;
+; SLD_FILE                             ; raw_data_in_fifo/raw_data_in_fifo.debuginfo                          ; --                                   ; --                  ; --                     ;
+; SLD_FILE                             ; raw_data_in_index/raw_data_in_index.debuginfo                        ; --                                   ; --                  ; --                     ;
+; SLD_FILE                             ; raw_data_in_wstrb/raw_data_in_wstrb.debuginfo                        ; --                                   ; --                  ; --                     ;
+; SLD_FILE                             ; varint_out_fifo/varint_out_fifo.debuginfo                            ; --                                   ; --                  ; --                     ;
+; SLD_FILE                             ; varint_out_index/varint_out_index.debuginfo                          ; --                                   ; --                  ; --                     ;
+; SLD_FILE                             ; raw_data_out_fifo/raw_data_out_fifo.debuginfo                        ; --                                   ; --                  ; --                     ;
+; SLD_FILE                             ; raw_data_out_index/raw_data_out_index.debuginfo                      ; --                                   ; --                  ; --                     ;
+; SLD_FILE                             ; out_fifo/out_fifo.debuginfo                                          ; --                                   ; --                  ; --                     ;
+; SLD_INFO                             ; QSYS_NAME out_fifo HAS_SOPCINFO 1 GENERATION_ID 1488509770           ; --                                   ; out_fifo            ; --                     ;
+; SLD_INFO                             ; QSYS_NAME raw_data_in_fifo HAS_SOPCINFO 1 GENERATION_ID 1488502505   ; --                                   ; raw_data_in_fifo    ; --                     ;
+; SLD_INFO                             ; QSYS_NAME raw_data_in_index HAS_SOPCINFO 1 GENERATION_ID 1488508817  ; --                                   ; raw_data_in_index   ; --                     ;
+; SLD_INFO                             ; QSYS_NAME raw_data_in_wstrb HAS_SOPCINFO 1 GENERATION_ID 1488508916  ; --                                   ; raw_data_in_wstrb   ; --                     ;
+; SLD_INFO                             ; QSYS_NAME raw_data_out_fifo HAS_SOPCINFO 1 GENERATION_ID 1488509071  ; --                                   ; raw_data_out_fifo   ; --                     ;
+; SLD_INFO                             ; QSYS_NAME raw_data_out_index HAS_SOPCINFO 1 GENERATION_ID 1488509169 ; --                                   ; raw_data_out_index  ; --                     ;
+; SLD_INFO                             ; QSYS_NAME varint_in_fifo HAS_SOPCINFO 1 GENERATION_ID 1488501637     ; --                                   ; varint_in_fifo      ; --                     ;
+; SLD_INFO                             ; QSYS_NAME varint_in_index HAS_SOPCINFO 1 GENERATION_ID 1488508747    ; --                                   ; varint_in_index     ; --                     ;
+; SLD_INFO                             ; QSYS_NAME varint_out_fifo HAS_SOPCINFO 1 GENERATION_ID 1488506152    ; --                                   ; varint_out_fifo     ; --                     ;
+; SLD_INFO                             ; QSYS_NAME varint_out_index HAS_SOPCINFO 1 GENERATION_ID 1488508581   ; --                                   ; varint_out_index    ; --                     ;
+; SOPCINFO_FILE                        ; varint_in_fifo/../varint_in_fifo.sopcinfo                            ; --                                   ; --                  ; --                     ;
+; SOPCINFO_FILE                        ; varint_in_index/../varint_in_index.sopcinfo                          ; --                                   ; --                  ; --                     ;
+; SOPCINFO_FILE                        ; raw_data_in_fifo/../raw_data_in_fifo.sopcinfo                        ; --                                   ; --                  ; --                     ;
+; SOPCINFO_FILE                        ; raw_data_in_index/../raw_data_in_index.sopcinfo                      ; --                                   ; --                  ; --                     ;
+; SOPCINFO_FILE                        ; raw_data_in_wstrb/../raw_data_in_wstrb.sopcinfo                      ; --                                   ; --                  ; --                     ;
+; SOPCINFO_FILE                        ; varint_out_fifo/../varint_out_fifo.sopcinfo                          ; --                                   ; --                  ; --                     ;
+; SOPCINFO_FILE                        ; varint_out_index/../varint_out_index.sopcinfo                        ; --                                   ; --                  ; --                     ;
+; SOPCINFO_FILE                        ; raw_data_out_fifo/../raw_data_out_fifo.sopcinfo                      ; --                                   ; --                  ; --                     ;
+; SOPCINFO_FILE                        ; raw_data_out_index/../raw_data_out_index.sopcinfo                    ; --                                   ; --                  ; --                     ;
+; SOPCINFO_FILE                        ; out_fifo/../out_fifo.sopcinfo                                        ; --                                   ; --                  ; --                     ;
+; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --                     ;
+; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --                     ;
+; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --                     ;
+; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --                     ;
+; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --                     ;
+; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --                     ;
+; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --                     ;
+; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --                     ;
+; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --                     ;
+; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --                     ;
+; TOP_LEVEL_ENTITY                     ; protobuf_serializer                                                  ; varint_encoder                       ; --                  ; --                     ;
+; VERILOG_SHOW_LMF_MAPPING_MESSAGES    ; Off                                                                  ; --                                   ; --                  ; --                     ;
++--------------------------------------+----------------------------------------------------------------------+--------------------------------------+---------------------+------------------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------+
@@ -167,13 +167,12 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:16     ; 1.0                     ; 1484 MB             ; 00:00:37                           ;
-; Fitter                    ; 00:03:04     ; 3.1                     ; 8466 MB             ; 00:09:06                           ;
-; Assembler                 ; 00:00:47     ; 1.0                     ; 5411 MB             ; 00:00:47                           ;
-; TimeQuest Timing Analyzer ; 00:00:32     ; 5.5                     ; 4397 MB             ; 00:00:38                           ;
-; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 1513 MB             ; 00:00:01                           ;
-; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 1510 MB             ; 00:00:01                           ;
-; Total                     ; 00:04:41     ; --                      ; --                  ; 00:11:10                           ;
+; Analysis & Synthesis      ; 00:00:16     ; 1.0                     ; 1482 MB             ; 00:00:36                           ;
+; Fitter                    ; 00:03:07     ; 3.2                     ; 8474 MB             ; 00:09:09                           ;
+; Assembler                 ; 00:00:49     ; 1.0                     ; 5412 MB             ; 00:00:48                           ;
+; TimeQuest Timing Analyzer ; 00:00:32     ; 5.6                     ; 4393 MB             ; 00:00:38                           ;
+; EDA Netlist Writer        ; 00:00:02     ; 1.0                     ; 1508 MB             ; 00:00:01                           ;
+; Total                     ; 00:04:46     ; --                      ; --                  ; 00:11:12                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -187,7 +186,6 @@ agreement for further details.
 ; Assembler                 ; cl3.dvmco.met    ; CentOS Linux ; CentOS Linux ; x86_64         ;
 ; TimeQuest Timing Analyzer ; cl3.dvmco.met    ; CentOS Linux ; CentOS Linux ; x86_64         ;
 ; EDA Netlist Writer        ; cl3.dvmco.met    ; CentOS Linux ; CentOS Linux ; x86_64         ;
-; EDA Netlist Writer        ; cl3.dvmco.met    ; CentOS Linux ; CentOS Linux ; x86_64         ;
 +---------------------------+------------------+--------------+--------------+----------------+
 
 
@@ -199,7 +197,6 @@ quartus_fit --read_settings_files=off --write_settings_files=off varint_encoder 
 quartus_asm --read_settings_files=off --write_settings_files=off varint_encoder -c varint_encoder
 quartus_sta varint_encoder -c varint_encoder
 quartus_eda --read_settings_files=off --write_settings_files=off varint_encoder -c varint_encoder
-quartus_eda --read_settings_files=on --write_settings_files=off varint_encoder -c varint_encoder
 
 
 

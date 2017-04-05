@@ -1,5 +1,5 @@
 Analysis & Synthesis report for varint_encoder
-Fri Mar 31 13:16:01 2017
+Tue Apr  4 18:44:02 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -84,7 +84,7 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Fri Mar 31 13:16:01 2017           ;
+; Analysis & Synthesis Status ; Successful - Tue Apr  4 18:44:02 2017           ;
 ; Quartus Prime Version       ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
 ; Revision Name               ; varint_encoder                                  ;
 ; Top-level Entity Name       ; protobuf_serializer                             ;
@@ -304,14 +304,14 @@ agreement for further details.
 +---------------------------------------------+-----------------+
 ; Resource                                    ; Usage           ;
 +---------------------------------------------+-----------------+
-; Estimate of Logic utilization (ALMs needed) ; 532             ;
+; Estimate of Logic utilization (ALMs needed) ; 545             ;
 ;                                             ;                 ;
-; Combinational ALUT usage for logic          ; 945             ;
+; Combinational ALUT usage for logic          ; 939             ;
 ;     -- 7 input functions                    ; 0               ;
-;     -- 6 input functions                    ; 114             ;
-;     -- 5 input functions                    ; 64              ;
-;     -- 4 input functions                    ; 173             ;
-;     -- <=3 input functions                  ; 594             ;
+;     -- 6 input functions                    ; 146             ;
+;     -- 5 input functions                    ; 76              ;
+;     -- 4 input functions                    ; 133             ;
+;     -- <=3 input functions                  ; 584             ;
 ;                                             ;                 ;
 ; Dedicated logic registers                   ; 632             ;
 ;                                             ;                 ;
@@ -325,8 +325,8 @@ agreement for further details.
 ;                                             ;                 ;
 ; Maximum fan-out node                        ; clock_clk~input ;
 ; Maximum fan-out                             ; 764             ;
-; Total fan-out                               ; 8783            ;
-; Average fan-out                             ; 4.22            ;
+; Total fan-out                               ; 8849            ;
+; Average fan-out                             ; 4.26            ;
 +---------------------------------------------+-----------------+
 
 
@@ -335,13 +335,13 @@ agreement for further details.
 +----------------------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------+-----------------------------+
 ; Compilation Hierarchy Node                         ; LC Combinationals ; LC Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                     ; Entity Name                         ; Library Name                ;
 +----------------------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------+-----------------------------+
-; |protobuf_serializer                               ; 945 (17)          ; 632 (0)      ; 303104            ; 0          ; 187  ; 0            ; |protobuf_serializer                                                                                                                                                                    ; protobuf_serializer                 ; work                        ;
+; |protobuf_serializer                               ; 939 (17)          ; 632 (0)      ; 303104            ; 0          ; 187  ; 0            ; |protobuf_serializer                                                                                                                                                                    ; protobuf_serializer                 ; work                        ;
 ;    |fsm_0:f0|                                      ; 32 (32)           ; 61 (61)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_0:f0                                                                                                                                                           ; fsm_0                               ; work                        ;
 ;    |fsm_1:f1|                                      ; 11 (11)           ; 9 (9)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_1:f1                                                                                                                                                           ; fsm_1                               ; work                        ;
 ;    |fsm_2:f2|                                      ; 56 (56)           ; 39 (39)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_2:f2                                                                                                                                                           ; fsm_2                               ; work                        ;
 ;    |fsm_3:f3|                                      ; 51 (51)           ; 17 (17)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_3:f3                                                                                                                                                           ; fsm_3                               ; work                        ;
-;    |fsm_3a:f3a|                                    ; 3 (3)             ; 2 (2)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_3a:f3a                                                                                                                                                         ; fsm_3a                              ; work                        ;
-;    |fsm_3b:f3b|                                    ; 3 (3)             ; 2 (2)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_3b:f3b                                                                                                                                                         ; fsm_3b                              ; work                        ;
+;    |fsm_3a:f3a|                                    ; 2 (2)             ; 2 (2)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_3a:f3a                                                                                                                                                         ; fsm_3a                              ; work                        ;
+;    |fsm_3b:f3b|                                    ; 2 (2)             ; 2 (2)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_3b:f3b                                                                                                                                                         ; fsm_3b                              ; work                        ;
 ;    |fsm_4:f4|                                      ; 45 (45)           ; 18 (18)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_4:f4                                                                                                                                                           ; fsm_4                               ; work                        ;
 ;    |out_fifo:out4|                                 ; 82 (0)            ; 56 (0)       ; 65536             ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4                                                                                                                                                      ; out_fifo                            ; out_fifo                    ;
 ;       |out_fifo_fifo_160_otpqnty:fifo_0|           ; 82 (0)            ; 56 (0)       ; 65536             ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0                                                                                                                     ; out_fifo_fifo_160_otpqnty           ; out_fifo_fifo_160           ;
@@ -379,23 +379,23 @@ agreement for further details.
 ;                   |cntr_1ra:rd_ptr_msb|            ; 10 (10)           ; 9 (9)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cntr_1ra:rd_ptr_msb        ; cntr_1ra                            ; work                        ;
 ;                   |cntr_9sa:wr_ptr|                ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cntr_9sa:wr_ptr            ; cntr_9sa                            ; work                        ;
 ;                   |cntr_ls6:usedw_counter|         ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cntr_ls6:usedw_counter     ; cntr_ls6                            ; work                        ;
-;    |raw_data_out_fifo:out2|                        ; 74 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_fifo:out2                                                                                                                                             ; raw_data_out_fifo                   ; raw_data_out_fifo           ;
-;       |raw_data_out_fifo_fifo_160_q2auapq:fifo_0|  ; 74 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0                                                                                                   ; raw_data_out_fifo_fifo_160_q2auapq  ; raw_data_out_fifo_fifo_160  ;
-;          |scfifo:scfifo_component|                 ; 74 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component                                                                           ; scfifo                              ; work                        ;
-;             |scfifo_lna1:auto_generated|           ; 74 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated                                                ; scfifo_lna1                         ; work                        ;
-;                |a_dpfifo_8fa1:dpfifo|              ; 74 (37)           ; 52 (17)      ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo                           ; a_dpfifo_8fa1                       ; work                        ;
+;    |raw_data_out_fifo:out2|                        ; 75 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_fifo:out2                                                                                                                                             ; raw_data_out_fifo                   ; raw_data_out_fifo           ;
+;       |raw_data_out_fifo_fifo_160_q2auapq:fifo_0|  ; 75 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0                                                                                                   ; raw_data_out_fifo_fifo_160_q2auapq  ; raw_data_out_fifo_fifo_160  ;
+;          |scfifo:scfifo_component|                 ; 75 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component                                                                           ; scfifo                              ; work                        ;
+;             |scfifo_lna1:auto_generated|           ; 75 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated                                                ; scfifo_lna1                         ; work                        ;
+;                |a_dpfifo_8fa1:dpfifo|              ; 75 (39)           ; 52 (17)      ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo                           ; a_dpfifo_8fa1                       ; work                        ;
 ;                   |altsyncram_6gn1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|altsyncram_6gn1:FIFOram   ; altsyncram_6gn1                     ; work                        ;
 ;                   |cntr_asa:rd_ptr_msb|            ; 12 (12)           ; 11 (11)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_asa:rd_ptr_msb       ; cntr_asa                            ; work                        ;
-;                   |cntr_bsa:wr_ptr|                ; 13 (13)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_bsa:wr_ptr           ; cntr_bsa                            ; work                        ;
+;                   |cntr_bsa:wr_ptr|                ; 12 (12)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_bsa:wr_ptr           ; cntr_bsa                            ; work                        ;
 ;                   |cntr_ns6:usedw_counter|         ; 12 (12)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_ns6:usedw_counter    ; cntr_ns6                            ; work                        ;
 ;    |raw_data_out_index:out3|                       ; 75 (0)            ; 52 (0)       ; 40960             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_index:out3                                                                                                                                            ; raw_data_out_index                  ; raw_data_out_index          ;
 ;       |raw_data_out_index_fifo_160_tgkntjy:fifo_0| ; 75 (0)            ; 52 (0)       ; 40960             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0                                                                                                 ; raw_data_out_index_fifo_160_tgkntjy ; raw_data_out_index_fifo_160 ;
 ;          |scfifo:scfifo_component|                 ; 75 (0)            ; 52 (0)       ; 40960             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component                                                                         ; scfifo                              ; work                        ;
 ;             |scfifo_sn91:auto_generated|           ; 75 (0)            ; 52 (0)       ; 40960             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated                                              ; scfifo_sn91                         ; work                        ;
-;                |a_dpfifo_ff91:dpfifo|              ; 75 (38)           ; 52 (17)      ; 40960             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo                         ; a_dpfifo_ff91                       ; work                        ;
+;                |a_dpfifo_ff91:dpfifo|              ; 75 (39)           ; 52 (17)      ; 40960             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo                         ; a_dpfifo_ff91                       ; work                        ;
 ;                   |altsyncram_oin1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 40960             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram ; altsyncram_oin1                     ; work                        ;
 ;                   |cntr_asa:rd_ptr_msb|            ; 12 (12)           ; 11 (11)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_asa:rd_ptr_msb     ; cntr_asa                            ; work                        ;
-;                   |cntr_bsa:wr_ptr|                ; 13 (13)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_bsa:wr_ptr         ; cntr_bsa                            ; work                        ;
+;                   |cntr_bsa:wr_ptr|                ; 12 (12)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_bsa:wr_ptr         ; cntr_bsa                            ; work                        ;
 ;                   |cntr_ns6:usedw_counter|         ; 12 (12)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_ns6:usedw_counter  ; cntr_ns6                            ; work                        ;
 ;    |varint_in_fifo:in0|                            ; 67 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_fifo:in0                                                                                                                                                 ; varint_in_fifo                      ; varint_in_fifo              ;
 ;       |varint_in_fifo_fifo_160_v2ho2aa:fifo_0|     ; 67 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0                                                                                                          ; varint_in_fifo_fifo_160_v2ho2aa     ; varint_in_fifo_fifo_160     ;
@@ -415,20 +415,20 @@ agreement for further details.
 ;                   |cntr_1ra:rd_ptr_msb|            ; 10 (10)           ; 9 (9)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_1ra:rd_ptr_msb            ; cntr_1ra                            ; work                        ;
 ;                   |cntr_9sa:wr_ptr|                ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_9sa:wr_ptr                ; cntr_9sa                            ; work                        ;
 ;                   |cntr_ls6:usedw_counter|         ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_ls6:usedw_counter         ; cntr_ls6                            ; work                        ;
-;    |varint_out_fifo:out0|                          ; 78 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_fifo:out0                                                                                                                                               ; varint_out_fifo                     ; varint_out_fifo             ;
-;       |varint_out_fifo_fifo_160_q2auapq:fifo_0|    ; 78 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0                                                                                                       ; varint_out_fifo_fifo_160_q2auapq    ; varint_out_fifo_fifo_160    ;
-;          |scfifo:scfifo_component|                 ; 78 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component                                                                               ; scfifo                              ; work                        ;
-;             |scfifo_lna1:auto_generated|           ; 78 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated                                                    ; scfifo_lna1                         ; work                        ;
-;                |a_dpfifo_8fa1:dpfifo|              ; 78 (40)           ; 52 (17)      ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo                               ; a_dpfifo_8fa1                       ; work                        ;
+;    |varint_out_fifo:out0|                          ; 76 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_fifo:out0                                                                                                                                               ; varint_out_fifo                     ; varint_out_fifo             ;
+;       |varint_out_fifo_fifo_160_q2auapq:fifo_0|    ; 76 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0                                                                                                       ; varint_out_fifo_fifo_160_q2auapq    ; varint_out_fifo_fifo_160    ;
+;          |scfifo:scfifo_component|                 ; 76 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component                                                                               ; scfifo                              ; work                        ;
+;             |scfifo_lna1:auto_generated|           ; 76 (0)            ; 52 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated                                                    ; scfifo_lna1                         ; work                        ;
+;                |a_dpfifo_8fa1:dpfifo|              ; 76 (38)           ; 52 (17)      ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo                               ; a_dpfifo_8fa1                       ; work                        ;
 ;                   |altsyncram_6gn1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|altsyncram_6gn1:FIFOram       ; altsyncram_6gn1                     ; work                        ;
 ;                   |cntr_asa:rd_ptr_msb|            ; 12 (12)           ; 11 (11)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_asa:rd_ptr_msb           ; cntr_asa                            ; work                        ;
 ;                   |cntr_bsa:wr_ptr|                ; 13 (13)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_bsa:wr_ptr               ; cntr_bsa                            ; work                        ;
 ;                   |cntr_ns6:usedw_counter|         ; 13 (13)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_ns6:usedw_counter        ; cntr_ns6                            ; work                        ;
-;    |varint_out_index:out1|                         ; 79 (0)            ; 52 (0)       ; 40960             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_index:out1                                                                                                                                              ; varint_out_index                    ; varint_out_index            ;
-;       |varint_out_index_fifo_160_tgkntjy:fifo_0|   ; 79 (0)            ; 52 (0)       ; 40960             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0                                                                                                     ; varint_out_index_fifo_160_tgkntjy   ; varint_out_index_fifo_160   ;
-;          |scfifo:scfifo_component|                 ; 79 (0)            ; 52 (0)       ; 40960             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component                                                                             ; scfifo                              ; work                        ;
-;             |scfifo_sn91:auto_generated|           ; 79 (0)            ; 52 (0)       ; 40960             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated                                                  ; scfifo_sn91                         ; work                        ;
-;                |a_dpfifo_ff91:dpfifo|              ; 79 (41)           ; 52 (17)      ; 40960             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo                             ; a_dpfifo_ff91                       ; work                        ;
+;    |varint_out_index:out1|                         ; 76 (0)            ; 52 (0)       ; 40960             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_index:out1                                                                                                                                              ; varint_out_index                    ; varint_out_index            ;
+;       |varint_out_index_fifo_160_tgkntjy:fifo_0|   ; 76 (0)            ; 52 (0)       ; 40960             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0                                                                                                     ; varint_out_index_fifo_160_tgkntjy   ; varint_out_index_fifo_160   ;
+;          |scfifo:scfifo_component|                 ; 76 (0)            ; 52 (0)       ; 40960             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component                                                                             ; scfifo                              ; work                        ;
+;             |scfifo_sn91:auto_generated|           ; 76 (0)            ; 52 (0)       ; 40960             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated                                                  ; scfifo_sn91                         ; work                        ;
+;                |a_dpfifo_ff91:dpfifo|              ; 76 (38)           ; 52 (17)      ; 40960             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo                             ; a_dpfifo_ff91                       ; work                        ;
 ;                   |altsyncram_oin1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 40960             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram     ; altsyncram_oin1                     ; work                        ;
 ;                   |cntr_asa:rd_ptr_msb|            ; 12 (12)           ; 11 (11)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_asa:rd_ptr_msb         ; cntr_asa                            ; work                        ;
 ;                   |cntr_bsa:wr_ptr|                ; 13 (13)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_bsa:wr_ptr             ; cntr_bsa                            ; work                        ;
@@ -634,16 +634,16 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                    ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |protobuf_serializer|fsm_4:f4|arid[3]         ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |protobuf_serializer|fsm_3:f3|out_index[5]    ;
-; 3:1                ; 25 bits   ; 50 LEs        ; 0 LEs                ; 50 LEs                 ; Yes        ; |protobuf_serializer|fsm_2:f2|varint_data[18] ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |protobuf_serializer|fsm_4:f4|arid[0]         ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |protobuf_serializer|fsm_3:f3|out_index[9]    ;
+; 3:1                ; 25 bits   ; 50 LEs        ; 0 LEs                ; 50 LEs                 ; Yes        ; |protobuf_serializer|fsm_2:f2|varint_data[11] ;
 ; 3:1                ; 12 bits   ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |protobuf_serializer|fsm_0:f0|awid[0]         ;
-; 3:1                ; 36 bits   ; 72 LEs        ; 0 LEs                ; 72 LEs                 ; Yes        ; |protobuf_serializer|fsm_0:f0|wdata[7]        ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |protobuf_serializer|fsm_1:f1|index[1]        ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |protobuf_serializer|fsm_4:f4|arlen[2]        ;
+; 3:1                ; 36 bits   ; 72 LEs        ; 0 LEs                ; 72 LEs                 ; Yes        ; |protobuf_serializer|fsm_0:f0|wdata[31]       ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |protobuf_serializer|fsm_1:f1|index[0]        ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |protobuf_serializer|fsm_4:f4|arlen[7]        ;
 ; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |protobuf_serializer|fsm_2:f2|varint_data[2]  ;
-; 4:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |protobuf_serializer|fsm_0:f0|index[0]        ;
-; 4:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|raw_data_mux[1]          ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |protobuf_serializer|fsm_0:f0|index[7]        ;
+; 4:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|raw_data_mux[7]          ;
 ; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_1:f1|state           ;
 ; 19:1               ; 2 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_4:f4|state           ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
@@ -1228,18 +1228,18 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     ENA SLD           ; 1                           ;
 ;     SCLR              ; 33                          ;
 ;     plain             ; 159                         ;
-; twentynm_lcell_comb   ; 947                         ;
+; twentynm_lcell_comb   ; 941                         ;
 ;     arith             ; 351                         ;
 ;         1 data inputs ; 250                         ;
 ;         2 data inputs ; 101                         ;
-;     normal            ; 596                         ;
+;     normal            ; 590                         ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 3                           ;
-;         2 data inputs ; 154                         ;
-;         3 data inputs ; 87                          ;
-;         4 data inputs ; 173                         ;
-;         5 data inputs ; 64                          ;
-;         6 data inputs ; 114                         ;
+;         2 data inputs ; 150                         ;
+;         3 data inputs ; 81                          ;
+;         4 data inputs ; 133                         ;
+;         5 data inputs ; 76                          ;
+;         6 data inputs ; 146                         ;
 ; twentynm_ram_block    ; 132                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 5.80                        ;
@@ -1262,7 +1262,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
-    Info: Processing started: Fri Mar 31 13:15:45 2017
+    Info: Processing started: Tue Apr  4 18:43:46 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off varint_encoder -c varint_encoder
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/protobuf-serializer/varint_in_fifo/").
@@ -1362,7 +1362,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file fsm_3.v
 Info (12021): Found 1 design units, including 1 entities, in source file fsm_4.v
     Info (12023): Found entity 1: fsm_4 File: /home/mladmon/workspace/firework/protobuf-serializer/fsm_4.v Line: 3
 Info (12127): Elaborating entity "protobuf_serializer" for the top level hierarchy
-Info (12128): Elaborating entity "varint_in_fifo" for hierarchy "varint_in_fifo:in0" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 92
+Info (12128): Elaborating entity "varint_in_fifo" for hierarchy "varint_in_fifo:in0" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 95
 Info (12128): Elaborating entity "varint_in_fifo_fifo_160_v2ho2aa" for hierarchy "varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0" File: /home/mladmon/workspace/firework/protobuf-serializer/varint_in_fifo/synth/varint_in_fifo.v Line: 26
 Info (12128): Elaborating entity "scfifo" for hierarchy "varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/varint_in_fifo/fifo_160/synth/varint_in_fifo_fifo_160_v2ho2aa.v Line: 57
 Info (12130): Elaborated megafunction instantiation "varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/varint_in_fifo/fifo_160/synth/varint_in_fifo_fifo_160_v2ho2aa.v Line: 57
@@ -1400,7 +1400,7 @@ Info (12128): Elaborating entity "cntr_ls6" for hierarchy "varint_in_fifo:in0|va
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_9sa.tdf
     Info (12023): Found entity 1: cntr_9sa File: /home/mladmon/workspace/firework/protobuf-serializer/db/cntr_9sa.tdf Line: 26
 Info (12128): Elaborating entity "cntr_9sa" for hierarchy "varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_9sa:wr_ptr" File: /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_7ga1.tdf Line: 57
-Info (12128): Elaborating entity "varint_in_index" for hierarchy "varint_in_index:in1" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 101
+Info (12128): Elaborating entity "varint_in_index" for hierarchy "varint_in_index:in1" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 104
 Info (12128): Elaborating entity "varint_in_index_fifo_160_kjjiney" for hierarchy "varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0" File: /home/mladmon/workspace/firework/protobuf-serializer/varint_in_index/synth/varint_in_index.v Line: 22
 Info (12128): Elaborating entity "scfifo" for hierarchy "varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/varint_in_index/fifo_160/synth/varint_in_index_fifo_160_kjjiney.v Line: 49
 Info (12130): Elaborated megafunction instantiation "varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/varint_in_index/fifo_160/synth/varint_in_index_fifo_160_kjjiney.v Line: 49
@@ -1425,7 +1425,7 @@ Info (12128): Elaborating entity "a_dpfifo_1f91" for hierarchy "varint_in_index:
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_shn1.tdf
     Info (12023): Found entity 1: altsyncram_shn1 File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_shn1.tdf Line: 28
 Info (12128): Elaborating entity "altsyncram_shn1" for hierarchy "varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram" File: /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_1f91.tdf Line: 43
-Info (12128): Elaborating entity "raw_data_in_fifo" for hierarchy "raw_data_in_fifo:in2" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 112
+Info (12128): Elaborating entity "raw_data_in_fifo" for hierarchy "raw_data_in_fifo:in2" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 115
 Info (12128): Elaborating entity "raw_data_in_fifo_fifo_160_v2ho2aa" for hierarchy "raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0" File: /home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_fifo/synth/raw_data_in_fifo.v Line: 26
 Info (12128): Elaborating entity "scfifo" for hierarchy "raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_fifo/fifo_160/synth/raw_data_in_fifo_fifo_160_v2ho2aa.v Line: 57
 Info (12130): Elaborated megafunction instantiation "raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_fifo/fifo_160/synth/raw_data_in_fifo_fifo_160_v2ho2aa.v Line: 57
@@ -1441,7 +1441,7 @@ Info (12133): Instantiated megafunction "raw_data_in_fifo:in2|raw_data_in_fifo_f
     Info (12134): Parameter "overflow_checking" = "ON"
     Info (12134): Parameter "underflow_checking" = "ON"
     Info (12134): Parameter "use_eab" = "ON"
-Info (12128): Elaborating entity "raw_data_in_index" for hierarchy "raw_data_in_index:in3" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 121
+Info (12128): Elaborating entity "raw_data_in_index" for hierarchy "raw_data_in_index:in3" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 124
 Info (12128): Elaborating entity "raw_data_in_index_fifo_160_kjjiney" for hierarchy "raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0" File: /home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_index/synth/raw_data_in_index.v Line: 22
 Info (12128): Elaborating entity "scfifo" for hierarchy "raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_index/fifo_160/synth/raw_data_in_index_fifo_160_kjjiney.v Line: 49
 Info (12130): Elaborated megafunction instantiation "raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_index/fifo_160/synth/raw_data_in_index_fifo_160_kjjiney.v Line: 49
@@ -1457,7 +1457,7 @@ Info (12133): Instantiated megafunction "raw_data_in_index:in3|raw_data_in_index
     Info (12134): Parameter "overflow_checking" = "ON"
     Info (12134): Parameter "underflow_checking" = "ON"
     Info (12134): Parameter "use_eab" = "ON"
-Info (12128): Elaborating entity "raw_data_in_wstrb" for hierarchy "raw_data_in_wstrb:in4" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 130
+Info (12128): Elaborating entity "raw_data_in_wstrb" for hierarchy "raw_data_in_wstrb:in4" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 133
 Info (12128): Elaborating entity "raw_data_in_wstrb_fifo_160_sconavq" for hierarchy "raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0" File: /home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_wstrb/synth/raw_data_in_wstrb.v Line: 22
 Info (12128): Elaborating entity "scfifo" for hierarchy "raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_wstrb/fifo_160/synth/raw_data_in_wstrb_fifo_160_sconavq.v Line: 49
 Info (12130): Elaborated megafunction instantiation "raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_wstrb/fifo_160/synth/raw_data_in_wstrb_fifo_160_sconavq.v Line: 49
@@ -1482,14 +1482,14 @@ Info (12128): Elaborating entity "a_dpfifo_kd91" for hierarchy "raw_data_in_wstr
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_2fn1.tdf
     Info (12023): Found entity 1: altsyncram_2fn1 File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_2fn1.tdf Line: 28
 Info (12128): Elaborating entity "altsyncram_2fn1" for hierarchy "raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram" File: /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_kd91.tdf Line: 43
-Info (12128): Elaborating entity "fsm_0" for hierarchy "fsm_0:f0" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 164
-Info (12128): Elaborating entity "fsm_1" for hierarchy "fsm_1:f1" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 177
-Info (12128): Elaborating entity "fsm_2" for hierarchy "fsm_2:f2" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 202
-Info (12128): Elaborating entity "fsm_3a" for hierarchy "fsm_3a:f3a" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 212
-Info (12128): Elaborating entity "fsm_3b" for hierarchy "fsm_3b:f3b" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 222
-Info (12128): Elaborating entity "fsm_3" for hierarchy "fsm_3:f3" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 238
-Info (12128): Elaborating entity "fsm_4" for hierarchy "fsm_4:f4" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 260
-Info (12128): Elaborating entity "varint_out_fifo" for hierarchy "varint_out_fifo:out0" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 275
+Info (12128): Elaborating entity "fsm_0" for hierarchy "fsm_0:f0" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 167
+Info (12128): Elaborating entity "fsm_1" for hierarchy "fsm_1:f1" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 180
+Info (12128): Elaborating entity "fsm_2" for hierarchy "fsm_2:f2" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 205
+Info (12128): Elaborating entity "fsm_3a" for hierarchy "fsm_3a:f3a" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 214
+Info (12128): Elaborating entity "fsm_3b" for hierarchy "fsm_3b:f3b" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 223
+Info (12128): Elaborating entity "fsm_3" for hierarchy "fsm_3:f3" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 239
+Info (12128): Elaborating entity "fsm_4" for hierarchy "fsm_4:f4" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 264
+Info (12128): Elaborating entity "varint_out_fifo" for hierarchy "varint_out_fifo:out0" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 279
 Info (12128): Elaborating entity "varint_out_fifo_fifo_160_q2auapq" for hierarchy "varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0" File: /home/mladmon/workspace/firework/protobuf-serializer/varint_out_fifo/synth/varint_out_fifo.v Line: 26
 Info (12128): Elaborating entity "scfifo" for hierarchy "varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/varint_out_fifo/fifo_160/synth/varint_out_fifo_fifo_160_q2auapq.v Line: 57
 Info (12130): Elaborated megafunction instantiation "varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/varint_out_fifo/fifo_160/synth/varint_out_fifo_fifo_160_q2auapq.v Line: 57
@@ -1527,7 +1527,7 @@ Info (12128): Elaborating entity "cntr_ns6" for hierarchy "varint_out_fifo:out0|
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_bsa.tdf
     Info (12023): Found entity 1: cntr_bsa File: /home/mladmon/workspace/firework/protobuf-serializer/db/cntr_bsa.tdf Line: 26
 Info (12128): Elaborating entity "cntr_bsa" for hierarchy "varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|cntr_bsa:wr_ptr" File: /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_8fa1.tdf Line: 57
-Info (12128): Elaborating entity "varint_out_index" for hierarchy "varint_out_index:out1" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 284
+Info (12128): Elaborating entity "varint_out_index" for hierarchy "varint_out_index:out1" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 288
 Info (12128): Elaborating entity "varint_out_index_fifo_160_tgkntjy" for hierarchy "varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0" File: /home/mladmon/workspace/firework/protobuf-serializer/varint_out_index/synth/varint_out_index.v Line: 22
 Info (12128): Elaborating entity "scfifo" for hierarchy "varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/varint_out_index/fifo_160/synth/varint_out_index_fifo_160_tgkntjy.v Line: 49
 Info (12130): Elaborated megafunction instantiation "varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/varint_out_index/fifo_160/synth/varint_out_index_fifo_160_tgkntjy.v Line: 49
@@ -1552,7 +1552,7 @@ Info (12128): Elaborating entity "a_dpfifo_ff91" for hierarchy "varint_out_index
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_oin1.tdf
     Info (12023): Found entity 1: altsyncram_oin1 File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_oin1.tdf Line: 28
 Info (12128): Elaborating entity "altsyncram_oin1" for hierarchy "varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram" File: /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_ff91.tdf Line: 43
-Info (12128): Elaborating entity "raw_data_out_fifo" for hierarchy "raw_data_out_fifo:out2" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 295
+Info (12128): Elaborating entity "raw_data_out_fifo" for hierarchy "raw_data_out_fifo:out2" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 299
 Info (12128): Elaborating entity "raw_data_out_fifo_fifo_160_q2auapq" for hierarchy "raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0" File: /home/mladmon/workspace/firework/protobuf-serializer/raw_data_out_fifo/synth/raw_data_out_fifo.v Line: 26
 Info (12128): Elaborating entity "scfifo" for hierarchy "raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/raw_data_out_fifo/fifo_160/synth/raw_data_out_fifo_fifo_160_q2auapq.v Line: 57
 Info (12130): Elaborated megafunction instantiation "raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/raw_data_out_fifo/fifo_160/synth/raw_data_out_fifo_fifo_160_q2auapq.v Line: 57
@@ -1568,7 +1568,7 @@ Info (12133): Instantiated megafunction "raw_data_out_fifo:out2|raw_data_out_fif
     Info (12134): Parameter "overflow_checking" = "ON"
     Info (12134): Parameter "underflow_checking" = "ON"
     Info (12134): Parameter "use_eab" = "ON"
-Info (12128): Elaborating entity "raw_data_out_index" for hierarchy "raw_data_out_index:out3" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 304
+Info (12128): Elaborating entity "raw_data_out_index" for hierarchy "raw_data_out_index:out3" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 308
 Info (12128): Elaborating entity "raw_data_out_index_fifo_160_tgkntjy" for hierarchy "raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0" File: /home/mladmon/workspace/firework/protobuf-serializer/raw_data_out_index/synth/raw_data_out_index.v Line: 22
 Info (12128): Elaborating entity "scfifo" for hierarchy "raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/raw_data_out_index/fifo_160/synth/raw_data_out_index_fifo_160_tgkntjy.v Line: 49
 Info (12130): Elaborated megafunction instantiation "raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/raw_data_out_index/fifo_160/synth/raw_data_out_index_fifo_160_tgkntjy.v Line: 49
@@ -1584,7 +1584,7 @@ Info (12133): Instantiated megafunction "raw_data_out_index:out3|raw_data_out_in
     Info (12134): Parameter "overflow_checking" = "ON"
     Info (12134): Parameter "underflow_checking" = "ON"
     Info (12134): Parameter "use_eab" = "ON"
-Info (12128): Elaborating entity "out_fifo" for hierarchy "out_fifo:out4" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 316
+Info (12128): Elaborating entity "out_fifo" for hierarchy "out_fifo:out4" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 320
 Info (12128): Elaborating entity "out_fifo_fifo_160_otpqnty" for hierarchy "out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0" File: /home/mladmon/workspace/firework/protobuf-serializer/out_fifo/synth/out_fifo.v Line: 28
 Info (12128): Elaborating entity "scfifo" for hierarchy "out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/out_fifo/fifo_160/synth/out_fifo_fifo_160_otpqnty.v Line: 61
 Info (12130): Elaborated megafunction instantiation "out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/out_fifo/fifo_160/synth/out_fifo_fifo_160_otpqnty.v Line: 61
@@ -1730,15 +1730,15 @@ Warning (21074): Design contains 74 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "axs_s0_arsize[2]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 25
     Warning (15610): No output dependent on input pin "axs_s0_arburst[0]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 26
     Warning (15610): No output dependent on input pin "axs_s0_arburst[1]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 26
-Info (21057): Implemented 1343 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1335 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 141 input pins
     Info (21059): Implemented 46 output pins
-    Info (21061): Implemented 1024 logic cells
+    Info (21061): Implemented 1016 logic cells
     Info (21064): Implemented 132 RAM segments
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 109 warnings
-    Info: Peak virtual memory: 1520 megabytes
-    Info: Processing ended: Fri Mar 31 13:16:01 2017
+    Info: Peak virtual memory: 1522 megabytes
+    Info: Processing ended: Tue Apr  4 18:44:02 2017
     Info: Elapsed time: 00:00:16
-    Info: Total CPU time (on all processors): 00:00:38
+    Info: Total CPU time (on all processors): 00:00:37
 
 

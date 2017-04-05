@@ -7,8 +7,7 @@ module fsm_3a (
 
 		// FIFO control signals
 		input  wire  varint_out_fifo_empty,
-		output reg   varint_out_fifo_pop,
-		output reg   varint_out_index_pop,
+		output reg   varint_out_pop,
 
 		// FSM handshake signals
 		input  wire  varint_data_accepted,
@@ -36,8 +35,7 @@ module fsm_3a (
 	always @*
 	begin
 		// default values (may be overwritten)
-		varint_out_fifo_pop = 1'b0;
-		varint_out_index_pop = 1'b0;
+		varint_out_pop = 1'b0;
 		varint_data_valid = 1'b0;
 		
 		case (state)
@@ -46,8 +44,7 @@ module fsm_3a (
 
 			V_FETCH:
 				begin
-					varint_out_fifo_pop = 1'b1;
-					varint_out_index_pop = 1'b1;
+					varint_out_pop = 1'b1;
 					
 					if (varint_out_fifo_empty)
 						next_state = V_FETCH;
@@ -59,7 +56,7 @@ module fsm_3a (
 				begin
 					varint_data_valid = 1'b1;
 					
-					if (varint_data_accepted)
+					if (varint_data_accepted && varint_out_fifo_empty)
 						next_state = V_FETCH;
 					else
 						next_state = V_READY;
