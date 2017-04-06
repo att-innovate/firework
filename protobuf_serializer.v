@@ -81,6 +81,8 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 
 	wire [1:0] out_fifo_pop_sel;
 	wire out_fifo_pop_mux;
+	
+	wire raw_data_encoding, varint_encoding;
 
 	// Submodule instances
 	varint_in_fifo in0 (
@@ -176,7 +178,8 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 		.raw_data_out_fifo_full (raw_data_out_fifo_full),
 		.raw_data_out_fifo_clr  (raw_data_out_fifo_clr),
 		.raw_data_out_index_clr (raw_data_out_index_clr),
-		.raw_data_sel           (raw_data_sel)
+		.raw_data_sel           (raw_data_sel),
+		.encoding               (raw_data_encoding)
 	);
 
 	assign raw_data_push_mux = (raw_data_sel == 2'b00) ? raw_data_in_wstrb_q[0] :
@@ -201,7 +204,8 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 		.varint_out_index_clr  (varint_out_index_clr),
 		.varint_out_index_push (varint_out_index_push),
 		.varint_data_in        (varint_in_fifo_q),
-		.varint_data_out       (encoded_byte)
+		.varint_data_out       (encoded_byte),
+		.encoding              (varint_encoding)
 	);
 
 	fsm_3a f3a (
@@ -230,12 +234,16 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 		.out_fifo_push        (out_fifo_push),
 		.varint_enable        (varint_enable),
 		.raw_data_enable      (raw_data_enable),
+		.varint_in_index_q    (varint_in_index_q),
 		.varint_out_index_q   (varint_out_index_q),
+		.raw_data_in_index_q  (raw_data_in_index_q),
 		.raw_data_out_index_q (raw_data_out_index_q),
 		.varint_data_valid    (varint_data_valid),
 		.raw_data_valid       (raw_data_valid),
 		.varint_data_accepted (varint_data_accepted),
-		.raw_data_accepted    (raw_data_accepted)
+		.raw_data_accepted    (raw_data_accepted),
+		.raw_data_encoding    (raw_data_encoding),
+		.varint_encoding      (varint_encoding)
 	);
 	
 	assign varint_pop_mux = (varint_data_accepted) ? 1'b1 : varint_out_pop;
