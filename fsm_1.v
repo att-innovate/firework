@@ -15,7 +15,10 @@ module fsm_1 (
 		output reg        raw_data_out_fifo_clr,
 		output reg        raw_data_out_index_clr,
 
-		output reg  [1:0] raw_data_sel
+		output reg  [1:0] raw_data_sel,
+
+		// inter-FSM communication signals
+		output reg        encoding
 	);
 
 	// datapath registers
@@ -61,6 +64,8 @@ module fsm_1 (
 		index_inc = 1'b0;
 		index_clr = 1'b0;
 
+		encoding = 1'b0;
+
 		// datapath logic
 		raw_data_sel = index;
 
@@ -90,6 +95,8 @@ module fsm_1 (
 			
 			RF_FULL:
 				begin
+					encoding = 1'b1;
+
 					if (raw_data_out_fifo_full)
 						next_state = RF_FULL;
 					else if (~raw_data_out_fifo_full && index == 2'b00)
@@ -108,6 +115,7 @@ module fsm_1 (
 				begin
 					// raw_data_sel == 2'b00
 					index_inc = 1'b1;
+					encoding = 1'b1;
 					
 					next_state = RF_FULL;
 				end
@@ -116,6 +124,7 @@ module fsm_1 (
 				begin
 					// raw_data_sel == 2'b01
 					index_inc = 1'b1;
+					encoding = 1'b1;
 					
 					next_state = RF_FULL;
 				end
@@ -124,6 +133,7 @@ module fsm_1 (
 				begin
 					// raw_data_sel == 2'b10
 					index_inc = 1'b1;
+					encoding = 1'b1;
 					
 					next_state = RF_FULL;
 				end
@@ -132,6 +142,7 @@ module fsm_1 (
 				begin 
 					// raw_data_sel == 2'b11
 					index_clr = 1'b1;
+					encoding = 1'b1;
 					
 					next_state = RD_READY;
 				end
