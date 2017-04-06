@@ -13,14 +13,20 @@ module fsm_3 (
 		output reg       raw_data_enable,
 
 		// FIFO data signals
+		input wire [9:0] varint_in_index_q,
 		input wire [9:0] varint_out_index_q,
+		input wire [9:0] raw_data_in_index_q,
 		input wire [9:0] raw_data_out_index_q,
 
-		// FSM handshake signals
+		// FSM handshake signals (fsm_3a, fsm_3b)
 		input wire       varint_data_valid,
 		input wire       raw_data_valid,
 		output reg       varint_data_accepted,
-		output reg       raw_data_accepted
+		output reg       raw_data_accepted,
+		
+		// inter-FSM communication signals
+		input wire       raw_data_encoding,
+		input wire       varint_encoding
 	);
 
 	// datapath registers
@@ -77,9 +83,14 @@ module fsm_3 (
 		out_index_plus1 = (out_index == 10'd1023) ? 10'd0 : out_index + 10'd1;
 		
 		varint_eq_index = (varint_out_index_q == out_index) ? 1'b1 : 1'b0;
-		varint_eq_next = (varint_out_index_q == out_index_plus1) ? 1'b1 : 1'b0;
+
+		varint_eq_next = ((raw_data_in_index_q == out_index) && raw_data_encoding) ? 1'bz : 
+		                 ((varint_out_index_q == out_index_plus1) ? 1'b1 : 1'b0);
+
 		raw_data_eq_index = (raw_data_out_index_q == out_index) ? 1'b1 : 1'b0;
-		raw_data_eq_next = (raw_data_out_index_q == out_index_plus1) ? 1'b1 : 1'b0;
+
+		raw_data_eq_next = ((varint_in_index_q == out_index) && varint_encoding) ? 1'bz : 
+		                   ((raw_data_out_index_q == out_index_plus1) ? 1'b1 : 1'b0);
 		
 		case (state)
 			INIT:
