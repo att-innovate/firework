@@ -18,7 +18,10 @@ module fsm_2 (
 		
 		// FIFO data signals
 		input wire [31:0] varint_data_in,
-		output reg [7:0]  varint_data_out
+		output reg [7:0]  varint_data_out,
+		
+		// inter-FSM communication signals
+		output reg        encoding
 	);
 
 	// datapath registers
@@ -77,6 +80,8 @@ module fsm_2 (
 		varint_data_clr = 1'b0;
 		varint_out_sel = 1'b0;
 
+		encoding = 1'b0;
+
 		// datapath logic
 		varint_shifted = varint_data >> 7;
 		
@@ -110,6 +115,7 @@ module fsm_2 (
 					varint_in_sel_ld = 1'b1;
 					varint_data_ld = 1'b1;
 					varint_out_sel = 1'b1;
+					encoding = 1'b1;
 					
 					if (varint_out_fifo_full)
 						next_state = VF_FULL;
@@ -122,7 +128,8 @@ module fsm_2 (
 			VF_FULL:
 				begin
 					check_cond_mux = varint_data;
-					
+					encoding = 1'b1;
+
 					if (varint_out_fifo_full)
 						next_state = VF_FULL;
 					else if (~varint_out_fifo_full && check_cond_mux >= 128)
@@ -137,6 +144,7 @@ module fsm_2 (
 					varint_out_sel = 1'b1;
 					varint_out_fifo_push = 1'b1;
 					varint_out_index_push = 1'b1;
+					encoding = 1'b1;
 					
 					next_state = LOAD_COND;
 				end
@@ -146,6 +154,7 @@ module fsm_2 (
 					varint_out_fifo_push = 1'b1;
 					varint_out_index_push = 1'b1;
 					varint_in_sel_clr = 1'b1;
+					encoding = 1'b1;
 					
 					next_state = V_READY;
 				end
