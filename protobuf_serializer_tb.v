@@ -1,27 +1,27 @@
-// fsm_0_tb.v
+// protobuf_serializer_tb.v
 
 `timescale 1 ps / 1 ps
 
 module protobuf_serializer_tb ();
-		reg        clk;
-		reg        reset;
-		reg [3:0]  axs_s0_awid;
-		reg [31:0] axs_s0_awaddr;
-		reg [7:0]  axs_s0_awlen;
-		reg [2:0]  axs_s0_awsize;
-		reg [1:0]  axs_s0_awburst;
-		reg        axs_s0_awvalid;
-		reg [31:0] axs_s0_wdata;
-		reg [3:0]  axs_s0_wstrb;
-		reg        axs_s0_wvalid;
-		reg        axs_s0_bready;
-		reg [3:0]  axs_s0_arid;
-		reg [31:0] axs_s0_araddr;
-		reg [7:0]  axs_s0_arlen;
-		reg [2:0]  axs_s0_arsize;
-		reg [1:0]  axs_s0_arburst;
-		reg        axs_s0_arvalid;
-		reg        axs_s0_rready;
+		reg         clk;
+		reg         reset;
+		reg [3:0]   axs_s0_awid;
+		reg [31:0]  axs_s0_awaddr;
+		reg [7:0]   axs_s0_awlen;
+		reg [2:0]   axs_s0_awsize;
+		reg [1:0]   axs_s0_awburst;
+		reg         axs_s0_awvalid;
+		reg [31:0]  axs_s0_wdata;
+		reg [3:0]   axs_s0_wstrb;
+		reg         axs_s0_wvalid;
+		reg         axs_s0_bready;
+		reg [3:0]   axs_s0_arid;
+		reg [31:0]  axs_s0_araddr;
+		reg [7:0]   axs_s0_arlen;
+		reg [2:0]   axs_s0_arsize;
+		reg [1:0]   axs_s0_arburst;
+		reg         axs_s0_arvalid;
+		reg         axs_s0_rready;
 
 		wire        axs_s0_awready;
 		wire        axs_s0_wready;
@@ -71,55 +71,139 @@ module protobuf_serializer_tb ();
 		forever #1 clk = ~clk;
 	end
 
-	// assert reset for 4 cycles (initialize the FSM)
+	// assert reset for 2 cycles (initialize AXI slave)
 	initial begin
 		reset = 1'b1;
-		repeat (4) @(negedge clk);
+		repeat (2) @(negedge clk);
 		reset = 1'b0;
 	end
 
 	// simulate the DUT
 	initial begin
-		// initial input values
-		axs_s0_awid = 4'b0000;
-		axs_s0_awaddr = 32'h0000_0000;
-		axs_s0_awlen = 8'h00;
-		axs_s0_awsize = 3'b000;
-		axs_s0_awburst = 2'b00;
+		// initialize AXI master (set handshake signals low)
 		axs_s0_awvalid = 1'b0;
-		axs_s0_wdata = 32'h0000_0000;
-		axs_s0_wstrb = 4'b0000;
 		axs_s0_wvalid = 1'b0;
 		axs_s0_bready = 1'b0;
+		axs_s0_arvalid = 1'b0;
+		axs_s0_rready = 1'b0;
 
 		// wait for reset to deassert
 		@(negedge reset);
-		
-		// @posedge clk: FSM transitions from INIT to AW_READY
-		repeat (4) @(negedge clk);
 
-		// set write address channel signals (sim. AXI master)
-		axs_s0_awid = 4'b1111;
+		// -----------------------------------------
+		// Write a 32-bit integer with the value 10
+		//   encoding:   varint
+		//   tag:        1
+		//   wire type:  2
+		//   size:       1 byte
+		//   output:     0x0a
+		// -----------------------------------------
+		
+		// AXI master: set Write Address channel signals
+		axs_s0_awid = 4'b1111;  // arbitrary, axs_s0_bid must reflect this value
 		axs_s0_awaddr = 32'h01; // address indicates incoming 32-bit varint data
-		axs_s0_awlen = 8'h00;
-		axs_s0_awsize = 3'b010;
-		axs_s0_awburst = 2'b00;
-		axs_s0_awvalid = 1'b1; // @posedge clk: transitions to W_READY_VL
+		axs_s0_awlen = 8'h00;   // burst length = AWLEN+1 = 0+1 = 1 transfer
+		axs_s0_awsize = 3'b010; // burst size = 2^AWSIZE = 2^2 = 4 bytes
+		axs_s0_awburst = 2'b00; // burst type 0b00: FIXED  
+		axs_s0_awvalid = 1'b1;  // indicates write address data valid
+		
+		// AXI master: set Write Data channel signals
+		axs_s0_wdata = 32'd10;  // 32-bit write data bus
+		axs_s0_wstrb = 4'b1111; // indicates which byte lanes contain valid data
+		axs_s0_wvalid = 1'b1;   // indicates write data valid
+		
+		// AXI master: set Write Response channel signals
+		axs_s0_bready = 1'b1;   // indicates master is ready for a response
+		
+		// wait for write transaction to complete
+		@(negedge axs_s0_bvalid);
+		@(negedge clk);
 
-		repeat (4) @(negedge clk);
+		// -----------------------------------------
+		// Write a 32-bit integer with the value 51
+		//   encoding:   varint
+		//   size:       1 byte
+		//   output:     0x33
+		// -----------------------------------------
 		
-		// set write data channel signals (sim. AXI master)
-		axs_s0_wdata = 32'h1234_5678;
-		axs_s0_wstrb = 4'b1111;
-		axs_s0_wvalid = 1'b1; // @posedge clk: transitions to B_READY_VL
+		// AXI master: set Write Address channel signals
+		axs_s0_awid = 4'b0101;  // arbitrary, axs_s0_bid must reflect this value
+		axs_s0_awaddr = 32'h01; // address indicates incoming 32-bit varint data
+		axs_s0_awlen = 8'h00;   // burst length = AWLEN+1 = 0+1 = 1 transfer
+		axs_s0_awsize = 3'b010; // burst size = 2^AWSIZE = 2^2 = 4 bytes
+		axs_s0_awburst = 2'b00; // burst type 0b00: FIXED  
+		axs_s0_awvalid = 1'b1;  // indicates write address data valid
 		
-		// @posedge clk: transitions from B_READY_VL to MASTER_WAIT
-		repeat (4) @(negedge clk);
+		// AXI master: set Write Data channel signals
+		axs_s0_wdata = 32'd51;  // 32-bit write data bus
+		axs_s0_wstrb = 4'b1111; // indicates which byte lanes contain valid data
+		axs_s0_wvalid = 1'b1;   // indicates write data valid
 		
-		// set write response channel handshake signal (sim. AXI master)
-		axs_s0_bready = 1'b1; // @posedge clk: transitions back to AW_READY
+		// AXI master: set Write Response channel signals
+		axs_s0_bready = 1'b1;   // indicates master is ready for a response		
+
+		// wait for write transaction to complete
+		@(negedge axs_s0_bvalid);
+		@(negedge clk);
+		
+		// -----------------------------------------
+		// Write a 32-bit integer with the value 2,931,068,810
+		//   encoding:   varint
+		//   size:       5 bytes
+		//   output:     0x8a, 0x9f, 0xd2, 0xf5, 0x0a
+		// -----------------------------------------
+		
+		// AXI master: set Write Address channel signals
+		axs_s0_awid = 4'b1001;  // arbitrary, axs_s0_bid must reflect this value
+		axs_s0_awaddr = 32'h01; // address indicates incoming 32-bit varint data
+		axs_s0_awlen = 8'h00;   // burst length = AWLEN+1 = 0+1 = 1 transfer
+		axs_s0_awsize = 3'b010; // burst size = 2^AWSIZE = 2^2 = 4 bytes
+		axs_s0_awburst = 2'b00; // burst type 0b00: FIXED  
+		axs_s0_awvalid = 1'b1;  // indicates write address data valid
+		
+		// AXI master: set Write Data channel signals
+		axs_s0_wdata = 32'd2931068810; // 32-bit write data bus
+		axs_s0_wstrb = 4'b1111; // indicates which byte lanes contain valid data
+		axs_s0_wvalid = 1'b1;   // indicates write data valid
+		
+		// AXI master: set Write Response channel signals
+		axs_s0_bready = 1'b1;   // indicates master is ready for a response		
+
+		// wait for write transaction to complete
+		@(negedge axs_s0_bvalid);
+		@(negedge clk);
+
+		// done writing: disable write transaction channels
+		axs_s0_awvalid = 1'b0;
+		axs_s0_wvalid = 1'b0;
+		axs_s0_bready = 1'b0;
+		
+		// -----------------------------------------
+		// Read 7 bytes of data
+		//   output:     0x0a, 0x33, 0x8a, 0x9f, 0xd2, 0xf5, 0x0a
+		// -----------------------------------------
+
+		// AXI master: set Read Address channel signals
+		axs_s0_arid = 4'b0011;  // arbitrary, axs_s0_rid must reflect this value
+		axs_s0_araddr = 32'h00; // read address will be defined in GHRD Qsys system
+		axs_s0_arlen = 8'h06;   // burst length = ARLEN+1 = 6+1 = 7 transfers
+		axs_s0_arsize = 3'b000; // burst size = 2^ARSIZE = 2^0 = 1 byte
+		axs_s0_arburst = 2'b00; // burst type 0b00: FIXED
+		axs_s0_arvalid = 1'b1;  // indicates read address data valid
+
+		// AXI master: set Read Data channel signals
+		axs_s0_rready = 1'b1;   // indicates master is ready to accept read data
+		
+		// wait for read transaction to complete
+		@(negedge axs_s0_rlast);
+		@(negedge clk);
+		
+		// done reading: disable read transaction channels
+		axs_s0_arvalid = 1'b0;
+		axs_s0_rready = 1'b0;
 		
 		// wait a couple cycles and terminate simulation
-		#10 $stop;
+		repeat (2) @(negedge clk);
+		$stop;
 	end
 endmodule

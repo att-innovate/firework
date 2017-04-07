@@ -9,42 +9,42 @@ z2
 cModel Technology
 Z0 d/home/mladmon/workspace/firework/protobuf-serializer/simulation/modelsim
 vprotobuf_serializer
-Z1 !s110 1491002422
+!s110 1491602539
 !i10b 1
-!s100 BKnLPAz8?lFWnN@POKE@F2
-I8U57EYPC8a^AK`lXT;BGz1
-Z2 VDg1SIo80bB@j0V0VzS_@n1
+!s100 mm0>nL<z@W0HOcmR1Y=6c1
+IV`K=^Gdh?bTdl30iEccN73
+Z1 VDg1SIo80bB@j0V0VzS_@n1
 R0
-w1491000738
+w1491602512
 8varint_encoder.vo
 Fvarint_encoder.vo
 L0 32
-Z3 OV;L;10.4d;61
+Z2 OV;L;10.4d;61
 r1
 !s85 0
 31
-!s108 1491002421.000000
+Z3 !s108 1491602539.000000
 !s107 varint_encoder.vo|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+.|varint_encoder.vo|
 !i113 1
 Z4 o-vlog01compat -work work
 !s92 -vlog01compat -work work +incdir+.
 vprotobuf_serializer_tb
-R1
+!s110 1491602540
 !i10b 1
-!s100 _OaR?COPiSV3bdBPa>`VS2
-IMMPdRmRI4H;PaCaIQf;0f3
-R2
+!s100 CcYeK1Y]nnedn@I1ogcbI0
+IFmS9KT3k3V9g0eZP?[`ES1
+R1
 R0
-w1491001390
+w1491602505
 8/home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer_tb.v
 F/home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer_tb.v
 L0 5
-R3
+R2
 r1
 !s85 0
 31
-!s108 1491002422.000000
+R3
 !s107 /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer_tb.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/mladmon/workspace/firework/protobuf-serializer|/home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer_tb.v|
 !i113 1

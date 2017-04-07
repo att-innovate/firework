@@ -11,29 +11,29 @@
 # 
 # vlog -vlog01compat -work work +incdir+. {varint_encoder.vo}
 # Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
-# Start time: 16:20:21 on Mar 31,2017
+# Start time: 15:02:19 on Apr 07,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+." varint_encoder.vo 
 # -- Compiling module protobuf_serializer
 # 
 # Top level modules:
 # 	protobuf_serializer
-# End time: 16:20:22 on Mar 31,2017, Elapsed time: 0:00:01
+# End time: 15:02:19 on Apr 07,2017, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vlog -vlog01compat -work work +incdir+/home/mladmon/workspace/firework/protobuf-serializer {/home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer_tb.v}
 # Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
-# Start time: 16:20:22 on Mar 31,2017
+# Start time: 15:02:19 on Apr 07,2017
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/mladmon/workspace/firework/protobuf-serializer" /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer_tb.v 
 # -- Compiling module protobuf_serializer_tb
 # 
 # Top level modules:
 # 	protobuf_serializer_tb
-# End time: 16:20:22 on Mar 31,2017, Elapsed time: 0:00:00
+# End time: 15:02:20 on Apr 07,2017, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # 
 # vsim -t 1ps -L altera_ver -L altera_lnsim_ver -L twentynm_ver -L lpm_ver -L sgate_ver -L twentynm_hssi_ver -L twentynm_hip_ver -L gate_work -L work -voptargs="+acc"  protobuf_serializer_tb
 # vsim -t 1ps -L altera_ver -L altera_lnsim_ver -L twentynm_ver -L lpm_ver -L sgate_ver -L twentynm_hssi_ver -L twentynm_hip_ver -L gate_work -L work -voptargs=""+acc"" protobuf_serializer_tb 
-# Start time: 16:20:22 on Mar 31,2017
+# Start time: 15:02:20 on Apr 07,2017
 # //  ModelSim ALTERA 10.4d Dec 30 2015 Linux 3.10.0-327.el7.x86_64
 # //
 # //  Copyright 1991-2015 Mentor Graphics Corporation
@@ -65,8 +65,6 @@
 # view signals
 # .main_pane.objects.interior.cs.body.tree
 # run -all
-# ** Note: $stop    : /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer_tb.v(123)
-#    Time: 42 ps  Iteration: 0  Instance: /protobuf_serializer_tb
-# Break in Module protobuf_serializer_tb at /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer_tb.v line 123
-# End time: 17:12:14 on Mar 31,2017, Elapsed time: 0:51:52
-# Errors: 0, Warnings: 0
+# ** Note: $stop    : /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer_tb.v(207)
+#    Time: 66 ps  Iteration: 1  Instance: /protobuf_serializer_tb
+# Break in Module protobuf_serializer_tb at /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer_tb.v line 207
