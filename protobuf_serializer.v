@@ -1,3 +1,5 @@
+// protobuf_serializer.v
+
 module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 		input  wire        clock_clk,      //  clock.clk
 		input  wire        reset_reset,    //  reset.reset
