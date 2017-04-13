@@ -40,14 +40,14 @@ state.ENCODE_N 0 1 0 0 0 1
 state.ENCODE_L 1 0 0 0 0 1 
 
 State Machine - |protobuf_serializer|fsm_1:f1|state
-Name state.ENCODE_3 state.ENCODE_2 state.ENCODE_1 state.ENCODE_0 state.RF_FULL state.RD_READY state.INIT 
+Name state.PUSH_3 state.PUSH_2 state.PUSH_1 state.PUSH_0 state.RF_FULL state.RD_READY state.INIT 
 state.INIT 0 0 0 0 0 0 0 
 state.RD_READY 0 0 0 0 0 1 1 
 state.RF_FULL 0 0 0 0 1 0 1 
-state.ENCODE_0 0 0 0 1 0 0 1 
-state.ENCODE_1 0 0 1 0 0 0 1 
-state.ENCODE_2 0 1 0 0 0 0 1 
-state.ENCODE_3 1 0 0 0 0 0 1 
+state.PUSH_0 0 0 0 1 0 0 1 
+state.PUSH_1 0 0 1 0 0 0 1 
+state.PUSH_2 0 1 0 0 0 0 1 
+state.PUSH_3 1 0 0 0 0 0 1 
 
 State Machine - |protobuf_serializer|fsm_0:f0|state
 Name state.MASTER_WAIT state.B_READY_RL state.B_READY_RN state.B_READY_VL state.B_READY_VN state.RF_FULL state.VF_FULL state.W_READY_RL state.W_READY_RN state.W_READY_VL state.W_READY_VN state.AW_READY state.INIT 

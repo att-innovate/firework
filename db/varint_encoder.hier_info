@@ -5024,15 +5024,22 @@ raw_data_out_fifo_full => next_state.OUTPUTSELECT
 raw_data_out_fifo_full => next_state.OUTPUTSELECT
 raw_data_out_fifo_full => next_state.OUTPUTSELECT
 raw_data_out_fifo_full => next_state.OUTPUTSELECT
+raw_data_out_fifo_full => Selector1.IN3
+raw_data_out_fifo_full => Selector1.IN4
 raw_data_out_fifo_full => Selector1.IN5
+raw_data_out_fifo_full => Selector1.IN6
 raw_data_out_fifo_full => always1.IN1
 raw_data_out_fifo_full => always1.IN1
 raw_data_out_fifo_full => always1.IN1
 raw_data_out_fifo_full => always1.IN1
+raw_data_out_fifo_full => Selector5.IN1
+raw_data_out_fifo_full => Selector4.IN1
+raw_data_out_fifo_full => Selector3.IN1
 raw_data_out_fifo_clr <= raw_data_out_index_clr.DB_MAX_OUTPUT_PORT_TYPE
 raw_data_out_index_clr <= raw_data_out_index_clr.DB_MAX_OUTPUT_PORT_TYPE
 raw_data_sel[0] <= index[0].DB_MAX_OUTPUT_PORT_TYPE
 raw_data_sel[1] <= index[1].DB_MAX_OUTPUT_PORT_TYPE
+push_enable <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
 encoding <= encoding.DB_MAX_OUTPUT_PORT_TYPE
 
 

@@ -89,7 +89,7 @@ GND                          : A6        : gnd    :                   :         
 axs_s0_wdata[19]             : A7        : input  : 1.8 V             :         : 3H        : N              
 axs_s0_wdata[2]              : A8        : input  : 1.8 V             :         : 3H        : N              
 axs_s0_wdata[10]             : A9        : input  : 1.8 V             :         : 3H        : N              
-axs_s0_wstrb[0]              : A10       : input  : 1.8 V             :         : 3H        : N              
+axs_s0_wstrb[1]              : A10       : input  : 1.8 V             :         : 3H        : N              
 GND                          : A11       : gnd    :                   :         :           :                
 axs_s0_wdata[31]             : A12       : input  : 1.8 V             :         : 3H        : N              
 axs_s0_wdata[17]             : A13       : input  : 1.8 V             :         : 3H        : N              
@@ -909,7 +909,7 @@ GND                          : C10       : gnd    :                   :         
 axs_s0_arid[0]               : C11       : input  : 1.8 V             :         : 3H        : N              
 axs_s0_arid[1]               : C12       : input  : 1.8 V             :         : 3H        : N              
 axs_s0_wdata[9]              : C13       : input  : 1.8 V             :         : 3H        : N              
-axs_s0_wstrb[3]              : C14       : input  : 1.8 V             :         : 3H        : N              
+axs_s0_wstrb[0]              : C14       : input  : 1.8 V             :         : 3H        : N              
 GND                          : C15       : gnd    :                   :         :           :                
 TEMPDIODEp                   : C16       :        :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : C17       :        :                   :         : 2L        :                
@@ -945,7 +945,7 @@ GND                          : D7        : gnd    :                   :         
 axs_s0_rdata[12]             : D8        : output : 1.8 V             :         : 3G        : N              
 axs_s0_arlen[7]              : D9        : input  : 1.8 V             :         : 3H        : N              
 axs_s0_wdata[13]             : D10       : input  : 1.8 V             :         : 3H        : N              
-axs_s0_wstrb[2]              : D11       : input  : 1.8 V             :         : 3H        : N              
+axs_s0_wstrb[3]              : D11       : input  : 1.8 V             :         : 3H        : N              
 GND                          : D12       : gnd    :                   :         :           :                
 axs_s0_wdata[30]             : D13       : input  : 1.8 V             :         : 3H        : N              
 axs_s0_wdata[1]              : D14       : input  : 1.8 V             :         : 3H        : N              
@@ -1062,7 +1062,7 @@ axs_s0_rdata[23]             : G7        : output : 1.8 V             :         
 VCCIO3G                      : G8        : power  :                   : 1.8V    : 3G        :                
 axs_s0_rdata[29]             : G9        : output : 1.8 V             :         : 3G        : N              
 axs_s0_wdata[24]             : G10       : input  : 1.8 V             :         : 3H        : N              
-axs_s0_wstrb[1]              : G11       : input  : 1.8 V             :         : 3H        : N              
+axs_s0_wstrb[2]              : G11       : input  : 1.8 V             :         : 3H        : N              
 axs_s0_wdata[5]              : G12       : input  : 1.8 V             :         : 3H        : N              
 VCCIO3H                      : G13       : power  :                   : 1.8V    : 3H        :                
 axs_s0_wdata[22]             : G14       : input  : 1.8 V             :         : 3H        : N              

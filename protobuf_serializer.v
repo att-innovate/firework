@@ -55,7 +55,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 	wire [3:0]  raw_data_in_wstrb_q;
 
 	wire [1:0]  raw_data_sel;
-	wire        raw_data_push_mux;
+	wire        raw_data_push, raw_data_push_mux;
 
 	wire [7:0]  raw_data_mux, encoded_byte;
 	
@@ -181,6 +181,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 		.raw_data_out_fifo_clr  (raw_data_out_fifo_clr),
 		.raw_data_out_index_clr (raw_data_out_index_clr),
 		.raw_data_sel           (raw_data_sel),
+		.push_enable            (push_enable),
 		.encoding               (raw_data_encoding)
 	);
 
@@ -188,6 +189,8 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 	                           ((raw_data_sel == 2'b01) ? raw_data_in_wstrb_q[1] : 
 	                           ((raw_data_sel == 2'b10) ? raw_data_in_wstrb_q[2] : 
 	                                                      raw_data_in_wstrb_q[3]));
+
+	assign raw_data_push = (push_enable) ? raw_data_push_mux : 1'b0;
 
 	assign raw_data_mux = (raw_data_sel == 2'b00) ? raw_data_in_fifo_q[7:0] :
 	                      ((raw_data_sel == 2'b01) ? raw_data_in_fifo_q[15:8] :
@@ -299,7 +302,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 
 	raw_data_out_fifo out2 (
 		.data  (raw_data_mux),           //  fifo_input.datain
-		.wrreq (raw_data_push_mux),      //            .wrreq
+		.wrreq (raw_data_push),          //            .wrreq
 		.rdreq (raw_data_pop_mux),       //            .rdreq
 		.clock (clock_clk),              //            .clk
 		.sclr  (raw_data_out_fifo_clr),  //            .sclr
@@ -310,7 +313,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 
 	raw_data_out_index out3 (
 		.data  (raw_data_in_index_q),    //  fifo_input.datain
-		.wrreq (raw_data_push_mux),      //            .wrreq
+		.wrreq (raw_data_push),          //            .wrreq
 		.rdreq (raw_data_pop_mux),       //            .rdreq
 		.clock (clock_clk),              //            .clk
 		.sclr  (raw_data_out_index_clr), //            .sclr
