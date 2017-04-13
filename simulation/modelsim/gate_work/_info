@@ -9,44 +9,44 @@ z2
 cModel Technology
 Z0 d/home/mladmon/workspace/firework/protobuf-serializer/simulation/modelsim
 vprotobuf_serializer
-!s110 1491602539
+Z1 !s110 1492043366
 !i10b 1
-!s100 mm0>nL<z@W0HOcmR1Y=6c1
-IV`K=^Gdh?bTdl30iEccN73
-Z1 VDg1SIo80bB@j0V0VzS_@n1
+!s100 ffWO>f8B<8L9mLK;ocJSj1
+IZ?7_bSXZHg=41k=ohJSlU1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
-w1491602512
+w1492043100
 8varint_encoder.vo
 Fvarint_encoder.vo
 L0 32
-Z2 OV;L;10.4d;61
+Z3 OV;L;10.4d;61
 r1
 !s85 0
 31
-Z3 !s108 1491602539.000000
+Z4 !s108 1492043366.000000
 !s107 varint_encoder.vo|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+.|varint_encoder.vo|
 !i113 1
-Z4 o-vlog01compat -work work
+Z5 o-vlog01compat -work work
 !s92 -vlog01compat -work work +incdir+.
 vprotobuf_serializer_tb
-!s110 1491602540
-!i10b 1
-!s100 CcYeK1Y]nnedn@I1ogcbI0
-IFmS9KT3k3V9g0eZP?[`ES1
 R1
+!i10b 1
+!s100 XiGXL1WDUz1@4=oOSh5DK2
+I1zQ]gz[@0@]g:`1_Ng^<33
+R2
 R0
-w1491602505
+w1492043089
 8/home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer_tb.v
 F/home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer_tb.v
 L0 5
-R2
+R3
 r1
 !s85 0
 31
-R3
+R4
 !s107 /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer_tb.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/mladmon/workspace/firework/protobuf-serializer|/home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer_tb.v|
 !i113 1
-R4
+R5
 !s92 -vlog01compat -work work +incdir+/home/mladmon/workspace/firework/protobuf-serializer
