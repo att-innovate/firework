@@ -16,6 +16,7 @@ module fsm_1 (
 		output reg        raw_data_out_index_clr,
 
 		output reg  [1:0] raw_data_sel,
+		output reg        push_enable,
 
 		// inter-FSM communication signals
 		output reg        encoding
@@ -31,10 +32,10 @@ module fsm_1 (
 	parameter INIT      = 8'h01,
 	          RD_READY  = 8'h02,
 	          RF_FULL   = 8'h04,
-	          ENCODE_0  = 8'h08,
-	          ENCODE_1  = 8'h10,
-	          ENCODE_2  = 8'h20,
-	          ENCODE_3  = 8'h40;
+	          PUSH_0    = 8'h08,
+	          PUSH_1    = 8'h10,
+	          PUSH_2    = 8'h20,
+	          PUSH_3    = 8'h40;
 
 	// state memory logic
 	reg [7:0] state;
@@ -61,10 +62,11 @@ module fsm_1 (
 		raw_data_out_fifo_clr = 1'b0;
 		raw_data_out_index_clr = 1'b0;
 
+		push_enable = 1'b0;
+		encoding = 1'b0;
+
 		index_inc = 1'b0;
 		index_clr = 1'b0;
-
-		encoding = 1'b0;
 
 		// datapath logic
 		raw_data_sel = index;
@@ -90,7 +92,7 @@ module fsm_1 (
 					else if (~raw_data_in_fifo_empty && raw_data_out_fifo_full)
 						next_state = RF_FULL;
 					else
-						next_state = ENCODE_0;
+						next_state = PUSH_0;
 				end
 			
 			RF_FULL:
@@ -100,50 +102,63 @@ module fsm_1 (
 					if (raw_data_out_fifo_full)
 						next_state = RF_FULL;
 					else if (~raw_data_out_fifo_full && index == 2'b00)
-						next_state = ENCODE_0;
+						next_state = PUSH_0;
 					else if (~raw_data_out_fifo_full && index == 2'b01)
-						next_state = ENCODE_1;
+						next_state = PUSH_1;
 					else if (~raw_data_out_fifo_full && index == 2'b10)
-						next_state = ENCODE_2;
+						next_state = PUSH_2;
 					else if (~raw_data_out_fifo_full && index == 2'b11)
-						next_state = ENCODE_3;
+						next_state = PUSH_3;
 					else // error
 						next_state = INIT;
 				end
 
-			ENCODE_0:
+			PUSH_0:
 				begin
 					// raw_data_sel == 2'b00
 					index_inc = 1'b1;
+					push_enable = 1'b1;
 					encoding = 1'b1;
-					
-					next_state = RF_FULL;
+
+					if (raw_data_out_fifo_full)
+						next_state = RF_FULL;
+					else
+						next_state = PUSH_1;
 				end
 
-			ENCODE_1:
+			PUSH_1:
 				begin
 					// raw_data_sel == 2'b01
 					index_inc = 1'b1;
+					push_enable = 1'b1;
 					encoding = 1'b1;
-					
-					next_state = RF_FULL;
+
+					if (raw_data_out_fifo_full)
+						next_state = RF_FULL;
+					else
+						next_state = PUSH_2;
 				end
 
-			ENCODE_2:
+			PUSH_2:
 				begin
 					// raw_data_sel == 2'b10
 					index_inc = 1'b1;
+					push_enable = 1'b1;
 					encoding = 1'b1;
-					
-					next_state = RF_FULL;
+
+					if (raw_data_out_fifo_full)
+						next_state = RF_FULL;
+					else
+						next_state = PUSH_3;
 				end
 
-			ENCODE_3:
+			PUSH_3:
 				begin 
 					// raw_data_sel == 2'b11
 					index_clr = 1'b1;
+					push_enable = 1'b1;
 					encoding = 1'b1;
-					
+
 					next_state = RD_READY;
 				end
 
