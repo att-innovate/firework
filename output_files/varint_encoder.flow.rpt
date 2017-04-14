@@ -1,5 +1,5 @@
 Flow report for varint_encoder
-Wed Apr 12 17:25:00 2017
+Thu Apr 13 17:52:56 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -41,7 +41,7 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Flow Status                 ; Successful - Wed Apr 12 17:25:00 2017           ;
+; Flow Status                 ; Successful - Thu Apr 13 17:52:56 2017           ;
 ; Quartus Prime Version       ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
 ; Revision Name               ; varint_encoder                                  ;
 ; Top-level Entity Name       ; protobuf_serializer                             ;
@@ -65,7 +65,7 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/12/2017 16:56:31 ;
+; Start date & time ; 04/13/2017 17:35:44 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; varint_encoder      ;
 +-------------------+---------------------+
@@ -76,16 +76,24 @@ agreement for further details.
 +--------------------------------------+----------------------------------------------------------------------+--------------------------------------+---------------------+------------------------+
 ; Assignment Name                      ; Value                                                                ; Default Value                        ; Entity Name         ; Section Id             ;
 +--------------------------------------+----------------------------------------------------------------------+--------------------------------------+---------------------+------------------------+
-; COMPILER_SIGNATURE_ID                ; 203178701995592.149204139130795                                      ; --                                   ; --                  ; --                     ;
+; COMPILER_SIGNATURE_ID                ; 203178701995592.149213014426240                                      ; --                                   ; --                  ; --                     ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                                                   ; --                                   ; --                  ; raw data testcases     ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                                                   ; --                                   ; --                  ; varint testcases       ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                                   ; --                                   ; --                  ; protobuf_serializer_tb ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST      ; On                                                                   ; --                                   ; --                  ; eda_simulation         ;
-; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; protobuf_serializer_tb                                               ; --                                   ; --                  ; eda_simulation         ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; raw data testcases                                                   ; --                                   ; --                  ; eda_simulation         ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                                                          ; --                                   ; --                  ; eda_simulation         ;
 ; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (Verilog)                                            ; <None>                               ; --                  ; --                     ;
 ; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                                                      ; --                                   ; --                  ; eda_simulation         ;
+; EDA_TEST_BENCH_FILE                  ; protobuf_serializer_tb2.v                                            ; --                                   ; --                  ; raw data testcases     ;
+; EDA_TEST_BENCH_FILE                  ; protobuf_serializer_tb1.v                                            ; --                                   ; --                  ; varint testcases       ;
 ; EDA_TEST_BENCH_FILE                  ; protobuf_serializer_tb.v                                             ; --                                   ; --                  ; protobuf_serializer_tb ;
+; EDA_TEST_BENCH_MODULE_NAME           ; protobuf_serializer_tb2                                              ; --                                   ; --                  ; raw data testcases     ;
+; EDA_TEST_BENCH_MODULE_NAME           ; protobuf_serializer_tb1                                              ; --                                   ; --                  ; varint testcases       ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; protobuf_serializer_tb                                               ; --                                   ; --                  ; protobuf_serializer_tb ;
 ; EDA_TEST_BENCH_NAME                  ; protobuf_serializer_tb                                               ; --                                   ; --                  ; eda_simulation         ;
+; EDA_TEST_BENCH_NAME                  ; varint testcases                                                     ; --                                   ; --                  ; eda_simulation         ;
+; EDA_TEST_BENCH_NAME                  ; raw data testcases                                                   ; --                                   ; --                  ; eda_simulation         ;
 ; EDA_TIME_SCALE                       ; 1 ps                                                                 ; --                                   ; --                  ; eda_simulation         ;
 ; MAX_CORE_JUNCTION_TEMP               ; 100                                                                  ; --                                   ; --                  ; --                     ;
 ; MIN_CORE_JUNCTION_TEMP               ; 0                                                                    ; --                                   ; --                  ; --                     ;
@@ -167,14 +175,13 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:15     ; 1.0                     ; 1481 MB             ; 00:00:36                           ;
-; Fitter                    ; 00:02:58     ; 3.2                     ; 8478 MB             ; 00:08:44                           ;
-; Assembler                 ; 00:00:47     ; 1.0                     ; 5412 MB             ; 00:00:47                           ;
-; TimeQuest Timing Analyzer ; 00:00:32     ; 5.6                     ; 4397 MB             ; 00:00:38                           ;
-; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 1509 MB             ; 00:00:01                           ;
-; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 1514 MB             ; 00:00:01                           ;
-; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 1513 MB             ; 00:00:01                           ;
-; Total                     ; 00:04:35     ; --                      ; --                  ; 00:10:48                           ;
+; Analysis & Synthesis      ; 00:00:16     ; 1.0                     ; 1480 MB             ; 00:00:37                           ;
+; Fitter                    ; 00:03:08     ; 3.1                     ; 8469 MB             ; 00:09:16                           ;
+; Assembler                 ; 00:00:47     ; 1.0                     ; 5415 MB             ; 00:00:47                           ;
+; TimeQuest Timing Analyzer ; 00:00:32     ; 5.6                     ; 4398 MB             ; 00:00:39                           ;
+; EDA Netlist Writer        ; 00:00:02     ; 1.0                     ; 1509 MB             ; 00:00:01                           ;
+; EDA Netlist Writer        ; 00:00:02     ; 1.0                     ; 1514 MB             ; 00:00:01                           ;
+; Total                     ; 00:04:47     ; --                      ; --                  ; 00:11:21                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -189,7 +196,6 @@ agreement for further details.
 ; TimeQuest Timing Analyzer ; cl3.dvmco.met    ; CentOS Linux ; CentOS Linux ; x86_64         ;
 ; EDA Netlist Writer        ; cl3.dvmco.met    ; CentOS Linux ; CentOS Linux ; x86_64         ;
 ; EDA Netlist Writer        ; cl3.dvmco.met    ; CentOS Linux ; CentOS Linux ; x86_64         ;
-; EDA Netlist Writer        ; cl3.dvmco.met    ; CentOS Linux ; CentOS Linux ; x86_64         ;
 +---------------------------+------------------+--------------+--------------+----------------+
 
 
@@ -201,7 +207,6 @@ quartus_fit --read_settings_files=off --write_settings_files=off varint_encoder 
 quartus_asm --read_settings_files=off --write_settings_files=off varint_encoder -c varint_encoder
 quartus_sta varint_encoder -c varint_encoder
 quartus_eda --read_settings_files=off --write_settings_files=off varint_encoder -c varint_encoder
-quartus_eda --read_settings_files=on --write_settings_files=off varint_encoder -c varint_encoder
 quartus_eda --read_settings_files=on --write_settings_files=off varint_encoder -c varint_encoder
 
 

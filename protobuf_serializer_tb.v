@@ -90,98 +90,71 @@ module protobuf_serializer_tb ();
 		// wait for reset to deassert
 		@(negedge reset);
 
-		// -----------------------------------------
-		// Write a 32-bit integer with the value 10
-		//   encoding:   varint
-		//   tag:        1
-		//   wire type:  2
-		//   size:       1 byte
-		//   output:     0x0a
-		// -----------------------------------------
-		
+		// ------------------------------------------------------- //
+		// Write a 32-bit integer with the value 10                //
+		//   encoding:   varint                                    //
+		//   tag:        1                                         //
+		//   wire type:  2                                         //
+		//   size:       1 byte                                    //
+		//   output:     0x0a                                      //
+		// ------------------------------------------------------- //
+
 		// AXI master: set Write Address channel signals
 		axs_s0_awid = 4'b1111;  // arbitrary, axs_s0_bid must reflect this value
-		axs_s0_awaddr = 32'h01; // address indicates incoming 32-bit varint data
+		axs_s0_awaddr = 32'h01; // indicates incoming 32-bit varint data
 		axs_s0_awlen = 8'h00;   // burst length = AWLEN+1 = 0+1 = 1 transfer
 		axs_s0_awsize = 3'b010; // burst size = 2^AWSIZE = 2^2 = 4 bytes
-		axs_s0_awburst = 2'b00; // burst type 0b00: FIXED  
+		axs_s0_awburst = 2'b00; // burst type: FIXED (ideal for accessing FIFOs)
 		axs_s0_awvalid = 1'b1;  // indicates write address data valid
-		
+
 		// AXI master: set Write Data channel signals
 		axs_s0_wdata = 32'd10;  // 32-bit write data bus
 		axs_s0_wstrb = 4'b1111; // indicates which byte lanes contain valid data
 		axs_s0_wvalid = 1'b1;   // indicates write data valid
-		
+
 		// AXI master: set Write Response channel signals
 		axs_s0_bready = 1'b1;   // indicates master is ready for a response
-		
+
 		// wait for write transaction to complete
 		@(negedge axs_s0_bvalid);
 		@(negedge clk);
 
-		// -----------------------------------------
-		// Write a 32-bit integer with the value 51
-		//   encoding:   varint
-		//   size:       1 byte
-		//   output:     0x33
-		// -----------------------------------------
-		
+		// ------------------------------------------------------- //
+		// Write a 32-bit integer with the value 51                //
+		//   encoding:   varint                                    //
+		//   size:       1 byte                                    //
+		//   output:     0x33                                      //
+		// ------------------------------------------------------- //
+
 		// AXI master: set Write Address channel signals
-		axs_s0_awid = 4'b0101;  // arbitrary, axs_s0_bid must reflect this value
-		axs_s0_awaddr = 32'h01; // address indicates incoming 32-bit varint data
-		axs_s0_awlen = 8'h00;   // burst length = AWLEN+1 = 0+1 = 1 transfer
-		axs_s0_awsize = 3'b010; // burst size = 2^AWSIZE = 2^2 = 4 bytes
-		axs_s0_awburst = 2'b00; // burst type 0b00: FIXED  
-		axs_s0_awvalid = 1'b1;  // indicates write address data valid
-		
+		axs_s0_awid = 4'b0101;
+		axs_s0_awaddr = 32'h01;
+		axs_s0_awlen = 8'h00;
+		axs_s0_awsize = 3'b010;
+		axs_s0_awburst = 2'b00;
+		axs_s0_awvalid = 1'b1;
+
 		// AXI master: set Write Data channel signals
-		axs_s0_wdata = 32'd51;  // 32-bit write data bus
-		axs_s0_wstrb = 4'b1111; // indicates which byte lanes contain valid data
-		axs_s0_wvalid = 1'b1;   // indicates write data valid
-		
+		axs_s0_wdata = 32'd51;
+		axs_s0_wstrb = 4'b1111;
+		axs_s0_wvalid = 1'b1;
+
 		// AXI master: set Write Response channel signals
-		axs_s0_bready = 1'b1;   // indicates master is ready for a response		
+		axs_s0_bready = 1'b1;
 
 		// wait for write transaction to complete
 		@(negedge axs_s0_bvalid);
 		@(negedge clk);
-		
-/*		// -----------------------------------------
-		// Write a 32-bit integer with the value 2,931,068,810
-		//   encoding:   varint
-		//   size:       5 bytes
-		//   output:     0x8a, 0x9f, 0xd2, 0xf5, 0x0a
-		// -----------------------------------------
-		
-		// AXI master: set Write Address channel signals
-		axs_s0_awid = 4'b1001;  // arbitrary, axs_s0_bid must reflect this value
-		axs_s0_awaddr = 32'h01; // address indicates incoming 32-bit varint data
-		axs_s0_awlen = 8'h00;   // burst length = AWLEN+1 = 0+1 = 1 transfer
-		axs_s0_awsize = 3'b010; // burst size = 2^AWSIZE = 2^2 = 4 bytes
-		axs_s0_awburst = 2'b00; // burst type 0b00: FIXED  
-		axs_s0_awvalid = 1'b1;  // indicates write address data valid
-		
-		// AXI master: set Write Data channel signals
-		axs_s0_wdata = 32'd2931068810; // 32-bit write data bus
-		axs_s0_wstrb = 4'b1111; // indicates which byte lanes contain valid data
-		axs_s0_wvalid = 1'b1;   // indicates write data valid
-		
-		// AXI master: set Write Response channel signals
-		axs_s0_bready = 1'b1;   // indicates master is ready for a response		
 
-		// wait for write transaction to complete
-		@(negedge axs_s0_bvalid);
-		@(negedge clk);
-*/		
-		// -----------------------------------------
-		// Write a 32-bit integer with the value 10
-		//   encoding:   varint
-		//   tag:        1
-		//   wire type:  2
-		//   size:       1 byte
-		//   output:     0x0a
-		// -----------------------------------------
-		
+		// ------------------------------------------------------- //
+		// Write a 32-bit integer with the value 10                //
+		//   encoding:   varint                                    //
+		//   tag:        1                                         //
+		//   wire type:  2                                         //
+		//   size:       1 byte                                    //
+		//   output:     0x0a                                      //
+		// ------------------------------------------------------- //
+
 		// AXI master: set Write Address channel signals
 		axs_s0_awid = 4'b1111;
 		axs_s0_awaddr = 32'h01;
@@ -189,27 +162,27 @@ module protobuf_serializer_tb ();
 		axs_s0_awsize = 3'b010;
 		axs_s0_awburst = 2'b00;
 		axs_s0_awvalid = 1'b1;
-		
+
 		// AXI master: set Write Data channel signals
 		axs_s0_wdata = 32'd10;
 		axs_s0_wstrb = 4'b1111;
 		axs_s0_wvalid = 1'b1;
-		
+
 		// AXI master: set Write Response channel signals
 		axs_s0_bready = 1'b1;
-		
+
 		// wait for write transaction to complete
 		@(negedge axs_s0_bvalid);
 		@(negedge clk);
-		
-		// -----------------------------------------
-		// Write a 32-bit integer with the value 11
-		//   encoding:   varint
-		//   length:     11 bytes
-		//   size:       1 byte
-		//   output:     0x0b
-		// -----------------------------------------
-		
+
+		// ------------------------------------------------------- //
+		// Write a 32-bit integer with the value 11                //
+		//   encoding:   varint                                    //
+		//   length:     11 bytes                                  //
+		//   size:       1 byte                                    //
+		//   output:     0x0b                                      //
+		// ------------------------------------------------------- //
+
 		// AXI master: set Write Address channel signals
 		axs_s0_awid = 4'b0000;
 		axs_s0_awaddr = 32'h01;
@@ -217,26 +190,26 @@ module protobuf_serializer_tb ();
 		axs_s0_awsize = 3'b010;
 		axs_s0_awburst = 2'b00;
 		axs_s0_awvalid = 1'b1;
-		
+
 		// AXI master: set Write Data channel signals
 		axs_s0_wdata = 32'd11;
 		axs_s0_wstrb = 4'b1111;
 		axs_s0_wvalid = 1'b1;
-		
+
 		// AXI master: set Write Response channel signals
 		axs_s0_bready = 1'b1;
-		
+
 		// wait for write transaction to complete
 		@(negedge axs_s0_bvalid);
 		@(negedge clk);
-		
-		// -------------------------------------------------- //
-		// Write a string with the value: "mario admon"       //
-		//   encoding:   raw data                             //
-		//   size:       11 bytes                             //
-		//   output:     6d 61 72 69 6f 20 61 64 6d 6f 6e     //
-		// -------------------------------------------------- //
-		
+
+		// ------------------------------------------------------- //
+		// Write a string with the value: "mario admon"            //
+		//   encoding:   raw data                                  //
+		//   size:       11 bytes                                  //
+		//   output:     6d 61 72 69 6f 20 61 64 6d 6f 6e          //
+		// ------------------------------------------------------- //
+
 		// AXI master: set Write Address channel signals
 		axs_s0_awid = 4'b0011;
 		axs_s0_awaddr = 32'hf0; // raw data, not last transfer of payload
@@ -244,43 +217,43 @@ module protobuf_serializer_tb ();
 		axs_s0_awsize = 3'b010;
 		axs_s0_awburst = 2'b00;
 		axs_s0_awvalid = 1'b1;
-		
+
 		// AXI master: set Write Data channel signals
 		axs_s0_wdata = 32'h6972616d;
 		axs_s0_wstrb = 4'b1111;
 		axs_s0_wvalid = 1'b1;
-		
+
 		// AXI master: set Write Response channel signals
 		axs_s0_bready = 1'b1;
-		
+
 		// wait for write transaction to complete
 		@(negedge axs_s0_bvalid);
 		@(negedge clk);
-		
-		// -------------------------------------------------- //
-		
+
+		// ------------------------------------------------------- //
+
 		// AXI master: set Write Address channel signals
 		axs_s0_awid = 4'b0011;
-		axs_s0_awaddr = 32'hf0; // raw data, not last transfer of payload
+		axs_s0_awaddr = 32'hf0;
 		axs_s0_awlen = 8'h00;
 		axs_s0_awsize = 3'b010;
 		axs_s0_awburst = 2'b00;
 		axs_s0_awvalid = 1'b1;
-		
+
 		// AXI master: set Write Data channel signals
 		axs_s0_wdata = 32'h6461206f;
 		axs_s0_wstrb = 4'b1111;
 		axs_s0_wvalid = 1'b1;
-		
+
 		// AXI master: set Write Response channel signals
 		axs_s0_bready = 1'b1;
-		
+
 		// wait for write transaction to complete
 		@(negedge axs_s0_bvalid);
 		@(negedge clk);
-		
-		// -------------------------------------------------- //
-		
+
+		// ------------------------------------------------------- //
+
 		// AXI master: set Write Address channel signals
 		axs_s0_awid = 4'b0011;
 		axs_s0_awaddr = 32'hf1; // raw data, last transfer of payload
@@ -288,15 +261,15 @@ module protobuf_serializer_tb ();
 		axs_s0_awsize = 3'b010;
 		axs_s0_awburst = 2'b00;
 		axs_s0_awvalid = 1'b1;
-		
+
 		// AXI master: set Write Data channel signals
 		axs_s0_wdata = 32'h006e6f6d;
-		axs_s0_wstrb = 4'b0111;
+		axs_s0_wstrb = 4'b0111; // indicates 3 bytes of valid data: bits [23:0]
 		axs_s0_wvalid = 1'b1;
-		
+
 		// AXI master: set Write Response channel signals
 		axs_s0_bready = 1'b1;
-		
+
 		// wait for write transaction to complete
 		@(negedge axs_s0_bvalid);
 		@(negedge clk);
@@ -305,30 +278,30 @@ module protobuf_serializer_tb ();
 		axs_s0_awvalid = 1'b0;
 		axs_s0_wvalid = 1'b0;
 		axs_s0_bready = 1'b0;
-		
-		// -------------------------------------------------- //
-		// Read 15 bytes of data                              //
-		// -------------------------------------------------- //
+
+		// ------------------------------------------------------- //
+		// Read 15 bytes of data                                   //
+		// ------------------------------------------------------- //
 
 		// AXI master: set Read Address channel signals
 		axs_s0_arid = 4'b0000;  // arbitrary, axs_s0_rid must reflect this value
-		axs_s0_araddr = 32'h00; // read address will be defined in GHRD Qsys system
+		axs_s0_araddr = 32'h00; // read address will be defined in Qsys
 		axs_s0_arlen = 8'h0e;   // burst length = ARLEN+1 = 14+1 = 15 transfers
 		axs_s0_arsize = 3'b000; // burst size = 2^ARSIZE = 2^0 = 1 byte
-		axs_s0_arburst = 2'b00; // burst type 0b00: FIXED
+		axs_s0_arburst = 2'b00; // burst type: FIXED (ideal for accessing FIFOs)
 		axs_s0_arvalid = 1'b1;  // indicates read address data valid
 
 		// AXI master: set Read Data channel signals
 		axs_s0_rready = 1'b1;   // indicates master is ready to accept read data
-		
+
 		// wait for read transaction to complete
 		@(negedge axs_s0_rlast);
 		@(negedge clk);
-		
+
 		// done reading: disable read transaction channels
 		axs_s0_arvalid = 1'b0;
 		axs_s0_rready = 1'b0;
-		
+
 		// wait a couple cycles and terminate simulation
 		repeat (2) @(negedge clk);
 		$stop;
