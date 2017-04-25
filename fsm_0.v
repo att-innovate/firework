@@ -29,6 +29,8 @@ module fsm_0 (
 		output reg         varint_in_fifo_push,
 		output reg         varint_in_index_clr,
 		output reg         varint_in_index_push,
+		output reg         varint_in_size_clr,
+		output reg         varint_in_size_push,
 
 		input  wire        raw_data_in_fifo_full,
 		output reg         raw_data_in_fifo_clr,
@@ -39,10 +41,10 @@ module fsm_0 (
 		output reg         raw_data_in_wstrb_push,
 
 		// FIFO data signals
-		output reg  [9:0]  index,
-		
 		output reg  [31:0] wdata,
-		output reg  [3:0]  wstrb
+		output reg  [3:0]  wstrb,
+		output reg  [9:0]  index,
+		output reg         varint64
 	);
 
 	// datapath registers
@@ -51,12 +53,13 @@ module fsm_0 (
 	reg [7:0]  awlen;
 	reg [2:0]  awsize;
 	reg [1:0]  awburst;
-	
+
 	// datapath control signals
-	reg index_clr, index_inc;
 	reg awid_clr, awaddr_clr, awlen_clr, awsize_clr, awburst_clr;
 	reg awid_ld, awaddr_ld, awlen_ld, awsize_ld, awburst_ld;
 	reg wdata_clr, wdata_ld, wstrb_clr, wstrb_ld;
+	reg index_clr, index_inc;
+	reg varint64_clr, varint64_ld;
 
 	// state definitions (one-hot encoding)
 	parameter INIT        = 16'h0001,
@@ -76,15 +79,12 @@ module fsm_0 (
 	// state memory logic
 	reg [15:0] state;
 	reg [15:0] next_state;
-	
+
 	always @(posedge clk)
 	begin
 		if (reset)
 			state <= INIT;
 		else begin
-			index   <= (index_inc) ? ((index == 10'd1023) ? 10'b0000000000 : index + 10'd1) : 
-			                      ((index_clr) ? 10'b0000000000 : index);
-
 			awid    <= (awid_ld) ? axs_s0_awid : ((awid_clr) ? 4'h0 : awid);
 			awaddr  <= (awaddr_ld) ? axs_s0_awaddr :
 			           ((awaddr_clr) ? 32'h0000_0000 : awaddr);
@@ -94,6 +94,11 @@ module fsm_0 (
 
 			wdata   <= (wdata_ld) ? axs_s0_wdata : ((wdata_clr) ? 32'h0000_0000 : wdata);
 			wstrb   <= (wstrb_ld) ? axs_s0_wstrb : ((wstrb_clr) ? 4'h0 : wstrb);
+
+			index   <= (index_inc) ? ((index == 10'd1023) ? 10'b0000000000 : index + 10'd1) : 
+			                      ((index_clr) ? 10'b0000000000 : index);
+
+			varint64 <= (varint64_ld) ? 1'b1 : ((varint64_clr) ? 1'b0 : varint64);
 
 			state <= next_state;
 		end
@@ -111,15 +116,14 @@ module fsm_0 (
 		varint_in_fifo_push = 1'b0;
 		varint_in_index_clr = 1'b0;
 		varint_in_index_push = 1'b0;
+		varint_in_size_clr = 1'b0;
+		varint_in_size_push = 1'b0;
 		raw_data_in_fifo_clr = 1'b0;
 		raw_data_in_fifo_push = 1'b0;
 		raw_data_in_index_clr = 1'b0;
 		raw_data_in_index_push = 1'b0;
 		raw_data_in_wstrb_clr = 1'b0;
 		raw_data_in_wstrb_push = 1'b0;
-
-		index_clr = 1'b0;
-		index_inc = 1'b0;
 
 		awid_clr = 1'b0;
 		awid_ld = 1'b0;
@@ -131,11 +135,17 @@ module fsm_0 (
 		awsize_ld = 1'b0;
 		awburst_clr = 1'b0;
 		awburst_ld = 1'b0;
-		
+
 		wdata_clr = 1'b0;
 		wdata_ld = 1'b0;
 		wstrb_clr = 1'b0;
 		wstrb_ld = 1'b0;
+
+		index_clr = 1'b0;
+		index_inc = 1'b0;
+
+		varint64_clr = 1'b0;
+		varint64_ld = 1'b0;
 
 		// datapath logic
 		axs_s0_bid = awid;
@@ -145,20 +155,23 @@ module fsm_0 (
 				begin
 					varint_in_fifo_clr = 1'b1;
 					varint_in_index_clr = 1'b1;
+					varint_in_size_clr = 1'b1;
 					raw_data_in_fifo_clr = 1'b1;
 					raw_data_in_index_clr = 1'b1;
 					raw_data_in_wstrb_clr = 1'b1;
-
-					index_clr = 1'b1;
 
 					awid_clr = 1'b1;
 					awaddr_clr = 1'b1;
 					awlen_clr = 1'b1;
 					awsize_clr = 1'b1;
 					awburst_clr = 1'b1;
-					
+
 					wdata_clr = 1'b1;
 					wstrb_clr = 1'b1;
+
+					index_clr = 1'b1;
+
+					varint64_clr = 1'b1;
 
 					next_state = AW_READY;
 				end
@@ -167,13 +180,13 @@ module fsm_0 (
 				begin
 					axs_s0_bvalid = 1'b0;
 					axs_s0_awready = 1'b1;
-					
+
 					awid_ld = 1'b1;
 					awaddr_ld = 1'b1;
 					awlen_ld = 1'b1;
 					awsize_ld = 1'b1;
 					awburst_ld = 1'b1;
-				
+
 					if (~axs_s0_awvalid)
 						next_state = AW_READY;
 					else if (axs_s0_awvalid && axs_s0_awaddr[7:0] == 8'h0x
@@ -202,63 +215,67 @@ module fsm_0 (
 				begin
 					axs_s0_awready = 1'b0;
 					axs_s0_wready = 1'b1;
-					
+
 					wdata_ld = 1'b1;
 					wstrb_ld = 1'b1;
-				
+
+					varint64_ld = 1'b1;
+
 					if (~axs_s0_wvalid)
 						next_state = W_READY_VN;
 					else
 						next_state = B_READY_VN;
 				end
-			
+
 			W_READY_VL:
 				begin
 					axs_s0_awready = 1'b0;
 					axs_s0_wready = 1'b1;
-					
+
 					wdata_ld = 1'b1;
 					wstrb_ld = 1'b1;
-				
+
+					varint64_clr = 1'b1;
+
 					if (~axs_s0_wvalid)
 						next_state = W_READY_VL;
 					else
 						next_state = B_READY_VL;
 				end
-			
+
 			W_READY_RN:
 				begin
 					axs_s0_awready = 1'b0;
 					axs_s0_wready = 1'b1;
-					
+
 					wdata_ld = 1'b1;
 					wstrb_ld = 1'b1;
-				
+
 					if (~axs_s0_wvalid)
 						next_state = W_READY_RN;
 					else
 						next_state = B_READY_RN;
 				end
-			
+
 			W_READY_RL:
 				begin
 					axs_s0_awready = 1'b0;
 					axs_s0_wready = 1'b1;
-					
+
 					wdata_ld = 1'b1;
 					wstrb_ld = 1'b1;
-				
+
 					if (~axs_s0_wvalid)
 						next_state = W_READY_RL;
 					else
 						next_state = B_READY_RL;
 				end
-			
+
 			VF_FULL:
 				begin
 					axs_s0_awready = 1'b0;
 					axs_s0_wready = 1'b0;
-				
+
 					if (varint_in_fifo_full)
 						next_state = VF_FULL;
 					else if (~varint_in_fifo_full && awaddr[7:0] == 8'h00)
@@ -268,12 +285,12 @@ module fsm_0 (
 					else // error
 						next_state = INIT;
 				end
-			
+
 			RF_FULL:
 				begin
 					axs_s0_awready = 1'b0;
 					axs_s0_wready = 1'b0;
-				
+
 					if (raw_data_in_fifo_full)
 						next_state = RF_FULL;
 					else if (~raw_data_in_fifo_full && awaddr[7:0] == 8'hF0)
@@ -283,7 +300,7 @@ module fsm_0 (
 					else // error
 						next_state = INIT;
 				end
-			
+
 			B_READY_VN:
 				begin
 					axs_s0_wready = 1'b0;
@@ -291,13 +308,14 @@ module fsm_0 (
 
 					varint_in_fifo_push = 1'b1;
 					varint_in_index_push = 1'b1;
-				
+					varint_in_size_push = 1'b1;
+
 					if (~axs_s0_bready)
 						next_state = MASTER_WAIT;
 					else
 						next_state = AW_READY;
 				end
-			
+
 			B_READY_VL:
 				begin
 					axs_s0_wready = 1'b0;
@@ -305,9 +323,10 @@ module fsm_0 (
 
 					varint_in_fifo_push = 1'b1;
 					varint_in_index_push = 1'b1;
-					
+					varint_in_size_push = 1'b1;
+
 					index_inc = 1'b1;
-				
+
 					if (~axs_s0_bready)
 						next_state = MASTER_WAIT;
 					else
@@ -322,13 +341,13 @@ module fsm_0 (
 					raw_data_in_fifo_push = 1'b1;
 					raw_data_in_index_push = 1'b1;
 					raw_data_in_wstrb_push = 1'b1;
-				
+
 					if (~axs_s0_bready)
 						next_state = MASTER_WAIT;
 					else
 						next_state = AW_READY;
 				end
-			
+
 			B_READY_RL:
 				begin
 					axs_s0_wready = 1'b0;
@@ -337,15 +356,15 @@ module fsm_0 (
 					raw_data_in_fifo_push = 1'b1;
 					raw_data_in_index_push = 1'b1;
 					raw_data_in_wstrb_push = 1'b1;
-					
+
 					index_inc = 1'b1;
-				
+
 					if (~axs_s0_bready)
 						next_state = MASTER_WAIT;
 					else
 						next_state = AW_READY;
 				end
-			
+
 			MASTER_WAIT:
 				begin
 					axs_s0_bvalid = 1'b1;

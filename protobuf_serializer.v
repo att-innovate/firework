@@ -40,10 +40,12 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 	wire [31:0] wdata;
 	wire [3:0]  wstrb;
 	wire [9:0]  index;
+	wire        varint64;
 
 	wire varint_in_fifo_full, varint_in_fifo_empty;
 	wire varint_in_fifo_clr, varint_in_fifo_push, varint_in_fifo_pop;
 	wire varint_in_index_clr, varint_in_index_push, varint_in_index_pop;
+	wire varint_in_size_clr, varint_in_size_push, varint_in_size_pop;
 
 	wire raw_data_in_fifo_full, raw_data_in_fifo_empty;
 	wire raw_data_in_fifo_clr, raw_data_in_fifo_push, raw_data_in_fifo_pop;
@@ -52,6 +54,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 
 	wire [31:0] varint_in_fifo_q, raw_data_in_fifo_q;
 	wire [9:0]  varint_in_index_q, raw_data_in_index_q;
+	wire        varint_in_size_q;
 	wire [3:0]  raw_data_in_wstrb_q;
 
 	wire [1:0]  raw_data_sel;
@@ -108,11 +111,11 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 	);
 	
 	varint_in_size in2 (
-		.data  (/*<connected-to-data>*/),  //  fifo_input.datain
-		.wrreq (/*<connected-to-wrreq>*/), //            .wrreq
+		.data  (varint64),               //  fifo_input.datain
+		.wrreq (varint_in_size_push),    //            .wrreq
 		.rdreq (/*<connected-to-rdreq>*/), //            .rdreq
-		.clock (clock_clk),                //            .clk
-		.sclr  (/*<connected-to-sclr>*/),  //            .sclr
+		.clock (clock_clk),              //            .clk
+		.sclr  (varint_in_size_clr),     //            .sclr
 		.q     (/*<connected-to-q>*/)      // fifo_output.dataout
 	);
 	
@@ -167,6 +170,8 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 		.varint_in_fifo_push    (varint_in_fifo_push),
 		.varint_in_index_clr    (varint_in_index_clr),
 		.varint_in_index_push   (varint_in_index_push),
+		.varint_in_size_clr     (varint_in_size_clr),
+		.varint_in_size_push    (varint_in_size_push),
 		.raw_data_in_fifo_full  (raw_data_in_fifo_full),
 		.raw_data_in_fifo_clr   (raw_data_in_fifo_clr),
 		.raw_data_in_fifo_push  (raw_data_in_fifo_push),
@@ -176,7 +181,8 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 		.raw_data_in_wstrb_push (raw_data_in_wstrb_push),
 		.wdata                  (wdata),
 		.wstrb                  (wstrb),
-		.index                  (index)
+		.index                  (index),
+		.varint64               (varint64)
 	);
 	
 	fsm_1 f1 (
