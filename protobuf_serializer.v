@@ -107,7 +107,16 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 		.q     (varint_in_index_q)       // fifo_output.dataout
 	);
 	
-	raw_data_in_fifo in2 (
+	varint_in_size in2 (
+		.data  (/*<connected-to-data>*/),  //  fifo_input.datain
+		.wrreq (/*<connected-to-wrreq>*/), //            .wrreq
+		.rdreq (/*<connected-to-rdreq>*/), //            .rdreq
+		.clock (clock_clk),                //            .clk
+		.sclr  (/*<connected-to-sclr>*/),  //            .sclr
+		.q     (/*<connected-to-q>*/)      // fifo_output.dataout
+	);
+	
+	raw_data_in_fifo in3 (
 		.data  (wdata),                  //  fifo_input.datain
 		.wrreq (raw_data_in_fifo_push),  //            .wrreq
 		.rdreq (raw_data_in_fifo_pop),   //            .rdreq
@@ -118,7 +127,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 		.empty (raw_data_in_fifo_empty)  //            .empty
 	);
 	
-	raw_data_in_index in3 (
+	raw_data_in_index in4 (
 		.data  (index),                  //  fifo_input.datain
 		.wrreq (raw_data_in_index_push), //            .wrreq
 		.rdreq (raw_data_in_index_pop),  //            .rdreq
@@ -127,7 +136,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 		.q     (raw_data_in_index_q)     // fifo_output.dataout
 	); 
 	
-	raw_data_in_wstrb in4 (
+	raw_data_in_wstrb in5 (
 		.data  (wstrb),                  //  fifo_input.datain
 		.wrreq (raw_data_in_wstrb_push), //            .wrreq
 		.rdreq (raw_data_in_wstrb_pop),  //            .rdreq
