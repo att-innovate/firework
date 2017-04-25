@@ -172,7 +172,7 @@ module protobuf_serializer_tb1 ();
 		@(negedge clk);
 
 		// ------------------------------------------------------- //
-		// Write a 32-bit integer with the value 2,931,068,810     //
+		// Write a 32-bit integer with the value -1,363,898,486    //
 		//   encoding:   varint                                    //
 		//   size:       5 bytes                                   //
 		//   output:     0x8a, 9f, d2, f5, 0a                      //
