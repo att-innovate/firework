@@ -1,16 +1,16 @@
-Fitter Status : Successful - Thu Apr 13 17:39:09 2017
+Fitter Status : Successful - Tue Apr 25 17:09:52 2017
 Quartus Prime Version : 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 Revision Name : varint_encoder
 Top-level Entity Name : protobuf_serializer
 Family : Arria 10
 Device : 10AS066N3F40E2SGE2
 Timing Models : Preliminary
-Logic utilization (in ALMs) : 537 / 251,680 ( < 1 % )
-Total registers : 676
+Logic utilization (in ALMs) : 622 / 251,680 ( < 1 % )
+Total registers : 791
 Total pins : 187 / 812 ( 23 % )
 Total virtual pins : 0
-Total block memory bits : 303,104 / 43,642,880 ( < 1 % )
-Total RAM Blocks : 19 / 2,131 ( < 1 % )
+Total block memory bits : 304,128 / 43,642,880 ( < 1 % )
+Total RAM Blocks : 20 / 2,131 ( < 1 % )
 Total DSP Blocks : 0 / 1,687 ( 0 % )
 Total HSSI RX channels : 0 / 48 ( 0 % )
 Total HSSI TX channels : 0 / 48 ( 0 % )

@@ -72,7 +72,6 @@ set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME protobuf_serializer_tb1 -
 set_global_assignment -name EDA_TEST_BENCH_NAME "raw data testcases" -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id "raw data testcases"
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME protobuf_serializer_tb2 -section_id "raw data testcases"
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name VERILOG_FILE protobuf_serializer.v
 set_global_assignment -name QSYS_FILE varint_in_fifo.qsys
 set_global_assignment -name QSYS_FILE varint_in_index.qsys
@@ -95,3 +94,4 @@ set_global_assignment -name VERILOG_FILE fsm_4.v
 set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb.v -section_id protobuf_serializer_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb1.v -section_id "varint testcases"
 set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb2.v -section_id "raw data testcases"
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -113,10 +113,10 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 	varint_in_size in2 (
 		.data  (varint64),               //  fifo_input.datain
 		.wrreq (varint_in_size_push),    //            .wrreq
-		.rdreq (/*<connected-to-rdreq>*/), //            .rdreq
+		.rdreq (varint_in_size_pop),     //            .rdreq
 		.clock (clock_clk),              //            .clk
 		.sclr  (varint_in_size_clr),     //            .sclr
-		.q     (/*<connected-to-q>*/)      // fifo_output.dataout
+		.q     (varint_in_size_q)        // fifo_output.dataout
 	);
 	
 	raw_data_in_fifo in3 (
@@ -216,8 +216,10 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 		.clk                   (clock_clk),
 		.reset                 (reset_reset),
 		.varint_in_fifo_empty  (varint_in_fifo_empty),
+		.varint_in_size_q      (varint_in_size_q),
 		.varint_in_fifo_pop    (varint_in_fifo_pop),
 		.varint_in_index_pop   (varint_in_index_pop),
+		.varint_in_size_pop    (varint_in_size_pop),
 		.varint_out_fifo_full  (varint_out_fifo_full),
 		.varint_out_fifo_clr   (varint_out_fifo_clr),
 		.varint_out_fifo_push  (varint_out_fifo_push),

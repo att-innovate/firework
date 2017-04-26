@@ -230,7 +230,7 @@ module protobuf_serializer_tb1 ();
 		//   encoding:   varint                                    //
 		//   size:       7 bytes                                   //
 		//   output:     0x8a, 9f, d2, f5, ea, 80, 02              //
-		//   output:     0x8a, 9f, d2, f5, 0a, 86, 10              //
+		//   error:      0x8a, 9f, d2, f5, 0a, 86, 10              //
 		// ------------------------------------------------------- //
 
 		// AXI master: set Write Address channel signals

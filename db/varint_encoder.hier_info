@@ -1,5 +1,5 @@
 |protobuf_serializer
-clock_clk => clock_clk.IN17
+clock_clk => clock_clk.IN18
 reset_reset => reset_reset.IN7
 axs_s0_awid[0] => axs_s0_awid[0].IN1
 axs_s0_awid[1] => axs_s0_awid[1].IN1
@@ -51,7 +51,7 @@ axs_s0_awsize[2] => axs_s0_awsize[2].IN1
 axs_s0_awburst[0] => axs_s0_awburst[0].IN1
 axs_s0_awburst[1] => axs_s0_awburst[1].IN1
 axs_s0_awvalid => axs_s0_awvalid.IN1
-axs_s0_awready << fsm_0:f0.axs_s0_awready
+axs_s0_awready <= fsm_0:f0.axs_s0_awready
 axs_s0_wdata[0] => axs_s0_wdata[0].IN1
 axs_s0_wdata[1] => axs_s0_wdata[1].IN1
 axs_s0_wdata[2] => axs_s0_wdata[2].IN1
@@ -89,13 +89,13 @@ axs_s0_wstrb[1] => axs_s0_wstrb[1].IN1
 axs_s0_wstrb[2] => axs_s0_wstrb[2].IN1
 axs_s0_wstrb[3] => axs_s0_wstrb[3].IN1
 axs_s0_wvalid => axs_s0_wvalid.IN1
-axs_s0_wready << fsm_0:f0.axs_s0_wready
+axs_s0_wready <= fsm_0:f0.axs_s0_wready
 axs_s0_bready => axs_s0_bready.IN1
-axs_s0_bid[0] << fsm_0:f0.axs_s0_bid
-axs_s0_bid[1] << fsm_0:f0.axs_s0_bid
-axs_s0_bid[2] << fsm_0:f0.axs_s0_bid
-axs_s0_bid[3] << fsm_0:f0.axs_s0_bid
-axs_s0_bvalid << fsm_0:f0.axs_s0_bvalid
+axs_s0_bid[0] <= fsm_0:f0.axs_s0_bid
+axs_s0_bid[1] <= fsm_0:f0.axs_s0_bid
+axs_s0_bid[2] <= fsm_0:f0.axs_s0_bid
+axs_s0_bid[3] <= fsm_0:f0.axs_s0_bid
+axs_s0_bvalid <= fsm_0:f0.axs_s0_bvalid
 axs_s0_arid[0] => axs_s0_arid[0].IN1
 axs_s0_arid[1] => axs_s0_arid[1].IN1
 axs_s0_arid[2] => axs_s0_arid[2].IN1
@@ -146,45 +146,45 @@ axs_s0_arsize[2] => axs_s0_arsize[2].IN1
 axs_s0_arburst[0] => axs_s0_arburst[0].IN1
 axs_s0_arburst[1] => axs_s0_arburst[1].IN1
 axs_s0_arvalid => axs_s0_arvalid.IN1
-axs_s0_arready << fsm_4:f4.axs_s0_arready
-axs_s0_rid[0] << fsm_4:f4.axs_s0_rid
-axs_s0_rid[1] << fsm_4:f4.axs_s0_rid
-axs_s0_rid[2] << fsm_4:f4.axs_s0_rid
-axs_s0_rid[3] << fsm_4:f4.axs_s0_rid
-axs_s0_rdata[0] << out_fifo:out4.q
-axs_s0_rdata[1] << out_fifo:out4.q
-axs_s0_rdata[2] << out_fifo:out4.q
-axs_s0_rdata[3] << out_fifo:out4.q
-axs_s0_rdata[4] << out_fifo:out4.q
-axs_s0_rdata[5] << out_fifo:out4.q
-axs_s0_rdata[6] << out_fifo:out4.q
-axs_s0_rdata[7] << out_fifo:out4.q
-axs_s0_rdata[8] << <GND>
-axs_s0_rdata[9] << <GND>
-axs_s0_rdata[10] << <GND>
-axs_s0_rdata[11] << <GND>
-axs_s0_rdata[12] << <GND>
-axs_s0_rdata[13] << <GND>
-axs_s0_rdata[14] << <GND>
-axs_s0_rdata[15] << <GND>
-axs_s0_rdata[16] << <GND>
-axs_s0_rdata[17] << <GND>
-axs_s0_rdata[18] << <GND>
-axs_s0_rdata[19] << <GND>
-axs_s0_rdata[20] << <GND>
-axs_s0_rdata[21] << <GND>
-axs_s0_rdata[22] << <GND>
-axs_s0_rdata[23] << <GND>
-axs_s0_rdata[24] << <GND>
-axs_s0_rdata[25] << <GND>
-axs_s0_rdata[26] << <GND>
-axs_s0_rdata[27] << <GND>
-axs_s0_rdata[28] << <GND>
-axs_s0_rdata[29] << <GND>
-axs_s0_rdata[30] << <GND>
-axs_s0_rdata[31] << <GND>
-axs_s0_rlast << fsm_4:f4.axs_s0_rlast
-axs_s0_rvalid << fsm_4:f4.axs_s0_rvalid
+axs_s0_arready <= fsm_4:f4.axs_s0_arready
+axs_s0_rid[0] <= fsm_4:f4.axs_s0_rid
+axs_s0_rid[1] <= fsm_4:f4.axs_s0_rid
+axs_s0_rid[2] <= fsm_4:f4.axs_s0_rid
+axs_s0_rid[3] <= fsm_4:f4.axs_s0_rid
+axs_s0_rdata[0] <= out_fifo:out4.q
+axs_s0_rdata[1] <= out_fifo:out4.q
+axs_s0_rdata[2] <= out_fifo:out4.q
+axs_s0_rdata[3] <= out_fifo:out4.q
+axs_s0_rdata[4] <= out_fifo:out4.q
+axs_s0_rdata[5] <= out_fifo:out4.q
+axs_s0_rdata[6] <= out_fifo:out4.q
+axs_s0_rdata[7] <= out_fifo:out4.q
+axs_s0_rdata[8] <= <GND>
+axs_s0_rdata[9] <= <GND>
+axs_s0_rdata[10] <= <GND>
+axs_s0_rdata[11] <= <GND>
+axs_s0_rdata[12] <= <GND>
+axs_s0_rdata[13] <= <GND>
+axs_s0_rdata[14] <= <GND>
+axs_s0_rdata[15] <= <GND>
+axs_s0_rdata[16] <= <GND>
+axs_s0_rdata[17] <= <GND>
+axs_s0_rdata[18] <= <GND>
+axs_s0_rdata[19] <= <GND>
+axs_s0_rdata[20] <= <GND>
+axs_s0_rdata[21] <= <GND>
+axs_s0_rdata[22] <= <GND>
+axs_s0_rdata[23] <= <GND>
+axs_s0_rdata[24] <= <GND>
+axs_s0_rdata[25] <= <GND>
+axs_s0_rdata[26] <= <GND>
+axs_s0_rdata[27] <= <GND>
+axs_s0_rdata[28] <= <GND>
+axs_s0_rdata[29] <= <GND>
+axs_s0_rdata[30] <= <GND>
+axs_s0_rdata[31] <= <GND>
+axs_s0_rlast <= fsm_4:f4.axs_s0_rlast
+axs_s0_rvalid <= fsm_4:f4.axs_s0_rvalid
 axs_s0_rready => axs_s0_rready.IN1
 
 
@@ -2224,7 +2224,281 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|protobuf_serializer|raw_data_in_fifo:in2
+|protobuf_serializer|varint_in_size:in2
+data => data.IN1
+wrreq => wrreq.IN1
+rdreq => rdreq.IN1
+clock => clock.IN1
+sclr => sclr.IN1
+q <= varint_in_size_fifo_160_sjmeklq:fifo_0.q
+
+
+|protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0
+clock => clock.IN1
+data[0] => data[0].IN1
+rdreq => rdreq.IN1
+sclr => sclr.IN1
+wrreq => wrreq.IN1
+q[0] <= scfifo:scfifo_component.q
+
+
+|protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component
+data[0] => scfifo_ul91:auto_generated.data[0]
+q[0] <= scfifo_ul91:auto_generated.q[0]
+wrreq => scfifo_ul91:auto_generated.wrreq
+rdreq => scfifo_ul91:auto_generated.rdreq
+clock => scfifo_ul91:auto_generated.clock
+aclr => ~NO_FANOUT~
+sclr => scfifo_ul91:auto_generated.sclr
+eccstatus[0] <= <UNC>
+eccstatus[1] <= <UNC>
+empty <= <GND>
+full <= <GND>
+almost_full <= <GND>
+almost_empty <= <GND>
+usedw[0] <= <GND>
+usedw[1] <= <GND>
+usedw[2] <= <GND>
+usedw[3] <= <GND>
+usedw[4] <= <GND>
+usedw[5] <= <GND>
+usedw[6] <= <GND>
+usedw[7] <= <GND>
+usedw[8] <= <GND>
+usedw[9] <= <GND>
+
+
+|protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component|scfifo_ul91:auto_generated
+clock => a_dpfifo_hd91:dpfifo.clock
+data[0] => a_dpfifo_hd91:dpfifo.data[0]
+q[0] <= a_dpfifo_hd91:dpfifo.q[0]
+rdreq => a_dpfifo_hd91:dpfifo.rreq
+sclr => a_dpfifo_hd91:dpfifo.sclr
+wrreq => a_dpfifo_hd91:dpfifo.wreq
+
+
+|protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component|scfifo_ul91:auto_generated|a_dpfifo_hd91:dpfifo
+clock => altsyncram_sen1:FIFOram.clock0
+clock => altsyncram_sen1:FIFOram.clock1
+clock => cntr_1ra:rd_ptr_msb.clock
+clock => cntr_ls6:usedw_counter.clock
+clock => cntr_9sa:wr_ptr.clock
+clock => empty_dff.CLK
+clock => full_dff.CLK
+clock => low_addressa[9].CLK
+clock => low_addressa[8].CLK
+clock => low_addressa[7].CLK
+clock => low_addressa[6].CLK
+clock => low_addressa[5].CLK
+clock => low_addressa[4].CLK
+clock => low_addressa[3].CLK
+clock => low_addressa[2].CLK
+clock => low_addressa[1].CLK
+clock => low_addressa[0].CLK
+clock => rd_ptr_lsb.CLK
+clock => usedw_is_0_dff.CLK
+clock => usedw_is_1_dff.CLK
+clock => wrreq_delay.CLK
+data[0] => altsyncram_sen1:FIFOram.data_a[0]
+q[0] <= altsyncram_sen1:FIFOram.q_b[0]
+rreq => valid_rreq.IN0
+sclr => _.IN0
+sclr => _.IN0
+sclr => _.IN0
+sclr => _.IN0
+sclr => rd_ptr_lsb.IN1
+sclr => _.IN0
+sclr => cntr_1ra:rd_ptr_msb.sclr
+sclr => cntr_ls6:usedw_counter.sclr
+sclr => cntr_9sa:wr_ptr.sclr
+sclr => _.IN0
+sclr => usedw_will_be_1.IN0
+wreq => valid_wreq.IN0
+
+
+|protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component|scfifo_ul91:auto_generated|a_dpfifo_hd91:dpfifo|altsyncram_sen1:FIFOram
+address_a[0] => ram_block1a0.PORTAADDR
+address_a[1] => ram_block1a0.PORTAADDR1
+address_a[2] => ram_block1a0.PORTAADDR2
+address_a[3] => ram_block1a0.PORTAADDR3
+address_a[4] => ram_block1a0.PORTAADDR4
+address_a[5] => ram_block1a0.PORTAADDR5
+address_a[6] => ram_block1a0.PORTAADDR6
+address_a[7] => ram_block1a0.PORTAADDR7
+address_a[8] => ram_block1a0.PORTAADDR8
+address_a[9] => ram_block1a0.PORTAADDR9
+address_b[0] => ram_block1a0.PORTBADDR
+address_b[1] => ram_block1a0.PORTBADDR1
+address_b[2] => ram_block1a0.PORTBADDR2
+address_b[3] => ram_block1a0.PORTBADDR3
+address_b[4] => ram_block1a0.PORTBADDR4
+address_b[5] => ram_block1a0.PORTBADDR5
+address_b[6] => ram_block1a0.PORTBADDR6
+address_b[7] => ram_block1a0.PORTBADDR7
+address_b[8] => ram_block1a0.PORTBADDR8
+address_b[9] => ram_block1a0.PORTBADDR9
+clock0 => ram_block1a0.CLK0
+clock1 => ram_block1a0.CLK1
+clocken1 => ram_block1a0.ENA1
+data_a[0] => ram_block1a0.PORTADATAIN
+q_b[0] <= ram_block1a0.PORTBDATAOUT
+wren_a => ram_block1a0.PORTAWE
+wren_a => ram_block1a0.ENA0
+
+
+|protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component|scfifo_ul91:auto_generated|a_dpfifo_hd91:dpfifo|cmpr_te8:almost_full_comparer
+aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
+dataa[0] => data_wire[2].IN0
+dataa[1] => data_wire[2].IN0
+dataa[2] => data_wire[3].IN0
+dataa[3] => data_wire[3].IN0
+dataa[4] => data_wire[4].IN0
+dataa[5] => data_wire[4].IN0
+dataa[6] => data_wire[5].IN0
+dataa[7] => data_wire[5].IN0
+dataa[8] => data_wire[6].IN0
+dataa[9] => data_wire[6].IN0
+datab[0] => data_wire[2].IN1
+datab[1] => data_wire[2].IN1
+datab[2] => data_wire[3].IN1
+datab[3] => data_wire[3].IN1
+datab[4] => data_wire[4].IN1
+datab[5] => data_wire[4].IN1
+datab[6] => data_wire[5].IN1
+datab[7] => data_wire[5].IN1
+datab[8] => data_wire[6].IN1
+datab[9] => data_wire[6].IN1
+
+
+|protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component|scfifo_ul91:auto_generated|a_dpfifo_hd91:dpfifo|cmpr_te8:two_comparison
+aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
+dataa[0] => data_wire[2].IN0
+dataa[1] => data_wire[2].IN0
+dataa[2] => data_wire[3].IN0
+dataa[3] => data_wire[3].IN0
+dataa[4] => data_wire[4].IN0
+dataa[5] => data_wire[4].IN0
+dataa[6] => data_wire[5].IN0
+dataa[7] => data_wire[5].IN0
+dataa[8] => data_wire[6].IN0
+dataa[9] => data_wire[6].IN0
+datab[0] => data_wire[2].IN1
+datab[1] => data_wire[2].IN1
+datab[2] => data_wire[3].IN1
+datab[3] => data_wire[3].IN1
+datab[4] => data_wire[4].IN1
+datab[5] => data_wire[4].IN1
+datab[6] => data_wire[5].IN1
+datab[7] => data_wire[5].IN1
+datab[8] => data_wire[6].IN1
+datab[9] => data_wire[6].IN1
+
+
+|protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component|scfifo_ul91:auto_generated|a_dpfifo_hd91:dpfifo|cntr_1ra:rd_ptr_msb
+clock => counter_reg_bit[8].CLK
+clock => counter_reg_bit[7].CLK
+clock => counter_reg_bit[6].CLK
+clock => counter_reg_bit[5].CLK
+clock => counter_reg_bit[4].CLK
+clock => counter_reg_bit[3].CLK
+clock => counter_reg_bit[2].CLK
+clock => counter_reg_bit[1].CLK
+clock => counter_reg_bit[0].CLK
+cnt_en => _.IN0
+q[0] <= counter_reg_bit[0].DB_MAX_OUTPUT_PORT_TYPE
+q[1] <= counter_reg_bit[1].DB_MAX_OUTPUT_PORT_TYPE
+q[2] <= counter_reg_bit[2].DB_MAX_OUTPUT_PORT_TYPE
+q[3] <= counter_reg_bit[3].DB_MAX_OUTPUT_PORT_TYPE
+q[4] <= counter_reg_bit[4].DB_MAX_OUTPUT_PORT_TYPE
+q[5] <= counter_reg_bit[5].DB_MAX_OUTPUT_PORT_TYPE
+q[6] <= counter_reg_bit[6].DB_MAX_OUTPUT_PORT_TYPE
+q[7] <= counter_reg_bit[7].DB_MAX_OUTPUT_PORT_TYPE
+q[8] <= counter_reg_bit[8].DB_MAX_OUTPUT_PORT_TYPE
+sclr => _.IN1
+sclr => counter_reg_bit[8].SCLR
+sclr => counter_reg_bit[7].SCLR
+sclr => counter_reg_bit[6].SCLR
+sclr => counter_reg_bit[5].SCLR
+sclr => counter_reg_bit[4].SCLR
+sclr => counter_reg_bit[3].SCLR
+sclr => counter_reg_bit[2].SCLR
+sclr => counter_reg_bit[1].SCLR
+sclr => counter_reg_bit[0].SCLR
+
+
+|protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component|scfifo_ul91:auto_generated|a_dpfifo_hd91:dpfifo|cntr_ls6:usedw_counter
+clock => counter_reg_bit[9].CLK
+clock => counter_reg_bit[8].CLK
+clock => counter_reg_bit[7].CLK
+clock => counter_reg_bit[6].CLK
+clock => counter_reg_bit[5].CLK
+clock => counter_reg_bit[4].CLK
+clock => counter_reg_bit[3].CLK
+clock => counter_reg_bit[2].CLK
+clock => counter_reg_bit[1].CLK
+clock => counter_reg_bit[0].CLK
+cnt_en => _.IN0
+q[0] <= counter_reg_bit[0].DB_MAX_OUTPUT_PORT_TYPE
+q[1] <= counter_reg_bit[1].DB_MAX_OUTPUT_PORT_TYPE
+q[2] <= counter_reg_bit[2].DB_MAX_OUTPUT_PORT_TYPE
+q[3] <= counter_reg_bit[3].DB_MAX_OUTPUT_PORT_TYPE
+q[4] <= counter_reg_bit[4].DB_MAX_OUTPUT_PORT_TYPE
+q[5] <= counter_reg_bit[5].DB_MAX_OUTPUT_PORT_TYPE
+q[6] <= counter_reg_bit[6].DB_MAX_OUTPUT_PORT_TYPE
+q[7] <= counter_reg_bit[7].DB_MAX_OUTPUT_PORT_TYPE
+q[8] <= counter_reg_bit[8].DB_MAX_OUTPUT_PORT_TYPE
+q[9] <= counter_reg_bit[9].DB_MAX_OUTPUT_PORT_TYPE
+sclr => _.IN1
+sclr => counter_reg_bit[9].SCLR
+sclr => counter_reg_bit[8].SCLR
+sclr => counter_reg_bit[7].SCLR
+sclr => counter_reg_bit[6].SCLR
+sclr => counter_reg_bit[5].SCLR
+sclr => counter_reg_bit[4].SCLR
+sclr => counter_reg_bit[3].SCLR
+sclr => counter_reg_bit[2].SCLR
+sclr => counter_reg_bit[1].SCLR
+sclr => counter_reg_bit[0].SCLR
+updown => updown_other_bits.IN1
+updown => counter_comb_bita0.DATAF
+
+
+|protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component|scfifo_ul91:auto_generated|a_dpfifo_hd91:dpfifo|cntr_9sa:wr_ptr
+clock => counter_reg_bit[9].CLK
+clock => counter_reg_bit[8].CLK
+clock => counter_reg_bit[7].CLK
+clock => counter_reg_bit[6].CLK
+clock => counter_reg_bit[5].CLK
+clock => counter_reg_bit[4].CLK
+clock => counter_reg_bit[3].CLK
+clock => counter_reg_bit[2].CLK
+clock => counter_reg_bit[1].CLK
+clock => counter_reg_bit[0].CLK
+cnt_en => _.IN0
+q[0] <= counter_reg_bit[0].DB_MAX_OUTPUT_PORT_TYPE
+q[1] <= counter_reg_bit[1].DB_MAX_OUTPUT_PORT_TYPE
+q[2] <= counter_reg_bit[2].DB_MAX_OUTPUT_PORT_TYPE
+q[3] <= counter_reg_bit[3].DB_MAX_OUTPUT_PORT_TYPE
+q[4] <= counter_reg_bit[4].DB_MAX_OUTPUT_PORT_TYPE
+q[5] <= counter_reg_bit[5].DB_MAX_OUTPUT_PORT_TYPE
+q[6] <= counter_reg_bit[6].DB_MAX_OUTPUT_PORT_TYPE
+q[7] <= counter_reg_bit[7].DB_MAX_OUTPUT_PORT_TYPE
+q[8] <= counter_reg_bit[8].DB_MAX_OUTPUT_PORT_TYPE
+q[9] <= counter_reg_bit[9].DB_MAX_OUTPUT_PORT_TYPE
+sclr => _.IN1
+sclr => counter_reg_bit[9].SCLR
+sclr => counter_reg_bit[8].SCLR
+sclr => counter_reg_bit[7].SCLR
+sclr => counter_reg_bit[6].SCLR
+sclr => counter_reg_bit[5].SCLR
+sclr => counter_reg_bit[4].SCLR
+sclr => counter_reg_bit[3].SCLR
+sclr => counter_reg_bit[2].SCLR
+sclr => counter_reg_bit[1].SCLR
+sclr => counter_reg_bit[0].SCLR
+
+
+|protobuf_serializer|raw_data_in_fifo:in3
 data[0] => data[0].IN1
 data[1] => data[1].IN1
 data[2] => data[2].IN1
@@ -2297,7 +2571,7 @@ full <= raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0.full
 empty <= raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0.empty
 
 
-|protobuf_serializer|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0
+|protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0
 clock => clock.IN1
 data[0] => data[0].IN1
 data[1] => data[1].IN1
@@ -2370,7 +2644,7 @@ q[30] <= scfifo:scfifo_component.q
 q[31] <= scfifo:scfifo_component.q
 
 
-|protobuf_serializer|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component
+|protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component
 data[0] => scfifo_koa1:auto_generated.data[0]
 data[1] => scfifo_koa1:auto_generated.data[1]
 data[2] => scfifo_koa1:auto_generated.data[2]
@@ -2458,7 +2732,7 @@ usedw[8] <= <GND>
 usedw[9] <= <GND>
 
 
-|protobuf_serializer|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated
+|protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated
 clock => a_dpfifo_7ga1:dpfifo.clock
 data[0] => a_dpfifo_7ga1:dpfifo.data[0]
 data[1] => a_dpfifo_7ga1:dpfifo.data[1]
@@ -2531,7 +2805,7 @@ sclr => a_dpfifo_7ga1:dpfifo.sclr
 wrreq => a_dpfifo_7ga1:dpfifo.wreq
 
 
-|protobuf_serializer|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo
+|protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo
 clock => altsyncram_4in1:FIFOram.clock0
 clock => altsyncram_4in1:FIFOram.clock1
 clock => cntr_1ra:rd_ptr_msb.clock
@@ -2634,7 +2908,7 @@ sclr => usedw_will_be_1.IN0
 wreq => valid_wreq.IN0
 
 
-|protobuf_serializer|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|altsyncram_4in1:FIFOram
+|protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|altsyncram_4in1:FIFOram
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -3501,7 +3775,7 @@ wren_a => ram_block1a31.PORTAWE
 wren_a => ram_block1a31.ENA0
 
 
-|protobuf_serializer|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cmpr_te8:almost_full_comparer
+|protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cmpr_te8:almost_full_comparer
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -3525,7 +3799,7 @@ datab[8] => data_wire[6].IN1
 datab[9] => data_wire[6].IN1
 
 
-|protobuf_serializer|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cmpr_te8:two_comparison
+|protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cmpr_te8:two_comparison
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -3549,7 +3823,7 @@ datab[8] => data_wire[6].IN1
 datab[9] => data_wire[6].IN1
 
 
-|protobuf_serializer|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_1ra:rd_ptr_msb
+|protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_1ra:rd_ptr_msb
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
 clock => counter_reg_bit[6].CLK
@@ -3581,7 +3855,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|protobuf_serializer|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_ls6:usedw_counter
+|protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_ls6:usedw_counter
 clock => counter_reg_bit[9].CLK
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
@@ -3618,7 +3892,7 @@ updown => updown_other_bits.IN1
 updown => counter_comb_bita0.DATAF
 
 
-|protobuf_serializer|raw_data_in_fifo:in2|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_9sa:wr_ptr
+|protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_9sa:wr_ptr
 clock => counter_reg_bit[9].CLK
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
@@ -3653,7 +3927,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|protobuf_serializer|raw_data_in_index:in3
+|protobuf_serializer|raw_data_in_index:in4
 data[0] => data[0].IN1
 data[1] => data[1].IN1
 data[2] => data[2].IN1
@@ -3680,7 +3954,7 @@ q[8] <= raw_data_in_index_fifo_160_kjjiney:fifo_0.q
 q[9] <= raw_data_in_index_fifo_160_kjjiney:fifo_0.q
 
 
-|protobuf_serializer|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0
+|protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0
 clock => clock.IN1
 data[0] => data[0].IN1
 data[1] => data[1].IN1
@@ -3707,7 +3981,7 @@ q[8] <= scfifo:scfifo_component.q
 q[9] <= scfifo:scfifo_component.q
 
 
-|protobuf_serializer|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component
+|protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component
 data[0] => scfifo_en91:auto_generated.data[0]
 data[1] => scfifo_en91:auto_generated.data[1]
 data[2] => scfifo_en91:auto_generated.data[2]
@@ -3751,7 +4025,7 @@ usedw[8] <= <GND>
 usedw[9] <= <GND>
 
 
-|protobuf_serializer|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated
+|protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated
 clock => a_dpfifo_1f91:dpfifo.clock
 data[0] => a_dpfifo_1f91:dpfifo.data[0]
 data[1] => a_dpfifo_1f91:dpfifo.data[1]
@@ -3778,7 +4052,7 @@ sclr => a_dpfifo_1f91:dpfifo.sclr
 wrreq => a_dpfifo_1f91:dpfifo.wreq
 
 
-|protobuf_serializer|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo
+|protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo
 clock => altsyncram_shn1:FIFOram.clock0
 clock => altsyncram_shn1:FIFOram.clock1
 clock => cntr_1ra:rd_ptr_msb.clock
@@ -3835,7 +4109,7 @@ sclr => usedw_will_be_1.IN0
 wreq => valid_wreq.IN0
 
 
-|protobuf_serializer|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram
+|protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -4108,7 +4382,7 @@ wren_a => ram_block1a9.PORTAWE
 wren_a => ram_block1a9.ENA0
 
 
-|protobuf_serializer|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cmpr_te8:almost_full_comparer
+|protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cmpr_te8:almost_full_comparer
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -4132,7 +4406,7 @@ datab[8] => data_wire[6].IN1
 datab[9] => data_wire[6].IN1
 
 
-|protobuf_serializer|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cmpr_te8:two_comparison
+|protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cmpr_te8:two_comparison
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -4156,7 +4430,7 @@ datab[8] => data_wire[6].IN1
 datab[9] => data_wire[6].IN1
 
 
-|protobuf_serializer|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_1ra:rd_ptr_msb
+|protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_1ra:rd_ptr_msb
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
 clock => counter_reg_bit[6].CLK
@@ -4188,7 +4462,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|protobuf_serializer|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_ls6:usedw_counter
+|protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_ls6:usedw_counter
 clock => counter_reg_bit[9].CLK
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
@@ -4225,7 +4499,7 @@ updown => updown_other_bits.IN1
 updown => counter_comb_bita0.DATAF
 
 
-|protobuf_serializer|raw_data_in_index:in3|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_9sa:wr_ptr
+|protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_9sa:wr_ptr
 clock => counter_reg_bit[9].CLK
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
@@ -4260,7 +4534,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|protobuf_serializer|raw_data_in_wstrb:in4
+|protobuf_serializer|raw_data_in_wstrb:in5
 data[0] => data[0].IN1
 data[1] => data[1].IN1
 data[2] => data[2].IN1
@@ -4275,7 +4549,7 @@ q[2] <= raw_data_in_wstrb_fifo_160_sconavq:fifo_0.q
 q[3] <= raw_data_in_wstrb_fifo_160_sconavq:fifo_0.q
 
 
-|protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0
+|protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0
 clock => clock.IN1
 data[0] => data[0].IN1
 data[1] => data[1].IN1
@@ -4290,7 +4564,7 @@ q[2] <= scfifo:scfifo_component.q
 q[3] <= scfifo:scfifo_component.q
 
 
-|protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component
+|protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component
 data[0] => scfifo_1m91:auto_generated.data[0]
 data[1] => scfifo_1m91:auto_generated.data[1]
 data[2] => scfifo_1m91:auto_generated.data[2]
@@ -4322,7 +4596,7 @@ usedw[8] <= <GND>
 usedw[9] <= <GND>
 
 
-|protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated
+|protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated
 clock => a_dpfifo_kd91:dpfifo.clock
 data[0] => a_dpfifo_kd91:dpfifo.data[0]
 data[1] => a_dpfifo_kd91:dpfifo.data[1]
@@ -4337,7 +4611,7 @@ sclr => a_dpfifo_kd91:dpfifo.sclr
 wrreq => a_dpfifo_kd91:dpfifo.wreq
 
 
-|protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo
+|protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo
 clock => altsyncram_2fn1:FIFOram.clock0
 clock => altsyncram_2fn1:FIFOram.clock1
 clock => cntr_1ra:rd_ptr_msb.clock
@@ -4382,7 +4656,7 @@ sclr => usedw_will_be_1.IN0
 wreq => valid_wreq.IN0
 
 
-|protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram
+|protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -4493,7 +4767,7 @@ wren_a => ram_block1a3.PORTAWE
 wren_a => ram_block1a3.ENA0
 
 
-|protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cmpr_te8:almost_full_comparer
+|protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cmpr_te8:almost_full_comparer
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -4517,7 +4791,7 @@ datab[8] => data_wire[6].IN1
 datab[9] => data_wire[6].IN1
 
 
-|protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cmpr_te8:two_comparison
+|protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cmpr_te8:two_comparison
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[2].IN0
 dataa[1] => data_wire[2].IN0
@@ -4541,7 +4815,7 @@ datab[8] => data_wire[6].IN1
 datab[9] => data_wire[6].IN1
 
 
-|protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cntr_1ra:rd_ptr_msb
+|protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cntr_1ra:rd_ptr_msb
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
 clock => counter_reg_bit[6].CLK
@@ -4573,7 +4847,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cntr_ls6:usedw_counter
+|protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cntr_ls6:usedw_counter
 clock => counter_reg_bit[9].CLK
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
@@ -4610,7 +4884,7 @@ updown => updown_other_bits.IN1
 updown => counter_comb_bita0.DATAF
 
 
-|protobuf_serializer|raw_data_in_wstrb:in4|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cntr_9sa:wr_ptr
+|protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cntr_9sa:wr_ptr
 clock => counter_reg_bit[9].CLK
 clock => counter_reg_bit[8].CLK
 clock => counter_reg_bit[7].CLK
@@ -4646,6 +4920,17 @@ sclr => counter_reg_bit[0].SCLR
 
 
 |protobuf_serializer|fsm_0:f0
+clk => varint64~reg0.CLK
+clk => index[0]~reg0.CLK
+clk => index[1]~reg0.CLK
+clk => index[2]~reg0.CLK
+clk => index[3]~reg0.CLK
+clk => index[4]~reg0.CLK
+clk => index[5]~reg0.CLK
+clk => index[6]~reg0.CLK
+clk => index[7]~reg0.CLK
+clk => index[8]~reg0.CLK
+clk => index[9]~reg0.CLK
 clk => wstrb[0]~reg0.CLK
 clk => wstrb[1]~reg0.CLK
 clk => wstrb[2]~reg0.CLK
@@ -4694,16 +4979,6 @@ clk => awid[0].CLK
 clk => awid[1].CLK
 clk => awid[2].CLK
 clk => awid[3].CLK
-clk => index[0]~reg0.CLK
-clk => index[1]~reg0.CLK
-clk => index[2]~reg0.CLK
-clk => index[3]~reg0.CLK
-clk => index[4]~reg0.CLK
-clk => index[5]~reg0.CLK
-clk => index[6]~reg0.CLK
-clk => index[7]~reg0.CLK
-clk => index[8]~reg0.CLK
-clk => index[9]~reg0.CLK
 clk => state~1.DATAIN
 reset => state.OUTPUTSELECT
 reset => state.OUTPUTSELECT
@@ -4718,17 +4993,6 @@ reset => state.OUTPUTSELECT
 reset => state.OUTPUTSELECT
 reset => state.OUTPUTSELECT
 reset => state.OUTPUTSELECT
-reset => wdata[24]~reg0.ENA
-reset => wdata[23]~reg0.ENA
-reset => wdata[22]~reg0.ENA
-reset => wdata[21]~reg0.ENA
-reset => wdata[20]~reg0.ENA
-reset => wdata[19]~reg0.ENA
-reset => wdata[18]~reg0.ENA
-reset => wdata[17]~reg0.ENA
-reset => wdata[16]~reg0.ENA
-reset => wdata[15]~reg0.ENA
-reset => wdata[14]~reg0.ENA
 reset => wdata[13]~reg0.ENA
 reset => wdata[12]~reg0.ENA
 reset => wdata[11]~reg0.ENA
@@ -4747,6 +5011,28 @@ reset => wstrb[3]~reg0.ENA
 reset => wstrb[2]~reg0.ENA
 reset => wstrb[1]~reg0.ENA
 reset => wstrb[0]~reg0.ENA
+reset => index[9]~reg0.ENA
+reset => index[8]~reg0.ENA
+reset => index[7]~reg0.ENA
+reset => index[6]~reg0.ENA
+reset => index[5]~reg0.ENA
+reset => index[4]~reg0.ENA
+reset => index[3]~reg0.ENA
+reset => index[2]~reg0.ENA
+reset => index[1]~reg0.ENA
+reset => index[0]~reg0.ENA
+reset => varint64~reg0.ENA
+reset => wdata[14]~reg0.ENA
+reset => wdata[15]~reg0.ENA
+reset => wdata[16]~reg0.ENA
+reset => wdata[17]~reg0.ENA
+reset => wdata[18]~reg0.ENA
+reset => wdata[19]~reg0.ENA
+reset => wdata[20]~reg0.ENA
+reset => wdata[21]~reg0.ENA
+reset => wdata[22]~reg0.ENA
+reset => wdata[23]~reg0.ENA
+reset => wdata[24]~reg0.ENA
 reset => wdata[25]~reg0.ENA
 reset => wdata[26]~reg0.ENA
 reset => wdata[27]~reg0.ENA
@@ -4766,16 +5052,6 @@ reset => awid[0].ENA
 reset => awid[1].ENA
 reset => awid[2].ENA
 reset => awid[3].ENA
-reset => index[0]~reg0.ENA
-reset => index[1]~reg0.ENA
-reset => index[2]~reg0.ENA
-reset => index[3]~reg0.ENA
-reset => index[4]~reg0.ENA
-reset => index[5]~reg0.ENA
-reset => index[6]~reg0.ENA
-reset => index[7]~reg0.ENA
-reset => index[8]~reg0.ENA
-reset => index[9]~reg0.ENA
 axs_s0_awid[0] => awid.DATAB
 axs_s0_awid[1] => awid.DATAB
 axs_s0_awid[2] => awid.DATAB
@@ -4936,6 +5212,8 @@ varint_in_fifo_clr <= raw_data_in_wstrb_clr.DB_MAX_OUTPUT_PORT_TYPE
 varint_in_fifo_push <= varint_in_fifo_push.DB_MAX_OUTPUT_PORT_TYPE
 varint_in_index_clr <= raw_data_in_wstrb_clr.DB_MAX_OUTPUT_PORT_TYPE
 varint_in_index_push <= varint_in_fifo_push.DB_MAX_OUTPUT_PORT_TYPE
+varint_in_size_clr <= raw_data_in_wstrb_clr.DB_MAX_OUTPUT_PORT_TYPE
+varint_in_size_push <= varint_in_fifo_push.DB_MAX_OUTPUT_PORT_TYPE
 raw_data_in_fifo_full => next_state.OUTPUTSELECT
 raw_data_in_fifo_full => next_state.OUTPUTSELECT
 raw_data_in_fifo_full => next_state.OUTPUTSELECT
@@ -4950,16 +5228,6 @@ raw_data_in_index_clr <= raw_data_in_wstrb_clr.DB_MAX_OUTPUT_PORT_TYPE
 raw_data_in_index_push <= raw_data_in_fifo_push.DB_MAX_OUTPUT_PORT_TYPE
 raw_data_in_wstrb_clr <= raw_data_in_wstrb_clr.DB_MAX_OUTPUT_PORT_TYPE
 raw_data_in_wstrb_push <= raw_data_in_fifo_push.DB_MAX_OUTPUT_PORT_TYPE
-index[0] <= index[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-index[1] <= index[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-index[2] <= index[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-index[3] <= index[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-index[4] <= index[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-index[5] <= index[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-index[6] <= index[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-index[7] <= index[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-index[8] <= index[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-index[9] <= index[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 wdata[0] <= wdata[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 wdata[1] <= wdata[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 wdata[2] <= wdata[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
@@ -4996,6 +5264,17 @@ wstrb[0] <= wstrb[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 wstrb[1] <= wstrb[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 wstrb[2] <= wstrb[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 wstrb[3] <= wstrb[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+index[0] <= index[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+index[1] <= index[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+index[2] <= index[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+index[3] <= index[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+index[4] <= index[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+index[5] <= index[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+index[6] <= index[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+index[7] <= index[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+index[8] <= index[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+index[9] <= index[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+varint64 <= varint64~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |protobuf_serializer|fsm_1:f1
@@ -5076,7 +5355,72 @@ clk => varint_data[28].CLK
 clk => varint_data[29].CLK
 clk => varint_data[30].CLK
 clk => varint_data[31].CLK
+clk => varint_data[32].CLK
+clk => varint_data[33].CLK
+clk => varint_data[34].CLK
+clk => varint_data[35].CLK
+clk => varint_data[36].CLK
+clk => varint_data[37].CLK
+clk => varint_data[38].CLK
+clk => varint_data[39].CLK
+clk => varint_data[40].CLK
+clk => varint_data[41].CLK
+clk => varint_data[42].CLK
+clk => varint_data[43].CLK
+clk => varint_data[44].CLK
+clk => varint_data[45].CLK
+clk => varint_data[46].CLK
+clk => varint_data[47].CLK
+clk => varint_data[48].CLK
+clk => varint_data[49].CLK
+clk => varint_data[50].CLK
+clk => varint_data[51].CLK
+clk => varint_data[52].CLK
+clk => varint_data[53].CLK
+clk => varint_data[54].CLK
+clk => varint_data[55].CLK
+clk => varint_data[56].CLK
+clk => varint_data[57].CLK
+clk => varint_data[58].CLK
+clk => varint_data[59].CLK
+clk => varint_data[60].CLK
+clk => varint_data[61].CLK
+clk => varint_data[62].CLK
+clk => varint_data[63].CLK
+clk => lsb[0].CLK
+clk => lsb[1].CLK
+clk => lsb[2].CLK
+clk => lsb[3].CLK
+clk => lsb[4].CLK
+clk => lsb[5].CLK
+clk => lsb[6].CLK
+clk => lsb[7].CLK
+clk => lsb[8].CLK
+clk => lsb[9].CLK
+clk => lsb[10].CLK
+clk => lsb[11].CLK
+clk => lsb[12].CLK
+clk => lsb[13].CLK
+clk => lsb[14].CLK
+clk => lsb[15].CLK
+clk => lsb[16].CLK
+clk => lsb[17].CLK
+clk => lsb[18].CLK
+clk => lsb[19].CLK
+clk => lsb[20].CLK
+clk => lsb[21].CLK
+clk => lsb[22].CLK
+clk => lsb[23].CLK
+clk => lsb[24].CLK
+clk => lsb[25].CLK
+clk => lsb[26].CLK
+clk => lsb[27].CLK
+clk => lsb[28].CLK
+clk => lsb[29].CLK
+clk => lsb[30].CLK
+clk => lsb[31].CLK
 clk => varint_in_sel.CLK
+clk => varint64.CLK
 clk => state~1.DATAIN
 reset => state.OUTPUTSELECT
 reset => state.OUTPUTSELECT
@@ -5084,6 +5428,25 @@ reset => state.OUTPUTSELECT
 reset => state.OUTPUTSELECT
 reset => state.OUTPUTSELECT
 reset => state.OUTPUTSELECT
+reset => state.OUTPUTSELECT
+reset => varint_data[30].ENA
+reset => varint_data[29].ENA
+reset => varint_data[28].ENA
+reset => varint_data[27].ENA
+reset => varint_data[26].ENA
+reset => varint_data[25].ENA
+reset => varint_data[24].ENA
+reset => varint_data[23].ENA
+reset => varint_data[22].ENA
+reset => varint_data[21].ENA
+reset => varint_data[20].ENA
+reset => varint_data[19].ENA
+reset => varint_data[18].ENA
+reset => varint_data[17].ENA
+reset => varint_data[16].ENA
+reset => varint_data[15].ENA
+reset => varint_data[14].ENA
+reset => varint_data[13].ENA
 reset => varint_data[12].ENA
 reset => varint_data[11].ENA
 reset => varint_data[10].ENA
@@ -5097,73 +5460,193 @@ reset => varint_data[3].ENA
 reset => varint_data[2].ENA
 reset => varint_data[1].ENA
 reset => varint_data[0].ENA
-reset => varint_data[13].ENA
-reset => varint_data[14].ENA
-reset => varint_data[15].ENA
-reset => varint_data[16].ENA
-reset => varint_data[17].ENA
-reset => varint_data[18].ENA
-reset => varint_data[19].ENA
-reset => varint_data[20].ENA
-reset => varint_data[21].ENA
-reset => varint_data[22].ENA
-reset => varint_data[23].ENA
-reset => varint_data[24].ENA
-reset => varint_data[25].ENA
-reset => varint_data[26].ENA
-reset => varint_data[27].ENA
-reset => varint_data[28].ENA
-reset => varint_data[29].ENA
-reset => varint_data[30].ENA
 reset => varint_data[31].ENA
+reset => varint_data[32].ENA
+reset => varint_data[33].ENA
+reset => varint_data[34].ENA
+reset => varint_data[35].ENA
+reset => varint_data[36].ENA
+reset => varint_data[37].ENA
+reset => varint_data[38].ENA
+reset => varint_data[39].ENA
+reset => varint_data[40].ENA
+reset => varint_data[41].ENA
+reset => varint_data[42].ENA
+reset => varint_data[43].ENA
+reset => varint_data[44].ENA
+reset => varint_data[45].ENA
+reset => varint_data[46].ENA
+reset => varint_data[47].ENA
+reset => varint_data[48].ENA
+reset => varint_data[49].ENA
+reset => varint_data[50].ENA
+reset => varint_data[51].ENA
+reset => varint_data[52].ENA
+reset => varint_data[53].ENA
+reset => varint_data[54].ENA
+reset => varint_data[55].ENA
+reset => varint_data[56].ENA
+reset => varint_data[57].ENA
+reset => varint_data[58].ENA
+reset => varint_data[59].ENA
+reset => varint_data[60].ENA
+reset => varint_data[61].ENA
+reset => varint_data[62].ENA
+reset => varint_data[63].ENA
+reset => lsb[0].ENA
+reset => lsb[1].ENA
+reset => lsb[2].ENA
+reset => lsb[3].ENA
+reset => lsb[4].ENA
+reset => lsb[5].ENA
+reset => lsb[6].ENA
+reset => lsb[7].ENA
+reset => lsb[8].ENA
+reset => lsb[9].ENA
+reset => lsb[10].ENA
+reset => lsb[11].ENA
+reset => lsb[12].ENA
+reset => lsb[13].ENA
+reset => lsb[14].ENA
+reset => lsb[15].ENA
+reset => lsb[16].ENA
+reset => lsb[17].ENA
+reset => lsb[18].ENA
+reset => lsb[19].ENA
+reset => lsb[20].ENA
+reset => lsb[21].ENA
+reset => lsb[22].ENA
+reset => lsb[23].ENA
+reset => lsb[24].ENA
+reset => lsb[25].ENA
+reset => lsb[26].ENA
+reset => lsb[27].ENA
+reset => lsb[28].ENA
+reset => lsb[29].ENA
+reset => lsb[30].ENA
+reset => lsb[31].ENA
 reset => varint_in_sel.ENA
+reset => varint64.ENA
 varint_in_fifo_empty => Selector0.IN4
+varint_in_fifo_empty => Selector2.IN2
 varint_in_fifo_empty => Selector1.IN2
-varint_in_fifo_pop <= varint_in_index_pop.DB_MAX_OUTPUT_PORT_TYPE
-varint_in_index_pop <= varint_in_index_pop.DB_MAX_OUTPUT_PORT_TYPE
+varint_in_fifo_empty => Selector1.IN3
+varint_in_size_q => next_state.OUTPUTSELECT
+varint_in_size_q => next_state.OUTPUTSELECT
+varint_in_size_q => next_state.OUTPUTSELECT
+varint_in_size_q => lsb_ld.IN0
+varint_in_size_q => Selector2.IN3
+varint_in_size_q => always1.IN0
+varint_in_size_q => always1.IN0
+varint_in_fifo_pop <= varint_in_fifo_pop.DB_MAX_OUTPUT_PORT_TYPE
+varint_in_index_pop <= varint_in_fifo_pop.DB_MAX_OUTPUT_PORT_TYPE
+varint_in_size_pop <= varint_in_fifo_pop.DB_MAX_OUTPUT_PORT_TYPE
+varint_out_fifo_full => always1.IN1
 varint_out_fifo_full => next_state.OUTPUTSELECT
 varint_out_fifo_full => next_state.OUTPUTSELECT
-varint_out_fifo_full => next_state.OUTPUTSELECT
-varint_out_fifo_full => next_state.OUTPUTSELECT
-varint_out_fifo_full => Selector2.IN1
+varint_out_fifo_full => Selector3.IN3
 varint_out_fifo_full => always1.IN1
 varint_out_fifo_full => always1.IN1
 varint_out_fifo_clr <= varint_out_index_clr.DB_MAX_OUTPUT_PORT_TYPE
 varint_out_fifo_push <= varint_out_fifo_push.DB_MAX_OUTPUT_PORT_TYPE
 varint_out_index_clr <= varint_out_index_clr.DB_MAX_OUTPUT_PORT_TYPE
 varint_out_index_push <= varint_out_fifo_push.DB_MAX_OUTPUT_PORT_TYPE
-varint_data_in[0] => varint_in_mux[0].DATAA
-varint_data_in[1] => varint_in_mux[1].DATAA
-varint_data_in[2] => varint_in_mux[2].DATAA
-varint_data_in[3] => varint_in_mux[3].DATAA
-varint_data_in[4] => varint_in_mux[4].DATAA
-varint_data_in[5] => varint_in_mux[5].DATAA
-varint_data_in[6] => varint_in_mux[6].DATAA
-varint_data_in[7] => varint_in_mux[7].DATAA
-varint_data_in[8] => varint_in_mux[8].DATAA
-varint_data_in[9] => varint_in_mux[9].DATAA
-varint_data_in[10] => varint_in_mux[10].DATAA
-varint_data_in[11] => varint_in_mux[11].DATAA
-varint_data_in[12] => varint_in_mux[12].DATAA
-varint_data_in[13] => varint_in_mux[13].DATAA
-varint_data_in[14] => varint_in_mux[14].DATAA
-varint_data_in[15] => varint_in_mux[15].DATAA
-varint_data_in[16] => varint_in_mux[16].DATAA
-varint_data_in[17] => varint_in_mux[17].DATAA
-varint_data_in[18] => varint_in_mux[18].DATAA
-varint_data_in[19] => varint_in_mux[19].DATAA
-varint_data_in[20] => varint_in_mux[20].DATAA
-varint_data_in[21] => varint_in_mux[21].DATAA
-varint_data_in[22] => varint_in_mux[22].DATAA
-varint_data_in[23] => varint_in_mux[23].DATAA
-varint_data_in[24] => varint_in_mux[24].DATAA
-varint_data_in[25] => varint_in_mux[25].DATAA
-varint_data_in[26] => varint_in_mux[26].DATAA
-varint_data_in[27] => varint_in_mux[27].DATAA
-varint_data_in[28] => varint_in_mux[28].DATAA
-varint_data_in[29] => varint_in_mux[29].DATAA
-varint_data_in[30] => varint_in_mux[30].DATAA
-varint_data_in[31] => varint_in_mux[31].DATAA
+varint_data_in[0] => lsb.DATAB
+varint_data_in[0] => lower32_mux[0].DATAA
+varint_data_in[0] => upper32_mux[0].DATAB
+varint_data_in[1] => lsb.DATAB
+varint_data_in[1] => lower32_mux[1].DATAA
+varint_data_in[1] => upper32_mux[1].DATAB
+varint_data_in[2] => lsb.DATAB
+varint_data_in[2] => lower32_mux[2].DATAA
+varint_data_in[2] => upper32_mux[2].DATAB
+varint_data_in[3] => lsb.DATAB
+varint_data_in[3] => lower32_mux[3].DATAA
+varint_data_in[3] => upper32_mux[3].DATAB
+varint_data_in[4] => lsb.DATAB
+varint_data_in[4] => lower32_mux[4].DATAA
+varint_data_in[4] => upper32_mux[4].DATAB
+varint_data_in[5] => lsb.DATAB
+varint_data_in[5] => lower32_mux[5].DATAA
+varint_data_in[5] => upper32_mux[5].DATAB
+varint_data_in[6] => lsb.DATAB
+varint_data_in[6] => lower32_mux[6].DATAA
+varint_data_in[6] => upper32_mux[6].DATAB
+varint_data_in[7] => lsb.DATAB
+varint_data_in[7] => lower32_mux[7].DATAA
+varint_data_in[7] => upper32_mux[7].DATAB
+varint_data_in[8] => lsb.DATAB
+varint_data_in[8] => lower32_mux[8].DATAA
+varint_data_in[8] => upper32_mux[8].DATAB
+varint_data_in[9] => lsb.DATAB
+varint_data_in[9] => lower32_mux[9].DATAA
+varint_data_in[9] => upper32_mux[9].DATAB
+varint_data_in[10] => lsb.DATAB
+varint_data_in[10] => lower32_mux[10].DATAA
+varint_data_in[10] => upper32_mux[10].DATAB
+varint_data_in[11] => lsb.DATAB
+varint_data_in[11] => lower32_mux[11].DATAA
+varint_data_in[11] => upper32_mux[11].DATAB
+varint_data_in[12] => lsb.DATAB
+varint_data_in[12] => lower32_mux[12].DATAA
+varint_data_in[12] => upper32_mux[12].DATAB
+varint_data_in[13] => lsb.DATAB
+varint_data_in[13] => lower32_mux[13].DATAA
+varint_data_in[13] => upper32_mux[13].DATAB
+varint_data_in[14] => lsb.DATAB
+varint_data_in[14] => lower32_mux[14].DATAA
+varint_data_in[14] => upper32_mux[14].DATAB
+varint_data_in[15] => lsb.DATAB
+varint_data_in[15] => lower32_mux[15].DATAA
+varint_data_in[15] => upper32_mux[15].DATAB
+varint_data_in[16] => lsb.DATAB
+varint_data_in[16] => lower32_mux[16].DATAA
+varint_data_in[16] => upper32_mux[16].DATAB
+varint_data_in[17] => lsb.DATAB
+varint_data_in[17] => lower32_mux[17].DATAA
+varint_data_in[17] => upper32_mux[17].DATAB
+varint_data_in[18] => lsb.DATAB
+varint_data_in[18] => lower32_mux[18].DATAA
+varint_data_in[18] => upper32_mux[18].DATAB
+varint_data_in[19] => lsb.DATAB
+varint_data_in[19] => lower32_mux[19].DATAA
+varint_data_in[19] => upper32_mux[19].DATAB
+varint_data_in[20] => lsb.DATAB
+varint_data_in[20] => lower32_mux[20].DATAA
+varint_data_in[20] => upper32_mux[20].DATAB
+varint_data_in[21] => lsb.DATAB
+varint_data_in[21] => lower32_mux[21].DATAA
+varint_data_in[21] => upper32_mux[21].DATAB
+varint_data_in[22] => lsb.DATAB
+varint_data_in[22] => lower32_mux[22].DATAA
+varint_data_in[22] => upper32_mux[22].DATAB
+varint_data_in[23] => lsb.DATAB
+varint_data_in[23] => lower32_mux[23].DATAA
+varint_data_in[23] => upper32_mux[23].DATAB
+varint_data_in[24] => lsb.DATAB
+varint_data_in[24] => lower32_mux[24].DATAA
+varint_data_in[24] => upper32_mux[24].DATAB
+varint_data_in[25] => lsb.DATAB
+varint_data_in[25] => lower32_mux[25].DATAA
+varint_data_in[25] => upper32_mux[25].DATAB
+varint_data_in[26] => lsb.DATAB
+varint_data_in[26] => lower32_mux[26].DATAA
+varint_data_in[26] => upper32_mux[26].DATAB
+varint_data_in[27] => lsb.DATAB
+varint_data_in[27] => lower32_mux[27].DATAA
+varint_data_in[27] => upper32_mux[27].DATAB
+varint_data_in[28] => lsb.DATAB
+varint_data_in[28] => lower32_mux[28].DATAA
+varint_data_in[28] => upper32_mux[28].DATAB
+varint_data_in[29] => lsb.DATAB
+varint_data_in[29] => lower32_mux[29].DATAA
+varint_data_in[29] => upper32_mux[29].DATAB
+varint_data_in[30] => lsb.DATAB
+varint_data_in[30] => lower32_mux[30].DATAA
+varint_data_in[30] => upper32_mux[30].DATAB
+varint_data_in[31] => lsb.DATAB
+varint_data_in[31] => lower32_mux[31].DATAA
+varint_data_in[31] => upper32_mux[31].DATAB
 varint_data_out[0] <= varint_data[0].DB_MAX_OUTPUT_PORT_TYPE
 varint_data_out[1] <= varint_data[1].DB_MAX_OUTPUT_PORT_TYPE
 varint_data_out[2] <= varint_data[2].DB_MAX_OUTPUT_PORT_TYPE

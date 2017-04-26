@@ -1,5 +1,5 @@
 Flow report for varint_encoder
-Thu Apr 13 17:52:56 2017
+Tue Apr 25 17:16:38 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -41,18 +41,18 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Flow Status                 ; Successful - Thu Apr 13 17:52:56 2017           ;
+; Flow Status                 ; Successful - Tue Apr 25 17:16:38 2017           ;
 ; Quartus Prime Version       ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
 ; Revision Name               ; varint_encoder                                  ;
 ; Top-level Entity Name       ; protobuf_serializer                             ;
 ; Family                      ; Arria 10                                        ;
 ; Device                      ; 10AS066N3F40E2SGE2                              ;
 ; Timing Models               ; Preliminary                                     ;
-; Logic utilization (in ALMs) ; 537 / 251,680 ( < 1 % )                         ;
-; Total registers             ; 676                                             ;
+; Logic utilization (in ALMs) ; 622 / 251,680 ( < 1 % )                         ;
+; Total registers             ; 791                                             ;
 ; Total pins                  ; 187 / 812 ( 23 % )                              ;
 ; Total virtual pins          ; 0                                               ;
-; Total block memory bits     ; 303,104 / 43,642,880 ( < 1 % )                  ;
+; Total block memory bits     ; 304,128 / 43,642,880 ( < 1 % )                  ;
 ; Total DSP Blocks            ; 0 / 1,687 ( 0 % )                               ;
 ; Total HSSI RX channels      ; 0 / 48 ( 0 % )                                  ;
 ; Total HSSI TX channels      ; 0 / 48 ( 0 % )                                  ;
@@ -65,7 +65,7 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/13/2017 17:35:44 ;
+; Start date & time ; 04/25/2017 17:06:29 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; varint_encoder      ;
 +-------------------+---------------------+
@@ -76,12 +76,12 @@ agreement for further details.
 +--------------------------------------+----------------------------------------------------------------------+--------------------------------------+---------------------+------------------------+
 ; Assignment Name                      ; Value                                                                ; Default Value                        ; Entity Name         ; Section Id             ;
 +--------------------------------------+----------------------------------------------------------------------+--------------------------------------+---------------------+------------------------+
-; COMPILER_SIGNATURE_ID                ; 203178701995592.149213014426240                                      ; --                                   ; --                  ; --                     ;
+; COMPILER_SIGNATURE_ID                ; 203178701995592.149316518902440                                      ; --                                   ; --                  ; --                     ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                                   ; --                                   ; --                  ; raw data testcases     ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                                   ; --                                   ; --                  ; varint testcases       ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                                   ; --                                   ; --                  ; protobuf_serializer_tb ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST      ; On                                                                   ; --                                   ; --                  ; eda_simulation         ;
-; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; raw data testcases                                                   ; --                                   ; --                  ; eda_simulation         ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; varint testcases                                                     ; --                                   ; --                  ; eda_simulation         ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                                                          ; --                                   ; --                  ; eda_simulation         ;
 ; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (Verilog)                                            ; <None>                               ; --                  ; --                     ;
 ; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                                                      ; --                                   ; --                  ; eda_simulation         ;
@@ -101,6 +101,8 @@ agreement for further details.
 ; MISC_FILE                            ; varint_in_fifo/../varint_in_fifo.qsys                                ; --                                   ; --                  ; --                     ;
 ; MISC_FILE                            ; varint_in_index/varint_in_index.cmp                                  ; --                                   ; --                  ; --                     ;
 ; MISC_FILE                            ; varint_in_index/../varint_in_index.qsys                              ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; varint_in_size/varint_in_size.cmp                                    ; --                                   ; --                  ; --                     ;
+; MISC_FILE                            ; varint_in_size/../varint_in_size.qsys                                ; --                                   ; --                  ; --                     ;
 ; MISC_FILE                            ; raw_data_in_fifo/raw_data_in_fifo.cmp                                ; --                                   ; --                  ; --                     ;
 ; MISC_FILE                            ; raw_data_in_fifo/../raw_data_in_fifo.qsys                            ; --                                   ; --                  ; --                     ;
 ; MISC_FILE                            ; raw_data_in_index/raw_data_in_index.cmp                              ; --                                   ; --                  ; --                     ;
@@ -127,6 +129,7 @@ agreement for further details.
 ; PROJECT_OUTPUT_DIRECTORY             ; output_files                                                         ; --                                   ; --                  ; --                     ;
 ; SLD_FILE                             ; varint_in_fifo/varint_in_fifo.debuginfo                              ; --                                   ; --                  ; --                     ;
 ; SLD_FILE                             ; varint_in_index/varint_in_index.debuginfo                            ; --                                   ; --                  ; --                     ;
+; SLD_FILE                             ; varint_in_size/varint_in_size.debuginfo                              ; --                                   ; --                  ; --                     ;
 ; SLD_FILE                             ; raw_data_in_fifo/raw_data_in_fifo.debuginfo                          ; --                                   ; --                  ; --                     ;
 ; SLD_FILE                             ; raw_data_in_index/raw_data_in_index.debuginfo                        ; --                                   ; --                  ; --                     ;
 ; SLD_FILE                             ; raw_data_in_wstrb/raw_data_in_wstrb.debuginfo                        ; --                                   ; --                  ; --                     ;
@@ -143,10 +146,12 @@ agreement for further details.
 ; SLD_INFO                             ; QSYS_NAME raw_data_out_index HAS_SOPCINFO 1 GENERATION_ID 1488509169 ; --                                   ; raw_data_out_index  ; --                     ;
 ; SLD_INFO                             ; QSYS_NAME varint_in_fifo HAS_SOPCINFO 1 GENERATION_ID 1488501637     ; --                                   ; varint_in_fifo      ; --                     ;
 ; SLD_INFO                             ; QSYS_NAME varint_in_index HAS_SOPCINFO 1 GENERATION_ID 1488508747    ; --                                   ; varint_in_index     ; --                     ;
+; SLD_INFO                             ; QSYS_NAME varint_in_size HAS_SOPCINFO 1 GENERATION_ID 1493082958     ; --                                   ; varint_in_size      ; --                     ;
 ; SLD_INFO                             ; QSYS_NAME varint_out_fifo HAS_SOPCINFO 1 GENERATION_ID 1488506152    ; --                                   ; varint_out_fifo     ; --                     ;
 ; SLD_INFO                             ; QSYS_NAME varint_out_index HAS_SOPCINFO 1 GENERATION_ID 1488508581   ; --                                   ; varint_out_index    ; --                     ;
 ; SOPCINFO_FILE                        ; varint_in_fifo/../varint_in_fifo.sopcinfo                            ; --                                   ; --                  ; --                     ;
 ; SOPCINFO_FILE                        ; varint_in_index/../varint_in_index.sopcinfo                          ; --                                   ; --                  ; --                     ;
+; SOPCINFO_FILE                        ; varint_in_size/../varint_in_size.sopcinfo                            ; --                                   ; --                  ; --                     ;
 ; SOPCINFO_FILE                        ; raw_data_in_fifo/../raw_data_in_fifo.sopcinfo                        ; --                                   ; --                  ; --                     ;
 ; SOPCINFO_FILE                        ; raw_data_in_index/../raw_data_in_index.sopcinfo                      ; --                                   ; --                  ; --                     ;
 ; SOPCINFO_FILE                        ; raw_data_in_wstrb/../raw_data_in_wstrb.sopcinfo                      ; --                                   ; --                  ; --                     ;
@@ -155,6 +160,7 @@ agreement for further details.
 ; SOPCINFO_FILE                        ; raw_data_out_fifo/../raw_data_out_fifo.sopcinfo                      ; --                                   ; --                  ; --                     ;
 ; SOPCINFO_FILE                        ; raw_data_out_index/../raw_data_out_index.sopcinfo                    ; --                                   ; --                  ; --                     ;
 ; SOPCINFO_FILE                        ; out_fifo/../out_fifo.sopcinfo                                        ; --                                   ; --                  ; --                     ;
+; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --                     ;
 ; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --                     ;
 ; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --                     ;
 ; SYNTHESIS_ONLY_QIP                   ; On                                                                   ; --                                   ; --                  ; --                     ;
@@ -175,13 +181,13 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:16     ; 1.0                     ; 1480 MB             ; 00:00:37                           ;
-; Fitter                    ; 00:03:08     ; 3.1                     ; 8469 MB             ; 00:09:16                           ;
-; Assembler                 ; 00:00:47     ; 1.0                     ; 5415 MB             ; 00:00:47                           ;
-; TimeQuest Timing Analyzer ; 00:00:32     ; 5.6                     ; 4398 MB             ; 00:00:39                           ;
-; EDA Netlist Writer        ; 00:00:02     ; 1.0                     ; 1509 MB             ; 00:00:01                           ;
-; EDA Netlist Writer        ; 00:00:02     ; 1.0                     ; 1514 MB             ; 00:00:01                           ;
-; Total                     ; 00:04:47     ; --                      ; --                  ; 00:11:21                           ;
+; Analysis & Synthesis      ; 00:00:17     ; 1.0                     ; 1480 MB             ; 00:00:38                           ;
+; Fitter                    ; 00:03:05     ; 3.2                     ; 8482 MB             ; 00:09:24                           ;
+; Assembler                 ; 00:00:47     ; 1.0                     ; 5412 MB             ; 00:00:47                           ;
+; TimeQuest Timing Analyzer ; 00:00:31     ; 5.6                     ; 4402 MB             ; 00:00:38                           ;
+; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 1515 MB             ; 00:00:01                           ;
+; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 1509 MB             ; 00:00:02                           ;
+; Total                     ; 00:04:42     ; --                      ; --                  ; 00:11:30                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

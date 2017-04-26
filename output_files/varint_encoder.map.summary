@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Thu Apr 13 17:36:00 2017
+Analysis & Synthesis Status : Successful - Tue Apr 25 17:06:46 2017
 Quartus Prime Version : 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 Revision Name : varint_encoder
 Top-level Entity Name : protobuf_serializer
 Family : Arria 10
 Logic utilization (in ALMs) : N/A
-Total registers : 632
+Total registers : 743
 Total pins : 187
 Total virtual pins : 0
-Total block memory bits : 303,104
+Total block memory bits : 304,128
 Total DSP Blocks : 0
 Total HSSI RX channels : 0
 Total HSSI TX channels : 0

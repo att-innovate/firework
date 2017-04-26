@@ -31,13 +31,14 @@ state.V_FETCH 0 1 1
 state.V_READY 1 0 1 
 
 State Machine - |protobuf_serializer|fsm_2:f2|state
-Name state.ENCODE_L state.ENCODE_N state.VF_FULL state.LOAD_COND state.V_READY state.INIT 
-state.INIT 0 0 0 0 0 0 
-state.V_READY 0 0 0 0 1 1 
-state.LOAD_COND 0 0 0 1 0 1 
-state.VF_FULL 0 0 1 0 0 1 
-state.ENCODE_N 0 1 0 0 0 1 
-state.ENCODE_L 1 0 0 0 0 1 
+Name state.ENCODE_L state.ENCODE_N state.VF_FULL state.POP_64 state.LOAD_COND state.V_READY state.INIT 
+state.INIT 0 0 0 0 0 0 0 
+state.V_READY 0 0 0 0 0 1 1 
+state.LOAD_COND 0 0 0 0 1 0 1 
+state.POP_64 0 0 0 1 0 0 1 
+state.VF_FULL 0 0 1 0 0 0 1 
+state.ENCODE_N 0 1 0 0 0 0 1 
+state.ENCODE_L 1 0 0 0 0 0 1 
 
 State Machine - |protobuf_serializer|fsm_1:f1|state
 Name state.PUSH_3 state.PUSH_2 state.PUSH_1 state.PUSH_0 state.RF_FULL state.RD_READY state.INIT 
