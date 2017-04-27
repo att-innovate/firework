@@ -1,5 +1,5 @@
 Assembler report for varint_encoder
-Tue Apr 25 17:10:44 2017
+Wed Apr 26 16:33:12 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -36,7 +36,7 @@ agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Tue Apr 25 17:10:44 2017 ;
+; Assembler Status      ; Successful - Wed Apr 26 16:33:12 2017 ;
 ; Revision Name         ; varint_encoder                        ;
 ; Top-level Entity Name ; protobuf_serializer                   ;
 ; Family                ; Arria 10                              ;
@@ -57,12 +57,12 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
-    Info: Processing started: Tue Apr 25 17:09:57 2017
+    Info: Processing started: Wed Apr 26 16:32:24 2017
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off varint_encoder -c varint_encoder
 Info: Quartus Prime Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 5412 megabytes
-    Info: Processing ended: Tue Apr 25 17:10:45 2017
-    Info: Elapsed time: 00:00:48
-    Info: Total CPU time (on all processors): 00:00:48
+    Info: Peak virtual memory: 5413 megabytes
+    Info: Processing ended: Wed Apr 26 16:33:13 2017
+    Info: Elapsed time: 00:00:49
+    Info: Total CPU time (on all processors): 00:00:49
 
 

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for varint_encoder
-Tue Apr 25 17:06:46 2017
+Wed Apr 26 16:29:11 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -86,7 +86,7 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Tue Apr 25 17:06:46 2017           ;
+; Analysis & Synthesis Status ; Successful - Wed Apr 26 16:29:11 2017           ;
 ; Quartus Prime Version       ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
 ; Revision Name               ; varint_encoder                                  ;
 ; Top-level Entity Name       ; protobuf_serializer                             ;
@@ -203,7 +203,7 @@ agreement for further details.
 ; Number detected on machine ; 32          ;
 ; Maximum allowed            ; 16          ;
 ;                            ;             ;
-; Average used               ; 1.01        ;
+; Average used               ; 1.02        ;
 ; Maximum used               ; 16          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
@@ -1330,7 +1330,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
-    Info: Processing started: Tue Apr 25 17:06:28 2017
+    Info: Processing started: Wed Apr 26 16:28:55 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off varint_encoder -c varint_encoder
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/protobuf-serializer/varint_in_fifo/").
@@ -1838,9 +1838,9 @@ Info (21057): Implemented 1521 device resources after synthesis - the final reso
     Info (21061): Implemented 1201 logic cells
     Info (21064): Implemented 133 RAM segments
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 110 warnings
-    Info: Peak virtual memory: 1520 megabytes
-    Info: Processing ended: Tue Apr 25 17:06:46 2017
-    Info: Elapsed time: 00:00:18
-    Info: Total CPU time (on all processors): 00:00:39
+    Info: Peak virtual memory: 1524 megabytes
+    Info: Processing ended: Wed Apr 26 16:29:11 2017
+    Info: Elapsed time: 00:00:16
+    Info: Total CPU time (on all processors): 00:00:37
 
 

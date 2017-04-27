@@ -1,5 +1,5 @@
 Fitter report for varint_encoder
-Tue Apr 25 17:09:52 2017
+Wed Apr 26 16:32:19 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -62,7 +62,7 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Fitter Summary                                                                ;
 +-----------------------------+-------------------------------------------------+
-; Fitter Status               ; Successful - Tue Apr 25 17:09:52 2017           ;
+; Fitter Status               ; Successful - Wed Apr 26 16:32:19 2017           ;
 ; Quartus Prime Version       ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
 ; Revision Name               ; varint_encoder                                  ;
 ; Top-level Entity Name       ; protobuf_serializer                             ;
@@ -148,26 +148,26 @@ agreement for further details.
 ; Number detected on machine ; 32          ;
 ; Maximum allowed            ; 16          ;
 ;                            ;             ;
-; Average used               ; 3.16        ;
+; Average used               ; 3.13        ;
 ; Maximum used               ; 16          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;  20.7%      ;
-;     Processor 3            ;  15.0%      ;
-;     Processor 4            ;  14.8%      ;
-;     Processor 5            ;  14.5%      ;
-;     Processor 6            ;  14.3%      ;
-;     Processor 7            ;  14.0%      ;
-;     Processor 8            ;  13.9%      ;
-;     Processor 9            ;  13.8%      ;
-;     Processor 10           ;  13.8%      ;
-;     Processor 11           ;  13.7%      ;
-;     Processor 12           ;  13.7%      ;
-;     Processor 13           ;  13.6%      ;
-;     Processor 14           ;  13.6%      ;
-;     Processor 15           ;  13.6%      ;
-;     Processor 16           ;  13.6%      ;
+;     Processor 2            ;  20.5%      ;
+;     Processor 3            ;  14.8%      ;
+;     Processor 4            ;  14.5%      ;
+;     Processor 5            ;  14.3%      ;
+;     Processor 6            ;  13.9%      ;
+;     Processor 7            ;  13.7%      ;
+;     Processor 8            ;  13.7%      ;
+;     Processor 9            ;  13.6%      ;
+;     Processor 10           ;  13.6%      ;
+;     Processor 11           ;  13.5%      ;
+;     Processor 12           ;  13.5%      ;
+;     Processor 13           ;  13.5%      ;
+;     Processor 14           ;  13.4%      ;
+;     Processor 15           ;  13.4%      ;
+;     Processor 16           ;  13.4%      ;
 +----------------------------+-------------+
 
 
@@ -3315,14 +3315,14 @@ Info (14951): The Fitter is using Advanced Physical Optimization.
 Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:09
 Info (170191): Fitter placement operations beginning
 Info (170137): Fitter placement was successful
-Info (170192): Fitter placement operations ending: elapsed time is 00:00:21
-Info (11888): Total time spent on timing analysis during Placement is 3.91 seconds.
+Info (170192): Fitter placement operations ending: elapsed time is 00:00:22
+Info (11888): Total time spent on timing analysis during Placement is 3.87 seconds.
 Info (170193): Fitter routing operations beginning
 Info (170195): Router estimated average interconnect usage is 0% of the available device resources
     Info (170196): Router estimated peak interconnect usage is 7% of the available device resources in the region that extends from location X136_Y177 to location X148_Y188
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
-Info (11888): Total time spent on timing analysis during Routing is 0.41 seconds.
+Info (11888): Total time spent on timing analysis during Routing is 0.35 seconds.
 Info (16607): Fitter routing operations ending: elapsed time is 00:00:22
 Info (18289): Started post-fitting delay annotation
 Warning (18291): Timing characteristics of device 10AS066N3F40E2SGE2 are preliminary
@@ -3339,15 +3339,15 @@ Info (18290): Delay annotation completed successfully
 Info (18289): Started post-fitting delay annotation
 Warning (18291): Timing characteristics of device 10AS066N3F40E2SGE2 are preliminary
 Info (18290): Delay annotation completed successfully
-Info (11888): Total time spent on timing analysis during Post-Routing is 0.09 seconds.
-Info (16557): Fitter post-fit operations ending: elapsed time is 00:00:22
+Info (11888): Total time spent on timing analysis during Post-Routing is 0.10 seconds.
+Info (16557): Fitter post-fit operations ending: elapsed time is 00:00:23
 Info (144001): Generated suppressed messages file /home/mladmon/workspace/firework/protobuf-serializer/output_files/varint_encoder.fit.smsg
 Info (11793): Fitter databases successfully split.
 Info: Quartus Prime Fitter was successful. 0 errors, 11 warnings
     Info: Peak virtual memory: 8482 megabytes
-    Info: Processing ended: Tue Apr 25 17:09:53 2017
-    Info: Elapsed time: 00:03:06
-    Info: Total CPU time (on all processors): 00:09:25
+    Info: Processing ended: Wed Apr 26 16:32:20 2017
+    Info: Elapsed time: 00:03:08
+    Info: Total CPU time (on all processors): 00:09:37
 
 
 +----------------------------+

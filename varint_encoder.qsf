@@ -57,21 +57,12 @@ set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
 set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
 set_global_assignment -name VERILOG_SHOW_LMF_MAPPING_MESSAGES OFF
 set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
-set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH "varint testcases" -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH "FIFO full" -section_id eda_simulation
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST ON -section_id eda_simulation
 set_global_assignment -name PROJECT_IP_REGENERATION_POLICY NEVER_REGENERATE_IP
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name EDA_TEST_BENCH_NAME protobuf_serializer_tb -section_id eda_simulation
-set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id protobuf_serializer_tb
-set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME protobuf_serializer_tb -section_id protobuf_serializer_tb
-set_global_assignment -name EDA_TEST_BENCH_NAME "varint testcases" -section_id eda_simulation
-set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id "varint testcases"
-set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME protobuf_serializer_tb1 -section_id "varint testcases"
-set_global_assignment -name EDA_TEST_BENCH_NAME "raw data testcases" -section_id eda_simulation
-set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id "raw data testcases"
-set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME protobuf_serializer_tb2 -section_id "raw data testcases"
 set_global_assignment -name VERILOG_FILE protobuf_serializer.v
 set_global_assignment -name QSYS_FILE varint_in_fifo.qsys
 set_global_assignment -name QSYS_FILE varint_in_index.qsys
@@ -91,7 +82,20 @@ set_global_assignment -name VERILOG_FILE fsm_3a.v
 set_global_assignment -name VERILOG_FILE fsm_3b.v
 set_global_assignment -name VERILOG_FILE fsm_3.v
 set_global_assignment -name VERILOG_FILE fsm_4.v
-set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb.v -section_id protobuf_serializer_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb1.v -section_id "varint testcases"
-set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb2.v -section_id "raw data testcases"
+set_global_assignment -name EDA_TEST_BENCH_NAME addressbook -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id addressbook
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME protobuf_serializer_tb -section_id addressbook
+set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb.v -section_id addressbook
+set_global_assignment -name EDA_TEST_BENCH_NAME varint -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id varint
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME protobuf_serializer_tb1 -section_id varint
+set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb1.v -section_id varint
+set_global_assignment -name EDA_TEST_BENCH_NAME "raw data" -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id "raw data"
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME protobuf_serializer_tb2 -section_id "raw data"
+set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb2.v -section_id "raw data"
+set_global_assignment -name EDA_TEST_BENCH_NAME "FIFO full" -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id "FIFO full"
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME protobuf_serializer_tb3 -section_id "FIFO full"
+set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb3.v -section_id "FIFO full"
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
