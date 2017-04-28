@@ -26,6 +26,8 @@ module fsm_0_tb ();
 	wire        varint_in_fifo_push;
 	wire        varint_in_index_clr;
 	wire        varint_in_index_push;
+	wire        varint_in_size_clr;
+	wire        varint_in_size_push;
 	wire        raw_data_in_fifo_clr;
 	wire        raw_data_in_fifo_push;
 	wire        raw_data_in_index_clr;
@@ -35,41 +37,45 @@ module fsm_0_tb ();
 	wire [31:0] wdata;
 	wire [3:0]  wstrb;
 	wire [9:0]  index;
+	wire        varint64;
 
 	// instantiate our design under test (DUT)
 	fsm_0 f0 (
-			.clk                    (clk),
-			.reset                  (reset),
-			.axs_s0_awid            (axs_s0_awid),
-			.axs_s0_awaddr          (axs_s0_awaddr),
-			.axs_s0_awlen           (axs_s0_awlen),
-			.axs_s0_awsize          (axs_s0_awsize),
-			.axs_s0_awburst         (axs_s0_awburst),
-			.axs_s0_awvalid         (axs_s0_awvalid),
-			.axs_s0_awready         (axs_s0_awready),
-			.axs_s0_wdata           (axs_s0_wdata),
-			.axs_s0_wstrb           (axs_s0_wstrb),
-			.axs_s0_wvalid          (axs_s0_wvalid),
-			.axs_s0_wready          (axs_s0_wready),
-			.axs_s0_bready          (axs_s0_bready),
-			.axs_s0_bid             (axs_s0_bid),
-			.axs_s0_bvalid          (axs_s0_bvalid),
-			.varint_in_fifo_full    (varint_in_fifo_full),
-			.varint_in_fifo_clr     (varint_in_fifo_clr),
-			.varint_in_fifo_push    (varint_in_fifo_push),
-			.varint_in_index_clr    (varint_in_index_clr),
-			.varint_in_index_push   (varint_in_index_push),
-			.raw_data_in_fifo_full  (raw_data_in_fifo_full),
-			.raw_data_in_fifo_clr   (raw_data_in_fifo_clr),
-			.raw_data_in_fifo_push  (raw_data_in_fifo_push),
-			.raw_data_in_index_clr  (raw_data_in_index_clr),
-			.raw_data_in_index_push (raw_data_in_index_push),
-			.raw_data_in_wstrb_clr  (raw_data_in_wstrb_clr),
-			.raw_data_in_wstrb_push (raw_data_in_wstrb_push),
-			.wdata                  (wdata),
-			.wstrb                  (wstrb),
-			.index                  (index)
-		);
+		.clk                    (clk),
+		.reset                  (reset),
+		.axs_s0_awid            (axs_s0_awid),
+		.axs_s0_awaddr          (axs_s0_awaddr),
+		.axs_s0_awlen           (axs_s0_awlen),
+		.axs_s0_awsize          (axs_s0_awsize),
+		.axs_s0_awburst         (axs_s0_awburst),
+		.axs_s0_awvalid         (axs_s0_awvalid),
+		.axs_s0_awready         (axs_s0_awready),
+		.axs_s0_wdata           (axs_s0_wdata),
+		.axs_s0_wstrb           (axs_s0_wstrb),
+		.axs_s0_wvalid          (axs_s0_wvalid),
+		.axs_s0_wready          (axs_s0_wready),
+		.axs_s0_bready          (axs_s0_bready),
+		.axs_s0_bid             (axs_s0_bid),
+		.axs_s0_bvalid          (axs_s0_bvalid),
+		.varint_in_fifo_full    (varint_in_fifo_full),
+		.varint_in_fifo_clr     (varint_in_fifo_clr),
+		.varint_in_fifo_push    (varint_in_fifo_push),
+		.varint_in_index_clr    (varint_in_index_clr),
+		.varint_in_index_push   (varint_in_index_push),
+		.varint_in_size_clr     (varint_in_size_clr),
+		.varint_in_size_push    (varint_in_size_push),
+		.raw_data_in_fifo_full  (raw_data_in_fifo_full),
+		.raw_data_in_fifo_clr   (raw_data_in_fifo_clr),
+		.raw_data_in_fifo_push  (raw_data_in_fifo_push),
+		.raw_data_in_index_clr  (raw_data_in_index_clr),
+		.raw_data_in_index_push (raw_data_in_index_push),
+		.raw_data_in_wstrb_clr  (raw_data_in_wstrb_clr),
+		.raw_data_in_wstrb_push (raw_data_in_wstrb_push),
+		.wdata                  (wdata),
+		.wstrb                  (wstrb),
+		.index                  (index),
+		.varint64               (varint64)
+	);
 
 	// generate the clock signal
 	initial begin

@@ -14,21 +14,25 @@ module fsm_1_tb ();
 	wire raw_data_out_fifo_clr;
 	wire raw_data_out_index_clr;
 	wire [1:0] raw_data_sel;
-		
+	wire push_enable;
+	wire encoding;
+
 	// instantiate our design under test (DUT)
 	fsm_1 f1 (
 		.clk                    (clk),
 		.reset                  (reset),
 		.raw_data_in_fifo_empty (raw_data_in_fifo_empty),
-		.raw_data_out_fifo_full (raw_data_out_fifo_full),
 		.raw_data_in_fifo_pop   (raw_data_in_fifo_pop),
 		.raw_data_in_index_pop  (raw_data_in_index_pop),
 		.raw_data_in_wstrb_pop  (raw_data_in_wstrb_pop),
+		.raw_data_out_fifo_full (raw_data_out_fifo_full),
 		.raw_data_out_fifo_clr  (raw_data_out_fifo_clr),
 		.raw_data_out_index_clr (raw_data_out_index_clr),
-		.raw_data_sel           (raw_data_sel)
+		.raw_data_sel           (raw_data_sel),
+		.push_enable            (push_enable),
+		.encoding               (encoding)
 	);
-		
+
    // generate the clock signal
 	initial begin
 		clk = 1'b0;

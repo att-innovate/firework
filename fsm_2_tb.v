@@ -6,32 +6,37 @@ module fsm_2_tb ();
 	reg clk;
 	reg reset;
 	reg varint_in_fifo_empty;
+	reg varint_in_size_q;
 	reg varint_out_fifo_full;
 	reg [31:0] varint_data_in;
-	
+
 	wire varint_in_fifo_pop;
 	wire varint_in_index_pop;
+	wire varint_in_size_pop;
 	wire varint_out_fifo_clr;
 	wire varint_out_fifo_push;
 	wire varint_out_index_clr;
 	wire varint_out_index_push;
 	wire [7:0] varint_data_out;
+	wire encoding;
 
-		
 	// instantiate our design under test (DUT)
 	fsm_2 f2 (
 		.clk                   (clk),
 		.reset                 (reset),
 		.varint_in_fifo_empty  (varint_in_fifo_empty),
-		.varint_out_fifo_full  (varint_out_fifo_full),
-		.varint_data_in        (varint_data_in),
+		.varint_in_size_q      (varint_in_size_q),
 		.varint_in_fifo_pop    (varint_in_fifo_pop),
 		.varint_in_index_pop   (varint_in_index_pop),
+		.varint_in_size_pop    (varint_in_size_pop),
+		.varint_out_fifo_full  (varint_out_fifo_full),
 		.varint_out_fifo_clr   (varint_out_fifo_clr),
 		.varint_out_fifo_push  (varint_out_fifo_push),
 		.varint_out_index_clr  (varint_out_index_clr),
 		.varint_out_index_push (varint_out_index_push),
-		.varint_data_out       (varint_data_out)
+		.varint_data_in        (varint_data_in),
+		.varint_data_out       (varint_data_out),
+		.encoding              (encoding)
 	);
 		
    // generate the clock signal
@@ -52,6 +57,7 @@ module fsm_2_tb ();
 		// initialize input vectors
 		varint_in_fifo_empty = 1'b1;
 		varint_out_fifo_full = 1'b0;
+		varint_in_size_q = 1'b0;
 	
 		// wait for reset to deassert
 		@(negedge reset);
