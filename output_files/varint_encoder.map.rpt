@@ -1,5 +1,5 @@
 Analysis & Synthesis report for varint_encoder
-Wed Apr 26 16:29:11 2017
+Fri Apr 28 14:22:51 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -86,7 +86,7 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Wed Apr 26 16:29:11 2017           ;
+; Analysis & Synthesis Status ; Successful - Fri Apr 28 14:22:51 2017           ;
 ; Quartus Prime Version       ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
 ; Revision Name               ; varint_encoder                                  ;
 ; Top-level Entity Name       ; protobuf_serializer                             ;
@@ -1330,7 +1330,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
-    Info: Processing started: Wed Apr 26 16:28:55 2017
+    Info: Processing started: Fri Apr 28 14:22:35 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off varint_encoder -c varint_encoder
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/protobuf-serializer/varint_in_fifo/").
@@ -1437,7 +1437,6 @@ Info (12021): Found 1 design units, including 1 entities, in source file fsm_3.v
     Info (12023): Found entity 1: fsm_3 File: /home/mladmon/workspace/firework/protobuf-serializer/fsm_3.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file fsm_4.v
     Info (12023): Found entity 1: fsm_4 File: /home/mladmon/workspace/firework/protobuf-serializer/fsm_4.v Line: 3
-Warning (10236): Verilog HDL Implicit Net warning at protobuf_serializer.v(199): created implicit net for "push_enable" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 199
 Info (12127): Elaborating entity "protobuf_serializer" for the top level hierarchy
 Info (12128): Elaborating entity "varint_in_fifo" for hierarchy "varint_in_fifo:in0" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 102
 Info (12128): Elaborating entity "varint_in_fifo_fifo_160_v2ho2aa" for hierarchy "varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0" File: /home/mladmon/workspace/firework/protobuf-serializer/varint_in_fifo/synth/varint_in_fifo.v Line: 26
@@ -1837,10 +1836,10 @@ Info (21057): Implemented 1521 device resources after synthesis - the final reso
     Info (21059): Implemented 46 output pins
     Info (21061): Implemented 1201 logic cells
     Info (21064): Implemented 133 RAM segments
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 110 warnings
-    Info: Peak virtual memory: 1524 megabytes
-    Info: Processing ended: Wed Apr 26 16:29:11 2017
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 109 warnings
+    Info: Peak virtual memory: 1521 megabytes
+    Info: Processing ended: Fri Apr 28 14:22:51 2017
     Info: Elapsed time: 00:00:16
-    Info: Total CPU time (on all processors): 00:00:37
+    Info: Total CPU time (on all processors): 00:00:36
 
 

@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for varint_encoder
-Wed Apr 26 16:33:47 2017
+Fri Apr 28 14:27:25 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -96,26 +96,26 @@ agreement for further details.
 ; Number detected on machine ; 32          ;
 ; Maximum allowed            ; 16          ;
 ;                            ;             ;
-; Average used               ; 5.55        ;
+; Average used               ; 5.46        ;
 ; Maximum used               ; 16          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;  30.5%      ;
-;     Processor 3            ;  30.5%      ;
-;     Processor 4            ;  30.5%      ;
-;     Processor 5            ;  30.3%      ;
-;     Processor 6            ;  30.3%      ;
-;     Processor 7            ;  30.3%      ;
-;     Processor 8            ;  30.3%      ;
-;     Processor 9            ;  30.3%      ;
-;     Processor 10           ;  30.3%      ;
-;     Processor 11           ;  30.3%      ;
-;     Processor 12           ;  30.3%      ;
-;     Processor 13           ;  30.3%      ;
-;     Processor 14           ;  30.3%      ;
-;     Processor 15           ;  30.3%      ;
-;     Processor 16           ;  30.2%      ;
+;     Processor 2            ;  30.0%      ;
+;     Processor 3            ;  30.0%      ;
+;     Processor 4            ;  29.9%      ;
+;     Processor 5            ;  29.7%      ;
+;     Processor 6            ;  29.7%      ;
+;     Processor 7            ;  29.7%      ;
+;     Processor 8            ;  29.7%      ;
+;     Processor 9            ;  29.7%      ;
+;     Processor 10           ;  29.7%      ;
+;     Processor 11           ;  29.7%      ;
+;     Processor 12           ;  29.7%      ;
+;     Processor 13           ;  29.7%      ;
+;     Processor 14           ;  29.7%      ;
+;     Processor 15           ;  29.7%      ;
+;     Processor 16           ;  29.7%      ;
 +----------------------------+-------------+
 
 
@@ -919,7 +919,7 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 Info: *******************************************************************
 Info: Running Quartus Prime TimeQuest Timing Analyzer
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
-    Info: Processing started: Wed Apr 26 16:33:14 2017
+    Info: Processing started: Fri Apr 28 14:26:52 2017
 Info: Command: quartus_sta varint_encoder -c varint_encoder
 Info: qsta_default_script.tcl version: #1
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
@@ -1011,7 +1011,7 @@ Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime TimeQuest Timing Analyzer was successful. 0 errors, 4 warnings
     Info: Peak virtual memory: 4400 megabytes
-    Info: Processing ended: Wed Apr 26 16:33:47 2017
+    Info: Processing ended: Fri Apr 28 14:27:25 2017
     Info: Elapsed time: 00:00:33
     Info: Total CPU time (on all processors): 00:00:40
 

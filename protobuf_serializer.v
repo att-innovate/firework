@@ -58,7 +58,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 	wire [3:0]  raw_data_in_wstrb_q;
 
 	wire [1:0]  raw_data_sel;
-	wire        raw_data_push, raw_data_push_mux;
+	wire        push_enable, raw_data_push, raw_data_push_mux;
 
 	wire [7:0]  raw_data_mux, encoded_byte;
 	
