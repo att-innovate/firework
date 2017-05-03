@@ -6,3 +6,4 @@ db/*.sci
 *.rpt
 
 .qsys_edit/preferences.xml
+db/ghrd_10as066n2.db_info
