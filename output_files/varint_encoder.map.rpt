@@ -1,5 +1,5 @@
 Analysis & Synthesis report for varint_encoder
-Tue May  2 17:07:08 2017
+Wed May  3 16:28:26 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -86,7 +86,7 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Tue May  2 17:07:08 2017           ;
+; Analysis & Synthesis Status ; Successful - Wed May  3 16:28:26 2017           ;
 ; Quartus Prime Version       ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
 ; Revision Name               ; varint_encoder                                  ;
 ; Top-level Entity Name       ; protobuf_serializer                             ;
@@ -108,7 +108,7 @@ agreement for further details.
 +---------------------------------------------------------------------------------+---------------------+--------------------+
 ; Option                                                                          ; Setting             ; Default Value      ;
 +---------------------------------------------------------------------------------+---------------------+--------------------+
-; Device                                                                          ; 10AS066N3F40E2SGE2  ;                    ;
+; Device                                                                          ; 10AS066N3F40E2SG    ;                    ;
 ; Top-level entity name                                                           ; protobuf_serializer ; varint_encoder     ;
 ; Family name                                                                     ; Arria 10            ; Cyclone V          ;
 ; Maximum processors allowed for parallel compilation                             ; All                 ;                    ;
@@ -1330,7 +1330,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
-    Info: Processing started: Tue May  2 17:06:52 2017
+    Info: Processing started: Wed May  3 16:28:09 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off varint_encoder -c varint_encoder
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/protobuf-serializer/varint_in_fifo/").
@@ -1805,9 +1805,9 @@ Info (21057): Implemented 1489 device resources after synthesis - the final reso
     Info (21061): Implemented 1201 logic cells
     Info (21064): Implemented 133 RAM segments
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 77 warnings
-    Info: Peak virtual memory: 1522 megabytes
-    Info: Processing ended: Tue May  2 17:07:08 2017
-    Info: Elapsed time: 00:00:16
-    Info: Total CPU time (on all processors): 00:00:37
+    Info: Peak virtual memory: 1520 megabytes
+    Info: Processing ended: Wed May  3 16:28:26 2017
+    Info: Elapsed time: 00:00:17
+    Info: Total CPU time (on all processors): 00:00:38
 
 

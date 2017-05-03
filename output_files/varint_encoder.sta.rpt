@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for varint_encoder
-Tue May  2 17:11:37 2017
+Wed May  3 16:32:58 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -81,7 +81,7 @@ agreement for further details.
 ; Timing Analyzer       ; TimeQuest Spectra-Q                                     ;
 ; Revision Name         ; varint_encoder                                          ;
 ; Device Family         ; Arria 10                                                ;
-; Device Name           ; 10AS066N3F40E2SGE2                                      ;
+; Device Name           ; 10AS066N3F40E2SG                                        ;
 ; Timing Models         ; Preliminary                                             ;
 ; Delay Model           ; Combined                                                ;
 ; Rise/Fall Delays      ; Enabled                                                 ;
@@ -96,26 +96,26 @@ agreement for further details.
 ; Number detected on machine ; 32          ;
 ; Maximum allowed            ; 16          ;
 ;                            ;             ;
-; Average used               ; 5.67        ;
+; Average used               ; 5.58        ;
 ; Maximum used               ; 16          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;  31.4%      ;
-;     Processor 3            ;  31.4%      ;
-;     Processor 4            ;  31.3%      ;
-;     Processor 5            ;  31.2%      ;
-;     Processor 6            ;  31.0%      ;
-;     Processor 7            ;  31.0%      ;
-;     Processor 8            ;  31.0%      ;
-;     Processor 9            ;  31.0%      ;
-;     Processor 10           ;  31.0%      ;
-;     Processor 11           ;  31.0%      ;
-;     Processor 12           ;  31.0%      ;
-;     Processor 13           ;  31.0%      ;
-;     Processor 14           ;  31.0%      ;
-;     Processor 15           ;  31.0%      ;
-;     Processor 16           ;  31.0%      ;
+;     Processor 2            ;  30.8%      ;
+;     Processor 3            ;  30.7%      ;
+;     Processor 4            ;  30.7%      ;
+;     Processor 5            ;  30.5%      ;
+;     Processor 6            ;  30.5%      ;
+;     Processor 7            ;  30.5%      ;
+;     Processor 8            ;  30.5%      ;
+;     Processor 9            ;  30.5%      ;
+;     Processor 10           ;  30.5%      ;
+;     Processor 11           ;  30.5%      ;
+;     Processor 12           ;  30.5%      ;
+;     Processor 13           ;  30.5%      ;
+;     Processor 14           ;  30.5%      ;
+;     Processor 15           ;  30.5%      ;
+;     Processor 16           ;  30.5%      ;
 +----------------------------+-------------+
 
 
@@ -892,7 +892,7 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 Info: *******************************************************************
 Info: Running Quartus Prime TimeQuest Timing Analyzer
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
-    Info: Processing started: Tue May  2 17:11:06 2017
+    Info: Processing started: Wed May  3 16:32:25 2017
 Info: Command: quartus_sta varint_encoder -c varint_encoder
 Info: qsta_default_script.tcl version: #1
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
@@ -900,7 +900,7 @@ Info (21076): Core supply voltage operating condition is not set. Assuming a def
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 100 degrees C
 Info (18289): Started post-fitting delay annotation
-Warning (18291): Timing characteristics of device 10AS066N3F40E2SGE2 are preliminary
+Warning (18291): Timing characteristics of device 10AS066N3F40E2SG are preliminary
 Info (18290): Delay annotation completed successfully
 Critical Warning (332012): Synopsys Design Constraints File file not found: 'varint_encoder.sdc'. A Synopsys Design Constraints File is required by the TimeQuest Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
 Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
@@ -988,9 +988,9 @@ Info (332114): Report Metastability: Found 11 synchronizer chains.
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime TimeQuest Timing Analyzer was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 4398 megabytes
-    Info: Processing ended: Tue May  2 17:11:37 2017
-    Info: Elapsed time: 00:00:31
+    Info: Peak virtual memory: 4400 megabytes
+    Info: Processing ended: Wed May  3 16:32:58 2017
+    Info: Elapsed time: 00:00:33
     Info: Total CPU time (on all processors): 00:00:39
 
 
