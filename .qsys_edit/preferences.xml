@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preferences>
+ <debug showDebugMenu="0" />
+ <systemtable filter="All Interfaces">
+  <columns>
+   <connections preferredWidth="335" />
+   <irq preferredWidth="63" />
+   <baseaddress preferredWidth="106" />
+   <endaddress preferredWidth="84" />
+   <inputclock preferredWidth="114" />
+   <description preferredWidth="207" />
+   <name preferredWidth="204" />
+  </columns>
+ </systemtable>
+ <library expandedCategories="Project,Project/Custom IP,Library" />
+ <window width="1759" height="1239" x="289" y="109" />
+ <generation path="" />
+</preferences>
