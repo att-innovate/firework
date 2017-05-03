@@ -294,3 +294,7 @@ set_instance_assignment -name SLEW_RATE 1 -to hps_sdio_D1
 set_instance_assignment -name SLEW_RATE 1 -to hps_sdio_D2
 set_instance_assignment -name SLEW_RATE 1 -to hps_sdio_D3
 set_instance_assignment -name OUTPUT_DELAY_CHAIN 8 -to hps_emac0_TX_CLK
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 100
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
