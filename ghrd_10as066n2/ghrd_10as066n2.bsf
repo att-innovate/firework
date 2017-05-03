@@ -712,7 +712,7 @@ agreement for further details.
 		(text "out_port" (rect 293 1651 634 3312)(font "Arial" (color 0 0 0)))
 		(text "reset" (rect 259 1667 548 3347)(font "Arial" (color 128 0 0)(font_size 9)))
 		(text "reset_n" (rect 293 1691 628 3392)(font "Arial" (color 0 0 0)))
-		(text " system " (rect 717 1712 1482 3434)(font "Arial" ))
+		(text " ghrd_10as066n2 " (rect 680 1712 1456 3434)(font "Arial" ))
 		(line (pt 288 32)(pt 464 32)(line_width 1))
 		(line (pt 464 32)(pt 464 1712)(line_width 1))
 		(line (pt 288 1712)(pt 464 1712)(line_width 1))
