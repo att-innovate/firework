@@ -7,7 +7,7 @@ module fsm_4 (
 
 		// AXI4 read address, read data channel signals
 		input  wire [3:0]  axs_s0_arid,
-		input  wire [31:0] axs_s0_araddr,
+		input  wire [15:0] axs_s0_araddr,
 		input  wire [7:0]  axs_s0_arlen,
 		input  wire [2:0]  axs_s0_arsize,
 		input  wire [1:0]  axs_s0_arburst,
@@ -27,7 +27,7 @@ module fsm_4 (
 
 	// datapath registers
 	reg [3:0]  arid;
-	reg [31:0] araddr;
+	reg [15:0] araddr;
 	reg [7:0]  arlen;
 	reg [2:0]  arsize;
 	reg [1:0]  arburst;
@@ -60,7 +60,7 @@ module fsm_4 (
 		else begin
 			arid    <= (arid_ld) ? axs_s0_arid : ((arid_clr) ? 4'h0 : arid);
 			araddr  <= (araddr_ld) ? axs_s0_araddr : 
-			           ((araddr_clr) ? 32'h0000_0000 : araddr);
+			           ((araddr_clr) ? 16'h0000 : araddr);
 			arlen   <= (arlen_ld_mux) ? arlen_data_mux : ((arlen_clr) ? 8'h00 : arlen);
 			arsize  <= (arsize_ld) ? axs_s0_arsize : ((arsize_clr) ? 3'b000 : arsize);
 			arburst <= (arburst_ld) ? axs_s0_arburst : ((arburst_clr) ? 2'b00 : arburst);

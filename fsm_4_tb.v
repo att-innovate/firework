@@ -6,7 +6,7 @@ module fsm_4_tb ();
 	reg        clk;
 	reg        reset;
 	reg [3:0]  axs_s0_arid;
-	reg [31:0] axs_s0_araddr;
+	reg [15:0] axs_s0_araddr;
 	reg [7:0]  axs_s0_arlen;
 	reg [2:0]  axs_s0_arsize;
 	reg [1:0]  axs_s0_arburst;
@@ -70,7 +70,7 @@ module fsm_4_tb ();
 		// set read address channel signals
 		// @(posedge clk): transitions from AR_READY to OF_EMPTY
 		axs_s0_arid = 4'b0101;
-		axs_s0_araddr = 32'h0000_3f00;
+		axs_s0_araddr = 16'h3f00;
 		axs_s0_arlen = 8'b00000011;    // request 4 transfers of data
 		axs_s0_arsize = 3'b000;        // each transfer is 1 byte wide
 		axs_s0_arburst = 2'b00;        // burst type FIXED

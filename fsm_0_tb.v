@@ -6,7 +6,7 @@ module fsm_0_tb ();
 	reg         clk;
 	reg         reset;
 	reg [3:0]   axs_s0_awid;
-	reg [31:0]  axs_s0_awaddr;
+	reg [15:0]  axs_s0_awaddr;
 	reg [7:0]   axs_s0_awlen;
 	reg [2:0]   axs_s0_awsize;
 	reg [1:0]   axs_s0_awburst;
@@ -94,7 +94,7 @@ module fsm_0_tb ();
 	initial begin
 		// initialize input vectors
 		axs_s0_awid = 4'b0000;
-		axs_s0_awaddr = 32'h0000_0000;
+		axs_s0_awaddr = 16'h0000;
 		axs_s0_awlen = 8'h00;
 		axs_s0_awsize = 3'b000;
 		axs_s0_awburst = 2'b00;
@@ -114,7 +114,7 @@ module fsm_0_tb ();
 
 		// set write address channel signals (sim. AXI master)
 		axs_s0_awid = 4'b1111;
-		axs_s0_awaddr = 32'h01; // address indicates incoming 32-bit varint data
+		axs_s0_awaddr = 16'h01; // address indicates incoming 32-bit varint data
 		axs_s0_awlen = 8'h00;
 		axs_s0_awsize = 3'b010;
 		axs_s0_awburst = 2'b00;

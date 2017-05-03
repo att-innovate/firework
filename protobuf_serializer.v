@@ -5,7 +5,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 		input  wire        reset_reset,    //  reset.reset
 
 		input  wire [3:0]  axs_s0_awid,    // axs_s0.awid
-		input  wire [31:0] axs_s0_awaddr,  //       .awaddr
+		input  wire [15:0] axs_s0_awaddr,  //       .awaddr
 		input  wire [7:0]  axs_s0_awlen,   //       .awlen
 		input  wire [2:0]  axs_s0_awsize,  //       .awsize
 		input  wire [1:0]  axs_s0_awburst, //       .awburst
@@ -22,7 +22,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 		output wire        axs_s0_bvalid,  //       .bvalid
 
 		input  wire [3:0]  axs_s0_arid,    //       .arid
-		input  wire [31:0] axs_s0_araddr,  //       .araddr
+		input  wire [15:0] axs_s0_araddr,  //       .araddr
 		input  wire [7:0]  axs_s0_arlen,   //       .arlen
 		input  wire [2:0]  axs_s0_arsize,  //       .arsize
 		input  wire [1:0]  axs_s0_arburst, //       .arburst

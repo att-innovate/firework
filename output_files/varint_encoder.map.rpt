@@ -1,5 +1,5 @@
 Analysis & Synthesis report for varint_encoder
-Fri Apr 28 14:22:51 2017
+Tue May  2 17:07:08 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -86,14 +86,14 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Fri Apr 28 14:22:51 2017           ;
+; Analysis & Synthesis Status ; Successful - Tue May  2 17:07:08 2017           ;
 ; Quartus Prime Version       ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
 ; Revision Name               ; varint_encoder                                  ;
 ; Top-level Entity Name       ; protobuf_serializer                             ;
 ; Family                      ; Arria 10                                        ;
 ; Logic utilization (in ALMs) ; N/A                                             ;
 ; Total registers             ; 743                                             ;
-; Total pins                  ; 187                                             ;
+; Total pins                  ; 155                                             ;
 ; Total virtual pins          ; 0                                               ;
 ; Total block memory bits     ; 304,128                                         ;
 ; Total DSP Blocks            ; 0                                               ;
@@ -323,7 +323,7 @@ agreement for further details.
 ;                                             ;                 ;
 ; Dedicated logic registers                   ; 743             ;
 ;                                             ;                 ;
-; I/O pins                                    ; 187             ;
+; I/O pins                                    ; 155             ;
 ; Total MLAB memory bits                      ; 0               ;
 ; Total block memory bits                     ; 304128          ;
 ;                                             ;                 ;
@@ -333,8 +333,8 @@ agreement for further details.
 ;                                             ;                 ;
 ; Maximum fan-out node                        ; clock_clk~input ;
 ; Maximum fan-out                             ; 876             ;
-; Total fan-out                               ; 9915            ;
-; Average fan-out                             ; 4.25            ;
+; Total fan-out                               ; 9883            ;
+; Average fan-out                             ; 4.36            ;
 +---------------------------------------------+-----------------+
 
 
@@ -343,7 +343,7 @@ agreement for further details.
 +----------------------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------+-----------------------------+
 ; Compilation Hierarchy Node                         ; LC Combinationals ; LC Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                     ; Entity Name                         ; Library Name                ;
 +----------------------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------+-----------------------------+
-; |protobuf_serializer                               ; 1082 (18)         ; 743 (0)      ; 304128            ; 0          ; 187  ; 0            ; |protobuf_serializer                                                                                                                                                                    ; protobuf_serializer                 ; work                        ;
+; |protobuf_serializer                               ; 1082 (18)         ; 743 (0)      ; 304128            ; 0          ; 155  ; 0            ; |protobuf_serializer                                                                                                                                                                    ; protobuf_serializer                 ; work                        ;
 ;    |fsm_0:f0|                                      ; 33 (33)           ; 62 (62)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_0:f0                                                                                                                                                           ; fsm_0                               ; work                        ;
 ;    |fsm_1:f1|                                      ; 11 (11)           ; 9 (9)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_1:f1                                                                                                                                                           ; fsm_1                               ; work                        ;
 ;    |fsm_2:f2|                                      ; 109 (109)         ; 105 (105)    ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_2:f2                                                                                                                                                           ; fsm_2                               ; work                        ;
@@ -1288,7 +1288,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 187                         ;
+; boundary_port         ; 155                         ;
 ; twentynm_ff           ; 743                         ;
 ;     ENA               ; 26                          ;
 ;     ENA SCLR          ; 501                         ;
@@ -1330,7 +1330,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
-    Info: Processing started: Fri Apr 28 14:22:35 2017
+    Info: Processing started: Tue May  2 17:06:52 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off varint_encoder -c varint_encoder
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/protobuf-serializer/varint_in_fifo/").
@@ -1756,7 +1756,7 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "axs_s0_rdata[31]" is stuck at GND File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 33
 Info (286030): Timing-Driven Synthesis is running
 Info (17049): 18 registers lost all their fanouts during netlist optimizations.
-Warning (21074): Design contains 74 input pin(s) that do not drive logic
+Warning (21074): Design contains 42 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "axs_s0_awaddr[8]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
     Warning (15610): No output dependent on input pin "axs_s0_awaddr[9]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
     Warning (15610): No output dependent on input pin "axs_s0_awaddr[10]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
@@ -1765,22 +1765,6 @@ Warning (21074): Design contains 74 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "axs_s0_awaddr[13]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
     Warning (15610): No output dependent on input pin "axs_s0_awaddr[14]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
     Warning (15610): No output dependent on input pin "axs_s0_awaddr[15]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[16]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[17]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[18]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[19]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[20]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[21]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[22]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[23]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[24]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[25]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[26]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[27]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[28]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[29]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[30]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[31]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
     Warning (15610): No output dependent on input pin "axs_s0_awlen[0]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 9
     Warning (15610): No output dependent on input pin "axs_s0_awlen[1]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 9
     Warning (15610): No output dependent on input pin "axs_s0_awlen[2]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 9
@@ -1810,36 +1794,20 @@ Warning (21074): Design contains 74 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "axs_s0_araddr[13]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 25
     Warning (15610): No output dependent on input pin "axs_s0_araddr[14]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 25
     Warning (15610): No output dependent on input pin "axs_s0_araddr[15]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 25
-    Warning (15610): No output dependent on input pin "axs_s0_araddr[16]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 25
-    Warning (15610): No output dependent on input pin "axs_s0_araddr[17]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 25
-    Warning (15610): No output dependent on input pin "axs_s0_araddr[18]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 25
-    Warning (15610): No output dependent on input pin "axs_s0_araddr[19]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 25
-    Warning (15610): No output dependent on input pin "axs_s0_araddr[20]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 25
-    Warning (15610): No output dependent on input pin "axs_s0_araddr[21]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 25
-    Warning (15610): No output dependent on input pin "axs_s0_araddr[22]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 25
-    Warning (15610): No output dependent on input pin "axs_s0_araddr[23]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 25
-    Warning (15610): No output dependent on input pin "axs_s0_araddr[24]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 25
-    Warning (15610): No output dependent on input pin "axs_s0_araddr[25]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 25
-    Warning (15610): No output dependent on input pin "axs_s0_araddr[26]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 25
-    Warning (15610): No output dependent on input pin "axs_s0_araddr[27]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 25
-    Warning (15610): No output dependent on input pin "axs_s0_araddr[28]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 25
-    Warning (15610): No output dependent on input pin "axs_s0_araddr[29]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 25
-    Warning (15610): No output dependent on input pin "axs_s0_araddr[30]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 25
-    Warning (15610): No output dependent on input pin "axs_s0_araddr[31]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 25
     Warning (15610): No output dependent on input pin "axs_s0_arsize[0]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 27
     Warning (15610): No output dependent on input pin "axs_s0_arsize[1]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 27
     Warning (15610): No output dependent on input pin "axs_s0_arsize[2]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 27
     Warning (15610): No output dependent on input pin "axs_s0_arburst[0]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 28
     Warning (15610): No output dependent on input pin "axs_s0_arburst[1]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 28
-Info (21057): Implemented 1521 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 141 input pins
+Info (21057): Implemented 1489 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 109 input pins
     Info (21059): Implemented 46 output pins
     Info (21061): Implemented 1201 logic cells
     Info (21064): Implemented 133 RAM segments
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 109 warnings
-    Info: Peak virtual memory: 1521 megabytes
-    Info: Processing ended: Fri Apr 28 14:22:51 2017
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 77 warnings
+    Info: Peak virtual memory: 1522 megabytes
+    Info: Processing ended: Tue May  2 17:07:08 2017
     Info: Elapsed time: 00:00:16
-    Info: Total CPU time (on all processors): 00:00:36
+    Info: Total CPU time (on all processors): 00:00:37
 
 

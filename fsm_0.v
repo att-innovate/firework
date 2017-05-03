@@ -7,7 +7,7 @@ module fsm_0 (
 
 		// AXI4 write address, write data, write response channel signals
 		input  wire [3:0]  axs_s0_awid,
-		input  wire [31:0] axs_s0_awaddr,
+		input  wire [15:0] axs_s0_awaddr,
 		input  wire [7:0]  axs_s0_awlen,
 		input  wire [2:0]  axs_s0_awsize,
 		input  wire [1:0]  axs_s0_awburst,
@@ -49,7 +49,7 @@ module fsm_0 (
 
 	// datapath registers
 	reg [3:0]  awid;
-	reg [31:0] awaddr;
+	reg [15:0] awaddr;
 	reg [7:0]  awlen;
 	reg [2:0]  awsize;
 	reg [1:0]  awburst;
@@ -87,7 +87,7 @@ module fsm_0 (
 		else begin
 			awid    <= (awid_ld) ? axs_s0_awid : ((awid_clr) ? 4'h0 : awid);
 			awaddr  <= (awaddr_ld) ? axs_s0_awaddr :
-			           ((awaddr_clr) ? 32'h0000_0000 : awaddr);
+			           ((awaddr_clr) ? 16'h0000 : awaddr);
 			awlen   <= (awlen_ld) ? axs_s0_awlen : ((awlen_clr) ? 8'h00 : awlen);
 			awsize  <= (awsize_ld) ? axs_s0_awsize : ((awsize_clr) ? 3'b000 : awsize);
 			awburst <= (awburst_ld) ? axs_s0_awburst : ((awburst_clr) ? 2'b00 : awburst);

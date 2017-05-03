@@ -6,7 +6,7 @@ module protobuf_serializer_tb3 ();
 	reg         clk;
 	reg         reset;
 	reg [3:0]   axs_s0_awid;
-	reg [31:0]  axs_s0_awaddr;
+	reg [15:0]  axs_s0_awaddr;
 	reg [7:0]   axs_s0_awlen;
 	reg [2:0]   axs_s0_awsize;
 	reg [1:0]   axs_s0_awburst;
@@ -16,7 +16,7 @@ module protobuf_serializer_tb3 ();
 	reg         axs_s0_wvalid;
 	reg         axs_s0_bready;
 	reg [3:0]   axs_s0_arid;
-	reg [31:0]  axs_s0_araddr;
+	reg [15:0]  axs_s0_araddr;
 	reg [7:0]   axs_s0_arlen;
 	reg [2:0]   axs_s0_arsize;
 	reg [1:0]   axs_s0_arburst;
@@ -103,7 +103,7 @@ module protobuf_serializer_tb3 ();
 
 			// AXI master: set Write Address channel signals
 			axs_s0_awid = 4'b1010;
-			axs_s0_awaddr = 32'hf0; // raw data, not last transfer of payload
+			axs_s0_awaddr = 16'hf0; // raw data, not last transfer of payload
 			axs_s0_awlen = 8'h00;
 			axs_s0_awsize = 3'b010;
 			axs_s0_awburst = 2'b00;
@@ -125,7 +125,7 @@ module protobuf_serializer_tb3 ();
 
 			// AXI master: set Write Address channel signals
 			axs_s0_awid = 4'b1010;
-			axs_s0_awaddr = 32'hf1; // raw data, last transfer of payload
+			axs_s0_awaddr = 16'hf1; // raw data, last transfer of payload
 			axs_s0_awlen = 8'h00;
 			axs_s0_awsize = 3'b010;
 			axs_s0_awburst = 2'b00;
@@ -174,7 +174,7 @@ module protobuf_serializer_tb3 ();
 	 
 		// AXI master: set Write Address channel signals
 		axs_s0_awid = 4'b1010;
-		axs_s0_awaddr = 32'hf0; // raw data, not last transfer of payload
+		axs_s0_awaddr = 16'hf0; // raw data, not last transfer of payload
 		axs_s0_awlen = 8'h00;
 		axs_s0_awsize = 3'b010;
 		axs_s0_awburst = 2'b00;
@@ -202,7 +202,7 @@ module protobuf_serializer_tb3 ();
 
 		// AXI master: set Read Address channel signals
 		axs_s0_arid = 4'b0000;  // arbitrary, axs_s0_rid must reflect this value
-		axs_s0_araddr = 32'h00; // read address will be defined in Qsys
+		axs_s0_araddr = 16'h00; // read address will be defined in Qsys
 		axs_s0_arlen = 8'h07;   // burst length = ARLEN+1 = 7+1 = 8 transfers
 		axs_s0_arsize = 3'b000; // burst size = 2^ARSIZE = 2^0 = 1 byte
 		axs_s0_arburst = 2'b00; // burst type: FIXED (ideal for accessing FIFOs)
@@ -228,7 +228,7 @@ module protobuf_serializer_tb3 ();
 
 		// AXI master: set Write Address channel signals
 		axs_s0_awid = 4'b1010;
-		axs_s0_awaddr = 32'hf1; // raw data, last transfer of payload
+		axs_s0_awaddr = 16'hf1; // raw data, last transfer of payload
 		axs_s0_awlen = 8'h00;
 		axs_s0_awsize = 3'b010;
 		axs_s0_awburst = 2'b00;
