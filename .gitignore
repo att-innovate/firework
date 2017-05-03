@@ -1,1 +1,8 @@
+*.qws
+*.bak*
+db/*.flock
+db/*.sci
+.*.swp
+*.rpt
+
 .qsys_edit/preferences.xml
