@@ -2,7 +2,7 @@
   <system>
     <config name='VERSION' value='16.0' />
     <config name='DEVICE_FAMILY' value='Arria 10' />
-    <config name='TIME_AND_DATE' value='Tuesday May, 02, 2017 - 06:27:27 PM PDT' />
+    <config name='TIME_AND_DATE' value='Tuesday May, 02, 2017 - 06:59:16 PM PDT' />
     <config name='DMA_Enable' value='No No No No No No No No' />
     <config name='eosc1_clk_hz' value='25000000.0' />
     <config name='emac0_clk_hz' value='250000000' />

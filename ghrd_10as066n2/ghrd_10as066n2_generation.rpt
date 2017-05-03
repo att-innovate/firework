@@ -30,8 +30,7 @@ Progress: Adding onchip_memory2_0 [altera_avalon_onchip_memory2 16.0]
 Progress: Parameterizing module onchip_memory2_0
 Progress: Adding pb_lwh2f [altera_avalon_mm_bridge 16.0]
 Progress: Parameterizing module pb_lwh2f
-Progress: Adding protobuf_serializer_0 [protobuf_serializer 1.0]
-Warning: protobuf_serializer_0: Used protobuf_serializer 2.0 (instead of 1.0)
+Progress: Adding protobuf_serializer_0 [protobuf_serializer 2.0]
 Progress: Parameterizing module protobuf_serializer_0
 Progress: Adding reset_bridge_0 [altera_reset_bridge 16.0]
 Progress: Parameterizing module reset_bridge_0
@@ -87,8 +86,7 @@ Progress: Adding onchip_memory2_0 [altera_avalon_onchip_memory2 16.0]
 Progress: Parameterizing module onchip_memory2_0
 Progress: Adding pb_lwh2f [altera_avalon_mm_bridge 16.0]
 Progress: Parameterizing module pb_lwh2f
-Progress: Adding protobuf_serializer_0 [protobuf_serializer 1.0]
-Warning: protobuf_serializer_0: Used protobuf_serializer 2.0 (instead of 1.0)
+Progress: Adding protobuf_serializer_0 [protobuf_serializer 2.0]
 Progress: Parameterizing module protobuf_serializer_0
 Progress: Adding reset_bridge_0 [altera_reset_bridge 16.0]
 Progress: Parameterizing module reset_bridge_0
@@ -111,12 +109,12 @@ Info: ghrd_10as066n2.sysid_qsys_0: System ID is not assigned automatically. Edit
 Info: ghrd_10as066n2.sysid_qsys_0: Time stamp will be automatically updated when this component is generated.
 Info: ghrd_10as066n2: "Transforming system: ghrd_10as066n2"
 Info: ghrd_10as066n2: Running transform generation_view_transform
-Info: ghrd_10as066n2: Running transform generation_view_transform took 0.000s
+Info: ghrd_10as066n2: Running transform generation_view_transform took 0.001s
 Info: ILC: Running transform generation_view_transform
 Info: ILC: Running transform generation_view_transform took 0.000s
 Info: arria10_hps_0: Running transform generation_view_transform
 Info: arria10_hps_0: HPS NOC (L3 clock) is set to 200 MHz When the Max Speed for this part is 400 MHz.
-Info: arria10_hps_0: Running transform generation_view_transform took 0.641s
+Info: arria10_hps_0: Running transform generation_view_transform took 0.594s
 Info: button_pio: Running transform generation_view_transform
 Info: button_pio: Running transform generation_view_transform took 0.000s
 Info: dipsw_pio: Running transform generation_view_transform
@@ -248,52 +246,52 @@ Warning: arria10_hps_0.f2h_irq0: Cannot connect clock for irq_mapper_001.sender
 Warning: arria10_hps_0.f2h_irq0: Cannot connect reset for irq_mapper_001.sender
 Warning: arria10_hps_0.f2h_irq1: Cannot connect clock for irq_mapper_002.sender
 Warning: arria10_hps_0.f2h_irq1: Cannot connect reset for irq_mapper_002.sender
-Info: ghrd_10as066n2: Running transform merlin_avalon_transform took 3.449s
+Info: ghrd_10as066n2: Running transform merlin_avalon_transform took 3.267s
 Info: arria10_hps_0: Running transform merlin_avalon_transform
-Info: arria10_hps_0: Running transform merlin_avalon_transform took 0.008s
+Info: arria10_hps_0: Running transform merlin_avalon_transform took 0.009s
 Info: emif_a10_hps_0: Running transform merlin_avalon_transform
 Info: emif_a10_hps_0: Running transform merlin_avalon_transform took 0.008s
 Info: f2sdram_only_master: Running transform merlin_avalon_transform
-Info: f2sdram_only_master: Running transform merlin_avalon_transform took 0.013s
+Info: f2sdram_only_master: Running transform merlin_avalon_transform took 0.012s
 Info: f2sdram_only_master1: Running transform merlin_avalon_transform
 Info: f2sdram_only_master1: Running transform merlin_avalon_transform took 0.012s
 Info: fpga_only_master: Running transform merlin_avalon_transform
-Info: fpga_only_master: Running transform merlin_avalon_transform took 0.012s
+Info: fpga_only_master: Running transform merlin_avalon_transform took 0.011s
 Info: hps_only_master: Running transform merlin_avalon_transform
-Info: hps_only_master: Running transform merlin_avalon_transform took 0.012s
+Info: hps_only_master: Running transform merlin_avalon_transform took 0.013s
 Info: mm_interconnect_0: Running transform merlin_avalon_transform
 Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
-Info: mm_interconnect_0: Running transform merlin_avalon_transform took 0.142s
+Info: mm_interconnect_0: Running transform merlin_avalon_transform took 0.151s
 Info: mm_interconnect_1: Running transform merlin_avalon_transform
 Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
-Info: mm_interconnect_1: Running transform merlin_avalon_transform took 0.141s
+Info: mm_interconnect_1: Running transform merlin_avalon_transform took 0.125s
 Info: mm_interconnect_2: Running transform merlin_avalon_transform
 Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
 Info: avalon_st_adapter_001: Inserting error_adapter: error_adapter_0
 Info: avalon_st_adapter_002: Inserting error_adapter: error_adapter_0
 Info: avalon_st_adapter_003: Inserting error_adapter: error_adapter_0
 Info: avalon_st_adapter_004: Inserting error_adapter: error_adapter_0
-Info: mm_interconnect_2: Running transform merlin_avalon_transform took 0.344s
+Info: mm_interconnect_2: Running transform merlin_avalon_transform took 0.398s
 Info: mm_interconnect_3: Running transform merlin_avalon_transform
-Info: mm_interconnect_3: Running transform merlin_avalon_transform took 0.033s
+Info: mm_interconnect_3: Running transform merlin_avalon_transform took 0.036s
 Info: mm_interconnect_4: Running transform merlin_avalon_transform
-Info: mm_interconnect_4: Running transform merlin_avalon_transform took 0.033s
+Info: mm_interconnect_4: Running transform merlin_avalon_transform took 0.035s
 Info: mm_interconnect_5: Running transform merlin_avalon_transform
-Info: mm_interconnect_5: Running transform merlin_avalon_transform took 0.033s
+Info: mm_interconnect_5: Running transform merlin_avalon_transform took 0.035s
 Info: hps_io: Running transform merlin_avalon_transform
-Info: hps_io: Running transform merlin_avalon_transform took 0.007s
+Info: hps_io: Running transform merlin_avalon_transform took 0.008s
 Info: avalon_st_adapter: Running transform merlin_avalon_transform
 Info: avalon_st_adapter: Running transform merlin_avalon_transform took 0.008s
 Info: avalon_st_adapter: Running transform merlin_avalon_transform
-Info: avalon_st_adapter: Running transform merlin_avalon_transform took 0.008s
+Info: avalon_st_adapter: Running transform merlin_avalon_transform took 0.011s
 Info: avalon_st_adapter: Running transform merlin_avalon_transform
 Info: avalon_st_adapter: Running transform merlin_avalon_transform took 0.008s
 Info: avalon_st_adapter_001: Running transform merlin_avalon_transform
-Info: avalon_st_adapter_001: Running transform merlin_avalon_transform took 0.007s
+Info: avalon_st_adapter_001: Running transform merlin_avalon_transform took 0.008s
 Info: avalon_st_adapter_002: Running transform merlin_avalon_transform
-Info: avalon_st_adapter_002: Running transform merlin_avalon_transform took 0.007s
+Info: avalon_st_adapter_002: Running transform merlin_avalon_transform took 0.008s
 Info: avalon_st_adapter_003: Running transform merlin_avalon_transform
-Info: avalon_st_adapter_003: Running transform merlin_avalon_transform took 0.007s
+Info: avalon_st_adapter_003: Running transform merlin_avalon_transform took 0.046s
 Info: avalon_st_adapter_004: Running transform merlin_avalon_transform
 Info: avalon_st_adapter_004: Running transform merlin_avalon_transform took 0.008s
 Info: ghrd_10as066n2: "Naming system components in system: ghrd_10as066n2"
@@ -303,26 +301,26 @@ Info: ghrd_10as066n2: "Generating: interrupt_latency_counter"
 Info: ghrd_10as066n2: "Generating: ghrd_10as066n2_altera_arria10_hps_160_z5pkcay"
 Info: ghrd_10as066n2: "Generating: ghrd_10as066n2_altera_avalon_pio_160_ni6vtzq"
 Info: button_pio: Starting RTL generation for module 'ghrd_10as066n2_altera_avalon_pio_160_ni6vtzq'
-Info: button_pio:   Generation command is [exec /home/mladmon/workspace/altera/16.0/quartus/linux64/perl/bin/perl -I /home/mladmon/workspace/altera/16.0/quartus/linux64/perl/lib -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin/europa -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin/perl_lib -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin -I /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/common -I /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=ghrd_10as066n2_altera_avalon_pio_160_ni6vtzq --dir=/tmp/alt7284_9006819683898682731.dir/0074_button_pio_gen/ --quartus_dir=/home/mladmon/workspace/altera/16.0/quartus --verilog --config=/tmp/alt7284_9006819683898682731.dir/0074_button_pio_gen//ghrd_10as066n2_altera_avalon_pio_160_ni6vtzq_component_configuration.pl  --do_build_sim=0  ]
+Info: button_pio:   Generation command is [exec /home/mladmon/workspace/altera/16.0/quartus/linux64/perl/bin/perl -I /home/mladmon/workspace/altera/16.0/quartus/linux64/perl/lib -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin/europa -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin/perl_lib -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin -I /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/common -I /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=ghrd_10as066n2_altera_avalon_pio_160_ni6vtzq --dir=/tmp/alt7289_890864114334195653.dir/0002_button_pio_gen/ --quartus_dir=/home/mladmon/workspace/altera/16.0/quartus --verilog --config=/tmp/alt7289_890864114334195653.dir/0002_button_pio_gen//ghrd_10as066n2_altera_avalon_pio_160_ni6vtzq_component_configuration.pl  --do_build_sim=0  ]
 Info: button_pio: Done RTL generation for module 'ghrd_10as066n2_altera_avalon_pio_160_ni6vtzq'
 Info: ghrd_10as066n2: "Generating: ghrd_10as066n2_altera_avalon_pio_160_vok7g7q"
 Info: dipsw_pio: Starting RTL generation for module 'ghrd_10as066n2_altera_avalon_pio_160_vok7g7q'
-Info: dipsw_pio:   Generation command is [exec /home/mladmon/workspace/altera/16.0/quartus/linux64/perl/bin/perl -I /home/mladmon/workspace/altera/16.0/quartus/linux64/perl/lib -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin/europa -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin/perl_lib -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin -I /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/common -I /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=ghrd_10as066n2_altera_avalon_pio_160_vok7g7q --dir=/tmp/alt7284_9006819683898682731.dir/0075_dipsw_pio_gen/ --quartus_dir=/home/mladmon/workspace/altera/16.0/quartus --verilog --config=/tmp/alt7284_9006819683898682731.dir/0075_dipsw_pio_gen//ghrd_10as066n2_altera_avalon_pio_160_vok7g7q_component_configuration.pl  --do_build_sim=0  ]
+Info: dipsw_pio:   Generation command is [exec /home/mladmon/workspace/altera/16.0/quartus/linux64/perl/bin/perl -I /home/mladmon/workspace/altera/16.0/quartus/linux64/perl/lib -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin/europa -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin/perl_lib -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin -I /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/common -I /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=ghrd_10as066n2_altera_avalon_pio_160_vok7g7q --dir=/tmp/alt7289_890864114334195653.dir/0003_dipsw_pio_gen/ --quartus_dir=/home/mladmon/workspace/altera/16.0/quartus --verilog --config=/tmp/alt7289_890864114334195653.dir/0003_dipsw_pio_gen//ghrd_10as066n2_altera_avalon_pio_160_vok7g7q_component_configuration.pl  --do_build_sim=0  ]
 Info: dipsw_pio: Done RTL generation for module 'ghrd_10as066n2_altera_avalon_pio_160_vok7g7q'
 Info: ghrd_10as066n2: "Generating: ghrd_10as066n2_altera_emif_a10_hps_160_dm7bgly"
 Info: ghrd_10as066n2: "Generating: ghrd_10as066n2_altera_jtag_avalon_master_160_n3nalcq"
 Info: ghrd_10as066n2: "Generating: altsource_probe_top"
 Info: ghrd_10as066n2: "Generating: ghrd_10as066n2_altera_avalon_pio_160_obivuki"
 Info: led_pio: Starting RTL generation for module 'ghrd_10as066n2_altera_avalon_pio_160_obivuki'
-Info: led_pio:   Generation command is [exec /home/mladmon/workspace/altera/16.0/quartus/linux64/perl/bin/perl -I /home/mladmon/workspace/altera/16.0/quartus/linux64/perl/lib -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin/europa -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin/perl_lib -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin -I /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/common -I /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=ghrd_10as066n2_altera_avalon_pio_160_obivuki --dir=/tmp/alt7284_9006819683898682731.dir/0077_led_pio_gen/ --quartus_dir=/home/mladmon/workspace/altera/16.0/quartus --verilog --config=/tmp/alt7284_9006819683898682731.dir/0077_led_pio_gen//ghrd_10as066n2_altera_avalon_pio_160_obivuki_component_configuration.pl  --do_build_sim=0  ]
+Info: led_pio:   Generation command is [exec /home/mladmon/workspace/altera/16.0/quartus/linux64/perl/bin/perl -I /home/mladmon/workspace/altera/16.0/quartus/linux64/perl/lib -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin/europa -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin/perl_lib -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin -I /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/common -I /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=ghrd_10as066n2_altera_avalon_pio_160_obivuki --dir=/tmp/alt7289_890864114334195653.dir/0005_led_pio_gen/ --quartus_dir=/home/mladmon/workspace/altera/16.0/quartus --verilog --config=/tmp/alt7289_890864114334195653.dir/0005_led_pio_gen//ghrd_10as066n2_altera_avalon_pio_160_obivuki_component_configuration.pl  --do_build_sim=0  ]
 Info: led_pio: Done RTL generation for module 'ghrd_10as066n2_altera_avalon_pio_160_obivuki'
 Info: ghrd_10as066n2: "Generating: ghrd_10as066n2_altera_avalon_onchip_memory2_160_cs3qdiy"
 Info: onchip_memory2_0: Starting RTL generation for module 'ghrd_10as066n2_altera_avalon_onchip_memory2_160_cs3qdiy'
-Info: onchip_memory2_0:   Generation command is [exec /home/mladmon/workspace/altera/16.0/quartus/linux64/perl/bin/perl -I /home/mladmon/workspace/altera/16.0/quartus/linux64/perl/lib -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin/europa -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin/perl_lib -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin -I /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/common -I /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2 -- /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2/generate_rtl.pl --name=ghrd_10as066n2_altera_avalon_onchip_memory2_160_cs3qdiy --dir=/tmp/alt7284_9006819683898682731.dir/0078_onchip_memory2_0_gen/ --quartus_dir=/home/mladmon/workspace/altera/16.0/quartus --verilog --config=/tmp/alt7284_9006819683898682731.dir/0078_onchip_memory2_0_gen//ghrd_10as066n2_altera_avalon_onchip_memory2_160_cs3qdiy_component_configuration.pl  --do_build_sim=0  ]
+Info: onchip_memory2_0:   Generation command is [exec /home/mladmon/workspace/altera/16.0/quartus/linux64/perl/bin/perl -I /home/mladmon/workspace/altera/16.0/quartus/linux64/perl/lib -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin/europa -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin/perl_lib -I /home/mladmon/workspace/altera/16.0/quartus/sopc_builder/bin -I /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/common -I /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2 -- /home/mladmon/workspace/altera/16.0/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2/generate_rtl.pl --name=ghrd_10as066n2_altera_avalon_onchip_memory2_160_cs3qdiy --dir=/tmp/alt7289_890864114334195653.dir/0006_onchip_memory2_0_gen/ --quartus_dir=/home/mladmon/workspace/altera/16.0/quartus --verilog --config=/tmp/alt7289_890864114334195653.dir/0006_onchip_memory2_0_gen//ghrd_10as066n2_altera_avalon_onchip_memory2_160_cs3qdiy_component_configuration.pl  --do_build_sim=0  ]
 Info: onchip_memory2_0: Done RTL generation for module 'ghrd_10as066n2_altera_avalon_onchip_memory2_160_cs3qdiy'
 Info: ghrd_10as066n2: "Generating: altera_avalon_mm_bridge"
 Info: ghrd_10as066n2: "Generating: protobuf_serializer"
-Info: ghrd_10as066n2: "Generating: ghrd_10as066n2_altera_avalon_sysid_qsys_160_4vhljwi"
+Info: ghrd_10as066n2: "Generating: ghrd_10as066n2_altera_avalon_sysid_qsys_160_eiqs32q"
 Info: ghrd_10as066n2: "Generating: ghrd_10as066n2_altera_mm_interconnect_160_l57bo3q"
 Info: ghrd_10as066n2: "Generating: ghrd_10as066n2_altera_mm_interconnect_160_wkc4ela"
 Info: ghrd_10as066n2: "Generating: ghrd_10as066n2_altera_mm_interconnect_160_whlrxya"
