@@ -1,0 +1,456 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 900mV 100C Model Setup 'MAIN_CLOCK'
+Slack : 2.459
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Setup 'altera_reserved_tck'
+Slack : 6.279
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Hold 'altera_reserved_tck'
+Slack : 0.045
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Hold 'MAIN_CLOCK'
+Slack : 0.048
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Recovery 'MAIN_CLOCK'
+Slack : 4.867
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Recovery 'altera_reserved_tck'
+Slack : 38.664
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Removal 'MAIN_CLOCK'
+Slack : 0.337
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Removal 'altera_reserved_tck'
+Slack : 0.739
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Minimum Pulse Width 'hps_memory_mem_dqs[0]_IN'
+Slack : 0.181
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Minimum Pulse Width 'hps_memory_mem_dqs[1]_IN'
+Slack : 0.181
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Minimum Pulse Width 'hps_memory_mem_dqs[2]_IN'
+Slack : 0.182
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Minimum Pulse Width 'hps_memory_mem_dqs[3]_IN'
+Slack : 0.182
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_0'
+Slack : 0.456
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_2'
+Slack : 0.461
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_1'
+Slack : 0.462
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_5'
+Slack : 0.463
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_vco_clk_0'
+Slack : 0.464
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_vco_clk_1'
+Slack : 0.464
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_3'
+Slack : 0.464
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_4'
+Slack : 0.464
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_6'
+Slack : 0.464
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_phy_clk_0'
+Slack : 0.795
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_phy_clk_1'
+Slack : 0.795
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_phy_clk_l_0'
+Slack : 0.798
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_phy_clk_l_1'
+Slack : 0.798
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_ref_clock'
+Slack : 3.677
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Minimum Pulse Width 'MAIN_CLOCK'
+Slack : 4.492
+TNS   : 0.000
+
+Type  : Slow 900mV 100C Model Minimum Pulse Width 'altera_reserved_tck'
+Slack : 20.703
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Setup 'MAIN_CLOCK'
+Slack : 3.441
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Setup 'altera_reserved_tck'
+Slack : 6.296
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Hold 'MAIN_CLOCK'
+Slack : 0.037
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Hold 'altera_reserved_tck'
+Slack : 0.040
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Recovery 'MAIN_CLOCK'
+Slack : 4.823
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Recovery 'altera_reserved_tck'
+Slack : 38.825
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Removal 'MAIN_CLOCK'
+Slack : 0.337
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Removal 'altera_reserved_tck'
+Slack : 0.690
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'hps_memory_mem_dqs[2]_IN'
+Slack : 0.142
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'hps_memory_mem_dqs[3]_IN'
+Slack : 0.142
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'hps_memory_mem_dqs[0]_IN'
+Slack : 0.143
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'hps_memory_mem_dqs[1]_IN'
+Slack : 0.143
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_0'
+Slack : 0.432
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_1'
+Slack : 0.432
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_2'
+Slack : 0.432
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_3'
+Slack : 0.445
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_4'
+Slack : 0.445
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_6'
+Slack : 0.445
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_5'
+Slack : 0.446
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_vco_clk_0'
+Slack : 0.465
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_vco_clk_1'
+Slack : 0.465
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_phy_clk_0'
+Slack : 0.773
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_phy_clk_1'
+Slack : 0.773
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_phy_clk_l_0'
+Slack : 0.776
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_phy_clk_l_1'
+Slack : 0.776
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_ref_clock'
+Slack : 3.681
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'MAIN_CLOCK'
+Slack : 4.430
+TNS   : 0.000
+
+Type  : Slow 900mV 0C Model Minimum Pulse Width 'altera_reserved_tck'
+Slack : 20.636
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Setup 'MAIN_CLOCK'
+Slack : 4.290
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Setup 'altera_reserved_tck'
+Slack : 8.799
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Hold 'altera_reserved_tck'
+Slack : 0.013
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Hold 'MAIN_CLOCK'
+Slack : 0.017
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Recovery 'MAIN_CLOCK'
+Slack : 6.464
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Recovery 'altera_reserved_tck'
+Slack : 39.468
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Removal 'MAIN_CLOCK'
+Slack : 0.187
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Removal 'altera_reserved_tck'
+Slack : 0.515
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Minimum Pulse Width 'hps_memory_mem_dqs[2]_IN'
+Slack : 0.202
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Minimum Pulse Width 'hps_memory_mem_dqs[3]_IN'
+Slack : 0.202
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Minimum Pulse Width 'hps_memory_mem_dqs[0]_IN'
+Slack : 0.203
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Minimum Pulse Width 'hps_memory_mem_dqs[1]_IN'
+Slack : 0.203
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_3'
+Slack : 0.429
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_4'
+Slack : 0.429
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_5'
+Slack : 0.429
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_6'
+Slack : 0.429
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_0'
+Slack : 0.454
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_1'
+Slack : 0.457
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_2'
+Slack : 0.457
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_vco_clk_0'
+Slack : 0.466
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_vco_clk_1'
+Slack : 0.466
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_phy_clk_0'
+Slack : 0.885
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_phy_clk_1'
+Slack : 0.885
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_phy_clk_l_0'
+Slack : 0.886
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_phy_clk_l_1'
+Slack : 0.886
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_ref_clock'
+Slack : 3.704
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Minimum Pulse Width 'MAIN_CLOCK'
+Slack : 4.616
+TNS   : 0.000
+
+Type  : Fast 900mV 100C Model Minimum Pulse Width 'altera_reserved_tck'
+Slack : 20.650
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Setup 'MAIN_CLOCK'
+Slack : 5.437
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Setup 'altera_reserved_tck'
+Slack : 9.223
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Hold 'altera_reserved_tck'
+Slack : 0.013
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Hold 'MAIN_CLOCK'
+Slack : 0.014
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Recovery 'MAIN_CLOCK'
+Slack : 6.962
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Recovery 'altera_reserved_tck'
+Slack : 39.818
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Removal 'MAIN_CLOCK'
+Slack : 0.160
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Removal 'altera_reserved_tck'
+Slack : 0.394
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'hps_memory_mem_dqs[1]_IN'
+Slack : 0.204
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'hps_memory_mem_dqs[0]_IN'
+Slack : 0.205
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'hps_memory_mem_dqs[2]_IN'
+Slack : 0.205
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'hps_memory_mem_dqs[3]_IN'
+Slack : 0.205
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_3'
+Slack : 0.446
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_4'
+Slack : 0.446
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_5'
+Slack : 0.446
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_6'
+Slack : 0.446
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_0'
+Slack : 0.461
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_1'
+Slack : 0.463
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_wf_clk_2'
+Slack : 0.463
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_vco_clk_0'
+Slack : 0.466
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_vco_clk_1'
+Slack : 0.466
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_phy_clk_0'
+Slack : 0.889
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_phy_clk_1'
+Slack : 0.889
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_phy_clk_l_0'
+Slack : 0.889
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_phy_clk_l_1'
+Slack : 0.889
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'soc_inst|emif_a10_hps_0_ref_clock'
+Slack : 3.712
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'MAIN_CLOCK'
+Slack : 4.656
+TNS   : 0.000
+
+Type  : Fast 900mV 0C Model Minimum Pulse Width 'altera_reserved_tck'
+Slack : 20.656
+TNS   : 0.000
+
+------------------------------------------------------------
+Info: see the "DDR report" for DDR timing results
+------------------------------------------------------------
+------------------------------------------------------------

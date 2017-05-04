@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='us-ascii'?>
+<qsys_generation_info>
+<qsys_file path="/home/mladmon/workspace/firework/a10_soc_devkit_ghrd/ghrd_10as066n2/protobuf_serializer_20/synth/varint_in_index.qsys" />
+<gen_dir path="/home/mladmon/workspace/firework/a10_soc_devkit_ghrd/ghrd_10as066n2/protobuf_serializer_20/synth/varint_in_index/" />
+<user_regen_policy value="Always Regenerate IP" />
+<actual_regen_policy value="Always Regenerate IP" />
+<gen_action value="IP Generation Attempted" />
+<gen_status value="IP Generation Succeeded" />
+</qsys_generation_info>

@@ -13,6 +13,7 @@
   </columns>
  </systemtable>
  <library expandedCategories="Library,Project,Project/Custom IP" />
- <window width="1759" height="1239" x="293" y="104" />
- <generation path="" />
+ <window width="1759" height="1239" x="313" y="94" />
+ <generation path="" clear_previous="1" />
+ <hdlexample language="VERILOG" />
 </preferences>
