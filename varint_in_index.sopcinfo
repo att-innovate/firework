@@ -5,11 +5,11 @@
  version="1.0"
  fabric="QSYS">
  <!-- Format version 16.0 211 (Future versions may contain additional information.) -->
- <!-- 2017.03.02.18:39:07 -->
+ <!-- 2017.05.03.17:19:10 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1488508747</value>
+  <value>1493857150</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -36,7 +36,7 @@
  </parameter>
  <parameter name="AUTO_DEVICE">
   <type>java.lang.String</type>
-  <value>10AS066N3F40E2SGE2</value>
+  <value>10AS066N3F40E2SG</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
