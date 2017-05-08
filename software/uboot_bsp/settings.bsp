@@ -2,6 +2,9 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>uboot</BspType>
         <BspVersion>default</BspVersion>
+        <BspGeneratedTimeStamp>May 8, 2017 4:05:29 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1494284729509</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>./</BspGeneratedLocation>
         <BspSettingsFile>/home/mladmon/workspace/firework/a10_soc_devkit_ghrd/software/uboot_bsp/settings.bsp</BspSettingsFile>
         <HpsSettingsPath>../../hps_isw_handoff</HpsSettingsPath>
         <JdiFile>default</JdiFile>
@@ -59,7 +62,7 @@
                 <SettingName>uboot.rbf_filename</SettingName>
                 <Identifier>chosen.cff-file</Identifier>
                 <Type>QuotedString</Type>
-                <Value>socfpga.rbf</Value>
+                <Value>ghrd_10as066n2.rbf</Value>
                 <DefaultValue>socfpga.rbf</DefaultValue>
                 <DestinationFile>device_tree_property</DestinationFile>
                 <Description>Full FPGA .rbf filename. This setting is ignored when uboot.external_fpga_config setting is enabled.</Description>
