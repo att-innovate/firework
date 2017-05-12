@@ -913,7 +913,7 @@ module ghrd_10as066n2 (
 		.axs_s0_awvalid (mm_interconnect_0_protobuf_serializer_0_s0_awvalid)  //      .awvalid
 	);
 
-	ghrd_10as066n2_altera_avalon_sysid_qsys_160_z4rlgsq sysid_qsys_0 (
+	ghrd_10as066n2_altera_avalon_sysid_qsys_160_aqdob2q sysid_qsys_0 (
 		.clock    (clk_100_clk),                                           //           clk.clk
 		.reset_n  (~hps_fpga_reset_reset),                                 //         reset.reset_n
 		.readdata (mm_interconnect_2_sysid_qsys_0_control_slave_readdata), // control_slave.readdata

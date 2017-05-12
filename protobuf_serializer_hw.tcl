@@ -32,6 +32,10 @@ set_module_property REPORT_TO_TALKBACK false
 set_module_property ALLOW_GREYBOX_GENERATION false
 set_module_property REPORT_HIERARCHY false
 
+# Custom assignments required by the Device Tree Generator (sopc2dts) for Linux driver support
+set_module_assignment embeddedsw.dts.vendor "att-foundry"
+set_module_assignment embeddedsw.dts.compatible "protobuf-serializer"
+set_module_assignment embeddedsw.dts.group "hw-accelerator"
 
 # 
 # file sets

@@ -5,11 +5,11 @@
  version="1.0"
  fabric="QSYS">
  <!-- Format version 16.0 211 (Future versions may contain additional information.) -->
- <!-- 2017.05.03.17:29:34 -->
+ <!-- 2017.05.12.16:22:46 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1493857771</value>
+  <value>1494631365</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -59017,6 +59017,18 @@ parameters are a RESULT of the module parameters. -->
    path="protobuf_serializer_0">
   <!-- Describes a single module. Module parameters are
 the requested settings for a module instance. -->
+  <assignment>
+   <name>embeddedsw.dts.compatible</name>
+   <value>protobuf-serializer</value>
+  </assignment>
+  <assignment>
+   <name>embeddedsw.dts.group</name>
+   <value>hw-accelerator</value>
+  </assignment>
+  <assignment>
+   <name>embeddedsw.dts.vendor</name>
+   <value>att-foundry</value>
+  </assignment>
   <parameter name="deviceFamily">
    <type>java.lang.String</type>
    <value>UNKNOWN</value>
@@ -59645,7 +59657,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1493857771</value>
+   <value>1494631365</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -59665,7 +59677,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
-   <value>1493857771</value>
+   <value>1494631365</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -59681,7 +59693,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
-   <value>1493857771</value>
+   <value>1494631365</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
