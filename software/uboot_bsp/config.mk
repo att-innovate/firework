@@ -14,7 +14,7 @@ BSP_VERSION := 1.0
 
 # BSP settings File
 # 
-BSP_SETTINGS_FILE := /home/mladmon/workspace/firework/a10_soc_devkit_ghrd/software/uboot_bsp/settings.bsp
+BSP_SETTINGS_FILE := settings.bsp
 
 
 ################################################################################
@@ -29,7 +29,7 @@ BOOT_DEVICE := SDMMC
 
 # Disable the U-Boot build. This is useful if you only require the generated device tree source and device tree blob. This must be enabled on Windows because the uboot build is not yet supported on Windows.
 # 
-# uboot.disable_uboot_build = 0
+# uboot.disable_uboot_build = false
 # 
 DISABLE_UBOOT_BUILD := 0
 
