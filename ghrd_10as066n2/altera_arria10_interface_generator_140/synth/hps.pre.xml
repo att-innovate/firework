@@ -2,7 +2,7 @@
   <system>
     <config name='VERSION' value='16.0' />
     <config name='DEVICE_FAMILY' value='Arria 10' />
-    <config name='TIME_AND_DATE' value='Friday May, 12, 2017 - 04:22:57 PM PDT' />
+    <config name='TIME_AND_DATE' value='Friday May, 26, 2017 - 04:00:08 PM PDT' />
     <config name='DMA_Enable' value='No No No No No No No No' />
     <config name='eosc1_clk_hz' value='25000000.0' />
     <config name='emac0_clk_hz' value='250000000' />
@@ -202,4 +202,150 @@
     <config name='i_clk_mgr_perpllgrp.cntr9clk.cnt' value='900' />
   </csr>
   <csr />
+  <!-- This section was added by Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition -->
+  <!-- Generated on Fri May 26 16:12:59 2017 -->
+  <csr>
+    <!-- OSC_CLK_1_HPS -->
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_1.rtrim'        value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_1.input_buf_en' value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_1.wk_pu_en'     value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_1.pu_slw_rt'    value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_1.pd_slw_rt'    value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_1.pu_drv_strg'  value='8' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_1.pd_drv_strg'  value='10' />
+    <!-- nPOR_HPS -->
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_2.rtrim'        value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_2.input_buf_en' value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_2.wk_pu_en'     value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_2.pu_slw_rt'    value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_2.pd_slw_rt'    value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_2.pu_drv_strg'  value='8' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_2.pd_drv_strg'  value='10' />
+    <!-- nRST_HPS -->
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_3.rtrim'        value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_3.input_buf_en' value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_3.wk_pu_en'     value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_3.pu_slw_rt'    value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_3.pd_slw_rt'    value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_3.pu_drv_strg'  value='8' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_3.pd_drv_strg'  value='10' />
+    <!-- hps_sdio_D0, HPS_DEDICATED_4, input, weak pull up disable, is output, Fast Slew, 1_8 -->
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_4.rtrim'        value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_4.input_buf_en' value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_4.wk_pu_en'     value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_4.pu_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_4.pd_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_4.pu_drv_strg'  value='8' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_4.pd_drv_strg'  value='10' />
+    <!-- hps_sdio_CMD, HPS_DEDICATED_5, input, weak pull up disable, is output, Fast Slew, 1_8 -->
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_5.rtrim'        value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_5.input_buf_en' value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_5.wk_pu_en'     value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_5.pu_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_5.pd_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_5.pu_drv_strg'  value='8' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_5.pd_drv_strg'  value='10' />
+    <!-- hps_sdio_CLK, BOOTSEL2/HPS_DEDICATED_6, NOT input, weak pull up disable, is output, Fast Slew, 1_8 -->
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_6.rtrim'        value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_6.input_buf_en' value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_6.wk_pu_en'     value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_6.pu_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_6.pd_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_6.pu_drv_strg'  value='8' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_6.pd_drv_strg'  value='10' />
+    <!-- hps_sdio_D1, HPS_DEDICATED_7, input, weak pull up disable, is output, Fast Slew, 1_8 -->
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_7.rtrim'        value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_7.input_buf_en' value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_7.wk_pu_en'     value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_7.pu_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_7.pd_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_7.pu_drv_strg'  value='8' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_7.pd_drv_strg'  value='10' />
+    <!-- hps_sdio_D2, HPS_DEDICATED_8, input, weak pull up disable, is output, Fast Slew, 1_8 -->
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_8.rtrim'        value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_8.input_buf_en' value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_8.wk_pu_en'     value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_8.pu_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_8.pd_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_8.pu_drv_strg'  value='8' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_8.pd_drv_strg'  value='10' />
+    <!-- hps_sdio_D3, HPS_DEDICATED_9, input, weak pull up disable, is output, Fast Slew, 1_8 -->
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_9.rtrim'        value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_9.input_buf_en' value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_9.wk_pu_en'     value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_9.pu_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_9.pd_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_9.pu_drv_strg'  value='8' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_9.pd_drv_strg'  value='10' />
+    <!-- Unused pin 10 -->
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_10.rtrim'        value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_10.input_buf_en' value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_10.wk_pu_en'     value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_10.pu_slw_rt'    value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_10.pd_slw_rt'    value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_10.pu_drv_strg'  value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_10.pd_drv_strg'  value='0' />
+    <!-- Unused pin 11 -->
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_11.rtrim'        value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_11.input_buf_en' value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_11.wk_pu_en'     value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_11.pu_slw_rt'    value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_11.pd_slw_rt'    value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_11.pu_drv_strg'  value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_11.pd_drv_strg'  value='0' />
+    <!-- hps_sdio_D4, HPS_DEDICATED_12, input, weak pull up enable, is output, Fast Slew, 1_8 -->
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_12.rtrim'        value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_12.input_buf_en' value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_12.wk_pu_en'     value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_12.pu_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_12.pd_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_12.pu_drv_strg'  value='8' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_12.pd_drv_strg'  value='10' />
+    <!-- hps_sdio_D5, HPS_DEDICATED_13, input, weak pull up enable, is output, Fast Slew, 1_8 -->
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_13.rtrim'        value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_13.input_buf_en' value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_13.wk_pu_en'     value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_13.pu_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_13.pd_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_13.pu_drv_strg'  value='8' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_13.pd_drv_strg'  value='10' />
+    <!-- hps_sdio_D6, HPS_DEDICATED_14, input, weak pull up enable, is output, Fast Slew, 1_8 -->
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_14.rtrim'        value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_14.input_buf_en' value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_14.wk_pu_en'     value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_14.pu_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_14.pd_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_14.pu_drv_strg'  value='8' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_14.pd_drv_strg'  value='10' />
+    <!-- hps_sdio_D7, HPS_DEDICATED_15, input, weak pull up enable, is output, Fast Slew, 1_8 -->
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_15.rtrim'        value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_15.input_buf_en' value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_15.wk_pu_en'     value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_15.pu_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_15.pd_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_15.pu_drv_strg'  value='8' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_15.pd_drv_strg'  value='10' />
+    <!-- hps_uart1_TX, HPS_DEDICATED_16, NOT input, weak pull up disable, is output, Fast Slew, 1_8 -->
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_16.rtrim'        value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_16.input_buf_en' value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_16.wk_pu_en'     value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_16.pu_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_16.pd_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_16.pu_drv_strg'  value='8' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_16.pd_drv_strg'  value='10' />
+    <!-- hps_uart1_RX, HPS_DEDICATED_17, input, weak pull up disable, Not Output, Default, 1_8 -->
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_17.rtrim'        value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_17.input_buf_en' value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_17.wk_pu_en'     value='0' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_17.pu_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_17.pd_slw_rt'    value='1' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_17.pu_drv_strg'  value='8' />
+    <config name='i_io48_pin_mux_dedicated_io_grp.configuration_dedicated_io_17.pd_drv_strg'  value='10' />
+    <config name='i_io48_pin_mux.configuration_dedicated_io_bank.voltage_sel_clkrst_io' value='1' />
+    <config name='i_io48_pin_mux.configuration_dedicated_io_bank.voltage_sel_peri_io'   value='1' />
+  </csr>
+  <option_flags>
+    <config name='chosen.early-release-fpga-config'  value='0' />
+  </option_flags>
+ <!-- End of the section generated by Quartus Prime -->
 </hps>

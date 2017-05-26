@@ -5,11 +5,11 @@
  version="1.0"
  fabric="QSYS">
  <!-- Format version 16.0 211 (Future versions may contain additional information.) -->
- <!-- 2017.05.12.16:22:46 -->
+ <!-- 2017.05.26.15:59:56 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1494631365</value>
+  <value>1495839594</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -59129,10 +59129,10 @@ parameters are a RESULT of the module parameters. -->
    <type>reset</type>
    <isStart>false</isStart>
    <port>
-    <name>reset_reset</name>
+    <name>reset_reset_n</name>
     <direction>Input</direction>
     <width>1</width>
-    <role>reset</role>
+    <role>reset_n</role>
    </port>
   </interface>
   <interface name="s0" kind="altera_axi4_slave" version="16.0">
@@ -59657,7 +59657,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1494631365</value>
+   <value>1495839594</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -59677,7 +59677,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
-   <value>1494631365</value>
+   <value>1495839594</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -59693,7 +59693,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
-   <value>1494631365</value>
+   <value>1495839594</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
