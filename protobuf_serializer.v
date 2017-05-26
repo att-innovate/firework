@@ -2,7 +2,7 @@
 
 module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 		input  wire        clock_clk,      //  clock.clk
-		input  wire        reset_reset,    //  reset.reset
+		input  wire        reset_reset_n,  //  reset.reset
 
 		input  wire [3:0]  axs_s0_awid,    // axs_s0.awid
 		input  wire [15:0] axs_s0_awaddr,  //       .awaddr
@@ -150,7 +150,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 	
 	fsm_0 f0 (
 		.clk                    (clock_clk),
-		.reset                  (reset_reset),
+		.reset                  (~reset_reset_n),
 		.axs_s0_awid            (axs_s0_awid),
 		.axs_s0_awaddr          (axs_s0_awaddr),
 		.axs_s0_awlen           (axs_s0_awlen),
@@ -187,7 +187,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 	
 	fsm_1 f1 (
 		.clk                    (clock_clk),
-		.reset                  (reset_reset),
+		.reset                  (~reset_reset_n),
 		.raw_data_in_fifo_empty (raw_data_in_fifo_empty),
 		.raw_data_in_fifo_pop   (raw_data_in_fifo_pop),
 		.raw_data_in_index_pop  (raw_data_in_index_pop),
@@ -214,7 +214,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 
 	fsm_2 f2 (
 		.clk                   (clock_clk),
-		.reset                 (reset_reset),
+		.reset                 (~reset_reset_n),
 		.varint_in_fifo_empty  (varint_in_fifo_empty),
 		.varint_in_size_q      (varint_in_size_q),
 		.varint_in_fifo_pop    (varint_in_fifo_pop),
@@ -232,7 +232,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 
 	fsm_3a f3a (
 		.clk                   (clock_clk),
-		.reset                 (reset_reset),
+		.reset                 (~reset_reset_n),
 		.varint_out_fifo_empty (varint_out_fifo_empty),
 		.varint_out_pop        (varint_out_pop),
 		.varint_data_accepted  (varint_data_accepted),
@@ -241,7 +241,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 
 	fsm_3b f3b (
 		.clk                     (clock_clk),
-		.reset                   (reset_reset),
+		.reset                   (~reset_reset_n),
 		.raw_data_out_fifo_empty (raw_data_out_fifo_empty),
 		.raw_data_out_pop        (raw_data_out_pop),
 		.raw_data_accepted       (raw_data_accepted),
@@ -250,7 +250,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 
 	fsm_3 f3 (
 		.clk                  (clock_clk),
-		.reset                (reset_reset),
+		.reset                (~reset_reset_n),
 		.out_fifo_full        (out_fifo_full),
 		.out_fifo_clr         (out_fifo_clr),
 		.out_fifo_push        (out_fifo_push),
@@ -276,7 +276,7 @@ module protobuf_serializer ( /* Implements AMBA AXI4 slave interface */
 	
 	fsm_4 f4 (
 		.clk              (clock_clk),
-		.reset            (reset_reset),
+		.reset            (~reset_reset_n),
 		.axs_s0_arid      (axs_s0_arid),
 		.axs_s0_araddr    (axs_s0_araddr),
 		.axs_s0_arlen     (axs_s0_arlen),

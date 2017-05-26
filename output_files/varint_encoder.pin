@@ -1288,7 +1288,7 @@ GXB_NC                       : M38       :        :                   :         
 GXB_NC                       : M39       :        :                   :         : 1H        :                
 axs_s0_awvalid               : N1        : input  : 1.8 V             :         : 3E        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : N2        :        :                   :         : 3E        :                
-reset_reset                  : N3        : input  : 1.8 V             :         : 3E        : N              
+reset_reset_n                : N3        : input  : 1.8 V             :         : 3E        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : N4        :        :                   :         : 3E        :                
 GND                          : N5        : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : N6        :        :                   :         : 3F        :                

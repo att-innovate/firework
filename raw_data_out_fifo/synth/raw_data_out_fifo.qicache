@@ -2,8 +2,8 @@
 <qsys_generation_info>
 <qsys_file path="/home/mladmon/workspace/firework/protobuf-serializer/raw_data_out_fifo.qsys" />
 <gen_dir path="/home/mladmon/workspace/firework/protobuf-serializer/raw_data_out_fifo/" />
-<user_regen_policy value="Always Regenerate IP" />
-<actual_regen_policy value="Always Regenerate IP" />
-<gen_action value="IP Generation Attempted" />
+<user_regen_policy value="Never Regenerate Existing IP" />
+<actual_regen_policy value="Never Regenerate Existing IP" />
+<gen_action value="IP Generation Skipped" />
 <gen_status value="IP Generation Succeeded" />
 </qsys_generation_info>
