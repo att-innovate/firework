@@ -1,5 +1,5 @@
 Analysis & Synthesis report for varint_encoder
-Tue May 30 17:02:09 2017
+Wed May 31 10:26:46 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -85,13 +85,13 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Tue May 30 17:02:09 2017           ;
+; Analysis & Synthesis Status ; Successful - Wed May 31 10:26:46 2017           ;
 ; Quartus Prime Version       ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
 ; Revision Name               ; varint_encoder                                  ;
 ; Top-level Entity Name       ; protobuf_serializer                             ;
 ; Family                      ; Arria 10                                        ;
 ; Logic utilization (in ALMs) ; N/A                                             ;
-; Total registers             ; 737                                             ;
+; Total registers             ; 753                                             ;
 ; Total pins                  ; 155                                             ;
 ; Total virtual pins          ; 0                                               ;
 ; Total block memory bits     ; 304,128                                         ;
@@ -311,16 +311,16 @@ agreement for further details.
 +---------------------------------------------+-----------------+
 ; Resource                                    ; Usage           ;
 +---------------------------------------------+-----------------+
-; Estimate of Logic utilization (ALMs needed) ; 613             ;
+; Estimate of Logic utilization (ALMs needed) ; 641             ;
 ;                                             ;                 ;
-; Combinational ALUT usage for logic          ; 1053            ;
+; Combinational ALUT usage for logic          ; 1103            ;
 ;     -- 7 input functions                    ; 0               ;
-;     -- 6 input functions                    ; 165             ;
-;     -- 5 input functions                    ; 164             ;
-;     -- 4 input functions                    ; 116             ;
-;     -- <=3 input functions                  ; 608             ;
+;     -- 6 input functions                    ; 169             ;
+;     -- 5 input functions                    ; 168             ;
+;     -- 4 input functions                    ; 151             ;
+;     -- <=3 input functions                  ; 615             ;
 ;                                             ;                 ;
-; Dedicated logic registers                   ; 737             ;
+; Dedicated logic registers                   ; 753             ;
 ;                                             ;                 ;
 ; I/O pins                                    ; 155             ;
 ; Total MLAB memory bits                      ; 0               ;
@@ -331,8 +331,8 @@ agreement for further details.
 ;     -- Total Floating Point DSP Blocks      ; 0               ;
 ;                                             ;                 ;
 ; Maximum fan-out node                        ; clock_clk~input ;
-; Maximum fan-out                             ; 870             ;
-; Total fan-out                               ; 9741            ;
+; Maximum fan-out                             ; 886             ;
+; Total fan-out                               ; 10014           ;
 ; Average fan-out                             ; 4.36            ;
 +---------------------------------------------+-----------------+
 
@@ -342,46 +342,46 @@ agreement for further details.
 +----------------------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------+-----------------------------+
 ; Compilation Hierarchy Node                         ; LC Combinationals ; LC Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                     ; Entity Name                         ; Library Name                ;
 +----------------------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------+-----------------------------+
-; |protobuf_serializer                               ; 1053 (18)         ; 737 (0)      ; 304128            ; 0          ; 155  ; 0            ; |protobuf_serializer                                                                                                                                                                    ; protobuf_serializer                 ; work                        ;
-;    |fsm_0:f0|                                      ; 27 (27)           ; 56 (56)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_0:f0                                                                                                                                                           ; fsm_0                               ; work                        ;
-;    |fsm_1:f1|                                      ; 10 (10)           ; 9 (9)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_1:f1                                                                                                                                                           ; fsm_1                               ; work                        ;
-;    |fsm_2:f2|                                      ; 109 (109)         ; 105 (105)    ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_2:f2                                                                                                                                                           ; fsm_2                               ; work                        ;
-;    |fsm_3:f3|                                      ; 66 (66)           ; 17 (17)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_3:f3                                                                                                                                                           ; fsm_3                               ; work                        ;
+; |protobuf_serializer                               ; 1103 (18)         ; 753 (0)      ; 304128            ; 0          ; 155  ; 0            ; |protobuf_serializer                                                                                                                                                                    ; protobuf_serializer                 ; work                        ;
+;    |fsm_0:f0|                                      ; 55 (55)           ; 72 (72)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_0:f0                                                                                                                                                           ; fsm_0                               ; work                        ;
+;    |fsm_1:f1|                                      ; 9 (9)             ; 9 (9)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_1:f1                                                                                                                                                           ; fsm_1                               ; work                        ;
+;    |fsm_2:f2|                                      ; 108 (108)         ; 105 (105)    ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_2:f2                                                                                                                                                           ; fsm_2                               ; work                        ;
+;    |fsm_3:f3|                                      ; 74 (74)           ; 17 (17)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_3:f3                                                                                                                                                           ; fsm_3                               ; work                        ;
 ;    |fsm_3a:f3a|                                    ; 2 (2)             ; 2 (2)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_3a:f3a                                                                                                                                                         ; fsm_3a                              ; work                        ;
 ;    |fsm_3b:f3b|                                    ; 2 (2)             ; 2 (2)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_3b:f3b                                                                                                                                                         ; fsm_3b                              ; work                        ;
 ;    |fsm_4:f4|                                      ; 45 (45)           ; 18 (18)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_4:f4                                                                                                                                                           ; fsm_4                               ; work                        ;
-;    |out_fifo:out4|                                 ; 82 (0)            ; 56 (0)       ; 65536             ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4                                                                                                                                                      ; out_fifo                            ; out_fifo                    ;
-;       |out_fifo_fifo_160_otpqnty:fifo_0|           ; 82 (0)            ; 56 (0)       ; 65536             ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0                                                                                                                     ; out_fifo_fifo_160_otpqnty           ; out_fifo_fifo_160           ;
-;          |scfifo:scfifo_component|                 ; 82 (0)            ; 56 (0)       ; 65536             ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component                                                                                             ; scfifo                              ; work                        ;
-;             |scfifo_v9b1:auto_generated|           ; 82 (0)            ; 56 (0)       ; 65536             ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated                                                                  ; scfifo_v9b1                         ; work                        ;
-;                |a_dpfifo_i1b1:dpfifo|              ; 82 (41)           ; 56 (18)      ; 65536             ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo                                             ; a_dpfifo_i1b1                       ; work                        ;
+;    |out_fifo:out4|                                 ; 83 (0)            ; 56 (0)       ; 65536             ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4                                                                                                                                                      ; out_fifo                            ; out_fifo                    ;
+;       |out_fifo_fifo_160_otpqnty:fifo_0|           ; 83 (0)            ; 56 (0)       ; 65536             ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0                                                                                                                     ; out_fifo_fifo_160_otpqnty           ; out_fifo_fifo_160           ;
+;          |scfifo:scfifo_component|                 ; 83 (0)            ; 56 (0)       ; 65536             ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component                                                                                             ; scfifo                              ; work                        ;
+;             |scfifo_v9b1:auto_generated|           ; 83 (0)            ; 56 (0)       ; 65536             ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated                                                                  ; scfifo_v9b1                         ; work                        ;
+;                |a_dpfifo_i1b1:dpfifo|              ; 83 (42)           ; 56 (18)      ; 65536             ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo                                             ; a_dpfifo_i1b1                       ; work                        ;
 ;                   |altsyncram_agn1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 65536             ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|altsyncram_agn1:FIFOram                     ; altsyncram_agn1                     ; work                        ;
 ;                   |cntr_bsa:rd_ptr_msb|            ; 13 (13)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cntr_bsa:rd_ptr_msb                         ; cntr_bsa                            ; work                        ;
 ;                   |cntr_csa:wr_ptr|                ; 14 (14)           ; 13 (13)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cntr_csa:wr_ptr                             ; cntr_csa                            ; work                        ;
 ;                   |cntr_os6:usedw_counter|         ; 14 (14)           ; 13 (13)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cntr_os6:usedw_counter                      ; cntr_os6                            ; work                        ;
-;    |raw_data_in_fifo:in3|                          ; 65 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_fifo:in3                                                                                                                                               ; raw_data_in_fifo                    ; raw_data_in_fifo            ;
-;       |raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|   ; 65 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0                                                                                                      ; raw_data_in_fifo_fifo_160_v2ho2aa   ; raw_data_in_fifo_fifo_160   ;
-;          |scfifo:scfifo_component|                 ; 65 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component                                                                              ; scfifo                              ; work                        ;
-;             |scfifo_koa1:auto_generated|           ; 65 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated                                                   ; scfifo_koa1                         ; work                        ;
-;                |a_dpfifo_7ga1:dpfifo|              ; 65 (33)           ; 44 (15)      ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo                              ; a_dpfifo_7ga1                       ; work                        ;
+;    |raw_data_in_fifo:in3|                          ; 69 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_fifo:in3                                                                                                                                               ; raw_data_in_fifo                    ; raw_data_in_fifo            ;
+;       |raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|   ; 69 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0                                                                                                      ; raw_data_in_fifo_fifo_160_v2ho2aa   ; raw_data_in_fifo_fifo_160   ;
+;          |scfifo:scfifo_component|                 ; 69 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component                                                                              ; scfifo                              ; work                        ;
+;             |scfifo_koa1:auto_generated|           ; 69 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated                                                   ; scfifo_koa1                         ; work                        ;
+;                |a_dpfifo_7ga1:dpfifo|              ; 69 (37)           ; 44 (15)      ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo                              ; a_dpfifo_7ga1                       ; work                        ;
 ;                   |altsyncram_4in1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|altsyncram_4in1:FIFOram      ; altsyncram_4in1                     ; work                        ;
 ;                   |cntr_1ra:rd_ptr_msb|            ; 10 (10)           ; 9 (9)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_1ra:rd_ptr_msb          ; cntr_1ra                            ; work                        ;
 ;                   |cntr_9sa:wr_ptr|                ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_9sa:wr_ptr              ; cntr_9sa                            ; work                        ;
 ;                   |cntr_ls6:usedw_counter|         ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_ls6:usedw_counter       ; cntr_ls6                            ; work                        ;
-;    |raw_data_in_index:in4|                         ; 65 (0)            ; 44 (0)       ; 10240             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_index:in4                                                                                                                                              ; raw_data_in_index                   ; raw_data_in_index           ;
-;       |raw_data_in_index_fifo_160_kjjiney:fifo_0|  ; 65 (0)            ; 44 (0)       ; 10240             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0                                                                                                    ; raw_data_in_index_fifo_160_kjjiney  ; raw_data_in_index_fifo_160  ;
-;          |scfifo:scfifo_component|                 ; 65 (0)            ; 44 (0)       ; 10240             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component                                                                            ; scfifo                              ; work                        ;
-;             |scfifo_en91:auto_generated|           ; 65 (0)            ; 44 (0)       ; 10240             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated                                                 ; scfifo_en91                         ; work                        ;
-;                |a_dpfifo_1f91:dpfifo|              ; 65 (33)           ; 44 (15)      ; 10240             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo                            ; a_dpfifo_1f91                       ; work                        ;
+;    |raw_data_in_index:in4|                         ; 69 (0)            ; 44 (0)       ; 10240             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_index:in4                                                                                                                                              ; raw_data_in_index                   ; raw_data_in_index           ;
+;       |raw_data_in_index_fifo_160_kjjiney:fifo_0|  ; 69 (0)            ; 44 (0)       ; 10240             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0                                                                                                    ; raw_data_in_index_fifo_160_kjjiney  ; raw_data_in_index_fifo_160  ;
+;          |scfifo:scfifo_component|                 ; 69 (0)            ; 44 (0)       ; 10240             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component                                                                            ; scfifo                              ; work                        ;
+;             |scfifo_en91:auto_generated|           ; 69 (0)            ; 44 (0)       ; 10240             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated                                                 ; scfifo_en91                         ; work                        ;
+;                |a_dpfifo_1f91:dpfifo|              ; 69 (37)           ; 44 (15)      ; 10240             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo                            ; a_dpfifo_1f91                       ; work                        ;
 ;                   |altsyncram_shn1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 10240             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram    ; altsyncram_shn1                     ; work                        ;
 ;                   |cntr_1ra:rd_ptr_msb|            ; 10 (10)           ; 9 (9)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_1ra:rd_ptr_msb        ; cntr_1ra                            ; work                        ;
 ;                   |cntr_9sa:wr_ptr|                ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_9sa:wr_ptr            ; cntr_9sa                            ; work                        ;
 ;                   |cntr_ls6:usedw_counter|         ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_ls6:usedw_counter     ; cntr_ls6                            ; work                        ;
-;    |raw_data_in_wstrb:in5|                         ; 65 (0)            ; 44 (0)       ; 4096              ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_wstrb:in5                                                                                                                                              ; raw_data_in_wstrb                   ; raw_data_in_wstrb           ;
-;       |raw_data_in_wstrb_fifo_160_sconavq:fifo_0|  ; 65 (0)            ; 44 (0)       ; 4096              ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0                                                                                                    ; raw_data_in_wstrb_fifo_160_sconavq  ; raw_data_in_wstrb_fifo_160  ;
-;          |scfifo:scfifo_component|                 ; 65 (0)            ; 44 (0)       ; 4096              ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component                                                                            ; scfifo                              ; work                        ;
-;             |scfifo_1m91:auto_generated|           ; 65 (0)            ; 44 (0)       ; 4096              ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated                                                 ; scfifo_1m91                         ; work                        ;
-;                |a_dpfifo_kd91:dpfifo|              ; 65 (33)           ; 44 (15)      ; 4096              ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo                            ; a_dpfifo_kd91                       ; work                        ;
+;    |raw_data_in_wstrb:in5|                         ; 69 (0)            ; 44 (0)       ; 4096              ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_wstrb:in5                                                                                                                                              ; raw_data_in_wstrb                   ; raw_data_in_wstrb           ;
+;       |raw_data_in_wstrb_fifo_160_sconavq:fifo_0|  ; 69 (0)            ; 44 (0)       ; 4096              ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0                                                                                                    ; raw_data_in_wstrb_fifo_160_sconavq  ; raw_data_in_wstrb_fifo_160  ;
+;          |scfifo:scfifo_component|                 ; 69 (0)            ; 44 (0)       ; 4096              ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component                                                                            ; scfifo                              ; work                        ;
+;             |scfifo_1m91:auto_generated|           ; 69 (0)            ; 44 (0)       ; 4096              ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated                                                 ; scfifo_1m91                         ; work                        ;
+;                |a_dpfifo_kd91:dpfifo|              ; 69 (37)           ; 44 (15)      ; 4096              ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo                            ; a_dpfifo_kd91                       ; work                        ;
 ;                   |altsyncram_2fn1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 4096              ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram    ; altsyncram_2fn1                     ; work                        ;
 ;                   |cntr_1ra:rd_ptr_msb|            ; 10 (10)           ; 9 (9)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cntr_1ra:rd_ptr_msb        ; cntr_1ra                            ; work                        ;
 ;                   |cntr_9sa:wr_ptr|                ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|cntr_9sa:wr_ptr            ; cntr_9sa                            ; work                        ;
@@ -404,11 +404,11 @@ agreement for further details.
 ;                   |cntr_asa:rd_ptr_msb|            ; 12 (12)           ; 11 (11)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_asa:rd_ptr_msb     ; cntr_asa                            ; work                        ;
 ;                   |cntr_bsa:wr_ptr|                ; 12 (12)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_bsa:wr_ptr         ; cntr_bsa                            ; work                        ;
 ;                   |cntr_ns6:usedw_counter|         ; 12 (12)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|cntr_ns6:usedw_counter  ; cntr_ns6                            ; work                        ;
-;    |varint_in_fifo:in0|                            ; 64 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_fifo:in0                                                                                                                                                 ; varint_in_fifo                      ; varint_in_fifo              ;
-;       |varint_in_fifo_fifo_160_v2ho2aa:fifo_0|     ; 64 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0                                                                                                          ; varint_in_fifo_fifo_160_v2ho2aa     ; varint_in_fifo_fifo_160     ;
-;          |scfifo:scfifo_component|                 ; 64 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component                                                                                  ; scfifo                              ; work                        ;
-;             |scfifo_koa1:auto_generated|           ; 64 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated                                                       ; scfifo_koa1                         ; work                        ;
-;                |a_dpfifo_7ga1:dpfifo|              ; 64 (32)           ; 44 (15)      ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo                                  ; a_dpfifo_7ga1                       ; work                        ;
+;    |varint_in_fifo:in0|                            ; 66 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_fifo:in0                                                                                                                                                 ; varint_in_fifo                      ; varint_in_fifo              ;
+;       |varint_in_fifo_fifo_160_v2ho2aa:fifo_0|     ; 66 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0                                                                                                          ; varint_in_fifo_fifo_160_v2ho2aa     ; varint_in_fifo_fifo_160     ;
+;          |scfifo:scfifo_component|                 ; 66 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component                                                                                  ; scfifo                              ; work                        ;
+;             |scfifo_koa1:auto_generated|           ; 66 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated                                                       ; scfifo_koa1                         ; work                        ;
+;                |a_dpfifo_7ga1:dpfifo|              ; 66 (34)           ; 44 (15)      ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo                                  ; a_dpfifo_7ga1                       ; work                        ;
 ;                   |altsyncram_4in1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|altsyncram_4in1:FIFOram          ; altsyncram_4in1                     ; work                        ;
 ;                   |cntr_1ra:rd_ptr_msb|            ; 10 (10)           ; 9 (9)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_1ra:rd_ptr_msb              ; cntr_1ra                            ; work                        ;
 ;                   |cntr_9sa:wr_ptr|                ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|cntr_9sa:wr_ptr                  ; cntr_9sa                            ; work                        ;
@@ -422,11 +422,11 @@ agreement for further details.
 ;                   |cntr_1ra:rd_ptr_msb|            ; 10 (10)           ; 9 (9)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_1ra:rd_ptr_msb            ; cntr_1ra                            ; work                        ;
 ;                   |cntr_9sa:wr_ptr|                ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_9sa:wr_ptr                ; cntr_9sa                            ; work                        ;
 ;                   |cntr_ls6:usedw_counter|         ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|cntr_ls6:usedw_counter         ; cntr_ls6                            ; work                        ;
-;    |varint_in_size:in2|                            ; 65 (0)            ; 44 (0)       ; 1024              ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_size:in2                                                                                                                                                 ; varint_in_size                      ; varint_in_size              ;
-;       |varint_in_size_fifo_160_sjmeklq:fifo_0|     ; 65 (0)            ; 44 (0)       ; 1024              ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0                                                                                                          ; varint_in_size_fifo_160_sjmeklq     ; varint_in_size_fifo_160     ;
-;          |scfifo:scfifo_component|                 ; 65 (0)            ; 44 (0)       ; 1024              ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component                                                                                  ; scfifo                              ; work                        ;
-;             |scfifo_ul91:auto_generated|           ; 65 (0)            ; 44 (0)       ; 1024              ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component|scfifo_ul91:auto_generated                                                       ; scfifo_ul91                         ; work                        ;
-;                |a_dpfifo_hd91:dpfifo|              ; 65 (33)           ; 44 (15)      ; 1024              ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component|scfifo_ul91:auto_generated|a_dpfifo_hd91:dpfifo                                  ; a_dpfifo_hd91                       ; work                        ;
+;    |varint_in_size:in2|                            ; 66 (0)            ; 44 (0)       ; 1024              ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_size:in2                                                                                                                                                 ; varint_in_size                      ; varint_in_size              ;
+;       |varint_in_size_fifo_160_sjmeklq:fifo_0|     ; 66 (0)            ; 44 (0)       ; 1024              ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0                                                                                                          ; varint_in_size_fifo_160_sjmeklq     ; varint_in_size_fifo_160     ;
+;          |scfifo:scfifo_component|                 ; 66 (0)            ; 44 (0)       ; 1024              ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component                                                                                  ; scfifo                              ; work                        ;
+;             |scfifo_ul91:auto_generated|           ; 66 (0)            ; 44 (0)       ; 1024              ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component|scfifo_ul91:auto_generated                                                       ; scfifo_ul91                         ; work                        ;
+;                |a_dpfifo_hd91:dpfifo|              ; 66 (34)           ; 44 (15)      ; 1024              ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component|scfifo_ul91:auto_generated|a_dpfifo_hd91:dpfifo                                  ; a_dpfifo_hd91                       ; work                        ;
 ;                   |altsyncram_sen1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 1024              ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component|scfifo_ul91:auto_generated|a_dpfifo_hd91:dpfifo|altsyncram_sen1:FIFOram          ; altsyncram_sen1                     ; work                        ;
 ;                   |cntr_1ra:rd_ptr_msb|            ; 10 (10)           ; 9 (9)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component|scfifo_ul91:auto_generated|a_dpfifo_hd91:dpfifo|cntr_1ra:rd_ptr_msb              ; cntr_1ra                            ; work                        ;
 ;                   |cntr_9sa:wr_ptr|                ; 11 (11)           ; 10 (10)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component|scfifo_ul91:auto_generated|a_dpfifo_hd91:dpfifo|cntr_9sa:wr_ptr                  ; cntr_9sa                            ; work                        ;
@@ -600,31 +600,23 @@ Encoding Type:  One-Hot
 +-------------------+-------------------+------------------+------------------+------------------+------------------+---------------+---------------+------------------+------------------+------------------+------------------+----------------+------------+
 
 
-+---------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                              ;
-+----------------------------------------+----------------------------------------+
-; Register name                          ; Reason for Removal                     ;
-+----------------------------------------+----------------------------------------+
-; fsm_4:f4|state~8                       ; Lost fanout                            ;
-; fsm_4:f4|state~9                       ; Lost fanout                            ;
-; fsm_3:f3|state~9                       ; Lost fanout                            ;
-; fsm_2:f2|state~9                       ; Lost fanout                            ;
-; fsm_1:f1|state~9                       ; Lost fanout                            ;
-; fsm_0:f0|state~15                      ; Lost fanout                            ;
-; fsm_0:f0|state~16                      ; Lost fanout                            ;
-; fsm_0:f0|state~17                      ; Lost fanout                            ;
-; fsm_0:f0|state.W_READY_RN              ; Merged with fsm_0:f0|state.W_READY_RL  ;
-; fsm_0:f0|state.W_READY_VL              ; Merged with fsm_0:f0|state.W_READY_RL  ;
-; fsm_0:f0|state.W_READY_VN              ; Merged with fsm_0:f0|state.W_READY_RL  ;
-; fsm_0:f0|state.B_READY_RN              ; Merged with fsm_0:f0|state.B_READY_RL  ;
-; fsm_0:f0|state.B_READY_VL              ; Merged with fsm_0:f0|state.B_READY_RL  ;
-; fsm_0:f0|state.B_READY_VN              ; Merged with fsm_0:f0|state.B_READY_RL  ;
-; fsm_3a:f3a|state.INIT                  ; Lost fanout                            ;
-; fsm_3b:f3b|state.INIT                  ; Lost fanout                            ;
-; fsm_0:f0|state.RF_FULL                 ; Stuck at GND due to stuck port data_in ;
-; fsm_0:f0|state.VF_FULL                 ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 18 ;                                        ;
-+----------------------------------------+----------------------------------------+
++-------------------------------------------------------------+
+; Registers Removed During Synthesis                          ;
++----------------------------------------+--------------------+
+; Register name                          ; Reason for Removal ;
++----------------------------------------+--------------------+
+; fsm_4:f4|state~8                       ; Lost fanout        ;
+; fsm_4:f4|state~9                       ; Lost fanout        ;
+; fsm_3:f3|state~9                       ; Lost fanout        ;
+; fsm_2:f2|state~9                       ; Lost fanout        ;
+; fsm_1:f1|state~9                       ; Lost fanout        ;
+; fsm_0:f0|state~15                      ; Lost fanout        ;
+; fsm_0:f0|state~16                      ; Lost fanout        ;
+; fsm_0:f0|state~17                      ; Lost fanout        ;
+; fsm_3a:f3a|state.INIT                  ; Lost fanout        ;
+; fsm_3b:f3b|state.INIT                  ; Lost fanout        ;
+; Total Number of Removed Registers = 10 ;                    ;
++----------------------------------------+--------------------+
 
 
 +------------------------------------------------------+
@@ -632,12 +624,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 737   ;
-; Number of registers using Synchronous Clear  ; 533   ;
+; Total registers                              ; 753   ;
+; Number of registers using Synchronous Clear  ; 568   ;
 ; Number of registers using Synchronous Load   ; 9     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 536   ;
+; Number of registers using Clock Enable       ; 544   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -649,22 +641,18 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
 ; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |protobuf_serializer|fsm_4:f4|arid[3]           ;
 ; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |protobuf_serializer|fsm_3:f3|out_index[9]      ;
-; 3:1                ; 57 bits   ; 114 LEs       ; 0 LEs                ; 114 LEs                ; Yes        ; |protobuf_serializer|fsm_2:f2|varint_data[19]   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |protobuf_serializer|fsm_2:f2|lsb[20]           ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |protobuf_serializer|fsm_0:f0|awid[0]           ;
-; 3:1                ; 36 bits   ; 72 LEs        ; 0 LEs                ; 72 LEs                 ; Yes        ; |protobuf_serializer|fsm_0:f0|wdata[10]         ;
+; 3:1                ; 57 bits   ; 114 LEs       ; 0 LEs                ; 114 LEs                ; Yes        ; |protobuf_serializer|fsm_2:f2|varint_data[26]   ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |protobuf_serializer|fsm_2:f2|lsb[15]           ;
+; 3:1                ; 12 bits   ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |protobuf_serializer|fsm_0:f0|awaddr[14]        ;
+; 3:1                ; 36 bits   ; 72 LEs        ; 0 LEs                ; 72 LEs                 ; Yes        ; |protobuf_serializer|fsm_0:f0|wdata[11]         ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |protobuf_serializer|fsm_1:f1|index[0]          ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |protobuf_serializer|fsm_4:f4|arlen[2]          ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |protobuf_serializer|fsm_4:f4|arlen[7]          ;
 ; 4:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |protobuf_serializer|fsm_0:f0|index[7]          ;
 ; 5:1                ; 7 bits    ; 21 LEs        ; 14 LEs               ; 7 LEs                  ; Yes        ; |protobuf_serializer|fsm_2:f2|varint_data[0]    ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_0:f0|state             ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_0:f0|state             ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_0:f0|state             ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_0:f0|state             ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_2:f2|next_state        ;
-; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_2:f2|varint_in_mux[63] ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_2:f2|varint_in_mux[59] ;
 ; 3:1                ; 25 bits   ; 50 LEs        ; 50 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_2:f2|varint_in_mux[56] ;
-; 3:1                ; 25 bits   ; 50 LEs        ; 50 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_2:f2|varint_in_mux[11] ;
+; 3:1                ; 25 bits   ; 50 LEs        ; 50 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_2:f2|varint_in_mux[27] ;
 ; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|raw_data_mux[7]            ;
 ; 19:1               ; 2 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_4:f4|state             ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
@@ -1287,29 +1275,29 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 155                         ;
-; twentynm_ff           ; 737                         ;
-;     ENA               ; 30                          ;
-;     ENA SCLR          ; 497                         ;
+; twentynm_ff           ; 753                         ;
+;     ENA               ; 26                          ;
+;     ENA SCLR          ; 509                         ;
 ;     ENA SCLR SLD      ; 8                           ;
 ;     ENA SLD           ; 1                           ;
-;     SCLR              ; 28                          ;
-;     plain             ; 173                         ;
-; twentynm_lcell_comb   ; 1055                        ;
+;     SCLR              ; 51                          ;
+;     plain             ; 158                         ;
+; twentynm_lcell_comb   ; 1105                        ;
 ;     arith             ; 380                         ;
 ;         1 data inputs ; 270                         ;
 ;         2 data inputs ; 110                         ;
-;     normal            ; 675                         ;
+;     normal            ; 725                         ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 1                           ;
-;         2 data inputs ; 172                         ;
-;         3 data inputs ; 56                          ;
-;         4 data inputs ; 116                         ;
-;         5 data inputs ; 164                         ;
-;         6 data inputs ; 165                         ;
+;         1 data inputs ; 3                           ;
+;         2 data inputs ; 175                         ;
+;         3 data inputs ; 58                          ;
+;         4 data inputs ; 151                         ;
+;         5 data inputs ; 168                         ;
+;         6 data inputs ; 169                         ;
 ; twentynm_ram_block    ; 133                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 4.90                        ;
-; Average LUT depth     ; 2.20                        ;
+; Max LUT depth         ; 5.30                        ;
+; Average LUT depth     ; 2.24                        ;
 +-----------------------+-----------------------------+
 
 
@@ -1328,7 +1316,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
-    Info: Processing started: Tue May 30 17:01:53 2017
+    Info: Processing started: Wed May 31 10:26:30 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off varint_encoder -c varint_encoder
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/protobuf-serializer/varint_in_fifo/").
@@ -1754,7 +1742,7 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "axs_s0_rdata[31]" is stuck at GND File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 33
 Info (286030): Timing-Driven Synthesis is running
 Info (17049): 10 registers lost all their fanouts during netlist optimizations.
-Warning (21074): Design contains 50 input pin(s) that do not drive logic
+Warning (21074): Design contains 42 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "axs_s0_awaddr[0]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
     Warning (15610): No output dependent on input pin "axs_s0_awaddr[1]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
     Warning (15610): No output dependent on input pin "axs_s0_awaddr[2]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
@@ -1763,14 +1751,6 @@ Warning (21074): Design contains 50 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "axs_s0_awaddr[5]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
     Warning (15610): No output dependent on input pin "axs_s0_awaddr[6]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
     Warning (15610): No output dependent on input pin "axs_s0_awaddr[7]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[8]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[9]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[10]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[11]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[12]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[13]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[14]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
-    Warning (15610): No output dependent on input pin "axs_s0_awaddr[15]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 8
     Warning (15610): No output dependent on input pin "axs_s0_awlen[0]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 9
     Warning (15610): No output dependent on input pin "axs_s0_awlen[1]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 9
     Warning (15610): No output dependent on input pin "axs_s0_awlen[2]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 9
@@ -1805,15 +1785,15 @@ Warning (21074): Design contains 50 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "axs_s0_arsize[2]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 27
     Warning (15610): No output dependent on input pin "axs_s0_arburst[0]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 28
     Warning (15610): No output dependent on input pin "axs_s0_arburst[1]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 28
-Info (21057): Implemented 1449 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1511 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 109 input pins
     Info (21059): Implemented 46 output pins
-    Info (21061): Implemented 1161 logic cells
+    Info (21061): Implemented 1223 logic cells
     Info (21064): Implemented 133 RAM segments
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 85 warnings
-    Info: Peak virtual memory: 1527 megabytes
-    Info: Processing ended: Tue May 30 17:02:09 2017
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 77 warnings
+    Info: Peak virtual memory: 1525 megabytes
+    Info: Processing ended: Wed May 31 10:26:46 2017
     Info: Elapsed time: 00:00:16
-    Info: Total CPU time (on all processors): 00:00:37
+    Info: Total CPU time (on all processors): 00:00:38
 
 

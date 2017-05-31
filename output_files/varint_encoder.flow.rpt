@@ -1,5 +1,5 @@
 Flow report for varint_encoder
-Tue May 30 17:06:42 2017
+Wed May 31 10:31:18 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -41,15 +41,15 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Flow Status                 ; Successful - Tue May 30 17:06:42 2017           ;
+; Flow Status                 ; Successful - Wed May 31 10:31:18 2017           ;
 ; Quartus Prime Version       ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
 ; Revision Name               ; varint_encoder                                  ;
 ; Top-level Entity Name       ; protobuf_serializer                             ;
 ; Family                      ; Arria 10                                        ;
 ; Device                      ; 10AS066N3F40E2SG                                ;
 ; Timing Models               ; Preliminary                                     ;
-; Logic utilization (in ALMs) ; 608 / 251,680 ( < 1 % )                         ;
-; Total registers             ; 774                                             ;
+; Logic utilization (in ALMs) ; 628 / 251,680 ( < 1 % )                         ;
+; Total registers             ; 790                                             ;
 ; Total pins                  ; 155 / 812 ( 19 % )                              ;
 ; Total virtual pins          ; 0                                               ;
 ; Total block memory bits     ; 304,128 / 43,642,880 ( < 1 % )                  ;
@@ -65,7 +65,7 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/30/2017 17:01:54 ;
+; Start date & time ; 05/31/2017 10:26:31 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; varint_encoder      ;
 +-------------------+---------------------+
@@ -76,7 +76,7 @@ agreement for further details.
 +--------------------------------------+----------------------------------------------------------------------+--------------------------------------+---------------------+----------------+
 ; Assignment Name                      ; Value                                                                ; Default Value                        ; Entity Name         ; Section Id     ;
 +--------------------------------------+----------------------------------------------------------------------+--------------------------------------+---------------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 203178701995592.149618891320408                                      ; --                                   ; --                  ; --             ;
+; COMPILER_SIGNATURE_ID                ; 203178701995592.149625159014677                                      ; --                                   ; --                  ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                                   ; --                                   ; --                  ; addressbook    ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                                   ; --                                   ; --                  ; raw data       ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                                   ; --                                   ; --                  ; FIFO full      ;
@@ -174,12 +174,12 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:16     ; 1.0                     ; 1490 MB             ; 00:00:37                           ;
-; Fitter                    ; 00:03:03     ; 3.1                     ; 8472 MB             ; 00:09:31                           ;
-; Assembler                 ; 00:00:47     ; 1.0                     ; 5413 MB             ; 00:00:47                           ;
-; TimeQuest Timing Analyzer ; 00:00:32     ; 5.6                     ; 4400 MB             ; 00:00:38                           ;
-; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 1514 MB             ; 00:00:01                           ;
-; Total                     ; 00:04:39     ; --                      ; --                  ; 00:11:34                           ;
+; Analysis & Synthesis      ; 00:00:16     ; 1.0                     ; 1487 MB             ; 00:00:37                           ;
+; Fitter                    ; 00:03:01     ; 3.2                     ; 8468 MB             ; 00:08:57                           ;
+; Assembler                 ; 00:00:47     ; 1.0                     ; 5414 MB             ; 00:00:47                           ;
+; TimeQuest Timing Analyzer ; 00:00:31     ; 5.6                     ; 4399 MB             ; 00:00:38                           ;
+; EDA Netlist Writer        ; 00:00:02     ; 1.0                     ; 1514 MB             ; 00:00:01                           ;
+; Total                     ; 00:04:37     ; --                      ; --                  ; 00:11:00                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

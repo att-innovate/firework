@@ -59,7 +59,7 @@ module fsm_3 (
 			state <= INIT;
 		else begin
 			out_index <= (out_index_ld) ? out_index_plus1 : 
-			             ((out_index_clr) ? 10'b0000000000 : out_index);
+			             ((out_index_clr) ? 10'd0 : out_index);
 
 			state <= next_state;
 		end

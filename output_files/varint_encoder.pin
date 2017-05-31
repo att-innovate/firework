@@ -409,7 +409,7 @@ GND                          : AH15      : gnd    :                   :         
 VREFB3AN0                    : AH16      : power  :                   :         : 3A        :                
 axs_s0_wvalid                : AH17      : input  : 1.8 V             :         : 2A        : N              
 ~ALTERA_DATA0~ / RESERVED_INPUT : AH18      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_awvalid               : AH19      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awaddr[15]            : AH19      : input  : 1.8 V             :         : 2A        : N              
 GND                          : AH20      : gnd    :                   :         :           :                
 NC                           : AH21      :        :                   :         :           :                
 NC                           : AH22      :        :                   :         :           :                
@@ -445,10 +445,10 @@ GND                          : AJ12      : gnd    :                   :         
 RESERVED_INPUT_WITH_WEAK_PULLUP : AJ13      :        :                   :         : 3A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AJ14      :        :                   :         : 3A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AJ15      :        :                   :         : 3A        :                
-axs_s0_araddr[7]             : AJ16      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_arsize[0]             : AJ16      : input  : 1.8 V             :         : 2A        : N              
 GND                          : AJ17      : gnd    :                   :         :           :                
-axs_s0_araddr[4]             : AJ18      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_awaddr[8]             : AJ19      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_araddr[13]            : AJ18      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_araddr[0]             : AJ19      : input  : 1.8 V             :         : 2A        : N              
 NC                           : AJ20      :        :                   :         :           :                
 NC                           : AJ21      :        :                   :         :           :                
 GND                          : AJ22      : gnd    :                   :         :           :                
@@ -484,9 +484,9 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : AK12      :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : AK13      :        :                   :         : 3A        :                
 VCCIO3A                      : AK14      : power  :                   : 1.8V    : 3A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AK15      :        :                   :         : 3A        :                
-axs_s0_awaddr[1]             : AK16      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_araddr[2]             : AK17      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_awlen[6]              : AK18      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awaddr[3]             : AK16      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_araddr[11]            : AK17      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_araddr[2]             : AK18      : input  : 1.8 V             :         : 2A        : N              
 VCCIO2A                      : AK19      : power  :                   : 1.8V    : 2A        :                
 NC                           : AK20      :        :                   :         :           :                
 NC                           : AK21      :        :                   :         :           :                
@@ -525,8 +525,8 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : AL14      :        :                   :      
 TDI                          : AL15      : input  :                   :         : CSS       :                
 GND                          : AL16      : gnd    :                   :         :           :                
 axs_s0_awid[1]               : AL17      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_araddr[1]             : AL18      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_awaddr[11]            : AL19      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_araddr[10]            : AL18      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awaddr[0]             : AL19      : input  : 1.8 V             :         : 2A        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AL20      :        :                   :         : 2I        :                
 VCCIO2I                      : AL21      : power  :                   : 1.8V    : 2I        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AL22      :        :                   :         : 2I        :                
@@ -562,11 +562,11 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : AM12      :        :                   :      
 VCCIO3A                      : AM13      : power  :                   : 1.8V    : 3A        :                
 nCONFIG                      : AM14      : input  :                   :         : CSS       :                
 nCE                          : AM15      :        :                   :         : CSS       :                
-axs_s0_awaddr[13]            : AM16      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_awaddr[0]             : AM17      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awlen[3]              : AM16      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awaddr[2]             : AM17      : input  : 1.8 V             :         : 2A        : N              
 VCCIO2A                      : AM18      : power  :                   : 1.8V    : 2A        :                
-axs_s0_araddr[8]             : AM19      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_awaddr[10]            : AM20      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_arsize[1]             : AM19      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awaddr[1]             : AM20      : input  : 1.8 V             :         : 2A        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AM21      :        :                   :         : 2I        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AM22      :        :                   :         : 2I        :                
 GND                          : AM23      : gnd    :                   :         :           :                
@@ -601,10 +601,10 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : AN12      :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : AN13      :        :                   :         : 3A        :                
 DCLK                         : AN14      : bidir  :                   :         : CSS       :                
 GND                          : AN15      : gnd    :                   :         :           :                
-axs_s0_awlen[7]              : AN16      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_awaddr[4]             : AN17      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_awlen[1]              : AN18      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_awaddr[7]             : AN19      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_araddr[3]             : AN16      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awaddr[6]             : AN17      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awlen[7]              : AN18      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awlen[1]              : AN19      : input  : 1.8 V             :         : 2A        : N              
 GND                          : AN20      : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AN21      :        :                   :         : 2I        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AN22      :        :                   :         : 2I        :                
@@ -642,9 +642,9 @@ GND                          : AP14      :        :                   :         
 MSEL1                        : AP15      : input  :                   :         : CSS       :                
 axs_s0_awid[0]               : AP16      : input  : 1.8 V             :         : 2A        : N              
 VCCIO2A                      : AP17      : power  :                   : 1.8V    : 2A        :                
-axs_s0_awlen[0]              : AP18      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awlen[6]              : AP18      : input  : 1.8 V             :         : 2A        : N              
 axs_s0_awid[3]               : AP19      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_awsize[0]             : AP20      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_araddr[4]             : AP20      : input  : 1.8 V             :         : 2A        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AP21      :        :                   :         : 2I        :                
 VCCIO2I                      : AP22      : power  :                   : 1.8V    : 2I        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AP23      :        :                   :         : 2J        :                
@@ -679,11 +679,11 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : AR12      :        :                   :      
 TRST                         : AR13      : input  :                   :         : CSS       :                
 GND                          : AR14      : gnd    :                   :         :           :                
 GND                          : AR15      :        :                   :         : CSS       :                
-axs_s0_awburst[0]            : AR16      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_araddr[3]             : AR17      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_awlen[2]              : AR18      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_araddr[7]             : AR16      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_araddr[12]            : AR17      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awsize[0]             : AR18      : input  : 1.8 V             :         : 2A        : N              
 GND                          : AR19      : gnd    :                   :         :           :                
-axs_s0_awsize[1]             : AR20      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_araddr[5]             : AR20      : input  : 1.8 V             :         : 2A        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AR21      :        :                   :         : 2I        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AR22      :        :                   :         : 2I        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AR23      :        :                   :         : 2I        :                
@@ -719,10 +719,10 @@ CONF_DONE                    : AT13      : bidir  :                   :         
 nIO_PULLUP                   : AT14      : input  :                   :         : CSS       :                
 MSEL2                        : AT15      : input  :                   :         : CSS       :                
 GND                          : AT16      : gnd    :                   :         :           :                
-axs_s0_awaddr[9]             : AT17      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_awlen[3]              : AT18      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_araddr[1]             : AT17      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awsize[1]             : AT18      : input  : 1.8 V             :         : 2A        : N              
 axs_s0_awid[2]               : AT19      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_awaddr[6]             : AT20      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awlen[0]              : AT20      : input  : 1.8 V             :         : 2A        : N              
 VCCIO2I                      : AT21      : power  :                   : 1.8V    : 2I        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AT22      :        :                   :         : 2I        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AT23      :        :                   :         : 2J        :                
@@ -757,12 +757,12 @@ nSTATUS                      : AU12      :        :                   :         
 GND                          : AU13      : gnd    :                   :         :           :                
 nCSO0                        : AU14      :        :                   :         : CSS       :                
 MSEL0                        : AU15      : input  :                   :         : CSS       :                
-axs_s0_araddr[5]             : AU16      : input  : 1.8 V             :         : 2A        : N              
-reset_reset_n                : AU17      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_araddr[14]            : AU16      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awaddr[10]            : AU17      : input  : 1.8 V             :         : 2A        : N              
 GND                          : AU18      : gnd    :                   :         :           :                
-axs_s0_awaddr[14]            : AU19      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_araddr[6]             : AU20      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_awaddr[15]            : AU21      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awlen[4]              : AU19      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_araddr[15]            : AU20      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awlen[5]              : AU21      : input  : 1.8 V             :         : 2A        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AU22      :        :                   :         : 2I        :                
 GND                          : AU23      : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AU24      :        :                   :         : 2J        :                
@@ -796,13 +796,13 @@ nCSO1                        : AV12      :        :                   :         
 TMS                          : AV13      : input  :                   :         : CSS       :                
 nCSO2                        : AV14      :        :                   :         : CSS       :                
 GND                          : AV15      : gnd    :                   :         :           :                
-axs_s0_awburst[1]            : AV16      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_araddr[9]             : AV17      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_awaddr[5]             : AV18      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_awaddr[3]             : AV19      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_araddr[8]             : AV16      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awaddr[14]            : AV17      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awaddr[7]             : AV18      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awaddr[5]             : AV19      : input  : 1.8 V             :         : 2A        : N              
 GND                          : AV20      : gnd    :                   :         :           :                
-axs_s0_awaddr[2]             : AV21      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_awsize[2]             : AV22      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awaddr[4]             : AV21      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_araddr[6]             : AV22      : input  : 1.8 V             :         : 2A        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AV23      :        :                   :         : 2J        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AV24      :        :                   :         : 2J        :                
 GND                          : AV25      : gnd    :                   :         :           :                
@@ -834,11 +834,11 @@ GND                          : AW12      : gnd    :                   :         
 AS_DATA3                     : AW13      :        :                   :         : CSS       :                
 TDO                          : AW14      : output :                   :         : CSS       :                
 TCK                          : AW15      : input  :                   :         : CSS       :                
-axs_s0_bready                : AW16      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awaddr[8]             : AW16      : input  : 1.8 V             :         : 2A        : N              
 GND                          : AW17      : gnd    :                   :         :           :                
 axs_s0_arvalid               : AW18      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_awaddr[12]            : AW19      : input  : 1.8 V             :         : 2A        : N              
-axs_s0_araddr[0]             : AW20      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_awlen[2]              : AW19      : input  : 1.8 V             :         : 2A        : N              
+axs_s0_araddr[9]             : AW20      : input  : 1.8 V             :         : 2A        : N              
 axs_s0_rready                : AW21      : input  : 1.8 V             :         : 2A        : N              
 GND                          : AW22      : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AW23      :        :                   :         : 2J        :                
@@ -1286,9 +1286,9 @@ GND                          : M36       : gnd    :                   :         
 GND                          : M37       : gnd    :                   :         :           :                
 GXB_NC                       : M38       :        :                   :         : 1H        :                
 GXB_NC                       : M39       :        :                   :         : 1H        :                
-axs_s0_araddr[14]            : N1        : input  : 1.8 V             :         : 3E        : N              
+axs_s0_awvalid               : N1        : input  : 1.8 V             :         : 3E        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : N2        :        :                   :         : 3E        :                
-axs_s0_arsize[0]             : N3        : input  : 1.8 V             :         : 3E        : N              
+reset_reset_n                : N3        : input  : 1.8 V             :         : 3E        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : N4        :        :                   :         : 3E        :                
 GND                          : N5        : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : N6        :        :                   :         : 3F        :                
@@ -1327,7 +1327,7 @@ GND                          : N38       : gnd    :                   :         
 GND                          : N39       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : P1        :        :                   :         : 3E        :                
 GND                          : P2        : gnd    :                   :         :           :                
-axs_s0_arsize[1]             : P3        : input  : 1.8 V             :         : 3E        : N              
+axs_s0_awaddr[9]             : P3        : input  : 1.8 V             :         : 3E        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : P4        :        :                   :         : 3E        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : P5        :        :                   :         : 3E        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : P6        :        :                   :         : 3E        :                
@@ -1365,7 +1365,7 @@ GND                          : P37       : gnd    :                   :         
 GXB_NC                       : P38       :        :                   :         : 1G        :                
 GXB_NC                       : P39       :        :                   :         : 1G        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : R1        :        :                   :         : 3E        :                
-axs_s0_arburst[0]            : R2        : input  : 1.8 V             :         : 3E        : N              
+axs_s0_awaddr[12]            : R2        : input  : 1.8 V             :         : 3E        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : R3        :        :                   :         : 3E        :                
 VCCIO3E                      : R4        : power  :                   : 1.8V    : 3E        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : R5        :        :                   :         : 3E        :                
@@ -1404,10 +1404,10 @@ GXB_NC                       : R37       :        :                   :         
 GND                          : R38       : gnd    :                   :         :           :                
 GND                          : R39       : gnd    :                   :         :           :                
 GND                          : T1        : gnd    :                   :         :           :                
-axs_s0_arburst[1]            : T2        : input  : 1.8 V             :         : 3E        : N              
-axs_s0_araddr[12]            : T3        : input  : 1.8 V             :         : 3E        : N              
+axs_s0_awaddr[13]            : T2        : input  : 1.8 V             :         : 3E        : N              
+axs_s0_arburst[0]            : T3        : input  : 1.8 V             :         : 3E        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : T4        :        :                   :         : 3E        :                
-axs_s0_araddr[13]            : T5        : input  : 1.8 V             :         : 3E        : N              
+axs_s0_arburst[1]            : T5        : input  : 1.8 V             :         : 3E        : N              
 VCCIO3E                      : T6        : power  :                   : 1.8V    : 3E        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : T7        :        :                   :         : 3E        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : T8        :        :                   :         : 3E        :                
@@ -1442,17 +1442,17 @@ GND                          : T36       : gnd    :                   :         
 GND                          : T37       : gnd    :                   :         :           :                
 GXB_NC                       : T38       :        :                   :         : 1G        :                
 GXB_NC                       : T39       :        :                   :         : 1G        :                
-axs_s0_awlen[5]              : U1        : input  : 1.8 V             :         : 3E        : N              
+axs_s0_awburst[0]            : U1        : input  : 1.8 V             :         : 3E        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : U2        :        :                   :         : 3E        :                
 GND                          : U3        : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : U4        :        :                   :         : 3E        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : U5        :        :                   :         : 3E        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : U6        :        :                   :         : 3E        :                
-axs_s0_araddr[11]            : U7        : input  : 1.8 V             :         : 3E        : N              
+axs_s0_arsize[2]             : U7        : input  : 1.8 V             :         : 3E        : N              
 GND                          : U8        : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : U9        :        :                   :         : 3E        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : U10       :        :                   :         : 3E        :                
-axs_s0_awlen[4]              : U11       : input  : 1.8 V             :         : 3E        : N              
+axs_s0_awsize[2]             : U11       : input  : 1.8 V             :         : 3E        : N              
 VCC                          : U12       : power  :                   : 0.9V    :           :                
 GND                          : U13       : gnd    :                   :         :           :                
 VCC                          : U14       : power  :                   : 0.9V    :           :                
@@ -1482,7 +1482,7 @@ GXB_NC                       : U37       :        :                   :         
 GND                          : U38       : gnd    :                   :         :           :                
 GND                          : U39       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : V1        :        :                   :         : 3E        :                
-axs_s0_araddr[15]            : V2        : input  : 1.8 V             :         : 3E        : N              
+axs_s0_bready                : V2        : input  : 1.8 V             :         : 3E        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : V3        :        :                   :         : 3E        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : V4        :        :                   :         : 3E        :                
 VCCIO3E                      : V5        : power  :                   : 1.8V    : 3E        :                
@@ -1522,14 +1522,14 @@ GXB_NC                       : V38       :        :                   :         
 GXB_NC                       : V39       :        :                   :         : 1G        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : W1        :        :                   :         : 3D        :                
 GND                          : W2        : gnd    :                   :         :           :                
-axs_s0_araddr[10]            : W3        : input  : 1.8 V             :         : 3E        : N              
+axs_s0_awburst[1]            : W3        : input  : 1.8 V             :         : 3E        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : W4        :        :                   :         : 3E        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : W5        :        :                   :         : 3E        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : W6        :        :                   :         : 3E        :                
 GND                          : W7        : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : W8        :        :                   :         : 3D        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : W9        :        :                   :         : 3E        :                
-axs_s0_arsize[2]             : W10       : input  : 1.8 V             :         : 3E        : N              
+axs_s0_awaddr[11]            : W10       : input  : 1.8 V             :         : 3E        : N              
 VREFB3EN0                    : W11       : power  :                   :         : 3E        :                
 GND                          : W12       : gnd    :                   :         :           :                
 VCC                          : W13       : power  :                   : 0.9V    :           :                
