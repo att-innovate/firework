@@ -5,11 +5,11 @@
  version="1.0"
  fabric="QSYS">
  <!-- Format version 16.0 211 (Future versions may contain additional information.) -->
- <!-- 2017.05.26.15:59:56 -->
+ <!-- 2017.05.30.17:29:32 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1495839594</value>
+  <value>1496190571</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -59013,7 +59013,7 @@ parameters are a RESULT of the module parameters. -->
  <module
    name="protobuf_serializer_0"
    kind="protobuf_serializer"
-   version="2.0"
+   version="3.0"
    path="protobuf_serializer_0">
   <!-- Describes a single module. Module parameters are
 the requested settings for a module instance. -->
@@ -59657,7 +59657,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1495839594</value>
+   <value>1496190571</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -59677,7 +59677,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
-   <value>1495839594</value>
+   <value>1496190571</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -59693,7 +59693,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
-   <value>1495839594</value>
+   <value>1496190571</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -72556,7 +72556,7 @@ parameters are a RESULT of the module parameters. -->
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IModule</subtype>
   <displayName>Protocol Buffer Serializer</displayName>
-  <version>2.0</version>
+  <version>3.0</version>
  </plugin>
  <plugin>
   <instanceCount>1</instanceCount>

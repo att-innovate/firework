@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2017.05.26.16:10:15"
+ date="2017.05.30.17:34:09"
  outputDirectory="/home/mladmon/workspace/firework/a10_soc_devkit_ghrd/db/ip/sld84537248/">
  <perimeter>
   <parameter
@@ -74,27 +74,27 @@
    <file
        path="/home/mladmon/workspace/altera/16.0/quartus/sopc_builder/model/lib/javasysmon.jar" />
    <file
-       path="/home/mladmon/workspace/altera/16.0/ip/altera/sld/core/altera_super_splitter/altera_sld_splitter_hw.tcl" />
-   <file
        path="/home/mladmon/workspace/altera/16.0/ip/altera/sld/jtag/altera_sld_jtag_hub/altera_sld_jtag_hub_hw.tcl" />
+   <file
+       path="/home/mladmon/workspace/altera/16.0/ip/altera/sld/core/altera_connection_identification_hub/altera_connection_identification_hub_hw.tcl" />
    <file
        path="/home/mladmon/workspace/altera/16.0/ip/altera/sld/core/altera_super_splitter/altera_super_splitter_hw.tcl" />
    <file
-       path="/home/mladmon/workspace/altera/16.0/ip/altera/sld/core/altera_connection_identification_hub/altera_connection_identification_hub_hw.tcl" />
+       path="/home/mladmon/workspace/altera/16.0/ip/altera/sld/core/altera_super_splitter/altera_sld_splitter_hw.tcl" />
   </childSourceFiles>
   <messages>
    <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab"</message>
-   <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_alt_sld_fab_160_bv3idga"</message>
-   <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_altera_sld_splitter_160_ni2nzrq"</message>
+   <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_alt_sld_fab_160_e6gruaa"</message>
    <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_altera_sld_jtag_hub_160_tvwc4fy"</message>
+   <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_altera_connection_identification_hub_160_347ca7a"</message>
    <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_altera_super_splitter_160_wbzwvki"</message>
-   <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_altera_connection_identification_hub_160_3u2qwja"</message>
+   <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_altera_sld_splitter_160_ni2nzrq"</message>
   </messages>
  </entity>
  <entity
    kind="alt_sld_fab"
    version="16.0"
-   name="alt_sld_fab_alt_sld_fab_160_bv3idga">
+   name="alt_sld_fab_alt_sld_fab_160_e6gruaa">
   <parameter name="MAX_WIDTH" value="27" />
   <parameter name="TOP_HUB" value="1" />
   <parameter name="DEVICE_FAMILY" value="Arria 10" />
@@ -102,7 +102,7 @@
      name="SETTINGS"
      value="{fabric sld dir agent mfr_code 110 type_code 132 version 1 instance 0 ir_width 3 psig f63706bb} {fabric sld dir agent mfr_code 110 type_code 132 version 1 instance 1 ir_width 3 psig f63706bb} {fabric sld dir agent mfr_code 110 type_code 132 version 1 instance 2 ir_width 3 psig f63706bb} {fabric sld dir agent mfr_code 110 type_code 132 version 1 instance 3 ir_width 3 psig f63706bb} {fabric sld dir agent mfr_code 110 type_code 9 version 0 instance 0 ir_width 4 psig f63706bb} " />
   <parameter name="CLOCKS" value="{id {} } {id {} } {id {} } {id {} } {id {} } " />
-  <parameter name="DESIGN_HASH" value="c5c36ffdaae5908ee006" />
+  <parameter name="DESIGN_HASH" value="bcd019fcb2f1fd0eafbe" />
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="Unknown" />
   <parameter name="MIRROR" value="0" />
   <parameter
@@ -116,18 +116,18 @@
   <parameter name="NODE_COUNT" value="5" />
   <generatedFiles>
    <file
-       path="/home/mladmon/workspace/firework/a10_soc_devkit_ghrd/db/ip/sld84537248/alt_sld_fab_160/synth/alt_sld_fab_alt_sld_fab_160_bv3idga.v"
+       path="/home/mladmon/workspace/firework/a10_soc_devkit_ghrd/db/ip/sld84537248/alt_sld_fab_160/synth/alt_sld_fab_alt_sld_fab_160_e6gruaa.v"
        attributes="CONTAINS_INLINE_CONFIGURATION" />
    <file
-       path="/home/mladmon/workspace/firework/a10_soc_devkit_ghrd/db/ip/sld84537248/alt_sld_fab_160/synth/alt_sld_fab_alt_sld_fab_160_bv3idga_cfg.v"
+       path="/home/mladmon/workspace/firework/a10_soc_devkit_ghrd/db/ip/sld84537248/alt_sld_fab_160/synth/alt_sld_fab_alt_sld_fab_160_e6gruaa_cfg.v"
        attributes="CONTAINS_INLINE_CONFIGURATION" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="/home/mladmon/workspace/firework/a10_soc_devkit_ghrd/db/ip/sld84537248/alt_sld_fab_160/synth/alt_sld_fab_alt_sld_fab_160_bv3idga.v"
+       path="/home/mladmon/workspace/firework/a10_soc_devkit_ghrd/db/ip/sld84537248/alt_sld_fab_160/synth/alt_sld_fab_alt_sld_fab_160_e6gruaa.v"
        attributes="CONTAINS_INLINE_CONFIGURATION" />
    <file
-       path="/home/mladmon/workspace/firework/a10_soc_devkit_ghrd/db/ip/sld84537248/alt_sld_fab_160/synth/alt_sld_fab_alt_sld_fab_160_bv3idga_cfg.v"
+       path="/home/mladmon/workspace/firework/a10_soc_devkit_ghrd/db/ip/sld84537248/alt_sld_fab_160/synth/alt_sld_fab_alt_sld_fab_160_e6gruaa_cfg.v"
        attributes="CONTAINS_INLINE_CONFIGURATION" />
   </childGeneratedFiles>
   <sourceFiles>
@@ -146,21 +146,21 @@
   </sourceFiles>
   <childSourceFiles>
    <file
-       path="/home/mladmon/workspace/altera/16.0/ip/altera/sld/core/altera_super_splitter/altera_sld_splitter_hw.tcl" />
-   <file
        path="/home/mladmon/workspace/altera/16.0/ip/altera/sld/jtag/altera_sld_jtag_hub/altera_sld_jtag_hub_hw.tcl" />
+   <file
+       path="/home/mladmon/workspace/altera/16.0/ip/altera/sld/core/altera_connection_identification_hub/altera_connection_identification_hub_hw.tcl" />
    <file
        path="/home/mladmon/workspace/altera/16.0/ip/altera/sld/core/altera_super_splitter/altera_super_splitter_hw.tcl" />
    <file
-       path="/home/mladmon/workspace/altera/16.0/ip/altera/sld/core/altera_connection_identification_hub/altera_connection_identification_hub_hw.tcl" />
+       path="/home/mladmon/workspace/altera/16.0/ip/altera/sld/core/altera_super_splitter/altera_sld_splitter_hw.tcl" />
   </childSourceFiles>
   <instantiator instantiator="alt_sld_fab" as="alt_sld_fab" />
   <messages>
-   <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_alt_sld_fab_160_bv3idga"</message>
-   <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_altera_sld_splitter_160_ni2nzrq"</message>
+   <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_alt_sld_fab_160_e6gruaa"</message>
    <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_altera_sld_jtag_hub_160_tvwc4fy"</message>
+   <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_altera_connection_identification_hub_160_347ca7a"</message>
    <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_altera_super_splitter_160_wbzwvki"</message>
-   <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_altera_connection_identification_hub_160_3u2qwja"</message>
+   <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_altera_sld_splitter_160_ni2nzrq"</message>
   </messages>
  </entity>
  <entity
@@ -185,7 +185,7 @@
        path="/home/mladmon/workspace/altera/16.0/ip/altera/sld/core/altera_super_splitter/altera_super_splitter_hw.tcl" />
   </sourceFiles>
   <childSourceFiles/>
-  <instantiator instantiator="alt_sld_fab_alt_sld_fab_160_bv3idga" as="presplit" />
+  <instantiator instantiator="alt_sld_fab_alt_sld_fab_160_e6gruaa" as="presplit" />
   <messages>
    <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_altera_super_splitter_160_wbzwvki"</message>
   </messages>
@@ -214,7 +214,7 @@
        path="/home/mladmon/workspace/altera/16.0/ip/altera/sld/core/altera_super_splitter/altera_sld_splitter_hw.tcl" />
   </sourceFiles>
   <childSourceFiles/>
-  <instantiator instantiator="alt_sld_fab_alt_sld_fab_160_bv3idga" as="splitter" />
+  <instantiator instantiator="alt_sld_fab_alt_sld_fab_160_e6gruaa" as="splitter" />
   <messages>
    <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_altera_sld_splitter_160_ni2nzrq"</message>
   </messages>
@@ -255,7 +255,7 @@
        path="/home/mladmon/workspace/altera/16.0/ip/altera/sld/jtag/altera_sld_jtag_hub/altera_sld_jtag_hub_hw.tcl" />
   </sourceFiles>
   <childSourceFiles/>
-  <instantiator instantiator="alt_sld_fab_alt_sld_fab_160_bv3idga" as="sldfabric" />
+  <instantiator instantiator="alt_sld_fab_alt_sld_fab_160_e6gruaa" as="sldfabric" />
   <messages>
    <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_altera_sld_jtag_hub_160_tvwc4fy"</message>
   </messages>
@@ -263,18 +263,18 @@
  <entity
    kind="altera_connection_identification_hub"
    version="16.0"
-   name="alt_sld_fab_altera_connection_identification_hub_160_3u2qwja">
+   name="alt_sld_fab_altera_connection_identification_hub_160_347ca7a">
   <parameter name="COUNT" value="1" />
   <parameter name="SETTINGS" value="{width 4 latency 0} " />
-  <parameter name="DESIGN_HASH" value="c5c36ffdaae5908ee006" />
+  <parameter name="DESIGN_HASH" value="bcd019fcb2f1fd0eafbe" />
   <generatedFiles>
    <file
-       path="/home/mladmon/workspace/firework/a10_soc_devkit_ghrd/db/ip/sld84537248/altera_connection_identification_hub_160/synth/alt_sld_fab_altera_connection_identification_hub_160_3u2qwja.sv"
+       path="/home/mladmon/workspace/firework/a10_soc_devkit_ghrd/db/ip/sld84537248/altera_connection_identification_hub_160/synth/alt_sld_fab_altera_connection_identification_hub_160_347ca7a.sv"
        attributes="TOP_LEVEL_FILE" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="/home/mladmon/workspace/firework/a10_soc_devkit_ghrd/db/ip/sld84537248/altera_connection_identification_hub_160/synth/alt_sld_fab_altera_connection_identification_hub_160_3u2qwja.sv"
+       path="/home/mladmon/workspace/firework/a10_soc_devkit_ghrd/db/ip/sld84537248/altera_connection_identification_hub_160/synth/alt_sld_fab_altera_connection_identification_hub_160_347ca7a.sv"
        attributes="TOP_LEVEL_FILE" />
   </childGeneratedFiles>
   <sourceFiles>
@@ -282,9 +282,9 @@
        path="/home/mladmon/workspace/altera/16.0/ip/altera/sld/core/altera_connection_identification_hub/altera_connection_identification_hub_hw.tcl" />
   </sourceFiles>
   <childSourceFiles/>
-  <instantiator instantiator="alt_sld_fab_alt_sld_fab_160_bv3idga" as="ident" />
+  <instantiator instantiator="alt_sld_fab_alt_sld_fab_160_e6gruaa" as="ident" />
   <messages>
-   <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_altera_connection_identification_hub_160_3u2qwja"</message>
+   <message level="Info" culprit="alt_sld_fab">"Generating: alt_sld_fab_altera_connection_identification_hub_160_347ca7a"</message>
   </messages>
  </entity>
 </deploy>
