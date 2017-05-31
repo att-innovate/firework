@@ -95,8 +95,8 @@ module fsm_0 (
 			wdata   <= (wdata_ld) ? axs_s0_wdata : ((wdata_clr) ? 32'h0000_0000 : wdata);
 			wstrb   <= (wstrb_ld) ? axs_s0_wstrb : ((wstrb_clr) ? 4'h0 : wstrb);
 
-			index   <= (index_inc) ? ((index == 10'd1023) ? 10'b0000000000 : index + 10'd1) : 
-			                      ((index_clr) ? 10'b0000000000 : index);
+			index   <= (index_inc) ? ((index == 10'd1023) ? 10'd0 : index + 10'd1) : 
+			                      ((index_clr) ? 10'd0 : index);
 
 			varint64 <= (varint64_ld) ? 1'b1 : ((varint64_clr) ? 1'b0 : varint64);
 
@@ -190,23 +190,23 @@ module fsm_0 (
 					if (~axs_s0_awvalid)
 						next_state = AW_READY;
 					else if (axs_s0_awvalid && 
-									(axs_s0_awaddr == 16'h01xx || axs_s0_awaddr == 16'h02xx)
+									(axs_s0_awaddr[15:8] == 8'h01 || axs_s0_awaddr[15:8] == 8'h02)
 									&& varint_in_fifo_full)
 						next_state = VF_FULL;
-					else if (axs_s0_awvalid && axs_s0_awaddr == 16'h01xx 
+					else if (axs_s0_awvalid && axs_s0_awaddr[15:8] == 8'h01 
 									&& ~varint_in_fifo_full)
 						next_state = W_READY_VN;
-					else if (axs_s0_awvalid && axs_s0_awaddr == 16'h02xx
+					else if (axs_s0_awvalid && axs_s0_awaddr[15:8] == 8'h02
 									&& ~varint_in_fifo_full)
 						next_state = W_READY_VL;
 					else if (axs_s0_awvalid && 
-									(axs_s0_awaddr == 16'h03xx || axs_s0_awaddr == 16'h04xx)
+									(axs_s0_awaddr[15:8] == 8'h03 || axs_s0_awaddr[15:8] == 8'h04)
 									&& raw_data_in_fifo_full)
 						next_state = RF_FULL;
-					else if (axs_s0_awvalid && axs_s0_awaddr == 16'h03xx
+					else if (axs_s0_awvalid && axs_s0_awaddr[15:8] == 8'h03
 									&& ~raw_data_in_fifo_full)
 						next_state = W_READY_RN;
-					else if (axs_s0_awvalid && axs_s0_awaddr == 16'h04xx
+					else if (axs_s0_awvalid && axs_s0_awaddr[15:8] == 8'h04
 									&& ~raw_data_in_fifo_full)
 						next_state = W_READY_RL;
 					else // error
@@ -280,9 +280,9 @@ module fsm_0 (
 
 					if (varint_in_fifo_full)
 						next_state = VF_FULL;
-					else if (~varint_in_fifo_full && awaddr == 16'h01xx)
+					else if (~varint_in_fifo_full && awaddr[15:8] == 8'h01)
 						next_state = W_READY_VN;
-					else if (~varint_in_fifo_full && awaddr == 16'h02xx)
+					else if (~varint_in_fifo_full && awaddr[15:8] == 8'h02)
 						next_state = W_READY_VL;
 					else // error
 						next_state = INIT;
@@ -295,9 +295,9 @@ module fsm_0 (
 
 					if (raw_data_in_fifo_full)
 						next_state = RF_FULL;
-					else if (~raw_data_in_fifo_full && awaddr == 16'h03xx)
+					else if (~raw_data_in_fifo_full && awaddr[15:8] == 8'h03)
 						next_state = W_READY_RN;
-					else if (~raw_data_in_fifo_full && awaddr == 16'h04xx)
+					else if (~raw_data_in_fifo_full && awaddr[15:8] == 8'h04)
 						next_state = W_READY_RL;
 					else // error
 						next_state = INIT;

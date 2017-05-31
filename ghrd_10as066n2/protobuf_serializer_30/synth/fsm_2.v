@@ -67,10 +67,10 @@ module fsm_2 (
 			varint_in_sel <= (varint_in_sel_ld) ? 1'b1 :
 			                 ((varint_in_sel_clr) ? 1'b0 : varint_in_sel);
 
-			lsb           <= (lsb_ld) ? varint_data_in : ((lsb_clr) ? 32'b0 : lsb);
+			lsb           <= (lsb_ld) ? varint_data_in : ((lsb_clr) ? 32'd0 : lsb);
 
 			varint_data   <= (varint_data_ld) ? varint_in_mux : 
-			                 ((varint_data_clr) ? 32'b0 : varint_data);
+			                 ((varint_data_clr) ? 32'd0 : varint_data);
 
 			state <= next_state;
 		end
@@ -101,7 +101,7 @@ module fsm_2 (
 
 		// datapath logic
 		lower32_mux = (varint64) ? lsb : varint_data_in;
-		upper32_mux = (varint64) ? varint_data_in : 32'b0;
+		upper32_mux = (varint64) ? varint_data_in : 32'd0;
 		varint_data_in64 = {upper32_mux, lower32_mux};
 		
 		varint_shifted = varint_data >> 7;
