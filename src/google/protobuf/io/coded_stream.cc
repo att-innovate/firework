@@ -651,6 +651,12 @@ bool CodedInputStream::Refresh() {
 
 bool CodedOutputStream::default_serialization_deterministic_ = false;
 
+// Initialize HW accelerator misc device file descriptors
+int CodedOutputStream::protobuf_vn_fd = open("/dev/protobuf_vn", O_WRONLY | O_SYNC);
+int CodedOutputStream::protobuf_vl_fd = open("/dev/protobuf_vl", O_WRONLY | O_SYNC);
+int CodedOutputStream::protobuf_rn_fd = open("/dev/protobuf_rn", O_WRONLY | O_SYNC);
+int CodedOutputStream::protobuf_rl_fd = open("/dev/protobuf_rl", O_WRONLY | O_SYNC);
+
 CodedOutputStream::CodedOutputStream(ZeroCopyOutputStream* output)
   : output_(output),
     buffer_(NULL),

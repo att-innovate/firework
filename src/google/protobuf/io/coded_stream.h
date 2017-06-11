@@ -132,6 +132,9 @@
 #endif
 #include <google/protobuf/stubs/common.h>
 
+#include <unistd.h>   // Needed for open(), close(), write(), read()
+#include <fcntl.h>    // Needed for O_WRONLY, O_SYNC
+
 namespace google {
 
 namespace protobuf {
@@ -896,6 +899,9 @@ class LIBPROTOBUF_EXPORT CodedOutputStream {
   static void SetDefaultSerializationDeterministic() {
     default_serialization_deterministic_ = true;
   }
+
+  static int protobuf_vn_fd, protobuf_vl_fd;
+  static int protobuf_rn_fd, protobuf_rl_fd;
 };
 
 // inline methods ====================================================
@@ -1144,13 +1150,16 @@ inline uint8* CodedOutputStream::GetDirectBufferForNBytesAndAdvance(int size) {
 
 inline uint8* CodedOutputStream::WriteVarint32ToArray(uint32 value,
                                                       uint8* target) {
-  while (value >= 0x80) {
+  /*while (value >= 0x80) {
     *target = static_cast<uint8>(value | 0x80);
     value >>= 7;
     ++target;
   }
   *target = static_cast<uint8>(value);
-  return target + 1;
+  return target + 1;*/
+
+  write(CodedOutputStream::protobuf_vl_fd, (char *) &value, 4);
+  return target;
 }
 
 inline void CodedOutputStream::WriteVarint32SignExtended(int32 value) {
