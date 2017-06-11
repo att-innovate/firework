@@ -1150,16 +1150,15 @@ inline uint8* CodedOutputStream::GetDirectBufferForNBytesAndAdvance(int size) {
 
 inline uint8* CodedOutputStream::WriteVarint32ToArray(uint32 value,
                                                       uint8* target) {
-  /*while (value >= 0x80) {
+  write(CodedOutputStream::protobuf_vl_fd, (char *) &value, 4);
+
+  while (value >= 0x80) {
     *target = static_cast<uint8>(value | 0x80);
     value >>= 7;
     ++target;
   }
   *target = static_cast<uint8>(value);
-  return target + 1;*/
-
-  write(CodedOutputStream::protobuf_vl_fd, (char *) &value, 4);
-  return target;
+  return target + 1;
 }
 
 inline void CodedOutputStream::WriteVarint32SignExtended(int32 value) {
