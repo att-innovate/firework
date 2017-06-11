@@ -796,6 +796,12 @@ void CodedOutputStream::WriteVarint32SlowPath(uint32 value) {
 
 inline uint8* CodedOutputStream::WriteVarint64ToArrayInline(
     uint64 value, uint8* target) {
+  uint32 value_l = static_cast<uint32> value;
+  uint32 value_h = static_cast<uint32> (value >> 32);
+
+  write(CodedOutputStream::protobuf_vn_fd, (char *) &value_l, 4);
+  write(CodedOutputStream::protobuf_vl_fd, (char *) &value_h, 4);
+
   // Splitting into 32-bit pieces gives better performance on 32-bit
   // processors.
   uint32 part0 = static_cast<uint32>(value      );
