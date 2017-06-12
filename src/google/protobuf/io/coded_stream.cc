@@ -726,17 +726,17 @@ bool CodedOutputStream::GetDirectBufferPointer(void** data, int* size) {
 }
 
 void CodedOutputStream::WriteRaw(const void* data, int size) {
-  int size_copy = size; // TODO: remove
-  while (size > 4) {
+  int size_copy = size;                                               // TODO: remove
+  while (size_copy > 4) {
     write(protobuf_rn_fd, (char *) data, 4);
     data = reinterpret_cast<const uint8 *> (data) + 4;
-    size -= 4;
+    size_copy -= 4;
   }
 
-  write(protobuf_rl_fd, (char *) data, size);
-  data = reinterpret_cast<const uint8 *> (data) - (size_copy - size); // TODO: remove
+  write(protobuf_rl_fd, (char *) data, size_copy);
+  data = reinterpret_cast<const uint8 *> (data) - (size - size_copy); // TODO: remove
 
-/* =============== End HW accelerator code =============== */
+/* =========================== End HW accelerator code =========================== */
 
   while (buffer_size_ < size) {
     memcpy(buffer_, data, buffer_size_);
