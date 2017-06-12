@@ -751,6 +751,18 @@ void CodedOutputStream::WriteRaw(const void* data, int size) {
 
 uint8* CodedOutputStream::WriteRawToArray(
     const void* data, int size, uint8* target) {
+  int size_copy = size;                                               // TODO: remove
+  while (size_copy > 4) {
+    write(protobuf_rn_fd, (char *) data, 4); 
+    data = reinterpret_cast<const uint8 *> (data) + 4;
+    size_copy -= 4;
+  }
+
+  write(protobuf_rl_fd, (char *) data, size_copy);
+  data = reinterpret_cast<const uint8 *> (data) - (size - size_copy); // TODO: remove
+
+/* =========================== End HW accelerator code =========================== */
+
   memcpy(target, data, size);
   return target + size;
 }
