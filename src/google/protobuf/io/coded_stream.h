@@ -1152,7 +1152,7 @@ inline uint8* CodedOutputStream::WriteVarint32ToArray(uint32 value,
                                                       uint8* target) {
   write(CodedOutputStream::protobuf_vl_fd, (char *) &value, 4);
 
- /* =============== End HW accelerator code =============== */
+  /* =============== End HW accelerator code =============== */
 
  while (value >= 0x80) {
     *target = static_cast<uint8>(value | 0x80);
@@ -1182,6 +1182,10 @@ inline uint8* CodedOutputStream::WriteVarint32SignExtendedToArray(
 
 inline uint8* CodedOutputStream::WriteLittleEndian32ToArray(uint32 value,
                                                             uint8* target) {
+  write(CodedOutputStream::protobuf_rl_fd, (char *) &value, 4);
+
+  /* =============== End HW accelerator code =============== */
+
 #if defined(PROTOBUF_LITTLE_ENDIAN)
   memcpy(target, &value, sizeof(value));
 #else
@@ -1195,6 +1199,11 @@ inline uint8* CodedOutputStream::WriteLittleEndian32ToArray(uint32 value,
 
 inline uint8* CodedOutputStream::WriteLittleEndian64ToArray(uint64 value,
                                                             uint8* target) {
+  write(CodedOutputStream::protobuf_rn_fd, (char *) &value, 4);
+  write(CodedOutputStream::protobuf_rl_fd, ((char *) &value) + 4, 4);
+
+  /* =============== End HW accelerator code =============== */
+
 #if defined(PROTOBUF_LITTLE_ENDIAN)
   memcpy(target, &value, sizeof(value));
 #else
