@@ -1152,7 +1152,9 @@ inline uint8* CodedOutputStream::WriteVarint32ToArray(uint32 value,
                                                       uint8* target) {
   write(CodedOutputStream::protobuf_vl_fd, (char *) &value, 4);
 
-  while (value >= 0x80) {
+ /* =============== End HW accelerator code =============== */
+
+ while (value >= 0x80) {
     *target = static_cast<uint8>(value | 0x80);
     value >>= 7;
     ++target;

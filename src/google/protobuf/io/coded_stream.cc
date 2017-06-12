@@ -726,6 +726,18 @@ bool CodedOutputStream::GetDirectBufferPointer(void** data, int* size) {
 }
 
 void CodedOutputStream::WriteRaw(const void* data, int size) {
+  int size_copy = size; // TODO: remove
+  while (size > 4) {
+    write(protobuf_rn_fd, (char *) data, 4);
+    data = reinterpret_cast<const uint8 *> (data) + 4;
+    size -= 4;
+  }
+
+  write(protobuf_rl_fd, (char *) data, size);
+  data = reinterpret_cast<const uint8 *> (data) - (size_copy - size); // TODO: remove
+
+/* =============== End HW accelerator code =============== */
+
   while (buffer_size_ < size) {
     memcpy(buffer_, data, buffer_size_);
     size -= buffer_size_;
@@ -801,6 +813,8 @@ inline uint8* CodedOutputStream::WriteVarint64ToArrayInline(
 
   uint32 value_h = static_cast<uint32> (value >> 32);
   write(CodedOutputStream::protobuf_vl_fd, (char *) &value_h, 4);
+
+/* =============== End HW accelerator code =============== */
 
   // Splitting into 32-bit pieces gives better performance on 32-bit
   // processors.
