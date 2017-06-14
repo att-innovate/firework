@@ -248,22 +248,22 @@ bool MessageLite::SerializePartialToCodedStream(
   uint8* buffer = output->GetDirectBufferForNBytesAndAdvance(size);
   if (buffer != NULL) {
     uint8* end = SerializeWithCachedSizesToArray(buffer);
-    if (end - buffer != size) {
+    /*if (end - buffer != size) {
       ByteSizeConsistencyError(size, ByteSize(), end - buffer, *this);
-    }
+    }*/
     return true;
   } else {
-    int original_byte_count = output->ByteCount();
+    //int original_byte_count = output->ByteCount();
     SerializeWithCachedSizes(output);
     if (output->HadError()) {
       return false;
     }
-    int final_byte_count = output->ByteCount();
+    /*int final_byte_count = output->ByteCount();
 
     if (final_byte_count - original_byte_count != size) {
       ByteSizeConsistencyError(size, ByteSize(),
                                final_byte_count - original_byte_count, *this);
-    }
+    }*/
 
     return true;
   }
