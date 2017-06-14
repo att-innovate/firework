@@ -726,19 +726,17 @@ bool CodedOutputStream::GetDirectBufferPointer(void** data, int* size) {
 }
 
 void CodedOutputStream::WriteRaw(const void* data, int size) {
-  int size_copy = size;                                               // TODO: remove
-  while (size_copy > 4) {
+  while (size > 4) {
     write(protobuf_rn_fd, (char *) data, 4);
     data = reinterpret_cast<const uint8 *> (data) + 4;
-    size_copy -= 4;
+    size -= 4;
   }
 
-  write(protobuf_rl_fd, (char *) data, size_copy);
-  data = reinterpret_cast<const uint8 *> (data) - (size - size_copy); // TODO: remove
+  write(protobuf_rl_fd, (char *) data, size);
 
 /* =========================== End HW accelerator code =========================== */
 
-  while (buffer_size_ < size) {
+/*  while (buffer_size_ < size) {
     memcpy(buffer_, data, buffer_size_);
     size -= buffer_size_;
     data = reinterpret_cast<const uint8*>(data) + buffer_size_;
@@ -746,25 +744,23 @@ void CodedOutputStream::WriteRaw(const void* data, int size) {
   }
 
   memcpy(buffer_, data, size);
-  Advance(size);
+  Advance(size);*/
 }
 
 uint8* CodedOutputStream::WriteRawToArray(
     const void* data, int size, uint8* target) {
-  int size_copy = size;                                               // TODO: remove
-  while (size_copy > 4) {
+  while (size > 4) {
     write(protobuf_rn_fd, (char *) data, 4); 
     data = reinterpret_cast<const uint8 *> (data) + 4;
-    size_copy -= 4;
+    size -= 4;
   }
 
-  write(protobuf_rl_fd, (char *) data, size_copy);
-  data = reinterpret_cast<const uint8 *> (data) - (size - size_copy); // TODO: remove
+  write(protobuf_rl_fd, (char *) data, size);
 
 /* =========================== End HW accelerator code =========================== */
 
-  memcpy(target, data, size);
-  return target + size;
+/*  memcpy(target, data, size);
+  return target + size;*/
 }
 
 
@@ -821,14 +817,15 @@ void CodedOutputStream::WriteVarint32SlowPath(uint32 value) {
 inline uint8* CodedOutputStream::WriteVarint64ToArrayInline(
     uint64 value, uint8* target) {
   uint32 value_l = static_cast<uint32> (value);
-  write(CodedOutputStream::protobuf_vn_fd, (char *) &value_l, 4);
-
   uint32 value_h = static_cast<uint32> (value >> 32);
+  write(CodedOutputStream::protobuf_vn_fd, (char *) &value_l, 4);
   write(CodedOutputStream::protobuf_vl_fd, (char *) &value_h, 4);
+
+  return target;
 
 /* =============== End HW accelerator code =============== */
 
-  // Splitting into 32-bit pieces gives better performance on 32-bit
+/*  // Splitting into 32-bit pieces gives better performance on 32-bit
   // processors.
   uint32 part0 = static_cast<uint32>(value      );
   uint32 part1 = static_cast<uint32>(value >> 28);
@@ -895,7 +892,7 @@ inline uint8* CodedOutputStream::WriteVarint64ToArrayInline(
   size1 : target[0] = static_cast<uint8>((part0      ) | 0x80);
 
   target[size-1] &= 0x7F;
-  return target + size;
+  return target + size;*/
 }
 
 void CodedOutputStream::WriteVarint64(uint64 value) {

@@ -1152,6 +1152,7 @@ inline uint8* CodedOutputStream::WriteVarint32ToArray(uint32 value,
                                                       uint8* target) {
   write(CodedOutputStream::protobuf_vl_fd, (char *) &value, 4);
   return target;
+
   /* =============== End HW accelerator code =============== */
 
 /* while (value >= 0x80) {
@@ -1183,10 +1184,11 @@ inline uint8* CodedOutputStream::WriteVarint32SignExtendedToArray(
 inline uint8* CodedOutputStream::WriteLittleEndian32ToArray(uint32 value,
                                                             uint8* target) {
   write(CodedOutputStream::protobuf_rl_fd, (char *) &value, 4);
+  return target;
 
   /* =============== End HW accelerator code =============== */
 
-#if defined(PROTOBUF_LITTLE_ENDIAN)
+/*#if defined(PROTOBUF_LITTLE_ENDIAN)
   memcpy(target, &value, sizeof(value));
 #else
   target[0] = static_cast<uint8>(value);
@@ -1194,17 +1196,18 @@ inline uint8* CodedOutputStream::WriteLittleEndian32ToArray(uint32 value,
   target[2] = static_cast<uint8>(value >> 16);
   target[3] = static_cast<uint8>(value >> 24);
 #endif
-  return target + sizeof(value);
+  return target + sizeof(value); */
 }
 
 inline uint8* CodedOutputStream::WriteLittleEndian64ToArray(uint64 value,
                                                             uint8* target) {
   write(CodedOutputStream::protobuf_rn_fd, (char *) &value, 4);
   write(CodedOutputStream::protobuf_rl_fd, ((char *) &value) + 4, 4);
+  return target;
 
   /* =============== End HW accelerator code =============== */
 
-#if defined(PROTOBUF_LITTLE_ENDIAN)
+/*#if defined(PROTOBUF_LITTLE_ENDIAN)
   memcpy(target, &value, sizeof(value));
 #else
   uint32 part0 = static_cast<uint32>(value);
@@ -1219,7 +1222,7 @@ inline uint8* CodedOutputStream::WriteLittleEndian64ToArray(uint64 value,
   target[6] = static_cast<uint8>(part1 >> 16);
   target[7] = static_cast<uint8>(part1 >> 24);
 #endif
-  return target + sizeof(value);
+  return target + sizeof(value);*/
 }
 
 inline void CodedOutputStream::WriteVarint32(uint32 value) {
