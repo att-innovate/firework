@@ -76,13 +76,40 @@ int main(int argc, char* argv[]) {
     }
   }
 
-  // Add an address.
+/*  // Add an address.
   PromptForAddress(address_book.add_people());
 
   {
     // Write the new address book back to disk.
     fstream output(argv[1], ios::out | ios::trunc | ios::binary);
     if (!address_book.SerializeToOstream(&output)) {
+      cerr << "Failed to write address book." << endl;
+      return -1;
+    }
+  }*/
+
+  tutorial::AllTypes allTypes;
+
+  allTypes.set_mydouble(3.14159265358979323);
+  allTypes.set_myfloat(3.14159);
+  allTypes.set_myint32(-1);                   // should result in 5 bytes
+  allTypes.set_myint64(-1);                   // should result in 10 bytes
+  allTypes.set_myuint32(83886080);            // 0x05000000
+  allTypes.set_myuint64(34359738368);         // 0x00000008 00000000
+  allTypes.set_mysint32(-1);                  // ZigZag encoded as 1
+  allTypes.set_mysint64(-3);                  // ZigZag encoded as 5
+  allTypes.set_myfixed32(5);
+  allTypes.set_myfixed64(5);
+  allTypes.set_mysfixed32(-1);
+  allTypes.set_mysfixed64(-1);
+  allTypes.set_mybool(false);
+  allTypes.set_mystring("Hello, world!");
+  allTypes.set_mybytes("46697265776f726b");   // "Firework"
+
+  {
+    // Write the new address book back to disk.
+    fstream output(argv[1], ios::out | ios::trunc | ios::binary);
+    if (!allTypes.SerializeToOstream(&output)) {
       cerr << "Failed to write address book." << endl;
       return -1;
     }
