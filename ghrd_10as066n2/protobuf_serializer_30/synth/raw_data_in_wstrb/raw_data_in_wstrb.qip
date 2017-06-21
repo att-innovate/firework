@@ -2,7 +2,7 @@ set_global_assignment -entity "raw_data_in_wstrb" -library "raw_data_in_wstrb" -
 set_global_assignment -entity "raw_data_in_wstrb" -library "raw_data_in_wstrb" -name IP_TOOL_VERSION "16.0"
 set_global_assignment -entity "raw_data_in_wstrb" -library "raw_data_in_wstrb" -name IP_TOOL_ENV "Qsys"
 set_global_assignment -library "raw_data_in_wstrb" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../../../../raw_data_in_wstrb.sopcinfo"]
-set_global_assignment -entity "raw_data_in_wstrb" -library "raw_data_in_wstrb" -name SLD_INFO "QSYS_NAME raw_data_in_wstrb HAS_SOPCINFO 1 GENERATION_ID 1496252282"
+set_global_assignment -entity "raw_data_in_wstrb" -library "raw_data_in_wstrb" -name SLD_INFO "QSYS_NAME raw_data_in_wstrb HAS_SOPCINFO 1 GENERATION_ID 1498071568"
 set_global_assignment -library "raw_data_in_wstrb" -name SLD_FILE [file join $::quartus(qip_path) "raw_data_in_wstrb.debuginfo"]
 set_global_assignment -entity "raw_data_in_wstrb" -library "raw_data_in_wstrb" -name IP_TARGETED_DEVICE_FAMILY "Arria 10"
 set_global_assignment -entity "raw_data_in_wstrb" -library "raw_data_in_wstrb" -name IP_GENERATED_DEVICE_FAMILY "{Arria 10}"
@@ -14,7 +14,7 @@ set_global_assignment -entity "raw_data_in_wstrb" -library "raw_data_in_wstrb" -
 set_global_assignment -entity "raw_data_in_wstrb" -library "raw_data_in_wstrb" -name IP_COMPONENT_REPORT_HIERARCHY "On"
 set_global_assignment -entity "raw_data_in_wstrb" -library "raw_data_in_wstrb" -name IP_COMPONENT_INTERNAL "Off"
 set_global_assignment -entity "raw_data_in_wstrb" -library "raw_data_in_wstrb" -name IP_COMPONENT_VERSION "MS4w"
-set_global_assignment -entity "raw_data_in_wstrb" -library "raw_data_in_wstrb" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTQ5NjI1MjI4Mg==::QXV0byBHRU5FUkFUSU9OX0lE"
+set_global_assignment -entity "raw_data_in_wstrb" -library "raw_data_in_wstrb" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTQ5ODA3MTU2OA==::QXV0byBHRU5FUkFUSU9OX0lE"
 set_global_assignment -entity "raw_data_in_wstrb" -library "raw_data_in_wstrb" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfRkFNSUxZ::QXJyaWEgMTA=::QXV0byBERVZJQ0VfRkFNSUxZ"
 set_global_assignment -entity "raw_data_in_wstrb" -library "raw_data_in_wstrb" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0U=::MTBBUzA2Nk4zRjQwRTJTRw==::QXV0byBERVZJQ0U="
 set_global_assignment -entity "raw_data_in_wstrb" -library "raw_data_in_wstrb" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfU1BFRURHUkFERQ==::Mg==::QXV0byBERVZJQ0VfU1BFRURHUkFERQ=="

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="out_fifo" kind="out_fifo" version="1.0" fabric="QSYS">
  <!-- Format version 16.0 211 (Future versions may contain additional information.) -->
- <!-- 2017.05.31.10:38:38 -->
+ <!-- 2017.06.21.12:00:04 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1496252318</value>
+  <value>1498071604</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -151,7 +151,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="GUI_Depth">
    <type>int</type>
-   <value>8192</value>
+   <value>131072</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -383,7 +383,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="GUI_Usedw_width">
    <type>int</type>
-   <value>13</value>
+   <value>17</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -545,7 +545,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>usedw</name>
     <direction>Output</direction>
-    <width>13</width>
+    <width>17</width>
     <role>usedw</role>
    </port>
    <port>

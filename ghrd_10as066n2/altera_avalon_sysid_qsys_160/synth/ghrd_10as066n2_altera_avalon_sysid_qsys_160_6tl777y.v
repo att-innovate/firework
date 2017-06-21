@@ -31,7 +31,7 @@
 // altera message_level Level1 
 // altera message_off 10034 10035 10036 10037 10230 10240 10030 
 
-module ghrd_10as066n2_altera_avalon_sysid_qsys_160_z3pn3la (
+module ghrd_10as066n2_altera_avalon_sysid_qsys_160_6tl777y (
                // inputs:
                 address,
                 clock,
@@ -49,7 +49,7 @@ module ghrd_10as066n2_altera_avalon_sysid_qsys_160_z3pn3la (
 
   wire    [ 31: 0] readdata;
   //control_slave, which is an e_avalon_slave
-  assign readdata = address ? 1496252151 : 3221755904;
+  assign readdata = address ? 1498071356 : 3221755904;
 
 endmodule
 
