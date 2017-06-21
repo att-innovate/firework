@@ -12,7 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
-# ACDS 16.0 211 linux 2017.03.02.18:56:09
+# ACDS 16.0 211 linux 2017.06.21.11:29:04
 # ----------------------------------------
 # Auto-generated simulation script rivierapro_setup.tcl
 # ----------------------------------------
@@ -192,7 +192,7 @@ alias dev_com {
 # Compile the design files in correct order
 alias com {
   echo "\[exec\] com"
-  eval  vlog -v2k5 $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/../fifo_160/sim/out_fifo_fifo_160_otpqnty.v" -work out_fifo_fifo_160
+  eval  vlog -v2k5 $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/../fifo_160/sim/out_fifo_fifo_160_r4prduy.v" -work out_fifo_fifo_160
   eval  vlog -v2k5 $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/out_fifo.v"                                                         
 }
 

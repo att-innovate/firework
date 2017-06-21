@@ -1,5 +1,5 @@
 Flow report for varint_encoder
-Wed May 31 10:31:18 2017
+Wed Jun 21 11:43:09 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -41,18 +41,18 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Flow Status                 ; Successful - Wed May 31 10:31:18 2017           ;
+; Flow Status                 ; Successful - Wed Jun 21 11:43:09 2017           ;
 ; Quartus Prime Version       ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
 ; Revision Name               ; varint_encoder                                  ;
 ; Top-level Entity Name       ; protobuf_serializer                             ;
 ; Family                      ; Arria 10                                        ;
 ; Device                      ; 10AS066N3F40E2SG                                ;
 ; Timing Models               ; Preliminary                                     ;
-; Logic utilization (in ALMs) ; 628 / 251,680 ( < 1 % )                         ;
-; Total registers             ; 790                                             ;
+; Logic utilization (in ALMs) ; 669 / 251,680 ( < 1 % )                         ;
+; Total registers             ; 810                                             ;
 ; Total pins                  ; 155 / 812 ( 19 % )                              ;
 ; Total virtual pins          ; 0                                               ;
-; Total block memory bits     ; 304,128 / 43,642,880 ( < 1 % )                  ;
+; Total block memory bits     ; 1,287,168 / 43,642,880 ( 3 % )                  ;
 ; Total DSP Blocks            ; 0 / 1,687 ( 0 % )                               ;
 ; Total HSSI RX channels      ; 0 / 48 ( 0 % )                                  ;
 ; Total HSSI TX channels      ; 0 / 48 ( 0 % )                                  ;
@@ -65,7 +65,7 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/31/2017 10:26:31 ;
+; Start date & time ; 06/21/2017 11:36:50 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; varint_encoder      ;
 +-------------------+---------------------+
@@ -76,7 +76,7 @@ agreement for further details.
 +--------------------------------------+----------------------------------------------------------------------+--------------------------------------+---------------------+----------------+
 ; Assignment Name                      ; Value                                                                ; Default Value                        ; Entity Name         ; Section Id     ;
 +--------------------------------------+----------------------------------------------------------------------+--------------------------------------+---------------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 203178701995592.149625159014677                                      ; --                                   ; --                  ; --             ;
+; COMPILER_SIGNATURE_ID                ; 203178701995592.149807021029585                                      ; --                                   ; --                  ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                                   ; --                                   ; --                  ; addressbook    ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                                   ; --                                   ; --                  ; raw data       ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                                   ; --                                   ; --                  ; FIFO full      ;
@@ -111,6 +111,7 @@ agreement for further details.
 ; MISC_FILE                            ; varint_out_index/../varint_out_index.qsys                            ; --                                   ; --                  ; --             ;
 ; MISC_FILE                            ; raw_data_out_fifo/../raw_data_out_fifo.qsys                          ; --                                   ; --                  ; --             ;
 ; MISC_FILE                            ; raw_data_out_index/../raw_data_out_index.qsys                        ; --                                   ; --                  ; --             ;
+; MISC_FILE                            ; out_fifo/out_fifo.cmp                                                ; --                                   ; --                  ; --             ;
 ; MISC_FILE                            ; out_fifo/../out_fifo.qsys                                            ; --                                   ; --                  ; --             ;
 ; NUM_PARALLEL_PROCESSORS              ; All                                                                  ; --                                   ; --                  ; --             ;
 ; PARTITION_COLOR                      ; 16764057                                                             ; --                                   ; protobuf_serializer ; Top            ;
@@ -118,7 +119,7 @@ agreement for further details.
 ; PARTITION_NETLIST_TYPE               ; SOURCE                                                               ; --                                   ; protobuf_serializer ; Top            ;
 ; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                                                  ; --                                   ; --                  ; --             ;
 ; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                                ; --                                   ; --                  ; --             ;
-; PROJECT_IP_REGENERATION_POLICY       ; NEVER_REGENERATE_IP                                                  ; SKIP_REGENERATING_IP_IF_HDL_MODIFIED ; --                  ; --             ;
+; PROJECT_IP_REGENERATION_POLICY       ; ALWAYS_REGENERATE_IP                                                 ; SKIP_REGENERATING_IP_IF_HDL_MODIFIED ; --                  ; --             ;
 ; PROJECT_OUTPUT_DIRECTORY             ; output_files                                                         ; --                                   ; --                  ; --             ;
 ; SLD_FILE                             ; varint_in_fifo/varint_in_fifo.debuginfo                              ; --                                   ; --                  ; --             ;
 ; SLD_FILE                             ; varint_in_index/varint_in_index.debuginfo                            ; --                                   ; --                  ; --             ;
@@ -131,7 +132,7 @@ agreement for further details.
 ; SLD_FILE                             ; raw_data_out_fifo/raw_data_out_fifo.debuginfo                        ; --                                   ; --                  ; --             ;
 ; SLD_FILE                             ; raw_data_out_index/raw_data_out_index.debuginfo                      ; --                                   ; --                  ; --             ;
 ; SLD_FILE                             ; out_fifo/out_fifo.debuginfo                                          ; --                                   ; --                  ; --             ;
-; SLD_INFO                             ; QSYS_NAME out_fifo HAS_SOPCINFO 1 GENERATION_ID 1493857214           ; --                                   ; out_fifo            ; --             ;
+; SLD_INFO                             ; QSYS_NAME out_fifo HAS_SOPCINFO 1 GENERATION_ID 1498069744           ; --                                   ; out_fifo            ; --             ;
 ; SLD_INFO                             ; QSYS_NAME raw_data_in_fifo HAS_SOPCINFO 1 GENERATION_ID 1493857164   ; --                                   ; raw_data_in_fifo    ; --             ;
 ; SLD_INFO                             ; QSYS_NAME raw_data_in_index HAS_SOPCINFO 1 GENERATION_ID 1493857172  ; --                                   ; raw_data_in_index   ; --             ;
 ; SLD_INFO                             ; QSYS_NAME raw_data_in_wstrb HAS_SOPCINFO 1 GENERATION_ID 1493857179  ; --                                   ; raw_data_in_wstrb   ; --             ;
@@ -174,12 +175,12 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:16     ; 1.0                     ; 1487 MB             ; 00:00:37                           ;
-; Fitter                    ; 00:03:01     ; 3.2                     ; 8468 MB             ; 00:08:57                           ;
-; Assembler                 ; 00:00:47     ; 1.0                     ; 5414 MB             ; 00:00:47                           ;
-; TimeQuest Timing Analyzer ; 00:00:31     ; 5.6                     ; 4399 MB             ; 00:00:38                           ;
-; EDA Netlist Writer        ; 00:00:02     ; 1.0                     ; 1514 MB             ; 00:00:01                           ;
-; Total                     ; 00:04:37     ; --                      ; --                  ; 00:11:00                           ;
+; Analysis & Synthesis      ; 00:01:36     ; 1.0                     ; 1484 MB             ; 00:05:07                           ;
+; Fitter                    ; 00:03:11     ; 3.2                     ; 8489 MB             ; 00:10:41                           ;
+; Assembler                 ; 00:00:48     ; 1.0                     ; 5415 MB             ; 00:00:47                           ;
+; TimeQuest Timing Analyzer ; 00:00:32     ; 5.7                     ; 4402 MB             ; 00:00:43                           ;
+; EDA Netlist Writer        ; 00:00:02     ; 1.0                     ; 1515 MB             ; 00:00:02                           ;
+; Total                     ; 00:06:09     ; --                      ; --                  ; 00:17:20                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

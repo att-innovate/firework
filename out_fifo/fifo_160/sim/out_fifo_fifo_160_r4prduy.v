@@ -15,7 +15,7 @@
 // synopsys translate_off
 `timescale 1 ps / 1 ps
 // synopsys translate_on
-module  out_fifo_fifo_160_otpqnty  (
+module  out_fifo_fifo_160_r4prduy  (
     clock,
     data,
     rdreq,
@@ -34,16 +34,16 @@ module  out_fifo_fifo_160_otpqnty  (
     output   empty;
     output   full;
     output [7:0]  q;
-    output [12:0]  usedw;
+    output [16:0]  usedw;
 
     wire  sub_wire0;
     wire  sub_wire1;
     wire [7:0] sub_wire2;
-    wire [12:0] sub_wire3;
+    wire [16:0] sub_wire3;
     wire  empty = sub_wire0;
     wire  full = sub_wire1;
     wire [7:0] q = sub_wire2[7:0];
-    wire [12:0] usedw = sub_wire3[12:0];
+    wire [16:0] usedw = sub_wire3[16:0];
 
     scfifo  scfifo_component (
                 .clock (clock),
@@ -63,11 +63,11 @@ module  out_fifo_fifo_160_otpqnty  (
         scfifo_component.add_ram_output_register  = "ON",
         scfifo_component.enable_ecc  = "FALSE",
         scfifo_component.intended_device_family  = "Arria 10",
-        scfifo_component.lpm_numwords  = 8192,
+        scfifo_component.lpm_numwords  = 131072,
         scfifo_component.lpm_showahead  = "OFF",
         scfifo_component.lpm_type  = "scfifo",
         scfifo_component.lpm_width  = 8,
-        scfifo_component.lpm_widthu  = 13,
+        scfifo_component.lpm_widthu  = 17,
         scfifo_component.overflow_checking  = "ON",
         scfifo_component.underflow_checking  = "ON",
         scfifo_component.use_eab  = "ON";

@@ -20,7 +20,7 @@
 }
 ]]></parameter>
  <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
- <parameter name="device" value="10AS066N3F40E2SGE2" />
+ <parameter name="device" value="10AS066N3F40E2SG" />
  <parameter name="deviceFamily" value="Arria 10" />
  <parameter name="deviceSpeedGrade" value="2" />
  <parameter name="fabricMode" value="QSYS" />
@@ -68,7 +68,7 @@
   <parameter name="GUI_CLOCKS_ARE_SYNCHRONIZED" value="0" />
   <parameter name="GUI_Clock" value="0" />
   <parameter name="GUI_DISABLE_DCFIFO_EMBEDDED_TIMING_CONSTRAINT" value="true" />
-  <parameter name="GUI_Depth" value="8192" />
+  <parameter name="GUI_Depth" value="131072" />
   <parameter name="GUI_ENABLE_ECC" value="false" />
   <parameter name="GUI_Empty" value="true" />
   <parameter name="GUI_Full" value="true" />

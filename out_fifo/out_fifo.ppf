@@ -11,7 +11,7 @@
   <pin name="clock" direction="input" scope="external" />
   <pin name="sclr" direction="input" scope="external" />
   <pin name="q[7..0]" direction="output" scope="external" />
-  <pin name="usedw[12..0]" direction="output" scope="external" />
+  <pin name="usedw[16..0]" direction="output" scope="external" />
   <pin name="full" direction="output" scope="external" />
   <pin name="empty" direction="output" scope="external" />
  </global>

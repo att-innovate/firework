@@ -12,7 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
-# ACDS 16.0 211 linux 2017.03.02.18:56:09
+# ACDS 16.0 211 linux 2017.06.21.11:29:04
 
 # ----------------------------------------
 # vcs - auto-generated simulation script
@@ -94,7 +94,7 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Altera IP within the design.
 # ----------------------------------------
-# ACDS 16.0 211 linux 2017.03.02.18:56:09
+# ACDS 16.0 211 linux 2017.06.21.11:29:04
 # ----------------------------------------
 # initialize variables
 TOP_LEVEL_NAME="out_fifo"
@@ -143,7 +143,7 @@ vcs -lca -timescale=1ps/1ps -sverilog +verilog2001ext+.v -ntb_opts dtm $ELAB_OPT
   -v $QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_hssi_atoms.v \
   -v $QUARTUS_INSTALL_DIR/eda/sim_lib/synopsys/twentynm_hip_atoms_ncrypt.v \
   -v $QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_hip_atoms.v \
-  $QSYS_SIMDIR/../fifo_160/sim/out_fifo_fifo_160_otpqnty.v \
+  $QSYS_SIMDIR/../fifo_160/sim/out_fifo_fifo_160_r4prduy.v \
   $QSYS_SIMDIR/out_fifo.v \
   -top $TOP_LEVEL_NAME
 # ----------------------------------------

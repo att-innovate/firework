@@ -10,12 +10,12 @@ module out_fifo (
 		input  wire        clock, //            .clk
 		input  wire        sclr,  //            .sclr
 		output wire [7:0]  q,     // fifo_output.dataout
-		output wire [12:0] usedw, //            .usedw
+		output wire [16:0] usedw, //            .usedw
 		output wire        full,  //            .full
 		output wire        empty  //            .empty
 	);
 
-	out_fifo_fifo_160_otpqnty fifo_0 (
+	out_fifo_fifo_160_r4prduy fifo_0 (
 		.data  (data),  //  fifo_input.datain
 		.wrreq (wrreq), //            .wrreq
 		.rdreq (rdreq), //            .rdreq

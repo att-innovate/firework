@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2017.05.03.17:19:40"
+ date="2017.06.21.11:37:42"
  outputDirectory="/home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_wstrb/">
  <perimeter>
   <parameter
@@ -49,7 +49,7 @@
   </interface>
  </perimeter>
  <entity kind="raw_data_in_wstrb" version="1.0" name="raw_data_in_wstrb">
-  <parameter name="AUTO_GENERATION_ID" value="1493857179" />
+  <parameter name="AUTO_GENERATION_ID" value="1498070261" />
   <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SG" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Arria 10" />
   <parameter name="AUTO_UNIQUE_ID" value="" />

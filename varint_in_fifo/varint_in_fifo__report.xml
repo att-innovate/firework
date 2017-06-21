@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2017.05.03.17:19:03"
+ date="2017.06.21.11:37:06"
  outputDirectory="/home/mladmon/workspace/firework/protobuf-serializer/varint_in_fifo/">
  <perimeter>
   <parameter
@@ -51,7 +51,7 @@
   </interface>
  </perimeter>
  <entity kind="varint_in_fifo" version="1.0" name="varint_in_fifo">
-  <parameter name="AUTO_GENERATION_ID" value="1493857143" />
+  <parameter name="AUTO_GENERATION_ID" value="1498070225" />
   <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SG" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Arria 10" />
   <parameter name="AUTO_UNIQUE_ID" value="" />

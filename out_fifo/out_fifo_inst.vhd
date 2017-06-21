@@ -6,7 +6,7 @@
 			clock : in  std_logic                     := 'X';             -- clk
 			sclr  : in  std_logic                     := 'X';             -- sclr
 			q     : out std_logic_vector(7 downto 0);                     -- dataout
-			usedw : out std_logic_vector(12 downto 0);                    -- usedw
+			usedw : out std_logic_vector(16 downto 0);                    -- usedw
 			full  : out std_logic;                                        -- full
 			empty : out std_logic                                         -- empty
 		);

@@ -21,7 +21,7 @@ Info: out_fifo: Running transform merlin_avalon_transform took 0.035s
 Info: out_fifo: "Naming system components in system: out_fifo"
 Info: out_fifo: "Processing generation queue"
 Info: out_fifo: "Generating: out_fifo"
-Info: out_fifo: "Generating: out_fifo_fifo_160_sbgry4a"
+Info: out_fifo: "Generating: out_fifo_fifo_160_otpqnty"
 Info: out_fifo: Done "out_fifo" with 2 modules, 2 files
 Info: qsys-generate succeeded.
 Info: Finished: Create simulation model
@@ -61,7 +61,7 @@ Info: qsys-generate succeeded.
 Info: Finished: Create block symbol file (.bsf)
 Info: 
 Info: Starting: Create HDL design files for synthesis
-Info: qsys-generate /home/mladmon/workspace/firework/varint_encoder/out_fifo.qsys --synthesis=VERILOG --output-directory=/home/mladmon/workspace/firework/varint_encoder/out_fifo --family="Arria 10" --part=10AS066N3F40E2SGE2
+Info: qsys-generate /home/mladmon/workspace/firework/varint_encoder/out_fifo.qsys --synthesis=VERILOG --greybox --output-directory=/home/mladmon/workspace/firework/varint_encoder/out_fifo --family="Arria 10" --part=10AS066N3F40E2SGE2
 Progress: Loading varint_encoder/out_fifo.qsys
 Progress: Reading input file
 Progress: Adding fifo_0 [fifo 16.0]
@@ -77,13 +77,15 @@ Info: out_fifo: "Transforming system: out_fifo"
 Info: out_fifo: Running transform generation_view_transform
 Info: out_fifo: Running transform generation_view_transform took 0.000s
 Info: fifo_0: Running transform generation_view_transform
-Info: fifo_0: Running transform generation_view_transform took 0.001s
+Info: fifo_0: Running transform generation_view_transform took 0.000s
 Info: out_fifo: Running transform merlin_avalon_transform
 Info: out_fifo: Running transform merlin_avalon_transform took 0.008s
 Info: out_fifo: "Naming system components in system: out_fifo"
 Info: out_fifo: "Processing generation queue"
 Info: out_fifo: "Generating: out_fifo"
-Info: out_fifo: "Generating: out_fifo_fifo_160_sbgry4a"
+Info: out_fifo: "Generating: out_fifo_fifo_160_otpqnty"
 Info: out_fifo: Done "out_fifo" with 2 modules, 3 files
+Info: Generating third-party timing and resource estimation model ...
+Info: Done generating third-party timing and resource estimation model.
 Info: qsys-generate succeeded.
 Info: Finished: Create HDL design files for synthesis

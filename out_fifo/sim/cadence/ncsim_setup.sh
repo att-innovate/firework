@@ -12,7 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
-# ACDS 16.0 211 linux 2017.03.02.18:56:09
+# ACDS 16.0 211 linux 2017.06.21.11:29:04
 
 # ----------------------------------------
 # ncsim - auto-generated simulation script
@@ -101,7 +101,7 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Altera IP within the design.
 # ----------------------------------------
-# ACDS 16.0 211 linux 2017.03.02.18:56:09
+# ACDS 16.0 211 linux 2017.06.21.11:29:04
 # ----------------------------------------
 # initialize variables
 TOP_LEVEL_NAME="out_fifo"
@@ -173,7 +173,7 @@ fi
 # ----------------------------------------
 # compile design files in correct order
 if [ $SKIP_COM -eq 0 ]; then
-  ncvlog $USER_DEFINED_COMPILE_OPTIONS           "$QSYS_SIMDIR/../fifo_160/sim/out_fifo_fifo_160_otpqnty.v" -work out_fifo_fifo_160 -cdslib ./cds_libs/out_fifo_fifo_160.cds.lib
+  ncvlog $USER_DEFINED_COMPILE_OPTIONS           "$QSYS_SIMDIR/../fifo_160/sim/out_fifo_fifo_160_r4prduy.v" -work out_fifo_fifo_160 -cdslib ./cds_libs/out_fifo_fifo_160.cds.lib
   ncvlog -compcnfg $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/out_fifo.v"                                                                                                      
 fi
 

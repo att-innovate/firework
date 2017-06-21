@@ -1,5 +1,5 @@
 Analysis & Synthesis report for varint_encoder
-Wed May 31 10:26:46 2017
+Wed Jun 21 11:38:26 2017
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -35,7 +35,7 @@ Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
  27. Source assignments for varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram
  28. Source assignments for raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|altsyncram_6gn1:FIFOram
  29. Source assignments for raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram
- 30. Source assignments for out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|altsyncram_agn1:FIFOram
+ 30. Source assignments for out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated|a_dpfifo_g4b1:dpfifo|altsyncram_6mn1:FIFOram
  31. Parameter Settings for User Entity Instance: varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component
  32. Parameter Settings for User Entity Instance: varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component
  33. Parameter Settings for User Entity Instance: varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component
@@ -53,7 +53,7 @@ Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
  45. Parameter Settings for User Entity Instance: varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component
  46. Parameter Settings for User Entity Instance: raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component
  47. Parameter Settings for User Entity Instance: raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component
- 48. Parameter Settings for User Entity Instance: out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component
+ 48. Parameter Settings for User Entity Instance: out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component
  49. scfifo Parameter Settings by Entity Instance
  50. Port Connectivity Checks: "out_fifo:out4"
  51. Post-Synthesis Netlist Statistics for Top Partition
@@ -85,16 +85,16 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Wed May 31 10:26:46 2017           ;
+; Analysis & Synthesis Status ; Successful - Wed Jun 21 11:38:26 2017           ;
 ; Quartus Prime Version       ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
 ; Revision Name               ; varint_encoder                                  ;
 ; Top-level Entity Name       ; protobuf_serializer                             ;
 ; Family                      ; Arria 10                                        ;
 ; Logic utilization (in ALMs) ; N/A                                             ;
-; Total registers             ; 753                                             ;
+; Total registers             ; 775                                             ;
 ; Total pins                  ; 155                                             ;
 ; Total virtual pins          ; 0                                               ;
-; Total block memory bits     ; 304,128                                         ;
+; Total block memory bits     ; 1,287,168                                       ;
 ; Total DSP Blocks            ; 0                                               ;
 ; Total HSSI RX channels      ; 0                                               ;
 ; Total HSSI TX channels      ; 0                                               ;
@@ -202,19 +202,19 @@ agreement for further details.
 ; Number detected on machine ; 32          ;
 ; Maximum allowed            ; 16          ;
 ;                            ;             ;
-; Average used               ; 1.02        ;
+; Average used               ; 1.00        ;
 ; Maximum used               ; 16          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.1%      ;
-;     Processor 3            ;   0.1%      ;
-;     Processor 4            ;   0.1%      ;
-;     Processor 5            ;   0.1%      ;
-;     Processor 6            ;   0.1%      ;
-;     Processor 7            ;   0.1%      ;
-;     Processor 8            ;   0.1%      ;
-;     Processors 9-16        ;   0.1%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processor 3            ;   0.0%      ;
+;     Processor 4            ;   0.0%      ;
+;     Processor 5            ;   0.0%      ;
+;     Processor 6            ;   0.0%      ;
+;     Processor 7            ;   0.0%      ;
+;     Processor 8            ;   0.0%      ;
+;     Processors 9-16        ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -256,7 +256,7 @@ agreement for further details.
 ; raw_data_out_index/fifo_160/synth/raw_data_out_index_fifo_160_tgkntjy.v ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/protobuf-serializer/raw_data_out_index/fifo_160/synth/raw_data_out_index_fifo_160_tgkntjy.v ; raw_data_out_index_fifo_160 ;
 ; out_fifo/synth/out_fifo.v                                               ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/protobuf-serializer/out_fifo/synth/out_fifo.v                                               ; out_fifo                    ;
 ; out_fifo/synth/out_fifo_cfg.v                                           ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/protobuf-serializer/out_fifo/synth/out_fifo_cfg.v                                           ; out_fifo                    ;
-; out_fifo/fifo_160/synth/out_fifo_fifo_160_otpqnty.v                     ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/protobuf-serializer/out_fifo/fifo_160/synth/out_fifo_fifo_160_otpqnty.v                     ; out_fifo_fifo_160           ;
+; out_fifo/fifo_160/synth/out_fifo_fifo_160_r4prduy.v                     ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/protobuf-serializer/out_fifo/fifo_160/synth/out_fifo_fifo_160_r4prduy.v                     ; out_fifo_fifo_160           ;
 ; fsm_0.v                                                                 ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/protobuf-serializer/fsm_0.v                                                                 ;                             ;
 ; fsm_1.v                                                                 ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/protobuf-serializer/fsm_1.v                                                                 ;                             ;
 ; fsm_2.v                                                                 ; yes             ; User Verilog HDL File        ; /home/mladmon/workspace/firework/protobuf-serializer/fsm_2.v                                                                 ;                             ;
@@ -297,12 +297,15 @@ agreement for further details.
 ; db/scfifo_sn91.tdf                                                      ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/protobuf-serializer/db/scfifo_sn91.tdf                                                      ;                             ;
 ; db/a_dpfifo_ff91.tdf                                                    ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_ff91.tdf                                                    ;                             ;
 ; db/altsyncram_oin1.tdf                                                  ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_oin1.tdf                                                  ;                             ;
-; db/scfifo_v9b1.tdf                                                      ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/protobuf-serializer/db/scfifo_v9b1.tdf                                                      ;                             ;
-; db/a_dpfifo_i1b1.tdf                                                    ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_i1b1.tdf                                                    ;                             ;
-; db/altsyncram_agn1.tdf                                                  ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_agn1.tdf                                                  ;                             ;
-; db/cmpr_0f8.tdf                                                         ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/protobuf-serializer/db/cmpr_0f8.tdf                                                         ;                             ;
-; db/cntr_os6.tdf                                                         ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/protobuf-serializer/db/cntr_os6.tdf                                                         ;                             ;
-; db/cntr_csa.tdf                                                         ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/protobuf-serializer/db/cntr_csa.tdf                                                         ;                             ;
+; db/scfifo_tcb1.tdf                                                      ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/protobuf-serializer/db/scfifo_tcb1.tdf                                                      ;                             ;
+; db/a_dpfifo_g4b1.tdf                                                    ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_g4b1.tdf                                                    ;                             ;
+; db/altsyncram_6mn1.tdf                                                  ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_6mn1.tdf                                                  ;                             ;
+; db/decode_hp6.tdf                                                       ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/protobuf-serializer/db/decode_hp6.tdf                                                       ;                             ;
+; db/mux_1k7.tdf                                                          ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/protobuf-serializer/db/mux_1k7.tdf                                                          ;                             ;
+; db/cmpr_4f8.tdf                                                         ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/protobuf-serializer/db/cmpr_4f8.tdf                                                         ;                             ;
+; db/cntr_fsa.tdf                                                         ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/protobuf-serializer/db/cntr_fsa.tdf                                                         ;                             ;
+; db/cntr_ss6.tdf                                                         ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/protobuf-serializer/db/cntr_ss6.tdf                                                         ;                             ;
+; db/cntr_gsa.tdf                                                         ; yes             ; Auto-Generated Megafunction  ; /home/mladmon/workspace/firework/protobuf-serializer/db/cntr_gsa.tdf                                                         ;                             ;
 +-------------------------------------------------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------------------------------------------------+-----------------------------+
 
 
@@ -311,29 +314,29 @@ agreement for further details.
 +---------------------------------------------+-----------------+
 ; Resource                                    ; Usage           ;
 +---------------------------------------------+-----------------+
-; Estimate of Logic utilization (ALMs needed) ; 641             ;
+; Estimate of Logic utilization (ALMs needed) ; 676             ;
 ;                                             ;                 ;
-; Combinational ALUT usage for logic          ; 1103            ;
+; Combinational ALUT usage for logic          ; 1157            ;
 ;     -- 7 input functions                    ; 0               ;
-;     -- 6 input functions                    ; 169             ;
-;     -- 5 input functions                    ; 168             ;
-;     -- 4 input functions                    ; 151             ;
-;     -- <=3 input functions                  ; 615             ;
+;     -- 6 input functions                    ; 185             ;
+;     -- 5 input functions                    ; 174             ;
+;     -- 4 input functions                    ; 163             ;
+;     -- <=3 input functions                  ; 635             ;
 ;                                             ;                 ;
-; Dedicated logic registers                   ; 753             ;
+; Dedicated logic registers                   ; 775             ;
 ;                                             ;                 ;
 ; I/O pins                                    ; 155             ;
 ; Total MLAB memory bits                      ; 0               ;
-; Total block memory bits                     ; 304128          ;
+; Total block memory bits                     ; 1287168         ;
 ;                                             ;                 ;
 ; Total DSP Blocks                            ; 0               ;
 ;     -- Total Fixed Point DSP Blocks         ; 0               ;
 ;     -- Total Floating Point DSP Blocks      ; 0               ;
 ;                                             ;                 ;
 ; Maximum fan-out node                        ; clock_clk~input ;
-; Maximum fan-out                             ; 886             ;
-; Total fan-out                               ; 10014           ;
-; Average fan-out                             ; 4.36            ;
+; Maximum fan-out                             ; 964             ;
+; Total fan-out                               ; 12119           ;
+; Average fan-out                             ; 4.99            ;
 +---------------------------------------------+-----------------+
 
 
@@ -342,7 +345,7 @@ agreement for further details.
 +----------------------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------+-----------------------------+
 ; Compilation Hierarchy Node                         ; LC Combinationals ; LC Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                     ; Entity Name                         ; Library Name                ;
 +----------------------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------+-----------------------------+
-; |protobuf_serializer                               ; 1103 (18)         ; 753 (0)      ; 304128            ; 0          ; 155  ; 0            ; |protobuf_serializer                                                                                                                                                                    ; protobuf_serializer                 ; work                        ;
+; |protobuf_serializer                               ; 1157 (18)         ; 775 (0)      ; 1287168           ; 0          ; 155  ; 0            ; |protobuf_serializer                                                                                                                                                                    ; protobuf_serializer                 ; work                        ;
 ;    |fsm_0:f0|                                      ; 55 (55)           ; 72 (72)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_0:f0                                                                                                                                                           ; fsm_0                               ; work                        ;
 ;    |fsm_1:f1|                                      ; 9 (9)             ; 9 (9)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_1:f1                                                                                                                                                           ; fsm_1                               ; work                        ;
 ;    |fsm_2:f2|                                      ; 108 (108)         ; 105 (105)    ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_2:f2                                                                                                                                                           ; fsm_2                               ; work                        ;
@@ -350,15 +353,17 @@ agreement for further details.
 ;    |fsm_3a:f3a|                                    ; 2 (2)             ; 2 (2)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_3a:f3a                                                                                                                                                         ; fsm_3a                              ; work                        ;
 ;    |fsm_3b:f3b|                                    ; 2 (2)             ; 2 (2)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_3b:f3b                                                                                                                                                         ; fsm_3b                              ; work                        ;
 ;    |fsm_4:f4|                                      ; 45 (45)           ; 18 (18)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|fsm_4:f4                                                                                                                                                           ; fsm_4                               ; work                        ;
-;    |out_fifo:out4|                                 ; 83 (0)            ; 56 (0)       ; 65536             ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4                                                                                                                                                      ; out_fifo                            ; out_fifo                    ;
-;       |out_fifo_fifo_160_otpqnty:fifo_0|           ; 83 (0)            ; 56 (0)       ; 65536             ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0                                                                                                                     ; out_fifo_fifo_160_otpqnty           ; out_fifo_fifo_160           ;
-;          |scfifo:scfifo_component|                 ; 83 (0)            ; 56 (0)       ; 65536             ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component                                                                                             ; scfifo                              ; work                        ;
-;             |scfifo_v9b1:auto_generated|           ; 83 (0)            ; 56 (0)       ; 65536             ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated                                                                  ; scfifo_v9b1                         ; work                        ;
-;                |a_dpfifo_i1b1:dpfifo|              ; 83 (42)           ; 56 (18)      ; 65536             ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo                                             ; a_dpfifo_i1b1                       ; work                        ;
-;                   |altsyncram_agn1:FIFOram|        ; 0 (0)             ; 0 (0)        ; 65536             ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|altsyncram_agn1:FIFOram                     ; altsyncram_agn1                     ; work                        ;
-;                   |cntr_bsa:rd_ptr_msb|            ; 13 (13)           ; 12 (12)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cntr_bsa:rd_ptr_msb                         ; cntr_bsa                            ; work                        ;
-;                   |cntr_csa:wr_ptr|                ; 14 (14)           ; 13 (13)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cntr_csa:wr_ptr                             ; cntr_csa                            ; work                        ;
-;                   |cntr_os6:usedw_counter|         ; 14 (14)           ; 13 (13)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cntr_os6:usedw_counter                      ; cntr_os6                            ; work                        ;
+;    |out_fifo:out4|                                 ; 137 (0)           ; 78 (0)       ; 1048576           ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4                                                                                                                                                      ; out_fifo                            ; out_fifo                    ;
+;       |out_fifo_fifo_160_r4prduy:fifo_0|           ; 137 (0)           ; 78 (0)       ; 1048576           ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0                                                                                                                     ; out_fifo_fifo_160_r4prduy           ; out_fifo_fifo_160           ;
+;          |scfifo:scfifo_component|                 ; 137 (0)           ; 78 (0)       ; 1048576           ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component                                                                                             ; scfifo                              ; work                        ;
+;             |scfifo_tcb1:auto_generated|           ; 137 (0)           ; 78 (0)       ; 1048576           ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated                                                                  ; scfifo_tcb1                         ; work                        ;
+;                |a_dpfifo_g4b1:dpfifo|              ; 137 (52)          ; 78 (22)      ; 1048576           ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated|a_dpfifo_g4b1:dpfifo                                             ; a_dpfifo_g4b1                       ; work                        ;
+;                   |altsyncram_6mn1:FIFOram|        ; 32 (0)            ; 6 (6)        ; 1048576           ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated|a_dpfifo_g4b1:dpfifo|altsyncram_6mn1:FIFOram                     ; altsyncram_6mn1                     ; work                        ;
+;                      |decode_hp6:decode2|          ; 8 (8)             ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated|a_dpfifo_g4b1:dpfifo|altsyncram_6mn1:FIFOram|decode_hp6:decode2  ; decode_hp6                          ; work                        ;
+;                      |mux_1k7:mux3|                ; 24 (24)           ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated|a_dpfifo_g4b1:dpfifo|altsyncram_6mn1:FIFOram|mux_1k7:mux3        ; mux_1k7                             ; work                        ;
+;                   |cntr_fsa:rd_ptr_msb|            ; 17 (17)           ; 16 (16)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated|a_dpfifo_g4b1:dpfifo|cntr_fsa:rd_ptr_msb                         ; cntr_fsa                            ; work                        ;
+;                   |cntr_gsa:wr_ptr|                ; 18 (18)           ; 17 (17)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated|a_dpfifo_g4b1:dpfifo|cntr_gsa:wr_ptr                             ; cntr_gsa                            ; work                        ;
+;                   |cntr_ss6:usedw_counter|         ; 18 (18)           ; 17 (17)      ; 0                 ; 0          ; 0    ; 0            ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated|a_dpfifo_g4b1:dpfifo|cntr_ss6:usedw_counter                      ; cntr_ss6                            ; work                        ;
 ;    |raw_data_in_fifo:in3|                          ; 69 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_fifo:in3                                                                                                                                               ; raw_data_in_fifo                    ; raw_data_in_fifo            ;
 ;       |raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|   ; 69 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0                                                                                                      ; raw_data_in_fifo_fifo_160_v2ho2aa   ; raw_data_in_fifo_fifo_160   ;
 ;          |scfifo:scfifo_component|                 ; 69 (0)            ; 44 (0)       ; 32768             ; 0          ; 0    ; 0            ; |protobuf_serializer|raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component                                                                              ; scfifo                              ; work                        ;
@@ -453,42 +458,42 @@ agreement for further details.
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis RAM Summary                                                                                                                                                                                                                                                   ;
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
-; Name                                                                                                                                                                          ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size  ; MIF  ;
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
-; out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|altsyncram_agn1:FIFOram|ALTSYNCRAM                     ; AUTO ; Simple Dual Port ; 8192         ; 8            ; 8192         ; 8            ; 65536 ; None ;
-; raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|altsyncram_4in1:FIFOram|ALTSYNCRAM      ; AUTO ; Simple Dual Port ; 1024         ; 32           ; 1024         ; 32           ; 32768 ; None ;
-; raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram|ALTSYNCRAM    ; AUTO ; Simple Dual Port ; 1024         ; 10           ; 1024         ; 10           ; 10240 ; None ;
-; raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram|ALTSYNCRAM    ; AUTO ; Simple Dual Port ; 1024         ; 4            ; 1024         ; 4            ; 4096  ; None ;
-; raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|altsyncram_6gn1:FIFOram|ALTSYNCRAM   ; AUTO ; Simple Dual Port ; 4096         ; 8            ; 4096         ; 8            ; 32768 ; None ;
-; raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 4096         ; 10           ; 4096         ; 10           ; 40960 ; None ;
-; varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|altsyncram_4in1:FIFOram|ALTSYNCRAM          ; AUTO ; Simple Dual Port ; 1024         ; 32           ; 1024         ; 32           ; 32768 ; None ;
-; varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram|ALTSYNCRAM        ; AUTO ; Simple Dual Port ; 1024         ; 10           ; 1024         ; 10           ; 10240 ; None ;
-; varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component|scfifo_ul91:auto_generated|a_dpfifo_hd91:dpfifo|altsyncram_sen1:FIFOram|ALTSYNCRAM          ; AUTO ; Simple Dual Port ; 1024         ; 1            ; 1024         ; 1            ; 1024  ; None ;
-; varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|altsyncram_6gn1:FIFOram|ALTSYNCRAM       ; AUTO ; Simple Dual Port ; 4096         ; 8            ; 4096         ; 8            ; 32768 ; None ;
-; varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram|ALTSYNCRAM     ; AUTO ; Simple Dual Port ; 4096         ; 10           ; 4096         ; 10           ; 40960 ; None ;
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                                                                                                     ;
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+---------+------+
+; Name                                                                                                                                                                          ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size    ; MIF  ;
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+---------+------+
+; out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated|a_dpfifo_g4b1:dpfifo|altsyncram_6mn1:FIFOram|ALTSYNCRAM                     ; AUTO ; Simple Dual Port ; 131072       ; 8            ; 131072       ; 8            ; 1048576 ; None ;
+; raw_data_in_fifo:in3|raw_data_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|altsyncram_4in1:FIFOram|ALTSYNCRAM      ; AUTO ; Simple Dual Port ; 1024         ; 32           ; 1024         ; 32           ; 32768   ; None ;
+; raw_data_in_index:in4|raw_data_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram|ALTSYNCRAM    ; AUTO ; Simple Dual Port ; 1024         ; 10           ; 1024         ; 10           ; 10240   ; None ;
+; raw_data_in_wstrb:in5|raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram|ALTSYNCRAM    ; AUTO ; Simple Dual Port ; 1024         ; 4            ; 1024         ; 4            ; 4096    ; None ;
+; raw_data_out_fifo:out2|raw_data_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|altsyncram_6gn1:FIFOram|ALTSYNCRAM   ; AUTO ; Simple Dual Port ; 4096         ; 8            ; 4096         ; 8            ; 32768   ; None ;
+; raw_data_out_index:out3|raw_data_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 4096         ; 10           ; 4096         ; 10           ; 40960   ; None ;
+; varint_in_fifo:in0|varint_in_fifo_fifo_160_v2ho2aa:fifo_0|scfifo:scfifo_component|scfifo_koa1:auto_generated|a_dpfifo_7ga1:dpfifo|altsyncram_4in1:FIFOram|ALTSYNCRAM          ; AUTO ; Simple Dual Port ; 1024         ; 32           ; 1024         ; 32           ; 32768   ; None ;
+; varint_in_index:in1|varint_in_index_fifo_160_kjjiney:fifo_0|scfifo:scfifo_component|scfifo_en91:auto_generated|a_dpfifo_1f91:dpfifo|altsyncram_shn1:FIFOram|ALTSYNCRAM        ; AUTO ; Simple Dual Port ; 1024         ; 10           ; 1024         ; 10           ; 10240   ; None ;
+; varint_in_size:in2|varint_in_size_fifo_160_sjmeklq:fifo_0|scfifo:scfifo_component|scfifo_ul91:auto_generated|a_dpfifo_hd91:dpfifo|altsyncram_sen1:FIFOram|ALTSYNCRAM          ; AUTO ; Simple Dual Port ; 1024         ; 1            ; 1024         ; 1            ; 1024    ; None ;
+; varint_out_fifo:out0|varint_out_fifo_fifo_160_q2auapq:fifo_0|scfifo:scfifo_component|scfifo_lna1:auto_generated|a_dpfifo_8fa1:dpfifo|altsyncram_6gn1:FIFOram|ALTSYNCRAM       ; AUTO ; Simple Dual Port ; 4096         ; 8            ; 4096         ; 8            ; 32768   ; None ;
+; varint_out_index:out1|varint_out_index_fifo_160_tgkntjy:fifo_0|scfifo:scfifo_component|scfifo_sn91:auto_generated|a_dpfifo_ff91:dpfifo|altsyncram_oin1:FIFOram|ALTSYNCRAM     ; AUTO ; Simple Dual Port ; 4096         ; 10           ; 4096         ; 10           ; 40960   ; None ;
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+---------+------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis IP Cores Summary                                                                                                  ;
-+--------+--------------+---------+--------------+--------------+----------------------------------------------+-------------------------+
-; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance                              ; IP Include File         ;
-+--------+--------------+---------+--------------+--------------+----------------------------------------------+-------------------------+
-; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|varint_in_fifo:in0      ; varint_in_fifo.qsys     ;
-; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|varint_in_index:in1     ; varint_in_index.qsys    ;
-; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|varint_in_size:in2      ; varint_in_size.qsys     ;
-; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|raw_data_in_fifo:in3    ; raw_data_in_fifo.qsys   ;
-; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|raw_data_in_index:in4   ; raw_data_in_index.qsys  ;
-; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|raw_data_in_wstrb:in5   ; raw_data_in_wstrb.qsys  ;
-; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|varint_out_fifo:out0    ; varint_out_fifo.qsys    ;
-; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|varint_out_index:out1   ; varint_out_index.qsys   ;
-; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|raw_data_out_fifo:out2  ; raw_data_out_fifo.qsys  ;
-; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|raw_data_out_index:out3 ; raw_data_out_index.qsys ;
-; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|out_fifo:out4           ; out_fifo.qsys           ;
-+--------+--------------+---------+--------------+--------------+----------------------------------------------+-------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                                                                                                       ;
++--------+--------------+---------+--------------+--------------+----------------------------------------------+------------------------------------------------------------------------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance                              ; IP Include File                                                              ;
++--------+--------------+---------+--------------+--------------+----------------------------------------------+------------------------------------------------------------------------------+
+; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|varint_in_fifo:in0      ; /home/mladmon/workspace/firework/protobuf-serializer/varint_in_fifo.qsys     ;
+; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|varint_in_index:in1     ; /home/mladmon/workspace/firework/protobuf-serializer/varint_in_index.qsys    ;
+; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|varint_in_size:in2      ; /home/mladmon/workspace/firework/protobuf-serializer/varint_in_size.qsys     ;
+; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|raw_data_in_fifo:in3    ; /home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_fifo.qsys   ;
+; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|raw_data_in_index:in4   ; /home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_index.qsys  ;
+; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|raw_data_in_wstrb:in5   ; /home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_wstrb.qsys  ;
+; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|varint_out_fifo:out0    ; /home/mladmon/workspace/firework/protobuf-serializer/varint_out_fifo.qsys    ;
+; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|varint_out_index:out1   ; /home/mladmon/workspace/firework/protobuf-serializer/varint_out_index.qsys   ;
+; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|raw_data_out_fifo:out2  ; /home/mladmon/workspace/firework/protobuf-serializer/raw_data_out_fifo.qsys  ;
+; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|raw_data_out_index:out3 ; /home/mladmon/workspace/firework/protobuf-serializer/raw_data_out_index.qsys ;
+; N/A    ; fifo         ; 16.0    ; N/A          ; N/A          ; |protobuf_serializer|out_fifo:out4           ; /home/mladmon/workspace/firework/protobuf-serializer/out_fifo.qsys           ;
++--------+--------------+---------+--------------+--------------+----------------------------------------------+------------------------------------------------------------------------------+
 
 
 Encoding Type:  One-Hot
@@ -624,38 +629,39 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 753   ;
-; Number of registers using Synchronous Clear  ; 568   ;
+; Total registers                              ; 775   ;
+; Number of registers using Synchronous Clear  ; 580   ;
 ; Number of registers using Synchronous Load   ; 9     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 544   ;
+; Number of registers using Clock Enable       ; 559   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                      ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |protobuf_serializer|fsm_4:f4|arid[3]           ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |protobuf_serializer|fsm_3:f3|out_index[9]      ;
-; 3:1                ; 57 bits   ; 114 LEs       ; 0 LEs                ; 114 LEs                ; Yes        ; |protobuf_serializer|fsm_2:f2|varint_data[26]   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |protobuf_serializer|fsm_2:f2|lsb[15]           ;
-; 3:1                ; 12 bits   ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |protobuf_serializer|fsm_0:f0|awaddr[14]        ;
-; 3:1                ; 36 bits   ; 72 LEs        ; 0 LEs                ; 72 LEs                 ; Yes        ; |protobuf_serializer|fsm_0:f0|wdata[11]         ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |protobuf_serializer|fsm_1:f1|index[0]          ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |protobuf_serializer|fsm_4:f4|arlen[7]          ;
-; 4:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |protobuf_serializer|fsm_0:f0|index[7]          ;
-; 5:1                ; 7 bits    ; 21 LEs        ; 14 LEs               ; 7 LEs                  ; Yes        ; |protobuf_serializer|fsm_2:f2|varint_data[0]    ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_2:f2|next_state        ;
-; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_2:f2|varint_in_mux[59] ;
-; 3:1                ; 25 bits   ; 50 LEs        ; 50 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_2:f2|varint_in_mux[56] ;
-; 3:1                ; 25 bits   ; 50 LEs        ; 50 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_2:f2|varint_in_mux[27] ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|raw_data_mux[7]            ;
-; 19:1               ; 2 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_4:f4|state             ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                                                                                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                                                                                            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |protobuf_serializer|fsm_4:f4|arid[3]                                                                                                                                                                 ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |protobuf_serializer|fsm_3:f3|out_index[4]                                                                                                                                                            ;
+; 3:1                ; 57 bits   ; 114 LEs       ; 0 LEs                ; 114 LEs                ; Yes        ; |protobuf_serializer|fsm_2:f2|varint_data[16]                                                                                                                                                         ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |protobuf_serializer|fsm_2:f2|lsb[15]                                                                                                                                                                 ;
+; 3:1                ; 12 bits   ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |protobuf_serializer|fsm_0:f0|awaddr[14]                                                                                                                                                              ;
+; 3:1                ; 36 bits   ; 72 LEs        ; 0 LEs                ; 72 LEs                 ; Yes        ; |protobuf_serializer|fsm_0:f0|wdata[10]                                                                                                                                                               ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |protobuf_serializer|fsm_1:f1|index[1]                                                                                                                                                                ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |protobuf_serializer|fsm_4:f4|arlen[7]                                                                                                                                                                ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |protobuf_serializer|fsm_0:f0|index[1]                                                                                                                                                                ;
+; 5:1                ; 7 bits    ; 21 LEs        ; 14 LEs               ; 7 LEs                  ; Yes        ; |protobuf_serializer|fsm_2:f2|varint_data[1]                                                                                                                                                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_2:f2|next_state                                                                                                                                                              ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_2:f2|varint_in_mux[63]                                                                                                                                                       ;
+; 3:1                ; 25 bits   ; 50 LEs        ; 50 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_2:f2|varint_in_mux[38]                                                                                                                                                       ;
+; 3:1                ; 25 bits   ; 50 LEs        ; 50 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_2:f2|varint_in_mux[28]                                                                                                                                                       ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|raw_data_mux[7]                                                                                                                                                                  ;
+; 8:1                ; 8 bits    ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated|a_dpfifo_g4b1:dpfifo|altsyncram_6mn1:FIFOram|mux_1k7:mux3|l3_w3_n0_mux_dataout ;
+; 19:1               ; 2 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |protobuf_serializer|fsm_4:f4|state                                                                                                                                                                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -749,7 +755,7 @@ Encoding Type:  One-Hot
 
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Source assignments for out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|altsyncram_agn1:FIFOram ;
+; Source assignments for out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated|a_dpfifo_g4b1:dpfifo|altsyncram_6mn1:FIFOram ;
 +---------------------------------+--------------------+------+---------------------------------------------------------------------------------------------------------+
 ; Assignment                      ; Value              ; From ; To                                                                                                      ;
 +---------------------------------+--------------------+------+---------------------------------------------------------------------------------------------------------+
@@ -1157,7 +1163,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +---------------------------------------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component ;
+; Parameter Settings for User Entity Instance: out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component ;
 +-------------------------+-------------+-----------------------------------------------------------------------------+
 ; Parameter Name          ; Value       ; Type                                                                        ;
 +-------------------------+-------------+-----------------------------------------------------------------------------+
@@ -1166,8 +1172,8 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; AUTO_CASCADE_CHAINS     ; ON          ; AUTO_CASCADE                                                                ;
 ; IGNORE_CASCADE_BUFFERS  ; OFF         ; IGNORE_CASCADE                                                              ;
 ; lpm_width               ; 8           ; Signed Integer                                                              ;
-; LPM_NUMWORDS            ; 8192        ; Signed Integer                                                              ;
-; LPM_WIDTHU              ; 13          ; Signed Integer                                                              ;
+; LPM_NUMWORDS            ; 131072      ; Signed Integer                                                              ;
+; LPM_WIDTHU              ; 17          ; Signed Integer                                                              ;
 ; LPM_SHOWAHEAD           ; OFF         ; Untyped                                                                     ;
 ; UNDERFLOW_CHECKING      ; ON          ; Untyped                                                                     ;
 ; OVERFLOW_CHECKING       ; ON          ; Untyped                                                                     ;
@@ -1180,7 +1186,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; MAXIMIZE_SPEED          ; 5           ; Untyped                                                                     ;
 ; DEVICE_FAMILY           ; Arria 10    ; Untyped                                                                     ;
 ; OPTIMIZE_FOR_SPEED      ; 5           ; Untyped                                                                     ;
-; CBXI_PARAMETER          ; scfifo_v9b1 ; Untyped                                                                     ;
+; CBXI_PARAMETER          ; scfifo_tcb1 ; Untyped                                                                     ;
 +-------------------------+-------------+-----------------------------------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -1251,10 +1257,10 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     -- LPM_NUMWORDS        ; 4096                                                                                       ;
 ;     -- LPM_SHOWAHEAD       ; OFF                                                                                        ;
 ;     -- USE_EAB             ; ON                                                                                         ;
-; Entity Instance            ; out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component                     ;
+; Entity Instance            ; out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component                     ;
 ;     -- FIFO Type           ; Single Clock                                                                               ;
 ;     -- lpm_width           ; 8                                                                                          ;
-;     -- LPM_NUMWORDS        ; 8192                                                                                       ;
+;     -- LPM_NUMWORDS        ; 131072                                                                                     ;
 ;     -- LPM_SHOWAHEAD       ; OFF                                                                                        ;
 ;     -- USE_EAB             ; ON                                                                                         ;
 +----------------------------+--------------------------------------------------------------------------------------------+
@@ -1275,29 +1281,29 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 155                         ;
-; twentynm_ff           ; 753                         ;
-;     ENA               ; 26                          ;
-;     ENA SCLR          ; 509                         ;
+; twentynm_ff           ; 775                         ;
+;     ENA               ; 29                          ;
+;     ENA SCLR          ; 521                         ;
 ;     ENA SCLR SLD      ; 8                           ;
 ;     ENA SLD           ; 1                           ;
 ;     SCLR              ; 51                          ;
-;     plain             ; 158                         ;
-; twentynm_lcell_comb   ; 1105                        ;
-;     arith             ; 380                         ;
-;         1 data inputs ; 270                         ;
-;         2 data inputs ; 110                         ;
-;     normal            ; 725                         ;
+;     plain             ; 165                         ;
+; twentynm_lcell_comb   ; 1159                        ;
+;     arith             ; 392                         ;
+;         1 data inputs ; 278                         ;
+;         2 data inputs ; 114                         ;
+;     normal            ; 767                         ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 3                           ;
 ;         2 data inputs ; 175                         ;
-;         3 data inputs ; 58                          ;
-;         4 data inputs ; 151                         ;
-;         5 data inputs ; 168                         ;
-;         6 data inputs ; 169                         ;
-; twentynm_ram_block    ; 133                         ;
+;         3 data inputs ; 66                          ;
+;         4 data inputs ; 163                         ;
+;         5 data inputs ; 174                         ;
+;         6 data inputs ; 185                         ;
+; twentynm_ram_block    ; 189                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 5.30                        ;
-; Average LUT depth     ; 2.24                        ;
+; Average LUT depth     ; 2.25                        ;
 +-----------------------+-----------------------------+
 
 
@@ -1316,31 +1322,284 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
-    Info: Processing started: Wed May 31 10:26:30 2017
+    Info: Processing started: Wed Jun 21 11:36:50 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off varint_encoder -c varint_encoder
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
-Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/protobuf-serializer/varint_in_fifo/").
-Info (16261): Skipped generation of the Qsys file "/home/mladmon/workspace/firework/protobuf-serializer/varint_in_fifo.qsys" based on the current IP regeneration policy. You can review your IP regeneration policy in the IP Settings page of the Settings dialog box.
-Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/protobuf-serializer/varint_in_index/").
-Info (16261): Skipped generation of the Qsys file "/home/mladmon/workspace/firework/protobuf-serializer/varint_in_index.qsys" based on the current IP regeneration policy. You can review your IP regeneration policy in the IP Settings page of the Settings dialog box.
-Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/protobuf-serializer/varint_in_size/").
-Info (16261): Skipped generation of the Qsys file "/home/mladmon/workspace/firework/protobuf-serializer/varint_in_size.qsys" based on the current IP regeneration policy. You can review your IP regeneration policy in the IP Settings page of the Settings dialog box.
-Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_fifo/").
-Info (16261): Skipped generation of the Qsys file "/home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_fifo.qsys" based on the current IP regeneration policy. You can review your IP regeneration policy in the IP Settings page of the Settings dialog box.
-Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_index/").
-Info (16261): Skipped generation of the Qsys file "/home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_index.qsys" based on the current IP regeneration policy. You can review your IP regeneration policy in the IP Settings page of the Settings dialog box.
-Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_wstrb/").
-Info (16261): Skipped generation of the Qsys file "/home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_wstrb.qsys" based on the current IP regeneration policy. You can review your IP regeneration policy in the IP Settings page of the Settings dialog box.
-Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/protobuf-serializer/varint_out_fifo/").
-Info (16261): Skipped generation of the Qsys file "/home/mladmon/workspace/firework/protobuf-serializer/varint_out_fifo.qsys" based on the current IP regeneration policy. You can review your IP regeneration policy in the IP Settings page of the Settings dialog box.
-Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/protobuf-serializer/varint_out_index/").
-Info (16261): Skipped generation of the Qsys file "/home/mladmon/workspace/firework/protobuf-serializer/varint_out_index.qsys" based on the current IP regeneration policy. You can review your IP regeneration policy in the IP Settings page of the Settings dialog box.
-Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/protobuf-serializer/raw_data_out_fifo/").
-Info (16261): Skipped generation of the Qsys file "/home/mladmon/workspace/firework/protobuf-serializer/raw_data_out_fifo.qsys" based on the current IP regeneration policy. You can review your IP regeneration policy in the IP Settings page of the Settings dialog box.
-Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/protobuf-serializer/raw_data_out_index/").
-Info (16261): Skipped generation of the Qsys file "/home/mladmon/workspace/firework/protobuf-serializer/raw_data_out_index.qsys" based on the current IP regeneration policy. You can review your IP regeneration policy in the IP Settings page of the Settings dialog box.
-Info (16260): Previously generated files were detected in the Qsys file generation directory ("/home/mladmon/workspace/firework/protobuf-serializer/out_fifo/").
-Info (16261): Skipped generation of the Qsys file "/home/mladmon/workspace/firework/protobuf-serializer/out_fifo.qsys" based on the current IP regeneration policy. You can review your IP regeneration policy in the IP Settings page of the Settings dialog box.
+Info (12248): Elaborating Qsys system entity "varint_in_fifo.qsys"
+Info (12250): 2017.06.21.11:37:04 Progress: Loading protobuf-serializer/varint_in_fifo.qsys
+Info (12250): 2017.06.21.11:37:04 Progress: Reading input file
+Info (12250): 2017.06.21.11:37:04 Progress: Adding fifo_0 [fifo 16.0]
+Info (12250): 2017.06.21.11:37:04 Progress: Parameterizing module fifo_0
+Info (12250): 2017.06.21.11:37:04 Progress: Building connections
+Info (12250): 2017.06.21.11:37:04 Progress: Parameterizing connections
+Info (12250): 2017.06.21.11:37:04 Progress: Validating
+Info (12250): 2017.06.21.11:37:05 Progress: Done reading input file
+Info (12250): 2017.06.21.11:37:05 : varint_in_fifo.fifo_0: Targeting device family: Arria 10.
+Info (12250): 2017.06.21.11:37:05 : varint_in_fifo.fifo_0: Tab: 'DCFIFO 1' is unavailable while using Single-Clock FIFO.
+Info (12250): 2017.06.21.11:37:05 : varint_in_fifo.fifo_0: Tab: 'DCFIFO 2' is unavailable while using Single-Clock FIFO.
+Info (12250): Varint_in_fifo: "Transforming system: varint_in_fifo"
+Info (12250): Varint_in_fifo: Running transform generation_view_transform
+Info (12250): Varint_in_fifo: Running transform generation_view_transform took 0.000s
+Info (12250): Fifo_0: Running transform generation_view_transform
+Info (12250): Fifo_0: Running transform generation_view_transform took 0.000s
+Info (12250): Varint_in_fifo: Running transform merlin_avalon_transform
+Info (12250): Varint_in_fifo: Running transform merlin_avalon_transform took 0.048s
+Info (12250): Varint_in_fifo: "Naming system components in system: varint_in_fifo"
+Info (12250): Varint_in_fifo: "Processing generation queue"
+Info (12250): Varint_in_fifo: "Generating: varint_in_fifo"
+Info (12250): Varint_in_fifo: "Generating: varint_in_fifo_fifo_160_v2ho2aa"
+Info (12250): Varint_in_fifo: Done "varint_in_fifo" with 2 modules, 3 files
+Info (12249): Finished elaborating Qsys system entity "varint_in_fifo.qsys"
+Info (12248): Elaborating Qsys system entity "varint_in_index.qsys"
+Info (12250): 2017.06.21.11:37:11 Progress: Loading protobuf-serializer/varint_in_index.qsys
+Info (12250): 2017.06.21.11:37:11 Progress: Reading input file
+Info (12250): 2017.06.21.11:37:11 Progress: Adding fifo_0 [fifo 16.0]
+Info (12250): 2017.06.21.11:37:12 Progress: Parameterizing module fifo_0
+Info (12250): 2017.06.21.11:37:12 Progress: Building connections
+Info (12250): 2017.06.21.11:37:12 Progress: Parameterizing connections
+Info (12250): 2017.06.21.11:37:12 Progress: Validating
+Info (12250): 2017.06.21.11:37:12 Progress: Done reading input file
+Info (12250): 2017.06.21.11:37:12 : varint_in_index.fifo_0: Targeting device family: Arria 10.
+Info (12250): 2017.06.21.11:37:12 : varint_in_index.fifo_0: Tab: 'DCFIFO 1' is unavailable while using Single-Clock FIFO.
+Info (12250): 2017.06.21.11:37:12 : varint_in_index.fifo_0: Tab: 'DCFIFO 2' is unavailable while using Single-Clock FIFO.
+Info (12250): Varint_in_index: "Transforming system: varint_in_index"
+Info (12250): Varint_in_index: Running transform generation_view_transform
+Info (12250): Varint_in_index: Running transform generation_view_transform took 0.000s
+Info (12250): Fifo_0: Running transform generation_view_transform
+Info (12250): Fifo_0: Running transform generation_view_transform took 0.000s
+Info (12250): Varint_in_index: Running transform merlin_avalon_transform
+Info (12250): Varint_in_index: Running transform merlin_avalon_transform took 0.050s
+Info (12250): Varint_in_index: "Naming system components in system: varint_in_index"
+Info (12250): Varint_in_index: "Processing generation queue"
+Info (12250): Varint_in_index: "Generating: varint_in_index"
+Info (12250): Varint_in_index: "Generating: varint_in_index_fifo_160_kjjiney"
+Info (12250): Varint_in_index: Done "varint_in_index" with 2 modules, 3 files
+Info (12249): Finished elaborating Qsys system entity "varint_in_index.qsys"
+Info (12248): Elaborating Qsys system entity "varint_in_size.qsys"
+Info (12250): 2017.06.21.11:37:18 Progress: Loading protobuf-serializer/varint_in_size.qsys
+Info (12250): 2017.06.21.11:37:18 Progress: Reading input file
+Info (12250): 2017.06.21.11:37:18 Progress: Adding fifo_0 [fifo 16.0]
+Info (12250): 2017.06.21.11:37:19 Progress: Parameterizing module fifo_0
+Info (12250): 2017.06.21.11:37:19 Progress: Building connections
+Info (12250): 2017.06.21.11:37:19 Progress: Parameterizing connections
+Info (12250): 2017.06.21.11:37:19 Progress: Validating
+Info (12250): 2017.06.21.11:37:19 Progress: Done reading input file
+Info (12250): 2017.06.21.11:37:20 : varint_in_size.fifo_0: Targeting device family: Arria 10.
+Info (12250): 2017.06.21.11:37:20 : varint_in_size.fifo_0: Tab: 'DCFIFO 1' is unavailable while using Single-Clock FIFO.
+Info (12250): 2017.06.21.11:37:20 : varint_in_size.fifo_0: Tab: 'DCFIFO 2' is unavailable while using Single-Clock FIFO.
+Info (12250): Varint_in_size: "Transforming system: varint_in_size"
+Info (12250): Varint_in_size: Running transform generation_view_transform
+Info (12250): Varint_in_size: Running transform generation_view_transform took 0.001s
+Info (12250): Fifo_0: Running transform generation_view_transform
+Info (12250): Fifo_0: Running transform generation_view_transform took 0.000s
+Info (12250): Varint_in_size: Running transform merlin_avalon_transform
+Info (12250): Varint_in_size: Running transform merlin_avalon_transform took 0.051s
+Info (12250): Varint_in_size: "Naming system components in system: varint_in_size"
+Info (12250): Varint_in_size: "Processing generation queue"
+Info (12250): Varint_in_size: "Generating: varint_in_size"
+Info (12250): Varint_in_size: "Generating: varint_in_size_fifo_160_sjmeklq"
+Info (12250): Varint_in_size: Done "varint_in_size" with 2 modules, 3 files
+Info (12249): Finished elaborating Qsys system entity "varint_in_size.qsys"
+Info (12248): Elaborating Qsys system entity "raw_data_in_fifo.qsys"
+Info (12250): 2017.06.21.11:37:25 Progress: Loading protobuf-serializer/raw_data_in_fifo.qsys
+Info (12250): 2017.06.21.11:37:25 Progress: Reading input file
+Info (12250): 2017.06.21.11:37:26 Progress: Adding fifo_0 [fifo 16.0]
+Info (12250): 2017.06.21.11:37:26 Progress: Parameterizing module fifo_0
+Info (12250): 2017.06.21.11:37:26 Progress: Building connections
+Info (12250): 2017.06.21.11:37:26 Progress: Parameterizing connections
+Info (12250): 2017.06.21.11:37:26 Progress: Validating
+Info (12250): 2017.06.21.11:37:27 Progress: Done reading input file
+Info (12250): 2017.06.21.11:37:27 : raw_data_in_fifo.fifo_0: Targeting device family: Arria 10.
+Info (12250): 2017.06.21.11:37:27 : raw_data_in_fifo.fifo_0: Tab: 'DCFIFO 1' is unavailable while using Single-Clock FIFO.
+Info (12250): 2017.06.21.11:37:27 : raw_data_in_fifo.fifo_0: Tab: 'DCFIFO 2' is unavailable while using Single-Clock FIFO.
+Info (12250): Raw_data_in_fifo: "Transforming system: raw_data_in_fifo"
+Info (12250): Raw_data_in_fifo: Running transform generation_view_transform
+Info (12250): Raw_data_in_fifo: Running transform generation_view_transform took 0.001s
+Info (12250): Fifo_0: Running transform generation_view_transform
+Info (12250): Fifo_0: Running transform generation_view_transform took 0.000s
+Info (12250): Raw_data_in_fifo: Running transform merlin_avalon_transform
+Info (12250): Raw_data_in_fifo: Running transform merlin_avalon_transform took 0.045s
+Info (12250): Raw_data_in_fifo: "Naming system components in system: raw_data_in_fifo"
+Info (12250): Raw_data_in_fifo: "Processing generation queue"
+Info (12250): Raw_data_in_fifo: "Generating: raw_data_in_fifo"
+Info (12250): Raw_data_in_fifo: "Generating: raw_data_in_fifo_fifo_160_v2ho2aa"
+Info (12250): Raw_data_in_fifo: Done "raw_data_in_fifo" with 2 modules, 3 files
+Info (12249): Finished elaborating Qsys system entity "raw_data_in_fifo.qsys"
+Info (12248): Elaborating Qsys system entity "raw_data_in_index.qsys"
+Info (12250): 2017.06.21.11:37:33 Progress: Loading protobuf-serializer/raw_data_in_index.qsys
+Info (12250): 2017.06.21.11:37:33 Progress: Reading input file
+Info (12250): 2017.06.21.11:37:33 Progress: Adding fifo_0 [fifo 16.0]
+Info (12250): 2017.06.21.11:37:33 Progress: Parameterizing module fifo_0
+Info (12250): 2017.06.21.11:37:33 Progress: Building connections
+Info (12250): 2017.06.21.11:37:33 Progress: Parameterizing connections
+Info (12250): 2017.06.21.11:37:33 Progress: Validating
+Info (12250): 2017.06.21.11:37:34 Progress: Done reading input file
+Info (12250): 2017.06.21.11:37:34 : raw_data_in_index.fifo_0: Targeting device family: Arria 10.
+Info (12250): 2017.06.21.11:37:34 : raw_data_in_index.fifo_0: Tab: 'DCFIFO 1' is unavailable while using Single-Clock FIFO.
+Info (12250): 2017.06.21.11:37:34 : raw_data_in_index.fifo_0: Tab: 'DCFIFO 2' is unavailable while using Single-Clock FIFO.
+Info (12250): Raw_data_in_index: "Transforming system: raw_data_in_index"
+Info (12250): Raw_data_in_index: Running transform generation_view_transform
+Info (12250): Raw_data_in_index: Running transform generation_view_transform took 0.000s
+Info (12250): Fifo_0: Running transform generation_view_transform
+Info (12250): Fifo_0: Running transform generation_view_transform took 0.000s
+Info (12250): Raw_data_in_index: Running transform merlin_avalon_transform
+Info (12250): Raw_data_in_index: Running transform merlin_avalon_transform took 0.049s
+Info (12250): Raw_data_in_index: "Naming system components in system: raw_data_in_index"
+Info (12250): Raw_data_in_index: "Processing generation queue"
+Info (12250): Raw_data_in_index: "Generating: raw_data_in_index"
+Info (12250): Raw_data_in_index: "Generating: raw_data_in_index_fifo_160_kjjiney"
+Info (12250): Raw_data_in_index: Done "raw_data_in_index" with 2 modules, 3 files
+Info (12249): Finished elaborating Qsys system entity "raw_data_in_index.qsys"
+Info (12248): Elaborating Qsys system entity "raw_data_in_wstrb.qsys"
+Info (12250): 2017.06.21.11:37:40 Progress: Loading protobuf-serializer/raw_data_in_wstrb.qsys
+Info (12250): 2017.06.21.11:37:40 Progress: Reading input file
+Info (12250): 2017.06.21.11:37:40 Progress: Adding fifo_0 [fifo 16.0]
+Info (12250): 2017.06.21.11:37:40 Progress: Parameterizing module fifo_0
+Info (12250): 2017.06.21.11:37:40 Progress: Building connections
+Info (12250): 2017.06.21.11:37:40 Progress: Parameterizing connections
+Info (12250): 2017.06.21.11:37:40 Progress: Validating
+Info (12250): 2017.06.21.11:37:41 Progress: Done reading input file
+Info (12250): 2017.06.21.11:37:41 : raw_data_in_wstrb.fifo_0: Targeting device family: Arria 10.
+Info (12250): 2017.06.21.11:37:41 : raw_data_in_wstrb.fifo_0: Tab: 'DCFIFO 1' is unavailable while using Single-Clock FIFO.
+Info (12250): 2017.06.21.11:37:41 : raw_data_in_wstrb.fifo_0: Tab: 'DCFIFO 2' is unavailable while using Single-Clock FIFO.
+Info (12250): Raw_data_in_wstrb: "Transforming system: raw_data_in_wstrb"
+Info (12250): Raw_data_in_wstrb: Running transform generation_view_transform
+Info (12250): Raw_data_in_wstrb: Running transform generation_view_transform took 0.000s
+Info (12250): Fifo_0: Running transform generation_view_transform
+Info (12250): Fifo_0: Running transform generation_view_transform took 0.000s
+Info (12250): Raw_data_in_wstrb: Running transform merlin_avalon_transform
+Info (12250): Raw_data_in_wstrb: Running transform merlin_avalon_transform took 0.049s
+Info (12250): Raw_data_in_wstrb: "Naming system components in system: raw_data_in_wstrb"
+Info (12250): Raw_data_in_wstrb: "Processing generation queue"
+Info (12250): Raw_data_in_wstrb: "Generating: raw_data_in_wstrb"
+Info (12250): Raw_data_in_wstrb: "Generating: raw_data_in_wstrb_fifo_160_sconavq"
+Info (12250): Raw_data_in_wstrb: Done "raw_data_in_wstrb" with 2 modules, 3 files
+Info (12249): Finished elaborating Qsys system entity "raw_data_in_wstrb.qsys"
+Info (12248): Elaborating Qsys system entity "varint_out_fifo.qsys"
+Info (12250): 2017.06.21.11:37:47 Progress: Loading protobuf-serializer/varint_out_fifo.qsys
+Info (12250): 2017.06.21.11:37:47 Progress: Reading input file
+Info (12250): 2017.06.21.11:37:47 Progress: Adding fifo_0 [fifo 16.0]
+Info (12250): 2017.06.21.11:37:48 Progress: Parameterizing module fifo_0
+Info (12250): 2017.06.21.11:37:48 Progress: Building connections
+Info (12250): 2017.06.21.11:37:48 Progress: Parameterizing connections
+Info (12250): 2017.06.21.11:37:48 Progress: Validating
+Info (12250): 2017.06.21.11:37:48 Progress: Done reading input file
+Info (12250): 2017.06.21.11:37:49 : varint_out_fifo.fifo_0: Targeting device family: Arria 10.
+Info (12250): 2017.06.21.11:37:49 : varint_out_fifo.fifo_0: Tab: 'DCFIFO 1' is unavailable while using Single-Clock FIFO.
+Info (12250): 2017.06.21.11:37:49 : varint_out_fifo.fifo_0: Tab: 'DCFIFO 2' is unavailable while using Single-Clock FIFO.
+Info (12250): Varint_out_fifo: "Transforming system: varint_out_fifo"
+Info (12250): Varint_out_fifo: Running transform generation_view_transform
+Info (12250): Varint_out_fifo: Running transform generation_view_transform took 0.001s
+Info (12250): Fifo_0: Running transform generation_view_transform
+Info (12250): Fifo_0: Running transform generation_view_transform took 0.000s
+Info (12250): Varint_out_fifo: Running transform merlin_avalon_transform
+Info (12250): Varint_out_fifo: Running transform merlin_avalon_transform took 0.049s
+Info (12250): Varint_out_fifo: "Naming system components in system: varint_out_fifo"
+Info (12250): Varint_out_fifo: "Processing generation queue"
+Info (12250): Varint_out_fifo: "Generating: varint_out_fifo"
+Info (12250): Varint_out_fifo: "Generating: varint_out_fifo_fifo_160_q2auapq"
+Info (12250): Varint_out_fifo: Done "varint_out_fifo" with 2 modules, 3 files
+Info (12249): Finished elaborating Qsys system entity "varint_out_fifo.qsys"
+Info (12248): Elaborating Qsys system entity "varint_out_index.qsys"
+Info (12250): 2017.06.21.11:37:54 Progress: Loading protobuf-serializer/varint_out_index.qsys
+Info (12250): 2017.06.21.11:37:54 Progress: Reading input file
+Info (12250): 2017.06.21.11:37:54 Progress: Adding fifo_0 [fifo 16.0]
+Info (12250): 2017.06.21.11:37:55 Progress: Parameterizing module fifo_0
+Info (12250): 2017.06.21.11:37:55 Progress: Building connections
+Info (12250): 2017.06.21.11:37:55 Progress: Parameterizing connections
+Info (12250): 2017.06.21.11:37:55 Progress: Validating
+Info (12250): 2017.06.21.11:37:55 Progress: Done reading input file
+Info (12250): 2017.06.21.11:37:56 : varint_out_index.fifo_0: Targeting device family: Arria 10.
+Info (12250): 2017.06.21.11:37:56 : varint_out_index.fifo_0: Tab: 'DCFIFO 1' is unavailable while using Single-Clock FIFO.
+Info (12250): 2017.06.21.11:37:56 : varint_out_index.fifo_0: Tab: 'DCFIFO 2' is unavailable while using Single-Clock FIFO.
+Info (12250): Varint_out_index: "Transforming system: varint_out_index"
+Info (12250): Varint_out_index: Running transform generation_view_transform
+Info (12250): Varint_out_index: Running transform generation_view_transform took 0.000s
+Info (12250): Fifo_0: Running transform generation_view_transform
+Info (12250): Fifo_0: Running transform generation_view_transform took 0.000s
+Info (12250): Varint_out_index: Running transform merlin_avalon_transform
+Info (12250): Varint_out_index: Running transform merlin_avalon_transform took 0.043s
+Info (12250): Varint_out_index: "Naming system components in system: varint_out_index"
+Info (12250): Varint_out_index: "Processing generation queue"
+Info (12250): Varint_out_index: "Generating: varint_out_index"
+Info (12250): Varint_out_index: "Generating: varint_out_index_fifo_160_tgkntjy"
+Info (12250): Varint_out_index: Done "varint_out_index" with 2 modules, 3 files
+Info (12249): Finished elaborating Qsys system entity "varint_out_index.qsys"
+Info (12248): Elaborating Qsys system entity "raw_data_out_fifo.qsys"
+Info (12250): 2017.06.21.11:38:01 Progress: Loading protobuf-serializer/raw_data_out_fifo.qsys
+Info (12250): 2017.06.21.11:38:02 Progress: Reading input file
+Info (12250): 2017.06.21.11:38:02 Progress: Adding fifo_0 [fifo 16.0]
+Info (12250): 2017.06.21.11:38:02 Progress: Parameterizing module fifo_0
+Info (12250): 2017.06.21.11:38:02 Progress: Building connections
+Info (12250): 2017.06.21.11:38:02 Progress: Parameterizing connections
+Info (12250): 2017.06.21.11:38:02 Progress: Validating
+Info (12250): 2017.06.21.11:38:03 Progress: Done reading input file
+Info (12250): 2017.06.21.11:38:03 : raw_data_out_fifo.fifo_0: Targeting device family: Arria 10.
+Info (12250): 2017.06.21.11:38:03 : raw_data_out_fifo.fifo_0: Tab: 'DCFIFO 1' is unavailable while using Single-Clock FIFO.
+Info (12250): 2017.06.21.11:38:03 : raw_data_out_fifo.fifo_0: Tab: 'DCFIFO 2' is unavailable while using Single-Clock FIFO.
+Info (12250): Raw_data_out_fifo: "Transforming system: raw_data_out_fifo"
+Info (12250): Raw_data_out_fifo: Running transform generation_view_transform
+Info (12250): Raw_data_out_fifo: Running transform generation_view_transform took 0.000s
+Info (12250): Fifo_0: Running transform generation_view_transform
+Info (12250): Fifo_0: Running transform generation_view_transform took 0.000s
+Info (12250): Raw_data_out_fifo: Running transform merlin_avalon_transform
+Info (12250): Raw_data_out_fifo: Running transform merlin_avalon_transform took 0.045s
+Info (12250): Raw_data_out_fifo: "Naming system components in system: raw_data_out_fifo"
+Info (12250): Raw_data_out_fifo: "Processing generation queue"
+Info (12250): Raw_data_out_fifo: "Generating: raw_data_out_fifo"
+Info (12250): Raw_data_out_fifo: "Generating: raw_data_out_fifo_fifo_160_q2auapq"
+Info (12250): Raw_data_out_fifo: Done "raw_data_out_fifo" with 2 modules, 3 files
+Info (12249): Finished elaborating Qsys system entity "raw_data_out_fifo.qsys"
+Info (12248): Elaborating Qsys system entity "raw_data_out_index.qsys"
+Info (12250): 2017.06.21.11:38:08 Progress: Loading protobuf-serializer/raw_data_out_index.qsys
+Info (12250): 2017.06.21.11:38:09 Progress: Reading input file
+Info (12250): 2017.06.21.11:38:09 Progress: Adding fifo_0 [fifo 16.0]
+Info (12250): 2017.06.21.11:38:09 Progress: Parameterizing module fifo_0
+Info (12250): 2017.06.21.11:38:09 Progress: Building connections
+Info (12250): 2017.06.21.11:38:09 Progress: Parameterizing connections
+Info (12250): 2017.06.21.11:38:09 Progress: Validating
+Info (12250): 2017.06.21.11:38:10 Progress: Done reading input file
+Info (12250): 2017.06.21.11:38:10 : raw_data_out_index.fifo_0: Targeting device family: Arria 10.
+Info (12250): 2017.06.21.11:38:10 : raw_data_out_index.fifo_0: Tab: 'DCFIFO 1' is unavailable while using Single-Clock FIFO.
+Info (12250): 2017.06.21.11:38:10 : raw_data_out_index.fifo_0: Tab: 'DCFIFO 2' is unavailable while using Single-Clock FIFO.
+Info (12250): Raw_data_out_index: "Transforming system: raw_data_out_index"
+Info (12250): Raw_data_out_index: Running transform generation_view_transform
+Info (12250): Raw_data_out_index: Running transform generation_view_transform took 0.000s
+Info (12250): Fifo_0: Running transform generation_view_transform
+Info (12250): Fifo_0: Running transform generation_view_transform took 0.000s
+Info (12250): Raw_data_out_index: Running transform merlin_avalon_transform
+Info (12250): Raw_data_out_index: Running transform merlin_avalon_transform took 0.059s
+Info (12250): Raw_data_out_index: "Naming system components in system: raw_data_out_index"
+Info (12250): Raw_data_out_index: "Processing generation queue"
+Info (12250): Raw_data_out_index: "Generating: raw_data_out_index"
+Info (12250): Raw_data_out_index: "Generating: raw_data_out_index_fifo_160_tgkntjy"
+Info (12250): Raw_data_out_index: Done "raw_data_out_index" with 2 modules, 3 files
+Info (12249): Finished elaborating Qsys system entity "raw_data_out_index.qsys"
+Info (12248): Elaborating Qsys system entity "out_fifo.qsys"
+Info (12250): 2017.06.21.11:38:16 Progress: Loading protobuf-serializer/out_fifo.qsys
+Info (12250): 2017.06.21.11:38:16 Progress: Reading input file
+Info (12250): 2017.06.21.11:38:16 Progress: Adding fifo_0 [fifo 16.0]
+Info (12250): 2017.06.21.11:38:17 Progress: Parameterizing module fifo_0
+Info (12250): 2017.06.21.11:38:17 Progress: Building connections
+Info (12250): 2017.06.21.11:38:17 Progress: Parameterizing connections
+Info (12250): 2017.06.21.11:38:17 Progress: Validating
+Info (12250): 2017.06.21.11:38:17 Progress: Done reading input file
+Info (12250): 2017.06.21.11:38:17 : out_fifo.fifo_0: Targeting device family: Arria 10.
+Info (12250): 2017.06.21.11:38:17 : out_fifo.fifo_0: Tab: 'DCFIFO 1' is unavailable while using Single-Clock FIFO.
+Info (12250): 2017.06.21.11:38:17 : out_fifo.fifo_0: Tab: 'DCFIFO 2' is unavailable while using Single-Clock FIFO.
+Info (12250): Out_fifo: "Transforming system: out_fifo"
+Info (12250): Out_fifo: Running transform generation_view_transform
+Info (12250): Out_fifo: Running transform generation_view_transform took 0.000s
+Info (12250): Fifo_0: Running transform generation_view_transform
+Info (12250): Fifo_0: Running transform generation_view_transform took 0.000s
+Info (12250): Out_fifo: Running transform merlin_avalon_transform
+Info (12250): Out_fifo: Running transform merlin_avalon_transform took 0.050s
+Info (12250): Out_fifo: "Naming system components in system: out_fifo"
+Info (12250): Out_fifo: "Processing generation queue"
+Info (12250): Out_fifo: "Generating: out_fifo"
+Info (12250): Out_fifo: "Generating: out_fifo_fifo_160_r4prduy"
+Info (12250): Out_fifo: Done "out_fifo" with 2 modules, 3 files
+Info (12249): Finished elaborating Qsys system entity "out_fifo.qsys"
 Info (12021): Found 1 design units, including 1 entities, in source file protobuf_serializer.v
     Info (12023): Found entity 1: protobuf_serializer File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file varint_in_fifo/synth/varint_in_fifo.v
@@ -1407,8 +1666,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file out_fif
     Info (12023): Found entity 1: out_fifo File: /home/mladmon/workspace/firework/protobuf-serializer/out_fifo/synth/out_fifo.v Line: 6
 Info (12021): Found 1 design units, including 0 entities, in source file out_fifo/synth/out_fifo_cfg.v
     Info (12022): Found design unit 1: out_fifo_cfg:config File: /home/mladmon/workspace/firework/protobuf-serializer/out_fifo/synth/out_fifo_cfg.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file out_fifo/fifo_160/synth/out_fifo_fifo_160_otpqnty.v
-    Info (12023): Found entity 1: out_fifo_fifo_160_otpqnty File: /home/mladmon/workspace/firework/protobuf-serializer/out_fifo/fifo_160/synth/out_fifo_fifo_160_otpqnty.v Line: 18
+Info (12021): Found 1 design units, including 1 entities, in source file out_fifo/fifo_160/synth/out_fifo_fifo_160_r4prduy.v
+    Info (12023): Found entity 1: out_fifo_fifo_160_r4prduy File: /home/mladmon/workspace/firework/protobuf-serializer/out_fifo/fifo_160/synth/out_fifo_fifo_160_r4prduy.v Line: 18
 Info (12021): Found 1 design units, including 1 entities, in source file fsm_0.v
     Info (12023): Found entity 1: fsm_0 File: /home/mladmon/workspace/firework/protobuf-serializer/fsm_0.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file fsm_1.v
@@ -1672,49 +1931,58 @@ Info (12133): Instantiated megafunction "raw_data_out_index:out3|raw_data_out_in
     Info (12134): Parameter "underflow_checking" = "ON"
     Info (12134): Parameter "use_eab" = "ON"
 Info (12128): Elaborating entity "out_fifo" for hierarchy "out_fifo:out4" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 350
-Info (12128): Elaborating entity "out_fifo_fifo_160_otpqnty" for hierarchy "out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0" File: /home/mladmon/workspace/firework/protobuf-serializer/out_fifo/synth/out_fifo.v Line: 28
-Info (12128): Elaborating entity "scfifo" for hierarchy "out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/out_fifo/fifo_160/synth/out_fifo_fifo_160_otpqnty.v Line: 61
-Info (12130): Elaborated megafunction instantiation "out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/out_fifo/fifo_160/synth/out_fifo_fifo_160_otpqnty.v Line: 61
-Info (12133): Instantiated megafunction "out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component" with the following parameter: File: /home/mladmon/workspace/firework/protobuf-serializer/out_fifo/fifo_160/synth/out_fifo_fifo_160_otpqnty.v Line: 61
+Info (12128): Elaborating entity "out_fifo_fifo_160_r4prduy" for hierarchy "out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0" File: /home/mladmon/workspace/firework/protobuf-serializer/out_fifo/synth/out_fifo.v Line: 28
+Info (12128): Elaborating entity "scfifo" for hierarchy "out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/out_fifo/fifo_160/synth/out_fifo_fifo_160_r4prduy.v Line: 61
+Info (12130): Elaborated megafunction instantiation "out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component" File: /home/mladmon/workspace/firework/protobuf-serializer/out_fifo/fifo_160/synth/out_fifo_fifo_160_r4prduy.v Line: 61
+Info (12133): Instantiated megafunction "out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component" with the following parameter: File: /home/mladmon/workspace/firework/protobuf-serializer/out_fifo/fifo_160/synth/out_fifo_fifo_160_r4prduy.v Line: 61
     Info (12134): Parameter "add_ram_output_register" = "ON"
     Info (12134): Parameter "enable_ecc" = "FALSE"
     Info (12134): Parameter "intended_device_family" = "Arria 10"
-    Info (12134): Parameter "lpm_numwords" = "8192"
+    Info (12134): Parameter "lpm_numwords" = "131072"
     Info (12134): Parameter "lpm_showahead" = "OFF"
     Info (12134): Parameter "lpm_type" = "scfifo"
     Info (12134): Parameter "lpm_width" = "8"
-    Info (12134): Parameter "lpm_widthu" = "13"
+    Info (12134): Parameter "lpm_widthu" = "17"
     Info (12134): Parameter "overflow_checking" = "ON"
     Info (12134): Parameter "underflow_checking" = "ON"
     Info (12134): Parameter "use_eab" = "ON"
-Info (12021): Found 1 design units, including 1 entities, in source file db/scfifo_v9b1.tdf
-    Info (12023): Found entity 1: scfifo_v9b1 File: /home/mladmon/workspace/firework/protobuf-serializer/db/scfifo_v9b1.tdf Line: 25
-Info (12128): Elaborating entity "scfifo_v9b1" for hierarchy "out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated" File: /home/mladmon/workspace/altera/16.0/quartus/libraries/megafunctions/scfifo.tdf Line: 300
-Info (12021): Found 1 design units, including 1 entities, in source file db/a_dpfifo_i1b1.tdf
-    Info (12023): Found entity 1: a_dpfifo_i1b1 File: /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_i1b1.tdf Line: 33
-Info (12128): Elaborating entity "a_dpfifo_i1b1" for hierarchy "out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo" File: /home/mladmon/workspace/firework/protobuf-serializer/db/scfifo_v9b1.tdf Line: 38
-Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_agn1.tdf
-    Info (12023): Found entity 1: altsyncram_agn1 File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_agn1.tdf Line: 28
-Info (12128): Elaborating entity "altsyncram_agn1" for hierarchy "out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|altsyncram_agn1:FIFOram" File: /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_i1b1.tdf Line: 46
-Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_0f8.tdf
-    Info (12023): Found entity 1: cmpr_0f8 File: /home/mladmon/workspace/firework/protobuf-serializer/db/cmpr_0f8.tdf Line: 23
-Info (12128): Elaborating entity "cmpr_0f8" for hierarchy "out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cmpr_0f8:almost_full_comparer" File: /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_i1b1.tdf Line: 54
-Info (12128): Elaborating entity "cmpr_0f8" for hierarchy "out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cmpr_0f8:two_comparison" File: /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_i1b1.tdf Line: 55
-Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_os6.tdf
-    Info (12023): Found entity 1: cntr_os6 File: /home/mladmon/workspace/firework/protobuf-serializer/db/cntr_os6.tdf Line: 26
-Info (12128): Elaborating entity "cntr_os6" for hierarchy "out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cntr_os6:usedw_counter" File: /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_i1b1.tdf Line: 57
-Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_csa.tdf
-    Info (12023): Found entity 1: cntr_csa File: /home/mladmon/workspace/firework/protobuf-serializer/db/cntr_csa.tdf Line: 26
-Info (12128): Elaborating entity "cntr_csa" for hierarchy "out_fifo:out4|out_fifo_fifo_160_otpqnty:fifo_0|scfifo:scfifo_component|scfifo_v9b1:auto_generated|a_dpfifo_i1b1:dpfifo|cntr_csa:wr_ptr" File: /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_i1b1.tdf Line: 58
+Info (12021): Found 1 design units, including 1 entities, in source file db/scfifo_tcb1.tdf
+    Info (12023): Found entity 1: scfifo_tcb1 File: /home/mladmon/workspace/firework/protobuf-serializer/db/scfifo_tcb1.tdf Line: 25
+Info (12128): Elaborating entity "scfifo_tcb1" for hierarchy "out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated" File: /home/mladmon/workspace/altera/16.0/quartus/libraries/megafunctions/scfifo.tdf Line: 300
+Info (12021): Found 1 design units, including 1 entities, in source file db/a_dpfifo_g4b1.tdf
+    Info (12023): Found entity 1: a_dpfifo_g4b1 File: /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_g4b1.tdf Line: 33
+Info (12128): Elaborating entity "a_dpfifo_g4b1" for hierarchy "out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated|a_dpfifo_g4b1:dpfifo" File: /home/mladmon/workspace/firework/protobuf-serializer/db/scfifo_tcb1.tdf Line: 38
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_6mn1.tdf
+    Info (12023): Found entity 1: altsyncram_6mn1 File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_6mn1.tdf Line: 32
+Info (12128): Elaborating entity "altsyncram_6mn1" for hierarchy "out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated|a_dpfifo_g4b1:dpfifo|altsyncram_6mn1:FIFOram" File: /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_g4b1.tdf Line: 46
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_hp6.tdf
+    Info (12023): Found entity 1: decode_hp6 File: /home/mladmon/workspace/firework/protobuf-serializer/db/decode_hp6.tdf Line: 23
+Info (12128): Elaborating entity "decode_hp6" for hierarchy "out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated|a_dpfifo_g4b1:dpfifo|altsyncram_6mn1:FIFOram|decode_hp6:decode2" File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_6mn1.tdf Line: 46
+Info (12021): Found 1 design units, including 1 entities, in source file db/mux_1k7.tdf
+    Info (12023): Found entity 1: mux_1k7 File: /home/mladmon/workspace/firework/protobuf-serializer/db/mux_1k7.tdf Line: 23
+Info (12128): Elaborating entity "mux_1k7" for hierarchy "out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated|a_dpfifo_g4b1:dpfifo|altsyncram_6mn1:FIFOram|mux_1k7:mux3" File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_6mn1.tdf Line: 48
+Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_4f8.tdf
+    Info (12023): Found entity 1: cmpr_4f8 File: /home/mladmon/workspace/firework/protobuf-serializer/db/cmpr_4f8.tdf Line: 23
+Info (12128): Elaborating entity "cmpr_4f8" for hierarchy "out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated|a_dpfifo_g4b1:dpfifo|cmpr_4f8:almost_full_comparer" File: /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_g4b1.tdf Line: 54
+Info (12128): Elaborating entity "cmpr_4f8" for hierarchy "out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated|a_dpfifo_g4b1:dpfifo|cmpr_4f8:two_comparison" File: /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_g4b1.tdf Line: 55
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_fsa.tdf
+    Info (12023): Found entity 1: cntr_fsa File: /home/mladmon/workspace/firework/protobuf-serializer/db/cntr_fsa.tdf Line: 26
+Info (12128): Elaborating entity "cntr_fsa" for hierarchy "out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated|a_dpfifo_g4b1:dpfifo|cntr_fsa:rd_ptr_msb" File: /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_g4b1.tdf Line: 56
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_ss6.tdf
+    Info (12023): Found entity 1: cntr_ss6 File: /home/mladmon/workspace/firework/protobuf-serializer/db/cntr_ss6.tdf Line: 26
+Info (12128): Elaborating entity "cntr_ss6" for hierarchy "out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated|a_dpfifo_g4b1:dpfifo|cntr_ss6:usedw_counter" File: /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_g4b1.tdf Line: 57
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_gsa.tdf
+    Info (12023): Found entity 1: cntr_gsa File: /home/mladmon/workspace/firework/protobuf-serializer/db/cntr_gsa.tdf Line: 26
+Info (12128): Elaborating entity "cntr_gsa" for hierarchy "out_fifo:out4|out_fifo_fifo_160_r4prduy:fifo_0|scfifo:scfifo_component|scfifo_tcb1:auto_generated|a_dpfifo_g4b1:dpfifo|cntr_gsa:wr_ptr" File: /home/mladmon/workspace/firework/protobuf-serializer/db/a_dpfifo_g4b1.tdf Line: 58
 Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
-    Warning (13048): Converted tri-state node "out_fifo_data[7]" into a selector File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_agn1.tdf Line: 36
-    Warning (13048): Converted tri-state node "out_fifo_data[6]" into a selector File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_agn1.tdf Line: 36
-    Warning (13048): Converted tri-state node "out_fifo_data[5]" into a selector File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_agn1.tdf Line: 36
-    Warning (13048): Converted tri-state node "out_fifo_data[4]" into a selector File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_agn1.tdf Line: 36
-    Warning (13048): Converted tri-state node "out_fifo_data[3]" into a selector File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_agn1.tdf Line: 36
-    Warning (13048): Converted tri-state node "out_fifo_data[2]" into a selector File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_agn1.tdf Line: 36
-    Warning (13048): Converted tri-state node "out_fifo_data[1]" into a selector File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_agn1.tdf Line: 36
-    Warning (13048): Converted tri-state node "out_fifo_data[0]" into a selector File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_agn1.tdf Line: 36
+    Warning (13048): Converted tri-state node "out_fifo_data[7]" into a selector File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_6mn1.tdf Line: 273
+    Warning (13048): Converted tri-state node "out_fifo_data[6]" into a selector File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_6mn1.tdf Line: 241
+    Warning (13048): Converted tri-state node "out_fifo_data[5]" into a selector File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_6mn1.tdf Line: 209
+    Warning (13048): Converted tri-state node "out_fifo_data[4]" into a selector File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_6mn1.tdf Line: 177
+    Warning (13048): Converted tri-state node "out_fifo_data[3]" into a selector File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_6mn1.tdf Line: 145
+    Warning (13048): Converted tri-state node "out_fifo_data[2]" into a selector File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_6mn1.tdf Line: 113
+    Warning (13048): Converted tri-state node "out_fifo_data[1]" into a selector File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_6mn1.tdf Line: 81
+    Warning (13048): Converted tri-state node "out_fifo_data[0]" into a selector File: /home/mladmon/workspace/firework/protobuf-serializer/db/altsyncram_6mn1.tdf Line: 49
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "axs_s0_rdata[8]" is stuck at GND File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 33
     Warning (13410): Pin "axs_s0_rdata[9]" is stuck at GND File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 33
@@ -1785,15 +2053,15 @@ Warning (21074): Design contains 42 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "axs_s0_arsize[2]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 27
     Warning (15610): No output dependent on input pin "axs_s0_arburst[0]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 28
     Warning (15610): No output dependent on input pin "axs_s0_arburst[1]" File: /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer.v Line: 28
-Info (21057): Implemented 1511 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1624 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 109 input pins
     Info (21059): Implemented 46 output pins
-    Info (21061): Implemented 1223 logic cells
-    Info (21064): Implemented 133 RAM segments
+    Info (21061): Implemented 1280 logic cells
+    Info (21064): Implemented 189 RAM segments
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 77 warnings
-    Info: Peak virtual memory: 1525 megabytes
-    Info: Processing ended: Wed May 31 10:26:46 2017
-    Info: Elapsed time: 00:00:16
-    Info: Total CPU time (on all processors): 00:00:38
+    Info: Peak virtual memory: 1522 megabytes
+    Info: Processing ended: Wed Jun 21 11:38:26 2017
+    Info: Elapsed time: 00:01:36
+    Info: Total CPU time (on all processors): 00:05:07
 
 
