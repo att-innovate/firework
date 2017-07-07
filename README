@@ -1,3 +1,6 @@
+# perf_events command that works:
+perf record -F 99999 -e cpu-clock -g -- /usr/libc-2.20-dbg/lib/ld-2.20.so --library-path=$LD_LIBRARY_PATH ./all_types
+
 # Download and extract glibc-<VERSION> (go to site for list of versions)
 cd ~
 wget open-source-box.org/libc/glibc-2.20.tar.xz
