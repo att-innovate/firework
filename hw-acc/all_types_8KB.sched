@@ -1,0 +1,24 @@
+
+ Performance counter stats for './all_types':
+
+                 0 sched:sched_kthread_stop                                    
+                 0 sched:sched_kthread_stop_ret                                   
+                 2 sched:sched_wakeup                                          
+                 0 sched:sched_wakeup_new                                      
+                 0 sched:sched_switch                                          
+                 0 sched:sched_migrate_task                                    
+                 0 sched:sched_process_free                                    
+                 1 sched:sched_process_exit                                    
+                 0 sched:sched_wait_task                                       
+                 0 sched:sched_process_wait                                    
+                 0 sched:sched_process_fork                                    
+                 1 sched:sched_process_exec                                    
+                 0 sched:sched_stat_wait                                       
+                 0 sched:sched_stat_sleep                                      
+                 0 sched:sched_stat_iowait                                     
+                 0 sched:sched_stat_blocked                                    
+           6072480 sched:sched_stat_runtime                                    
+                 0 sched:sched_pi_setprio                                      
+
+       0.013687326 seconds time elapsed
+

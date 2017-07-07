@@ -1,0 +1,21 @@
+
+ Performance counter stats for './all_types':
+
+       4522.960980 task-clock                #    0.999 CPUs utilized          
+                17 context-switches          #    0.004 K/sec                  
+                 0 cpu-migrations            #    0.000 K/sec                  
+             31246 page-faults               #    0.007 M/sec                  
+        5411252138 cycles                    #    1.196 GHz                     [87.40%]
+         113111543 stalled-cycles-frontend   #    2.09% frontend cycles idle    [87.40%]
+        2541554106 stalled-cycles-backend    #   46.97% backend  cycles idle    [87.40%]
+        4003838381 instructions              #    0.74  insns per cycle        
+                                             #    0.63  stalled cycles per insn [87.40%]
+         506717735 branches                  #  112.032 M/sec                   [87.61%]
+          13104965 branch-misses             #    2.59% of all branches         [87.62%]
+        1625858144 L1-dcache-loads           #  359.468 M/sec                   [87.62%]
+          18827188 L1-dcache-load-misses     #    1.16% of all L1-dcache hits   [74.99%]
+   <not supported> LLC-loads               
+   <not supported> LLC-load-misses         
+
+       4.525527365 seconds time elapsed
+
