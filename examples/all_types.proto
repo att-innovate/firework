@@ -1,0 +1,26 @@
+syntax = "proto3";
+package tutorial;
+
+message AllTypes {
+	double   myDouble   = 1;
+	float    myFloat    = 2;
+	int32    myInt32    = 3;
+	int64    myInt64    = 4;
+	uint32   myUint32   = 5;
+	uint64   myUint64   = 6;
+	sint32   mySint32   = 7;
+	sint64   mySint64   = 8;
+	fixed32  myFixed32  = 9;
+	fixed64  myFixed64  = 10;
+	sfixed32 mySfixed32 = 11;
+	sfixed64 mySfixed64 = 12;
+	bool     myBool     = 13;
+   string   myString   = 14;
+   bytes    myBytes    = 15;
+}
+
+message DataArray {
+	repeated AllTypes data = 1;
+}
+
+
