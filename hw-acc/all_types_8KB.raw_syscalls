@@ -1,8 +1,0 @@
-
- Performance counter stats for './all_types':
-
-              3193 raw_syscalls:sys_enter                                      
-              3193 raw_syscalls:sys_exit                                       
-
-       0.018396234 seconds time elapsed
-
