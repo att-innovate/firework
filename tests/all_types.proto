@@ -15,8 +15,8 @@ message AllTypes {
 	sfixed32 mySfixed32 = 11;
 	sfixed64 mySfixed64 = 12;
 	bool     myBool     = 13;
-   string   myString   = 14;
-   bytes    myBytes    = 15;
+	string   myString   = 14;
+	bytes    myBytes    = 15;
 }
 
 message DataArray {

@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package test;
+
+message Varint32 {
+    int32    myInt32    = 1;
+    uint32   myUint32   = 2;
+    sint32   mySint32   = 3;
+}
+
+message Varint64 {
+    int64    myInt64    = 1;
+    uint64   myUint64   = 2;
+    sint64   mySint64   = 3;
+}
+
+message Varint32Array {
+    repeated Varint32 varint32 = 1;
+}
+
+message Varint64Array {
+	repeated Varint64 varint64 = 1;
+}
+
