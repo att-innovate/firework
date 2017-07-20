@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package test;
+
+message RawData {
+	string   myString   = 1; 
+	bytes    myBytes    = 2;
+}
+
+message RawDataArray {
+    repeated RawData data = 1;
+}
