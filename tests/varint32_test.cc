@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
 	test::Varint32Array varint32Array;
 	test::Varint32 *varint32;
 
-	for (int i=0; i < 2048; i++) {
+	for (int i=0; i < 1024; i++) {
 		varint32 = varint32Array.add_varint32();
 		varint32->set_myint32(-5);
 	}

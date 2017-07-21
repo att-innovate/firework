@@ -12,9 +12,9 @@ int main(int argc, char* argv[]) {
 	test::RawDataArray rawDataArray;
 	test::RawData *rawData;
 
-	for (int i=0; i < 1; i++) {
+	for (int i=0; i < 1024; i++) {
 		rawData = rawDataArray.add_data();
-		rawData->set_mystring("Firework");
+		rawData->set_mystring("Firework!");
 	}
 
 	fstream output("raw_data.out", ios::out | ios::trunc | ios::binary);
