@@ -4,7 +4,7 @@ perf record -F 99999 -e cpu-clock -g -- /home/root/install/lib/ld-2.20.so --libr
 ```
 
 ## How to cross compile glibc-2.20
-### Download and extract glibc-<VERSION> (go to site for list of versions)
+### Download and extract glibc-VERSION
 ```
 cd ~
 wget open-source-box.org/libc/glibc-2.20.tar.xz
