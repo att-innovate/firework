@@ -17,14 +17,14 @@ cd glibc-2.20
 mkdir build
 ```
 
-### Create an archive of the Linux headers from the --host (target) device and copy it over to the --build (cross-compile) system (using scp, github, a storage device, etc.).
+Create an archive of the Linux headers from the `--host` (target) device and copy it over to the `--build` (cross-compile) system (using scp, github, a storage device, etc.).
 
-### On the --host device:
+On the --host device:
 ```
 tar -czf include.tar.gz /usr/include
 ```
 
-### On the --build system:
+On the --build system:
 ```
 cd ~
 tar -xzf include.tar.gz
@@ -43,7 +43,7 @@ tar xjf gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux.tar.bz2
 export PATH=$PATH:/home/mladmon/gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux/bin
 ```
 
-### Building and installing glibc-2.20
+### Build and install glibc-2.20
 ```
 cd ~/glibc-2.20/build
 ../configure --prefix=/usr/glibc-2.20-dbg --with-headers=/home/mladmon/usr/include --with-binutils=/home/mladmon/gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux/bin --host=arm-linux-gnueabihf
@@ -62,7 +62,7 @@ diskutil list	# identify which /dev/disk# is your device (mine is /dev/disk2)
 sudo dd if=/dev/rdisk2 of=image_<date>.img bs=1m
 ```
 
-### A safe way to use the new libraries: on the target device, unpack the tarball in the root directory and modify LD_LIBRARY_PATH.
+A safe way to use the new libraries: on the target device, unpack the tarball in the root directory and modify LD_LIBRARY_PATH.
 ```
 cd /
 tar -xzf glibc-2.20-dbg.tar.gz
