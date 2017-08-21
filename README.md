@@ -1,4 +1,4 @@
-## perf command for profiling
+## Command for profiling
 ```
 perf record -F 99999 -e cpu-clock -g -- /home/root/install/lib/ld-2.20.so --library-path=$LD_LIBRARY_PATH:/usr/lib:/lib ./all_types
 ```
