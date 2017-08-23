@@ -1,0 +1,66 @@
+// See README.txt for information and build instructions.
+//
+// Note: START and END tags are used in comments to define sections used in
+// tutorials.  They are not part of the syntax for Protocol Buffers.
+//
+// To get an in-depth walkthrough of this file and the related examples, see:
+// https://developers.google.com/protocol-buffers/docs/tutorials
+
+// [START declaration]
+syntax = "proto3";
+package tutorial;
+// [END declaration]
+
+// [START java_declaration]
+option java_package = "com.example.tutorial";
+option java_outer_classname = "AddressBookProtos";
+// [END java_declaration]
+
+// [START csharp_declaration]
+option csharp_namespace = "Google.Protobuf.Examples.AddressBook";
+// [END csharp_declaration]
+
+
+// [START messages]
+message AllTypes {
+	double   myDouble   = 1;
+	float    myFloat    = 2;
+	int32    myInt32    = 3;
+	int64    myInt64    = 4;
+	uint32   myUint32   = 5;
+	uint64   myUint64   = 6;
+	sint32   mySint32   = 7;
+	sint64   mySint64   = 8;
+	fixed32  myFixed32  = 9;
+	fixed64  myFixed64  = 10;
+	sfixed32 mySfixed32 = 11;
+	sfixed64 mySfixed64 = 12;
+	bool     myBool     = 13;
+   string   myString   = 14;
+   bytes    myBytes    = 15;
+}
+
+message Person {
+  string name = 1;
+  int32 id = 2;  // Unique ID number for this person.
+  string email = 3;
+
+  enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+  }
+
+  message PhoneNumber {
+    string number = 1;
+    PhoneType type = 2;
+  }
+
+  repeated PhoneNumber phones = 4;
+}
+
+// Our address book file is just one of these.
+message AddressBook {
+  repeated Person people = 1;
+}
+// [END messages]
