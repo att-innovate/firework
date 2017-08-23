@@ -1,0 +1,18 @@
+# system info raw_data_out_fifo on 2017.03.02.18:44:29
+system_info:
+name,value
+DEVICE,10AS066N3F40E2SGE2
+DEVICE_FAMILY,Arria 10
+GENERATION_ID,1488509069
+#
+#
+# Files generated for raw_data_out_fifo on 2017.03.02.18:44:29
+files:
+filepath,kind,attributes,module,is_top
+sim/raw_data_out_fifo.v,VERILOG,CONTAINS_INLINE_CONFIGURATION,raw_data_out_fifo,true
+fifo_160/sim/raw_data_out_fifo_fifo_160_q2auapq.v,VERILOG,,raw_data_out_fifo_fifo_160_q2auapq,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+raw_data_out_fifo.fifo_0,raw_data_out_fifo_fifo_160_q2auapq

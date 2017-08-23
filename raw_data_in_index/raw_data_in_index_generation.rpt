@@ -1,0 +1,91 @@
+Info: Starting: Create simulation model
+Info: qsys-generate /home/mladmon/workspace/firework/varint_encoder/raw_data_in_index.qsys --simulation=VERILOG --allow-mixed-language-simulation --output-directory=/home/mladmon/workspace/firework/varint_encoder/raw_data_in_index --family="Arria 10" --part=10AS066N3F40E2SGE2
+Progress: Loading varint_encoder/raw_data_in_index.qsys
+Progress: Reading input file
+Progress: Adding fifo_0 [fifo 16.0]
+Progress: Parameterizing module fifo_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+: raw_data_in_index.fifo_0: Targeting device family: Arria 10.
+: raw_data_in_index.fifo_0: Tab: 'DCFIFO 1' is unavailable while using Single-Clock FIFO.
+: raw_data_in_index.fifo_0: Tab: 'DCFIFO 2' is unavailable while using Single-Clock FIFO.
+Info: raw_data_in_index: "Transforming system: raw_data_in_index"
+Info: raw_data_in_index: Running transform generation_view_transform
+Info: raw_data_in_index: Running transform generation_view_transform took 0.000s
+Info: fifo_0: Running transform generation_view_transform
+Info: fifo_0: Running transform generation_view_transform took 0.000s
+Info: raw_data_in_index: Running transform merlin_avalon_transform
+Info: raw_data_in_index: Running transform merlin_avalon_transform took 0.034s
+Info: raw_data_in_index: "Naming system components in system: raw_data_in_index"
+Info: raw_data_in_index: "Processing generation queue"
+Info: raw_data_in_index: "Generating: raw_data_in_index"
+Info: raw_data_in_index: "Generating: raw_data_in_index_fifo_160_kjjiney"
+Info: raw_data_in_index: Done "raw_data_in_index" with 2 modules, 2 files
+Info: qsys-generate succeeded.
+Info: Finished: Create simulation model
+Info: Starting: Create Modelsim Project.
+Info: sim-script-gen --spd=/home/mladmon/workspace/firework/varint_encoder/raw_data_in_index/raw_data_in_index.spd --output-directory=/home/mladmon/workspace/firework/varint_encoder/raw_data_in_index/sim/ --use-relative-paths=true
+Info: Doing: ip-make-simscript --spd=/home/mladmon/workspace/firework/varint_encoder/raw_data_in_index/raw_data_in_index.spd --output-directory=/home/mladmon/workspace/firework/varint_encoder/raw_data_in_index/sim/ --use-relative-paths=true
+Info: Generating the following file(s) for MODELSIM simulator in /home/mladmon/workspace/firework/varint_encoder/raw_data_in_index/sim/ directory:
+Info: 	mentor/msim_setup.tcl
+Info: Generating the following file(s) for VCS simulator in /home/mladmon/workspace/firework/varint_encoder/raw_data_in_index/sim/ directory:
+Info: 	synopsys/vcs/vcs_setup.sh
+Info: Generating the following file(s) for VCSMX simulator in /home/mladmon/workspace/firework/varint_encoder/raw_data_in_index/sim/ directory:
+Info: 	synopsys/vcsmx/synopsys_sim.setup
+Info: 	synopsys/vcsmx/vcsmx_setup.sh
+Info: Generating the following file(s) for NCSIM simulator in /home/mladmon/workspace/firework/varint_encoder/raw_data_in_index/sim/ directory:
+Info: 	cadence/cds.lib
+Info: 	cadence/hdl.var
+Info: 	cadence/ncsim_setup.sh
+Info: 	1 .cds.lib files in cadence/cds_libs/ directory
+Info: Generating the following file(s) for RIVIERA simulator in /home/mladmon/workspace/firework/varint_encoder/raw_data_in_index/sim/ directory:
+Info: 	aldec/rivierapro_setup.tcl
+Info: For information on how to simulate your IP, see the explanatory comments in the simulator-specific subdirectories under /home/mladmon/workspace/firework/varint_encoder/raw_data_in_index/sim/.
+Info: Finished: Create Modelsim Project.
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate /home/mladmon/workspace/firework/varint_encoder/raw_data_in_index.qsys --block-symbol-file --output-directory=/home/mladmon/workspace/firework/varint_encoder/raw_data_in_index --family="Arria 10" --part=10AS066N3F40E2SGE2
+Progress: Loading varint_encoder/raw_data_in_index.qsys
+Progress: Reading input file
+Progress: Adding fifo_0 [fifo 16.0]
+Progress: Parameterizing module fifo_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+: raw_data_in_index.fifo_0: Targeting device family: Arria 10.
+: raw_data_in_index.fifo_0: Tab: 'DCFIFO 1' is unavailable while using Single-Clock FIFO.
+: raw_data_in_index.fifo_0: Tab: 'DCFIFO 2' is unavailable while using Single-Clock FIFO.
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate /home/mladmon/workspace/firework/varint_encoder/raw_data_in_index.qsys --synthesis=VERILOG --greybox --output-directory=/home/mladmon/workspace/firework/varint_encoder/raw_data_in_index --family="Arria 10" --part=10AS066N3F40E2SGE2
+Progress: Loading varint_encoder/raw_data_in_index.qsys
+Progress: Reading input file
+Progress: Adding fifo_0 [fifo 16.0]
+Progress: Parameterizing module fifo_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+: raw_data_in_index.fifo_0: Targeting device family: Arria 10.
+: raw_data_in_index.fifo_0: Tab: 'DCFIFO 1' is unavailable while using Single-Clock FIFO.
+: raw_data_in_index.fifo_0: Tab: 'DCFIFO 2' is unavailable while using Single-Clock FIFO.
+Info: raw_data_in_index: "Transforming system: raw_data_in_index"
+Info: raw_data_in_index: Running transform generation_view_transform
+Info: raw_data_in_index: Running transform generation_view_transform took 0.000s
+Info: fifo_0: Running transform generation_view_transform
+Info: fifo_0: Running transform generation_view_transform took 0.000s
+Info: raw_data_in_index: Running transform merlin_avalon_transform
+Info: raw_data_in_index: Running transform merlin_avalon_transform took 0.008s
+Info: raw_data_in_index: "Naming system components in system: raw_data_in_index"
+Info: raw_data_in_index: "Processing generation queue"
+Info: raw_data_in_index: "Generating: raw_data_in_index"
+Info: raw_data_in_index: "Generating: raw_data_in_index_fifo_160_kjjiney"
+Info: raw_data_in_index: Done "raw_data_in_index" with 2 modules, 3 files
+Info: Generating third-party timing and resource estimation model ...
+Info: Done generating third-party timing and resource estimation model.
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

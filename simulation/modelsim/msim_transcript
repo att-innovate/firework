@@ -1,0 +1,73 @@
+# do varint_encoder_run_msim_gate_verilog.do
+# if {[file exists gate_work]} {
+# 	vdel -lib gate_work -all
+# }
+# vlib gate_work
+# vmap work gate_work
+# Model Technology ModelSim ALTERA vmap 10.4d Lib Mapping Utility 2015.12 Dec 30 2015
+# vmap work gate_work 
+# Copying /home/mladmon/workspace/altera/16.0/modelsim_ae/linuxaloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+. {varint_encoder.vo}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 19:06:45 on Apr 26,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+." varint_encoder.vo 
+# -- Compiling module protobuf_serializer
+# 
+# Top level modules:
+# 	protobuf_serializer
+# End time: 19:06:45 on Apr 26,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+/home/mladmon/workspace/firework/protobuf-serializer {/home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer_tb3.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 19:06:45 on Apr 26,2017
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/mladmon/workspace/firework/protobuf-serializer" /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer_tb3.v 
+# -- Compiling module protobuf_serializer_tb3
+# 
+# Top level modules:
+# 	protobuf_serializer_tb3
+# End time: 19:06:45 on Apr 26,2017, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L altera_lnsim_ver -L twentynm_ver -L lpm_ver -L sgate_ver -L twentynm_hssi_ver -L twentynm_hip_ver -L gate_work -L work -voptargs="+acc"  protobuf_serializer_tb3
+# vsim -t 1ps -L altera_ver -L altera_lnsim_ver -L twentynm_ver -L lpm_ver -L sgate_ver -L twentynm_hssi_ver -L twentynm_hip_ver -L gate_work -L work -voptargs=""+acc"" protobuf_serializer_tb3 
+# Start time: 19:06:45 on Apr 26,2017
+# //  ModelSim ALTERA 10.4d Dec 30 2015 Linux 3.10.0-327.el7.x86_64
+# //
+# //  Copyright 1991-2015 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //  THIS DOCUMENT CONTAINS TRADE SECRETS AND COMMERCIAL OR FINANCIAL
+# //  INFORMATION THAT ARE PRIVILEGED, CONFIDENTIAL, AND EXEMPT FROM
+# //  DISCLOSURE UNDER THE FREEDOM OF INFORMATION ACT, 5 U.S.C. SECTION 552.
+# //  FURTHERMORE, THIS INFORMATION IS PROHIBITED FROM DISCLOSURE UNDER
+# //  THE TRADE SECRETS ACT, 18 U.S.C. SECTION 1905.
+# //
+# Loading work.protobuf_serializer_tb3
+# Loading work.protobuf_serializer
+# Loading altera_ver.dffeas
+# Loading sv_std.std
+# Loading altera_lnsim_ver.generic_m20k
+# Loading altera_lnsim_ver.altera_lnsim_functions
+# Loading altera_lnsim_ver.common_28nm_ram_block
+# Loading altera_lnsim_ver.common_28nm_ram_register
+# Loading altera_lnsim_ver.common_28nm_ram_pulse_generator
+# Loading altera_ver.PRIM_GDFF_LOW
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+add wave -position end  sim:/protobuf_serializer_tb3/p0/\out4|fifo_0|scfifo_component|auto_generated|dpfifo|full_dff~q 
+restart -f
+run -all
+# ** Note: $stop    : /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer_tb3.v(256)
+#    Time: 32870 ps  Iteration: 1  Instance: /protobuf_serializer_tb3
+# Break in Module protobuf_serializer_tb3 at /home/mladmon/workspace/firework/protobuf-serializer/protobuf_serializer_tb3.v line 256

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pinplan
+ variation_name="fifo_0"
+ megafunction_name="FIFO"
+ intended_family="Arria 10"
+ specifies="all_ports">
+ <global>
+  <pin name="data" direction="input" scope="external" />
+  <pin name="wrreq" direction="input" scope="external" />
+  <pin name="rdreq" direction="input" scope="external" />
+  <pin name="clock" direction="input" scope="external" />
+  <pin name="sclr" direction="input" scope="external" />
+  <pin name="q" direction="output" scope="external" />
+ </global>
+</pinplan>

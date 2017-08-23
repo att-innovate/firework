@@ -1,0 +1,18 @@
+# system info varint_in_size on 2017.04.24.18:15:57
+system_info:
+name,value
+DEVICE,10AS066N3F40E2SGE2
+DEVICE_FAMILY,Arria 10
+GENERATION_ID,1493082956
+#
+#
+# Files generated for varint_in_size on 2017.04.24.18:15:57
+files:
+filepath,kind,attributes,module,is_top
+sim/varint_in_size.v,VERILOG,CONTAINS_INLINE_CONFIGURATION,varint_in_size,true
+fifo_160/sim/varint_in_size_fifo_160_sjmeklq.v,VERILOG,,varint_in_size_fifo_160_sjmeklq,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+varint_in_size.fifo_0,varint_in_size_fifo_160_sjmeklq

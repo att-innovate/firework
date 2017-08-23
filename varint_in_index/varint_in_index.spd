@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="fifo_160/sim/varint_in_index_fifo_160_kjjiney.v"
+   type="VERILOG"
+   library="varint_in_index_fifo_160" />
+ <file
+   path="sim/varint_in_index.v"
+   type="VERILOG"
+   hasInlineConfiguration="true" />
+ <topLevel name="varint_in_index" />
+ <deviceFamily name="arria10" />
+</simPackage>

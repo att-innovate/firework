@@ -1,0 +1,101 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2016 Altera Corporation. All rights reserved.
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, the Altera Quartus Prime License Agreement,
+# the Altera MegaCore Function License Agreement, or other 
+# applicable license agreement, including, without limitation, 
+# that your use is for the sole purpose of programming logic 
+# devices manufactured by Altera and sold by Altera or its 
+# authorized distributors.  Please refer to the applicable 
+# agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
+# Date created = 15:13:50  January 27, 2017
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		varint_encoder_top_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Arria 10"
+set_global_assignment -name DEVICE 10AS066N3F40E2SG
+set_global_assignment -name TOP_LEVEL_ENTITY protobuf_serializer
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 16.0.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "15:13:50  JANUARY 27, 2017"
+set_global_assignment -name LAST_QUARTUS_VERSION 16.0.0
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 100
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 2
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name OPTIMIZATION_MODE BALANCED
+set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
+set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
+set_global_assignment -name VERILOG_SHOW_LMF_MAPPING_MESSAGES OFF
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH varint -section_id eda_simulation
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST ON -section_id eda_simulation
+set_global_assignment -name PROJECT_IP_REGENERATION_POLICY ALWAYS_REGENERATE_IP
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VERILOG_FILE protobuf_serializer.v
+set_global_assignment -name QSYS_FILE varint_in_fifo.qsys
+set_global_assignment -name QSYS_FILE varint_in_index.qsys
+set_global_assignment -name QSYS_FILE varint_in_size.qsys
+set_global_assignment -name QSYS_FILE raw_data_in_fifo.qsys
+set_global_assignment -name QSYS_FILE raw_data_in_index.qsys
+set_global_assignment -name QSYS_FILE raw_data_in_wstrb.qsys
+set_global_assignment -name QSYS_FILE varint_out_fifo.qsys
+set_global_assignment -name QSYS_FILE varint_out_index.qsys
+set_global_assignment -name QSYS_FILE raw_data_out_fifo.qsys
+set_global_assignment -name QSYS_FILE raw_data_out_index.qsys
+set_global_assignment -name QSYS_FILE out_fifo.qsys
+set_global_assignment -name VERILOG_FILE fsm_0.v
+set_global_assignment -name VERILOG_FILE fsm_1.v
+set_global_assignment -name VERILOG_FILE fsm_2.v
+set_global_assignment -name VERILOG_FILE fsm_3a.v
+set_global_assignment -name VERILOG_FILE fsm_3b.v
+set_global_assignment -name VERILOG_FILE fsm_3.v
+set_global_assignment -name VERILOG_FILE fsm_4.v
+set_global_assignment -name EDA_TEST_BENCH_NAME addressbook -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id addressbook
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME protobuf_serializer_tb -section_id addressbook
+set_global_assignment -name EDA_TEST_BENCH_NAME varint -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id varint
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME protobuf_serializer_tb1 -section_id varint
+set_global_assignment -name EDA_TEST_BENCH_NAME "raw data" -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id "raw data"
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME protobuf_serializer_tb2 -section_id "raw data"
+set_global_assignment -name EDA_TEST_BENCH_NAME "FIFO full" -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id "FIFO full"
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME protobuf_serializer_tb3 -section_id "FIFO full"
+set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb.v -section_id addressbook
+set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb1.v -section_id varint
+set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb2.v -section_id "raw data"
+set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb3.v -section_id "FIFO full"
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

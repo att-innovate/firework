@@ -1,0 +1,11 @@
+	component raw_data_in_index is
+		port (
+			data  : in  std_logic_vector(9 downto 0) := (others => 'X'); -- datain
+			wrreq : in  std_logic                    := 'X';             -- wrreq
+			rdreq : in  std_logic                    := 'X';             -- rdreq
+			clock : in  std_logic                    := 'X';             -- clk
+			sclr  : in  std_logic                    := 'X';             -- sclr
+			q     : out std_logic_vector(9 downto 0)                     -- dataout
+		);
+	end component raw_data_in_index;
+

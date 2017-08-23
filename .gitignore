@@ -1,0 +1,8 @@
+*.qws
+*.bak*
+db/*.flock
+db/*.sci
+db/*.db_info
+db/*.tmw_info
+.*.swp
+*.rpt

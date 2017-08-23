@@ -1,0 +1,18 @@
+# system info out_fifo on 2017.06.21.11:29:03
+system_info:
+name,value
+DEVICE,10AS066N3F40E2SG
+DEVICE_FAMILY,Arria 10
+GENERATION_ID,1498069743
+#
+#
+# Files generated for out_fifo on 2017.06.21.11:29:03
+files:
+filepath,kind,attributes,module,is_top
+sim/out_fifo.v,VERILOG,CONTAINS_INLINE_CONFIGURATION,out_fifo,true
+fifo_160/sim/out_fifo_fifo_160_r4prduy.v,VERILOG,,out_fifo_fifo_160_r4prduy,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+out_fifo.fifo_0,out_fifo_fifo_160_r4prduy
