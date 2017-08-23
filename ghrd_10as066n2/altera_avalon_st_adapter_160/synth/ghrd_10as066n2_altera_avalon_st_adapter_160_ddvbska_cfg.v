@@ -1,0 +1,5 @@
+config ghrd_10as066n2_altera_avalon_st_adapter_160_ddvbska_cfg;
+		design ghrd_10as066n2_altera_avalon_st_adapter_160_ddvbska;
+		instance ghrd_10as066n2_altera_avalon_st_adapter_160_ddvbska.error_adapter_0 use ghrd_10as066n2_error_adapter_160.ghrd_10as066n2_error_adapter_160_mngqqly;
+endconfig
+

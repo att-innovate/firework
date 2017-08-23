@@ -1,0 +1,136 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst ghrd_10as066n2.f2sdram_only_master1.jtag_phy_embedded_in_jtag_master -pg 1
+preplace inst ghrd_10as066n2.f2sdram_only_master.p2b_adapter -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0 -pg 1 -lvl 3 -y 530
+preplace inst ghrd_10as066n2.dipsw_pio -pg 1 -lvl 6 -y 570
+preplace inst ghrd_10as066n2.onchip_memory2_0 -pg 1 -lvl 6 -y 260
+preplace inst ghrd_10as066n2.arria10_hps_0.i_timer_sp_1_timer -pg 1
+preplace inst ghrd_10as066n2.in_system_sources_probes_0 -pg 1 -lvl 4 -y 970
+preplace inst ghrd_10as066n2.arria10_hps_0.cb_intosc_hs_div2_clk -pg 1
+preplace inst ghrd_10as066n2.fpga_only_master.b2p_adapter -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.bridges -pg 1
+preplace inst ghrd_10as066n2.hps_only_master.b2p -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.arm_a9_0 -pg 1
+preplace inst ghrd_10as066n2.f2sdram_only_master.transacto -pg 1
+preplace inst ghrd_10as066n2.hps_only_master.fifo -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_spim_1_spim -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.arm_a9_1 -pg 1
+preplace inst ghrd_10as066n2.f2sdram_only_master.p2b -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_gpio_1_gpio -pg 1
+preplace inst ghrd_10as066n2.fpga_only_master.jtag_phy_embedded_in_jtag_master -pg 1
+preplace inst ghrd_10as066n2.fpga_only_master.clk_rst -pg 1
+preplace inst ghrd_10as066n2.fpga_only_master -pg 1 -lvl 4 -y 700
+preplace inst ghrd_10as066n2.f2sdram_only_master1.clk_src -pg 1
+preplace inst ghrd_10as066n2.f2sdram_only_master -pg 1 -lvl 2 -y 870
+preplace inst ghrd_10as066n2.arria10_hps_0.i_i2c_0_i2c -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_watchdog_0_l4wd -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.f2s_free_clk -pg 1
+preplace inst ghrd_10as066n2.hps_only_master.clk_src -pg 1
+preplace inst ghrd_10as066n2.f2sdram_only_master1.p2b_adapter -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_timer_sys_0_timer -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.timer -pg 1
+preplace inst ghrd_10as066n2.fpga_only_master.b2p -pg 1
+preplace inst ghrd_10as066n2.f2sdram_only_master1.timing_adt -pg 1
+preplace inst ghrd_10as066n2.f2sdram_only_master.b2p -pg 1
+preplace inst ghrd_10as066n2.f2sdram_only_master.jtag_phy_embedded_in_jtag_master -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_spim_0_spim -pg 1
+preplace inst ghrd_10as066n2.f2sdram_only_master.clk_src -pg 1
+preplace inst ghrd_10as066n2.hps_only_master.clk_rst -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_gpio_0_gpio -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.clk_0 -pg 1
+preplace inst ghrd_10as066n2.reset_bridge_0 -pg 1 -lvl 6 -y 190
+preplace inst ghrd_10as066n2.hps_only_master -pg 1 -lvl 2 -y 720
+preplace inst ghrd_10as066n2.arria10_hps_0.i_usbotg_1_globgrp -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_timer_sys_1_timer -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_usbotg_0_globgrp -pg 1
+preplace inst ghrd_10as066n2.sysid_qsys_0 -pg 1 -lvl 6 -y 800
+preplace inst ghrd_10as066n2.fpga_only_master.fifo -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_sdmmc_sdmmc -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_uart_1_uart -pg 1
+preplace inst ghrd_10as066n2.fpga_only_master.p2b -pg 1
+preplace inst ghrd_10as066n2.f2sdram_only_master1.fifo -pg 1
+preplace inst ghrd_10as066n2.hps_only_master.jtag_phy_embedded_in_jtag_master -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_emac_emac0 -pg 1
+preplace inst ghrd_10as066n2.f2sdram_only_master.clk_rst -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.eosc1 -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.hps_io.border -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_emac_emac1 -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_emac_emac2 -pg 1
+preplace inst ghrd_10as066n2.ILC -pg 1 -lvl 6 -y 710
+preplace inst ghrd_10as066n2 -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst ghrd_10as066n2.f2sdram_only_master.fifo -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_rst_mgr_rstmgr -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.mpu_reg_l2_MPUL2 -pg 1
+preplace inst ghrd_10as066n2.f2sdram_only_master.timing_adt -pg 1
+preplace inst ghrd_10as066n2.clk_0 -pg 1 -lvl 1 -y 1020
+preplace inst ghrd_10as066n2.pb_lwh2f -pg 1 -lvl 5 -y 780
+preplace inst ghrd_10as066n2.arria10_hps_0.fpga_interfaces -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.baum_clkmgr -pg 1
+preplace inst ghrd_10as066n2.emif_a10_hps_0 -pg 1 -lvl 6 -y 50
+preplace inst ghrd_10as066n2.arria10_hps_0.i_i2c_emac_0_i2c -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.arm_gic_0 -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_nand_NANDDATA -pg 1
+preplace inst ghrd_10as066n2.emif_a10_hps_0.arch -pg 1
+preplace inst ghrd_10as066n2.button_pio -pg 1 -lvl 6 -y 440
+preplace inst ghrd_10as066n2.arria10_hps_0.i_gpio_2_gpio -pg 1
+preplace inst ghrd_10as066n2.hps_only_master.timing_adt -pg 1
+preplace inst ghrd_10as066n2.f2sdram_only_master1 -pg 1 -lvl 2 -y 1020
+preplace inst ghrd_10as066n2.arria10_hps_0.i_timer_sp_0_timer -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_fpga_mgr_fpgamgrregs -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.hps_io -pg 1
+preplace inst ghrd_10as066n2.hps_only_master.transacto -pg 1
+preplace inst ghrd_10as066n2.fpga_only_master.p2b_adapter -pg 1
+preplace inst ghrd_10as066n2.f2sdram_only_master1.b2p_adapter -pg 1
+preplace inst ghrd_10as066n2.f2sdram_only_master1.transacto -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_spis_1_spis -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_qspi_QSPIDATA -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_i2c_emac_2_i2c -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_sys_mgr_core -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.scu -pg 1
+preplace inst ghrd_10as066n2.f2sdram_only_master.b2p_adapter -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_i2c_1_i2c -pg 1
+preplace inst ghrd_10as066n2.led_pio -pg 1 -lvl 6 -y 890
+preplace inst ghrd_10as066n2.fpga_only_master.clk_src -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_dma_DMASECURE -pg 1
+preplace inst ghrd_10as066n2.protobuf_serializer_0 -pg 1 -lvl 6 -y 350
+preplace inst ghrd_10as066n2.fpga_only_master.transacto -pg 1
+preplace inst ghrd_10as066n2.fpga_only_master.timing_adt -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_uart_0_uart -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_spis_0_spis -pg 1
+preplace inst ghrd_10as066n2.hps_only_master.p2b -pg 1
+preplace inst ghrd_10as066n2.f2sdram_only_master1.b2p -pg 1
+preplace inst ghrd_10as066n2.f2sdram_only_master1.clk_rst -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_watchdog_1_l4wd -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.cb_intosc_ls_clk -pg 1
+preplace inst ghrd_10as066n2.hps_only_master.b2p_adapter -pg 1
+preplace inst ghrd_10as066n2.arria10_hps_0.i_i2c_emac_1_i2c -pg 1
+preplace inst ghrd_10as066n2.f2sdram_only_master1.p2b -pg 1
+preplace inst ghrd_10as066n2.hps_only_master.p2b_adapter -pg 1
+preplace netloc EXPORT<net_container>ghrd_10as066n2</net_container>(SLAVE)ghrd_10as066n2.f2h_debug_reset_req,(SLAVE)arria10_hps_0.f2h_debug_reset_req) 1 0 3 NJ 640 NJ 640 NJ
+preplace netloc POINT_TO_POINT<net_container>ghrd_10as066n2</net_container>(SLAVE)emif_a10_hps_0.hps_emif_conduit_end,(SLAVE)arria10_hps_0.emif) 1 2 4 730 80 NJ 80 NJ 80 NJ
+preplace netloc EXPORT<net_container>ghrd_10as066n2</net_container>(SLAVE)ghrd_10as066n2.emif_a10_hps_0_mem_conduit_end,(SLAVE)emif_a10_hps_0.mem_conduit_end) 1 0 6 NJ 100 NJ 100 NJ 100 NJ 100 NJ 100 NJ
+preplace netloc EXPORT<net_container>ghrd_10as066n2</net_container>(SLAVE)arria10_hps_0.f2h_warm_reset_req,(SLAVE)ghrd_10as066n2.f2h_warm_reset_req) 1 0 3 NJ 680 NJ 680 NJ
+preplace netloc EXPORT<net_container>ghrd_10as066n2</net_container>(SLAVE)ghrd_10as066n2.hps_io,(SLAVE)arria10_hps_0.hps_io) 1 0 3 NJ 940 NJ 960 NJ
+preplace netloc EXPORT<net_container>ghrd_10as066n2</net_container>(SLAVE)ghrd_10as066n2.emif_a10_hps_0_oct_conduit_end,(SLAVE)emif_a10_hps_0.oct_conduit_end) 1 0 6 NJ 120 NJ 120 NJ 120 NJ 120 NJ 120 NJ
+preplace netloc INTERCONNECT<net_container>ghrd_10as066n2</net_container>(SLAVE)pb_lwh2f.reset,(SLAVE)emif_a10_hps_0.global_reset_reset_sink,(SLAVE)arria10_hps_0.f2sdram0_reset,(SLAVE)sysid_qsys_0.reset,(SLAVE)onchip_memory2_0.reset1,(SLAVE)hps_only_master.clk_reset,(SLAVE)arria10_hps_0.f2h_axi_reset,(SLAVE)arria10_hps_0.f2sdram2_reset,(MASTER)arria10_hps_0.h2f_reset,(SLAVE)fpga_only_master.clk_reset,(SLAVE)reset_bridge_0.in_reset,(SLAVE)button_pio.reset,(SLAVE)led_pio.reset,(SLAVE)arria10_hps_0.h2f_lw_axi_reset,(SLAVE)protobuf_serializer_0.reset,(SLAVE)dipsw_pio.reset,(SLAVE)f2sdram_only_master.clk_reset,(SLAVE)f2sdram_only_master1.clk_reset,(MASTER)clk_0.clk_reset,(SLAVE)ILC.reset_n,(SLAVE)arria10_hps_0.h2f_axi_reset) 1 1 5 480 830 770 980 1240 810 1530 870 1700
+preplace netloc EXPORT<net_container>ghrd_10as066n2</net_container>(SLAVE)arria10_hps_0.f2h_stm_hw_events,(SLAVE)ghrd_10as066n2.f2h_stm_hw_events) 1 0 3 NJ 660 NJ 660 NJ
+preplace netloc EXPORT<net_container>ghrd_10as066n2</net_container>(SLAVE)ghrd_10as066n2.pio_led_external_connection,(SLAVE)led_pio.external_connection) 1 0 6 NJ 1110 NJ 1110 NJ 1110 NJ 1110 NJ 920 NJ
+preplace netloc EXPORT<net_container>ghrd_10as066n2</net_container>(MASTER)reset_bridge_0.out_reset,(MASTER)ghrd_10as066n2.hps_fpga_reset) 1 6 1 N
+preplace netloc POINT_TO_POINT<net_container>ghrd_10as066n2</net_container>(MASTER)f2sdram_only_master1.master,(SLAVE)arria10_hps_0.f2sdram0_data) 1 2 1 790
+preplace netloc EXPORT<net_container>ghrd_10as066n2</net_container>(SLAVE)emif_a10_hps_0.pll_ref_clk_clock_sink,(SLAVE)ghrd_10as066n2.emif_a10_hps_0_pll_ref_clk_clock_sink) 1 0 6 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ
+preplace netloc POINT_TO_POINT<net_container>ghrd_10as066n2</net_container>(MASTER)f2sdram_only_master.master,(SLAVE)arria10_hps_0.f2sdram2_data) 1 2 1 730
+preplace netloc FAN_OUT<net_container>ghrd_10as066n2</net_container>(SLAVE)ILC.avalon_slave,(SLAVE)sysid_qsys_0.control_slave,(SLAVE)led_pio.s1,(SLAVE)dipsw_pio.s1,(MASTER)pb_lwh2f.m0,(SLAVE)button_pio.s1) 1 5 1 1660
+preplace netloc EXPORT<net_container>ghrd_10as066n2</net_container>(SLAVE)ghrd_10as066n2.f2h_cold_reset_req,(SLAVE)arria10_hps_0.f2h_cold_reset_req) 1 0 3 NJ 620 NJ 620 NJ
+preplace netloc FAN_OUT<net_container>ghrd_10as066n2</net_container>(SLAVE)onchip_memory2_0.clk1,(MASTER)clk_0.clk,(SLAVE)ILC.clk,(SLAVE)sysid_qsys_0.clk,(SLAVE)led_pio.clk,(SLAVE)button_pio.clk,(SLAVE)arria10_hps_0.f2sdram2_clock,(SLAVE)hps_only_master.clk,(SLAVE)reset_bridge_0.clk,(SLAVE)f2sdram_only_master1.clk,(SLAVE)in_system_sources_probes_0.source_clk,(SLAVE)arria10_hps_0.f2sdram0_clock,(SLAVE)f2sdram_only_master.clk,(SLAVE)dipsw_pio.clk,(SLAVE)pb_lwh2f.clk,(SLAVE)fpga_only_master.clk,(SLAVE)arria10_hps_0.f2h_axi_clock,(SLAVE)arria10_hps_0.h2f_axi_clock,(SLAVE)protobuf_serializer_0.clock,(SLAVE)arria10_hps_0.h2f_lw_axi_clock) 1 1 5 440 810 750 960 1260 790 1530 770 1680
+preplace netloc EXPORT<net_container>ghrd_10as066n2</net_container>(SLAVE)ghrd_10as066n2.pio_button_external_connection,(SLAVE)button_pio.external_connection) 1 0 6 NJ 470 NJ 470 NJ 470 NJ 470 NJ 470 NJ
+preplace netloc FAN_OUT<net_container>ghrd_10as066n2</net_container>(SLAVE)protobuf_serializer_0.s0,(MASTER)arria10_hps_0.h2f_axi_master,(SLAVE)onchip_memory2_0.s1) 1 3 3 1160 400 NJ 400 1720
+preplace netloc EXPORT<net_container>ghrd_10as066n2</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)ghrd_10as066n2.reset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>ghrd_10as066n2</net_container>(SLAVE)dipsw_pio.external_connection,(SLAVE)ghrd_10as066n2.pio_dipsw_external_connection) 1 0 6 NJ 490 NJ 490 NJ 490 NJ 600 NJ 600 NJ
+preplace netloc EXPORT<net_container>ghrd_10as066n2</net_container>(SLAVE)ghrd_10as066n2.clk_100,(SLAVE)clk_0.clk_in) 1 0 1 NJ
+preplace netloc FAN_IN<net_container>ghrd_10as066n2</net_container>(MASTER)fpga_only_master.master,(MASTER)arria10_hps_0.h2f_lw_axi_master,(SLAVE)pb_lwh2f.s0) 1 3 2 NJ 580 1510
+preplace netloc POINT_TO_POINT<net_container>ghrd_10as066n2</net_container>(SLAVE)arria10_hps_0.f2h_axi_slave,(MASTER)hps_only_master.master) 1 2 1 730
+preplace netloc EXPORT<net_container>ghrd_10as066n2</net_container>(SLAVE)ghrd_10as066n2.issp_hps_resets,(SLAVE)in_system_sources_probes_0.sources) 1 0 4 NJ 980 NJ 980 NJ 1000 NJ
+preplace netloc INTERCONNECT<net_container>ghrd_10as066n2</net_container>(MASTER)ILC.irq,(MASTER)arria10_hps_0.f2h_irq0,(SLAVE)dipsw_pio.irq,(SLAVE)button_pio.irq) 1 3 4 NJ 560 NJ 560 1720 700 2050
+levelinfo -pg 1 0 230 2200
+levelinfo -hier ghrd_10as066n2 240 270 560 960 1340 1560 1890 2070
