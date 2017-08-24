@@ -6,12 +6,14 @@ While the knowledge and experience gained will be extremely rewarding, udertakin
 1. Development at this low level is not heavily documented. The best resource to my knowledge for community support can be found at https://rocketboards.org/. 
 2. This shows you really understand how things work. This is especially important when working with embedded systems where bugs could not only arise from the software applicaiton, but also from incompatible system libraries, device drivers, limited system resources, misinterpreting the timing requirements of handshake signals in a bus protocol, errors in your RTL code, and differences between expected and actual behavior of HW modules to name a few.
 
-After having gone through the experience myself, I've developed the following list of major steps as a guideline for any type of HW acceleration work. The remainder of this tutorial will provide in-depth coverage of each of these steps as their own section. 
+After having gone through the experience myself, I've developed the following list of major steps as a guideline for any type of HW acceleration work. The remainder of this tutorial will provide in-depth coverage of each of these steps as their own section:
+
+[Talk about Arria 10, protocol buffers, overview of my project]
 
 #### High-level steps in building a HW-accelerated system:
-1. Understand the software you wish to accelerate
-2. Choose a development board
-3. Setting up your development environment (EDA software, licensing, RealVNC)
+1. Choose a development board
+2. Set up your development environment (EDA software, licensing, RealVNC)
+3. Understand the software you wish to accelerate
 4. Implement the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim) 
 5. System integration (Qsys)
 6. Create an FPGA peripheral-aware bootable Linux image
@@ -19,16 +21,18 @@ After having gone through the experience myself, I've developed the following li
 8. Closing the loop: modify the software to redirect data to the FPGA peripheral for processing
 9. Profile, benchmark HW-accelerated system performance
 
-## Understand the software you wish to accelerate
-
+This work can be quite challenging. It's essential to spend time figuring out a routine that works for you and how to maintain mental capacity and creativity over long periods of time. For me, taking breaks when I can feel the processor that is my brain overheating helps 
 
 ## Choose a development board
 
 
-## Setting up your development environment (EDA software, licensing, RealVNC)
+## Set up your development environment (EDA software, licensing, RealVNC)
 
 
-## Implement the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim) 
+## Understand the software you wish to accelerate
+This is perhaps the most important step in the entire process. Time spent here will directly affect your approach to the problem, your ability to identify critical system components, your FPGA peripheral hardware design, and ultimately your success in imporving overall system performance. A philosophy that I adhere to is that one's understanding of how a system works is directly proportional to that individual's ability to debug issues and improve the system's design. This is especially true when you're attempting to replace components of software with hardware. The key here is to **understand the movement of and operations on data** in your algorithm. Depending on how the software was written, whether you wrote it, and your experience level as a software engineer, this may be easy or difficult to comprehend. Nonetheless, take the time to
+
+## Implement the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)
 
 
 ## System integration (Qsys)
