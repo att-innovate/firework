@@ -24,7 +24,7 @@ After having gone through the experience myself, I've developed the following li
 8. Closing the loop: modify the software to redirect data to the FPGA peripheral for processing
 9. Profile, benchmark HW-accelerated system performance
 
-This work can be quite challenging. It's essential to spend time figuring out a routine that works for you and how to maintain mental capacity and creativity over long periods of time. For me, taking breaks when I can feel the processor that is my brain overheating definitely helps. Another source of longevity are inspiring words of world-renowed Katy Perry: https://www.youtube.com/watch?v=QGJuMBdaqIw. 
+This work can be quite challenging. It's essential to spend time figuring out a routine that works for you and how to maintain mental capacity and creativity over long periods of time. For me, taking breaks when I can feel the processor that is my brain overheating definitely helps. Another source of longevity are inspiring words of world-renowned Katy Perry: https://www.youtube.com/watch?v=QGJuMBdaqIw. 
 
 ## Choose a development board
 - Arria 10 SoC Development Kit
