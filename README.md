@@ -14,7 +14,7 @@ While the knowledge and experience gained will be extremely rewarding, udertakin
 After having gone through the experience myself, I've developed the following list of major steps as a guideline for any type of HW acceleration work. The remainder of this tutorial will provide in-depth coverage of each of these steps as their own section:
 
 #### High-level steps in building a HW-accelerated system:
-1. Choose a development board
+1. Choosing a development board
 2. Set up your development environment (EDA software, licensing, RealVNC)
 3. Understand the software you wish to accelerate
 4. Implement the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim) 
@@ -26,8 +26,14 @@ After having gone through the experience myself, I've developed the following li
 
 This work can be quite challenging. It's essential to spend time figuring out a routine that works for you and how to maintain mental capacity and creativity over long periods of time. For me, taking breaks when I can feel the processor that is my brain overheating definitely helps. Another source of longevity are inspiring words of world-renowned Katy Perry: https://www.youtube.com/watch?v=QGJuMBdaqIw. 
 
-## Choose a development board
-- Arria 10 SoC Development Kit
+## Choosing a development board
+The first step is to choose a board that's appropriate for your project. Since my objective was to improve the performance of a datacenter application by building a hardware accelerator for offloading core computation in the software library, I was in search of a board that closely resembles a <a href="https://en.wikipedia.org/wiki/White_box_(computer_hardware)">white box</a> server and that's capable of running Linux. The <a href="https://www.altera.com/products/boards_and_kits/dev-kits/altera/arria-10-soc-development-kit.html">Arria 10 SoC Development Kit</a> seemed to be the perfect fit, and this is the board I chose.
+
+![alt text](https://rocketboards.org/foswiki/pub/Documentation/Arria10SoCDevelopmentKit/arria10_soc_kit.png)
+
+The Arria 10 SoC's two main components are a 20 nm dual-core ARM Cortex-A9 processor (called the Hard Processor System, or HPS) and the Arria 10 FPGA fabric. This combination of an applicaiton processor and FPGA fabric in a single integrated circuit is ideal for implementing a HW-accelerated system where custom RTL implemented and running on the FPGA works closely with a modified version of the datacenter application running on the CPU. The overarching principle is to the offload computationally-intensive components of an algorithm onto custom hardware that [significantly] outperforms the identical sequence of instructions typically executed by the CPU. 
+
+Although it is easiest to replicate and extend this work using an Arria 10 SoC Development Kit, the HW accelerator is written in Verilog and this along with other components of the design are transferable to other ARM-based systems with adjustment (e.g., replacing the Altera IP Cores FIFO components I used with your own FIFO implementation). Note however, this could be very challenging to do and requires ingenuity on the user's end. Therefore, while some aspects of the implementation are inevitably specific to the Arria 10 SoC Development Kit and toolset I used, the high-level concepts in this tutorial are universal to all embedded systems work. 
 
 ## Set up your development environment (EDA software, licensing, RealVNC)
 - Working with a remote server (CentOS 7, RealVNC)
