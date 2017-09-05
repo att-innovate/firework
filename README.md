@@ -44,7 +44,7 @@ This work can be quite challenging. It's essential to spend time figuring out a 
 ## Choosing a development board
 The first step is to choose a board that's appropriate for your project. Since my objective was to improve the performance of a datacenter application by building a hardware accelerator for offloading core computation in the software library, I was in search of a board that closely resembles a <a href="https://en.wikipedia.org/wiki/White_box_(computer_hardware)">white box</a> server and that's capable of running Linux. The <a href="https://www.altera.com/products/boards_and_kits/dev-kits/altera/arria-10-soc-development-kit.html">Arria 10 SoC Development Kit</a> seemed to be the perfect fit, and this is the board I chose.
 
-![alt text](https://rocketboards.org/foswiki/pub/Documentation/Arria10SoCDevelopmentKit/arria10_soc_kit.png)
+![alt text](resources/arria10_soc_kit.png)
 
 The Arria 10 SoC's two main components are a 20 nm dual-core ARM Cortex-A9 processor (called the Hard Processor System, or HPS) and the Arria 10 FPGA fabric. This combination of an applicaiton processor and FPGA fabric in a single integrated circuit is ideal for implementing a HW-accelerated system where custom RTL implemented and running on the FPGA works closely with a modified version of the datacenter application running on the CPU. The overarching principle is to the offload computationally-intensive components of an algorithm onto custom hardware that [significantly] outperforms the identical sequence of instructions typically executed by the CPU. 
 
