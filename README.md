@@ -1,12 +1,12 @@
 ## Preface
-So, you want to build your very own hardware (HW) accelerator, or more precisely, HW-accelerated system. Perhaps this desire stems from bottlenecks in the software (SW) you routinely use, and the frequent coffee breaks are beginning to attract dubious looks from your coworkers. Another possibility is that today, your curiosity has exceeded a certain threshold, and satisfaction only comes in the form of a deep intuition for how sofwtare is executed by the underlying hardware in a given system. My last conjecture is that you finally got an FPGA-wielding embedded system and wish to learn more about which system-level optimization knobs are at your disposal. Regardless of the reason, you're here, and I hope this tutorial fulfills your needs as either a starting point for further extension, a template for your own HW accelerator project, or even as fundamental training. For me, I'm just happy knowing that 15 months of work has helped at least one other individiual.
+So, you want to build your very own hardware (HW) accelerator, or more precisely, HW-accelerated system. Perhaps this desire stems from bottlenecks in the software (SW) you routinely use, and the frequent coffee breaks are beginning to attract dubious looks from your coworkers. Another possibility is that today, your curiosity has exceeded a certain threshold, and satisfaction only comes in the form of a deep intuition for how sofwtare is executed by the underlying hardware in a given system. My last conjecture is that you finally got your hands on an FPGA-wielding embedded system and wish to learn more about which system-level optimization knobs are at your disposal or even where to begin. Regardless of the reason, you're here, and I hope this tutorial fulfills your needs as either a starting point for further extension of this work, a template for your own HW accelerator project, or even as fundamental training. For me, I'm just happy knowing that 15 months of work has helped at least one other individiual.
 
-While the knowledge and experience gained will be extremely rewarding, udertaking a project of this size requires commitment, perseverance, and the ability to debug without the assistance of Stack Overflow or similar forums. The last requirement is a necessity (and a good skill to have in general) for two reasons:
-1. Development at this low level is not heavily documented. The best resource to my knowledge for community support can be found at <a href="https://rocketboards.org/">RocketBoards.org</a>. 
-2. This shows you really understand how things work. This is especially important when working with embedded systems where bugs could not only arise from the <a href="https://en.wikipedia.org/wiki/User_space">user space</a> applicaiton, but also from incompatible system libraries, a device driver, limited system resources, misinterpreting the timing requirements of handshake signals in a bus protocol, errors in your RTL code, and differences between expected and actual behavior of HW blocks to name a few.
+In this tutorial, we'll cover the development of a complete system - from desigining a HW accelerator block (implemented and running in the FPGA fabric) to system integration (with the CPU and system memory) to writing a device driver (which provides an interface to the newly developed HW accelerator) and ultimately, to modifications that need to be made to applications running in user space. While the knowledge gained and experience acquired will be extremely rewarding, udertaking a project of this size requires commitment, perseverance, and the ability to debug without the assistance of Stack Overflow or similar forums. The last requirement is a necessity (and a good skill to have in general) for two reasons:
+1. Development at this level is not heavily documented. A Google search for specific error messages might yield zero results. Perhaps Firework will spark a new wave of interest in system design by making the task seem less daunting and more approachable. The best resource to my knowledge for community support can be found at <a href="https://rocketboards.org/">RocketBoards.org</a>.
+2. It shows you really understand how things work. This is especially important when working with embedded systems where bugs could not only arise from the <a href="https://en.wikipedia.org/wiki/User_space">user space</a> applicaiton, but also from incompatible system libraries, a device driver, limited system resources, misinterpreting the timing requirements of handshake signals in a bus protocol, errors in your RTL code, or (my personal favorite) from differences between expected and actual behavior of HW blocks.
 
 ## Introduction
-Firework is an open source *HW-accelerated system design* built for offloading <a href="https://developers.google.com/protocol-buffers/">Protocol Buffer</a> (protobuf) serialization from the CPU. The five main components of this project include:
+Firework is an open source *HW-accelerated system design* built for offloading <a href="https://developers.google.com/protocol-buffers/">Protocol Buffer</a> (protobuf) serialization from the CPU. That was a loaded sentence, I know. What this means is that in this project, I'll show you how to take software that's traditionally executed purely by a system's CPU and identify components of the software you wish to accelerate, develop HW that implements this function, build a system, and modify the software to run on the modified system. The five main components of this project include:
 - [protobuf-serializer](protobuf-serializer/): the RTL design of a "4-stage pipelined, parallel processor" that performs Protocol Buffer serialization, written in Verilog (along with testbenches), packaged as a Quartus Prime project. The nomenclature stems from four pipeline stages in the design, two parallel datapaths for processing varint and raw data, and a controller that consists of seven independent <a href="https://en.wikipedia.org/wiki/Finite-state_machine">finite-state machines</a> (FSMs).
 - [a10-soc-devkit-ghrd](a10-soc-devkit-ghrd): the Arria 10 SoC Golden Hardware Reference Design (GHRD) modified with the protobuf-serializer HW block added as a memory-mapped FPGA peripheral. This too is packaged as a Quartus Prime project with the main SoC subsystem being a Qsys component.
 - [driver] (driver): a platform device driver for the protobuf-serializer FPGA peripheral implemented as a loadable kernel module. This driver provides an interface for modifications to the protobuf runtime library and is ultimately responsible for relaying user space applicaiton data to the HW peripheral residing in the FPGA.
@@ -41,7 +41,9 @@ After having gone through the experience myself, I've developed the following li
 
 This work can be quite challenging. It's essential to spend time figuring out a routine that works for you and how to maintain mental capacity and creativity over long periods of time. For me, taking breaks when I feel the processor that is my brain overheating definitely helps. Another source of longevity are inspiring words of world-renowned <a href="https://www.youtube.com/watch?v=QGJuMBdaqIw">Katy Perry</a>.
 
-## Choosing a development board
+## Prerequisites
+
+#### Choosing a development board
 The first step is to choose a board that's appropriate for your project. Since my objective was to improve the performance of a datacenter application by building a hardware accelerator for offloading core computation in the software library, I was in search of a board that closely resembles a <a href="https://en.wikipedia.org/wiki/White_box_(computer_hardware)">white box</a> server and that's capable of running Linux. The <a href="https://www.altera.com/products/boards_and_kits/dev-kits/altera/arria-10-soc-development-kit.html">Arria 10 SoC Development Kit</a> seemed to be the perfect fit, and this is the board I chose.
 
 ![alt text](resources/arria10_soc_kit.png)
@@ -50,28 +52,32 @@ The Arria 10 SoC's two main components are a 20 nm dual-core ARM Cortex-A9 proce
 
 Although it is easiest to replicate and extend this work using an Arria 10 SoC Development Kit, the HW accelerator is written in Verilog and this along with other components of the design are transferable to other ARM-based systems with adjustment (e.g., replacing the Altera IP Cores FIFO components I used with your own FIFO implementation). Note however, this could be very challenging to do and requires ingenuity on the user's end. Therefore, while some aspects of the implementation are inevitably specific to the Arria 10 SoC Development Kit and toolset I used, the high-level concepts in this tutorial are universal to all embedded systems work. 
 
-## Set up your development environment (EDA software, licensing, RealVNC)
+#### Setting up your development environment (Installing an OS, VNC server/client, EDA tools, licensing)
 - Working with a remote server (CentOS 7, RealVNC)
 - Download & install necessary tools
 - Set up license manager
 
-## Understand the software you wish to accelerate
+#### Understand the software you wish to accelerate
 This is perhaps the most important step in the entire process. Time spent here will directly affect your approach to the problem, your ability to identify critical system components, your FPGA peripheral hardware design, and ultimately your success in imporving overall system performance. A philosophy that I adhere to is that one's understanding of how a system works is directly proportional to that individual's ability to debug issues and improve the system's design. This is especially true when you're attempting to replace components of software with hardware. The key here is to **understand the movement of and operations on data** in your algorithm. Depending on how the software was written, whether you wrote it, and your experience level as a software engineer, this may be easy or difficult to comprehend. Nonetheless, take the time to
 
-## Implement the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)
+## Hardware Development
+
+#### Implement the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)
 - FPGA development flow (Quartus Prime is the main tool in this step, ModelSim for funcitonal verification)
 - RTL design is an art
 - Choosing an HDL: Verilog-2005(?) vs. SystemVerilog
 - Already enough complexity: see which HW modules are available to you in the IP Catalog
 - What determine's top-level I/O? - ARM AMBA AXI4 specification
 
-## System integration (Qsys)
+#### System integration (Qsys)
 - Qsys is the tool used here
 - Training that helps: Custom IP Development Using Avalon and AXI Interfaces
 - Interfaces (clock, reset, interrupts, Avalon, AXI, conduits)
 - Most powerful Qsys tool: auto-generated interconnect (you develop an AXI slave interface, simply connect to AXI master component)
 
-## Create an FPGA peripheral-aware bootable Linux image
+## Software Development
+
+## Creating an FPGA peripheral-aware bootable Linux image
 - Discuss why running Linux is important (mimic's real datacenter setting)
 - Talk about Yocto Project, embedded Linux, etc.
 - Angstrom Linux distribution maintained for the Arria 10, other Altera boards
@@ -79,16 +85,16 @@ This is perhaps the most important step in the entire process. Time spent here w
 - Overview of the boot process
 - Rocketboards.org training on creating the U-Boot bootloader, Linux device tree, rootfs, and formatting the microSD card
 
-## Write a device driver (the interface between FPGA peripherals and user space applications)
+## Writing a device driver (the interface between FPGA peripherals and user space applications)
 - Altera SoC Workshop Series training
 - Linux Device Drivers
 - misc. device driver
 
-## Closing the loop: modify the software to redirect data to the FPGA peripheral for processing
+## Closing the loop: modifications to user space applications
 - Device driver provides the interface
 - Replace functions implementing computaiton w/ statements sending data to FPGA peripheral
 
-## Profile, benchmark HW-accelerated system performance
+## Profiling the HW-accelerated system
 - clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &res)
 - perf
 - symbols, stack traces, cross-compilation
