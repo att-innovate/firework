@@ -30,7 +30,7 @@ After having gone through the experience myself, I've developed the following li
 
 #### High-level steps in building a HW-accelerated system:
 1. Choosing a development board
-2. Set up your development environment (EDA software, licensing, RealVNC)
+2. Setting up your development environment (Operating System, VNC server/client, EDA tools, licensing)
 3. Understand the software you wish to accelerate
 4. Implement the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim) 
 5. System integration (Qsys)
@@ -43,7 +43,7 @@ This work can be quite challenging. It's essential to spend time figuring out a 
 
 ## Prerequisites
 
-#### Choosing a development board
+### Choosing a development board
 The first step is to choose a board that's appropriate for your project. Since my objective was to improve the performance of a datacenter application by building a hardware accelerator for offloading core computation in the software library, I was in search of a board that closely resembles a <a href="https://en.wikipedia.org/wiki/White_box_(computer_hardware)">white box</a> server and that's capable of running Linux. The <a href="https://www.altera.com/products/boards_and_kits/dev-kits/altera/arria-10-soc-development-kit.html">Arria 10 SoC Development Kit</a> seemed to be the perfect fit, and this is the board I chose.
 
 ![alt text](resources/arria10_soc_kit.png)
@@ -52,24 +52,34 @@ The Arria 10 SoC's two main components are a 20 nm dual-core ARM Cortex-A9 proce
 
 Although it is easiest to replicate and extend this work using an Arria 10 SoC Development Kit, the HW accelerator is written in Verilog and this along with other components of the design are transferable to other ARM-based systems with adjustment (e.g., replacing the Altera IP Cores FIFO components I used with your own FIFO implementation). Note however, this could be very challenging to do and requires ingenuity on the user's end. Therefore, while some aspects of the implementation are inevitably specific to the Arria 10 SoC Development Kit and toolset I used, the high-level concepts in this tutorial are universal to all embedded systems work. 
 
-#### Setting up your development environment (Installing an OS, VNC server/client, EDA tools, licensing)
-- Working with a remote server (CentOS 7, RealVNC)
+### Setting up your development environment (Operating System, VNC server/client, EDA tools, licensing)
+Before we get to the fun, we need to put our IT hats on. Setting up an environment for designing hardware on a remote server is unfortunately not a trivial task. Fortunately for you, I went through the process myself and will cover the steps below. In my setup, I used:
+- <a href="http://www.dell.com/downloads/global/products/pedge/dell-poweredge-r720xd-spec-sheet.pdf">Dell PowerEdge R720xd</a> server
+- <a href="https://www.centos.org/download/">CentOS 7</a> operating system
+- <a href="http://tigervnc.org/">TigerVNC</a> VNC server
+- <a href="https://www.realvnc.com/en/connect/download/viewer/">RealVNC VNC Viewer</a> VNC client
+
+and a MacBook Pro as my main interface to the remote server. The reason why I chose to use a server equipped with two Intel Xeon E5-2670 CPUs (8 cores, 2-way <a href="https://en.wikipedia.org/wiki/Simultaneous_multithreading">SMT</a> each for a total of 32 "cores"), 256 GB of RAM, and 8 TB of storage space is that Quartus Prime (the main <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA</a> tool we'll be using) along with support for the Arria 10 device has the recommended system requirements of 18-48 GB of RAM,  
+
+It's quite a humbling experience to set this up for the first time, and you'll certainly think twice before sending another angry ticket to your organization's IT support desk.
+
+
 - Download & install necessary tools
 - Set up license manager
 
-#### Understand the software you wish to accelerate
+### Understand the software you wish to accelerate
 This is perhaps the most important step in the entire process. Time spent here will directly affect your approach to the problem, your ability to identify critical system components, your FPGA peripheral hardware design, and ultimately your success in imporving overall system performance. A philosophy that I adhere to is that one's understanding of how a system works is directly proportional to that individual's ability to debug issues and improve the system's design. This is especially true when you're attempting to replace components of software with hardware. The key here is to **understand the movement of and operations on data** in your algorithm. Depending on how the software was written, whether you wrote it, and your experience level as a software engineer, this may be easy or difficult to comprehend. Nonetheless, take the time to
 
 ## Hardware Development
 
-#### Implement the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)
+### Implement the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)
 - FPGA development flow (Quartus Prime is the main tool in this step, ModelSim for funcitonal verification)
 - RTL design is an art
 - Choosing an HDL: Verilog-2005(?) vs. SystemVerilog
 - Already enough complexity: see which HW modules are available to you in the IP Catalog
 - What determine's top-level I/O? - ARM AMBA AXI4 specification
 
-#### System integration (Qsys)
+### System integration (Qsys)
 - Qsys is the tool used here
 - Training that helps: Custom IP Development Using Avalon and AXI Interfaces
 - Interfaces (clock, reset, interrupts, Avalon, AXI, conduits)
@@ -77,7 +87,7 @@ This is perhaps the most important step in the entire process. Time spent here w
 
 ## Software Development
 
-## Creating an FPGA peripheral-aware bootable Linux image
+### Creating an FPGA peripheral-aware bootable Linux image
 - Discuss why running Linux is important (mimic's real datacenter setting)
 - Talk about Yocto Project, embedded Linux, etc.
 - Angstrom Linux distribution maintained for the Arria 10, other Altera boards
@@ -85,16 +95,16 @@ This is perhaps the most important step in the entire process. Time spent here w
 - Overview of the boot process
 - Rocketboards.org training on creating the U-Boot bootloader, Linux device tree, rootfs, and formatting the microSD card
 
-## Writing a device driver (the interface between FPGA peripherals and user space applications)
+### Writing a device driver (the interface between FPGA peripherals and user space applications)
 - Altera SoC Workshop Series training
 - Linux Device Drivers
 - misc. device driver
 
-## Closing the loop: modifications to user space applications
+### Closing the loop: modifications to user space applications
 - Device driver provides the interface
 - Replace functions implementing computaiton w/ statements sending data to FPGA peripheral
 
-## Profiling the HW-accelerated system
+### Profiling the HW-accelerated system
 - clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &res)
 - perf
 - symbols, stack traces, cross-compilation
