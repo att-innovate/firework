@@ -74,12 +74,12 @@ It's quite a humbling experience to set this up for the first time, and you'll c
 - Download & install necessary tools
 - Set up license manager
 
-### 3. Understand the software you wish to accelerate
+### 3. Understanding the software you wish to accelerate
 This is perhaps the most important step in the entire process. Time spent here will directly affect your approach to the problem, your ability to identify critical system components, your FPGA peripheral hardware design, and ultimately your success in imporving overall system performance. A philosophy that I adhere to is that one's understanding of how a system works is directly proportional to that individual's ability to debug issues and improve the system's design. This is especially true when you're attempting to replace components of software with hardware. The key here is to **understand the movement of and operations on data** in your algorithm. Depending on how the software was written, whether you wrote it, and your experience level as a software engineer, this may be easy or difficult to comprehend. Nonetheless, take the time to
 
 ## Hardware Development
 
-### 4. Implement the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)
+### 4. Implementing the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)
 - Writing your own RTL vs. OpenCL
 - FPGA development flow (Quartus Prime is the main tool in this step, ModelSim for funcitonal verification)
 - RTL design is an art
@@ -105,12 +105,12 @@ This is perhaps the most important step in the entire process. Time spent here w
 - Overview of the boot process
 - Rocketboards.org training on creating the U-Boot bootloader, Linux device tree, rootfs, and formatting the microSD card
 
-### 7. Writing a device driver (the interface between FPGA peripherals and user space applications)
+### 7. Writing a device driver (interface between FPGA peripheral and user space application)
 - Altera SoC Workshop Series training
 - Linux Device Drivers
 - misc. device driver
 
-### 8. Closing the loop: modifications to user space applications
+### 8. Closing the loop: modifying the user space application to interact with the FPGA peripheral
 - Device driver provides the interface
 - Replace functions implementing computaiton w/ statements sending data to FPGA peripheral
 
