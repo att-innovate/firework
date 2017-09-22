@@ -32,11 +32,11 @@ Firework describes the implementation of a HW-accelerated system for Protocol Bu
 1. [Choosing a development board](README.md#1-choosing-a-development-board)
 2. [Setting up your development environment (Installing an OS, VNC server/client, EDA tools, licensing)](README.md#2-setting-up-your-development-environment-installing-an-os-vnc-serverclient-eda-tools-licensing)
 3. [Understanding the software you wish to accelerate](README.md#3-understanding-the-software-you-wish-to-accelerate)
-4. [Implementing the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)](README.md#4-implementing-the-fpga-peripheral-top-level-io-arm-amba-axi4-verilog-quartus-prime-modelsim) 
+4. [Implementing an FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)](README.md#4-implementing-an-fpga-peripheral-top-level-io-arm-amba-axi4-verilog-quartus-prime-modelsim) 
 5. [System integration (Qsys)](README.md#5-system-integration-qsys)
 6. [Creating an FPGA peripheral-aware bootable Linux image](README.md#6-creating-an-fpga-peripheral-aware-bootable-linux-image)
 7. [Writing a device driver (interface between FPGA peripheral and user space application)](README.md#7-writing-a-device-driver-interface-between-fpga-peripheral-and-user-space-application)
-8. [Closing the loop: modifying the user space application to interact with the FPGA peripheral](README.md#8-closing-the-loop-modifying-the-user-space-application-to-interact-with-the-fpga-peripheral)
+8. [Closing the loop: modifying the user space application](README.md#8-closing-the-loop-modifying-the-user-space-application)
 9. [Profiling the HW-accelerated system](README.md#9-profiling-the-hw-accelerated-system)
 
 As a final note, this work can be quite challenging. It's essential to spend time figuring out a routine that works for you and knowing how to maintain mental capacity and creativity over long periods of time. For me, taking breaks when I feel the processor that is my brain overheating definitely helps. Another source of longevity are the inspiring words of world-renowned pop star <a href="https://www.youtube.com/watch?v=QGJuMBdaqIw">Katy Perry</a>.
@@ -79,7 +79,7 @@ This is perhaps the most important step in the entire process. Time spent here w
 
 ## Hardware Development
 
-### 4. Implementing the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)
+### 4. Implementing an FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)
 - Writing your own RTL vs. OpenCL
 - FPGA development flow (Quartus Prime is the main tool in this step, ModelSim for funcitonal verification)
 - RTL design is an art
@@ -110,7 +110,7 @@ This is perhaps the most important step in the entire process. Time spent here w
 - Linux Device Drivers
 - misc. device driver
 
-### 8. Closing the loop: modifying the user space application to interact with the FPGA peripheral
+### 8. Closing the loop: modifying the user space application
 - Device driver provides the interface
 - Replace functions implementing computaiton w/ statements sending data to FPGA peripheral
 
