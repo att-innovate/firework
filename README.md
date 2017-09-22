@@ -67,16 +67,21 @@ The choice of CentOS 7 as our operating system is less obvious. If you look at t
 
 It's quite a humbling experience to set up a server for the first time, and you'll certainly think twice before sending the next angry ticket to your organization's IT support desk. Without further ado, here are the steps necessary to set up my development environment.
 
-#### a. Remotely installing CentOS 7 on a Dell PowerEdge R720xd server
+#### Remotely installing CentOS 7 on a Dell PowerEdge R720xd server
+To access our server, we'll use its built-in <a href="http://www.dell.com/learn/us/en/15/solutions/integrated-dell-remote-access-controller-idrac">integrated Dell Remote Access Controller (iDRAC)</a>. This tool provides many powerful features, including the ability to monitor logged events, power cycle, and even install an OS on your server all remotely. Assuming the server is part of your <a href="https://en.wikipedia.org/wiki/Local_area_network">LAN</a> and has been assigned an <a href="<a href="https://en.wikipedia.org/wiki/IP_address">IP address</a>, open any web browser and enter its IP address to access the main login screen. It should look something like this:
 
+![alt text](resources/iDRAC.png)
 
-#### b. Setting up VNC server and client software
+If this is your first time accessing it, the <a href="http://en.community.dell.com/techcenter/b/techcenter/archive/2013/07/16/idrac7-now-supports-default-password-warning-feature">default username and password</a> are *root* and *calvin*, respectfully. When you log in, you'll be presented with a summary page and a plethora of tabs (both, on the side organized hierarchically as a tree and on the top of some pages) that each provide specific information about your server. I recommend spending some time going through them to learn more about your server's features (or *resources* in datacenter-speak).
 
-#### c. Installing Altera's EDA tools
+1. Download 
+
+#### Setting up VNC server and client software
+
+#### Installing Altera's EDA tools
 1. Download the Quartus Prime Standard Edition version 16.1 tools and supporting Arria 10 device files from <a href="http://dl.altera.com/16.1/?edition=standard&platform=linux&download_manager=dlm3"></a>
 
-#### d. Setting up a license manager
-
+#### Setting up a license manager
 
 ### 3. Understanding the software you wish to accelerate
 This is perhaps the most important step in the entire process. Time spent here will directly affect your approach to the problem, your ability to identify critical system components, your FPGA peripheral hardware design, and ultimately your success in imporving overall system performance. A philosophy that I adhere to is that one's understanding of how a system works is directly proportional to that individual's ability to debug issues and improve the system's design. This is especially true when you're attempting to replace components of software with hardware. The key here is to **understand the movement of and operations on data** in your algorithm. Depending on how the software was written, whether you wrote it, and your experience level as a software engineer, this may be easy or difficult to comprehend. Nonetheless, take the time to
