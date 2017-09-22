@@ -51,28 +51,32 @@ The first step is to choose a board that's appropriate for your specific project
 Although it is easiest to replicate and extend this work using an Arria 10 SoC Development Kit, the main component - the *HW accelerator* (or *custom HW* or *custom processor* or *RTL design* or *FPGA peripheral* or [protobuf-serializer](protobuf-serializer/)) - is written in Verilog, and with a few minor modifications, it can be used in other ARM-based systems. This modularity stems from the fact that the FPGA peripheral was designed as an ARM AMBA AXI4 slave peripheral (i.e., its top-level I/O ports implement an ARM AMBA AXI4 slave interface). More details of the design are covered later in section 4. [Implementing the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)](README.md#4-implementing-the-fpga-peripheral-top-level-io-arm-amba-axi4-verilog-quartus-prime-modelsim). Note however, using another platform for development would require ingenuity on the user's end.
 
 ### 2. Setting up your development environment (Installing an OS, VNC server/client, EDA tools, licensing)
-Before we get to the fun, we need to put our IT hats on. Setting up an environment for designing hardware on a remote server is, unfortunately, not a trivial task. Fortunately for you, I went through the process myself and will cover the steps below. Again, although I'll cover setting up Altera's EDA tools in this example, the steps are general enough such that reading though this section will give you an idea of what your setup might ential.
+Before we get to the fun, we need to put our IT hats on. Setting up an environment for HW development is primarily influenced by the board you choose, as it'll come with (or recommend) a specific set of <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA tools</a> to use for implementing designs on the board. A secondary influencer are the resources available to you (engineering workstation, remote server, cloud access, etc.). For me, working with the Arria 10 SoC Development Kit meant using <a href="http://dl.altera.com/16.1/?edition=standard&platform=linux&download_manager=direct">Altera's EDA tools</a> on a remote server with which I had access via my <a href="https://en.wikipedia.org/wiki/Local_area_network">LAN</a>. Setting up an environment for designing HW on a remote server is, unfortunately, not a trivial task. Fortunately for you, I went through the process myself and will cover the steps below. Although I'll cover setting up Altera's EDA tools on a remote server in this example, reading though this section will hopefully give you a sense of what it generally takes to set up any HW development environment.
 
-In my setup, I used the following:
+I use the following server, operating system, and <a href="https://en.wikipedia.org/wiki/Virtual_Network_Computing">VNC</a> software (remote desktop) in my setup:
 - <a href="http://www.dell.com/downloads/global/products/pedge/dell-poweredge-r720xd-spec-sheet.pdf">Dell PowerEdge R720xd</a> server
 - <a href="https://www.centos.org/download/">CentOS 7</a> operating system
 - <a href="http://tigervnc.org/">TigerVNC</a> VNC server
 - <a href="https://www.realvnc.com/en/connect/download/viewer/">RealVNC VNC Viewer</a> VNC client
 
-and a MacBook Pro as my main interface to the remote server. The reason why I chose to use a server equipped with two Intel Xeon E5-2670 CPUs (8 cores, 2-way <a href="https://en.wikipedia.org/wiki/Simultaneous_multithreading">SMT</a> each for a total of 32 "cores"), 256 GB of RAM, and 8 TB of storage space is that Quartus Prime (the main <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA</a> tool we'll be using) along with support for the Arria 10 device has the recommended system requirements of 18-48 GB of RAM,  
+and a MacBook Pro as my main interface to the server. Any laptop with the proper VNC client software will suffice, as the development will take place on the server we control remotely. 
 
-It's quite a humbling experience to set this up for the first time, and you'll certainly think twice before sending another angry ticket to your organization's IT support desk.
+The reason why I chose to use a server equipped with two <a href="https://ark.intel.com/products/64595/Intel-Xeon-Processor-E5-2670-20M-Cache-2_60-GHz-8_00-GTs-Intel-QPI">Intel Xeon E5-2670 CPUs</a> (each with 8, <a href="https://en.wikipedia.org/wiki/Simultaneous_multithreading">2-way SMT</a> cores for a total of 32 parallel <a href="https://en.wikipedia.org/wiki/Thread_(computing)">threads</a> of execution), 256 GB of RAM, and ~8.5 TB of storage is that <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/overview.html">Quartus Prime</a> - the main EDA tool we'll be using - with support for Arria 10 devices has a recommended system requirement of 18-48 GB of RAM, which my and most other laptops do not have. 
 
-#### Installing CentOS 7 on a Dell PowerEdge R720xd remotely
+The choice of CentOS 7 as our operating system is less obvious. If you look at the <a href="http://dl.altera.com/requirements/16.1/">Operating System Support</a> for Quartus Prime and other software we'll be using, notice only 64-bit variants of Windows and Red Hat Enterprise Linux (RHEL) are listed as supported operating systems. Well, RHEL isn't free unlike most other Linux distributions (thanks to the 'E') so unless you already have access, CentOS is <a href="https://www.centos.org/about/">RHEL's charitable, upbeat cousin</a>. Although it's not strictly supported, it works. Believe me. If you prefer to use Windows, that's fine; well it's not, but that's beyond the scope of this tutorial and I won't get into it.
 
-#### Setting up VNC remote desktop access
+It's quite a humbling experience to set up a server for the first time, and you'll certainly think twice before sending the next angry ticket to your organization's IT support desk. Without further ado, here are the steps necessary to set up my development environment.
 
-#### Installing Intel EDA tools
+#### a. Remotely installing CentOS 7 on a Dell PowerEdge R720xd server
+
+
+#### b. Setting up VNC server and client software
+
+#### c. Installing Altera's EDA tools
 1. Download the Quartus Prime Standard Edition version 16.1 tools and supporting Arria 10 device files from <a href="http://dl.altera.com/16.1/?edition=standard&platform=linux&download_manager=dlm3"></a>
--- Quartus 
 
-- Download & install necessary tools
-- Set up license manager
+#### d. Setting up a license manager
+
 
 ### 3. Understanding the software you wish to accelerate
 This is perhaps the most important step in the entire process. Time spent here will directly affect your approach to the problem, your ability to identify critical system components, your FPGA peripheral hardware design, and ultimately your success in imporving overall system performance. A philosophy that I adhere to is that one's understanding of how a system works is directly proportional to that individual's ability to debug issues and improve the system's design. This is especially true when you're attempting to replace components of software with hardware. The key here is to **understand the movement of and operations on data** in your algorithm. Depending on how the software was written, whether you wrote it, and your experience level as a software engineer, this may be easy or difficult to comprehend. Nonetheless, take the time to
