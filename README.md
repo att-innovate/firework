@@ -14,7 +14,7 @@ One of the goals of Firework was to target not just any software, but an applica
 
 This is what led to my choice of Protocol Buffers ('protobuf' in the figure) as the candidate software for HW acceleration. This software, which accounts for ~3-4% of all CPU cycles consumed across its datacenters, is Google's "language-neutral, platform-neutral extensible mechanism for serializing structured data". In other words, the Protocol Buffer software (compiler + runtime library) is used to <a href="https://en.wikipedia.org/wiki/Serialization">serialize</a> structured data (e.g., a C++ object) into a stream of bytes that could then be stored or sent (via a <a href="https://en.wikipedia.org/wiki/Remote_procedure_call">RPC</a>) to a receiving service that's capable of translating the stream of bytes into the original C++ object. I'll leave it as an exercise for the reader to determine how significant 3-4% freed CPU at Google-scale is in terms of the ability to support additional services in the modern virtualized, resource-sharing world. Before continuing, I recommend reading *Profiling a warehouse-scale computer*, going through the <a href="https://developers.google.com/protocol-buffers/docs/cpptutorial">Protocol Buffers C++ tutorial</a>, and understanding <a href="https://developers.google.com/protocol-buffers/docs/encoding">how Protocol Buffers are encoded</a>.
 
-To implement Firework (i.e., the HW-accelerated system), I used Altera's (<a href="https://newsroom.intel.com/news-releases/intel-completes-acquisition-of-altera/">now Intel's</a>) <a href="https://www.altera.com/products/boards_and_kits/dev-kits/altera/arria-10-soc-development-kit.html">Arria 10 SoC Development Kit</a>. I discuss the reasoning behind choosing this board later in the tutorial in the section, "Choosing a development board".
+To implement Firework (i.e., the HW-accelerated system), I used Altera's (<a href="https://newsroom.intel.com/news-releases/intel-completes-acquisition-of-altera/">now Intel's</a>) <a href="https://www.altera.com/products/boards_and_kits/dev-kits/altera/arria-10-soc-development-kit.html">Arria 10 SoC Development Kit</a>. I discuss the reasoning behind choosing this board later in the tutorial in section 1. [Choosing a development board](README.md#1-choosing-a-development-board).
 
 Firework consists of six main components that, together, implement a HW-accelerated system and provide a means of measuring its performance. These components are listed below.
 
@@ -29,15 +29,15 @@ Firework consists of six main components that, together, implement a HW-accelera
 Firework describes the implementation of a HW-accelerated system for Protocol Buffer serialization using the Arria 10 SoC Development Kit as a means of implementation. After having gone through this experience myself, I've developed the following list of *general steps involved in any HW accelerator project*, and the remainder of this tutorial provides in-depth coverage of each of these steps as they pertain to my specific project:
 
 #### High-level steps in building a HW-accelerated system
-1. Choosing a development board
-2. Setting up your development environment (Installing an OS, VNC server/client, EDA tools, licensing)
-3. Understanding the software you wish to accelerate
-4. Implementing the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim) 
-5. System integration (Qsys)
-6. Creating an FPGA peripheral-aware bootable Linux image
-7. Writing a device driver (interface between FPGA peripheral and user space application)
-8. Closing the loop: modifying the user space application to interact with the FPGA peripheral
-9. Profiling the HW-accelerated system
+1. [Choosing a development board](README.md#1-choosing-a-development-board)
+2. [Setting up your development environment (Installing an OS, VNC server/client, EDA tools, licensing)](README.md#2-setting-up-your-development-environment-installing-an-os-vnc-serverclient-eda-tools-licensing)
+3. [Understanding the software you wish to accelerate](README.md#3-understanding-the-software-you-wish-to-accelerate)
+4. [Implementing the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)](README.md#4-implementing-the-fpga-peripheral-top-level-io-arm-amba-axi4-verilog-quartus-prime-modelsim) 
+5. [System integration (Qsys)](README.md#5-system-integration-qsys)
+6. [Creating an FPGA peripheral-aware bootable Linux image](README.md#6-creating-an-fpga-peripheral-aware-bootable-linux-image)
+7. [Writing a device driver (interface between FPGA peripheral and user space application)](README.md#7-writing-a-device-driver-interface-between-fpga-peripheral-and-user-space-application)
+8. [Closing the loop: modifying the user space application to interact with the FPGA peripheral](README.md#8-closing-the-loop-modifying-the-user-space-application-to-interact-with-the-fpga-peripheral)
+9. [Profiling the HW-accelerated system](README.md#9-profiling-the-hw-accelerated-system)
 
 As a final note, this work can be quite challenging. It's essential to spend time figuring out a routine that works for you and knowing how to maintain mental capacity and creativity over long periods of time. For me, taking breaks when I feel the processor that is my brain overheating definitely helps. Another source of longevity are the inspiring words of world-renowned pop star <a href="https://www.youtube.com/watch?v=QGJuMBdaqIw">Katy Perry</a>.
 
@@ -48,7 +48,7 @@ The first step is to choose a board that's appropriate for your specific project
 
 ![alt text](resources/arria10_soc_kit.png)
 
-Although it is easiest to replicate and extend this work using an Arria 10 SoC Development Kit, the main component - the *HW accelerator* (or *custom HW* or *custom processor* or *RTL design* or *FPGA peripheral* or [protobuf-serializer](protobuf-serializer/)) - is written in Verilog, and with a few minor modifications, it can be used in other ARM-based systems. This modularity stems from the fact that the FPGA peripheral was designed as an ARM AMBA AXI4 slave peripheral (i.e., its top-level I/O ports implement an ARM AMBA AXI4 slave interface). More details on the design are covered later in section 4. Note however, using another platform for development would require ingenuity on the user's end.
+Although it is easiest to replicate and extend this work using an Arria 10 SoC Development Kit, the main component - the *HW accelerator* (or *custom HW* or *custom processor* or *RTL design* or *FPGA peripheral* or [protobuf-serializer](protobuf-serializer/)) - is written in Verilog, and with a few minor modifications, it can be used in other ARM-based systems. This modularity stems from the fact that the FPGA peripheral was designed as an ARM AMBA AXI4 slave peripheral (i.e., its top-level I/O ports implement an ARM AMBA AXI4 slave interface). More details of the design are covered later in section 4. [Implementing the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)](README.md#4-implementing-the-fpga-peripheral-top-level-io-arm-amba-axi4-verilog-quartus-prime-modelsim). Note however, using another platform for development would require ingenuity on the user's end.
 
 ### 2. Setting up your development environment (Installing an OS, VNC server/client, EDA tools, licensing)
 Before we get to the fun, we need to put our IT hats on. Setting up an environment for designing hardware on a remote server is, unfortunately, not a trivial task. Fortunately for you, I went through the process myself and will cover the steps below. Again, although I'll cover setting up Altera's EDA tools in this example, the steps are general enough such that reading though this section will give you an idea of what your setup might ential.
