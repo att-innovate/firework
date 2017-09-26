@@ -46,39 +46,89 @@ As a final note, this work can be quite challenging. It's essential to spend tim
 ## Prerequisites
 
 ### 1. Choosing a development board
-The first step is to choose a board that's appropriate for your specific project and goals. Since my objective was to build a HW-accelerated system that both improves the performance of a datacenter application and alters its execution (freeing the CPU resource), I was in search of a board that could theoretically replace a <a href="https://en.wikipedia.org/wiki/White_box_(computer_hardware)">white box</a> server running Linux in a datacenter environment. The <a href="https://www.altera.com/products/boards_and_kits/dev-kits/altera/arria-10-soc-development-kit.html">Arria 10 SoC Development Kit</a> seemed to be the perfect fit, combining an <a href="https://www.altera.com/products/fpga/arria-series/arria-10/features.html">Arria 10 FPGA</a> with an application processor (a 20 nm dual-core ARM Cortex-A9 MPCore processor) called the <a href="https://www.altera.com/products/soc/portfolio/arria-10-soc/arria10-soc-hps.html">Hard Processor System (HPS)</a> in a single <a href="https://en.wikipedia.org/wiki/System_on_a_chip">system-on-chip (SoC)</a> package. The FPGA fabric could be used to implement a custom <a href="https://en.wikipedia.org/wiki/Register-transfer_level">RTL</a> design and the HPS could be used to support both Linux and an application with which one wishes to accelerate, willfully. Plus, think about how cool you look with one of these bad boys sitting on your desk:
+The first step is to choose a board that's appropriate for your specific project and goals. Since my objective was to build a HW-accelerated system for a datacenter application that both improves its performance and alters its execution (freeing the CPU resource), I was in search of a board that could theoretically replace a <a href="https://en.wikipedia.org/wiki/White_box_(computer_hardware)">white box</a> server running Linux in a datacenter setting. The <a href="https://www.altera.com/products/boards_and_kits/dev-kits/altera/arria-10-soc-development-kit.html">Arria 10 SoC Development Kit</a> seemed to be the perfect fit, combining an <a href="https://www.altera.com/products/fpga/arria-series/arria-10/features.html">Arria 10 FPGA</a> with an application processor (a 20 nm dual-core ARM Cortex-A9 MPCore processor) called the <a href="https://www.altera.com/products/soc/portfolio/arria-10-soc/arria10-soc-hps.html">Hard Processor System (HPS)</a> in a single <a href="https://en.wikipedia.org/wiki/System_on_a_chip">system-on-chip (SoC)</a> package. The FPGA fabric could be used to implement a custom <a href="https://en.wikipedia.org/wiki/Register-transfer_level">RTL</a> design and the HPS could be used to support both Linux and an application with which one wishes to accelerate, willfully. Plus, think about how cool you look with one of these bad boys sitting on your desk:
 
 ![alt text](resources/arria10_soc_kit.png)
 
-Although it is easiest to replicate and extend this work using an Arria 10 SoC Development Kit, the main component - the *HW accelerator* (or *custom HW* or *custom processor* or *RTL design* or *FPGA peripheral* or [protobuf-serializer](protobuf-serializer/)) - is written in Verilog, and with a few minor modifications, it can be used in other ARM-based systems. This modularity stems from the fact that the FPGA peripheral was designed as an ARM AMBA AXI4 slave peripheral (i.e., its top-level I/O ports implement an ARM AMBA AXI4 slave interface). More details of the design are covered later in section 4. [Implementing the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)](README.md#4-implementing-the-fpga-peripheral-top-level-io-arm-amba-axi4-verilog-quartus-prime-modelsim). Note however, using another platform for development would require ingenuity on the user's end.
+Although it is easiest to replicate and extend this work using an Arria 10 SoC Development Kit, the main component - the *HW accelerator* (or *custom HW* or *custom processor* or *RTL design* or *FPGA peripheral* or [protobuf-serializer](protobuf-serializer/)) - is written in Verilog, and with a few minor modifications, it can be used in other ARM-based systems. This modularity stems from the fact that the FPGA peripheral was designed as an ARM AMBA AXI4 slave peripheral (i.e., its top-level I/O ports implement an ARM AMBA AXI4 slave interface). More details of the design are covered later in the section [Implementing the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)](README.md#4-implementing-the-fpga-peripheral-top-level-io-arm-amba-axi4-verilog-quartus-prime-modelsim). Note however, using another platform for development will inevitebly require ingenuity on the engineer's end.
 
 ### 2. Setting up your development environment (Installing an OS, VNC server/client, EDA tools, licensing)
-Before we get to the fun, we need to put our IT hats on - the next step is to set up your environment for HW development. Your setup is primarily going to be influenced by the board you choose and corresponding set of <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA tools</a> necessary for implementing designs on that board. (Note that some of the tools may not be free and require licensing for full functionality. I think this old school business model is something the HW industry needs to work on since the cost alone adds yet another barrier to HW innovation. At least Amazon agrees; they've began rolling out Xilinx FPGAs in their cloud with the introduction of their <a href="https://aws.amazon.com/ec2/instance-types/f1/">EC2 F1 Instances</a>. I haven't tried using one myself, but I imagine they make it much easier/cheaper to get started. Sorry for the tangent.) Secondary are the resources available to you, such as an engineering workstation, remote access to a server, etc.). For me, working with the Arria 10 SoC Development Kit meant installing <a href="http://dl.altera.com/16.1/?edition=standard&platform=linux&download_manager=direct">Altera's EDA tools</a> on a remote server that I accessed via my <a href="https://en.wikipedia.org/wiki/Local_area_network">LAN</a>. As it turns out, setting up an environment for HW development on a remote server is, unfortunately, not a trivial task. Fortunately for you, I've gone through the process and will cover the steps below. To reiterate, although I discuss installing Altera's EDA tools on a remote server in this setup, reading though this section will hopefully give you a sense of what it generally takes to set up any HW development environment.
+Before we get to the fun, we need to put our IT hats on. The next step is to set up your environment for HW development. Your setup is primarily going to be determined by the board you choose, its corresponding set of <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA tools</a> necessary for implementing designs on that board, and the resources available to you. (Note that some of the tools may not be free and require a license for full functionality. I think this old school business model is something the HW industry needs to work on since the cost alone (board + software licenses) adds yet another barrier to HW innovation. I'm happy to see that at least Amazon agrees; they've begun rolling out Xilinx FPGAs in their cloud with the introduction of the <a href="https://aws.amazon.com/ec2/instance-types/f1/">EC2 F1 Instances</a>. I haven't tried using one myself, but I imagine they make it much easier/cheaper to get started. Sorry for the tangent.) For me, working with the Arria 10 SoC Development Kit meant installing <a href="http://dl.altera.com/16.1/?edition=standard&platform=linux&download_manager=direct">Altera's EDA tools</a> on a remote server that I had access to via my company's <a href="https://en.wikipedia.org/wiki/Local_area_network">LAN</a>. As it turns out, setting up an environment for HW development on a remote server is, unfortunately, not a trivial task. Fortunately for you, I've gone through that process myself and will cover the steps below. Although your setup may be different, my hope is that reading though this section will give you a general sense of what it takes to set up any HW development environment.
 
 I used the following server, operating system, and <a href="https://en.wikipedia.org/wiki/Virtual_Network_Computing">VNC</a> software (remote desktop) in my setup:
 - <a href="http://www.dell.com/downloads/global/products/pedge/dell-poweredge-r720xd-spec-sheet.pdf">Dell PowerEdge R720xd</a> (server running the EDA tools)
-- <a href="https://www.centos.org/download/">CentOS 7</a> (operating system used on the server)
+- <a href="https://www.centos.org/download/">CentOS 7</a> (operating system running on the server)
 - <a href="http://tigervnc.org/">TigerVNC</a> (VNC server software running on the server)
 - <a href="https://www.realvnc.com/en/connect/download/viewer/">RealVNC VNC Viewer</a> (VNC client software running on my laptop)
 
-My MacBook Pro serves as the sole interface to both the remote server (via VNC client) where the HW development takes place and the Arria 10 SoC Development Kit (via USB cable + minicom) which sits locally on my desk. (Note that any laptop with VNC client software installed will suffice). I find the setup quite fascinating with 3 computers, 2 geographic locations, and 1 keyboard+monitor to access them all simultaneously:
+My MacBook Pro served as the sole interface to both the remote server (via VNC client) where the HW development takes place and the Arria 10 SoC Development Kit (via USB cable + minicom) which sat on my desk. Note that any laptop with the proper VNC client and serial communication software (minicom, PuTTY, etc.) installed should be fine. I still find the setup fascinating with 3 computers, 2 geographic locations, and 1 keyboard+monitor to access them all simultaneously:
 
 ![alt text](resources/HW-dev-env.jpg)
 
-The reason why I chose to use a server equipped with two <a href="https://ark.intel.com/products/64595/Intel-Xeon-Processor-E5-2670-20M-Cache-2_60-GHz-8_00-GTs-Intel-QPI">Intel Xeon E5-2670 CPUs</a> (each with 8, <a href="https://en.wikipedia.org/wiki/Simultaneous_multithreading">2-way SMT</a> cores for a total of 32 parallel <a href="https://en.wikipedia.org/wiki/Thread_(computing)">threads</a> of execution), 256 GB of RAM, and ~8.5 TB of storage is that <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/overview.html">Quartus Prime</a> - the main EDA tool we'll be using - with support for Arria 10 devices has a recommended system requirement of 18-48 GB of RAM, which my and most other laptops do not have. 
+The reason why I chose to use a server equipped with two <a href="https://ark.intel.com/products/64595/Intel-Xeon-Processor-E5-2670-20M-Cache-2_60-GHz-8_00-GTs-Intel-QPI">Intel Xeon E5-2670 CPUs</a> (each with 8, <a href="https://en.wikipedia.org/wiki/Simultaneous_multithreading">2-way SMT</a> cores), 256 GB of RAM, and 8 TB of storage is that <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/overview.html">Quartus Prime</a>, the main EDA tool we'll be using, has a "recommended system requirement" of 18-48 GB of RAM when working with Arria 10 devices. My laptop and I'm guessing most others are simply not powerful enough to support the software. I also know from experience that compilation can take quite some time, so 32 parallel <a href="https://en.wikipedia.org/wiki/Thread_(computing)">threads</a> of execution will definitely come in handy if fully utilized.
 
-The choice of CentOS 7 as our operating system is less obvious. If you look at the <a href="http://dl.altera.com/requirements/16.1/">Operating System Support</a> for Quartus Prime and other software we'll be using, notice only 64-bit variants of Windows and Red Hat Enterprise Linux (RHEL) are listed as supported operating systems. Well, RHEL isn't free unlike most other Linux distributions (thanks to the 'E') so unless you already have access, CentOS is <a href="https://www.centos.org/about/">RHEL's charitable, upbeat cousin</a>. Although it's not strictly supported, it works. Believe me. If you prefer to use Windows, that's fine; well it's not, but that's beyond the scope of this tutorial and I won't get into it.
+My choice of CentOS 7 as the operating system to install on the server is less obvious. If you look at the <a href="http://dl.altera.com/requirements/16.1/">Operating System Support</a> for Quartus Prime and other EDA tools we'll be using, notice that only 64-bit variants of Windows and Red Hat Enterprise Linux (RHEL) are listed as supported OSs. Well, RHEL isn't free unlike most other Linux distributions (thanks to the 'E') so unless you already have access, CentOS is <a href="https://www.centos.org/about/">RHEL's charitable cousin</a>. Although it's not strictly supported, it works. Believe me. If you prefer to use Windows, that's fine too (well it's not, but that's beyond the scope of this tutorial).
 
-It's quite a humbling experience to set up a server for the first time, and you'll certainly think twice before sending the next angry ticket to your organization's IT support desk. Without further ado, here are the steps necessary to set up my development environment.
+It's quite a humbling experience to set up a server for the first time, and you'll certainly think twice before sending the next angry ticket to your IT support desk. Without further ado, here are the necessary steps in setting up my development environment.
 
 #### Remotely installing CentOS 7 on a Dell PowerEdge R720xd server
-To access our server, we'll use its built-in <a href="http://www.dell.com/learn/us/en/15/solutions/integrated-dell-remote-access-controller-idrac">integrated Dell Remote Access Controller (iDRAC)</a>. This tool provides many powerful features, including the ability to monitor logged events, power cycle, and even install an OS on your server all remotely. Assuming the server is part of your <a href="https://en.wikipedia.org/wiki/Local_area_network">LAN</a> and has been assigned an <a href="<a href="https://en.wikipedia.org/wiki/IP_address">IP address</a>, open any web browser and enter its IP address to access the main login screen. It should look something like this:
+To access the remote server, we'll make use of its built-in <a href="http://www.dell.com/learn/us/en/15/solutions/integrated-dell-remote-access-controller-idrac">integrated Dell Remote Access Controller (iDRAC)</a>. This tool has many powerful features including the ability to monitor logged events, power the server ON/OFF, and even install an OS - all remotely. Assuming the server is properly connected in your <a href="https://en.wikipedia.org/wiki/Local_area_network">LAN</a> and has been assigned an <a href="<a href="https://en.wikipedia.org/wiki/IP_address">IP address</a> that you have, open any web browser and enter its IP address to access the iDRAC login screen. It should look something like this:
 
 ![alt text](resources/iDRAC.png)
 
-If this is your first time accessing it, the <a href="http://en.community.dell.com/techcenter/b/techcenter/archive/2013/07/16/idrac7-now-supports-default-password-warning-feature">default username and password</a> are *root* and *calvin*, respectfully. When you log in, you'll be presented with a summary page and a plethora of tabs (both, on the side organized hierarchically as a tree and on the top of some pages) that each provide specific information about your server. I recommend spending some time going through them to learn more about your server's features (or *resources* in datacenter-speak).
+If this is your first time using the iDRAC, the <a href="http://en.community.dell.com/techcenter/b/techcenter/archive/2013/07/16/idrac7-now-supports-default-password-warning-feature">default username and password</a> are *root* and *calvin*, respectfully. When you log in, you'll be presented with a summary page and a several tabs (on the left side of the page organized hierarchically as a tree and on the top of some pages) that provide a plethora of stats/info about your server. I recommend spending some time going through these tabs to learn more about your server's features. 
 
-1. Download 
+Now, let's see how to install CentOS 7 remotely using the iDRAC.
+
+1. Download the <a href="https://www.centos.org/download/">CentOS 7 DVD ISO</a> image. Choose *DVD* instead of *Minimal* since we'll need to install a <a href="https://www.gnome.org/">GNOME Desktop</a> on the server.
+
+2. Log in to the iDRAC and go to the *System Summary* page (default page upon login).
+
+3. In the *System Summary* > *Virtual Console Preview* window, click on *Launch*. This will download a Virtual Console Client called *viewer.jnlp*.
+
+![alt text](resources/launch.png)
+
+4. Run the *viewer.jnlp* Java application. Your computer may complain about it being from an unidentified developer, but there's a way around this. Right click *viewer.jnlp* > *Open With* > *Java Web Start (default)* and click *Open* in the window that appears.
+
+![alt text](resources/viewer-jnlp.png)
+
+5. This will open another window, *Security Warning*. Click *Continue*.
+
+![alt text](resources/security-warning.png)
+
+6. You can never be too cautious. This will open a new *Warning - Security* window that asks, "Do you want to run this application?" I think you know the answer. Click *Run*.
+
+![alt text](resources/are-you-sure.png)
+
+7. Great, we've opened finally opened the Virtual Console Client! Click anywhere in the window so that its menu appears at the top of your screen in the menu bar. Click *Virtual Media* > *Connect Virtual Media*.
+
+![alt text](resources/menu-bar.png)
+
+8. Once connected, click *Virtual Media* > *Map CD/DVD ...* and select the CentOS 7 ISO image we just downloaded. Then click *Map Device*.
+
+![alt text](resources/select-iso.png)
+
+9. In the Virtual Console Client menu again, click *Next Boot* > *Virtual CD/DVD/ISO*. Click *OK* in the window that appears. This tells the server to boot from the CentOS 7 installer ISO we downloaded on the next boot.
+
+![alt text](resources/next-boot.png)
+
+10. In the Virtual Console Client menu, click *Power* > *Reset System (warm boot)*. You should see a "No Signal" screen followed by the CentOS 7 installer screen when the server reboots. With *Install CentOS 7* highlighted, press enter to begin installation.
+
+![alt text](resources/hello-centos.png)
+
+11. Follow the promts until you get to the *Software Selection* screen. Select *GNOME Desktop* as your Base Environment. Select the *Legacy X Window System Compatibility*, *Compatibility Libraries*, and *Development Tools* add-ons in the list to the right. Click *Done* when your screen looks like the one below.
+
+![alt text](resources/software-selection.png)
+
+12. Select a disk to install to, *Automatically configure partitioning* for convenience, and optionally encrypt your data. Click *Done* and proceed with the installation by selecting *Begin Installation* in the main menu. 
+
+![alt text](resources/partition.png)
+
+13. During the installation, it'll ask you to create a user account. Make sure to give the user administrative access and don't forget to set the root password as well. DON'T FORGET TO SET THE ROOT PASSWORD. We'll need root access when installing system software and modifying config files. Click *Reboot* when the installation completes and voila!
+
+![alt text](resources/users.png)
+
+Keep the Virtual Console Client open; we'll use this until we set up the VNC server/client software. Log in as the new user you just created and open a terminal.
 
 #### Setting up VNC server and client software
 
