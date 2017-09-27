@@ -132,9 +132,7 @@ The server is now running CentOS 7. In the initial boot, it'll ask you to accept
 
 #### Setting up VNC server and client software
 
-
 #### Installing Altera's EDA tools
-1. Download the Quartus Prime Standard Edition version 16.1 tools and supporting Arria 10 device files from <a href="http://dl.altera.com/16.1/?edition=standard&platform=linux&download_manager=dlm3"></a>
 
 #### Setting up a license manager
 
