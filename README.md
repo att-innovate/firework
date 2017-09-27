@@ -128,9 +128,67 @@ Now, let's see how to install CentOS 7 remotely using the iDRAC.
 
 ![alt text](resources/users.png)
 
-The server is now running CentOS 7. In the initial boot, it'll ask you to accept a license. Follow the prompts on the screen to accept the license, let it finish booting, and log in as the user you just created. Keep the Virtual Console Client open - we'll use it to set up the VNC server/client software in the next step.
+The server is now running CentOS 7. In the initial boot, it'll ask you to accept a license. Follow the prompts on the screen to accept the license, let it finish booting, and log in as the user you just created. Keep the Virtual Console Client open; we'll use it to set up the VNC server/client software in the next step.
 
 #### Setting up VNC server and client software
+If you're not familiar with <a href="https://en.wikipedia.org/wiki/Virtual_Network_Computing">VNC</a>, the basic idea is that you're remotely interacting with a computer's desktop environment. That is, your keyboard and mouse events are sent to that computer over the network, and its corresponding GUI actions are relayed back to your screen. This is useful when you need to access an application that isn't simply a terminal script or binary executable (i.e., it has a GUI). As you may have guessed, this is the case of Quartus Prime and other EDA tools we'll be using.
+
+In my setup, I use <a href="http://tigervnc.org/">TigerVNC</a> as the *server* software running on the Dell PowerEdge R720xd and <a href="https://www.realvnc.com/en/connect/download/viewer/">RealVNC VNC Viewer</a> as the *client* softawre running on my MacBook. I followed <a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-remote-access-for-the-gnome-desktop-on-centos-7">this tutorial written by Sadequl Hussain</a> to get the VNC setup working for me, and I've summarized the steps below. I recommend going through his tutorial as it'll explain the steps in much more detail!
+
+##### VNC server
+
+1. Using the Virtual Console Client from the previous section, make sure you're logged in as the user you created and open a terminal. First, let's install the TigerVNC server software.
+
+```
+sudo yum install tigervnc-server
+```
+
+2. The previous step creates a template <a href="https://www.freedesktop.org/software/systemd/man/systemd.service.html">service unit configuration file</a> for the `vncserver` service in `/lib/systemd/system/`. We need to copy this file to `/etc/systemd/system` and make modifications to its contents in order to have <a href="https://www.freedesktop.org/wiki/Software/systemd/">systemd</a> automatically start this service for the user upon bootup.
+
+```
+sudo cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:5.service
+```
+
+3. Using the text editor of your choice (e.g., `vim`), open the file and replace every `<USER>` with the name of the user you created. I created a user with the name `fpga` and highlight where those changes are made in the screenshot below. Also add the option `-geometry 2560x1440` to the `ExecStart=` line replacing `2560x1440` with the dimensions of the screen you plan to run the VNC Viewer client on (so full screen mode looks pretty).
+
+![alt text](resources/unit-config.png)
+
+4. Use <a href="https://www.freedesktop.org/software/systemd/man/systemctl.html">systemctl</a> to reload the systemd manager configuration.
+
+```
+sudo systemctl daemon-reload
+```
+
+5. Enable the `vncserver` unit instance. Note the number `5` in `vncserver@:5.service` was chosen arbitrarily but means the `vncserver` running for this user will be listening for incoming connections on port 5905.
+
+```
+sudo systemctl enable vncserver@:5.service
+```
+
+6. Configure the <a href="https://www.linode.com/docs/security/firewalls/introduction-to-firewalld-on-centos">firewall used by CentOS 7</a> to allow traffic through port 5905.
+
+```
+sudo firewall-cmd --permanent --zone=public --add-port=5905/tcp
+sudo firewall-cmd --reload
+```
+
+7. In the terminal, run `vncserver` to set a password for opening a VNC session for this user. Note, this should be from the user's password for logging in to CentOS 7.
+
+8. With all the configurations made, let's make sure `vncserver` is running for this user before setting up the VNC Viewer client software.
+
+```
+sudo systemctl daemon-reload
+sudo systemctl restart vncserver@:5.service
+sudo systemctl status 
+```
+
+You should see `active (running)` in the output of the last command:
+
+![alt text](resources/systemctl-status.png)
+
+##### VNC client
+
+1. On your laptop, download the <a href="https://www.realvnc.com/en/connect/download/viewer/">RealVNC VNC Viewer</a> client software, install, and open it. 
 
 #### Installing Altera's EDA tools
 
