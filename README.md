@@ -100,7 +100,7 @@ Now, let's see how to install CentOS 7 remotely using the iDRAC.
 
 ![alt text](resources/are-you-sure.png)
 
-7. Great, we've opened finally opened the Virtual Console Client! Click anywhere in the window so that its menu appears at the top of your screen in the menu bar. Click *Virtual Media* > *Connect Virtual Media*.
+7. Great, we've finally opened the Virtual Console Client! Click anywhere in the window so that its menu appears at the top of your screen in the menu bar. Click *Virtual Media* > *Connect Virtual Media*. I couldn't take a screenshot of this step because when the Virtual Console Client is in focus, it captures all keyboard events. See the menu bar in the screenshot below.
 
 ![alt text](resources/menu-bar.png)
 
@@ -120,17 +120,18 @@ Now, let's see how to install CentOS 7 remotely using the iDRAC.
 
 ![alt text](resources/software-selection.png)
 
-12. Select a disk to install to, *Automatically configure partitioning* for convenience, and optionally encrypt your data. Click *Done* and proceed with the installation by selecting *Begin Installation* in the main menu. 
+12. Select a disk to install to, *Automatically configure partitioning.*, and optionally encrypt your data (I didn't). Click *Done* and proceed with the installation by selecting *Begin Installation* in the main menu. 
 
 ![alt text](resources/partition.png)
 
-13. During the installation, it'll ask you to create a user account. Make sure to give the user administrative access and don't forget to set the root password as well. DON'T FORGET TO SET THE ROOT PASSWORD. We'll need root access when installing system software and modifying config files. Click *Reboot* when the installation completes and voila!
+13. During the installation, it'll ask you to create a user account. Make sure to give the user administrative access and also set the root password. DON'T FORGET TO SET THE ROOT PASSWORD. We'll need root access when installing the VNC server <a href="https://en.wikipedia.org/wiki/Daemon_(computing)">daemon</a>. Click *Reboot* when the installation completes and voila!
 
 ![alt text](resources/users.png)
 
-Keep the Virtual Console Client open; we'll use this until we set up the VNC server/client software. Log in as the new user you just created and open a terminal.
+The server is now running CentOS 7. In the initial boot, it'll ask you to accept a license. Follow the prompts on the screen to accept the license, let it finish booting, and log in as the user you just created. Keep the Virtual Console Client open - we'll use it to set up the VNC server/client software in the next step.
 
 #### Setting up VNC server and client software
+
 
 #### Installing Altera's EDA tools
 1. Download the Quartus Prime Standard Edition version 16.1 tools and supporting Arria 10 device files from <a href="http://dl.altera.com/16.1/?edition=standard&platform=linux&download_manager=dlm3"></a>
