@@ -212,16 +212,58 @@ It'll ask for the user's password. Enter the password and it should leave the te
 
 ![alt text](resources/vnc-password.png)
 
-5. Congratulations! We just established our first remote desktop session with the CentOS 7 server! If you hover your curser above the top middle of the window, a menu will appear. Click on the icon in the middle to enter *Full screen mode*. If you set up the `-geometry` option correctly, it should take up your entire screen. Click on this icon again to exit full screen mode.
+5. Congratulations! We just established our first remote desktop session with the CentOS 7 server! If you hover your curser above the top middle of the window, a menu will appear. Click on the icon in the middle to enter *Full screen mode*. If you set up the `-geometry` option correctly, it should take up your entire screen. Click on this icon again to exit *Full screen mode*.
 
 ![alt text](resources/desktop.png) 
 
-Leave the connected VNC client session open. This is now our main point of contact with the remote server, and we'll use it to first install and then use Quartus Prime and other EDA tools for designing and compiling the hardware.
+Leave the connected VNC client session open. This is now our main point of contact with the remote server, and we'll use it to first install and then use Quartus Prime and other EDA tools to design our FPGA peripheral hardware.
 
 #### Installing Altera's EDA tools
+We'll be using the following <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA tools</a> in working with the Arria 10 SoC Development Kit: 
+- <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/overview.html">Quartus Prime Standard Edition</a>
+- <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/features/qts-qsys.html">Qsys System Integration Tool</a>
+- <a href="https://www.altera.com/products/design-software/model---simulation/modelsim-altera-software.html">ModelSim-Intel FPGA</a> (formerly ModelSim Altera Edition)
 
+Note that although newer version(s) of the tools have been released, I'll stick to the *version 16.1* set I used during development for the purpose of this tutorial. Feel free to download the latest release; the general design process should be the same, but the interface may look a little different.
+
+The following steps should be completed on the CentOS 7 server through your open VNC client session.
+
+1. From Intel's <a href="http://dl.altera.com/16.1/?edition=standard&platform=linux&download_manager=direct">Download Center</a>, download *version 16.1* of the *Quartus Prime Standard Edition* software and *device support for the Arria 10* (parts 1, 2, and 3). Select *Linux* as the operating system and *Direct Download* as your download method (setting up the *Akamai DLM3 Download Manager* takes extra steps and is unnecessary for this one-time download). You're presented a few options for downloading the necessary files. I avoided the *Complete Download* since it's a pretty huge file (23.9GB) and contains unnecessary device support. Instead, download the following individual files from the *Multiple File Download* section: 
+- Quartus Prime Standard Edition Software (Device support not included)
+- Quartus Prime Device Package 1 (Arria 10 part 1 & 2)
+- Quartus Prime Device Package 2 (Arria 10 part 3)
+
+It's not always within a hardware company's best interest to build intuitive websites; maximize the page to make the arrows that allow you to download these files visible (see the screenshot below).
+
+![alt text](resources/download.png)
+
+2. From the previous step, you should now have the following <a href="https://en.wikipedia.org/wiki/Tar_(computing)">tarballs</a> sitting in your `~/Downloads` directory: 
+- Quartus-16.1.0.196-linux.tar
+- Quartus-16.1.0.196-devices-1.tar
+- Quartus-16.1.0.196-devices-2.tar
+
+Before we begin extracting and installing the software, it's important to choose a directory as the root of all your FPGA development. Out of habit, I chose `~/workspace/`. We'll also create separate directories for each of the components we downloaded (this will make your setup cleaner and easier to navigate in the future as more files and directories are generated).
+
+```
+mkdir ~/workspace
+cd ~/workspace
+
+mkdir a10-device-1,2 a10-device-3 quartus
+mv ~/Downloads/Quartus-16.1.0.196-devices-1.tar a10-device-1,2
+mv ~/Downloads/Quartus-16.1.0.196-devices-2.tar a10-device-3
+mv ~/Downloads/Quartus-16.1.0.196-linux.tar quartus
+```
+
+3. Extract `Quartus-16.1.0.196-linux.tar` and run the `setup.sh` script.
+
+```
+cd quartus
+./setup.sh
+```
 
 #### Setting up a license manager
+
+
 
 ### 3. Understanding the software you wish to accelerate
 This is perhaps the most important step in the entire process. Time spent here will directly affect your approach to the problem, your ability to identify critical system components, your FPGA peripheral hardware design, and ultimately your success in imporving overall system performance. A philosophy that I adhere to is that one's understanding of how a system works is directly proportional to that individual's ability to debug issues and improve the system's design. This is especially true when you're attempting to replace components of software with hardware. The key here is to **understand the movement of and operations on data** in your algorithm. Depending on how the software was written, whether you wrote it, and your experience level as a software engineer, this may be easy or difficult to comprehend. Nonetheless, take the time to
