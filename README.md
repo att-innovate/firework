@@ -149,7 +149,7 @@ sudo yum install tigervnc-server
 sudo cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:5.service
 ```
 
-3. Using the text editor of your choice (e.g., `vim`), open the file and replace every `<USER>` with the name of the user you created. I created a user with the name `fpga` and highlight where those changes are made in the screenshot below. Also add the option `-geometry 2560x1440` to the `ExecStart=` line replacing `2560x1440` with the dimensions of the screen you plan to run the VNC Viewer client on (so full screen mode looks pretty).
+3. Using the text editor of your choice (e.g., `vim`), open the file and replace every `<USER>` you see with the name of the user you created. I created a user with the name `fpga` and highlight where those changes are made in the screenshot below. Also add the option `-geometry 2560x1440` to the `ExecStart=` line replacing `2560x1440` with the resolution of the screen you plan to run the VNC Viewer client on (so full screen mode looks pretty).
 
 ![alt text](resources/unit-config.png)
 
@@ -188,11 +188,82 @@ You should see `active (running)` in the output of the last command:
 
 ##### VNC client
 
-1. On your laptop, download the <a href="https://www.realvnc.com/en/connect/download/viewer/">RealVNC VNC Viewer</a> client software, install, and open it. 
+1. Now that we have our VNC server running, let's set up the VNC client software on the device we'll use to remotely access the server. On your laptop, download the <a href="https://www.realvnc.com/en/connect/download/viewer/">RealVNC VNC Viewer</a> client, install it, and open it. In the *VNC Server* field, enter `127.0.0.1:5900` but don't click *Connect* just yet. 
+
+![alt text](resources/vnc-viewer.png)
+
+If you're familiar with computer networking, you may be wondering why we entered the IP address of the <a href="https://en.wikipedia.org/wiki/Localhost">localhost</a> and port 5900 instead of the IP address of our remote server and port 5905 (the port we set the VNC server to listen to for incoming connections). That's because after the initial authentication, all data communicated between the VNC server and client is unencrypted and hence susceptible to interception. To secure this communication channel, we'll set up an <a href="https://en.wikipedia.org/wiki/Tunneling_protocol">SSH tunnel</a> encrypting the data communicated over the network.
+
+2. Open a terminal and enter the following command, replacing `<ip-address>` with the IP address of your server and `<user>` with the name of user you created when installing CentOS 7. 
+
+```
+ssh -L 5900:<ip-address>:5905 <user>@<ip-address> -N
+```
+
+It'll ask for the user's password. Enter the password and it should leave the terminal in a hanging state - this means we've established our SSH tunnel and are ready to connect to the VNC server.
+
+![alt text](resources/ssh-tunnel.png)
+
+3. Click *Connect* in the VNC Viewer client and you should see the following warning, which we can now safely ignore. 
+
+![atl text](resources/unencrypted-warning.png)
+
+4. Click *Continue*. Enter the passowrd you set up for the VNC server and click *OK*.
+
+![alt text](resources/vnc-password.png)
+
+5. Congratulations! We just established our first remote desktop session with the CentOS 7 server! If you hover your curser above the top middle of the window, a menu will appear. Click on the icon in the middle to enter *Full screen mode*. If you set up the `-geometry` option correctly, it should take up your entire screen. Click on this icon again to exit *Full screen mode*.
+
+![alt text](resources/desktop.png) 
+
+Leave the connected VNC client session open. This is now our main point of contact with the remote server, and we'll use it to first install and then use Quartus Prime and other EDA tools to design our FPGA peripheral hardware.
 
 #### Installing Altera's EDA tools
+We'll be using the following <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA tools</a> in working with the Arria 10 SoC Development Kit: 
+- <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/overview.html">Quartus Prime Standard Edition</a>
+- <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/features/qts-qsys.html">Qsys System Integration Tool</a>
+- <a href="https://www.altera.com/products/design-software/model---simulation/modelsim-altera-software.html">ModelSim-Intel FPGA</a> (formerly ModelSim Altera Edition)
+
+Note that although newer version(s) of the tools have been released, I'll stick to the *version 16.1* set I used during development for the purpose of this tutorial. Feel free to download the latest release; the general design process should be the same, but the interface may look a little different.
+
+The following steps should be completed on the CentOS 7 server through your open VNC client session.
+
+1. From Intel's <a href="http://dl.altera.com/16.1/?edition=standard&platform=linux&download_manager=direct">Download Center</a>, download *version 16.1* of the *Quartus Prime Standard Edition* software and *device support for the Arria 10* (parts 1, 2, and 3). Select *Linux* as the operating system and *Direct Download* as your download method (setting up the *Akamai DLM3 Download Manager* takes extra steps and is unnecessary for this one-time download). You're presented a few options for downloading the necessary files. I avoided the *Complete Download* since it's a pretty huge file (23.9GB) and contains unnecessary device support. Instead, download the following individual files from the *Multiple File Download* section: 
+- Quartus Prime Standard Edition Software (Device support not included)
+- Quartus Prime Device Package 1 (Arria 10 part 1 & 2)
+- Quartus Prime Device Package 2 (Arria 10 part 3)
+
+It's not always within a hardware company's best interest to build intuitive websites; maximize the page to make the arrows that allow you to download these files visible (see the screenshot below).
+
+![alt text](resources/download.png)
+
+2. From the previous step, you should now have the following <a href="https://en.wikipedia.org/wiki/Tar_(computing)">tarballs</a> sitting in your `~/Downloads` directory: 
+- Quartus-16.1.0.196-linux.tar
+- Quartus-16.1.0.196-devices-1.tar
+- Quartus-16.1.0.196-devices-2.tar
+
+Before we begin extracting and installing the software, it's important to choose a directory as the root of all your FPGA development. Out of habit, I chose `~/workspace/`. We'll also create separate directories for each of the components we downloaded (this will make your setup cleaner and easier to navigate in the future as more files and directories are generated).
+
+```
+mkdir ~/workspace
+cd ~/workspace
+
+mkdir a10-device-1,2 a10-device-3 quartus
+mv ~/Downloads/Quartus-16.1.0.196-devices-1.tar a10-device-1,2
+mv ~/Downloads/Quartus-16.1.0.196-devices-2.tar a10-device-3
+mv ~/Downloads/Quartus-16.1.0.196-linux.tar quartus
+```
+
+3. Extract `Quartus-16.1.0.196-linux.tar` and run the `setup.sh` script.
+
+```
+cd quartus
+./setup.sh
+```
 
 #### Setting up a license manager
+
+
 
 ### 3. Understanding the software you wish to accelerate
 This is perhaps the most important step in the entire process. Time spent here will directly affect your approach to the problem, your ability to identify critical system components, your FPGA peripheral hardware design, and ultimately your success in imporving overall system performance. A philosophy that I adhere to is that one's understanding of how a system works is directly proportional to that individual's ability to debug issues and improve the system's design. This is especially true when you're attempting to replace components of software with hardware. The key here is to **understand the movement of and operations on data** in your algorithm. Depending on how the software was written, whether you wrote it, and your experience level as a software engineer, this may be easy or difficult to comprehend. Nonetheless, take the time to
