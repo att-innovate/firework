@@ -149,7 +149,7 @@ sudo yum install tigervnc-server
 sudo cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:5.service
 ```
 
-3. Using the text editor of your choice (e.g., `vim`), open the file and replace every `<USER>` with the name of the user you created. I created a user with the name `fpga` and highlight where those changes are made in the screenshot below. Also add the option `-geometry 2560x1440` to the `ExecStart=` line replacing `2560x1440` with the dimensions of the screen you plan to run the VNC Viewer client on (so full screen mode looks pretty).
+3. Using the text editor of your choice (e.g., `vim`), open the file and replace every `<USER>` you see with the name of the user you created. I created a user with the name `fpga` and highlight where those changes are made in the screenshot below. Also add the option `-geometry 2560x1440` to the `ExecStart=` line replacing `2560x1440` with the resolution of the screen you plan to run the VNC Viewer client on (so full screen mode looks pretty).
 
 ![alt text](resources/unit-config.png)
 
@@ -188,9 +188,38 @@ You should see `active (running)` in the output of the last command:
 
 ##### VNC client
 
-1. On your laptop, download the <a href="https://www.realvnc.com/en/connect/download/viewer/">RealVNC VNC Viewer</a> client software, install, and open it. 
+1. Now that we have our VNC server running, let's set up the VNC client software on the device we'll use to remotely access the server. On your laptop, download the <a href="https://www.realvnc.com/en/connect/download/viewer/">RealVNC VNC Viewer</a> client, install it, and open it. In the *VNC Server* field, enter `127.0.0.1:5900` but don't click *Connect* just yet. 
+
+![alt text](resources/vnc-viewer.png)
+
+If you're familiar with computer networking, you may be wondering why we entered the IP address of the <a href="https://en.wikipedia.org/wiki/Localhost">localhost</a> and port 5900 instead of the IP address of our remote server and port 5905 (the port we set the VNC server to listen to for incoming connections). That's because after the initial authentication, all data communicated between the VNC server and client is unencrypted and hence susceptible to interception. To secure this communication channel, we'll set up an <a href="https://en.wikipedia.org/wiki/Tunneling_protocol">SSH tunnel</a> encrypting the data communicated over the network.
+
+2. Open a terminal and enter the following command, replacing `<ip-address>` with the IP address of your server and `<user>` with the name of user you created when installing CentOS 7. 
+
+```
+ssh -L 5900:<ip-address>:5905 <user>@<ip-address> -N
+```
+
+It'll ask for the user's password. Enter the password and it should leave the terminal in a hanging state - this means we've established our SSH tunnel and are ready to connect to the VNC server.
+
+![alt text](resources/ssh-tunnel.png)
+
+3. Click *Connect* in the VNC Viewer client and you should see the following warning, which we can now safely ignore. 
+
+![atl text](resources/unencrypted-warning.png)
+
+4. Click *Continue*. Enter the passowrd you set up for the VNC server and click *OK*.
+
+![alt text](resources/vnc-password.png)
+
+5. Congratulations! We just established our first remote desktop session with the CentOS 7 server! If you hover your curser above the top middle of the window, a menu will appear. Click on the icon in the middle to enter *Full screen mode*. If you set up the `-geometry` option correctly, it should take up your entire screen. Click on this icon again to exit full screen mode.
+
+![alt text](resources/desktop.png) 
+
+Leave the connected VNC client session open. This is now our main point of contact with the remote server, and we'll use it to first install and then use Quartus Prime and other EDA tools for designing and compiling the hardware.
 
 #### Installing Altera's EDA tools
+
 
 #### Setting up a license manager
 
