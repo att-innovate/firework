@@ -298,15 +298,18 @@ To summarize, we now have the Quartus Prime Standard Edition, Qsys System Integr
 
 8. Add the Quartus Prime binary (`quartus`) to your `PATH` so you can open a terminal and type `quartus` to open the software. I'll leave it to you if you want to do this permanently (editing `~/.bashrc`) or temporarily (`export PATH=$PATH:<path-to-quartus>` in an open terminal). The path to `quartus` is: `~/intelFPGA/16.1/quartus/bin/`.
 
-The first time you open Quartus Prime, a *License Setup Required* dialog will appear. To fix this, in the next subsection we'll set up the license manager and serve the acquired license giving us full access to Quartus Prime Standard Edition, ModelSim-Intel FPGA Edition, and Arria 10 device support.
+The first time you open Quartus Prime, a *License Setup Required* dialog will appear. To fix this, in the next subsection we'll set up the license manager and serve the acquired license file giving us full access to Quartus Prime Standard Edition, ModelSim-Intel FPGA Edition, and Arria 10 device support.
 
 ![alt text](resources/no-license.png)
 
-#### Setting up a license manager
--- Need to get a license from Intel
--- floating vs. fixed (which is mine?)
--- edit file, move to location
--- run license server daemon
+#### Setting up the license manager, serving your license
+Remember when I said setting up an environment for HW development is a nontrivial task? Well, licensing is the crux of its nontrivial-ness. I don't even know where to begin... from the difficulty in identifying which software or components of software required licenses to whether I downloaded the proper software versions or if I'd be using the MegaCore IP Library embedded in Quartus Prime in my design (and if so, whether that implied acquiring a separate license or limiting my ability to open source or distrubte my work). That's only the beginning. Where and how to even acquire a license isn't obvious, and there are different license types ("fixed" vs. "floating" licenses, and I'm convinced the license I acquired is a hybrid of the two). When I eventually acquired the license and was semi-confident I had all the proper EDA tools installed, serving the license was my final challenge. [queue <a href="https://youtu.be/9jK-NcRmVcw">The Final Countdown</a>] Thanks to an act of incredibly poor engineering, the license was not only tied to the <a href="https://en.wikipedia.org/wiki/MAC_address">MAC address</a> of the <a href="https://en.wikipedia.org/wiki/Network_interface_controller">NIC</a> on my computer (which I get, they want to limit its use to one, uniquely-identified computer), but it ONLY worked for a NIC named `eth0` from Linux's perspective. Well, <a href="https://en.wikipedia.org/wiki/Consistent_Network_Device_Naming">upon further research</a> I found out that my CentOS 7 server's choice of `em1`, `em2`, etc. for its network interfaces is actually the modern naming convention employed by Linux systems. <a href="http://www.sysarchitects.com/em1_to_eth0">like this guy</a>, I had to rename `em1` to `eth0` for it to work. In fact, I'm curious as to whether he also was trying to get the FLEXlm license manager up and running (I love the opening line of his post). Ultimately, what it took for me to properly serve the license was patience, the ability to make sense of the information I had, some guess-and-check work, and reading through this 46-page manual: <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/manual/quartus_install.pdf">Intel FPGA Software Installation and Licensing</a>. I'll try to spare you the trouble by summarizing the steps below. 
+
+1. Don't bother with the <a href="https://www.altera.com/mal-all/mal-signin.html?targetResource=https%3A%2F%2Fsso.altera.com%2Fpf%2Fadapter2adapter.ping%3FSpSessionAuthnAdapterId%3DOTKSiebel%26TargetResource%3Dhttps%253A%252F%252Fmysupport.altera.com%253A443%252FAlteraLicensing%252Flicense%252Findex.html">Self-Service Licensing Center</a>. Instead <a href="https://www.altera.com/about/contact/contact.html">contact an Intel licensing representative</a> directly and ask for a license for *Quartus Prime Standard Edition (including MegaCore IP Library)* and *ModelSim-Intel FPGA Edition*. That's all. Quartus Prime Standard Edition is <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/download.html">required to work with Arria 10 devices</a>. As for ModelSim-Intel FPGA Edition, on second thought you may not actually need it. I haven't tried it myself, but you may be able to perform all the simulations I'll show later with the free version (ModelSim-Intel FPGA Starter Edition).
+
+2. Once you acquire the license
+
+- move to server/location, edit file, run license server daemon, etc.
 
 
 ### 3. Understanding the software you wish to accelerate
