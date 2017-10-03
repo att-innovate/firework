@@ -270,7 +270,7 @@ This will open an installer GUI. Click *Next*, accept the the agreement, and cli
 
 4. Click *Next* to reach the *Select Components* window. Select the following components (your selection may be different if you use free versions):
 
-![alt text](resources/component.png)
+![alt text](resources/components.png)
 
 5. Continue clicking *Next* to proceed with the installation until it completes. You'll receive the following *Info* dialog which you can ignore because we'll install Arria 10 device support files next:
 
