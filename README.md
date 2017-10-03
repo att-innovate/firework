@@ -53,7 +53,7 @@ The first step is to choose a board that's appropriate for your specific project
 Although it is easiest to replicate and extend this work using an Arria 10 SoC Development Kit, the main component - the *HW accelerator* (or *custom HW* or *custom processor* or *RTL design* or *FPGA peripheral* or [protobuf-serializer](protobuf-serializer/)) - is written in Verilog, and with a few minor modifications, it can be used in other ARM-based systems. This modularity stems from the fact that the FPGA peripheral was designed as an ARM AMBA AXI4 slave peripheral (i.e., its top-level I/O ports implement an ARM AMBA AXI4 slave interface). More details of the design are covered later in the section [Implementing the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)](README.md#4-implementing-the-fpga-peripheral-top-level-io-arm-amba-axi4-verilog-quartus-prime-modelsim). Note however, using another platform for development will inevitebly require ingenuity on the engineer's end.
 
 ### 2. Setting up your development environment (Installing an OS, VNC server/client, EDA tools, licensing)
-Before we get to the fun, we need to put our IT hats on. The next step is to set up your environment for HW development. Your setup is primarily going to be determined by the board you choose, its corresponding set of <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA tools</a> necessary for implementing designs on that board, and the resources available to you. (Note that some of the tools may not be free and require a license for full functionality. I think this old school business model is something the HW industry needs to work on since the cost alone (board + software licenses) adds yet another barrier to HW innovation. I'm happy to see that at least Amazon agrees; they've begun rolling out Xilinx FPGAs in their cloud with the introduction of the <a href="https://aws.amazon.com/ec2/instance-types/f1/">EC2 F1 Instances</a>. I haven't tried using one myself, but I imagine they make it much easier/cheaper to get started. Sorry for the tangent.) For me, working with the Arria 10 SoC Development Kit meant installing <a href="http://dl.altera.com/16.1/?edition=standard&platform=linux&download_manager=direct">Altera's EDA tools</a> on a remote server that I had access to via my company's <a href="https://en.wikipedia.org/wiki/Local_area_network">LAN</a>. As it turns out, setting up an environment for HW development on a remote server is, unfortunately, not a trivial task. Fortunately for you, I've gone through that process myself and will cover the steps below. Although your setup may be different, my hope is that reading though this section will give you a general sense of what it takes to set up any HW development environment.
+Before we get to the fun, we need to put our IT hats on. The next step is to set up your environment for HW development. Your setup is primarily going to be determined by the board you choose, the corresponding set of <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA tools</a> necessary for implementing designs on that board, and the resources available to you. The complexity of your project/design may also play a factor, unfortunately, because some of the tools required may not be free (and require a license for full functionality). I think this old school business model is something the HW industry needs to work on since the cost of the board and software licenses alone adds yet another barrier to HW innovation. (I'm happy to see that at least Amazon agrees; they've begun rolling out Xilinx FPGAs in their cloud with the introduction of the <a href="https://aws.amazon.com/ec2/instance-types/f1/">EC2 F1 Instances</a>. I haven't tried using one myself, but I imagine they make it much easier/cheaper to get started. Sorry for the tangent.) For me, working with the Arria 10 SoC Development Kit meant installing <a href="http://dl.altera.com/16.1/?edition=standard&platform=linux&download_manager=direct">Altera's EDA tools</a> on a remote server that I had access to via my company's <a href="https://en.wikipedia.org/wiki/Local_area_network">LAN</a>. As it turns out, setting up an environment for HW development on a remote server is, unfortunately, not a trivial task. Fortunately for you, I've gone through that process myself and will cover the steps below. Although your setup may be different, my hope is that reading though this section will give you a general sense of what it takes to set up any HW development environment.
 
 I used the following server, operating system, and <a href="https://en.wikipedia.org/wiki/Virtual_Network_Computing">VNC</a> software (remote desktop) in my setup:
 - <a href="http://www.dell.com/downloads/global/products/pedge/dell-poweredge-r720xd-spec-sheet.pdf">Dell PowerEdge R720xd</a> (server running the EDA tools)
@@ -219,10 +219,12 @@ It'll ask for the user's password. Enter the password and it should leave the te
 Leave the connected VNC client session open. This is now our main point of contact with the remote server, and we'll use it to first install and then use Quartus Prime and other EDA tools to design our FPGA peripheral hardware.
 
 #### Installing Altera's EDA tools
-We'll be using the following <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA tools</a> in working with the Arria 10 SoC Development Kit: 
+To reiterate, some <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA tools</a> are free and some aren't. Some have free versions with limited features but may be all you need. Although I used non-free tools that required a license (and I'll show you how to set up that license), I recommend using free versions where you can. You may even consider choosing a development board based on the free-ness of the toolchain necessary for compiling designs for that board.
+
+I used the following tools in working with the Arria 10 SoC Development Kit: 
 - <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/overview.html">Quartus Prime Standard Edition</a>
 - <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/features/qts-qsys.html">Qsys System Integration Tool</a>
-- <a href="https://www.altera.com/products/design-software/model---simulation/modelsim-altera-software.html">ModelSim-Intel FPGA</a> (formerly ModelSim Altera Edition)
+- <a href="https://www.altera.com/products/design-software/model---simulation/modelsim-altera-software.html">ModelSim-Intel FPGA Edition</a> (formerly ModelSim Altera Edition)
 
 Note that although newer version(s) of the tools have been released, I'll stick to the *version 16.1* set I used during development for the purpose of this tutorial. Feel free to download the latest release; the general design process should be the same, but the interface may look a little different.
 
@@ -258,11 +260,53 @@ mv ~/Downloads/Quartus-16.1.0.196-linux.tar quartus
 
 ```
 cd quartus
+tar -xf Quartus-16.1.0.196-linux.tar
 ./setup.sh
 ```
 
-#### Setting up a license manager
+This will open an installer GUI. Click *Next*, accept the the agreement, and click *Next* again to reach the *Installation directory* window. By default, it chooses `~/intelFPGA/16.1`. Replace this with the root directory you chose for development followed by `intelFPGA/16.1`. Your window should look similar to the screenshot below.
 
+![alt text](resources/installer.png)
+
+4. Click *Next* to reach the *Select Components* window. Select the following components (your selection may be different if you use free versions):
+
+![alt text](resources/component.png)
+
+5. Continue clicking *Next* to proceed with the installation until it completes. You'll receive the following *Info* dialog which you can ignore because we'll install Arria 10 device support files next:
+
+![alt text](resources/no-devices.png)
+
+6. Extract `Quartus-16.1.0.196-devices-1.tar` and run the `dev1_setup.sh` script.
+
+```
+cd ~/workspace/a10-device-1,2
+tar -xf Quartus-16.1.0.196-devices-1.tar
+./dev1_setup.sh
+```
+
+Follow the same steps in setting up the Quartus Prime software. When you reach the *Select Components* window, select all devices (it should only show Arria 10 Part 1 and 2): 
+
+![alt text](resources/a10-devices.png)
+
+You'll receive another interesting pop-up dialog, this time called *Warning*, letting you know that Arria 10 device support requires three separate installation files. Don't worry, we'll do this next. Continue to finish the installation.
+
+![alt text](resources/a10-warning.png)
+
+7. Repeat step 6. again, but this time extract and install part 3 of the Arria 10 device support.
+
+To summarize, we now have the Quartus Prime Standard Edition, Qsys System Integration Tool (bundled with Quartus Prime), and ModelSim-Intel FPGA Edition EDA tools installed with support for Arria 10 devices on the remote CentOS 7 server. Yay!
+
+8. Add the Quartus Prime binary (`quartus`) to your `PATH` so you can open a terminal and type `quartus` to open the software. I'll leave it to you if you want to do this permanently (editing `~/.bashrc`) or temporarily (`export PATH=$PATH:<path-to-quartus>` in an open terminal). The path to `quartus` is: `~/intelFPGA/16.1/quartus/bin/`.
+
+The first time you open Quartus Prime, a *License Setup Required* dialog will appear. To fix this, in the next subsection we'll set up the license manager and serve the acquired license giving us full access to Quartus Prime Standard Edition, ModelSim-Intel FPGA Edition, and Arria 10 device support.
+
+![alt text](resources/no-license.png)
+
+#### Setting up a license manager
+-- Need to get a license from Intel
+-- floating vs. fixed (which is mine?)
+-- edit file, move to location
+-- run license server daemon
 
 
 ### 3. Understanding the software you wish to accelerate
