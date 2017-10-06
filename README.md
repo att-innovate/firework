@@ -303,14 +303,117 @@ The first time you open Quartus Prime, a *License Setup Required* dialog will ap
 ![alt text](resources/no-license.png)
 
 #### Setting up the license manager, serving your license
-Remember when I said setting up an environment for HW development is a nontrivial task? Well, licensing is the crux of its nontrivial-ness. I don't even know where to begin... from the difficulty in identifying which software or components of software required licenses to whether I downloaded the proper software versions or if I'd be using the MegaCore IP Library embedded in Quartus Prime in my design (and if so, whether that implied acquiring a separate license or limiting my ability to open source or distrubte my work). That's only the beginning. Where and how to even acquire a license isn't obvious, and there are different license types ("fixed" vs. "floating" licenses, and I'm convinced the license I acquired is a hybrid of the two). When I eventually acquired the license and was semi-confident I had all the proper EDA tools installed, serving the license was my final challenge. [queue <a href="https://youtu.be/9jK-NcRmVcw">The Final Countdown</a>] Thanks to an act of incredibly poor engineering, the license was not only tied to the <a href="https://en.wikipedia.org/wiki/MAC_address">MAC address</a> of the <a href="https://en.wikipedia.org/wiki/Network_interface_controller">NIC</a> on my computer (which I get, they want to limit its use to one, uniquely-identified computer), but it ONLY worked for a NIC named `eth0` from Linux's perspective. Well, <a href="https://en.wikipedia.org/wiki/Consistent_Network_Device_Naming">upon further research</a> I found out that my CentOS 7 server's choice of `em1`, `em2`, etc. for its network interfaces is actually the modern naming convention employed by Linux systems. <a href="http://www.sysarchitects.com/em1_to_eth0">like this guy</a>, I had to rename `em1` to `eth0` for it to work. In fact, I'm curious as to whether he also was trying to get the FLEXlm license manager up and running (I love the opening line of his post). Ultimately, what it took for me to properly serve the license was patience, the ability to make sense of the information I had, some guess-and-check work, and reading through this 46-page manual: <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/manual/quartus_install.pdf">Intel FPGA Software Installation and Licensing</a>. I'll try to spare you the trouble by summarizing the steps below. 
+Remember when I said setting up an environment for HW development is a nontrivial task? Well, licensing is the crux of its nontrivial-ness. I don't even know where to begin... from the difficulty in identifying which software or components of software required licenses to whether I downloaded the proper software versions or whether I'd be using the MegaCore IP Library embedded in Quartus Prime in my design (and if so, whether that implied acquiring a separate license or limiting my ability to open source my work). That's only the beginning. Where and how to even acquire a license wasn't obvious, and there are two different license types to choose from - *fixed* and *floating* - and I'm convinced the license I acquired is a hybrid of the two. When I eventually acquired the license and was semi-confident I had all the proper EDA tools installed, serving the license was the final challenge. [queue <a href="https://youtu.be/9jK-NcRmVcw">The Final Countdown</a>] Thanks to an act of incredibly poor engineering, the license was not only tied to the <a href="https://en.wikipedia.org/wiki/MAC_address">MAC address</a> of the <a href="https://en.wikipedia.org/wiki/Network_interface_controller">NIC</a> on my computer (which I get, they want to limit its use to one, uniquely-identified computer), but it ONLY worked for a NIC named `eth0` from Linux's perspective. Well, <a href="https://en.wikipedia.org/wiki/Consistent_Network_Device_Naming">upon further research</a> I found out that my CentOS 7 server's choice of `em1`, `em2`, etc. for its network interfaces is actually the modern naming convention employed by Linux systems. To fix the issue, <a href="http://www.sysarchitects.com/em1_to_eth0">like this guy</a>, I had to rename `em1` to `eth0` for it to work. (I love the opening line of his post too). Ultimately, what it took for me to serve the license was patience, the ability to make sense of the information I had, some guess-and-check work, and reading through this 46-page manual: <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/manual/quartus_install.pdf">Intel FPGA Software Installation and Licensing</a>. I'll try to spare you the trouble by summarizing the steps below.
 
-1. Don't bother with the <a href="https://www.altera.com/mal-all/mal-signin.html?targetResource=https%3A%2F%2Fsso.altera.com%2Fpf%2Fadapter2adapter.ping%3FSpSessionAuthnAdapterId%3DOTKSiebel%26TargetResource%3Dhttps%253A%252F%252Fmysupport.altera.com%253A443%252FAlteraLicensing%252Flicense%252Findex.html">Self-Service Licensing Center</a>. Instead <a href="https://www.altera.com/about/contact/contact.html">contact an Intel licensing representative</a> directly and ask for a license for *Quartus Prime Standard Edition (including MegaCore IP Library)* and *ModelSim-Intel FPGA Edition*. That's all. Quartus Prime Standard Edition is <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/download.html">required to work with Arria 10 devices</a>. As for ModelSim-Intel FPGA Edition, on second thought you may not actually need it. I haven't tried it myself, but you may be able to perform all the simulations I'll show later with the free version (ModelSim-Intel FPGA Starter Edition).
+1. Acquire the proper license. I wouldn't bother with the <a href="https://www.altera.com/mal-all/mal-signin.html?targetResource=https%3A%2F%2Fsso.altera.com%2Fpf%2Fadapter2adapter.ping%3FSpSessionAuthnAdapterId%3DOTKSiebel%26TargetResource%3Dhttps%253A%252F%252Fmysupport.altera.com%253A443%252FAlteraLicensing%252Flicense%252Findex.html">Self-Service Licensing Center</a>. Instead <a href="https://www.altera.com/about/contact/contact.html">contact an Intel licensing representative</a> directly and ask for a license for *Quartus Prime Standard Edition* and (optionally) *ModelSim-Intel FPGA Edition*. Quartus Prime Standard Edition (or Pro) is <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/download.html">required when working with Arria 10 devices</a>, unfortunately, and I used ModelSim-Intel FPGA Edition to perform <a href="http://quartushelp.altera.com/15.0/mergedProjects/reference/glossary/def_funsim.htm">functional simulations</a> on each subsystem and the entire RTL design to verify the logic. I haven't tried it myself, but I suspect you may be able to perform the simulations I've included (as Verilog testbenches) using the free version, ModelSim-Intel FPGA Starter Edition. Since my license was tied to the MAC address of my NIC, I'm using a *fixed license* which is probably all you need as well.
 
-2. Once you acquire the license
+2. You'll receive an email with the license as an attachment. Move that license to a directory called `license` in your working directory. I used `scp` to copy the license from my macbook to the CentOS 7 server. Accessing your email from the server directly is another option. 
 
-- move to server/location, edit file, run license server daemon, etc.
+![alt text](resources/scp-license.png)
 
+3. We need to edit this license before it's actually servable. First, copy and rename the license to `/usr/local/flexlm/licenses/license.dat`. This is where we'll tell the FLEXlm license manager to look for a file called `license.dat` to serve. 
+
+```
+sudo mkdir -p /usr/local/flexlm/licenses
+sudo cp ~/workspace/license/1-FQMLCP_License.dat /usr/local/flexlm/licenses/license.dat
+```
+
+4. Open the `license.dat` file and add the following lines somewhere near the top. I've included a screenshot as well showing where I made the changes.
+
+```
+SERVER <hostname> <MAC address of NIC>
+VENDOR alterad "<your-working-dir>/intelFPGA/16.1/quartus/linux64/alterad"
+VENDOR mgcld "<your-working-dir>/intelFPGA/16.1/modelsim_ae/linuxaloem/mgcld"
+USE_SERVER
+```
+
+![alt text](resources/license.png)
+
+To obtain your `<hostname>`, run `uname -n` in a terminal. 
+
+You should already know the MAC address of your NIC which was needed to acquire the license. Just in case, run `ifconfig` to list the network interfaces on your machine, identify which one you're actively using (`em1` for me), and the MAC address will be the 12-digit colon-separated hex value following `ether`: 
+
+![alt text](resources/ifconfig.png)
+
+The next two `VENDOR` lines specify the locations of the Quartus Prime and ModelSim <a href="https://en.wikipedia.org/wiki/Daemon_(computing)">daemons</a> that FLEXlm runs to serve their features. These daemons came with the Quartus Prime and ModelSim installation.
+
+5. Now were ready to serve our license! Run the following command to start the FLEXlm license manager and serve our license file. The FLEXlm binary was also included as a part of the Quartus Prime installation. 
+
+```
+cd ~/workspace
+intelFPGA/16.1/quartus/linux64/lmgrd -c /usr/local/flexlm/licenses/license.dat
+```
+
+... and we were so close! I'm referring to the following `/lib64/ld-lsb-x86-64.so.3: bad ELF interpreter: No such file or directory` error you probably also received the first time running this software:
+
+![alt text](resources/license-error.png)
+
+Credit to <a href="https://software.intel.com/en-us/articles/flexlm-license-manager-20-may-fail-when-lsb-3-is-not-met">this post</a>, there's nothing a simple <a href="https://en.wikipedia.org/wiki/Symbolic_link">symbolic link</a> can't fix! We have a functional <a href="https://linux.die.net/man/8/ld-linux">program loader</a> running on the CentOS 7 server, I promise; the <a href="https://stackoverflow.com/questions/1951742/how-to-symlink-a-file-in-linux">symlink</a> we'll create let's FLEXlm call it `ld-lsb-x86-64.so.3` if it likes.
+
+```
+sudo ln -s /lib64/ld-linux-x86-64.so.2 /lib64/ld-lsb-x86-64.so.3
+```
+
+6. Run the command to start FLEXlm again and voila! You'll see a log of information from FLEXlm `(lmgrd)`, Altera's daemon `(alterad)`, and ModelSim's daemon `(mgcld)`. If I were to guess, the name `lmgrd` stands for "license manager daemon".
+
+![alt text](resources/lmgrd-log.png)
+
+7. Uh-oh! Upon further inspection, we see that FLEXlm failed to launch ModelSim's daemon at time `15:56:59`:
+
+![alt text](resources/mgcld-error.png)
+
+Well that's not good. What could be the problem? Well, I tried running the daemon directly and received the following error message: 
+
+![alt text](resources/mgcld-bad-ELF.png)
+
+That looks familiar! This time it's the 32-bit version of the program loader that's missing... but why does `mgcld` want to use a 32-bit program loader on a 64-bit architecture? If we look back at the *ModelSim-Intel FPGA Edition* entry in the <a href="https://www.altera.com/support/support-resources/download/os-support.html">Operating System Support</a> table, there's a supercript on the checkmark ![alt text](resources/check-2.png) with the following note:
+
+![alt text](resources/notes.png)
+
+So obvious! Shame on us. Let's install the 32-bit `ld-linux.so.2` program loader (part of the `glibc` package) to fix the error.
+
+```
+sudo yum install ld-linux-so.2
+```
+
+Note, `i686` refers to Intel's 32-bit <a href="https://en.wikipedia.org/wiki/X86">x86</a> architecture and `x86_64` is the <a href="https://en.wikipedia.org/wiki/X86-64">64-bit</a> flavor. Let's run mgcld again to confirm we fixed the issue.
+
+![alt text](resources/mgcld-fixed.png)
+
+That looks promising!
+
+8. Restart FLEXlm to successfully serve both Quartus Prime and ModelSim features this time. First, we'll use `ps` to identify `lmgrd`'s <a href="https://en.wikipedia.org/wiki/Process_identifier">process ID (PID)</a> and kill it with the `kill -9` command.
+
+```
+ps aux | grep lmgrd
+kill -9 <PID>
+```
+
+![alt text](resources/ps-aux.png)
+
+And to restart FLEXlm:
+
+```
+~/workspace/intelFPGA/16.1/quartus/linux64/lmgrd -c /usr/local/flexlm/licenses/license.dat
+```
+
+As long as you don't see any error messages in the log, all features of Quartus Prime and ModelSim should now be properly served. Here's what the tail end of my log looks like:
+
+![alt text](resources/lmgrd-log-final.png)
+
+9. The first time you open Quartus Prime, a *License Setup Required* dialog appears asking you to specify the location of the license file. Select *If you have a valid license file, specify the locaiton of your license file* option and click *OK*. 
+
+![alt text](resources/license-setup.png)
+
+10. Specify the locaiton of the license file and click *OK*.
+
+![alt text](resources/license-location.png)
+
+11. Voila! We now have Quartus Prime Standard Edition running with its features properly licensed and activated!
+
+![alt text](resources/hello-quartus.png)
+
+That was quite the process, I know. To summarize, we learned how to remotely interact with a Dell PowerEdge R720xd server using its built-in iDRAC controller, install CentOS 7 on the server with a GNOME Desktop environment, install VNC server and client software on the server and MacBook respectively, install the Altera EDA tools (Quartus Prime Standard Edition, ModelSim-Intel FPGA Edition) we'll be using with the Arria 10 SoC Development Kit, and acquire & serve the license for the features we need. With our board selected and development environment set up, we're now ready to begin working on the HW-accelerated system project!
 
 ### 3. Understanding the software you wish to accelerate
 This is perhaps the most important step in the entire process. Time spent here will directly affect your approach to the problem, your ability to identify critical system components, your FPGA peripheral hardware design, and ultimately your success in imporving overall system performance. A philosophy that I adhere to is that one's understanding of how a system works is directly proportional to that individual's ability to debug issues and improve the system's design. This is especially true when you're attempting to replace components of software with hardware. The key here is to **understand the movement of and operations on data** in your algorithm. Depending on how the software was written, whether you wrote it, and your experience level as a software engineer, this may be easy or difficult to comprehend. Nonetheless, take the time to
