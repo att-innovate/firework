@@ -48,7 +48,7 @@ As a final note, this work can be quite challenging. It's essential to spend tim
 ### 1. Choosing a development board
 The first step is to choose a board that's appropriate for your specific project and goals. Since my objective was to build a HW-accelerated system for a datacenter application that both improves its performance and alters its execution (freeing the CPU resource), I was in search of a board that could theoretically replace a <a href="https://en.wikipedia.org/wiki/White_box_(computer_hardware)">white box</a> server running Linux in a datacenter setting. The <a href="https://www.altera.com/products/boards_and_kits/dev-kits/altera/arria-10-soc-development-kit.html">Arria 10 SoC Development Kit</a> seemed to be the perfect fit, combining an <a href="https://www.altera.com/products/fpga/arria-series/arria-10/features.html">Arria 10 FPGA</a> with an application processor (a 20 nm dual-core ARM Cortex-A9 MPCore processor) called the <a href="https://www.altera.com/products/soc/portfolio/arria-10-soc/arria10-soc-hps.html">Hard Processor System (HPS)</a> in a single <a href="https://en.wikipedia.org/wiki/System_on_a_chip">system-on-chip (SoC)</a> package. The FPGA fabric could be used to implement a custom <a href="https://en.wikipedia.org/wiki/Register-transfer_level">RTL</a> design and the HPS could be used to support both Linux and an application with which one wishes to accelerate, willfully. Plus, think about how cool you look with one of these bad boys sitting on your desk:
 
-![alt text](resources/arria10_soc_kit.png)
+![alt text](resources/images/arria10_soc_kit.png)
 
 Although it is easiest to replicate and extend this work using an Arria 10 SoC Development Kit, the main component - the *HW accelerator* (or *custom HW* or *custom processor* or *RTL design* or *FPGA peripheral* or [protobuf-serializer](protobuf-serializer/)) - is written in Verilog, and with a few minor modifications, it can be used in other ARM-based systems. This modularity stems from the fact that the FPGA peripheral was designed as an ARM AMBA AXI4 slave peripheral (i.e., its top-level I/O ports implement an ARM AMBA AXI4 slave interface). More details of the design are covered later in the section [Implementing the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)](README.md#4-implementing-the-fpga-peripheral-top-level-io-arm-amba-axi4-verilog-quartus-prime-modelsim). Note however, using another platform for development will inevitebly require ingenuity on the engineer's end.
 
@@ -74,7 +74,7 @@ It's quite a humbling experience to set up a server for the first time, and you'
 #### Remotely installing CentOS 7 on a Dell PowerEdge R720xd server
 To access the remote server, we'll make use of its built-in <a href="http://www.dell.com/learn/us/en/15/solutions/integrated-dell-remote-access-controller-idrac">integrated Dell Remote Access Controller (iDRAC)</a>. This tool has many powerful features including the ability to monitor logged events, power the server ON/OFF, and even install an OS - all remotely. Assuming the server is properly connected in your <a href="https://en.wikipedia.org/wiki/Local_area_network">LAN</a> and has been assigned an <a href="<a href="https://en.wikipedia.org/wiki/IP_address">IP address</a> that you have, open any web browser and enter its IP address to access the iDRAC login screen. It should look something like this:
 
-![alt text](resources/iDRAC.png)
+![alt text](resources/images/iDRAC.png)
 
 If this is your first time using the iDRAC, the <a href="http://en.community.dell.com/techcenter/b/techcenter/archive/2013/07/16/idrac7-now-supports-default-password-warning-feature">default username and password</a> are *root* and *calvin*, respectfully. When you log in, you'll be presented with a summary page and a several tabs (on the left side of the page organized hierarchically as a tree and on the top of some pages) that provide a plethora of stats/info about your server. I recommend spending some time going through these tabs to learn more about your server's features. 
 
@@ -86,47 +86,47 @@ Now, let's see how to install CentOS 7 remotely using the iDRAC.
 
 3. In the *System Summary* > *Virtual Console Preview* window, click on *Launch*. This will download a Virtual Console Client called *viewer.jnlp*.
 
-![alt text](resources/launch.png)
+![alt text](resources/images/launch.png)
 
 4. Run the *viewer.jnlp* Java application. Your computer may complain about it being from an unidentified developer, but there's a way around this. Right click *viewer.jnlp* > *Open With* > *Java Web Start (default)* and click *Open* in the window that appears.
 
-![alt text](resources/viewer-jnlp.png)
+![alt text](resources/images/viewer-jnlp.png)
 
 5. This will open another window, *Security Warning*. Click *Continue*.
 
-![alt text](resources/security-warning.png)
+![alt text](resources/images/security-warning.png)
 
 6. You can never be too cautious. This will open a new *Warning - Security* window that asks, "Do you want to run this application?" I think you know the answer. Click *Run*.
 
-![alt text](resources/are-you-sure.png)
+![alt text](resources/images/are-you-sure.png)
 
 7. Great, we've finally opened the Virtual Console Client! Click anywhere in the window so that its menu appears at the top of your screen in the menu bar. Click *Virtual Media* > *Connect Virtual Media*. I couldn't take a screenshot of this step because when the Virtual Console Client is in focus, it captures all keyboard events. See the menu bar in the screenshot below.
 
-![alt text](resources/menu-bar.png)
+![alt text](resources/images/menu-bar.png)
 
 8. Once connected, click *Virtual Media* > *Map CD/DVD ...* and select the CentOS 7 ISO image we just downloaded. Then click *Map Device*.
 
-![alt text](resources/select-iso.png)
+![alt text](resources/images/select-iso.png)
 
 9. In the Virtual Console Client menu again, click *Next Boot* > *Virtual CD/DVD/ISO*. Click *OK* in the window that appears. This tells the server to boot from the CentOS 7 installer ISO we downloaded on the next boot.
 
-![alt text](resources/next-boot.png)
+![alt text](resources/images/next-boot.png)
 
 10. In the Virtual Console Client menu, click *Power* > *Reset System (warm boot)*. You should see a "No Signal" screen followed by the CentOS 7 installer screen when the server reboots. With *Install CentOS 7* highlighted, press enter to begin installation.
 
-![alt text](resources/hello-centos.png)
+![alt text](resources/images/hello-centos.png)
 
 11. Follow the promts until you get to the *Software Selection* screen. Select *GNOME Desktop* as your Base Environment. Select the *Legacy X Window System Compatibility*, *Compatibility Libraries*, and *Development Tools* add-ons in the list to the right. Click *Done* when your screen looks like the one below.
 
-![alt text](resources/software-selection.png)
+![alt text](resources/images/software-selection.png)
 
 12. Select a disk to install to, *Automatically configure partitioning.*, and optionally encrypt your data (I didn't). Click *Done* and proceed with the installation by selecting *Begin Installation* in the main menu. 
 
-![alt text](resources/partition.png)
+![alt text](resources/images/partition.png)
 
 13. During the installation, it'll ask you to create a user account. Make sure to give the user administrative access and also set the root password. DON'T FORGET TO SET THE ROOT PASSWORD. We'll need root access when installing the VNC server <a href="https://en.wikipedia.org/wiki/Daemon_(computing)">daemon</a>. Click *Reboot* when the installation completes and voila!
 
-![alt text](resources/users.png)
+![alt text](resources/images/users.png)
 
 The server is now running CentOS 7. In the initial boot, it'll ask you to accept a license. Follow the prompts on the screen to accept the license, let it finish booting, and log in as the user you just created. Keep the Virtual Console Client open; we'll use it to set up the VNC server/client software in the next step.
 
@@ -151,7 +151,7 @@ sudo cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:5.
 
 3. Using the text editor of your choice (e.g., `vim`), open the file and replace every `<USER>` you see with the name of the user you created. I created a user with the name `fpga` and highlight where those changes are made in the screenshot below. Also add the option `-geometry 2560x1440` to the `ExecStart=` line replacing `2560x1440` with the resolution of the screen you plan to run the VNC Viewer client on (so full screen mode looks pretty).
 
-![alt text](resources/unit-config.png)
+![alt text](resources/images/unit-config.png)
 
 4. Use <a href="https://www.freedesktop.org/software/systemd/man/systemctl.html">systemctl</a> to reload the systemd manager configuration.
 
@@ -184,13 +184,13 @@ sudo systemctl status
 
 You should see `active (running)` in the output of the last command:
 
-![alt text](resources/systemctl-status.png)
+![alt text](resources/images/systemctl-status.png)
 
 ##### VNC client
 
 1. Now that we have our VNC server running, let's set up the VNC client software on the device we'll use to remotely access the server. On your laptop, download the <a href="https://www.realvnc.com/en/connect/download/viewer/">RealVNC VNC Viewer</a> client, install it, and open it. In the *VNC Server* field, enter `127.0.0.1:5900` but don't click *Connect* just yet. 
 
-![alt text](resources/vnc-viewer.png)
+![alt text](resources/images/vnc-viewer.png)
 
 If you're familiar with computer networking, you may be wondering why we entered the IP address of the <a href="https://en.wikipedia.org/wiki/Localhost">localhost</a> and port 5900 instead of the IP address of our remote server and port 5905 (the port we set the VNC server to listen to for incoming connections). That's because after the initial authentication, all data communicated between the VNC server and client is unencrypted and hence susceptible to interception. To secure this communication channel, we'll set up an <a href="https://en.wikipedia.org/wiki/Tunneling_protocol">SSH tunnel</a> encrypting the data communicated over the network.
 
@@ -202,7 +202,7 @@ ssh -L 5900:<ip-address>:5905 <user>@<ip-address> -N
 
 It'll ask for the user's password. Enter the password and it should leave the terminal in a hanging state - this means we've established our SSH tunnel and are ready to connect to the VNC server.
 
-![alt text](resources/ssh-tunnel.png)
+![alt text](resources/images/ssh-tunnel.png)
 
 3. Click *Connect* in the VNC Viewer client and you should see the following warning, which we can now safely ignore. 
 
@@ -210,11 +210,11 @@ It'll ask for the user's password. Enter the password and it should leave the te
 
 4. Click *Continue*. Enter the passowrd you set up for the VNC server and click *OK*.
 
-![alt text](resources/vnc-password.png)
+![alt text](resources/images/vnc-password.png)
 
 5. Congratulations! We just established our first remote desktop session with the CentOS 7 server! If you hover your curser above the top middle of the window, a menu will appear. Click on the icon in the middle to enter *Full screen mode*. If you set up the `-geometry` option correctly, it should take up your entire screen. Click on this icon again to exit *Full screen mode*.
 
-![alt text](resources/desktop.png) 
+![alt text](resources/images/desktop.png) 
 
 Leave the connected VNC client session open. This is now our main point of contact with the remote server, and we'll use it to first install and then use Quartus Prime and other EDA tools to design our FPGA peripheral hardware.
 
@@ -237,7 +237,7 @@ The following steps should be completed on the CentOS 7 server through your open
 
 It's not always within a hardware company's best interest to build intuitive websites; maximize the page to make the arrows that allow you to download these files visible (see the screenshot below).
 
-![alt text](resources/download.png)
+![alt text](resources/images/download.png)
 
 2. From the previous step, you should now have the following <a href="https://en.wikipedia.org/wiki/Tar_(computing)">tarballs</a> sitting in your `~/Downloads` directory: 
 - Quartus-16.1.0.196-linux.tar
@@ -266,15 +266,15 @@ tar -xf Quartus-16.1.0.196-linux.tar
 
 This will open an installer GUI. Click *Next*, accept the the agreement, and click *Next* again to reach the *Installation directory* window. By default, it chooses `~/intelFPGA/16.1`. Replace this with the root directory you chose for development followed by `intelFPGA/16.1`. Your window should look similar to the screenshot below.
 
-![alt text](resources/installer.png)
+![alt text](resources/images/installer.png)
 
 4. Click *Next* to reach the *Select Components* window. Select the following components (your selection may be different if you use free versions):
 
-![alt text](resources/components.png)
+![alt text](resources/images/components.png)
 
 5. Continue clicking *Next* to proceed with the installation until it completes. You'll receive the following *Info* dialog which you can ignore because we'll install Arria 10 device support files next:
 
-![alt text](resources/no-devices.png)
+![alt text](resources/images/no-devices.png)
 
 6. Extract `Quartus-16.1.0.196-devices-1.tar` and run the `dev1_setup.sh` script.
 
@@ -286,11 +286,11 @@ tar -xf Quartus-16.1.0.196-devices-1.tar
 
 Follow the same steps in setting up the Quartus Prime software. When you reach the *Select Components* window, select all devices (it should only show Arria 10 Part 1 and 2): 
 
-![alt text](resources/a10-devices.png)
+![alt text](resources/images/a10-devices.png)
 
 You'll receive another interesting pop-up dialog, this time called *Warning*, letting you know that Arria 10 device support requires three separate installation files. Don't worry, we'll do this next. Continue to finish the installation.
 
-![alt text](resources/a10-warning.png)
+![alt text](resources/images/a10-warning.png)
 
 7. Repeat step 6. again, but this time extract and install part 3 of the Arria 10 device support.
 
@@ -300,7 +300,7 @@ To summarize, we now have the Quartus Prime Standard Edition, Qsys System Integr
 
 The first time you open Quartus Prime, a *License Setup Required* dialog will appear. To fix this, in the next subsection we'll set up the license manager and serve the acquired license file giving us full access to Quartus Prime Standard Edition, ModelSim-Intel FPGA Edition, and Arria 10 device support.
 
-![alt text](resources/no-license.png)
+![alt text](resources/images/no-license.png)
 
 #### Setting up the license manager, serving your license
 Remember when I said setting up an environment for HW development is a nontrivial task? Well, licensing is the crux of its nontrivial-ness. I don't even know where to begin... from the difficulty in identifying which software or components of software required licenses to whether I downloaded the proper software versions or whether I'd be using the MegaCore IP Library embedded in Quartus Prime in my design (and if so, whether that implied acquiring a separate license or limiting my ability to open source my work). That's only the beginning. Where and how to even acquire a license wasn't obvious, and there are two different license types to choose from - *fixed* and *floating* - and I'm convinced the license I acquired is a hybrid of the two. When I eventually acquired the license and was semi-confident I had all the proper EDA tools installed, serving the license was the final challenge. [queue <a href="https://youtu.be/9jK-NcRmVcw">The Final Countdown</a>] Thanks to an act of incredibly poor engineering, the license was not only tied to the <a href="https://en.wikipedia.org/wiki/MAC_address">MAC address</a> of the <a href="https://en.wikipedia.org/wiki/Network_interface_controller">NIC</a> on my computer (which I get, they want to limit its use to one, uniquely-identified computer), but it ONLY worked for a NIC named `eth0` from Linux's perspective. Well, <a href="https://en.wikipedia.org/wiki/Consistent_Network_Device_Naming">upon further research</a> I found out that my CentOS 7 server's choice of `em1`, `em2`, etc. for its network interfaces is actually the modern naming convention employed by Linux systems. To fix the issue, <a href="http://www.sysarchitects.com/em1_to_eth0">like this guy</a>, I had to rename `em1` to `eth0` for it to work. (I love the opening line of his post too). Ultimately, what it took for me to serve the license was patience, the ability to make sense of the information I had, some guess-and-check work, and reading through this 46-page manual: <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/manual/quartus_install.pdf">Intel FPGA Software Installation and Licensing</a>. I'll try to spare you the trouble by summarizing the steps below.
@@ -309,7 +309,7 @@ Remember when I said setting up an environment for HW development is a nontrivia
 
 2. You'll receive an email with the license as an attachment. Move that license to a directory called `license` in your working directory. I used `scp` to copy the license from my macbook to the CentOS 7 server. Accessing your email from the server directly is another option. 
 
-![alt text](resources/scp-license.png)
+![alt text](resources/images/scp-license.png)
 
 3. We need to edit this license before it's actually servable. First, copy and rename the license to `/usr/local/flexlm/licenses/license.dat`. This is where we'll tell the FLEXlm license manager to look for a file called `license.dat` to serve. 
 
@@ -327,13 +327,13 @@ VENDOR mgcld "<your-working-dir>/intelFPGA/16.1/modelsim_ae/linuxaloem/mgcld"
 USE_SERVER
 ```
 
-![alt text](resources/license.png)
+![alt text](resources/images/license.png)
 
 To obtain your `<hostname>`, run `uname -n` in a terminal. 
 
 You should already know the MAC address of your NIC which was needed to acquire the license. Just in case, run `ifconfig` to list the network interfaces on your machine, identify which one you're actively using (`em1` for me), and the MAC address will be the 12-digit colon-separated hex value following `ether`: 
 
-![alt text](resources/ifconfig.png)
+![alt text](resources/images/ifconfig.png)
 
 The next two `VENDOR` lines specify the locations of the Quartus Prime and ModelSim <a href="https://en.wikipedia.org/wiki/Daemon_(computing)">daemons</a> that FLEXlm runs to serve their features. These daemons came with the Quartus Prime and ModelSim installation.
 
@@ -346,7 +346,7 @@ intelFPGA/16.1/quartus/linux64/lmgrd -c /usr/local/flexlm/licenses/license.dat
 
 ... and we were so close! I'm referring to the following `/lib64/ld-lsb-x86-64.so.3: bad ELF interpreter: No such file or directory` error you probably also received the first time running this software:
 
-![alt text](resources/license-error.png)
+![alt text](resources/images/license-error.png)
 
 Credit to <a href="https://software.intel.com/en-us/articles/flexlm-license-manager-20-may-fail-when-lsb-3-is-not-met">this post</a>, there's nothing a simple <a href="https://en.wikipedia.org/wiki/Symbolic_link">symbolic link</a> can't fix! We have a functional <a href="https://linux.die.net/man/8/ld-linux">program loader</a> running on the CentOS 7 server, I promise; the <a href="https://stackoverflow.com/questions/1951742/how-to-symlink-a-file-in-linux">symlink</a> we'll create let's FLEXlm call it `ld-lsb-x86-64.so.3` if it likes.
 
@@ -356,19 +356,19 @@ sudo ln -s /lib64/ld-linux-x86-64.so.2 /lib64/ld-lsb-x86-64.so.3
 
 6. Run the command to start FLEXlm again and voila! You'll see a log of information from FLEXlm `(lmgrd)`, Altera's daemon `(alterad)`, and ModelSim's daemon `(mgcld)`. If I were to guess, the name `lmgrd` stands for "license manager daemon".
 
-![alt text](resources/lmgrd-log.png)
+![alt text](resources/images/lmgrd-log.png)
 
 7. Uh-oh! Upon further inspection, we see that FLEXlm failed to launch ModelSim's daemon at time `15:56:59`:
 
-![alt text](resources/mgcld-error.png)
+![alt text](resources/images/mgcld-error.png)
 
 Well that's not good. What could be the problem? Well, I tried running the daemon directly and received the following error message: 
 
-![alt text](resources/mgcld-bad-ELF.png)
+![alt text](resources/images/mgcld-bad-ELF.png)
 
-That looks familiar! This time it's the 32-bit version of the program loader that's missing... but why does `mgcld` want to use a 32-bit program loader on a 64-bit architecture? If we look back at the *ModelSim-Intel FPGA Edition* entry in the <a href="https://www.altera.com/support/support-resources/download/os-support.html">Operating System Support</a> table, there's a supercript on the checkmark ![alt text](resources/check-2.png) with the following note:
+That looks familiar! This time it's the 32-bit version of the program loader that's missing... but why does `mgcld` want to use a 32-bit program loader on a 64-bit architecture? If we look back at the *ModelSim-Intel FPGA Edition* entry in the <a href="https://www.altera.com/support/support-resources/download/os-support.html">Operating System Support</a> table, there's a supercript on the checkmark ![alt text](resources/images/check-2.png) with the following note:
 
-![alt text](resources/notes.png)
+![alt text](resources/images/notes.png)
 
 So obvious! Shame on us. Let's install the 32-bit `ld-linux.so.2` program loader (part of the `glibc` package) to fix the error.
 
@@ -378,7 +378,7 @@ sudo yum install ld-linux-so.2
 
 Note, `i686` refers to Intel's 32-bit <a href="https://en.wikipedia.org/wiki/X86">x86</a> architecture and `x86_64` is the <a href="https://en.wikipedia.org/wiki/X86-64">64-bit</a> flavor. Let's run mgcld again to confirm we fixed the issue.
 
-![alt text](resources/mgcld-fixed.png)
+![alt text](resources/images/mgcld-fixed.png)
 
 That looks promising!
 
@@ -389,7 +389,7 @@ ps aux | grep lmgrd
 kill -9 <PID>
 ```
 
-![alt text](resources/ps-aux.png)
+![alt text](resources/images/ps-aux.png)
 
 And to restart FLEXlm:
 
@@ -399,19 +399,19 @@ And to restart FLEXlm:
 
 As long as you don't see any error messages in the log, all features of Quartus Prime and ModelSim should now be properly served. Here's what the tail end of my log looks like:
 
-![alt text](resources/lmgrd-log-final.png)
+![alt text](resources/images/lmgrd-log-final.png)
 
 9. The first time you open Quartus Prime, a *License Setup Required* dialog appears asking you to specify the location of the license file. Select *If you have a valid license file, specify the locaiton of your license file* option and click *OK*. 
 
-![alt text](resources/license-setup.png)
+![alt text](resources/images/license-setup.png)
 
 10. Specify the locaiton of the license file and click *OK*.
 
-![alt text](resources/license-location.png)
+![alt text](resources/images/license-location.png)
 
 11. Voila! We now have Quartus Prime Standard Edition running with its features properly licensed and activated!
 
-![alt text](resources/hello-quartus.png)
+![alt text](resources/images/hello-quartus.png)
 
 That was quite the process, I know. To summarize, we learned how to remotely interact with a Dell PowerEdge R720xd server using its built-in iDRAC controller, install CentOS 7 on the server with a GNOME Desktop environment, install VNC server and client software on the server and MacBook respectively, install the Altera EDA tools (Quartus Prime Standard Edition, ModelSim-Intel FPGA Edition) we'll be using with the Arria 10 SoC Development Kit, and acquire & serve the license for the features we need. With our board selected and development environment set up, we're now ready to begin working on the HW-accelerated system project!
 
