@@ -63,7 +63,7 @@ I used the following server, operating system, and <a href="https://en.wikipedia
 
 My MacBook Pro served as the sole interface to both the remote server (via VNC client) where the HW development takes place and the Arria 10 SoC Development Kit (via USB cable + minicom) which sat on my desk. Note that any laptop with the proper VNC client and serial communication software (minicom, PuTTY, etc.) installed should be fine. I still find the setup fascinating with 3 computers, 2 geographic locations, and 1 keyboard+monitor to access them all simultaneously:
 
-![alt text](resources/images/HW-dev-env.jpg)
+![alt text](resources/images/hw-dev-env.png)
 
 The reason why I chose to use a server equipped with two <a href="https://ark.intel.com/products/64595/Intel-Xeon-Processor-E5-2670-20M-Cache-2_60-GHz-8_00-GTs-Intel-QPI">Intel Xeon E5-2670 CPUs</a> (each with 8, <a href="https://en.wikipedia.org/wiki/Simultaneous_multithreading">2-way SMT</a> cores), 256 GB of RAM, and 8 TB of storage is that <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/overview.html">Quartus Prime</a>, the main EDA tool we'll be using, has a "recommended system requirement" of 18-48 GB of RAM when working with Arria 10 devices. My laptop and I'm guessing most others are simply not powerful enough to support the software. I also know from experience that compilation can take quite some time, so 32 parallel <a href="https://en.wikipedia.org/wiki/Thread_(computing)">threads</a> of execution will definitely come in handy if fully utilized.
 
