@@ -206,7 +206,7 @@ It'll ask for the user's password. Enter the password and it should leave the te
 
 3. Click *Connect* in the VNC Viewer client and you should see the following warning, which we can now safely ignore. 
 
-![atl text](resources/unencrypted-warning.png)
+![atl text](resources/images/unencrypted-warning.png)
 
 4. Click *Continue*. Enter the passowrd you set up for the VNC server and click *OK*.
 
@@ -331,7 +331,7 @@ USE_SERVER
 
 To obtain your `<hostname>`, run `uname -n` in a terminal. 
 
-You should already know the MAC address of your NIC which was needed to acquire the license. Just in case, run `ifconfig` to list the network interfaces on your machine, identify which one you're actively using (`em1` for me), and the MAC address will be the 12-digit colon-separated hex value following `ether`: 
+You should already know the MAC address of your NIC which was needed to acquire the license. Just in case, run `ifconfig` to list the network interfaces on your machine, identify which one you're actively using (`em1` for me), and the MAC address will be the 12-digit, colon-separated hex value following `ether`: 
 
 ![alt text](resources/images/ifconfig.png)
 
@@ -376,7 +376,7 @@ So obvious! Shame on us. Let's install the 32-bit `ld-linux.so.2` program loader
 sudo yum install ld-linux-so.2
 ```
 
-Note, `i686` refers to Intel's 32-bit <a href="https://en.wikipedia.org/wiki/X86">x86</a> architecture and `x86_64` is the <a href="https://en.wikipedia.org/wiki/X86-64">64-bit</a> flavor. Let's run mgcld again to confirm we fixed the issue.
+Note, `i686` refers to Intel's 32-bit <a href="https://en.wikipedia.org/wiki/X86">x86</a> architecture and `x86_64` is the <a href="https://en.wikipedia.org/wiki/X86-64">64-bit</a> flavor. Let's run `mgcld` again to confirm we fixed the issue.
 
 ![alt text](resources/images/mgcld-fixed.png)
 
