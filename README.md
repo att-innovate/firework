@@ -230,32 +230,32 @@ It'll ask for the user's CentOS 7 password. Enter the password and it should lea
 Leave the VNC client session open; this is now our main way to interact with the remote server. We'll use it to first install and then use the EDA tools to design our FPGA peripheral hardware.
 
 #### Installing Altera's EDA tools
-To reiterate, some <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA tools</a> are free and some aren't. Some have free versions with limited features but may be all you need. Although I used non-free tools that required a license (and I'll show you how to set up that license), I recommend using free versions where you can. You may even consider choosing a development board based on the free-ness of the toolchain necessary for compiling designs for that board.
+To reiterate, some <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA tools</a> are free and some aren't. Some have free versions with limited features, and that may be all you need. Although I used licensed tools, I recommend using free versions where possible. You may even consider choosing a development board based on the free-ness of the toolchain necessary for compiling designs for that board (e.g., I later realized that a licensed Quartus Prime was required to even work with the Arria 10).
 
-I used the following tools in working with the Arria 10 SoC Development Kit: 
+I used the following EDA tools in working with the Arria 10 SoC Development Kit: 
 - <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/overview.html">Quartus Prime Standard Edition</a>
 - <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/features/qts-qsys.html">Qsys System Integration Tool</a>
 - <a href="https://www.altera.com/products/design-software/model---simulation/modelsim-altera-software.html">ModelSim-Intel FPGA Edition</a> (formerly ModelSim Altera Edition)
 
-Note that although newer version(s) of the tools have been released, I'll stick to the *version 16.1* set I used during development for the purpose of this tutorial. Feel free to download the latest release; the general design process should be the same, but the interface may look a little different.
+Note that although newer versions of the tools have been released, I used `version 16.1` and will continue using these tools throughout the tutorial. Feel free to download the latest release; the general design process is the same, but the interface may look slightly different.
 
 The following steps should be completed on the CentOS 7 server through your open VNC client session.
 
-1. From Intel's <a href="http://dl.altera.com/16.1/?edition=standard&platform=linux&download_manager=direct">Download Center</a>, download *version 16.1* of the *Quartus Prime Standard Edition* software and *device support for the Arria 10* (parts 1, 2, and 3). Select *Linux* as the operating system and *Direct Download* as your download method (setting up the *Akamai DLM3 Download Manager* takes extra steps and is unnecessary for this one-time download). You're presented a few options for downloading the necessary files. I avoided the *Complete Download* since it's a pretty huge file (23.9GB) and contains unnecessary device support. Instead, download the following individual files from the *Multiple File Download* section: 
+1. From Intel's <a href="http://dl.altera.com/16.1/?edition=standard&platform=linux&download_manager=direct">Download Center</a>, download `version 16.1` of the *Quartus Prime Standard Edition* software and *device support for the Arria 10* (parts 1, 2, and 3). Select **Linux** as the operating system and **Direct Download** as the download method (setting up the *Akamai DLM3 Download Manager* takes extra effort and is unnecessary for a one-time download). You have a few options for downloading the necessary files. I avoided the *Complete Download* since it's a pretty huge file (23.9GB) and contains unnecessary device support. Instead, download the following individual files from the *Multiple File Download* section: 
 - Quartus Prime Standard Edition Software (Device support not included)
 - Quartus Prime Device Package 1 (Arria 10 part 1 & 2)
 - Quartus Prime Device Package 2 (Arria 10 part 3)
 
-It's not always within a hardware company's best interest to build intuitive websites; maximize the page to make the arrows that allow you to download these files visible (see the screenshot below).
+Hardware companies have a lot on their plate, and sometimes it's difficult for them to deliver content in a concise, intuitive manner. Several options for how to download the software is an example. Here's another: maximize the page to make the arrows appear that allow you to actually download these files (see red box in the screenshot below).
 
 ![alt text](resources/images/download.png)
 
-2. From the previous step, you should now have the following <a href="https://en.wikipedia.org/wiki/Tar_(computing)">tarballs</a> sitting in your `~/Downloads` directory: 
+2. You should now have the following <a href="https://en.wikipedia.org/wiki/Tar_(computing)">tarballs</a> sitting in your `~/Downloads` (or other default) directory:
 - Quartus-16.1.0.196-linux.tar
 - Quartus-16.1.0.196-devices-1.tar
 - Quartus-16.1.0.196-devices-2.tar
 
-Before we begin extracting and installing the software, it's important to choose a directory as the root of all your FPGA development. Out of habit, I chose `~/workspace/`. We'll also create separate directories for each of the components we downloaded (this will make your setup cleaner and easier to navigate in the future as more files and directories are generated).
+Before we begin extracting and installing the software, it's important to choose a directory as the root for all of your FPGA development; several files and directories will be generated as we build the design, and without organization, things can get unwieldy fast. Out of habit, I chose `~/workspace/` and use this in all the code blocks below (if you choose a different location, replace `~/workspace/` with your root in all paths that follow). In the root directory, let's also create directories for each of the components we downloaded (this will make your setup cleaner and easier to navigate in the future as more files/directories are generated or newer versions of the tools are downloaded).
 
 ```
 mkdir ~/workspace
@@ -275,15 +275,15 @@ tar -xf Quartus-16.1.0.196-linux.tar
 ./setup.sh
 ```
 
-This will open an installer GUI. Click *Next*, accept the the agreement, and click *Next* again to reach the *Installation directory* window. By default, it chooses `~/intelFPGA/16.1`. Replace this with the root directory you chose for development followed by `intelFPGA/16.1`. Your window should look similar to the screenshot below.
+This will open an installer GUI. Click **Next**, accept the the agreement, and click **Next** again to reach the *Installation directory* window. By default, it chooses `~/intelFPGA/16.1`. Replace this with the root directory you chose followed by `intelFPGA/16.1`. Your window should look similar to the screenshot below.
 
 ![alt text](resources/images/installer.png)
 
-4. Click *Next* to reach the *Select Components* window. Select the following components (your selection may be different if you use free versions):
+4. Click **Next** to reach the *Select Components* window. Select the following components (your selection may be different if you use free versions):
 
 ![alt text](resources/images/components.png)
 
-5. Continue clicking *Next* to proceed with the installation until it completes. You'll receive the following *Info* dialog which you can ignore because we'll install Arria 10 device support files next:
+5. Continue clicking **Next** to proceed with the installation until it completes. You'll receive the following *Info* dialog which you can ignore because we'll install Arria 10 device support files next:
 
 ![alt text](resources/images/no-devices.png)
 
@@ -295,25 +295,25 @@ tar -xf Quartus-16.1.0.196-devices-1.tar
 ./dev1_setup.sh
 ```
 
-Follow the same steps in setting up the Quartus Prime software. When you reach the *Select Components* window, select all devices (it should only show Arria 10 Part 1 and 2): 
+Following the same steps to install Quartus Prime, let's now set up Arria 10 device support in Quartus Prime. When you reach the *Select Components* window, select all devices (it should only show Arria 10 Part 1 and 2): 
 
 ![alt text](resources/images/a10-devices.png)
 
-You'll receive another interesting pop-up dialog, this time called *Warning*, letting you know that Arria 10 device support requires three separate installation files. Don't worry, we'll do this next. Continue to finish the installation.
+You'll receive another interesting pop-up dialog, this time called *Warning*, letting you know that Arria 10 device support requires three separate installation files. Don't worry Quartus, we'll do this next. Follow the prompts to finish the installation.
 
 ![alt text](resources/images/a10-warning.png)
 
 7. Repeat step 6. again, but this time extract and install part 3 of the Arria 10 device support.
 
-To summarize, we now have the Quartus Prime Standard Edition, Qsys System Integration Tool (bundled with Quartus Prime), and ModelSim-Intel FPGA Edition EDA tools installed with support for Arria 10 devices on the remote CentOS 7 server. Yay!
+To summarize, we now have Quartus Prime Standard Edition, Qsys System Integration Tool (bundled with Quartus Prime), and ModelSim-Intel FPGA Edition installed with support for Arria 10 devices on the remote CentOS 7 server. Yay!
 
-8. Add the Quartus Prime binary (`quartus`) to your `PATH` so you can open a terminal and type `quartus` to open the software. I'll leave it to you if you want to do this permanently (editing `~/.bashrc`) or temporarily (`export PATH=$PATH:<path-to-quartus>` in an open terminal). The path to `quartus` is: `~/intelFPGA/16.1/quartus/bin/`.
+8. Now let's add the Quartus Prime binary, `quartus`, to the `PATH` <a href="https://en.wikipedia.org/wiki/Environment_variable">environment variable</a> so you can simply type `quartus` in an open terminal to run the software. I'll leave it to you to decide whether you want to do this permanently (editing `~/.bashrc`) or temporarily (`export PATH=$PATH:<path-to-quartus>` in an open terminal). The path to `quartus` is: `~/workspace/intelFPGA/16.1/quartus/bin/`.
 
-The first time you open Quartus Prime, a *License Setup Required* dialog will appear. To fix this, in the next subsection we'll set up the license manager and serve the acquired license file giving us full access to Quartus Prime Standard Edition, ModelSim-Intel FPGA Edition, and Arria 10 device support.
+The first time you open Quartus Prime, a *License Setup Required* dialog will appear. In the next section, we'll set up the license manager and serve the license we acquired from Intel, giving us full access to Quartus Prime Standard Edition, ModelSim-Intel FPGA Edition, and Arria 10 device support.
 
 ![alt text](resources/images/no-license.png)
 
-#### Setting up the license manager, serving your license
+#### Setting up the license manager, serving a license
 Remember when I said setting up an environment for HW development is a nontrivial task? Well, licensing is the crux of its nontrivial-ness. I don't even know where to begin... from the difficulty in identifying which software or components of software required licenses to whether I downloaded the proper software versions or whether I'd be using the MegaCore IP Library embedded in Quartus Prime in my design (and if so, whether that implied acquiring a separate license or limiting my ability to open source my work). That's only the beginning. Where and how to even acquire a license wasn't obvious, and there are two different license types to choose from - *fixed* and *floating* - and I'm convinced the license I acquired is a hybrid of the two. When I eventually acquired the license and was semi-confident I had all the proper EDA tools installed, serving the license was the final challenge. [queue <a href="https://youtu.be/9jK-NcRmVcw">The Final Countdown</a>] Thanks to an act of incredibly poor engineering, the license was not only tied to the <a href="https://en.wikipedia.org/wiki/MAC_address">MAC address</a> of the <a href="https://en.wikipedia.org/wiki/Network_interface_controller">NIC</a> on my computer (which I get, they want to limit its use to one, uniquely-identified computer), but it ONLY worked for a NIC named `eth0` from Linux's perspective. Well, <a href="https://en.wikipedia.org/wiki/Consistent_Network_Device_Naming">upon further research</a> I found out that my CentOS 7 server's choice of `em1`, `em2`, etc. for its network interfaces is actually the modern naming convention employed by Linux systems. To fix the issue, <a href="http://www.sysarchitects.com/em1_to_eth0">like this guy</a>, I had to rename `em1` to `eth0` for it to work. (I love the opening line of his post too). Ultimately, what it took for me to serve the license was patience, the ability to make sense of the information I had, some guess-and-check work, and reading through this 46-page manual: <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/manual/quartus_install.pdf">Intel FPGA Software Installation and Licensing</a>. I'll try to spare you the trouble by summarizing the steps below.
 
 1. Acquire the proper license. I wouldn't bother with the <a href="https://www.altera.com/mal-all/mal-signin.html?targetResource=https%3A%2F%2Fsso.altera.com%2Fpf%2Fadapter2adapter.ping%3FSpSessionAuthnAdapterId%3DOTKSiebel%26TargetResource%3Dhttps%253A%252F%252Fmysupport.altera.com%253A443%252FAlteraLicensing%252Flicense%252Findex.html">Self-Service Licensing Center</a>. Instead <a href="https://www.altera.com/about/contact/contact.html">contact an Intel licensing representative</a> directly and ask for a license for *Quartus Prime Standard Edition* and (optionally) *ModelSim-Intel FPGA Edition*. Quartus Prime Standard Edition (or Pro) is <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/download.html">required when working with Arria 10 devices</a>, unfortunately, and I used ModelSim-Intel FPGA Edition to perform <a href="http://quartushelp.altera.com/15.0/mergedProjects/reference/glossary/def_funsim.htm">functional simulations</a> on each subsystem and the entire RTL design to verify the logic. I haven't tried it myself, but I suspect you may be able to perform the simulations I've included (as Verilog testbenches) using the free version, ModelSim-Intel FPGA Starter Edition. Since my license was tied to the MAC address of my NIC, I'm using a *fixed license* which is probably all you need as well.
