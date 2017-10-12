@@ -80,73 +80,71 @@ My macbook served as the sole interface to both the remote server (via VNC clien
 
 The reason why I used a server equipped with two <a href="https://ark.intel.com/products/64595/Intel-Xeon-Processor-E5-2670-20M-Cache-2_60-GHz-8_00-GTs-Intel-QPI">Intel Xeon E5-2670 CPUs</a> (each with 8, <a href="https://en.wikipedia.org/wiki/Simultaneous_multithreading">2-way SMT</a> cores), 256 GB of RAM, and 8 TB of storage is that <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/overview.html">Quartus Prime</a> - the main EDA tool we'll be using for hardware development - has a "recommended system requirement" of 18-48 GB of RAM when working with Arria 10 devices. My laptop and I'm guessing most others are simply not powerful enough to support this software. I also know from experience that hardware compilation can take quite some time, so 32 parallel <a href="https://en.wikipedia.org/wiki/Thread_(computing)">threads</a> of execution will definitely come in handy, if fully utilized (hint: `-j 32` tells `make` to <a href="https://www.gnu.org/software/make/manual/html_node/Parallel.html">execute 32 recipes in parallel</a>).
 
-Choosing CentOS 7 as the operating system to install on the server is less obvious. If you look at the <a href="http://dl.altera.com/requirements/16.1/">Operating System Support</a> for Quartus Prime and other EDA tools we'll be using, notice that only 64-bit variants of Windows and Red Hat Enterprise Linux (RHEL) are supported. Well, RHEL isn't free unlike most other Linux distributions (thanks to the '<a href="https://en.wikipedia.org/wiki/Enterprise_software"E</a>') so unless you already have access, CentOS is <a href="https://www.centos.org/about/">RHEL's charitable cousin</a>. Although CentOS 7 is not explicitly supported, it works. Believe me. If you prefer to use Windows, that's fine too (well it's not, but that's beyond the scope of this tutorial).
+Choosing CentOS 7 as the operating system to install on the server is less obvious. If you look at the <a href="http://dl.altera.com/requirements/16.1/">Operating System Support</a> for Quartus Prime and other EDA tools we'll be using, notice that only 64-bit variants of Windows and Red Hat Enterprise Linux (RHEL) are supported. Well, RHEL isn't free unlike most other Linux distributions (thanks to the '<a href="https://en.wikipedia.org/wiki/Enterprise_software"E</a>') so unless you already have access, CentOS is <a href="https://www.centos.org/about/">RHEL's altruistic cousin</a>. Although CentOS 7 is not explicitly supported, it works. Believe me. If you prefer to use Windows, that's fine too (well it's not, but that's beyond the scope of this tutorial).
 
 It's quite a humbling experience to set up a server for the first time, and you'll certainly think twice before sending the next angry ticket to your IT support desk. Without further ado, here are the steps it took to set up my development environment.
 
 #### Remotely installing CentOS 7 on a Dell PowerEdge R720xd server
-To access the remote server, we'll make use of its built-in <a href="http://www.dell.com/learn/us/en/15/solutions/integrated-dell-remote-access-controller-idrac">integrated Dell Remote Access Controller (iDRAC)</a>. This tool has many powerful features including the ability to monitor logged events, power the server ON/OFF, and even install an OS - all remotely. Assuming the server is properly connected in your <a href="https://en.wikipedia.org/wiki/Local_area_network">LAN</a> and has been assigned an <a href="<a href="https://en.wikipedia.org/wiki/IP_address">IP address</a> that you have, open any web browser and enter its IP address to access the iDRAC login screen. It should look something like this:
+To access the remote server, we'll initially use its built-in <a href="http://www.dell.com/learn/us/en/15/solutions/integrated-dell-remote-access-controller-idrac">integrated Dell Remote Access Controller (iDRAC)</a>. This tool has many powerful features, including the ability to monitor logged events, power cycle the server, and even install an OS - all remotely. Assuming the server is connected to your <a href="https://en.wikipedia.org/wiki/Local_area_network">LAN</a>, has been assigned an <a href="<a href="https://en.wikipedia.org/wiki/IP_address">IP address</a>, and the iDRAC is enabled, open any web browser and enter its IP address to access the iDRAC login screen. It should look something like this:
 
 ![alt text](resources/images/iDRAC.png)
 
-If this is your first time using the iDRAC, the <a href="http://en.community.dell.com/techcenter/b/techcenter/archive/2013/07/16/idrac7-now-supports-default-password-warning-feature">default username and password</a> are *root* and *calvin*, respectfully. When you log in, you'll be presented with a summary page and a several tabs (on the left side of the page organized hierarchically as a tree and on the top of some pages) that provide a plethora of stats/info about your server. I recommend spending some time going through these tabs to learn more about your server's features. 
-
-Now, let's see how to install CentOS 7 remotely using the iDRAC.
+If this is your first time using the iDRAC, the <a href="http://en.community.dell.com/techcenter/b/techcenter/archive/2013/07/16/idrac7-now-supports-default-password-warning-feature">default username and password</a> are **root** and **calvin**, respectfully. When you log in, you'll see a summary page with several tabs (on the left side of the page and on the top of some pages) that provide a plethora of stats/info about your server. Now, we're ready to use the iDRAC to remotely install CentOS 7 on the server.
 
 1. Download the <a href="https://www.centos.org/download/">CentOS 7 DVD ISO</a> image. Choose *DVD* instead of *Minimal* since we'll need to install a <a href="https://www.gnome.org/">GNOME Desktop</a> on the server.
 
 2. Log in to the iDRAC and go to the *System Summary* page (default page upon login).
 
-3. In the *System Summary* > *Virtual Console Preview* window, click on *Launch*. This will download a Virtual Console Client called *viewer.jnlp*.
+3. In the *System Summary* > *Virtual Console Preview* window, click **Launch**. This will download a Virtual Console Client called *viewer.jnlp*.
 
 ![alt text](resources/images/launch.png)
 
-4. Run the *viewer.jnlp* Java application. Your computer may complain about it being from an unidentified developer, but there's a way around this. Right click *viewer.jnlp* > *Open With* > *Java Web Start (default)* and click *Open* in the window that appears.
+4. Run the *viewer.jnlp* Java application. Your computer may complain about it being from an unidentified developer, but there's a way around this. Right click *viewer.jnlp* > *Open With* > *Java Web Start (default)* and click **Open** in the window that appears.
 
 ![alt text](resources/images/viewer-jnlp.png)
 
-5. This will open another window, *Security Warning*. Click *Continue*.
+5. This will open another window, *Security Warning*. Click **Continue**.
 
 ![alt text](resources/images/security-warning.png)
 
-6. You can never be too cautious. This will open a new *Warning - Security* window that asks, "Do you want to run this application?" I think you know the answer. Click *Run*.
+6. You can never be too cautious. This will open a new *Warning - Security* window that asks, *Do you want to run this application?* I think you know the answer. Click **Run**.
 
 ![alt text](resources/images/are-you-sure.png)
 
-7. Great, we've finally opened the Virtual Console Client! Click anywhere in the window so that its menu appears at the top of your screen in the menu bar. Click *Virtual Media* > *Connect Virtual Media*. I couldn't take a screenshot of this step because when the Virtual Console Client is in focus, it captures all keyboard events. See the menu bar in the screenshot below.
+7. Great, we've finally opened the Virtual Console Client! Click anywhere in the window so that its menu appears in the <a href="https://support.apple.com/en-us/HT201956">OS X menu bar</a> at the top of your screen. Select *Virtual Media* > *Connect Virtual Media*. I couldn't take a screenshot of this step because when the Virtual Console Client is in focus, it captures all keyboard events. See the menu bar in the screenshot below.
 
 ![alt text](resources/images/menu-bar.png)
 
-8. Once connected, click *Virtual Media* > *Map CD/DVD ...* and select the CentOS 7 ISO image we just downloaded. Then click *Map Device*.
+8. Once connected, select *Virtual Media* > *Map CD/DVD ...* and select the CentOS 7 ISO image we just downloaded. Then click **Map Device**.
 
 ![alt text](resources/images/select-iso.png)
 
-9. In the Virtual Console Client menu again, click *Next Boot* > *Virtual CD/DVD/ISO*. Click *OK* in the window that appears. This tells the server to boot from the CentOS 7 installer ISO we downloaded on the next boot.
+9. In the Virtual Console Client menu again, select *Next Boot* > *Virtual CD/DVD/ISO*. Click **OK** in the window that appears. This tells the server to boot from the CentOS 7 installer ISO we downloaded on the next boot.
 
 ![alt text](resources/images/next-boot.png)
 
-10. In the Virtual Console Client menu, click *Power* > *Reset System (warm boot)*. You should see a "No Signal" screen followed by the CentOS 7 installer screen when the server reboots. With *Install CentOS 7* highlighted, press enter to begin installation.
+10. In the Virtual Console Client menu, select *Power* > *Reset System (warm boot)*. You'll see "No Signal" appear on the window followed by the CentOS 7 installer screen when the server finishes rebooting. With *Install CentOS 7* highlighted, press **enter** to begin installation.
 
 ![alt text](resources/images/hello-centos.png)
 
-11. Follow the promts until you get to the *Software Selection* screen. Select *GNOME Desktop* as your Base Environment. Select the *Legacy X Window System Compatibility*, *Compatibility Libraries*, and *Development Tools* add-ons in the list to the right. Click *Done* when your screen looks like the one below.
+11. Follow the promts until you get to the *Software Selection* window. Select *GNOME Desktop* as your Base Environment. Select the *Legacy X Window System Compatibility*, *Compatibility Libraries*, and *Development Tools* add-ons in the list to the right. Click **Done** when your window looks like the one below.
 
 ![alt text](resources/images/software-selection.png)
 
-12. Select a disk to install to, *Automatically configure partitioning.*, and optionally encrypt your data (I didn't). Click *Done* and proceed with the installation by selecting *Begin Installation* in the main menu. 
+12. Select a disk to install to, select *Automatically configure partitioning.*, and (optionally) encrypt your data; I didn't. Click **Done** and proceed with the installation by selecting **Begin Installation** in the main menu. 
 
 ![alt text](resources/images/partition.png)
 
-13. During the installation, it'll ask you to create a user account. Make sure to give the user administrative access and also set the root password. DON'T FORGET TO SET THE ROOT PASSWORD. We'll need root access when installing the VNC server <a href="https://en.wikipedia.org/wiki/Daemon_(computing)">daemon</a>. Click *Reboot* when the installation completes and voila!
+13. During the installation, it'll ask you to create a user account. Make the user an **administrator** and **set the root password**. DON'T FORGET TO SET THE ROOT PASSWORD. We'll need root access when installing the VNC server <a href="https://en.wikipedia.org/wiki/Daemon_(computing)">daemon</a>. Click **Reboot** when the installation completes and voila!
 
 ![alt text](resources/images/users.png)
 
 The server is now running CentOS 7. In the initial boot, it'll ask you to accept a license. Follow the prompts on the screen to accept the license, let it finish booting, and log in as the user you just created. Keep the Virtual Console Client open; we'll use it to set up the VNC server/client software in the next step.
 
 #### Setting up VNC server and client software
-If you're not familiar with <a href="https://en.wikipedia.org/wiki/Virtual_Network_Computing">VNC</a>, the basic idea is that you're remotely interacting with a computer's desktop environment. That is, your keyboard and mouse events are sent to that computer over the network, and its corresponding GUI actions are relayed back to your screen. This is useful when you need to access an application that isn't simply a terminal script or binary executable (i.e., it has a GUI). As you may have guessed, this is the case of Quartus Prime and other EDA tools we'll be using.
+If you're not familiar with <a href="https://en.wikipedia.org/wiki/Virtual_Network_Computing">VNC</a>, the basic idea is that you're interacting with a remote computer's desktop environment. That is, your keyboard and mouse events are sent to that computer over the network, and the corresponding GUI actions are relayed back to your screen. This is useful when you need to remotely access an application that has a GUI. As you may have guessed, this is the case of Quartus Prime and other EDA tools we'll be using.
 
-In my setup, I use <a href="http://tigervnc.org/">TigerVNC</a> as the *server* software running on the Dell PowerEdge R720xd and <a href="https://www.realvnc.com/en/connect/download/viewer/">RealVNC VNC Viewer</a> as the *client* softawre running on my MacBook. I followed <a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-remote-access-for-the-gnome-desktop-on-centos-7">this tutorial written by Sadequl Hussain</a> to get the VNC setup working for me, and I've summarized the steps below. I recommend going through his tutorial as it'll explain the steps in much more detail!
+I used <a href="http://tigervnc.org/">TigerVNC</a> as the *server* software running on the Dell PowerEdge R720xd and <a href="https://www.realvnc.com/en/connect/download/viewer/">RealVNC VNC Viewer</a> as the *client* softawre running on my macbook. I followed <a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-remote-access-for-the-gnome-desktop-on-centos-7">this tutorial</a> by Sadequl Hussain to get the VNC setup working for me, and I've summarized the steps below. I recommend going through his tutorial as it does a great job explaining each step in detail!
 
 ##### VNC server
 
@@ -156,13 +154,13 @@ In my setup, I use <a href="http://tigervnc.org/">TigerVNC</a> as the *server* s
 sudo yum install tigervnc-server
 ```
 
-2. The previous step creates a template <a href="https://www.freedesktop.org/software/systemd/man/systemd.service.html">service unit configuration file</a> for the `vncserver` service in `/lib/systemd/system/`. We need to copy this file to `/etc/systemd/system` and make modifications to its contents in order to have <a href="https://www.freedesktop.org/wiki/Software/systemd/">systemd</a> automatically start this service for the user upon bootup.
+2. The previous step creates a template <a href="https://www.freedesktop.org/software/systemd/man/systemd.service.html">service unit configuration file</a> for the `vncserver` service in `/lib/systemd/system/`. We need to copy this file to `/etc/systemd/system` and make a few modifications in order to have <a href="https://www.freedesktop.org/wiki/Software/systemd/">systemd</a> automatically start this service for the logged in user when the server is reset or turned on.
 
 ```
 sudo cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:5.service
 ```
 
-3. Using the text editor of your choice (e.g., `vim`), open the file and replace every `<USER>` you see with the name of the user you created. I created a user with the name `fpga` and highlight where those changes are made in the screenshot below. Also add the option `-geometry 2560x1440` to the `ExecStart=` line replacing `2560x1440` with the resolution of the screen you plan to run the VNC Viewer client on (so full screen mode looks pretty).
+3. Using the text editor of your choice (e.g., `vim`), open the file and replace every `<USER>` instance with the name of the user you created. I created a user with the name `fpga` and highlight where those changes are made in the screenshot below. Also add the option `-geometry 2560x1440` to the `ExecStart=` line replacing `2560x1440` with the resolution of the screen you plan to run the VNC Viewer client on. This will make full screen mode look pretty on your laptop or monitor.
 
 ![alt text](resources/images/unit-config.png)
 
@@ -172,20 +170,20 @@ sudo cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:5.
 sudo systemctl daemon-reload
 ```
 
-5. Enable the `vncserver` unit instance. Note the number `5` in `vncserver@:5.service` was chosen arbitrarily but means the `vncserver` running for this user will be listening for incoming connections on port 5905.
+5. Enable the `vncserver` unit instance. Note the number `5` in `vncserver@:5.service` was chosen arbitrarily but means the `vncserver` running for this user will be listening for incoming connections on port `5905`.
 
 ```
 sudo systemctl enable vncserver@:5.service
 ```
 
-6. Configure the <a href="https://www.linode.com/docs/security/firewalls/introduction-to-firewalld-on-centos">firewall used by CentOS 7</a> to allow traffic through port 5905.
+6. Configure the <a href="https://www.linode.com/docs/security/firewalls/introduction-to-firewalld-on-centos">firewall used by CentOS 7</a> to allow traffic through port `5905`.
 
 ```
 sudo firewall-cmd --permanent --zone=public --add-port=5905/tcp
 sudo firewall-cmd --reload
 ```
 
-7. In the terminal, run `vncserver` to set a password for opening a VNC session for this user. Note, this should be from the user's password for logging in to CentOS 7.
+7. In the terminal, run `vncserver` and it'll ask you to set a password for opening VNC connections with this user. Note, this should be from the user's CentOS 7 login password.
 
 8. With all the configurations made, let's make sure `vncserver` is running for this user before setting up the VNC Viewer client software.
 
@@ -201,11 +199,11 @@ You should see `active (running)` in the output of the last command:
 
 ##### VNC client
 
-1. Now that we have our VNC server running, let's set up the VNC client software on the device we'll use to remotely access the server. On your laptop, download the <a href="https://www.realvnc.com/en/connect/download/viewer/">RealVNC VNC Viewer</a> client, install it, and open it. In the *VNC Server* field, enter `127.0.0.1:5900` but don't click *Connect* just yet. 
+1. Now that we have our VNC server running, let's set up the VNC client software on the device we'll use to remotely access the server (macbook for me). On your laptop, download the <a href="https://www.realvnc.com/en/connect/download/viewer/">RealVNC VNC Viewer</a> client, install, and open it. In the *VNC Server* field, enter `127.0.0.1:5900` but don't click **Connect** just yet. 
 
 ![alt text](resources/images/vnc-viewer.png)
 
-If you're familiar with computer networking, you may be wondering why we entered the IP address of the <a href="https://en.wikipedia.org/wiki/Localhost">localhost</a> and port 5900 instead of the IP address of our remote server and port 5905 (the port we set the VNC server to listen to for incoming connections). That's because after the initial authentication, all data communicated between the VNC server and client is unencrypted and hence susceptible to interception. To secure this communication channel, we'll set up an <a href="https://en.wikipedia.org/wiki/Tunneling_protocol">SSH tunnel</a> encrypting the data communicated over the network.
+If you're familiar with computer networking, you may be wondering why we entered the IP address of the <a href="https://en.wikipedia.org/wiki/Localhost">localhost</a> and port `5900` instead of the IP address of our remote server and port `5905` (the port we set the VNC server to listen to for incoming connections). That's because after the initial authentication, all data communicated between the VNC server and client is unencrypted and hence susceptible to interception. To secure this communication channel, we'll set up an <a href="https://en.wikipedia.org/wiki/Tunneling_protocol">SSH tunnel</a> encrypting the data communicated over the network.
 
 2. Open a terminal and enter the following command, replacing `<ip-address>` with the IP address of your server and `<user>` with the name of user you created when installing CentOS 7. 
 
@@ -213,23 +211,23 @@ If you're familiar with computer networking, you may be wondering why we entered
 ssh -L 5900:<ip-address>:5905 <user>@<ip-address> -N
 ```
 
-It'll ask for the user's password. Enter the password and it should leave the terminal in a hanging state - this means we've established our SSH tunnel and are ready to connect to the VNC server.
+It'll ask for the user's CentOS 7 password. Enter the password and it should leave the terminal in a hanging state - this means we've established our SSH tunnel and are ready to connect to the VNC server.
 
 ![alt text](resources/images/ssh-tunnel.png)
 
-3. Click *Connect* in the VNC Viewer client and you should see the following warning, which we can now safely ignore. 
+3. Click **Connect** in the VNC Viewer client and you should see the following warning, which we can now safely ignore. 
 
 ![atl text](resources/images/unencrypted-warning.png)
 
-4. Click *Continue*. Enter the passowrd you set up for the VNC server and click *OK*.
+4. Click **Continue**. Enter the passowrd you set up for the VNC server and click **OK**.
 
 ![alt text](resources/images/vnc-password.png)
 
-5. Congratulations! We just established our first remote desktop session with the CentOS 7 server! If you hover your curser above the top middle of the window, a menu will appear. Click on the icon in the middle to enter *Full screen mode*. If you set up the `-geometry` option correctly, it should take up your entire screen. Click on this icon again to exit *Full screen mode*.
+5. Congratulations! We just established our first remote desktop session with the CentOS 7 server! If you hover your curser above the top-middle of the window, a menu will appear. Click on the icon in the middle to enter *Full screen mode*. If you set the `-geometry` option with your screen's resolution, it should take up entire screen. Click on this icon again to exit *Full screen mode*.
 
 ![alt text](resources/images/desktop.png) 
 
-Leave the connected VNC client session open. This is now our main point of contact with the remote server, and we'll use it to first install and then use Quartus Prime and other EDA tools to design our FPGA peripheral hardware.
+Leave the VNC client session open; this is now our main way to interact with the remote server. We'll use it to first install and then use the EDA tools to design our FPGA peripheral hardware.
 
 #### Installing Altera's EDA tools
 To reiterate, some <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA tools</a> are free and some aren't. Some have free versions with limited features but may be all you need. Although I used non-free tools that required a license (and I'll show you how to set up that license), I recommend using free versions where you can. You may even consider choosing a development board based on the free-ness of the toolchain necessary for compiling designs for that board.
