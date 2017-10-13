@@ -431,45 +431,128 @@ That was quite the process, I know. To summarize, we learned how to remotely int
 ### 3. Understanding the software you wish to accelerate
 This is perhaps the most important step in the entire process. Time spent here will directly affect your approach to the problem, your ability to identify critical system components, your FPGA peripheral hardware design, and ultimately your success in imporving overall system performance. A philosophy that I adhere to is that one's understanding of how a system works is directly proportional to that individual's ability to debug issues and improve the system's design. This is especially true when you're attempting to replace components of software with hardware. The key here is to **understand the movement of and operations on data** in your algorithm. Depending on how the software was written, whether you wrote it, and your experience level as a software engineer, this may be easy or difficult to comprehend. Nonetheless, take the time to
 
+- Intro
+    - Understand the movement of data, operations on data, etc.)
+    - Identify bottlenecks, instructions, functions, code blocks, etc. that are used heavily (profiling!) 
+    - Guage whether hardware could out-perform, predict cost of overhead of communicating data! 
+    - Working with someone else's software
+      - Understand how the code is structured, identify relevant source files, data structures, functions
+      - Functions serve as templates for hardware accelerator; gives you an idea of the interface your HW-acc will need for top-level I/O
+      - Next, we'll walk through Protocol Buffer software as an example
+- Training
+    - https://developers.google.com/protocol-buffers/
+    - https://developers.google.com/protocol-buffers/docs/cpptutorial
+    - https://developers.google.com/protocol-buffers/docs/encoding
+- Tutorial
+    - [google/protobuf]
+    - Installing google/protobuf on the CentOS 7 server (git clone, specific tag, building)
+    - gdb (WireFormatLite::Write*, CodedOutputStream::Write*)
+    - ctags + vim
+    - WriteVarint32ToArray(), other functions
+
 ## Hardware Development
+Now, let's see how we can translate WriteVarint32ToArray() into a hardware accelerator and integrate our FPGA peripheral with the HPS.
 
 ### 4. Implementing an FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)
-- Writing your own RTL vs. OpenCL
-- FPGA development flow (Quartus Prime is the main tool in this step, ModelSim for funcitonal verification)
-- RTL design is an art
-- Choosing an HDL: Verilog-2005(?) vs. SystemVerilog
-- Already enough complexity: see which HW modules are available to you in the IP Catalog
-- What determine's top-level I/O? - ARM AMBA AXI4 specification
-- Training/resources available (Altera/Intel free online training)
+- Intro
+    - Writing your own RTL vs. OpenCL
+    - FPGA development flow (Quartus Prime is the main tool in this step, ModelSim for funcitonal verification)
+    - RTL design is an art
+    - Choosing an HDL: Verilog-2005(?) vs. SystemVerilog
+    - Already enough complexity: see which HW modules are available to you in the IP Catalog
+    - What determine's top-level I/O? - ARM AMBA AXI4 specification
+- Training 
+    - Intel online training
+      - https://www.altera.com/support/training/course/odsw1005.html
+      - https://www.altera.com/support/training/course/odsw1006.html
+      - https://www.altera.com/support/training/course/ohdl1120.html
+      - https://www.altera.com/support/training/course/odsw1100.html
+    - Verilog tutorials
+      - http://www.asic-world.com/verilog/veritut.html
+    - Digital Design by Frank Vahid
+- RTL design
+    - architecture, FSMs, etc.
+- Tutorial
+    - [protobuf-serializer]
+    - Using Quartus Prime (import project, layout, files, etc.) 
+    - Running ModelSim testbenches
 
 ### 5. System integration (Qsys)
-- Qsys is the tool used here
-- Training that helps: Custom IP Development Using Avalon and AXI Interfaces
-- Interfaces (clock, reset, interrupts, Avalon, AXI, conduits)
-- Most powerful Qsys tool: auto-generated interconnect (you develop an AXI slave interface, simply connect to AXI master component)
-- Training/resources available (Altera/Intel free online training)
+- Intro
+    - Qsys is the tool used here
+    - Training that helps: Custom IP Development Using Avalon and AXI Interfaces
+    - Interfaces (clock, reset, interrupts, Avalon, AXI, conduits)
+    - Most powerful Qsys tool: auto-generated interconnect (you develop an AXI slave interface, simply connect to AXI master component)
+- Training (Intel online training)
+    - Intel online training
+      - https://www.altera.com/support/training/course/oqsys1000.html
+      - https://www.altera.com/support/training/course/oqsyscreate.html
+      - https://www.altera.com/support/training/course/oqsys3000.html
+    - Rocketboards.org
+      - https://rocketboards.org/foswiki/Documentation/A10GSRDV160CompilingHardwareDesign
+- Tutorial
+    - [a10-soc-devkit-ghrd]
+    - Adding protobuf-serializer to the GHRD!
 
 ## Software Development
+The operating system, device driver, user space application
 
 ### 6. Creating an FPGA peripheral-aware bootable Linux image
-- Discuss why running Linux is important (mimic's real datacenter setting)
-- Talk about Yocto Project, embedded Linux, etc.
-- Angstrom Linux distribution maintained for the Arria 10, other Altera boards
-- Working with Linux source code, configuring, compiling, and zImage for bootable microSD card
-- Overview of the boot process
-- Rocketboards.org training on creating the U-Boot bootloader, Linux device tree, rootfs, and formatting the microSD card
+- Intro
+    - Discuss why running Linux is important (mimic's real datacenter setting)
+    - Talk about Yocto Project, embedded Linux, etc.
+    - Angstrom Linux distribution maintained for the Arria 10, other Altera boards
+    - Working with Linux source code, configuring, compiling, and zImage for bootable microSD card
+    - Overview of the boot process
+    - Rocketboards.org training on creating the U-Boot bootloader, Linux device tree, rootfs, and formatting the microSD card
+- Training
+    - Rocketboards.org
+      - https://rocketboards.org/foswiki/Documentation/A10GSRDV160GeneratingUBootAndUBootDeviceTree
+      - https://rocketboards.org/foswiki/Documentation/A10GSRDV160GeneratingTheLinuxDeviceTree
+      - https://rocketboards.org/foswiki/Documentation/A10GSRDV160CreatingAndUpdatingTheSDCard
+- Tutorial
+    - [linux-socfpga]
+    - Configure and compile Linux kernel (cross-compile, see link below)
+      - https://rocketboards.org/foswiki/Documentation/A10GSRDV160CompilingLinuxKernel
+    - Steps to create bootable microSD card (Rocketboards.org training, repeat here or tell user to follow?)
 
 ### 7. Writing a device driver (interface between FPGA peripheral and user space application)
-- Altera SoC Workshop Series training
-- Linux Device Drivers
-- misc. device driver
+- Intro
+    - Overview of the driver I wrote (misc device driver)
+    - Journey from writing to memory address --> input at HW-acc
+- Training
+    - Altera SoC Workshop Series
+      - https://rocketboards.org/foswiki/Documentation/AlteraSoCWorkshopSeries
+      - https://rocketboards.org/foswiki/Documentation/WS1IntroToAlteraSoCDevices
+      - https://rocketboards.org/foswiki/Documentation/WS2LinuxKernelIntroductionForAlteraSoCDevices
+      - https://rocketboards.org/foswiki/Documentation/WS3DevelopingDriversForAlteraSoCLinux
+- Tutorial
+    - [driver]
+    - Setting up driver environment on the Arria 10
+    - Installing linux-socfpga source (same source used to create zimage in step 6.)!
+    - setting up kbuild environment
 
 ### 8. Closing the loop: modifying the user space application
-- Device driver provides the interface
-- Replace functions implementing computaiton w/ statements sending data to FPGA peripheral
+- Intro
+    - Device driver provides the interface
+    - Replace functions implementing computaiton w/ statements sending data to FPGA peripheral
+- Training
+    - http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html
+- Tutorial
+    - [att-innovate/protobuf]
+    - building & installing google/protobuf on the Arria 10
+    - building & installing att-innovate/protobuf on the Arria 10
 
-## Measuring System Performance 
+## Measuring System Performance
+We're done building the HW-accelerated system. Now let's see how see how its performance compares to that of the standard system.
+
 ### 9. Profiling the HW-accelerated system
-- clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &res)
-- perf
-- symbols, stack traces, cross-compilation
+- Training
+    - http://www.brendangregg.com/perf.html
+- Intro
+    - clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &res)
+    - perf
+    - symbols, stack traces, cross-compilation
+- Tutorial
+    - [profiling]
+    - switching between std & hw-acc libraries
