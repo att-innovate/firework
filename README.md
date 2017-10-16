@@ -429,26 +429,30 @@ As long as you don't see any error messages in the log, all features of Quartus 
 That was quite the process, I know. To summarize, we learned how to remotely interact with a Dell PowerEdge R720xd server using its built-in iDRAC controller, install CentOS 7 on the server with a GNOME Desktop environment, install VNC server and client software on the server and macbook respectively, install the Altera EDA tools (Quartus Prime Standard Edition, ModelSim-Intel FPGA Edition) we'll be using with the Arria 10 SoC Development Kit, and acquire and serve a license for the features we need. With our board selected and hardware development environment set up, we're now ready to begin designing the HW-accelerated system!
 
 ### 3. Understanding the software you wish to accelerate
-This is perhaps the most important step in the entire process. Time spent here will directly affect your approach to the problem, your ability to identify critical system components, your FPGA peripheral hardware design, and ultimately your success in imporving overall system performance. A philosophy that I adhere to is that one's understanding of how a system works is directly proportional to that individual's ability to debug issues and improve the system's design. This is especially true when you're attempting to replace components of software with hardware. The key here is to **understand the movement of and operations on data** in your algorithm. Depending on how the software was written, whether you wrote it, and your experience level as a software engineer, this may be easy or difficult to comprehend. Nonetheless, take the time to
+*This is perhaps the most important step.* Time spent here will directly impact how you approach the problem, the design of your hardware accelerator, and ultimately your success in imporving overall system performance. A philosophy I adhere to is that one's understanding of how something works is directly proportional to that individual's ability to debug issues or improve upon its design. When you're attempting to replace components of a large software project with specialized hardware, this is especially true. The goal of this step is to fundamentally understand **the movement of and operations on data** and to identify *performance bottlenecks* in the software. Is the system *memory bandwidth-limited*? Is it *computation-limited*? Answering these questions will give you insight into what can be tuned to improve the system's performance.
 
-- Intro
-    - Understand the movement of data, operations on data, etc.)
-    - Identify bottlenecks, instructions, functions, code blocks, etc. that are used heavily (profiling!) 
-    - Guage whether hardware could out-perform, predict cost of overhead of communicating data! 
-    - Working with someone else's software
-      - Understand how the code is structured, identify relevant source files, data structures, functions
-      - Functions serve as templates for hardware accelerator; gives you an idea of the interface your HW-acc will need for top-level I/O
-      - Next, we'll walk through Protocol Buffer software as an example
-- Training
-    - https://developers.google.com/protocol-buffers/
-    - https://developers.google.com/protocol-buffers/docs/cpptutorial
-    - https://developers.google.com/protocol-buffers/docs/encoding
-- Tutorial
-    - [google/protobuf]
-    - Installing google/protobuf on the CentOS 7 server (git clone, specific tag, building)
-    - gdb (WireFormatLite::Write*, CodedOutputStream::Write*)
-    - ctags + vim
-    - WriteVarint32ToArray(), other functions
+If you're working with someone else's software, extra time is needed to understand how the code is structured and to identify relevant source files, data structures, functions, etc. that are involved in the computation you wish to replace. This was the case for me in working with <a href="https://developers.google.com/protocol-buffers/">Protocol Buffers</a>; I had no prior experience using them nor was I familiar with <a href="https://developers.google.com/protocol-buffers/docs/encoding">varint encoding</a> - the main mechanism used in Protocol Buffer serialization. As demonstrated later in this section, there are powerful tools available that can be very helpful in obtaining this knowledge. One such example is the combination of <a href="http://www.vim.org/">vim</a> + <a href="http://ctags.sourceforge.net/">ctags</a>; using this combo left me exuberant when it helped me understand how user space applications interact with the compiler-generated code which in turn interacts with the `libprotobuf.so.10.0.0` runtime library. My understanding was further cemented by using <a href="https://www.gnu.org/software/gdb/">gdb</a> to step through an application and inspect the <a href="https://en.wikipedia.org/wiki/Stack_trace">stack trace</a> as it performed the serialization. This helped me pinpoint the classes and methods that are responsible for encoding and serializing the various fields of Protocol Buffer Messages. These methods would serve as templates for the computational portions, or the <a href="https://en.wikipedia.org/wiki/Datapath">datapath</a>, of the hardware accelerator. These methods also shed light on how data would eventually be communicated between the ARM CPU and hardware accelerator (co-processor in this setup).
+
+- First, I'll give an overview of the Protocol Buffer software, then I'll show how using these tools helped me understand how the code was structured and which source files and classes are relevant to serialization. 
+- Overview of Protocol Buffers, Messages, field types, encoding
+- Diagram showing user space application, compiler-generated code, runtime library
+
+Tutorial:
+- Go through the Protocol Buffer C++ tutorial: https://developers.google.com/protocol-buffers/docs/cpptutorial
+- Understand how Protocol Buffers are encoded: https://developers.google.com/protocol-buffers/docs/encoding
+- Encode an example Protocol Buffer Message by hand
+- Build & install [google/protobuf] on the CentOS 7 server (git clone, specific tag, building)
+- Run the example applications, compare binary output to handcoded message, and a-ha! It works as expected
+- Understand the software stack of Protocol Buffer serialization
+    a. Step through using: vim + ctags
+    b. Step through using: gdb + stack traces
+- Compiled Message classes: series of calls to WireFormatLite::Write*, CodedOutputStream::Write* (and describe SerializeWithCachedSizesToArray() as lowest high-level serialization method)
+- WriteVarint32ToArray(): planned to accelerate this function only based on use (all varints, tags, etc.) and you know the rest (see below) :D
+
+- **realized** fields could all be categorized into two separate datapaths (varint encoded, raw data)
+Before diving into the hardware design, I'd like to share a great example of how the time I spent understanding this software led to a realization which led to a huge simplification in the hardware design as well as expanding what it supports. It went from a toy example to something much more robust and closer to seeing the light of day in a production datacenter ...an initial simplification I attempted to make (i.e., only supporting 32-bit varints) and how taking time to understand fundamentally that an even lower abstraction than twas provided by Protocol Buffer fields) how the data was encoded led to a simplification and (in my opinion), beautiful approach to the hardware design. I realized that despite there being 18 field types (omitting groups, since they're depreciated), they all boil down to either *varint-encoded* data or *raw data* that needed to be simply passed on, preserving the ordering/sequence of fields of course.
+
+- If I could go back, I'd also do - perf/profiling: guage whether specialized hardware could outperform software; analyze cost of overhead of communicating data (lack of experience analyzing system performance, thought the paper provided sufficient motivation, overwhelmed with too many other things to figure out)
 
 ## Hardware Development
 Now, let's see how we can translate WriteVarint32ToArray() into a hardware accelerator and integrate our FPGA peripheral with the HPS.
