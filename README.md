@@ -435,7 +435,7 @@ When working with someone else's software, extra time is needed to *understand h
     
 First, let's see how Protocol Buffers software work, and then I'll demonstrate how I used `vim` + `ctags` and `gdb` to understand the code's structure and identify source files, classes, and methods relevant to Protocol Buffer serialization. Next I'll discuss how time spent analyzing the `WireFormatLite` and <a href="https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.io.coded_stream#CodedOutputStream">CodedOutputStream</a> classes and their relation to the various Message <a href="https://developers.google.com/protocol-buffers/docs/proto3#scalar">field types</a> led to a key realization and simplifcation in the hardware accelerator design. I'll conclude this section by and talk more about importance of `perf` at this stage. 
 
-
+#### Protocol Buffers
 - Overview of Protocol Buffers, Messages, field types, encoding
 - Training
     - Protocol Buffers https://developers.google.com/protocol-buffers/
@@ -445,13 +445,17 @@ First, let's see how Protocol Buffers software work, and then I'll demonstrate h
 - Explain relationship bet. user space application, compiler-generated code, runtime library
 - Encode an example Protocol Buffer Message by hand & compare to actual output in tutorial below
 
-Tutorial:
-    - Build & install [google/protobuf] on the CentOS 7 server (git clone, specific tag, building)
-    - Run the example applications, compare binary output to handcoded message, and a-ha! It works as expected
-    - Understand the software stack of Protocol Buffer serialization:
-        a. Step through using: vim + ctags
-        b. Step through using: gdb + stack traces
+#### Building and Installing google/protobuf on the CentOS 7 server 
+- Build & install [google/protobuf] on the CentOS 7 server (git clone, specific tag, building)
+- Run the example applications, compare binary output to handcoded message, and a-ha! It works as expected
 
+Next, let's see how to use `vim` + `ctags` and `gdb` + stack traces to better understand the Protocol Buffer serialization software stack.
+
+#### Stepping through add_person.cc with vim + ctags
+
+#### Stepping through add_person with gdb
+
+#### Analyzing the Protocol Buffer serialization code
 - Compiled Message subclasses: series of calls to WireFormatLite::Write*, CodedOutputStream::Write* to serialize individual fields (mention SerializeWithCachedSizesToArray() as "lowest high-level serialization" method)
 - These methods would serve as templates for the computation portion, or <a href="https://en.wikipedia.org/wiki/Datapath">datapath</a>, of the hardware accelerator. These methods also shed light on how data would eventually be communicated between the ARM CPU and hardware accelerator (co-processor in this setup).
 - WriteVarint32ToArray(): planned to accelerate this function only based on use (all varints, tags, etc.) and you know the rest :D
@@ -459,6 +463,7 @@ Tutorial:
 - **realized** fields could all be categorized into two separate datapaths (varint encoded, raw data)
 Before diving into the hardware design, I'd like to share a great example of how the time I spent understanding this software led to a realization which led to a huge simplification in the hardware design as well as expanding what it supports. It went from a toy example to something much more robust and closer to seeing the light of day in a production datacenter ...an initial simplification I attempted to make (i.e., only supporting 32-bit varints) and how taking time to understand fundamentally that an even lower abstraction than twas provided by Protocol Buffer fields) how the data was encoded led to a simplification and (in my opinion), beautiful approach to the hardware design. I realized that despite there being 18 field types (omitting groups, since they're depreciated), they all boil down to either *varint-encoded* data or *raw data* that needed to be simply passed on, preserving the ordering/sequence of fields of course.
 
+#### More on perf
 - If I could go back, I'd also do - perf/profiling: guage whether specialized hardware could outperform software; analyze cost of overhead of communicating data (lack of experience analyzing system performance, thought the paper provided sufficient motivation, overwhelmed with too many other things to figure out)
 
 ## Hardware Development
