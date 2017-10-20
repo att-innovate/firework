@@ -452,36 +452,125 @@ Let's look more closely at the various message fields and their corresponding wi
 
 Using the example `AddressBook` application from the C++ tutorial, let's encode a `Person` message by hand and compare our results with the application's output.
 
+#### Building the protobuf compiler and runtime libraries, running the C++ example applications
+Here we'll clone the <a href="https://github.com/google/protobuf">google/protobuf</a> repository from GitHub, see which versions are available, create a new branch, and put our working directory in a state corresponding to release `v3.0.2` of the Protocol Buffer software. This was the latest version at the time I worked on Firework and the version I forked and modified for use in the HW-accelerated system. The modified protobuf repository is found here: [firework/protobuf](protobuf). We'll use the modified and "standard" protobuf libraries later to profile and compare the two systems' performance. Note, I used the CentOS 7 server to build, install, and work with Protocol Buffers in the steps below.
 
-#### Building google/protobuf and running the example C++ application
-- Build & install [google/protobuf] on the CentOS 7 server (git clone, specific tag, building)
-
-1. Download the Protocol Buffer source code from <a href="https://github.com/google/protobuf">here</a>.
+1. Download the Protocol Buffer source code repository found <a href="https://github.com/google/protobuf">here</a>.
 
 ```
 git clone https://github.com/google/protobuf.git
 ```
 
-2. Use `git tag` to list the tags in the `protobuf` repository we just downloaded. Create and checkout a branch corresponding to the tag `v3.0.2`. This is the version I forked and modified in Firework (found here: [protobuf]), and later we'll compare its performance to this unmodified version.
+2. Using `git tag`, let's list the tags included in the `protobuf` repository we just downloaded. These tags correspond to different protobuf releases. Since we're interested in release `v3.0.2`, we'll create and checkout a new branch corresponding to the tag `v3.0.2`.
 
 ```
 cd protobuf
 git tag
 git checkout -b protobuf-v3.0.2 v3.0.2
+git branch -v
 ```
 
-Run `git branch -v` to confirm we've switched to the new branch. The output should look something like this: 
+Inspecting the output of `git branch -v`, we see that we've indeed switched to the new branch. The output should look something like this: 
 
 ![alt text](resources/images/branch.png)
 
-3. 
+3. Follow the <a href="https://github.com/google/protobuf/blob/master/src/README.md">C++ Installation - Unix</a> instructions to build and install the protobuf compiler (`protoc`) and runtime libraries from source. Stop when you reach the **Compiling dependent packages** section. Here are some helpful notes on building:
 
-- Compare binary output to handcoded message, and a-ha! It works as expected
-Next, let's see how to use `vim`+`ctags` and `gdb` to better understand the *Protocol Buffer serialization* code.
+- To install the build tools in the first step, replace `apt-get` with `yum` since we're using CentOS and not Ubuntu. There is no `g++` package in the CentOS repositories; that package you're insterested in is called `gcc-c++` (which I think is more appropriately named). We should already have these tools installed since we included *Development Tools* when installing CentOS, but it doesn't hurt to run this command anyway in case any are missing and to install updates
+- Figure out how many threads your server can execute in parallel and use that number with the `-j <num>` <a href="https://www.gnu.org/software/make/manual/html_node/Parallel.html">option</a> when running `make` for a faster build (e.g., `make -j 32` for me)
+- Here's the output you want to see after running `make -j <num> check`:
+
+![alt text](resources/images/make-check.png)
+
+- Running `sudo make install`, places `protoc` in `/usr/local/bin/` and the runtime libraries in `/usr/local/lib/`:
+
+![alt text](resources/images/installed.png)
+
+4. Now that we have the protobuf compiler and runtime libraries built and installed, let's use them to compile and run the example addressbook C++ applications (`add_person.cc` and `list_people.cc`). The first step is to use `protoc` to generate C++ classes for the messages defined in `addressbook.proto`. Following the instructions from the section *Compiling Your Protocol Buffers* in the <a href="https://developers.google.com/protocol-buffers/docs/cpptutorial">Protocol Buffer Basics: C++</a> tutorial:
+
+```
+cd ~/workspace/protobuf/examples
+protoc -I=./ --cpp_out=./ addressbook.proto
+```
+
+This generates two new files, `addressbook.pb.h` and `addressbook.pb.cc`:
+
+![alt text](resources/images/protoc.png)
+
+5. Now we have all the necessary ingredients: 1. the protobuf runtime libraries installed, 2. the `protoc`-generated C++ classes (for `AddressBook`, `Person`, and `PhoneNumber` messages defined in `addressbook.proto`) used in our application, and of course 3. our applications (`add_person.cc`, `list_people.cc`). Let's build `add_person.cc` and `list_people.cc`. Resuming from where we left off, the section **Compiling dependent packages** in <a href="https://github.com/google/protobuf/blob/master/src/README.md">C++ Installation - Unix</a>, shows how to use `pkg-config` to compile and link applications against the `protobuf` package. First, we need to tell `pkg-config` where it can find `protobuf.pc`:
+
+```
+pkg-config --cflags --libs protobuf
+ls /usr/local/lib/pkgconfig/
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/
+pkg-config --cflags --libs protobuf
+```
+
+The sequence above shows how `pkg-config` fails to find the `protobuf` package at first and what you need to do to fix it. The second time  `pkg-config --cflags --libs protobuf` is run, we see the compiler and linker flags necessary when building any protobuf application: 
+
+![alt text](resources/images/pkg-config.png)
+
+6. Now let's build the example protobuf applications.
+
+```
+g++ add_person.cc addressbook.pb.cc `pkg-config --cflags --libs protobuf` -o add_person
+g++ list_people.cc addressbook.pb.cc `pkg-config --cflags --libs protobuf` -o list_people
+```
+Your `protobuf/examples` directory should now contain two new binaries, `add_person` and `list_people`.
+
+7. Let's run `add_person` to create a new `Person` message and add him to an addressbook called `my_addressbook`.
+
+```
+./add_person my_addressbook
+```
+
+Uh-oh! You probably received the following error message:
+
+![alt text](resources/images/error-loading-shared-libs.png)
+
+This error message means the program loader (`ld-linux-x86-64.so.2` on my system) was unable to find the runtime library (i.e., shared object file) called `libprotobuf.so.10` that `add_person` needs to run. This problem is solved by setting the `LD_LIBRARY_PATH` environment variable with the path containing `libprotobuf.so.10`:
+
+```
+echo $LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/lib
+echo $LD_LIBRARY_PATH
+```
+
+Now we can finally run our application. Create a person with **ID number**: `35`, **name**: `Kevin Durant`, **email address**: `kd@warriors.com`, **phone number**: `4155551988`, and **phone type**: `mobile`.
+
+```
+./add_person my_addressbook
+```
+
+![alt text](resources/images/add-kd.png)
+
+If you're unfamiliar with `LD_LIBRARY_PATH`; the difference between `ld` (the poorly-named linker) and `/lib/ld-linux.so.2` (the program loader); the directories `/lib`, `/usr/lib`, and `/usr/local/lib`; and/or the difference between files named `libprotobuf.so`, `libprotobuf.so.10`, and `libprotobuf.so.10.0.0` then I HIGHLY RECOMMEND you read <a href="http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html">this page on shared libraries</a> through section **3.3.2. LD_DEBUG** before continuing.
+
+8. Now let's use `list_people` to read from an addressbook called `my_addressbook` and list its contents. 
+
+```
+./list_people my_addressbook
+```
+
+Great! We see the person we just created in step 7. Actually, that's a bit boring. Let's use the <a href="https://www.freebsd.org/cgi/man.cgi?query=hexdump&sektion=1">hexdump</a> utility to inspect the contents of `my_addressbook`, a binary file, and see what the `Person` message from step 7. looks like in its wire format representation:
+
+```
+hexdump -C my_addressbook
+```
+
+![alt text](resources/images/hexdump.png)
+
+We see that the encoded message consists of 49 bytes, starting with `0a` and ending with `38`. If you compare this byte-for-byte with the `Person` message we encoded by hand, you'll see that they match. A-ha! It works as expected. This is great, now we know how Protocol Buffer messages are encoded represented in their wire format.
+
+Next, let's use `vim`+`ctags` to dive into the *Protocol Buffer serialization* code and better understand the relationship between the compiler-generated code and `libprotobuf.so.10.0.0` runtime library. 
 
 #### Stepping through add_person.cc (vim + ctags)
 
+
+
 #### Stepping through add_person (gdb)
+
+
 
 #### Analyzing the Protocol Buffer serialization code
 - Compiled Message subclasses: series of calls to WireFormatLite::Write*, CodedOutputStream::Write* to serialize individual fields (mention SerializeWithCachedSizesToArray() as "lowest high-level serialization" method)
