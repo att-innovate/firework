@@ -438,17 +438,17 @@ There are powerful tools available that helped me identify the source code respo
 In the remainder of this section, I'll provide an overview of the Protocol Buffer software and serialization process, demonstrate how I used `vim`+`ctags` and `gdb` to identify and understand the source code relevant to *Protocol Buffer serialization*, and discuss how time spent analyzing the `WireFormatLite` and <a href="https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.io.coded_stream#CodedOutputStream">CodedOutputStream</a> classes and their relation to the various Message <a href="https://developers.google.com/protocol-buffers/docs/proto3#scalar">field types</a> led to a key realization and simplifcation of the hardware accelerator design. I'll conclude this section with a brief discussion about importance of using `perf` at this stage as well, a lesson I learned.
 
 #### Overview of Protocol Buffers and message serialization
-From the <a href="https://developers.google.com/protocol-buffers/docs/overview">Developer Guide</a>, "Protocol buffers are a flexible, efficient, automated mechanism for *serializing structured data*". In the land of Protocol Buffers, data structures are called **messages**. Messages consist of a series of key-value pairs called **fields**, similar to <a href="http://www.json.org/">JSON objects</a>. Fields can be basic types (e.g., integers, booleans, strings), arrays of values, or even other embedded messages. The idea is that you define the messages you wish to use in your application in a `.proto` file and use the Protocol Buffer compiler (`protoc`) to generate specialized code that implements these messages in the language of your choice (e.g., C++ classes). The compiler-generated code provides accessors for individual fields along with methods that work closely with the Protocol Buffer *runtime library*, `libprotobuf.so.10.0.0`, to serialize/parse entire messages to/from streams or storage containers. Protocol Buffers are *extensible* in the sense that you can add new fields to your messages without disrupting existing applications that use older formats; this is achieved by marking fields as `optional` rather than `required`.
+From the <a href="https://developers.google.com/protocol-buffers/docs/overview">Developer Guide</a>, "Protocol buffers are a flexible, efficient, automated mechanism for *serializing structured data*". In the land of Protocol Buffers, structured data (i.e., data structures) are called **messages**. Messages consist of a series of key-value pairs called **fields**, similar to <a href="http://www.json.org/">JSON objects</a>. Fields can be basic types (e.g., integers, booleans, strings), arrays, or even other embedded messages. The idea is that you define the messages you want to use in your application once in a `.proto` file and use the Protocol Buffer compiler (`protoc`) to generate specialized code that implements these messages in the language of your choice (e.g., C++ classes). The compiler-generated code provides accessors for individual fields along with methods that work closely with the Protocol Buffer *runtime library*, `libprotobuf.so.10.0.0`, to serialize/parse entire messages to/from streams or storage containers. Protocol Buffers are *extensible* in the sense that you can add new fields to your messages without disrupting existing applications that use older formats; this is achieved by marking fields as `optional` rather than `required`.
 
-For a more complete understanding of what Protocol Buffers are and how they're used, and to learn about varint encoding and message serialization, I recommend going through the links below. This material also serves as a prerequisite for the remaining content of this section and subsequent sections in this tutorial:
+For a more complete understanding of what Protocol Buffers are and how they're used, and to learn about **varint encoding** and how messages are serialized, I recommend going through the following material (which also serves as a prerequisite for the remaining content in this section and subsequent sections in this tutorial):
 - <a href="https://developers.google.com/protocol-buffers/">Protocol Buffers</a>: Protocol Buffer home page (start here)
 - <a href="https://developers.google.com/protocol-buffers/docs/overview">Developer Guide</a>: a good introduction
 - <a href="https://developers.google.com/protocol-buffers/docs/cpptutorial">Protocol Buffer Basics: C++ </a>: tutorial on using Protocol Buffers in C++ (language used in Firework)
 - <a href="https://developers.google.com/protocol-buffers/docs/encoding">Encoding</a>: describes varint encoding and message serialization
 
-From the <a href="https://developers.google.com/protocol-buffers/docs/encoding">Encoding</a> page, we learned that a field's **key** is composed of two values - a **field number** (or **tag**) and a **wire type** - when the containing message is serialized to its binary wire format. Field numbers are simply the integers assigned to fields of a message as defined in the `.proto` file, and a wire type (also an integer) is determined by the field's type (int32, fixed64, string, embedded message, etc.); wire types provide information about the size (in bytes) of a field's encoded **value**. As you may have guessed, a field is serialized by encoding and writing its key first followed by its value. Keys are encoded as varints with the value: `(field number << 3) | wire type`. The way a value is encoded is based on its field's wire type. Finally, a message is serialized by writing its encoded fields sequentially by ascending field number.
+From the <a href="https://developers.google.com/protocol-buffers/docs/encoding">Encoding</a> page, we learned that field keys are composed of two values - a **field number** (or **tag**) and a **wire type** - when the containing message is serialized to its binary wire format. A field number is simply the integer assigned to a field of a message as defined in the `.proto` file, and a field's wire type (also an integer) is determined by its value's type (e.g., int32, fixed64, string, embedded message); wire types provide the information needed to determine the size (in bytes) of a field's encoded value. As you may have guessed, a field is serialized by encoding and writing its key first followed by its encoded value. Keys are encoded as varints with the value: `(field number << 3) | wire type`. The way a value is encoded is based on the field's wire type (demonstrated in the example below). Finally, a message is serialized by writing its encoded fields sequentially by ascending field number.
 
-Using the address book example from the <a href="https://developers.google.com/protocol-buffers/docs/cpptutorial">C++ tutorial</a>, let's serialize an `AddressBook` that contains a single `Person` message by hand to become more familiar with the serialization process. Our example `Person` message contains the following fields:
+Using the address book example from the <a href="https://developers.google.com/protocol-buffers/docs/cpptutorial">C++ tutorial</a>, let's create and serialize an `AddressBook` that contains one `Person` message by hand to become more familiar with serialization process. Our `Person` message contains the following fields:
 
 ```
 name:       Kevin Durant
@@ -459,12 +459,57 @@ phones:
     type:   MOBILE
 ```
 
-First up is the `AddressBook`'s only field:
+First up, we serialize the `AddressBook`'s only field:
 
 ```
 repeated Person people = 1;
 ```
 
+We see that the field number is `1`, and referring to the table in the *Message Structure* section of the <a href="https://developers.google.com/protocol-buffers/docs/encoding">Encoding</a> page, the wire type is `2` (length-delimited) since the field's type is an embedded message (i.e., a `Person`). Now we have the information needed to encode the field's key. 
+
+Left shifting the binary representation of the field number three places gives us the value `00001000`, and `OR`ing this with the binary representation of the wire type gives us `00001010` (or `0a` in hex, `10` in decimal). Recall that base 128 varints use the <a href="https://en.wikipedia.org/wiki/Most_significant_bit">MSB</a> of each byte to indicate whether or not it's the final byte of the encoded value; this means the largest value a single byte of a varint can hold is `127`, or `01111111` in binary. In other words, if a number (or remainder of a number that's being encoding) is less than `128`, it's the final byte of the value. Therefore, since `10` is less than `128`, `0a` is our varint encoded key.
+
+Next we encode the field's value. For length-delimited fields, encoded values consist of two parts: a varint encoded length followed by the specified number of bytes of data. Since this field's type is an embedded message, the value's length corresponds to the size of the encoded `Person` message. As I'll demonstrate later, the compiler-generated code calculates and caches the sizes of fields of a message as an optimization during serialization, so I'll just tell you that the encoded `Person` message above results in `47` bytes. You can confirm this size after we've serialized all its fields. Since `47` is less than `128`, its hex representation (`2f`) is our varint encoded length. The next `47` bytes come from serializing the individual fields of our embedded `Person` message by ascending field number.
+
+The first field of our `Person` is:
+
+```
+required string name = 1;
+```
+
+The field number is `1` and wire type is `2` (length-delimited) since the field's type is a `string`. Identical to the first key, its varint encoded value is `0a`. 
+
+The length of the vlaue is determined by the size of the string, `12` in this case. since `12` is less than `128`, our varint encoded length is `0c`. Following the length comes the 12 <a href="">UTF-8</a> encoded characters of the string `Kevin Durant` which are `4b 65 76 69 6e 20 44 75 72 61 6e 74`.
+
+Our next field is: 
+
+```
+required int32 id = 2;
+```
+
+This time our field number is `2` and wire type is `0` (varint) since the field's type is an `int32`. Following the same procedure, our varint encoded key is `10`.
+
+The value of an `int32` field is also varint encoded. Since `35` less than `128`, our varint encoded value is `23` (and as fate would have it, Kevin Durant's number in hex matches that of Michael Jordan's in decimal).
+
+The third field is:
+
+```
+optional string email = 3;
+```
+
+The field number is `3` and wire type is `2` (length-delimited), giving us a varint encoded key of `1a`. The length of the string `kd@warriors.com` is `15`, giving us a varint encoded length of `0f` followed by the UTF-8 encoded characters `6b 64 40 77 61 72 72 69 6f 72 73 2e 63 6f 6d`. 
+
+Our fourth and final field is also an embedded message:
+
+```
+repeated PhoneNumber phones = 4;
+```
+
+The field number is `4` and wire type is `2` (length-delimited), giving us a vaint encoded key of `22`.
+
+The size of the embedded message is `12` giving us a varint encoded length of `0c`, but this isn't so obvoius. Jumping into the `PhoneNumber` message, as usual we encode its first field: `required string number = 1;`. The field number is `1` and wire type is `2`, giving us a varint encoded key of `0a`. The length of the phone number `4155551988` is `10`, giving us a varint encoded length of `0a` followed by the UTF-8 encoded characters `34 31 35 35 35 35 31 39 38 38` (don't confuse the phone number for a number, remember it's a string). But wait, that's already 12 bytes which I said was the size of the embedded message. What about the second field: `optional PhoneType type = 2 [default = HOME];`? Since this field is marked as `optional` and has been assigned a default value of `HOME`, it means that if a serialized `PhoneNumber` message is missing this field, it is assumed that its `PhoneType` value is `HOME`. In other words, we don't have to encode this field for a parser to be able to reconstruct this message into a C++ class, even if we explicitly marked its type as `HOME`. It only has to be included if the type were anything but the default (i.e., `MOBILE` or `WORK`). 
+
+With that said, we're finally done encoding our `AddressBook`!  
 
 #### Building the protobuf compiler and runtime libraries, running the C++ example applications
 Here we'll clone the <a href="https://github.com/google/protobuf">google/protobuf</a> repository from GitHub, see which versions are available, create a new branch, and put our working directory in a state corresponding to release `v3.0.2` of the Protocol Buffer software. This was the latest version at the time I worked on Firework and the version I forked and modified for use in the HW-accelerated system. The modified protobuf repository is found here: [firework/protobuf](protobuf). We'll use the modified and "standard" protobuf libraries later to profile and compare the two systems' performance. Note, I used the CentOS 7 server to build, install, and work with Protocol Buffers in the steps below.
