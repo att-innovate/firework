@@ -438,30 +438,32 @@ There are powerful tools available that helped me identify the source code respo
 In the remainder of this section, I'll provide an overview of the Protocol Buffer software and serialization process, demonstrate how I used `vim`+`ctags` and `gdb` to identify and understand the source code relevant to *Protocol Buffer serialization*, and discuss how time spent analyzing the `WireFormatLite` and <a href="https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.io.coded_stream#CodedOutputStream">CodedOutputStream</a> classes and their relation to the various Message <a href="https://developers.google.com/protocol-buffers/docs/proto3#scalar">field types</a> led to a key realization and simplifcation of the hardware accelerator design. I'll conclude this section with a brief discussion about importance of using `perf` at this stage as well, a lesson I learned.
 
 #### Overview of Protocol Buffers and message serialization
-From the <a href="https://developers.google.com/protocol-buffers/docs/overview">Developer Guide</a>, "Protocol buffers are a flexible, efficient, automated mechanism for *serializing structured data*". In the land of Protocol Buffers, data structures are called **messages**, and they contain one or more key-value pairs called **fields**. Similar to <a href="http://www.json.org/">JSON objects</a>, message fields consist of basic types (e.g., integers, booleans, strings), arrays of values, or even other embedded messages. The idea is that you define the messages you wish to use in your application once in a `.proto` file and use the Protocol Buffer compiler (`protoc`) to generate specialized code that defines these messages in the language of your choice (e.g., C++ classes). The compiler-generated code provides accessors for individual fields along with methods that work closely with the Protocol Buffer *runtime library*, `libprotobuf.so.10.0.0`, to serialize/parse entire messages to/from streams or storage containers. Protocol Buffers are *extensible* in the sense that you can add new fields to your messages without disrupting existing applications that use older formats; this is achieved by marking fields as `optional` rather than `required`.
+From the <a href="https://developers.google.com/protocol-buffers/docs/overview">Developer Guide</a>, "Protocol buffers are a flexible, efficient, automated mechanism for *serializing structured data*". In the land of Protocol Buffers, data structures are called **messages**. Messages consist of a series of key-value pairs called **fields**, similar to <a href="http://www.json.org/">JSON objects</a>. Fields can be basic types (e.g., integers, booleans, strings), arrays of values, or even other embedded messages. The idea is that you define the messages you wish to use in your application in a `.proto` file and use the Protocol Buffer compiler (`protoc`) to generate specialized code that implements these messages in the language of your choice (e.g., C++ classes). The compiler-generated code provides accessors for individual fields along with methods that work closely with the Protocol Buffer *runtime library*, `libprotobuf.so.10.0.0`, to serialize/parse entire messages to/from streams or storage containers. Protocol Buffers are *extensible* in the sense that you can add new fields to your messages without disrupting existing applications that use older formats; this is achieved by marking fields as `optional` rather than `required`.
 
-For a more complete understanding of what Protocol Buffers are and how they're used, and to learn about **varint encoding** and **message serialization**, go through the following material (which also serves as a prerequisite for the remaining content of this section and subsequent sections in this tutorial):
+For a more complete understanding of what Protocol Buffers are and how they're used, and to learn about varint encoding and message serialization, I recommend going through the links below. This material also serves as a prerequisite for the remaining content of this section and subsequent sections in this tutorial:
 - <a href="https://developers.google.com/protocol-buffers/">Protocol Buffers</a>: Protocol Buffer home page (start here)
 - <a href="https://developers.google.com/protocol-buffers/docs/overview">Developer Guide</a>: a good introduction
 - <a href="https://developers.google.com/protocol-buffers/docs/cpptutorial">Protocol Buffer Basics: C++ </a>: tutorial on using Protocol Buffers in C++ (language used in Firework)
 - <a href="https://developers.google.com/protocol-buffers/docs/encoding">Encoding</a>: describes varint encoding and message serialization
 
-From the <a href="https://developers.google.com/protocol-buffers/docs/encoding">Encoding</a> page, we learned that a field's **key** is composed of two values when the containing message is represented in its *wire format*: a **field number** (or **tag**) and a **wire type**. The field number is the integer assigned to the field in the `.proto` file, and the wire type (also an integer) is determined by the type (int32, fixed64, string, embedded message, etc.) of the field's **value**. We also learned that a message is serialized by encoding and writing its fields sequentially by ascending field number.
+From the <a href="https://developers.google.com/protocol-buffers/docs/encoding">Encoding</a> page, we learned that a field's **key** is composed of two values - a **field number** (or **tag**) and a **wire type** - when the containing message is serialized to its binary wire format. Field numbers are simply the integers assigned to fields of a message as defined in the `.proto` file, and a wire type (also an integer) is determined by the field's type (int32, fixed64, string, embedded message, etc.); wire types provide information about the size (in bytes) of a field's encoded **value**. As you may have guessed, a field is serialized by encoding and writing its key first followed by its value. Keys are encoded as varints with the value: `(field number << 3) | wire type`. The way a value is encoded is based on its field's wire type. Finally, a message is serialized by writing its encoded fields sequentially by ascending field number.
 
-Using the address book example from the <a href="https://developers.google.com/protocol-buffers/docs/cpptutorial">C++ tutorial</a>, let's serialize an `AddressBook` containing a single `Person` by hand to become more familiar with the message serialization process. Our example `Person` message contains the following fields:
-- `name`:   Kevin Durant
-- `id`:     35
-- `email`:  kd@warriors.com
-- `phones`: 
-    - `number`: 4155551988
-    - `type`: MOBILE
+Using the address book example from the <a href="https://developers.google.com/protocol-buffers/docs/cpptutorial">C++ tutorial</a>, let's serialize an `AddressBook` that contains a single `Person` message by hand to become more familiar with the serialization process. Our example `Person` message contains the following fields:
 
-First up, we encode the `AddressBook` message's only field:
+```
+name:       Kevin Durant
+id:         35
+email:      kd@warriors.com
+phones:
+    number: 4155551988
+    type:   MOBILE
+```
+
+First up is the `AddressBook`'s only field:
 
 ```
 repeated Person people = 1;
 ```
-
 
 
 #### Building the protobuf compiler and runtime libraries, running the C++ example applications
