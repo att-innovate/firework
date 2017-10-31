@@ -438,17 +438,17 @@ There are powerful tools available that one can use to navigate the source code 
 In the remainder of this section, I'll provide an overview of the Protocol Buffer software, walk through an example of message serialization, demonstrate how I used `vim`+`ctags` and `gdb` to identify and understand the source code relevant to *Protocol Buffer serialization*, and discuss how time spent analyzing the `WireFormatLite` and <a href="https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.io.coded_stream#CodedOutputStream">CodedOutputStream</a> classes and their relation to the various message <a href="https://developers.google.com/protocol-buffers/docs/proto3#scalar">field types</a> led to a key realization and simplifcation of the hardware accelerator design. I'll conclude this section with a brief discussion about importance of using `perf` at this stage as well, a lesson I learned after-the-fact.
 
 #### Overview of Protocol Buffers and message serialization
-From the <a href="https://developers.google.com/protocol-buffers/docs/overview">Developer Guide</a>, "Protocol buffers are a flexible, efficient, automated mechanism for *serializing structured data*". In the land of Protocol Buffers, structured data (or data structures) are called **messages**. Messages consist of a series of key-value pairs called **fields**, similar to <a href="http://www.json.org/">JSON objects</a>. Fields can be basic types (e.g., integers, booleans, strings), arrays, or even other embedded messages. The idea is that you define the messages you want to use in your application once in a `.proto` file and use the Protocol Buffer compiler (`protoc`) to generate specialized code that implements these messages in the language of your choice (e.g., C++ classes). The compiler-generated code provides accessors for individual fields along with methods that work closely with the Protocol Buffer *runtime library* (`libprotobuf.so.10.0.0`) to serialize/parse entire messages to/from streams or storage containers. Protocol Buffers are *extensible* in the sense that you can add new fields to messages without disrupting existing applications that use older formats; this is achieved by marking fields as `optional` rather than `required`.
+From the <a href="https://developers.google.com/protocol-buffers/docs/overview">Developer Guide</a>, "Protocol buffers are a flexible, efficient, automated mechanism for *serializing structured data*". In the land of Protocol Buffers, structured data (or data structures) are called **messages**. Messages consist of a series of key-value pairs called **fields**, similar to <a href="http://www.json.org/">JSON objects</a>. Fields can be basic types (e.g., integers, booleans, strings), arrays, or even other embedded messages. The general idea is that you define the messages you want to use in your application in a `.proto` file and use the Protocol Buffer *compiler* (`protoc`) to generate specialized code that implements these messages in the language of your choice (e.g., C++ classes). The compiler-generated code provides accessors for individual fields along with methods that work closely with the Protocol Buffer *runtime library* (`libprotobuf.so.10.0.0`) to serialize/parse entire messages to/from streams or storage containers. Protocol Buffers are *extensible* in the sense that you can add new fields to messages without disrupting existing applications that use older formats; this is achieved by marking fields as `optional` rather than `required`.
 
-For a more complete understanding of what Protocol Buffers are and how they're used, and to learn more about **varint encoding** and how messages are serialized, I recommend going through the following material (which also serves as a prerequisite for the remaining content in this section and subsequent sections in this tutorial):
-- <a href="https://developers.google.com/protocol-buffers/">Protocol Buffers</a>: Protocol Buffer home page (start here)
+For a more complete understanding of what Protocol Buffers are and how they're used, and to learn about **varint encoding** and how messages are serialized, I recommend going through the following material (which also serves as a prerequisite for the remaining content in this section and subsequent sections in this tutorial):
+- <a href="https://developers.google.com/protocol-buffers/">Protocol Buffers</a>: Protocol Buffer home page
 - <a href="https://developers.google.com/protocol-buffers/docs/overview">Developer Guide</a>: a good introduction
 - <a href="https://developers.google.com/protocol-buffers/docs/cpptutorial">Protocol Buffer Basics: C++ </a>: tutorial on using Protocol Buffers in C++ (language used in Firework)
 - <a href="https://developers.google.com/protocol-buffers/docs/encoding">Encoding</a>: describes varint encoding and message serialization
 
-From the <a href="https://developers.google.com/protocol-buffers/docs/encoding">Encoding</a> page, we learned that field keys are actually composed of two values when the containing message is serialized (i.e., in its binary wire format): a **field number** (or **tag**) and a **wire type**. A field number is simply the integer assigned to a field of a message as defined in the `.proto` file, and the wire type of a field is determined by its value's type (e.g., int32, fixed64, string, embedded message). Wire types provide the information that's needed to determine the size (in bytes) of a field's encoded value. A message is serialized by writing its encoded fields sequentially in ascending field number. A field is written with its encoded key followed by its encoded value. Finally, keys are encoded as varints with the value: `(field number << 3) | wire type`, and the way values are encoded depends on the field's wire type. To better understand how messages are serialized, I've provided an example below.
+From the <a href="https://developers.google.com/protocol-buffers/docs/encoding">Encoding</a> page, we learned that field keys are composed of two values - a **field number** (or **tag**) and a **wire type** - when the containing message is in its *binary wire format* (i.e., has been serialized). A field number is simply the integer assigned to a field of a message as defined in the `.proto` file, and the wire type of a field is determined by its value's type (e.g., int32, fixed64, string, embedded message). Wire types provide information that's needed to determine the size (in bytes) of a field's encoded value. A message is serialized by writing its encoded fields sequentially in ascending field number. A field is written with its encoded key followed by its encoded value. Finally, keys are encoded as varints with the value: `(field number << 3) | wire type`, and the way a field's value is encoded depends on its wire type. To better understand how messages are serialized, I'll walk through an example below.
 
-Let's use the address book example from the <a href="https://developers.google.com/protocol-buffers/docs/cpptutorial">C++ tutorial</a> to create and serialize, by hand, an `AddressBook` message that contains one `Person` message. Our `Person` message has the following fields:
+Let's use the address book example from the <a href="https://developers.google.com/protocol-buffers/docs/cpptutorial">C++ tutorial</a> to serialize, by hand, an `AddressBook` message that contains one `Person` message. Our `Person` message has the following fields:
 
 ```
 name:       Kevin Durant
@@ -459,21 +459,23 @@ phones:
     type:   MOBILE
 ```
 
-First up, we serialize the `AddressBook` message's only field:
+First up, we encode the `AddressBook` message's only field:
 
 ```
 repeated Person people = 1;
 ```
 
-We see that its field number is **1**, and referring to the table in the *Message Structure* section of the <a href="https://developers.google.com/protocol-buffers/docs/encoding">Encoding</a> page, its wire type is **2** (length-delimited) since the value's type is an embedded message (i.e., a `Person`). Now we have the components needed to determine the value of the field's key to be varint encoded. First, we left shift the binary representation of the field number three times giving us `0b00001000`, and `OR`ing this value with the binary representation of the wire type gives us the value: `0b00001010` (or `0a` in hex, **10** in decimal). Next we varint encode this value giving us our encoded key.
+We see that its field number is **1**, and referring to the table in the *Message Structure* section of the <a href="https://developers.google.com/protocol-buffers/docs/encoding">Encoding</a> page, its wire type is **2** (length-delimited) since the value's type is an embedded message (i.e., a `Person`). With this information, we're now ready to generate the value of the field's key and subsequently encode it as a varint. Left shifting the field number three times gives us `0b00001000`, and `OR`ing this value with the wire type produces the key's value of `0b00001010` (or `0a` in hex, `10` in decimal). Varint encoding this value next will give us our encoded key, the first data to be written when serializing our message.
 
-Recall that base 128 varints use the <a href="https://en.wikipedia.org/wiki/Most_significant_bit">MSB</a> of each byte to indicate whether it's the final byte of data; this means the largest value a single byte of varint data can represent is **127** (i.e., `0b01111111` for the final byte and `0b11111111` for every other byte). With this in mind, the varint encoding algorithm can be described as follows:
+Recall that base 128 varints use the <a href="https://en.wikipedia.org/wiki/Most_significant_bit">MSB</a> of each byte to indicate whether it's the final byte of data; this means the largest value a single byte of varint data can represent is **127** (i.e., `0b01111111` for the final byte and `0b11111111` for any other byte). With this in mind, the varint encoding algorithm can be described as follows (note, negative integers are treated as very large positive numbers):
 
-*Is the value of this integer less than 128? If yes, append a `0b0` to the least significant 7 bits, and this gives you the final byte of data. Otherwise, append a `0b1` to the least significant 7 bits, and this gives you the next byte of data. Right shift the integer 7 times and repeat from the beginning.*
+*Is the value of this integer less than 128? If yes, append a `0b0` to the least significant 7 bits, and this produces the final byte of data. Otherwise, append a `0b1` to the least significant 7 bits, and this produces the next byte of data. Right shift the integer 7 times and repeat from the beginning.*
 
-Since the value (**10**) is less than **128**, our varint encoded key (in hex) is simply `0a`.
+Turning back to our example, since the value of our key (**10**) is less than **128**, we append a `0b0` to the least significant 7 bits giving us our 1-byte varint encoded key, `0a` in hex. (Note, I'll use hex notation for all encoded data from this point forward.)
 
-Next we encode the field's value. For length-delimited fields, encoded values consist of two parts: a varint encoded length followed by the specified number of bytes of data. Since this field's type is an embedded message, the value's length corresponds to the size of the encoded `Person` message. As I'll demonstrate later, the compiler-generated code caches the sizes of fields of a message as an optimization during serialization, so I'll just tell you that the `Person` message with the values above results in **47 bytes** of encoded data. You can confirm this size after we've serialized all its fields. Since **47** is less than **128**, our varint encoded length (in hex) is simply `2f`. The next 47 bytes of the length-delimited value are the encoded bytes of the individual fields of our embedded `Person` message in ascending field number.
+Next we encode the field's value, an embedded `Person` message. For length-delimited fields, encoded values consist of two parts: a varint encoded *length* followed by the specified number of *bytes of data*. The length in this case corresponds to the size of the encoded `Person` message. As I'll demonstrate later, the compiler-generated code caches the sizes of populated fields of a message as an optimization during serialization, so I'll just tell you that the `Person` message with the values above results in 47 bytes of encoded data. You can confirm this number after we've serialized all its fields. 
+
+Since **47** is less than **128**, our varint encoded length is simply `2f`. The next 47 bytes of the length-delimited value consist of the encoded fields (keys and values) of the embedded `Person` message in ascending field number.
 
 The first field of our `Person` message is:
 
@@ -483,7 +485,7 @@ required string name = 1;
 
 The field number is **1** and wire type is **2** (length-delimited) since the value's type is a `string`. In the same way we arrived at our first varint encoded key, this field's varint encoded key is also `0a`.
 
-The length we need to varint encode is simply the size of the string `Kevin Durant`, **12 bytes**. Since **12** is less than **128**, our varint encoded length is `0c`. The second part of our length-delimited value consists of the 12 <a href="">UTF-8</a> encoded characters of the string `Kevin Durant` which are `4b 65 76 69 6e 20 44 75 72 61 6e 74`. We've now encoded our first complete field! 
+The length we need to varint encode is simply the size of the string `Kevin Durant`, which is 12 bytes. Since **12** is less than **128**, our varint encoded length is `0c`. The second part of our length-delimited value consists of the 12 <a href="">UTF-8</a> encoded characters of the string `Kevin Durant`, which are `4b 65 76 69 6e 20 44 75 72 61 6e 74`. We now have our first completely encoded field! 
 
 The next field of our `Person` message is:
 
@@ -501,7 +503,7 @@ The third field of our `Person` message is:
 optional string email = 3;
 ```
 
-The field number is **3** and wire type is **2** (length-delimited), giving us a varint encoded key of `1a`. Hopefully at this point you've recognized that integers 0-127 result in 1-byte varints. The string `kd@warriors.com` has **15** characters giving us a varint encoded length of `0f`. Last comes the UTF-8 encoded characters: `6b 64 40 77 61 72 72 69 6f 72 73 2e 63 6f 6d`. 
+The field number is **3** and wire type is **2** (length-delimited) giving us a varint encoded key of `1a`. (Hopefully at this point you've recognized that integers 0-127 result in 1-byte varints.) The string `kd@warriors.com` has 15 characters giving us a varint encoded length of `0f`, and following this are the UTF-8 encoded characters `6b 64 40 77 61 72 72 69 6f 72 73 2e 63 6f 6d`.
 
 The fourth and final field of our `Person` message is also an embedded message:
 
@@ -511,21 +513,21 @@ repeated PhoneNumber phones = 4;
 
 The field number is **4** and wire type is **2** (length-delimited) giving us a vaint encoded key of `22`.
 
-The size of the embedded message is **12 bytes** giving us a varint encoded length of `0c`, but this isn't so obvoius. Jumping into the `PhoneNumber` message, as usual we encode its first field:
+The size of this embedded message is 12 bytes which gives us a varint encoded length of `0c`, but this isn't so obvoius. Jumping into the `PhoneNumber` message, as usual we encode its first field:
 
 ```
 required string number = 1;
 ```
 
-The field number is **1** and wire type is **2** giving us a varint encoded key of `0a`. The phone number `4155551988` has **10** characters giving us a varint encoded length of `0a`, and this is followed by the UTF-8 encoded characters: `34 31 35 35 35 35 31 39 38 38` (don't confuse the phone number for a number, remember it's a string). But wait a minute... encoding the first field already gives us **12 bytes** which I claimed was the size of the entire embedded `PhoneNumber` message. What about the second field:
+The field number is **1** and wire type is **2** giving us a varint encoded key of `0a`. The phone number `4155551988` has 10 characters giving us a varint encoded length of `0a`, and this is followed by the UTF-8 encoded characters `34 31 35 35 35 35 31 39 38 38` (don't confuse the phone number for a number, remember it's a string). But wait a minute... encoding the first field already gives us 12 bytes which I claimed was the size of the entire embedded `PhoneNumber` message. What about its second field:
 
 ```
 optional PhoneType type = 2 [default = HOME];
 ```
 
-Since this field is marked as `optional` and has been assigned a default value of `HOME`, it means that a serialized `PhoneNumber` message missing this field is assumed to have a `PhoneType` value of `HOME`. In other words, we don't have to encode this field for a parser to be able to reconstruct this serialized message's corresponding C++ object, even if we explicitly marked its type as `HOME`. This field would have to be included if `type` was assigned anything but the default value (i.e., `MOBILE` or `WORK`). 
+Since this field is marked as `optional` and has `HOME` specified as the default value of `type`, it means that a serialized `PhoneNumber` message missing this field is assumed to have a `PhoneType` value of `HOME`. In other words, we don't have to include this field and a parser would still be able to reconstruct this message's corresponding C++ object, even if `type` was explicitly set as `HOME`. This field would have to be included if `type` was assigned a value other than the default (i.e., `MOBILE` or `WORK`).
 
-With that said, we've finished serializing the embedded `PhoneNumber` message which means we've also finished serializing the embedded `Person` message which means we've also also finished serializing our `AddressBook` message! Congratulations! To summarize, the following are the bytes of our serialized `AddressBook` message:
+With that said, we've finished serializing the embedded `PhoneNumber` message which means we've also finished serializing the embedded `Person` message which means we've also also finished serializing our `AddressBook` message! To summarize, the following bytes of data comprise the entire serialized `AddressBook` message:
 
 ```
 0a 2f 0a 0c 4b 65 76 69 6e 20 44 75 72 61 6e 74 10 23 1a 0f 6b 64 40 77 61 72 72 69 6f 72 73 2e 63 6f 6d 22 0c 0a 0a 34 31 35 35 35 35 31 39 38 38
