@@ -640,7 +640,7 @@ If you're unfamiliar with `LD_LIBRARY_PATH`; the difference between `ld` (the po
 
 ![alt text](resources/images/list_people.png)
 
-Great! We see the `Person` message we just created in step 7. Actually, this isn't too exciting; we can do better. Let's use the <a href="https://www.freebsd.org/cgi/man.cgi?query=hexdump&sektion=1">hexdump</a> utility to inspect the contents of `my_addressbook`, which contains the serialized `AddressBook` message:
+Great! We see the `Person` message we just created in the last step. Actually, this isn't that exciting. We can do better. Let's use the <a href="https://www.freebsd.org/cgi/man.cgi?query=hexdump&sektion=1">hexdump</a> utility to inspect the contents of `my_addressbook`, which contains the serialized `AddressBook` message (i.e., binary data):
 
 ```
 hexdump -C my_addressbook
@@ -648,20 +648,73 @@ hexdump -C my_addressbook
 
 ![alt text](resources/images/hexdump.png)
 
-Lo and behold, we see 49 bytes of binary data, starting with `0a` and ending in `38`. If you compare this byte-for-byte with the `AddressBook` message we serialized by hand earlier, you'll see that they match. Fantastic! Now we're confident in our abilities to compile and run Protocol Buffer applications, and we understand what Protocol Buffer messages look like in their binary wire format (i.e., serialized messages). Now let's see *how* the Protocol Buffer library performs serialization... 
-
-Next, let's use `vim`+`ctags` to dive into the *Protocol Buffer serialization* code and better understand the relationship between the compiler-generated code and `libprotobuf.so.10.0.0` runtime library. 
+Lo and behold, we see 49 bytes of data, starting with `0a` and ending in `38`. If you compare this byte-for-byte with the `AddressBook` message we serialized earlier, you'll see they match. Incredible! Now that we're confident in our abilities to compile and run Protocol Buffer applications and serialize Protocol Buffer messages, let's see *how* the Protocol Buffer runtime library and compiler-generated code work together to perform serialization.
 
 #### Stepping through add_person.cc (vim + ctags)
 
+In this section, we'll use `vim` and `ctags` to take a closer look at `add_person.cc` and dive into the code responsible for *Protocol Buffer serialization*. If you've never used it before, <a href="http://ctags.sourceforge.net/">ctags</a> is the holy grail of navigating large software projects that contain several source files. Used in conjunction with <a href="http://www.vim.org/">vim</a>, this creates a powerful, GUI-free method of understanding how an application's source code is structured. This is particularly useful when working with embedded systems or on a remote computer via ssh where a terminal may be your only interface (i.e., you can't use more powerful <a href="https://en.wikipedia.org/wiki/Integrated_development_environment">IDEs</a> like <a href="https://www.eclipse.org/">Eclipse</a>, <a href="https://atom.io/">Atom</a>, etc.).
 
+If you've never used `vim` before, take some time to become familiar with the keyboard commands. In fact, a keyboard is your only way of interacting with `vim`. Go through some tutorial to learn the basics, <a href="https://www.howtoforge.com/vim-basics">perhaps this one</a>. Here's the <a href="https://courses.cs.washington.edu/courses/cse451/10au/tutorials/tutorial_ctags.html">tutorial</a> I used to learn how to use `ctags` with `vim`. Finally, here's my personal cheat sheet for `vim` navigation and `ctags`-specific commands:
+
+![alt text](resources/images/vim.jpg)
+
+Off the top of my head, here are some other fundamental/useful commands:
+- `i` enters insert mode (i.e., you can begin editing the file. Hit `ESC` to exit this or any other mode)
+- `u` undo
+- `ctrl+r`redo
+- `dd` deletes a line
+- `p` paste whatever's stored in `vim`'s buffer (try `dd p` and see what happens)
+- `:w` save
+- `:wq` save and quit
+
+- `:set nu`
+- `:set nonu`
+
+- `/ <reg_exp>` search the file for every instance of `<reg_exp>`
+- `n` jump to the next match
+- `? <reg_exp>` search the file for every instance of `<reg_exp>`
+- `n` jump to the previous match :) 
+
+- `:f` display the file that's open
+- `:sp <file>` opens `<file>`, splitting the window (note you can only navigate/edit one at a time)
+- `ctrl+w ctrl+w` toggle between split windows
+- `ctrl+w <up arrow>` switch context to the split window above the one currently in focus
+- `ctrl+w <down arrow>` I think you're smart enough to infer its function
+
+- `:q` quit (exit's the split window in focus or all of `vim` if only one file is open)
+
+Without further ado, let's see how `add_person.cc` works.
+
+1. In the `protobuf/src` directory (i.e., the directory containing the Protocol Buffer runtime library's source code), let's use ctags to generate an index of all <a href="http://en.cppreference.com/w/cpp/language/identifiers">identifiers</a> used (functions, classes, class members, variables, etc.). This creates a new `tags` file. Note, we should still be on branch `protobuf-v3.0.2`.
+
+```
+cd ~/workspace/protobuf/src
+ctags -R *
+``` 
+
+2. From the same directory, open `add_person.cc`.
+
+```
+vim ../examples/add_person.cc
+```
+
+If you switch to another directory (e.g., `protobuf/examples`) and open `add_person.cc`, the tag search commands we're going to use wouldn't work. You need to open a file with `vim` or invoke `vim -t <tag>` from the directory containing the `tags` file.
+
+3. You should already be familiar with how this program works. If not, revisit the <a href="https://developers.google.com/protocol-buffers/docs/cpptutorial">Protocol Buffer Basics: C++</a> tutorial. We want to focus on the code that's involved in serializing messages. Fortunately, there's only one line in the entire file that we care about: line 85. 
+
+![alt text](resources/images/SerializeToOstream.png)
+
+Navigate to this line and place your cursor somewhere over the identifier `SerializeToOstream` (not `address_book` or `(&output)`). Pro tip: try entering the command `:85` in `vim`.
+
+4. With the cursor still over the identifier `SerializeToOstream`, enter the command `ctrl+]`. This will take us to line 175 of the file `google/protobuf/message.cc` which is where we find this method's definition!
+
+![alt text](resources/images/first-jump.png)
+
+Here we see that `SerializeToOstream` is a member of the `Message` class.
 
 
 
 #### Stepping through add_person (gdb)
-
-
-
 
 
 #### Analyzing the Protocol Buffer serialization code
@@ -677,14 +730,8 @@ Let's look more closely at the various fields and their corresponding wire types
 Before diving into the hardware design, I'd like to share a great example of how the time I spent understanding this software led to a realization which led to a huge simplification in the hardware design as well as expanding what it supports. It went from a toy example to something much more robust and closer to seeing the light of day in a production datacenter ...an initial simplification I attempted to make (i.e., only supporting 32-bit varints) and how taking time to understand fundamentally that an even lower abstraction than twas provided by Protocol Buffer fields) how the data was encoded led to a simplification and (in my opinion), beautiful approach to the hardware design. I realized that despite there being 18 field types (omitting groups, since they're depreciated), they all boil down to either *varint-encoded* data or *raw data* that needed to be simply passed on, preserving the ordering/sequence of fields of course.
 
 
-
-
-
 #### A brief note on perf
 - If I could go back, I'd also do - perf/profiling: guage whether specialized hardware could outperform software; analyze cost of overhead of communicating data (lack of experience analyzing system performance, thought the paper provided sufficient motivation, overwhelmed with too many other things to figure out)
-
-
-
 
 
 ## Hardware Development
