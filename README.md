@@ -654,72 +654,69 @@ Lo and behold, we see 49 bytes of data, starting with `0a` and ending in `38`. I
 
 In this section, we'll use `vim` and `ctags` to take a closer look at `add_person.cc` and dive into the code responsible for *Protocol Buffer serialization*. If you've never used it before, <a href="http://ctags.sourceforge.net/">ctags</a> is the holy grail of navigating large software projects that contain several source files. Used in conjunction with <a href="http://www.vim.org/">vim</a>, this creates a powerful, GUI-free method of understanding how an application's source code is structured. This is particularly useful when working with embedded systems or accessing a remote computer via ssh where a terminal may be your only interface (i.e., you can't use more powerful <a href="https://en.wikipedia.org/wiki/Integrated_development_environment">IDEs</a> like <a href="https://www.eclipse.org/">Eclipse</a>, <a href="https://atom.io/">Atom</a>, etc.).
 
-If you've never used `vim` before, take some time to become familiar with the keyboard commands. In fact, a keyboard is your only way of interacting with `vim`. Go through some tutorial that covers the basics, <a href="https://www.howtoforge.com/vim-basics">perhaps this one</a>. Here's the <a href="https://courses.cs.washington.edu/courses/cse451/10au/tutorials/tutorial_ctags.html">tutorial</a> I used to learn how to use `ctags` with `vim`. Finally, here's my personal cheat sheet for `vim` navigation and `ctags`-specific commands:
+If you've never used `vim` before, take some time to become familiar with the keyboard commands. In fact, a keyboard is your only way of interacting with `vim`. Find a tutorial that covers the various modes and basic navigation, perhaps <a href="https://www.howtoforge.com/vim-basics">this</a> is a good starting point. Once you've got the basics down, here's the <a href="https://courses.cs.washington.edu/courses/cse451/10au/tutorials/tutorial_ctags.html">tutorial</a> I used to learn how to use `ctags` with `vim`. It may be difficult to internalize all the relevant commands in such a little time; a useful thing to do is to make your own cheat sheet of commands frequently used or that you're trying to learn and keep it somewhere accessible. I placed Post-it notes on my monitor for basic `vim` navigation and `ctags`-specific commands:
 
 ![alt text](resources/images/vim.jpg)
 
-Off the top of my head, here are some other fundamental/useful commands:
-- `i` enters insert mode (i.e., you can begin editing the file. Hit `ESC` to exit this or any other mode)
-- `u` undo
-- `ctrl+r`redo
-- `dd` deletes a line
-- `p` paste whatever's stored in `vim`'s buffer (try `dd p` and see what happens)
-- `:w` save
-- `:wq` save and quit
+Off the top of my head, here are some other fundamental commands you'll find yourself using:
 
-- `:set nu`
-- `:set nonu`
+Command | What it does
+:--- | :--- 
+`i` | enters insert mode (i.e., you can begin editing the file. Hit `ESC` to exit this or any other mode)
+`u` | undo
+`ctrl + r` | redo
+`dd` | deletes a line
+`p` | paste whatever's stored in `vim`'s buffer (try `dd p` and see what happens)
+`:w` | save
+`:wq` | save and quit
+`:set nu` | displays line numbers
+`:set nonu` | hides line numbers
+`/ <reg_exp>` | search the file for every instance of `<reg_exp>`
+`n` | jump to the next match of `<reg_exp>`
+`? <reg_exp>` | search the file for every instance of `<reg_exp>`
+`n` | jump to the previous match of `<reg_exp>` :)
+`:f` | display the file that's currently open
+`:sp <file>` | opens `<file>` and splits the window (note, only one file is in focus at a time)
+`ctrl + w`, `ctrl + w` | toggles focus between split windows
+`ctrl + w`, `up arrow` | switches context to the window above the one currently in focus
+`ctrl + w`, `down arrow` | I think you're smart enough to infer its function
+`:q` | quit (exit's the split window in focus or all of `vim` if only one file is open)
 
-- `/ <reg_exp>` search the file for every instance of `<reg_exp>`
-- `n` jump to the next match
-- `? <reg_exp>` search the file for every instance of `<reg_exp>`
-- `n` jump to the previous match :) 
+Without further ado, let's dive into `add_person.cc` and learn how messages are serialized.
 
-- `:f` display the file that's open
-- `:sp <file>` opens `<file>`, splitting the window (note you can only navigate/edit one at a time)
-- `ctrl+w ctrl+w` toggle between split windows
-- `ctrl+w <up arrow>` switch context to the split window above the one currently in focus
-- `ctrl+w <down arrow>` I think you're smart enough to infer its function
-
-- `:q` quit (exit's the split window in focus or all of `vim` if only one file is open)
-
-Without further ado, let's see how `add_person.cc` works.
-
-1. In the `protobuf/src` directory (i.e., the directory containing the Protocol Buffer runtime library's source code), let's use ctags to generate an index of all <a href="http://en.cppreference.com/w/cpp/language/identifiers">identifiers</a> used (functions, classes, class members, variables, etc.). This creates a new `tags` file. Note, we should still be on branch `protobuf-v3.0.2`.
+1. In the `protobuf/src` directory (i.e., the root directory containing source code of the Protocol Buffer runtime library), let's use `ctags` to generate an index of all <a href="http://en.cppreference.com/w/cpp/language/identifiers">identifiers</a> used in the source code. This creates a new `tags` file which maps identifiers to their containing source file(s). Note, we should still be on branch `protobuf-v3.0.2`.
 
 ```
 cd ~/workspace/protobuf/src
 ctags -R *
 ``` 
 
-2. From the same directory, open `add_person.cc`.
+2. From the same directory, open `add_person.cc` with `vim`:
 
 ```
 vim ../examples/add_person.cc
 ```
 
-If you switch to another directory (e.g., `protobuf/examples`) and open `add_person.cc`, the tag search commands we're going to use wouldn't work. You need to open a file with `vim` or invoke `vim -t <tag>` from the directory containing the `tags` file.
+Note that if you switch to another directory (e.g., `protobuf/examples`) and open `add_person.cc`, the tag-search commands we're going to use wouldn't work. You need to open a file with `vim` or invoke `vim -t <tag>` from the directory containing the `tags` file.
 
-3. You should already be familiar with how this program works. If not, revisit the <a href="https://developers.google.com/protocol-buffers/docs/cpptutorial">Protocol Buffer Basics: C++</a> tutorial. We want to focus on the code that's involved in serializing messages. Fortunately, there's only one line in the entire file that we care about: line 85. 
+3. You should already be familiar with what `add_person.cc` does and how it's used. If not, revisit the <a href="https://developers.google.com/protocol-buffers/docs/cpptutorial">Protocol Buffer Basics: C++</a> tutorial. We want to focus on the code that's involved in serializing messages. Fortunately, there's only one line in the entire program that we care about: **line 85**. Navigate to this line and place your cursor anywhere over the identifier `SerializeToOstream()` (not `address_book` or `(&output)`). Note, I use the notation `FooBar()` to refer to functions or methods, purposely excluding any parameter list to avoid clutter. (Pro tip: try entering the command `:85` in `vim`.)
 
 ![alt text](resources/images/SerializeToOstream.png)
 
-Navigate to this line and place your cursor anywhere over the identifier `SerializeToOstream()` (not `address_book` or `(&output)`). Pro tip: try entering the command `:85` in `vim`.
-
-4. With the cursor still over `SerializeToOstream()`, enter the command `ctrl + ]`. This takes us to line 175 of the file `google/protobuf/message.cc` which is where we find this method's definition!
+4. With the cursor over `SerializeToOstream()`, enter the command `ctrl + ]`. This takes us to line 175 of the file `google/protobuf/message.cc` which is where we find this method's definition!
 
 ![alt text](resources/images/ctags-1.png)
 
-In only our first jump (and use of ctags), we immediately learn a few things:
-- `SerializeToOstream()` is a method of the `Message` class (i.e., the <a href="http://www.cplusplus.com/doc/tutorial/inheritance/">base class</a> that `AddressBook` is derived from and whose accessible members it inherits)
-- Since `SerializeToOstream()` belongs to the `Message` class, this code constitutes the Protocol Buffer runtime library, not the compiler-generated code
-- `SerializeToOstream` is simply a wrapper function around `SerializeToZeroCopyStream()`, which we'll jump to next
+In only our first use of ctags, we immediately learn a few things:
+- `SerializeToOstream()` belongs to the `Message` class (i.e., the <a href="http://www.cplusplus.com/doc/tutorial/inheritance/">base class</a> that `AddressBook` is derived from and whose accessible members it inherits)
+- Because `SerializeToOstream()` is a method of the `Message` class, this code constitutes the Protocol Buffer runtime library, not the compiler-generated code
+- `SerializeToOstream()` is simply a wrapper function around `SerializeToZeroCopyStream()`, which we'll jump to next
 
 5. Place the cursor anywhere over `SerializeToZeroCopyStream()` on line 178, and enter `ctrl + ]` once more. This takes us to line 272 of the file `google/protobuf/message_lite.cc`.
 
 ![alt text](resources/images/ctags-2.png)
 
-Alright, things are starting to get interesting. We see that `SerializeToZeroCopyStream()` is a method of the `MessageLite` class, which is actually the base class `Message` is derived from (as seen <a href="https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.message#Message">here</a>).
+Alright, things are starting to get interesting. We see that `SerializeToZeroCopyStream()` belongs to the `MessageLite` class - the base class that `Message` is derived from (see here in the <a href="https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.message#Message">C++ API</a>).
 
 #### Stepping through add_person (gdb)
 
