@@ -652,9 +652,9 @@ Lo and behold, we see 49 bytes of data, starting with `0a` and ending in `38`. I
 
 #### Stepping through add_person.cc (vim + ctags)
 
-In this section, we'll use `vim` and `ctags` to take a closer look at `add_person.cc` and dive into the code responsible for *Protocol Buffer serialization*. If you've never used it before, <a href="http://ctags.sourceforge.net/">ctags</a> is the holy grail of navigating large software projects that contain several source files. Used in conjunction with <a href="http://www.vim.org/">vim</a>, this creates a powerful, GUI-free method of understanding how an application's source code is structured. This is particularly useful when working with embedded systems or on a remote computer via ssh where a terminal may be your only interface (i.e., you can't use more powerful <a href="https://en.wikipedia.org/wiki/Integrated_development_environment">IDEs</a> like <a href="https://www.eclipse.org/">Eclipse</a>, <a href="https://atom.io/">Atom</a>, etc.).
+In this section, we'll use `vim` and `ctags` to take a closer look at `add_person.cc` and dive into the code responsible for *Protocol Buffer serialization*. If you've never used it before, <a href="http://ctags.sourceforge.net/">ctags</a> is the holy grail of navigating large software projects that contain several source files. Used in conjunction with <a href="http://www.vim.org/">vim</a>, this creates a powerful, GUI-free method of understanding how an application's source code is structured. This is particularly useful when working with embedded systems or accessing a remote computer via ssh where a terminal may be your only interface (i.e., you can't use more powerful <a href="https://en.wikipedia.org/wiki/Integrated_development_environment">IDEs</a> like <a href="https://www.eclipse.org/">Eclipse</a>, <a href="https://atom.io/">Atom</a>, etc.).
 
-If you've never used `vim` before, take some time to become familiar with the keyboard commands. In fact, a keyboard is your only way of interacting with `vim`. Go through some tutorial to learn the basics, <a href="https://www.howtoforge.com/vim-basics">perhaps this one</a>. Here's the <a href="https://courses.cs.washington.edu/courses/cse451/10au/tutorials/tutorial_ctags.html">tutorial</a> I used to learn how to use `ctags` with `vim`. Finally, here's my personal cheat sheet for `vim` navigation and `ctags`-specific commands:
+If you've never used `vim` before, take some time to become familiar with the keyboard commands. In fact, a keyboard is your only way of interacting with `vim`. Go through some tutorial that covers the basics, <a href="https://www.howtoforge.com/vim-basics">perhaps this one</a>. Here's the <a href="https://courses.cs.washington.edu/courses/cse451/10au/tutorials/tutorial_ctags.html">tutorial</a> I used to learn how to use `ctags` with `vim`. Finally, here's my personal cheat sheet for `vim` navigation and `ctags`-specific commands:
 
 ![alt text](resources/images/vim.jpg)
 
@@ -704,15 +704,22 @@ If you switch to another directory (e.g., `protobuf/examples`) and open `add_per
 
 ![alt text](resources/images/SerializeToOstream.png)
 
-Navigate to this line and place your cursor somewhere over the identifier `SerializeToOstream` (not `address_book` or `(&output)`). Pro tip: try entering the command `:85` in `vim`.
+Navigate to this line and place your cursor anywhere over the identifier `SerializeToOstream()` (not `address_book` or `(&output)`). Pro tip: try entering the command `:85` in `vim`.
 
-4. With the cursor still over the identifier `SerializeToOstream`, enter the command `ctrl+]`. This will take us to line 175 of the file `google/protobuf/message.cc` which is where we find this method's definition!
+4. With the cursor still over `SerializeToOstream()`, enter the command `ctrl + ]`. This takes us to line 175 of the file `google/protobuf/message.cc` which is where we find this method's definition!
 
-![alt text](resources/images/first-jump.png)
+![alt text](resources/images/ctags-1.png)
 
-Here we see that `SerializeToOstream` is a member of the `Message` class.
+In only our first jump (and use of ctags), we immediately learn a few things:
+- `SerializeToOstream()` is a method of the `Message` class (i.e., the <a href="http://www.cplusplus.com/doc/tutorial/inheritance/">base class</a> that `AddressBook` is derived from and whose accessible members it inherits)
+- Since `SerializeToOstream()` belongs to the `Message` class, this code constitutes the Protocol Buffer runtime library, not the compiler-generated code
+- `SerializeToOstream` is simply a wrapper function around `SerializeToZeroCopyStream()`, which we'll jump to next
 
+5. Place the cursor anywhere over `SerializeToZeroCopyStream()` on line 178, and enter `ctrl + ]` once more. This takes us to line 272 of the file `google/protobuf/message_lite.cc`.
 
+![alt text](resources/images/ctags-2.png)
+
+Alright, things are starting to get interesting. We see that `SerializeToZeroCopyStream()` is a method of the `MessageLite` class, which is actually the base class `Message` is derived from (as seen <a href="https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.message#Message">here</a>).
 
 #### Stepping through add_person (gdb)
 
