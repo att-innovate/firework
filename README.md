@@ -473,7 +473,7 @@ Recall that base 128 varints use the <a href="https://en.wikipedia.org/wiki/Most
 
 Turning back to our example, since the value of our key (**10**) is less than **128**, we append a `0b0` to the least significant 7 bits giving us our 1-byte varint encoded key, `0a` in hex. (Note, I'll use hex notation for all encoded data from this point forward.)
 
-Next we encode the field's value, an embedded `Person` message. For length-delimited fields, encoded values consist of two parts: a varint encoded *length* followed by the specified number of *bytes of data*. The length in this case corresponds to the size of the encoded `Person` message. As I'll demonstrate later, the compiler-generated code caches the sizes of populated fields of a message as an optimization during serialization, so I'll just tell you that the `Person` message with the values above results in 47 bytes of encoded data. You can confirm this number after we've serialized all its fields. 
+Next we encode the field's value, an embedded `Person` message. For length-delimited fields, encoded values consist of two parts: a varint encoded *length* followed by the specified number of *bytes of data*. The length in this case corresponds to the size of the encoded `Person` message. As I'll demonstrate later, the compiler-generated code provides methods for calculating and caching the sizes of populated messages as an optimization during serialization, so I'll just tell you that the `Person` message with the values above results in 47 bytes of encoded data. You can confirm this number after we've serialized all its fields. 
 
 Since **47** is less than **128**, our varint encoded length is simply `2f`. The next 47 bytes of the length-delimited value consist of the encoded fields (keys and values) of the embedded `Person` message in ascending field number.
 
@@ -703,20 +703,36 @@ Note that if you switch to another directory (e.g., `protobuf/examples`) and ope
 
 ![alt text](resources/images/SerializeToOstream.png)
 
-4. With the cursor over `SerializeToOstream()`, enter the command `ctrl + ]`. This takes us to line 175 of the file `google/protobuf/message.cc` which is where we find this method's definition!
+4. With the cursor over `SerializeToOstream()`, enter the command `ctrl + ]` to jump to its definition. This takes us to **line 175** of the file `google/protobuf/message.cc`:
 
 ![alt text](resources/images/ctags-1.png)
 
-In only our first use of ctags, we immediately learn a few things:
-- `SerializeToOstream()` belongs to the `Message` class (i.e., the <a href="http://www.cplusplus.com/doc/tutorial/inheritance/">base class</a> that `AddressBook` is derived from and whose accessible members it inherits)
-- Because `SerializeToOstream()` is a method of the `Message` class, this code constitutes the Protocol Buffer runtime library, not the compiler-generated code
+This marks our first use of `ctags`, and we immediately learn a few things:
+- `SerializeToOstream()` is a method of the `Message` class, not `AddressBook` (i.e., the <a href="http://www.cplusplus.com/doc/tutorial/inheritance/">base class</a> that `AddressBook` is derived from and whose accessible members it inherits)
+- Because `SerializeToOstream()` belongs to `Message`, we're looking at code that constitutes the *Protocol Buffer runtime library*, not *compiler-generated code*
 - `SerializeToOstream()` is simply a wrapper function around `SerializeToZeroCopyStream()`, which we'll jump to next
 
-5. Place the cursor anywhere over `SerializeToZeroCopyStream()` on line 178, and enter `ctrl + ]` once more. This takes us to line 272 of the file `google/protobuf/message_lite.cc`.
+5. Place the cursor anywhere over `SerializeToZeroCopyStream()` on **line 178**, and enter `ctrl + ]` once more. This takes us to **line 272** of the file `google/protobuf/message_lite.cc`:
 
 ![alt text](resources/images/ctags-2.png)
 
-Alright, things are starting to get interesting. We see that `SerializeToZeroCopyStream()` belongs to the `MessageLite` class - the base class that `Message` is derived from (see here in the <a href="https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.message#Message">C++ API</a>).
+Alright, things are starting to get interesting. We see that `SerializeToZeroCopyStream()` is a method of the `MessageLite` class - the base class that `Message` is derived from (see here in the <a href="https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.message#Message">C++ API</a>). This method creates a `CodedOutputStream` object and in turn calls `SerializeToCodedStream()`.
+
+6. Place your cursor anywhere over `SerializeToCodedStream()` and enter `ctrl + ]`. This takes us to **line 234** of the same file. This method simply checks that the message has been initialized (i.e., all required fields have been assigned values) and calls `SerializePartialToCodedStream()`. Place your cursor over this method and enter `ctrl + ]` once more. We see that it's defined right below starting on **line 239**:
+
+![alt text](resources/images/ctags-3.png)
+
+`SerializePartialToCodedStream()` is the first method with relevant content, and it's actually central to message serialization. It's in this method where the Protocol Buffer runtime library finally interacts with the compiler-generated code. As you may recall, I previously mentioned that the compiler-generated code provides methods for calculating and caching the sizes of populated messages as an optimization during serialization. Well, on **line 241** we call one such method, `ByteSize()`, of the `AddressBook` class. If you try jumping to `ByteSize()`'s definition with `ctrl + ]` like we've done so far, you'll see that `vim` + `ctags` yields several hundred options. None of these options are actually useful; this makes sense since we only created an index (`tags` file) of the runtime library's source code, and I just said `ByteSize()` comes from the compiler-generated code. It took me quite some time to realize that not only is `ByteSize()` part of the compiler-generated code, it's also defined multiple times: once for each message in your `.proto` file. Since back in `add_person.cc` it was an `AddressBook` object that invoked `SerializeToOstream()`, it's `AddressBook::ByteSize()` that's invoked here which is defined on **line 1174** of the file, `protobuf/examples/addressbook.pb.cc`.
+
+After the message's size is cached, `SerializePartialToCodedStream()` accesses the `CodedOutputStream` object's buffer, determines if it has enough room for the serialized message, and if so, calls `SerializeWithCachedSizesToArray()` to write the message to it directly. Otherwise, it calls `SerializeWithCachedSizes()` and passes it the entire `CodedOutputStream` object to write the message. Both methods perform the same function, but the first is faster. Like `ByteSize()`, the methods `SerializeWithCachedSizesToArray()` and `SerializeWithCachedSizes()` also come from the compiler-generated code and have multiple definitions, one for each message in the `.proto` file.
+
+I'll demonstrate in the next section how `gdb` fixes this deficiency of `vim` + `ctags` and makes it very easy to identify the exact codepaths taken on each function or method invocation.
+
+7. Now let's step into `SerializeWithCachedSizesToArray()` to learn about the compiler-generated code's role in serializing messages.
+- ctrl + ] on `SerializeWithCachedSizesToArray()`
+- Press `f` until you've reached the bottom
+- jump to 69 --> takes you to `google/protobuf/message_lite.h` line **257** and calls `InternalSerializeWithCachedSizesToArray()`
+- Tell them we'll look at `Person::InternalSerializeWithCachedSizesToArray()` because it's what `AddressBook::Person::InternalSerializeWithCachedSizesToArray()` calls for each `Person` object anyway
 
 #### Stepping through add_person (gdb)
 
