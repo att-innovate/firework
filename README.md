@@ -789,7 +789,7 @@ In this method, we see that the path taken next depends on the sign of the int32
 
 ![alt text](resources/images/ctags-11.png)
 
-And with this my friend, I'm proud to say we've FINALLY reached what we've been looking for: the method that actually performs varint encoding. Take some time to go through the code and confirm it implements the varint-encoding algorithm I described in English the section, [Overview of Protocol Buffers and message serialization](README.md#Overview of Protocol Buffers and message serialization).
+And with this my friend, I'm proud to say we've FINALLY reached what we've been looking for: the method that actually performs varint encoding. Take some time to go through the code and confirm it implements the varint-encoding algorithm I described in English the section, [Overview of Protocol Buffers and message serialization](README.md#overview-of-protocol-buffers-and-message-serialization).
 
 - talk about all other fields leading to `WireFormatLite::Write*()` which map to `CodedOutputStream::Write*()` and how `CodedOutputStraem` is the class that encapsulates all the encoding logic, which we'll later replace :D 
 - say next we'll use `gdb` to show how to straightforward-ly navigate down this code path... 
