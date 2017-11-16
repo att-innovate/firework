@@ -654,7 +654,7 @@ Lo and behold, we see 49 bytes of data, starting with `0a` and ending in `38`. I
 
 In this section, we'll use `vim` and `ctags` to take a closer look at `add_person.cc` and dive into the code responsible for *Protocol Buffer serialization*. If you've never used it before, <a href="http://ctags.sourceforge.net/">ctags</a> is the holy grail of navigating large software projects that contain several source files. Used in conjunction with <a href="http://www.vim.org/">vim</a>, this creates a powerful, GUI-free method of understanding how an application's source code is structured. This is particularly useful when working with embedded systems or accessing a remote computer via ssh where a terminal may be your only interface (i.e., you can't use more powerful <a href="https://en.wikipedia.org/wiki/Integrated_development_environment">IDEs</a> like <a href="https://www.eclipse.org/">Eclipse</a>, <a href="https://atom.io/">Atom</a>, etc.).
 
-If you've never used `vim` before, take some time to become familiar with the keyboard commands. In fact, a keyboard is your only way of interacting with `vim`. Find a tutorial that covers the various modes and basic navigation, perhaps <a href="https://www.howtoforge.com/vim-basics">this</a> is a good starting point. Once you've got the basics down, here's the <a href="https://courses.cs.washington.edu/courses/cse451/10au/tutorials/tutorial_ctags.html">tutorial</a> I used to learn how to use `ctags` with `vim`. It may be difficult to internalize all the relevant commands in such a little time; a useful thing to do is to make your own cheat sheet of commands frequently used or that you're trying to learn and keep it somewhere accessible. I placed Post-it notes on my monitor for basic `vim` navigation and `ctags`-specific commands:
+If you've never used `vim` before, take some time to become familiar with the keyboard commands. In fact, a keyboard is your only way of interacting with `vim`. Find a tutorial that covers the various modes of operation and basic navigation; perhaps <a href="https://www.howtoforge.com/vim-basics">this</a> is a good starting point. Once you've got the basics down, here's the <a href="https://courses.cs.washington.edu/courses/cse451/10au/tutorials/tutorial_ctags.html">tutorial</a> I used to learn how to use `ctags` with `vim`. It may be difficult to internalize all the relevant commands in such little time; a useful thing to do is to make your own cheat sheet of commands frequently used or that you're trying to learn and keep it somewhere accessible. I placed Post-it notes on my monitor for basic `vim` navigation and `ctags`-specific commands:
 
 ![alt text](resources/images/vim.jpg)
 
@@ -684,7 +684,7 @@ Command | What it does
 
 Without further ado, let's dive into `add_person.cc` and learn how messages are serialized.
 
-1. In the `protobuf/src` directory (i.e., the root directory containing source code of the Protocol Buffer runtime library), let's use `ctags` to generate an index of all <a href="http://en.cppreference.com/w/cpp/language/identifiers">identifiers</a> used in the source code. This creates a new `tags` file which maps identifiers to their containing source file(s). Note, we should still be on branch `protobuf-v3.0.2`.
+1. In the `protobuf/src` directory (i.e., the root directory containing the Protocol Buffer runtime library's source code), let's use `ctags` to generate an index of all <a href="http://en.cppreference.com/w/cpp/language/identifiers">identifiers</a> used in the source code. This creates a new `tags` file which maps identifiers to their containing source file(s). Note, we should still be on branch `protobuf-v3.0.2`.
 
 ```
 cd ~/workspace/protobuf/src
@@ -703,7 +703,7 @@ Note that if you switch to another directory (e.g., `protobuf/examples`) and ope
 
 ![alt text](resources/images/SerializeToOstream.png)
 
-4. With the cursor over `SerializeToOstream()`, enter the command `ctrl + ]` to jump to its definition. This takes us to **line 175** of the file `google/protobuf/message.cc`:
+4. With the cursor over `SerializeToOstream()`, enter the command `ctrl + ]` to jump to its definition. This takes us to **line 175** of the file, `google/protobuf/message.cc`:
 
 ![alt text](resources/images/ctags-1.png)
 
@@ -712,27 +712,87 @@ This marks our first use of `ctags`, and we immediately learn a few things:
 - Because `SerializeToOstream()` belongs to `Message`, we're looking at code that constitutes the *Protocol Buffer runtime library*, not *compiler-generated code*
 - `SerializeToOstream()` is simply a wrapper function around `SerializeToZeroCopyStream()`, which we'll jump to next
 
-5. Place the cursor anywhere over `SerializeToZeroCopyStream()` on **line 178**, and enter `ctrl + ]` once more. This takes us to **line 272** of the file `google/protobuf/message_lite.cc`:
+5. Place the cursor anywhere over `SerializeToZeroCopyStream()` on **line 178**, and enter `ctrl + ]` once more. This takes us to **line 272** of the file, `google/protobuf/message_lite.cc`:
 
 ![alt text](resources/images/ctags-2.png)
 
-Alright, things are starting to get interesting. We see that `SerializeToZeroCopyStream()` is a method of the `MessageLite` class - the base class that `Message` is derived from (see here in the <a href="https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.message#Message">C++ API</a>). This method creates a `CodedOutputStream` object and in turn calls `SerializeToCodedStream()`.
+Alright, things are starting to get interesting. We see that `SerializeToZeroCopyStream()` is a method of the `MessageLite` class - the base class that `Message` is derived from (as seen here in the <a href="https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.message#Message">C++ API</a>). This method instantiates a `CodedOutputStream` object and in turn calls `SerializeToCodedStream()`.
 
-6. Place your cursor anywhere over `SerializeToCodedStream()` and enter `ctrl + ]`. This takes us to **line 234** of the same file. This method simply checks that the message has been initialized (i.e., all required fields have been assigned values) and calls `SerializePartialToCodedStream()`. Place your cursor over this method and enter `ctrl + ]` once more. We see that it's defined right below starting on **line 239**:
+6. Place your cursor anywhere over `SerializeToCodedStream()` and enter `ctrl + ]`. This takes us to **line 234** of the same file. This method simply checks that the message object has been initialized (i.e., all required fields have been assigned values) and calls `SerializePartialToCodedStream()`. Place your cursor over this method and enter `ctrl + ]` once more. We see that it's defined right below starting on **line 239**:
 
 ![alt text](resources/images/ctags-3.png)
 
-`SerializePartialToCodedStream()` is the first method with relevant content, and it's actually central to message serialization. It's in this method where the Protocol Buffer runtime library finally interacts with the compiler-generated code. As you may recall, I previously mentioned that the compiler-generated code provides methods for calculating and caching the sizes of populated messages as an optimization during serialization. Well, on **line 241** we call one such method, `ByteSize()`, of the `AddressBook` class. If you try jumping to `ByteSize()`'s definition with `ctrl + ]` like we've done so far, you'll see that `vim` + `ctags` yields several hundred options. None of these options are actually useful; this makes sense since we only created an index (`tags` file) of the runtime library's source code, and I just said `ByteSize()` comes from the compiler-generated code. It took me quite some time to realize that not only is `ByteSize()` part of the compiler-generated code, it's also defined multiple times: once for each message in your `.proto` file. Since back in `add_person.cc` it was an `AddressBook` object that invoked `SerializeToOstream()`, it's `AddressBook::ByteSize()` that's invoked here which is defined on **line 1174** of the file, `protobuf/examples/addressbook.pb.cc`.
+`SerializePartialToCodedStream()` is the first method with relevant content, and it's actually central to message serialization. It's in this method where the Protocol Buffer runtime library finally interacts with the compiler-generated code. As you may recall, I previously mentioned that the compiler-generated code provides methods for calculating and caching the sizes of populated messages as an optimization during serialization. Well, on **line 241** we call one such method, `ByteSize()`, of the `AddressBook` class. If you try jumping to `ByteSize()`'s definition with `ctrl + ]` like we've done so far, you'll see that `vim` + `ctags` yields several hundred options, and none of these options are actually useful. This makes sense since we only created an index (i.e., `tags` file) of the runtime library's source code, and I just said `ByteSize()` comes from the compiler-generated code. It took me quite some time to realize that not only does `ByteSize()` come from the compiler-generated code, it's also defined multiple times - once for each message in your `.proto` file. Since back in `add_person.cc` it was an `AddressBook` object that invoked `SerializeToOstream()`, it's `AddressBook::ByteSize()` that's invoked here which is defined on **line 1174** of the file, `protobuf/examples/addressbook.pb.cc`.
 
-After the message's size is cached, `SerializePartialToCodedStream()` accesses the `CodedOutputStream` object's buffer, determines if it has enough room for the serialized message, and if so, calls `SerializeWithCachedSizesToArray()` to write the message to it directly. Otherwise, it calls `SerializeWithCachedSizes()` and passes it the entire `CodedOutputStream` object to write the message. Both methods perform the same function, but the first is faster. Like `ByteSize()`, the methods `SerializeWithCachedSizesToArray()` and `SerializeWithCachedSizes()` also come from the compiler-generated code and have multiple definitions, one for each message in the `.proto` file.
+After the message object's size is cached, `SerializePartialToCodedStream()` then accesses the `CodedOutputStream` object's buffer, determines if it has enough room for the serialized message, and if so, calls `SerializeWithCachedSizesToArray()` to write the message to it directly. Otherwise, it calls `SerializeWithCachedSizes()` and passes it the entire `CodedOutputStream` object to write the message. Both methods perform the same function, but the former is optimized. Like `ByteSize()`, the methods `SerializeWithCachedSizesToArray()` and `SerializeWithCachedSizes()` also are part of the compiler-generated code and have multiple definitions, one for each message in the `.proto` file.
 
 I'll demonstrate in the next section how `gdb` fixes this deficiency of `vim` + `ctags` and makes it very easy to identify the exact codepaths taken on each function or method invocation.
 
-7. Now let's step into `SerializeWithCachedSizesToArray()` to learn about the compiler-generated code's role in serializing messages.
-- ctrl + ] on `SerializeWithCachedSizesToArray()`
-- Press `f` until you've reached the bottom
-- jump to 69 --> takes you to `google/protobuf/message_lite.h` line **257** and calls `InternalSerializeWithCachedSizesToArray()`
-- Tell them we'll look at `Person::InternalSerializeWithCachedSizesToArray()` because it's what `AddressBook::Person::InternalSerializeWithCachedSizesToArray()` calls for each `Person` object anyway
+7. Now, let's step into `SerializeWithCachedSizesToArray()` and begin learning about the compiler-generated code's role in serializing messages. As mentioned, this method is defined once for each message; we'll look at the `Person` class' since it's more informative than the `AddressBook`'s or `PhoneNumber`'s definition. For completeness, place your cursor over `SerializeWithCachedSizesToArray()` on **line 250** and enter `ctrl + ]`. This displays several options; enter `f` repeatedly until you've reached option `69`:
+
+![alt text](resources/images/ctags-4.png)
+
+This is the source file we're interested in, containing the definition of this member of the `MessageLite` class. Continue entering `f` until you've reached the bottom and are prompted to enter the number of the entry you wish to jump to:
+
+![alt text](resources/images/ctags-5.png)
+
+Enter `69` and press `enter`. This takes us to **line 257** of the file, `google/protobuf/message_lite.h`: 
+
+![alt text](resources/images/ctags-6.png)
+
+Ah-ha! Here we see that this method is a <a href="http://www.cplusplus.com/doc/tutorial/polymorphism/">virtual member</a> of the `MessageLite` class. This means derived classes can redefine this method, so hopefully now you believe me when I say this is where `AddressBook` takes over. Instead of redefining this method, however, `AddressBook` defines `InternalSerializeWithCachedSizesToArray()` which is called on **line 258** and what we'll jump into next.
+
+8. Enter `:q` to exit vim. Still in `~/workspace/protobuf/src`, open the file, `../examples/addressbook.pb.cc`. This is the source file the compiler (i.e., `protoc`) spits out that defines the three messages, `AddressBook`, `Person`, and `PhoneNumber` and is where we'll find `Person::InternalSerializeWithCachedSizesToArray()`.
+
+9. Once open, let's display line numbers and search for the method.
+
+```
+:set nu
+/ Person::InternalSerializeWithCachedSizesToArray
+```
+
+This brings us to the method's defintion on **line 677**:
+
+![alt text](resources/images/ctags-7.png)
+
+Don't let Google's extensive use of <a href="http://www.cplusplus.com/doc/oldtutorial/namespaces/">namespaces</a> and the <a href="https://docs.microsoft.com/en-us/cpp/cpp/scope-resolution-operator">scope resolution operator</a> frighten you; this method is actually very straightforward. Recall that the `Person` message has four fields as defined in the `.proto` file, copied below for convenience:
+
+![alt text](resources/images/person-message.png)
+
+In the order of ascending field number, `Person::InternalSerializeWithCachedSizesToArray()`, calls a `WireFormatLite::Write*ToArray()` method for each field, where the particular `Write*ToArray()` method corresponds to the field's type:
+- `WireFormatLite::WriteStringToArray()` for `name`
+- `WireFormatLite::WriteInt32ToArray()` for `id`
+- `WireFormatLite::WriteStringToArray()` for `email`
+- `WireFormatLite::InternalWriteMessageNoVirtualToArray()` for `phones`
+
+`WireFormatLite` is a class that's internal to the Protocol Buffer runtime library, and its `Write*ToArray()` methods are used to serialize individual fields of a message and write them to an output buffer. As you can see, the compiler-generated code specifies *the order in which its fields are written* and the runtime library *performs the actual writing*. Let's see how the `id` field is serialized by jumping into `WireFormatLite::WriteInt32ToArray()`.
+
+10. Place your cursor over the identifier `WriteInt32ToArray()` and enter `ctrl + ]`. This takes us to **line 672** of the file, `google/protobuf/wire_format_lite_inl.h`: 
+
+![alt text](resources/images/ctags-8.png)
+
+We see that this method calls two other `WireFormatLite` methods: `WriteTagToArray()` and `WriteInt32NoTagToArray()`. This should be intuitive since we previously learned that a field is written with tag first followed by its encoded value. Let's look at `WriteInt32NoTagToArray()` next.
+
+11. Place your cursor over the identifier `WriteInt32NoTagToArray()` and enter `ctrl + ]`. This takes us to **line 608** of the same file:
+
+![alt text](resources/images/ctags-9.png)
+
+We see that this method is simply a wrapper function that calls the `CodedOutputStream` class' `WriteVarint32SignExtendedToArray()` method. From the <a href="https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.io.coded_stream#CodedOutputStream">C++ API</a>, this class " encodes and writes binary data which is composed of varint- encoded integers and fixed-width pieces". This sounds very promising; let's jump into this method next. If this call stack is compared to the movie Inception, I think time is moving backwards at this point.
+
+12. Place your cursor over the identifier `WriteVarint32SignExtendedToArray()` and enter `ctrl + ]`. This takes us to **line 1164** of the file, `google/protobuf/io/coded_stream.h`:
+
+![alt text](resources/images/ctags-10.png)
+
+In this method, we see that the path taken next depends on the sign of the int32 field's value. Let's assume it's positive for now and go down the `WriteVarint32ToArray()` rabbit hole. Proceed with caution; in this next jump we may actually create a black hole.
+
+13. Place your cursor over the identifier `WriteVarint32ToArray()` and enter `ctrl + ]`. This takes us to **line 1145** of the same file:
+
+![alt text](resources/images/ctags-11.png)
+
+And with this my friend, I'm proud to say we've FINALLY reached what we've been looking for: the method that actually performs varint encoding. Take some time to go through the code and confirm it implements the varint-encoding algorithm I described in English the section, [Overview of Protocol Buffers and message serialization](README.md#Overview of Protocol Buffers and message serialization).
+
+- talk about all other fields leading to `WireFormatLite::Write*()` which map to `CodedOutputStream::Write*()` and how `CodedOutputStraem` is the class that encapsulates all the encoding logic, which we'll later replace :D 
+- say next we'll use `gdb` to show how to straightforward-ly navigate down this code path... 
 
 #### Stepping through add_person (gdb)
 
