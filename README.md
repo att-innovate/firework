@@ -1,4 +1,5 @@
 ## Preface
+
 So, you want to build your very own hardware (HW) accelerator, or more precisely, HW-accelerated system. Perhaps the desire stems from bottlenecks in software you routinely use, and the frequent coffee breaks are beginning to attract dubious looks from your coworkers. Another possibility is that today, your curiosity has exceeded a certain threshold, and satisfaction only comes in the form of a deep intuition for how software is executed by the underlying hardware in a given system. My last conjecture is that you finally got your hands on an FPGA-wielding embedded system and wish to learn more about which system-level optimization knobs are at your disposal. Regardless of the reason, you're here, and I hope this tutorial fulfills your needs as either a starting point for further extension of this work, a template for your own hardware accelerator project, or even as fundamental training. For me, I'm just happy knowing that 15 months of work has helped at least one other individual.
 
 In this tutorial, my goal is to cover the development of a complete system: from designing a hardware accelerator at the <a href="https://en.wikipedia.org/wiki/Register-transfer_level">RTL level</a> (implemented and running in an <a href="https://en.wikipedia.org/wiki/Field-programmable_gate_array">FPGA</a>) to system integration (with an ARM CPU, system memory, etc.) to writing a device driver (which provides a kernel-level interface to the newly developed hardware) and ultimately, to modifications necessary in the <a href="https://en.wikipedia.org/wiki/User_space">user space</a> application. While the knowledge gained and experience acquired will be extremely rewarding, undertaking a project of this size requires commitment, perseverance, and the ability to debug without the assistance of <a href="https://stackoverflow.com/tour">Stack Overflow</a> or similar forums. I emphasize the last requirement (and it's a good skill to have in general) for two reasons:
@@ -8,6 +9,7 @@ In this tutorial, my goal is to cover the development of a complete system: from
 Finally, I'd like to note that I don't claim to be an expert hardware accelerator/system designer *nor that my design is optimal*; the scope of this project alone is enough to lead to several outcomes (and getting the thing to work was a victory as far as I'm concerned). That's the beauty of open source; several minds are greater than one, and I hope that collaboration and the collective knowledge will lead to new and interesting ideas and perhaps better designs. I welcome any and all feedback and recommendations for improvement!
 
 ## Introduction
+
 **Firework** is an *open source HW-accelerated system design* for offloading <a href="https://developers.google.com/protocol-buffers/">Protocol Buffer</a> serialization from the system's CPU. (That was a loaded sentence, I know. If I did my job correctly, by the end of this tutorial it'll make much more sense.) Generally speaking, Firework demonstrates the process of identifying components of software as candidates for hardware acceleration, designing hardware to efficiently perform (and replace) that computation, and building a system that deviates from the traditional paradigm of executing instructions sequentially on a CPU. Before I continue, it's necessary to give the term **system** a precise definition. In the context of hardware acceleration, I define a system as the combination of hardware and software that together perform a specific function. Therefore, the goal of this and any other hardware accelerator project is to improve a system's performance by co-optimizing the hardware and software that comprise that system. It's also worth nothing that the hardware community distinguishes between *hardware acceleration* and *offloading*, although the precise difference is a bit ambiguous. I classify Firework as an attempt to perform the latter since, in my design, I move the computation involved in Protocol Buffer serialization from the system's CPU to a custom processor implemented in an FPGA.
 
 One of the goals of Firework was to target software that's deployed across a large-scale, production datacenter. That way, the developed HW-accelerated system could theoretically replace a generic server (or servers) supporting that application. (This work is part of a larger effort to explore forward-looking hardware in the datacenter.) Naturally, the first step was to identify such a candidate software applicaiton. Fortunately, I came across the paper <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44271.pdf">Profiling a warehouse-scale computer</a> whose authors essentially performed the search for me and provided motivation as well; in a three-year study of the workloads running across Google's datacenters, they were able to identify commonly used building blocks (i.e., low-level software) which they've coined the *datacenter tax*. This datacenter tax *"can comprise nearly 30% of cycles across jobs running in the fleet, which makes its constituents prime candidates for hardware specialization in future server systems-on-chips"*. Perfect! The following figure pulled from the paper shows these constituents and their individual contributions to the datacenter tax:
@@ -21,6 +23,7 @@ I chose the <a href="https://www.altera.com/products/boards_and_kits/dev-kits/al
 Firework consists of six main components that, together, implement a HW-accelerated system and provide a means of measuring its performance. Each of these components listed below have a brief description and link to their repository.
 
 #### Firework's six main components
+
 - [protobuf-serializer](protobuf-serializer/): the RTL design of a *4-stage pipelined, parallel processor* that performs Protocol Buffer serialization, written in Verilog, and packaged as a Quartus Prime project. The nomenclature stems from four pipeline stages in the design, two parallel datapaths for processing incoming varint and raw data, and a controller that consists of seven independent <a href="https://en.wikipedia.org/wiki/Finite-state_machine">finite-state machines</a> (FSMs). Also provided are several <a href="http://www.asic-world.com/verilog/art_testbench_writing1.html">testbenches</a> to verify the logic of each FSM as well as the processor as a whole.
 - [a10-soc-devkit-ghrd](a10-soc-devkit-ghrd): the Arria 10 SoC <a href="https://rocketboards.org/foswiki/Documentation/A10GSRD151GHRDOverview">Golden Hardware Reference Design (GHRD)</a> modified with the protobuf-serializer processor added as a memory-mapped FPGA peripheral. This too is packaged as a Quartus Prime project (the main SoC subsystem is a Qsys component, more on that later).
 - <a href="https://github.com/altera-opensource/linux-socfpga">linux-socfpga</a>: the Linux kernel built for the Arria 10 SoC platform, developed and maintained by Altera. We'll configure and compile the kernel from source to enable certain CONFIG options (e.g., CONFIG_KALLSYMS which provides kernel-level symbols) needed to profile the system.
@@ -31,6 +34,7 @@ Firework consists of six main components that, together, implement a HW-accelera
 Although Firework covers the design of a hardware accelerator specifically for Protocol Buffer serialization using an Arria 10 SoC Development Kit, I was able to generalize the design process. The following sequence of high-level steps *are general enough to apply to any hardware accelerator project*, and the remainder of this tutorial provides in-depth coverage of each of these steps as they pertain to Firework.
 
 #### High-level steps in building a HW-accelerated system
+
 1. [Choosing a development board](README.md#1-choosing-a-development-board)
 2. [Setting up your development environment (Installing an OS, VNC server/client, EDA tools, licensing)](README.md#2-setting-up-your-development-environment-installing-an-os-vnc-serverclient-eda-tools-licensing)
 3. [Understanding the software you wish to accelerate](README.md#3-understanding-the-software-you-wish-to-accelerate)
@@ -44,9 +48,11 @@ Although Firework covers the design of a hardware accelerator specifically for P
 As a final note, this work can be quite challenging. It's essential to figure out a routine that works for you and knowing how to maintain a mental capacity for creativity over long periods of time, as this work is largely an art. For me, taking breaks when I feel the processor that is my brain overheating definitely helps. Another source of longevity are the inspiring words of world-renowned pop star <a href="https://www.youtube.com/watch?v=QGJuMBdaqIw">Katy Perry</a>.
 
 ## Prerequisites
+
 Although not explicitly listed as a step, you should already have a project in mind, or at least an idea of which algorithm or software you wish to accelerate. For me, that's Protocol Buffer serialization as described in the introduction.
 
 ### 1. Choosing a development board
+
 The first step is to choose a board that's appropriate for your project and goals. Since my objective was to build a HW-accelerated system for a *datacenter application* that both, improves performance and *frees the CPU resource*, I was in search of a board that's capable of running Linux and could theoretically replace a <a href="https://en.wikipedia.org/wiki/White_box_(computer_hardware)">white box</a> server in a datacenter setting. The <a href="https://www.altera.com/products/boards_and_kits/dev-kits/altera/arria-10-soc-development-kit.html">Arria 10 SoC Development Kit</a> seemed to fit this description perfectly; it combines an <a href="https://www.altera.com/products/fpga/arria-series/arria-10/features.html">Arria 10 FPGA</a> with a <a href="https://developer.arm.com/products/processors/cortex-a/cortex-a9">dual-core ARM Cortex-A9</a> processor (called the <a href="https://www.altera.com/products/soc/portfolio/arria-10-soc/arria10-soc-hps.html">Hard Processor System, or HPS)</a> in a single <a href="https://en.wikipedia.org/wiki/System_on_a_chip">system-on-chip (SoC)</a> package. The FPGA fabric could be used to implement a custom <a href="https://en.wikipedia.org/wiki/Register-transfer_level">RTL</a> design that performs Protocol Buffer serialization while the HPS could be used to support both Linux and the user space application. Plus, think about how cool you'd look with one of these bad boys sitting on your desk:
 
 ![alt text](resources/images/arria10_soc_kit.png)
@@ -66,6 +72,7 @@ At a minimum, you'll need a board with an FPGA (i.e., programmable logic) to imp
 Don't underestimate the importance of this step. Acquiring a board can be an investment, and its fit with your project will certainly impact its success. Spending time asking and answering questions like these will also help to reaffirm your understanding of your project and goals.
 
 ### 2. Setting up your development environment (Installing an OS, VNC server/client, EDA tools, licensing)
+
 Before we get to the fun, we need to put on our IT hats. The next step is to set up your hardware development environment. Your setup is primarily going to be determined by the board you choose, its corresponding set of <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA tools</a> necessary for implementing designs, and the computing resources available to you. The complexity of your project/design could even influence the setup, unfortunately, because it may mean requiring premium, licensed versions of the EDA tools for full functionality. (I think this old school business model is something the hardware industry needs to work on since the cost of the board and software licenses alone adds yet another barrier to hardware innovation. I'm happy to see Amazon taking steps in the right direction; they've begun rolling out <a href="https://aws.amazon.com/ec2/instance-types/f1/">F1 Instances</a> in their EC2 cloud, providing access to Xilinx FPGAs for hardware acceleration. I haven't tried using one myself, but I imagine it's much easier and cheaper than the method I describe below. Sorry for the rant.) For me, working with the Arria 10 SoC Development Kit meant installing <a href="http://dl.altera.com/16.1/?edition=standard&platform=linux&download_manager=direct">Altera's and supported third-party EDA tools</a> on a remote server I had access to via my company's <a href="https://en.wikipedia.org/wiki/Local_area_network">LAN</a>. As it turns out, setting up a hardware development environment on a remote server is not a trivial task. Fortunately for you, I've gone through the process and will cover the steps below. Although your setup may be different (board, tools, etc.), hopefully this section will give you an idea of what it takes to set up your environment.
 
 I used the following server, operating system, and <a href="https://en.wikipedia.org/wiki/Virtual_Network_Computing">VNC</a> software for remote desktop access in my setup:
@@ -85,6 +92,7 @@ Choosing CentOS 7 as the operating system to install on the server is less obvio
 It's quite a humbling experience to set up a server for the first time, and you'll certainly think twice before sending the next angry ticket to your IT support desk. Without further ado, here are the steps it took to set up my development environment.
 
 #### Remotely installing CentOS 7 on a Dell PowerEdge R720xd server
+
 To access the remote server, we'll initially use its built-in <a href="http://www.dell.com/learn/us/en/15/solutions/integrated-dell-remote-access-controller-idrac">integrated Dell Remote Access Controller (iDRAC)</a>. This tool has many powerful features, including the ability to monitor logged events, power cycle the server, and even install an OS - all remotely. Assuming the server is connected to your <a href="https://en.wikipedia.org/wiki/Local_area_network">LAN</a>, has been assigned an <a href="https://en.wikipedia.org/wiki/IP_address">IP address</a>, and the iDRAC is enabled, open any web browser and enter its IP address to access the iDRAC login screen. It should look something like this:
 
 ![alt text](resources/images/iDRAC.png)
@@ -142,6 +150,7 @@ If this is your first time using the iDRAC, the <a href="http://en.community.del
 The server is now running CentOS 7. In the initial boot, it'll ask you to accept a license. Follow the prompts on the screen to accept the license, let it finish booting, and log in as the user you just created. Keep the Virtual Console Client open; we'll use it to set up the VNC server/client software in the next step.
 
 #### Setting up VNC server and client software
+
 If you're not familiar with <a href="https://en.wikipedia.org/wiki/Virtual_Network_Computing">VNC</a>, the basic idea is that you're interacting with a remote computer's desktop environment. That is, your keyboard and mouse events are sent to that computer over the network, and the corresponding GUI actions are relayed back to your screen. This is useful when you need to remotely access an application that has a GUI. As you may have guessed, this is the case of Quartus Prime and other EDA tools we'll be using.
 
 I used <a href="http://tigervnc.org/">TigerVNC</a> as the *server* software running on the Dell PowerEdge R720xd and <a href="https://www.realvnc.com/en/connect/download/viewer/">RealVNC VNC Viewer</a> as the *client* softawre running on my macbook. I followed <a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-remote-access-for-the-gnome-desktop-on-centos-7">this tutorial</a> by Sadequl Hussain to get the VNC setup working for me, and I've summarized the steps below. I recommend going through his tutorial as it does a great job explaining each step in detail!
@@ -230,6 +239,7 @@ It'll ask for the user's CentOS 7 password. Enter the password and it should lea
 Leave the VNC client session open; this is now our main way to interact with the remote server. We'll use it to first install and then use the EDA tools to design our FPGA peripheral hardware.
 
 #### Installing Altera's EDA tools
+
 To reiterate, some <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA tools</a> are free and some aren't. Some have free versions with limited features, and that may be all you need. Although I used licensed tools, I recommend using free versions where possible. You may even consider choosing a development board based on the free-ness of the toolchain necessary for compiling designs for that board (e.g., I later realized that a licensed Quartus Prime was required to even work with the Arria 10).
 
 I used the following EDA tools in working with the Arria 10 SoC Development Kit: 
@@ -314,6 +324,7 @@ The first time you open Quartus Prime, a *License Setup Required* dialog will ap
 ![alt text](resources/images/no-license.png)
 
 #### Setting up the license manager, serving a license
+
 Remember when I said setting up an environment for hardware development is a nontrivial task? Well, licensing is the crux of its nontrivial-ness. I don't even know where to begin - from the difficulty in identifying which EDA tools or components of these tools (e.g., the MegaCore IP Library in Quartus Prime) require licenses to whether I'll even be using certain tools in my project. And that's only the beginning - where and how to even acquire a license isn't obvious, there are different license types to choose from (*fixed* and *floating*), and when you finally receive a license, you still need to add some not-so-obvious information to the file before it can be properly served by a <a href="https://www.ics.com/files/docs/bx/5/bxref/ref_5f.htm">license manager</a> (that's right, yet another piece of software required to get Quartus Prime and other EDA tools working).
 
 Once you have all the proper EDA tools installed and you've acquired the necessary license to unlock their features, serving the license is the final challenge. [queue <a href="https://youtu.be/9jK-NcRmVcw">The Final Countdown</a>] Thanks to an act of incredibly poor engineering, the *fixed license* I acquired is not only tied to the <a href="https://en.wikipedia.org/wiki/MAC_address">MAC address</a> of the <a href="https://en.wikipedia.org/wiki/Network_interface_controller">NIC</a> on my server (which I get, they want to limit its use to one, uniquely-identified computer), but it **ONLY recognizes NICs that are named `eth0` from Linux's perspective**. Well, <a href="https://en.wikipedia.org/wiki/Consistent_Network_Device_Naming">upon further research</a> I found out that CentOS 7's choice of `em1`, `em2`, etc. for naming its network interfaces is actually the modern approach that supersedes the `eth0`, `eth1`, etc. naming convention. To fix this issue, <a href="http://www.sysarchitects.com/em1_to_eth0">like this guy</a>, I had to rename `em1` to `eth0` to finally get Quartus Prime to recognize I'm using the computer this license was made for. Ultimately, what it took was patience, the ability to make sense of the information I had, some guess-and-check work, and reading through this 46-page manual: <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/manual/quartus_install.pdf">Intel FPGA Software Installation and Licensing</a> on licensing. I'll try to spare you the trouble by summarizing the steps below. (Note: it appears they've taken my advice and fixed the `eth0` problem. When my server crashed and I had to reinstall everything, I didn't have to rename `em1` to get the licensing to work!)
@@ -429,6 +440,7 @@ As long as you don't see any error messages in the log, all features of Quartus 
 That was quite the process, I know. To summarize, we learned how to remotely interact with a Dell PowerEdge R720xd server using its built-in iDRAC controller, install CentOS 7 on the server with a GNOME Desktop environment, install VNC server and client software on the server and macbook respectively, install the Altera EDA tools (Quartus Prime Standard Edition, ModelSim-Intel FPGA Edition) we'll be using with the Arria 10 SoC Development Kit, and acquire and serve a license for the features we need. With our board selected and hardware development environment set up, we're now ready to begin designing the HW-accelerated system!
 
 ### 3. Understanding the software you wish to accelerate
+
 *This is perhaps the most important step.* Time spent here will directly impact your approach to the problem, the design of your hardware accelerator, and ultimately your success in imporving system performance. A philosophy I adhere to is that one's understanding of how something works is directly proportional to that individual's ability to debug issues or improve upon its design. When you're attempting to replace components of a large software project with specialized hardware, this is especially true. The goal of this step is to fundamentally understand **the movement of and operations on data**. This will help you identify *performance bottlenecks* in the software. Is the system *memory bandwidth-limited*? Is it *computation-limited*? Answering these questions provides insight into what can be tuned to improve performance.
 
 When working with someone else's software, extra time is needed to *understand how the code is structured* and to *identify source files, data structures, functions, etc.* that are relevant to the computation you wish to accelerate. This was my case in choosing to work with <a href="https://developers.google.com/protocol-buffers/">Protocol Buffers</a> and focusing specifically on *Protocol Buffer serialization*. I had no prior experience using the software nor was I familiar with <a href="https://developers.google.com/protocol-buffers/docs/encoding">varint encoding</a> (a mechanism used heavily in the serialization code). The obvious first step was to acquire a basic understanding of how Protocol Buffers are used in applications; I achieved this by going through the online documentation, building and installing the software, and running the example applications provided. After that, I was ready to dig deeper for an understanding of how the *Protocol Buffer serialization* code works.
@@ -438,6 +450,7 @@ There are powerful tools available that one can use to navigate the source code 
 In the remainder of this section, I'll provide an overview of the Protocol Buffer software, walk through an example of serializing a message, specify which version of the Protocol Buffer software we use in Firework (and show how to build it from source), demonstrate how I used `vim`+`ctags` and `gdb` to identify and understand the source code relevant to *Protocol Buffer serialization*, and discuss how time spent analyzing the `WireFormatLite` and <a href="https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.io.coded_stream#CodedOutputStream">CodedOutputStream</a> classes and their relation to the various message <a href="https://developers.google.com/protocol-buffers/docs/proto3#scalar">field types</a> led to a key realization and simplifcation of the hardware accelerator design. I'll conclude this section with a brief discussion about importance of using `perf` at this stage as well, a lesson I learned after-the-fact.
 
 #### Overview of Protocol Buffers and message serialization
+
 From the <a href="https://developers.google.com/protocol-buffers/docs/overview">Developer Guide</a>, "Protocol buffers are a flexible, efficient, automated mechanism for *serializing structured data*". In the land of Protocol Buffers, structured data (or data structures) are called **messages**. Messages consist of a series of key-value pairs called **fields**, similar to <a href="http://www.json.org/">JSON objects</a>. Fields can be basic types (e.g., integers, booleans, strings), arrays, or even other embedded messages. The general idea is that you define the messages you want to use in your application in a `.proto` file and use the Protocol Buffer *compiler* (`protoc`) to generate specialized code that implements these messages in the language of your choice (e.g., C++ classes). The compiler-generated code provides accessors for individual fields along with methods that work closely with the Protocol Buffer *runtime library* (`libprotobuf.so.10.0.0`) to serialize/parse entire messages to/from streams or storage containers. Protocol Buffers are *extensible* in the sense that you can add new fields to messages without disrupting existing applications that use older formats; this is achieved by marking fields as `optional` rather than `required`.
 
 For a more complete understanding of what Protocol Buffers are and how they're used, and to learn about **varint encoding** and how messages are serialized, I recommend going through the following material (which also serves as a prerequisite for the remaining content in this section and subsequent sections in this tutorial):
@@ -533,7 +546,8 @@ With that said, we've finished serializing the embedded `PhoneNumber` message wh
 0a 2f 0a 0c 4b 65 76 69 6e 20 44 75 72 61 6e 74 10 23 1a 0f 6b 64 40 77 61 72 72 69 6f 72 73 2e 63 6f 6d 22 0c 0a 0a 34 31 35 35 35 35 31 39 38 38
 ```
 
-#### Building the Protocol Buffer compiler and runtime libraries from source & running the C++ example applications
+#### Building the Protocol Buffer compiler and runtime libraries from source, running the example C++ applications
+
 Now that we're familiar with how Protocol Buffers are used and understand how messages are serialized, let's build the software from source and run the example applications provided. As an overview, we're going to clone the <a href="https://github.com/google/protobuf">google/protobuf</a> repository from GitHub, see which versions are available, create a new branch, put our working directory in a state corresponding to release `v3.0.2` of the Protocol Buffer software, and finally, build the software from source. `v3.0.2` was the latest version available at the time I worked on Firework and hence the version I forked and modified for use in the HW-accelerated system. (The modified protobuf repository is located here: [firework/protobuf](protobuf).) We'll use both, the modified and unmodified protobuf libraries later to profile the HW-accelerated and "standard" systems, respectfully. Note, I performed the following steps on the CentOS 7 server.
 
 1. Download the Protocol Buffer source code repository found <a href="https://github.com/google/protobuf">here</a>.
@@ -650,7 +664,7 @@ hexdump -C my_addressbook
 
 Lo and behold, we see 49 bytes of data, starting with `0a` and ending in `38`. If you compare this byte-for-byte with the `AddressBook` message we serialized earlier, you'll see they match. Incredible! Now that we're confident in our abilities to compile and run Protocol Buffer applications and serialize Protocol Buffer messages, let's see *how* the Protocol Buffer runtime library and compiler-generated code work together to perform serialization.
 
-#### Stepping through add_person.cc (vim + ctags)
+#### Stepping through add_person.cc: `vim` + `ctags`
 
 In this section, we'll use `vim` and `ctags` to take a closer look at `add_person.cc` and dive into the code responsible for *Protocol Buffer serialization*. If you've never used it before, <a href="http://ctags.sourceforge.net/">ctags</a> is the holy grail of navigating large software projects that contain several source files. Used in conjunction with <a href="http://www.vim.org/">vim</a>, this creates a powerful, GUI-free method of understanding how an application's source code is structured. This is particularly useful when working with embedded systems or accessing a remote computer via ssh where a terminal may be your only interface (i.e., you can't use more powerful <a href="https://en.wikipedia.org/wiki/Integrated_development_environment">IDEs</a> like <a href="https://www.eclipse.org/">Eclipse</a>, <a href="https://atom.io/">Atom</a>, etc.).
 
@@ -797,7 +811,8 @@ I'm jumping ahead of myself, but it's `WriteVarint32ToArray()` and other methods
 
 Before we get there, let's see how using `gdb` to step through the same application and inspecting <a href="https://en.wikipedia.org/wiki/Stack_trace">stack traces</a> along the way provides a straightforward way of identifying relevant code paths and containing source files.
 
-#### Stepping through add_person (gdb)
+#### Stepping through add_person: `gdb`
+
 In the last section, we used `vim` and `ctags` to navigate our way through `add_person.cc`, learning more about the code that's responsible for serializing messages. While this combo was very effective, it wasn't perfect. We were sometimes left with several hundred options to choose from in identifying the next codepath to take, and sometimes none of these paths were the one we needed. The <a href="https://www.gnu.org/software/gdb/">GNU Project Debugger</a> (a.k.a., the GNU Debugger, or simply `gdb`) fixes this problem, providing a mechanism for easily identifying the exact codepaths taken and eliminating any guesswork. This powerful tool allows you to walk through an application as it executes, insert breakpoints, halt execution, inspect the values of variables, step into functions as they're called, and inspect the <a href="https://en.wikipedia.org/wiki/Call_stack">call stack</a> among other things. While this tool's primary use is for debugging, it can also be effectively used to understand how a program works. In this section, we'll use `gdb` to walk through `add_person`, providing the same information for the `Person` message we previously serialized by hand, and make use of `gdb`'s <a href="https://sourceware.org/gdb/onlinedocs/gdb/Backtrace.html">backtrace</a> feature to take a closer look at the codepaths that ultimately lead to `WriteVarint32ToArray()` and other `CodedOutputStream` methods.
 
 If you've never used `gdb` before, here are some useful tutorials that cover everything from how to compile your program to be compatible with `gdb`, to basic commands for the `gdb` command-line interface and retrieving information about call stack:
@@ -805,12 +820,75 @@ If you've never used `gdb` before, here are some useful tutorials that cover eve
 - <a href="http://www.unknownroad.com/rtfm/gdbtut/">RMS's gdb Debugger Tutorial</a>: a more comprehensive tutorial (and the one I used to learn `gdb`)
 - <a href="https://sourceware.org/gdb/onlinedocs/gdb/Backtrace.html">8.2 Backtraces</a>: using `gbd`'s backtrace feature to inspect the call stack
 
-Once you're confident in your abilities to use `gdb`, continue below to step through `add_person`.
+Once you're confident in your abilities to use `gdb`, continue below to step through `add_person`. Note, I'm using the CentOS 7 server with the Protocol Buffer runtime library already built and installed, as well as `add_person`. I also assume you didn't permanently set the `PKG_CONFIG_PATH` or `LD_LIBRARY_PATH` environment variables; you can safely skip these steps below if you already have them set. Also note that we should still be on branch `protobuf-v3.0.2` of the `protobuf` respository.
 
-1.
+1. `gdb` should already be installed on your machine, but just in case, run the following:
 
+```
+sudo yum install gdb
+```
+
+2. As you know, applications need to be compiled with the `-g` <a href="https://gcc.gnu.org/onlinedocs/gcc-3.0/gcc_3.html#SEC12">flag</a> in order for `gdb` to be able to step through them properly. This flag tells the compiler to retain *debugging information* in the resulting executable (or shared object file, as in the case of the Protocol Buffer runtime library, `libprotobuf.so.10.0.0`). Recall that both `libprotobuf.so.10.0.0` and `add_person` are simply variants of an <a href="https://docs.oracle.com/cd/E19683-01/817-3677/chapter6-46512/index.html">object file</a>; debugging information is added to these files in the form of extra `.debug_*` sections. Therefore, we can use the <a href="https://sourceware.org/binutils/docs/binutils/objdump.html">objdump</a> utility to list the sections of these files and look for the inclusion of `.debug_*` sections, indicating they've been compiled with `-g`.
+
+```
+objdump -h /usr/local/lib/libprotobuf.so.10.0.0 | grep debug
+```
+
+![alt text](resources/images/gdb-1.png)
+
+Inspecting the output, (I used <a href="https://www.gnu.org/software/grep/manual/grep.html">grep</a> to list only sections containing the string `debug`), we see that the Protocol Buffer runtime library was indeed compiled with the necessary debugging information. Now, let's check `add_person`.
+
+```
+cd ~/workspace/protobuf/examples
+objdump -h add_person | grep debug
+```
+
+![alt text](resources/images/gdb-2.png)
+
+Uh-oh, we don't see any `.debug_*` sections in the output! That's ok, luckily it's an easy fix. Let's compile another version that contains debugging symbols and name it `add_person_dbg`.
+
+```
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+g++ add_person.cc addressbook.pb.cc `pkg-config --cflags --libs protobuf` -g -o add_person_dbg
+objdump -h add_person_dbg | grep debug
+```
+
+![alt text](resources/images/gdb-3.png)
+
+... and we're all set! I encourage you to compare the size of the two binaries `add_person` and `add_person_dbg` using `ls -lh` to see why release versions of software are stripped of debugging symbols.
+
+3. Now we're ready to invoke `gdb`, passing it `add_person_dbg` as the program we wish to "debug".
+
+```
+export LD_LIBRARY_PATH=/usr/local/lib
+gdb add_person_dbg
+run
+```
+
+![alt text](resources/images/gdb-4.png)
+
+Since we didn't provide the name of an address book file, `add_person_dbg` prints a `Usage:` line and exits as expected. However, `gdb` provides valuable information in the line following the program's output (highlighted in the screenshot above): it also needs debugging information for the <a href="https://www.gnu.org/software/libc/">GNU C Library</a> (`glibc`), <a href="https://gcc.gnu.org/onlinedocs/gccint/Libgcc.html">GCC low-level runtime library</a> (`libgcc`), and <a href="https://gcc.gnu.org/onlinedocs/libstdc++/faq.html#faq.what">GNU Standard C++ Library</a> (`libstdc++`). 
+
+4. Let's exit the running `gdb` session, install the debugging symbols for these libraries, and invoke `gdb` once more. Let's remove any existing `my_addressbook` file while we're at it.
+
+```
+q
+sudo debuginfo-install glibc libgcc libstdc++
+rm my_addressbook
+gdb add_person_dbg
+```
+
+5. We should now have an active `gdb` session ready to step through `add_person_dbg` with all necessary debugging symbols for the application binary, Protocol Buffer runtime library, and other core libraries. Before we `run` the application, let's insert a breakpoint at line 85 of `add_person.cc` which is where it calls `address_book.SerializeToOstream(&output)`. Run, enter the same information of our example `Person` message, and press `enter`.  
+
+```
+break 85
+run my_addressbook
+```
+
+![alt text](resources/images/gdb-5.png)
 
 #### Analyzing the Protocol Buffer serialization code
+
 Let's look more closely at the various fields and their corresponding wire types. The following table from the <a href="https://developers.google.com/protocol-buffers/docs/encoding">encoding</a> page shows the mapping between *field types* and the six available *wire types*:
 
 ![alt text](resources/images/wire-types.png) 
@@ -824,13 +902,16 @@ Before diving into the hardware design, I'd like to share a great example of how
 
 
 #### A brief note on perf
+
 - If I could go back, I'd also do - perf/profiling: guage whether specialized hardware could outperform software; analyze cost of overhead of communicating data (lack of experience analyzing system performance, thought the paper provided sufficient motivation, overwhelmed with too many other things to figure out)
 
 
 ## Hardware Development
+
 Now, let's see how we can translate WriteVarint32ToArray() into a hardware accelerator and integrate our FPGA peripheral with the HPS.
 
 ### 4. Implementing an FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)
+
 - Intro
     - Writing your own RTL vs. OpenCL
     - FPGA development flow (Quartus Prime is the main tool in this step, ModelSim for funcitonal verification)
@@ -855,6 +936,7 @@ Now, let's see how we can translate WriteVarint32ToArray() into a hardware accel
     - Running ModelSim testbenches
 
 ### 5. System integration (Qsys)
+
 - Intro
     - Qsys is the tool used here
     - Training that helps: Custom IP Development Using Avalon and AXI Interfaces
@@ -872,9 +954,11 @@ Now, let's see how we can translate WriteVarint32ToArray() into a hardware accel
     - Adding protobuf-serializer to the GHRD!
 
 ## Software Development
+
 The operating system, device driver, user space application
 
 ### 6. Creating an FPGA peripheral-aware bootable Linux image
+
 - Intro
     - Discuss why running Linux is important (mimic's real datacenter setting)
     - Talk about Yocto Project, embedded Linux, etc.
@@ -894,6 +978,7 @@ The operating system, device driver, user space application
     - Steps to create bootable microSD card (Rocketboards.org training, repeat here or tell user to follow?)
 
 ### 7. Writing a device driver (interface between FPGA peripheral and user space application)
+
 - Intro
     - Overview of the driver I wrote (misc device driver)
     - Journey from writing to memory address --> input at HW-acc
@@ -910,6 +995,7 @@ The operating system, device driver, user space application
     - setting up kbuild environment
 
 ### 8. Closing the loop: modifying the user space application
+
 - Intro
     - Device driver provides the interface
     - Replace functions implementing computaiton w/ statements sending data to FPGA peripheral
@@ -921,9 +1007,11 @@ The operating system, device driver, user space application
     - building & installing att-innovate/protobuf on the Arria 10
 
 ## Measuring System Performance
+
 We're done building the HW-accelerated system. Now let's see how see how its performance compares to that of the standard system.
 
 ### 9. Profiling the HW-accelerated system
+
 - Training
     - http://www.brendangregg.com/perf.html
 - Intro
