@@ -828,7 +828,7 @@ Once you're confident in your abilities to use `gdb`, continue below to step thr
 sudo yum install gdb
 ```
 
-2. As you know, applications need to be compiled with the `-g` <a href="https://gcc.gnu.org/onlinedocs/gcc-3.0/gcc_3.html#SEC12">flag</a> in order for `gdb` to be able to step through them properly. This flag tells the compiler to retain *debugging information* in the resulting executable (or shared object file, as in the case of the Protocol Buffer runtime library, `libprotobuf.so.10.0.0`). Recall that both `libprotobuf.so.10.0.0` and `add_person` are simply variants of an <a href="https://docs.oracle.com/cd/E19683-01/817-3677/chapter6-46512/index.html">object file</a>; debugging information is added to these files in the form of extra `.debug_*` sections. Therefore, we can use the <a href="https://sourceware.org/binutils/docs/binutils/objdump.html">objdump</a> utility to list the sections of these files and look for the inclusion of `.debug_*` sections, indicating they've been compiled with `-g`.
+2. As you know, applications need to be compiled with the `-g` <a href="https://gcc.gnu.org/onlinedocs/gcc-3.0/gcc_3.html#SEC12">flag</a> in order for `gdb` to be able to step through them properly. This flag tells the compiler to retain *debugging information* in the resulting executable (or shared object file, as in the case of the Protocol Buffer runtime library, `libprotobuf.so.10.0.0`). Recall that both `libprotobuf.so.10.0.0` and `add_person` are simply variants of an <a href="https://docs.oracle.com/cd/E19683-01/817-3677/chapter6-46512/index.html">object file</a>; debugging information is added to these files in the form of extra `.debug_*` sections. Therefore, we can use the <a href="https://sourceware.org/binutils/docs/binutils/objdump.html">objdump</a> utility to list the sections of these files and look for the inclusion of `.debug_*` sections, indicating they were compiled with `-g`.
 
 ```
 objdump -h /usr/local/lib/libprotobuf.so.10.0.0 | grep debug
@@ -836,7 +836,7 @@ objdump -h /usr/local/lib/libprotobuf.so.10.0.0 | grep debug
 
 ![alt text](resources/images/gdb-1.png)
 
-Inspecting the output, (I used <a href="https://www.gnu.org/software/grep/manual/grep.html">grep</a> to list only sections containing the string `debug`), we see that the Protocol Buffer runtime library was indeed compiled with the necessary debugging information. Now, let's check `add_person`.
+Inspecting the output, (I used <a href="https://www.gnu.org/software/grep/manual/grep.html">grep</a> to filter the output listing only lines that contain the string `debug`), we see that the Protocol Buffer runtime library was indeed compiled with `-g`. Now, let's check `add_person`.
 
 ```
 cd ~/workspace/protobuf/examples
@@ -845,7 +845,7 @@ objdump -h add_person | grep debug
 
 ![alt text](resources/images/gdb-2.png)
 
-Uh-oh, we don't see any `.debug_*` sections in the output! That's ok, luckily it's an easy fix. Let's compile another version that contains debugging symbols and name it `add_person_dbg`.
+Uh-oh, we don't see any `.debug_*` sections in the output! That's ok, luckily it's an easy fix. Let's compile another version with debugging symbols and name it `add_person_dbg`.
 
 ```
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
@@ -855,9 +855,9 @@ objdump -h add_person_dbg | grep debug
 
 ![alt text](resources/images/gdb-3.png)
 
-... and we're all set! I encourage you to compare the size of the two binaries `add_person` and `add_person_dbg` using `ls -lh` to see why release versions of software are stripped of debugging symbols.
+... and we're all set! I encourage you to compare the size of the two binaries, `add_person` and `add_person_dbg` using `ls -lh`; this should provide insight as to why release versions of software are stripped of debugging symbols.
 
-3. Now we're ready to invoke `gdb`, passing it `add_person_dbg` as the program we wish to "debug".
+3. Now we're ready to invoke `gdb` and pass it `add_person_dbg` as the program we wish to "debug".
 
 ```
 export LD_LIBRARY_PATH=/usr/local/lib
@@ -867,25 +867,66 @@ run
 
 ![alt text](resources/images/gdb-4.png)
 
-Since we didn't provide the name of an address book file, `add_person_dbg` prints a `Usage:` line and exits as expected. However, `gdb` provides valuable information in the line following the program's output (highlighted in the screenshot above): it also needs debugging information for the <a href="https://www.gnu.org/software/libc/">GNU C Library</a> (`glibc`), <a href="https://gcc.gnu.org/onlinedocs/gccint/Libgcc.html">GCC low-level runtime library</a> (`libgcc`), and <a href="https://gcc.gnu.org/onlinedocs/libstdc++/faq.html#faq.what">GNU Standard C++ Library</a> (`libstdc++`). 
+Since we didn't provide the name of an address book file, `add_person_dbg` prints its `Usage:` statement and exits as expected. Upon further inspection of `gdb`'s output following this statement (highlighted in the screenshot above), we see that we're still missing debugging information for the <a href="https://www.gnu.org/software/libc/">GNU C Library</a> (`glibc`), <a href="https://gcc.gnu.org/onlinedocs/gccint/Libgcc.html">GCC low-level runtime library</a> (`libgcc`), and <a href="https://gcc.gnu.org/onlinedocs/libstdc++/faq.html#faq.what">GNU Standard C++ Library</a> (`libstdc++`) `add_person_dbg` relies on.
 
-4. Let's exit the running `gdb` session, install the debugging symbols for these libraries, and invoke `gdb` once more. Let's remove any existing `my_addressbook` file while we're at it.
+4. Let's exit the current `gdb` session, install the missing debugging symbols for these libraries, and remove any existing `my_addressbook` file so `add_person_dbg` creates a new one containing only the `Person` message we'll enter next.
 
 ```
 q
 sudo debuginfo-install glibc libgcc libstdc++
 rm my_addressbook
+```
+
+5. We're now ready to step through `add_person_dbg` and should have all necessary debugging symbols for the executable, Protocol Buffer runtime library, and other core libraries. Before we instruct `gdb` to `run` the application, let's insert a breakpoint at **line 85** of `add_person.cc`. This is where it calls `SerializeToOstream()`, and hence, initiates message serialization.
+
+```
 gdb add_person_dbg
-```
-
-5. We should now have an active `gdb` session ready to step through `add_person_dbg` with all necessary debugging symbols for the application binary, Protocol Buffer runtime library, and other core libraries. Before we `run` the application, let's insert a breakpoint at line 85 of `add_person.cc` which is where it calls `address_book.SerializeToOstream(&output)`. Run, enter the same information of our example `Person` message, and press `enter`.  
-
-```
 break 85
 run my_addressbook
 ```
 
+Enter the same information for our example `Person` message (see below) and press enter; `gdb` should halt execution once it reaches **line 85**.
+
 ![alt text](resources/images/gdb-5.png)
+
+6. Run the `list` command without any arguments; this displays the 10 lines of code centered around where the program has halted execution (line 85 in this case). We already know we want to step into `SerializeToOstream()`, but `list` comes in handy when you've reached code you're not familiar with and need to figure out where to go next. Running `list` again displays the next 10 lines of code, and so on.
+
+![alt text](resources/images/gdb-6.png)
+
+7. Run the `step` command to instruct `gdb` to step into `SerializeToOstream()`. Note if we ran `next` instead, `gdb` would execute the subroutine completely, return, and halt before the next instruction. This takes us to **line 175** of the file, `google/protobuf/message.cc`.
+
+![alt text](resources/images/gdb-7.png)
+
+Inspecting the output of `list`, we see that `SerializeToZeroCopyStream()` is on **line 178**, and this is the method we want to jump into next. One way of getting there is to set another breakpoint at **line 178** and running the command, `continue`. 
+
+8. Set a breakpoint at **line 178**, run `continue`, and finally run `step`. This takes us into `SerializeToZeroCopyStream()` next, at **line 273** of the file, `google/protobuf/message_lite.cc`.
+
+![alt text](resources/images/gdb-8.png)
+
+9. Next, we want to jump into `SerializeToCodedStream()`. Before we do however, let's run the command `backtrace` (or `bt`, or `info stack`) to see what our <a href="https://en.wikipedia.org/wiki/Call_stack">call stack</a> looks like at this point.
+
+![alt text](resources/images/gdb-9.png)
+
+We see `SerializeToZeroCopyStream()` at the top, numbered `#0`, as the current <a href="http://www.cs.uwm.edu/classes/cs315/Bacon/Lecture/HTML/ch10s07.html">stack frame</a>. Underneath are stack frames for `SerializeToOstream()` of the `Message` class and `main()` of `add_person.cc`, which haven't finished executing yet. Take some time to become familiar with the output of this command. It's `gdb`'s ability to step into functions and provide informative <a href="https://en.wikipedia.org/wiki/Stack_trace">stack traces</a> that allows us to eventually reach `CodedOutputStream::WriteVarint32ToArray()` without any guesswork. Let's continue on that journey!
+
+10. Set a breakpoint at **line 275**, `continue` to this breakpoint, and `step` into `SerializeToCodedStream()`. This takes us to **line 236** of the same file. Following this pattern, continue stepping into the following methods (where each method is called in the body of the one prior):
+
+- `MessageLite::SerializePartialToCodedStream()`
+- `AddressBook::SerializeWithCachedSizesToArray()`
+- `AddressBook::InternalSerializeWithCachedSizesToArray()`
+- `WireFormatLite::InternalWriteMessageNoVirtualToArray()`
+- `WireFormatLite::WriteTagToArray()`
+- `CodedOutputStream::WriteTagToArray()`
+- `CodedOutputStream::WriteVarint32ToArray()`
+
+Once in `CodedOutputStream::WriteVarint32ToArray()`, set a breakpoint at **line 1147** (the first line of this method's body). That way, we can subsequently run `continue` to reach this method again, run `bt`, and inspect the call stack to determine which field's tag, length-delimited size, or value is actively being varint encoded. 
+
+![alt text](resources/images/gdb-10.png)
+
+Note, **it is not trivial** to reach this point; it might take a few tries for you to figure out when to `step`, when to run `next`, and when to `continue`, as some function calls span several lines and call other functions themselves, using the return value as a parameter. If you've properly navigated your way to the *first time* `CodedOutputStream::WriteVarint32ToArray()` is called, running `bt` should result in the following call stack:
+
+![alt text](resources/images/gdb-11.png)
+
 
 #### Analyzing the Protocol Buffer serialization code
 
