@@ -813,14 +813,14 @@ Before we get there, let's see how using `gdb` to step through the same applicat
 
 #### Stepping through add_person: `gdb`
 
-In the last section, we used `vim` and `ctags` to navigate our way through `add_person.cc`, learning more about the code that's responsible for serializing messages. While this combo was very effective, it wasn't perfect. We were sometimes left with several hundred options to choose from in identifying the next codepath to take, and sometimes none of these paths were the one we needed. The <a href="https://www.gnu.org/software/gdb/">GNU Project Debugger</a> (a.k.a., the GNU Debugger, or simply `gdb`) fixes this problem, providing a mechanism for easily identifying the exact codepaths taken and eliminating any guesswork. This powerful tool allows you to walk through an application as it executes, insert breakpoints, halt execution, inspect the values of variables, step into functions as they're called, and inspect the <a href="https://en.wikipedia.org/wiki/Call_stack">call stack</a> among other things. While this tool's primary use is for debugging, it can also be effectively used to understand how a program works. In this section, we'll use `gdb` to walk through `add_person`, providing the same information for the `Person` message we previously serialized by hand, and make use of `gdb`'s <a href="https://sourceware.org/gdb/onlinedocs/gdb/Backtrace.html">backtrace</a> feature to take a closer look at the codepaths that ultimately lead to `WriteVarint32ToArray()` and other `CodedOutputStream` methods.
+In the last section, we used `vim` and `ctags` to navigate our way through `add_person.cc`, learning more about the soure code that's responsible for serializing messages. While this combo was very effective, it wasn't perfect. We were sometimes left with several hundred options to choose from in identifying the next codepath to take, and sometimes none of these paths were the one we needed. The <a href="https://www.gnu.org/software/gdb/">GNU Project Debugger</a> (a.k.a., the GNU Debugger, or simply `gdb`) fixes this problem, providing the ability to easily identify the exact codepaths taken and eliminating any guesswork. This powerful tool allows you to walk through an application as it executes, insert breakpoints, halt execution, inspect the values of variables, step into functions as they're called, and inspect the <a href="https://en.wikipedia.org/wiki/Call_stack">call stack</a> among other things. While this tool's primary use is in debugging, it can also be effectively used to understand how a program works. In this section, we'll use `gdb` to walk through `add_person`, providing the same information for the `Person` message we previously serialized by hand, and make use of `gdb`'s <a href="https://sourceware.org/gdb/onlinedocs/gdb/Backtrace.html">backtrace</a> feature to take a closer look at the codepaths that ultimately lead to `WriteVarint32ToArray()` and other methods of the `CodedOutputStream` class.
 
-If you've never used `gdb` before, here are some useful tutorials that cover everything from how to compile your program to be compatible with `gdb`, to basic commands for the `gdb` command-line interface and retrieving information about call stack:
+If you've never used `gdb` before, here are some useful tutorials that cover everything from how to compile your program to include debugging information needed by `gdb`, to basic commands for the `gdb` command-line interface and retrieving information about call stack:
 - <a href="http://web.eecs.umich.edu/~sugih/pointers/summary.html">GDB Tutorial</a>: a good intro, quick tutorial covering basics
 - <a href="http://www.unknownroad.com/rtfm/gdbtut/">RMS's gdb Debugger Tutorial</a>: a more comprehensive tutorial (and the one I used to learn `gdb`)
 - <a href="https://sourceware.org/gdb/onlinedocs/gdb/Backtrace.html">8.2 Backtraces</a>: using `gbd`'s backtrace feature to inspect the call stack
 
-Once you're confident in your abilities to use `gdb`, continue below to step through `add_person`. Note, I'm using the CentOS 7 server with the Protocol Buffer runtime library already built and installed, as well as `add_person`. I also assume you didn't permanently set the `PKG_CONFIG_PATH` or `LD_LIBRARY_PATH` environment variables; you can safely skip these steps below if you already have them set. Also note that we should still be on branch `protobuf-v3.0.2` of the `protobuf` respository.
+Once you're confident in your abilities to use `gdb`, continue below to step through `add_person`. Note, I'm using the CentOS 7 server with the Protocol Buffer runtime library already built and installed, as well as `add_person`. I also assume you didn't permanently set the `PKG_CONFIG_PATH` or `LD_LIBRARY_PATH` environment variables; you can safely skip these steps below if they're already set. Also note that we should still be on branch `protobuf-v3.0.2` of the `protobuf` respository.
 
 1. `gdb` should already be installed on your machine, but just in case, run the following:
 
@@ -828,7 +828,7 @@ Once you're confident in your abilities to use `gdb`, continue below to step thr
 sudo yum install gdb
 ```
 
-2. As you know, applications need to be compiled with the `-g` <a href="https://gcc.gnu.org/onlinedocs/gcc-3.0/gcc_3.html#SEC12">flag</a> in order for `gdb` to be able to step through them properly. This flag tells the compiler to retain *debugging information* in the resulting executable (or shared object file, as in the case of the Protocol Buffer runtime library, `libprotobuf.so.10.0.0`). Recall that both `libprotobuf.so.10.0.0` and `add_person` are simply variants of an <a href="https://docs.oracle.com/cd/E19683-01/817-3677/chapter6-46512/index.html">object file</a>; debugging information is added to these files in the form of extra `.debug_*` sections. Therefore, we can use the <a href="https://sourceware.org/binutils/docs/binutils/objdump.html">objdump</a> utility to list the sections of these files and look for the inclusion of `.debug_*` sections, indicating they were compiled with `-g`.
+2. As you know, applications need to be compiled with the `-g` <a href="https://gcc.gnu.org/onlinedocs/gcc-3.0/gcc_3.html#SEC12">flag</a> in order for `gdb` to be able to step through them properly. This flag tells the compiler to include *debugging information* in the executable (or shared object file, as in the case of the Protocol Buffer runtime library, `libprotobuf.so.10.0.0`) it generates. Recall that both `libprotobuf.so.10.0.0` and `add_person` are simply variants of an <a href="https://docs.oracle.com/cd/E19683-01/817-3677/chapter6-46512/index.html">object file</a>; debugging information is added to these files in the form of additional `.debug_*` sections. Therefore, we can use the <a href="https://sourceware.org/binutils/docs/binutils/objdump.html">objdump</a> utility to list the sections contained in these files, and look for the inclusion of `.debug_*` sections to check whether they were compiled with `-g`.
 
 ```
 objdump -h /usr/local/lib/libprotobuf.so.10.0.0 | grep debug
@@ -836,7 +836,7 @@ objdump -h /usr/local/lib/libprotobuf.so.10.0.0 | grep debug
 
 ![alt text](resources/images/gdb-1.png)
 
-Inspecting the output, (I used <a href="https://www.gnu.org/software/grep/manual/grep.html">grep</a> to filter the output listing only lines that contain the string `debug`), we see that the Protocol Buffer runtime library was indeed compiled with `-g`. Now, let's check `add_person`.
+I used <a href="https://www.gnu.org/software/grep/manual/grep.html">grep</a> to filter the output, listing only lines that contain the string: `debug`. Here, we see that the Protocol Buffer runtime library was indeed compiled with `-g`. Now, let's check `add_person`.
 
 ```
 cd ~/workspace/protobuf/examples
@@ -855,7 +855,7 @@ objdump -h add_person_dbg | grep debug
 
 ![alt text](resources/images/gdb-3.png)
 
-... and we're all set! I encourage you to compare the size of the two binaries, `add_person` and `add_person_dbg` using `ls -lh`; this should provide insight as to why release versions of software are stripped of debugging symbols.
+... and we're all set! I encourage you to compare the size of the two binaries, `add_person` and `add_person_dbg`, using `ls -lh`. This should provide insight as to why production software is stripped of debugging symbols.
 
 3. Now we're ready to invoke `gdb` and pass it `add_person_dbg` as the program we wish to "debug".
 
@@ -867,9 +867,9 @@ run
 
 ![alt text](resources/images/gdb-4.png)
 
-Since we didn't provide the name of an address book file, `add_person_dbg` prints its `Usage:` statement and exits as expected. Upon further inspection of `gdb`'s output following this statement (highlighted in the screenshot above), we see that we're still missing debugging information for the <a href="https://www.gnu.org/software/libc/">GNU C Library</a> (`glibc`), <a href="https://gcc.gnu.org/onlinedocs/gccint/Libgcc.html">GCC low-level runtime library</a> (`libgcc`), and <a href="https://gcc.gnu.org/onlinedocs/libstdc++/faq.html#faq.what">GNU Standard C++ Library</a> (`libstdc++`) `add_person_dbg` relies on.
+Since we didn't provide the name of an address book file, `add_person_dbg` prints a `Usage: ` statement and exits, as expected. If you look at `gdb`'s output following this statement (highlighted in the screenshot above), we see that we're missing debugging information for the <a href="https://www.gnu.org/software/libc/">GNU C Library</a> (`glibc`), <a href="https://gcc.gnu.org/onlinedocs/gccint/Libgcc.html">GCC low-level runtime library</a> (`libgcc`), and <a href="https://gcc.gnu.org/onlinedocs/libstdc++/faq.html#faq.what">GNU Standard C++ Library</a> (`libstdc++`), all of which `add_person_dbg` uses.
 
-4. Let's exit the current `gdb` session, install the missing debugging symbols for these libraries, and remove any existing `my_addressbook` file so `add_person_dbg` creates a new one containing only the `Person` message we'll enter next.
+4. Let's exit the current `gdb` session and install these libraries' missing debugging symbols. Let's also remove `my_addressbook` (if it exists) such that the next invocation of `add_person_dbg` creates a new one that'll only contain the `Person` message we enter.
 
 ```
 q
@@ -877,7 +877,7 @@ sudo debuginfo-install glibc libgcc libstdc++
 rm my_addressbook
 ```
 
-5. We're now ready to step through `add_person_dbg` and should have all necessary debugging symbols for the executable, Protocol Buffer runtime library, and other core libraries. Before we instruct `gdb` to `run` the application, let's insert a breakpoint at **line 85** of `add_person.cc`. This is where it calls `SerializeToOstream()`, and hence, initiates message serialization.
+5. With debugging symbols for the executable, Protocol Buffer runtime library, and core libraries they use, we're now ready to step through `add_person_dbg`. Before we `run` the application under `gdb`, let's insert a breakpoint at **line 85** of `add_person.cc`. This is where `SerializeToOstream()` is called, and hence where the `AddressBook` message's serialization is initiated.
 
 ```
 gdb add_person_dbg
@@ -885,31 +885,31 @@ break 85
 run my_addressbook
 ```
 
-Enter the same information for our example `Person` message (see below) and press enter; `gdb` should halt execution once it reaches **line 85**.
+Following the prompts, enter the information of our example `Person` message from before (see below). After the last field is entered, `gdb` will continue executing `add_person_dbg` and halt when it reaches the first instruction corresponding to **line 85** of the source file `add_person.cc`.
 
 ![alt text](resources/images/gdb-5.png)
 
-6. Run the `list` command without any arguments; this displays the 10 lines of code centered around where the program has halted execution (line 85 in this case). We already know we want to step into `SerializeToOstream()`, but `list` comes in handy when you've reached code you're not familiar with and need to figure out where to go next. Running `list` again displays the next 10 lines of code, and so on.
+6. Run the `list` command without any arguments. This displays the 10 lines of code centered around where the program' execution was halted (i.e., **line 85**). We already knew that we want to step into `SerializeToOstream()`, but `list` comes in handy when you've stepped into a function and need to figure out where to go next. Running `list` again displays the next 10 lines of code, and so on.
 
 ![alt text](resources/images/gdb-6.png)
 
-7. Run the `step` command to instruct `gdb` to step into `SerializeToOstream()`. Note if we ran `next` instead, `gdb` would execute the subroutine completely, return, and halt before the next instruction. This takes us to **line 175** of the file, `google/protobuf/message.cc`.
+7. Run the `step` command to instruct `gdb` to step into `SerializeToOstream()`. This takes us to **line 175** of the file, `google/protobuf/message.cc`. Note that if we ran `next` instead, `gdb` would execute the subroutine completely, return, and halt before the next instruction.
 
 ![alt text](resources/images/gdb-7.png)
 
-Inspecting the output of `list`, we see that `SerializeToZeroCopyStream()` is on **line 178**, and this is the method we want to jump into next. One way of getting there is to set another breakpoint at **line 178** and running the command, `continue`. 
+Inspecting the output of `list`, we see that `SerializeToZeroCopyStream()` is on **line 178**, and this is the method we want to jump into next. One way of getting there is to set another breakpoint at **line 178** and run the command, `continue`. 
 
-8. Set a breakpoint at **line 178**, run `continue`, and finally run `step`. This takes us into `SerializeToZeroCopyStream()` next, at **line 273** of the file, `google/protobuf/message_lite.cc`.
+8. Set a breakpoint at **line 178** and run the commands `continue`, `step`, and `list`. This takes us into the method `SerializeToZeroCopyStream()` at **line 273** of the file, `google/protobuf/message_lite.cc`.
 
 ![alt text](resources/images/gdb-8.png)
 
-9. Next, we want to jump into `SerializeToCodedStream()`. Before we do however, let's run the command `backtrace` (or `bt`, or `info stack`) to see what our <a href="https://en.wikipedia.org/wiki/Call_stack">call stack</a> looks like at this point.
+9. Next, we want to jump into `SerializeToCodedStream()` at **line 275**. Before we do this, however, let's run the command `backtrace` (or `bt`, or `info stack`) to see what our <a href="https://en.wikipedia.org/wiki/Call_stack">call stack</a> looks like at this point.
 
 ![alt text](resources/images/gdb-9.png)
 
-We see `SerializeToZeroCopyStream()` at the top, numbered `#0`, as the current <a href="http://www.cs.uwm.edu/classes/cs315/Bacon/Lecture/HTML/ch10s07.html">stack frame</a>. Underneath are stack frames for `SerializeToOstream()` of the `Message` class and `main()` of `add_person.cc`, which haven't finished executing yet. Take some time to become familiar with the output of this command. It's `gdb`'s ability to step into functions and provide informative <a href="https://en.wikipedia.org/wiki/Stack_trace">stack traces</a> that allows us to eventually reach `CodedOutputStream::WriteVarint32ToArray()` without any guesswork. Let's continue on that journey!
+We see `SerializeToZeroCopyStream()` at the top of the stack (entry `#0`) which is currently the active <a href="http://www.cs.uwm.edu/classes/cs315/Bacon/Lecture/HTML/ch10s07.html">stack frame</a>. Underneath are stack frames for `SerializeToOstream()` of the `Message` class and `main()` of `add_person.cc`, neither of which have finished executing. Take some time to become familiar with reading the output of this command. It's `gdb`'s ability to step into functions and provide informative <a href="https://en.wikipedia.org/wiki/Stack_trace">stack traces</a> that allows us to eventually reach `CodedOutputStream::WriteVarint32ToArray()` without any guesswork. Let's continue on that journey!
 
-10. Set a breakpoint at **line 275**, `continue` to this breakpoint, and `step` into `SerializeToCodedStream()`. This takes us to **line 236** of the same file. Following this pattern, continue stepping into the following methods (where each method is called in the body of the one prior):
+10. Set a breakpoint at **line 275**, `continue` to this breakpoint, and `step` into `SerializeToCodedStream()`. This takes us to **line 236** of the same file. Repeating this pattern, continue stepping into the following methods (where each one is called somewhere in the body of the one prior):
 
 - `MessageLite::SerializePartialToCodedStream()`
 - `AddressBook::SerializeWithCachedSizesToArray()`
@@ -919,17 +919,45 @@ We see `SerializeToZeroCopyStream()` at the top, numbered `#0`, as the current <
 - `CodedOutputStream::WriteTagToArray()`
 - `CodedOutputStream::WriteVarint32ToArray()`
 
-Once in `CodedOutputStream::WriteVarint32ToArray()`, set a breakpoint at **line 1147** (the first line of this method's body). That way, we can subsequently run `continue` to reach this method again, run `bt`, and inspect the call stack to determine which field's tag, length-delimited size, or value is actively being varint encoded. 
+Once in `CodedOutputStream::WriteVarint32ToArray()`, set a breakpoint at **line 1147** (the first line of this method's body). This way, we can subsequently run `continue` to reach this method again, run a `backtrace`, and inspect the call stack to see which field's tag, length-delimited size, or value is actively being varint encoded.
 
 ![alt text](resources/images/gdb-10.png)
 
-Note, **it is not trivial** to reach this point; it might take a few tries for you to figure out when to `step`, when to run `next`, and when to `continue`, as some function calls span several lines and call other functions themselves, using the return value as a parameter. If you've properly navigated your way to the *first time* `CodedOutputStream::WriteVarint32ToArray()` is called, running `bt` should result in the following call stack:
+Note that **it is not trivial** to reach this point; it might take a few tries for you to figure out when to `step`, when to run `next`, and when to `continue`, as some function calls span several lines and call other functions themselves, using the return value as a parameter. If you've properly navigated your way to the *first time* `CodedOutputStream::WriteVarint32ToArray()` is called, running `bt` should result in the following call stack:
 
 ![alt text](resources/images/gdb-11.png)
 
-Let's take a look at what's happening at this point in the program's execution. Starting with `AddressBook::InternalSerializeWithCachedSizesToArray()` (`#4` in the call stack), this compiler-generated method calls `WireFormatLite::InternalWriteMessageNoVirtualToArray()` once for each embedded `Person` message it needs to serialize. This makes sense; recall that `AddressBook` messages only have one field, a `repeated Person people = 1;`. Like any field, first we encode and write its key. Since this field's field number is **1** and wire type is **2** (length-delimited), the value we need to varint encode giving us our key is `10` in decimal. Correspondingly, `WireFormatLite::InternalWriteMessageNoVirtualToArray()` calls `WireFormatLite::WriteTagToArray()` passing it the values `WireFormatLite::WIRETYPE_LENGTH_DELIMITED` and `1` for its parameters `type` and `field_number`, respectfully. (Note, the `Tag` in `WriteTagToArray()` is synonymous to my use of the word "key"; both refer to a field's key.) This method in turn calls `CodedOutputStream::WriteTagToArray()`, setting its parameter `value` to `10`. Finally, this method calls `CodedOutputStream::WriteVarint32ToArray()` setting its parameter `value` to `10`, and this is where the number `10` is finally varint encoded into the hex value `0a`. Cool, eh? :)
+Let's take a look at what's happening at this point in the program's execution. Starting with `AddressBook::InternalSerializeWithCachedSizesToArray()` (`#4` in the call stack), this compiler-generated method calls the runtime library's `WireFormatLite::InternalWriteMessageNoVirtualToArray()` once for each embedded `Person` message it needs to serialize. This makes sense; recall that an `AddressBook` message only has one field, a `repeated Person people = 1;`. As for any field type, first we encode and write this embedded message's key. With a field number of **1** and wire type of **2** (length-delimited), the value we need to varint encode (giving us our key) is `10` in decimal. Correspondingly, `WireFormatLite::InternalWriteMessageNoVirtualToArray()` calls `WireFormatLite::WriteTagToArray()`, setting its parameters `type` and `field_number` to `WireFormatLite::WIRETYPE_LENGTH_DELIMITED` and `1`, respectfully. (Note that `Tag` in `WriteTagToArray()` is synonymous to my use of the word "key"; both refer to a field's key.) This method in turn calls `CodedOutputStream::WriteTagToArray()`, setting its parameter `value` to `10`. Finally, this method calls `CodedOutputStream::WriteVarint32ToArray()`, also setting its parameter `value` to `10`, which is where the number `10` is varint encoded into the hex value `0a`, finally producing our first byte of serilized data. Cool, eh? :)
 
-11. 
+11. We expect the program to varint encode the size of the embedded `Person` message (since it's a length-delimited field) and write it next. Run `continue` taking us to the next invocation of `CodedOutputStream::WriteVarint32ToArray()` and inspect the stack.
+
+![alt text](resources/images/gdb-12.png)
+
+Highlighted above, we see that the number `47` is being varint encoded next - the size of our example `Person` message.
+
+12. Run `continue` followed by `bt` once more, and let's take a look at what the stack is telling us: 
+
+![alt text](resources/images/gdb-13.png)
+
+We see that `WireFormatLite::InternalWriteMessageNoVirtualToArray()` (`#5` in the call stack) calls `Person::InternalSerializeWithCachedSizesToArray()` - the compiler-generated method we analyzed in the last section and know is responsible for serializing the `Person` class' individual fields. This method first calls `WireFormatLite::WriteStringToArray()`, setting its parameters `value` and `field_number` to `"Kevin Durant"` and `1`, respectfully (i.e., we're serializing the `Person` message's `required string name = 1;` field). As usual, we write this field's key first which leads us to varint encoding the value `10` in `CodedOutputStream::WriteVarint32ToArray()`. Before we conclude this section, let's see which methods are responsible for serializing the value, `"Kevin Durant"` of our `name` field.
+
+13. Set a breakpoint at **line 736** of the file, `google/protobuf/io/coded_stream.cc`, run `continue`, and run `bt` one final time.
+
+```
+break coded_stream.cc:736
+continue
+bt
+```
+
+![alt text](resources/images/gdb-14.png)
+
+Here, we see the next thing `WireFormatLite::WriteStringToArray()` (`#1` in the call stack) does is call `CodedOutputStream::WriteRawToArray()`, setting its parameter `size` to `12` - the length of the string `"Kevin Durant"`. `CodedOutputStream::WriteRawToArray()` then calls <a href="http://man7.org/linux/man-pages/man3/memcpy.3.html">`memcpy()`</a> on **line 736**, instructing it to copy `12` bytes of data from the memory area pointed to by `data` to memory area `target`. For those brave enough, let's jump into `memcpy()` next.
+
+14. `step`, `list`, and `bt`. 
+
+![alt text](resources/images/gdb-15.png)
+
+Whoa... we see <a href="https://en.wikipedia.org/wiki/X86_assembly_language">x86 assembly</a>. 
 
 #### Analyzing the Protocol Buffer serialization code
 
