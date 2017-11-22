@@ -927,6 +927,9 @@ Note, **it is not trivial** to reach this point; it might take a few tries for y
 
 ![alt text](resources/images/gdb-11.png)
 
+Let's take a look at what's happening at this point in the program's execution. Starting with `AddressBook::InternalSerializeWithCachedSizesToArray()` (`#4` in the call stack), this compiler-generated method calls `WireFormatLite::InternalWriteMessageNoVirtualToArray()` once for each embedded `Person` message it needs to serialize. This makes sense; recall that `AddressBook` messages only have one field, a `repeated Person people = 1;`. Like any field, first we encode and write its key. Since this field's field number is **1** and wire type is **2** (length-delimited), the value we need to varint encode giving us our key is `10` in decimal. Correspondingly, `WireFormatLite::InternalWriteMessageNoVirtualToArray()` calls `WireFormatLite::WriteTagToArray()` passing it the values `WireFormatLite::WIRETYPE_LENGTH_DELIMITED` and `1` for its parameters `type` and `field_number`, respectfully. (Note, the `Tag` in `WriteTagToArray()` is synonymous to my use of the word "key"; both refer to a field's key.) This method in turn calls `CodedOutputStream::WriteTagToArray()`, setting its parameter `value` to `10`. Finally, this method calls `CodedOutputStream::WriteVarint32ToArray()` setting its parameter `value` to `10`, and this is where the number `10` is finally varint encoded into the hex value `0a`. Cool, eh? :)
+
+11. 
 
 #### Analyzing the Protocol Buffer serialization code
 
