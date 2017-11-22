@@ -754,7 +754,7 @@ Enter `69` and press `enter`. This takes us to **line 257** of the file, `google
 
 ![alt text](resources/images/ctags-6.png)
 
-Ah-ha! Here we see that this method is a <a href="http://www.cplusplus.com/doc/tutorial/polymorphism/">virtual member</a> of the `MessageLite` class. This means derived classes can redefine this method, so hopefully now you believe me when I say this is where `AddressBook` and other compiler-generated message classes take over. Actually, instead of redefining this method, compiler-generated message classes define `InternalSerializeWithCachedSizesToArray()` which is called on **line 258**. We'll jump into it next.
+Ah-ha! Here we see that this method is a <a href="http://www.cplusplus.com/doc/tutorial/polymorphism/">virtual member</a> of the `MessageLite` class. This means derived classes can redefine this method, so hopefully now you believe me when I say this is where `AddressBook` and other compiler-generated message classes take over. Actually, if you look at the `Person` class' implementation of this method (**lines 198-200** of the file `addressbook.pb.h`), you'll see that it's identical to `MessageLite`'s and also calls `InternalSerializeWithCachedSizesToArray()`. We'll jump into `Person::InternalSerializeWithCachedSizesToArray()` next.
 
 8. Enter `:q` to exit vim. Still in `~/workspace/protobuf/src`, open the file, `../examples/addressbook.pb.cc`. This is the source file that the compiler (i.e., `protoc`) spits out defining the three messages, `AddressBook`, `Person`, and `PhoneNumber`, and hence it's where we'll find `Person::InternalSerializeWithCachedSizesToArray()`.
 
