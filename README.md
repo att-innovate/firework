@@ -951,7 +951,10 @@ bt
 
 ![alt text](resources/images/gdb-14.png)
 
-Here, we see the next thing `WireFormatLite::WriteStringToArray()` (`#1` in the call stack) does is call `CodedOutputStream::WriteRawToArray()`, setting its parameter `size` to `12` - the length of the string `"Kevin Durant"`. `CodedOutputStream::WriteRawToArray()` then calls <a href="http://man7.org/linux/man-pages/man3/memcpy.3.html">`memcpy()`</a> on **line 736**, instructing it to copy `12` bytes of data from the memory area pointed to by `data` to memory area `target`. For those brave enough, let's jump into `memcpy()` next.
+Here, we see the next thing `WireFormatLite::WriteStringToArray()` (`#1` in the call stack) does is call `CodedOutputStream::WriteRawToArray()`, setting its parameter `size` to `12` - the length of the string `"Kevin Durant"`. This method in turn calls <a href="http://man7.org/linux/man-pages/man3/memcpy.3.html">`memcpy()`</a> on **line 736**, instructing the system to copy `12` bytes of data starting at the address pointed to by `data` to the memory area pointed to by `target`. This gives us an idea of how field data other than varints are serialized. I'll show in the next section how values of all field types and keys can be categorized into two high-level types of data: *varint data* and *raw data*.
+
+*Optional, feel free to skip to the next section*
+For those brave enough, let's jump into `memcpy()` next.
 
 14. `step`, `list`, and `bt`. 
 
@@ -965,15 +968,14 @@ Let's look more closely at the various fields and their corresponding wire types
 
 ![alt text](resources/images/wire-types.png) 
 
-- Compiled Message subclasses: series of calls to WireFormatLite::Write*, CodedOutputStream::Write* to serialize individual fields (mention SerializeWithCachedSizesToArray() as "lowest high-level serialization" method)
+- Compiled Message subclasses: series of calls to `WireFormatLite::Write*`, `CodedOutputStream::Write*` to serialize individual fields (mention SerializeWithCachedSizesToArray() as "lowest high-level serialization" method)
 - These methods would serve as templates for the computation portion, or <a href="https://en.wikipedia.org/wiki/Datapath">datapath</a>, of the hardware accelerator. These methods also shed light on how data would eventually be communicated between the ARM CPU and hardware accelerator (co-processor in this setup).
 - WriteVarint32ToArray(): planned to accelerate this function only based on use (all varints, tags, etc.) and you know the rest :D
-
 - **realized** fields could all be categorized into two separate datapaths (varint encoded, raw data)
 Before diving into the hardware design, I'd like to share a great example of how the time I spent understanding this software led to a realization which led to a huge simplification in the hardware design as well as expanding what it supports. It went from a toy example to something much more robust and closer to seeing the light of day in a production datacenter ...an initial simplification I attempted to make (i.e., only supporting 32-bit varints) and how taking time to understand fundamentally that an even lower abstraction than twas provided by Protocol Buffer fields) how the data was encoded led to a simplification and (in my opinion), beautiful approach to the hardware design. I realized that despite there being 18 field types (omitting groups, since they're depreciated), they all boil down to either *varint-encoded* data or *raw data* that needed to be simply passed on, preserving the ordering/sequence of fields of course.
 
 
-#### A brief note on perf
+#### A brief note on `perf`
 
 - If I could go back, I'd also do - perf/profiling: guage whether specialized hardware could outperform software; analyze cost of overhead of communicating data (lack of experience analyzing system performance, thought the paper provided sufficient motivation, overwhelmed with too many other things to figure out)
 
