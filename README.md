@@ -965,9 +965,9 @@ In the next section, we'll see how keys and values of all field types can be cat
 
 #### Analyzing the Protocol Buffer serialization code
 
-In the previous two sections, we saw that the compiler-generated code works very closely with the Protocol Buffer runtime library to serialize fields of a message. We took a closer look at `Person::InternalSerializeWithCachedSizesToArray()` and saw that it makes a sequence of calls to `WireFormatLite::Write*ToArray()` methods to serialize its fields in order of ascending field number. I like to call this method the *"lowest high-level serialization method"*; its purpose is to provide the *order* in which fields of a message (e.g., a `Person` message in this case) are encoded and written to an output buffer. Next, we looked at `WireFormatLite::Write*ToArray()` methods it calls and saw that they in turn call `CodedOutputStream::Write*ToArray()` methods which *perform the encoding and writing* of field keys and values. Finally, we looked at `CodedOutputStream::WriteVarint32ToArray()` and saw that this method is responsible for varint encoding.
+In the previous two sections, we saw that the compiler-generated code works very closely with the Protocol Buffer runtime library to serialize fields of a message. We took a closer look at `Person::InternalSerializeWithCachedSizesToArray()` and saw that it makes a sequence of calls to `WireFormatLite::Write*ToArray()` methods to serialize its fields in order of ascending field number. I like to call `InternalSerializeWithCachedSizesToArray()` the *"lowest high-level serialization method"*; its purpose is to provide the *order* in which fields of a message (e.g., a `Person` message) are encoded and written to an output buffer. Next, we looked at the `WireFormatLite::Write*ToArray()` methods that it calls and saw that they in turn call `CodedOutputStream::Write*ToArray()` methods which actually *perform the encoding and writing* of field keys and values. Finally, we learned that `CodedOutputStream::WriteVarint32ToArray()` is the method responsible for varint encoding 32-bit integers.
 
-As it turns out, there are six `CodedOutputStream` methods that contain the logic for encoding and writing keys and values of **all field types**:
+As it turns out, there are six methods of the `CodedOutputStream` class that contain all the logic for encoding and writing keys and values of **all field types**:
 
 1. `WriteVarint32ToArray()`
 
@@ -993,17 +993,29 @@ As it turns out, there are six `CodedOutputStream` methods that contain the logi
 
 ![alt text](resources/images/WriteRawToArray().png)
 
-It's these methods that served as templates for designing the <a href="https://en.wikipedia.org/wiki/Datapath">datapath</a> of the hardware accelerator. They also shed light on how data would eventually be communicated from the SoC's ARM Cortex-A9 CPU to the hardware accelerator, leading to my choce of designing the peripheral as an <a href="https://github.com/att-innovate/firework/blob/master/resources/AMBA%20AXI%20and%20ACE%20Protocol%20Specification.pdf">ARM AMBA AXI4</a> slave peripheral.
+This brings us to the first of two *key realizations* I had when analzying the code:
 
-I spent quite some time thinking about this code and what it meant that all the encoding logic is encapsulated these six methods. There were to epiphanies:
-1. It's incredibly awesome that all the logic is contined within the Protocol Buffer runtime library and **NOT** the compiler-generated code; that would've meant finding a common denominator in compiler-generated code for hardware design... 
-2. Keys are encoded as varints, and values of all field types could be categorizes as either varint data or raw data, elaborated below
+*1. All logic for serializing fields of any message is contained within the Protocol Buffer runtime library, **NOT** in the compiler-generated code*
 
-Let's look more closely at the various fields and their corresponding wire types. The following table from the <a href="https://developers.google.com/protocol-buffers/docs/encoding">encoding</a> page shows the mapping between *field types* and the six available *wire types*:
+This is significant because it means that we don't have *specialized encoding logic* in the compiler-generated code for messages defined in a `.proto` file but rather *a consistent mechanism for serializing fields*: calling one of the six `CodedOutputStream` methods above. It's these methods that serve as templates for designing the <a href="https://en.wikipedia.org/wiki/Datapath">datapath</a> of the hardware accelerator. They also shed light on how data would eventually be communicated from the SoC's ARM Cortex-A9 CPU to the hardware accelerator, leading to my choce of designing the peripheral as an <a href="https://github.com/att-innovate/firework/blob/master/resources/AMBA%20AXI%20and%20ACE%20Protocol%20Specification.pdf">ARM AMBA AXI4</a> slave peripheral. Had the logic been part of the compiler-generated code, it may have been much more difficult or not possible to design a single hardware accelerator for all Protocol Buffer applications.
+
+The second key realization came from thinking about how all the supported field types map to these six methods:  
+
+*2. Keys are encoded as varints, and values of all field types can be categorized as either **varint data** or **raw data***
+
+Let's look more closely at how the supported *field types* map to one of six *wire types* in the following table, pulled from the <a href="https://developers.google.com/protocol-buffers/docs/encoding">Encoding</a> page:
 
 ![alt text](resources/images/wire-types.png)
 
-- **realized** keys and all 18 field types (omitting groups, since they're depreciated) could be categorized as either *varint data* or *raw data*, the latter needing to be simply copied to an output buffer --> two independent, parallel datapaths (varint encoded, raw data), presesrving order of course ...taking time to understand fundamentally that an even lower abstraction than twas provided by Protocol Buffer fields how the data was encoded led to a beautiful approach to the hardware design.
+Note, I chose to omit support for wire types `3` and `4` from the hardware accelerator design because `groups` have been depreciated starting with the **proto3** version of the Protocol Buffers language, and we're working with version `v3.0.2`. 
+
+Wire type `0` is used for field *keys*; the following field types (from the table): `int32`, `int64`, `uint32`, `uint64`, `sint32`, `sint64`, `bool`, `enum`; and the *size* of length-delimited fields. All of these are encoded as **varint data**. 
+
+Wire type `2` is used for length-delimited fields (`string`, `bytes`, `embedded messages`, `packed repeated fields`), and their values can be thought of as *variable-sized* **raw data** that simply needs to be copied byte-for-byte to the output buffer. Wire type `1` is used for 64-bit data (`fixed64`, `sfixed64`, `double`) whose payload is always *8 bytes*, and wire type `5` is used for 32-bit data (`fixed32`, `sfixed32`, `float`) whose payload is always *4 bytes*. Values of these two wire types are also copied byte-for-byte, so you can think of them as **raw data** as well.
+
+The significance here is that this led to a simplificaiton and optimization in the hardware accelerator design: I could build a datapath that consists of two parallel "channels" for processing incoming varint and raw data and stitch together the encoded data into a unified output buffer, presesrving the order in which fields are serialized of course. There isn't a precise way for me to explain how I came to this realization. I simply took the time to fundamentally understand the *operations being performed on data* and *how the data is moving* at a level even lower than the abstraction provided above by the Protocol Buffer language.
+
+I elaborate further on the hardware accelerator design and how it supports the various field types in the section, [4. Implementing an FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)](README.md#4-implementing-an-fpga-peripheral-top-level-io-arm-amba-axi4-verilog-quartus-prime-modelsim).
 
 #### A brief note on `perf`
 
