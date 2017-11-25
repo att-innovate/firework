@@ -953,31 +953,57 @@ bt
 
 ![alt text](resources/images/gdb-14.png)
 
-Here, we see that `WireFormatLite::WriteStringToArray()` (`#1` in the call stack) calls `CodedOutputStream::WriteRawToArray()`, setting its parameter `size` to `12`: the length of the string `"Kevin Durant"`. This method in turn calls <a href="http://man7.org/linux/man-pages/man3/memcpy.3.html">`memcpy()`</a> on **line 736** (highlighted above), instructing the system to copy 12 bytes of data from the memory area pointed to by `data` to the memory area pointed to by `target`. 
+Here, we see that `WireFormatLite::WriteStringToArray()` (`#1` in the call stack) calls `CodedOutputStream::WriteRawToArray()`, setting its parameter `size` to `12`: the length of the string `"Kevin Durant"`. This method in turn calls <a href="http://man7.org/linux/man-pages/man3/memcpy.3.html">`memcpy()`</a> on **line 736** (highlighted above), instructing the system to copy 12 bytes of data from the memory area pointed to by `data` to the memory area pointed to by `target`. For those brave enough, let's jump into `memcpy()` next.
+
+14. Run `step` and `list`.
+
+![alt text](resources/images/memcpy().png)
+
+Here we see that we've now entered code that belongs to the GNU C Library, `glibc`. We also see that `memcpy()` is implemented in <a href="https://en.wikipedia.org/wiki/X86_assembly_language">x86 assembly</a>. Details of this method's <a href="https://sourceware.org/git/?p=glibc.git;a=blob;f=sysdeps/x86_64/multiarch/memcpy-ssse3.S;h=9642ceecd90f35a918ed96981836c5a8cdf8f0fa;hb=HEAD">implementation</a> are beyond the scope of this tutorial, but the important takeaway is that this is where the Protocol Buffer runtime library hands off execution to the system for copying *raw bytes of data* from one memory location to another (i.e., to our output stream).
 
 In the next section, we'll see how keys and values of all field types can be categorized into two high-level types of data: *varint data* and *raw data*.
 
-(*The step below is optional, feel free to skip to the next section*). For those brave enough, let's jump into `memcpy()` next.
-
-14. `step`, `list`, and `bt`. 
-
-![alt text](resources/images/gdb-15.png)
-
-Whoa... we see <a href="https://en.wikipedia.org/wiki/X86_assembly_language">x86 assembly</a>.
-
 #### Analyzing the Protocol Buffer serialization code
+
+In the previous two sections, we saw that the compiler-generated code works very closely with the Protocol Buffer runtime library to serialize fields of a message. We took a closer look at `Person::InternalSerializeWithCachedSizesToArray()` and saw that it makes a sequence of calls to `WireFormatLite::Write*ToArray()` methods to serialize its fields in order of ascending field number. I like to call this method the *"lowest high-level serialization method"*; its purpose is to provide the *order* in which fields of a message (e.g., a `Person` message in this case) are encoded and written to an output buffer. Next, we looked at `WireFormatLite::Write*ToArray()` methods it calls and saw that they in turn call `CodedOutputStream::Write*ToArray()` methods which *perform the encoding and writing* of field keys and values. Finally, we looked at `CodedOutputStream::WriteVarint32ToArray()` and saw that this method is responsible for varint encoding.
+
+As it turns out, there are six `CodedOutputStream` methods that contain the logic for encoding and writing keys and values of **all field types**:
+
+1. `WriteVarint32ToArray()`
+
+![alt text](resources/images/WriteVarint32ToArray().png)
+
+2. `WriteVarint64ToArrayInline()`
+
+![alt text](resources/images/WriteVarint64ToArrayInline().png)
+
+3. `WriteLittleEndian32ToArray()`
+
+![alt text](resources/images/WriteLittleEndian32ToArray().png)
+
+4. `WriteLittleEndian64ToArray()`
+
+![alt text](resources/images/WriteLittleEndian64ToArray().png)
+
+5. `WriteRaw()`
+
+![alt text](resources/images/WriteRaw().png)
+
+6. `WriteRawToArray()`
+
+![alt text](resources/images/WriteRawToArray().png)
+
+It's these methods that served as templates for designing the <a href="https://en.wikipedia.org/wiki/Datapath">datapath</a> of the hardware accelerator. They also shed light on how data would eventually be communicated from the SoC's ARM Cortex-A9 CPU to the hardware accelerator, leading to my choce of designing the peripheral as an <a href="https://github.com/att-innovate/firework/blob/master/resources/AMBA%20AXI%20and%20ACE%20Protocol%20Specification.pdf">ARM AMBA AXI4</a> slave peripheral.
+
+I spent quite some time thinking about this code and what it meant that all the encoding logic is encapsulated these six methods. There were to epiphanies:
+1. It's incredibly awesome that all the logic is contined within the Protocol Buffer runtime library and **NOT** the compiler-generated code; that would've meant finding a common denominator in compiler-generated code for hardware design... 
+2. Keys are encoded as varints, and values of all field types could be categorizes as either varint data or raw data, elaborated below
 
 Let's look more closely at the various fields and their corresponding wire types. The following table from the <a href="https://developers.google.com/protocol-buffers/docs/encoding">encoding</a> page shows the mapping between *field types* and the six available *wire types*:
 
-![alt text](resources/images/wire-types.png) 
+![alt text](resources/images/wire-types.png)
 
-- "I don't expect this next bit to be immediately intuitive, but it's actually quite significant that all message serialization and encoding logic is contained in these two classes (and really just the latter) and not in the compiler-generated code. I'll elaborate further on this in the section, Analyzing the Protocol Buffer serialization code."
-- Compiled Message subclasses: series of calls to `WireFormatLite::Write*`, `CodedOutputStream::Write*` to serialize individual fields (mention SerializeWithCachedSizesToArray() as "lowest high-level serialization" method)
-- These methods would serve as templates for the computation portion, or <a href="https://en.wikipedia.org/wiki/Datapath">datapath</a>, of the hardware accelerator. These methods also shed light on how data would eventually be communicated between the ARM CPU and hardware accelerator (co-processor in this setup).
-- WriteVarint32ToArray(): planned to accelerate this function only based on use (all varints, tags, etc.) and you know the rest :D
-- **realized** fields could all be categorized into two separate datapaths (varint encoded, raw data)
-Before diving into the hardware design, I'd like to share a great example of how the time I spent understanding this software led to a realization which led to a huge simplification in the hardware design as well as expanding what it supports. It went from a toy example to something much more robust and closer to seeing the light of day in a production datacenter ...an initial simplification I attempted to make (i.e., only supporting 32-bit varints) and how taking time to understand fundamentally that an even lower abstraction than twas provided by Protocol Buffer fields) how the data was encoded led to a simplification and (in my opinion), beautiful approach to the hardware design. I realized that despite there being 18 field types (omitting groups, since they're depreciated), they all boil down to either *varint-encoded* data or *raw data* that needed to be simply passed on, preserving the ordering/sequence of fields of course.
-
+- **realized** keys and all 18 field types (omitting groups, since they're depreciated) could be categorized as either *varint data* or *raw data*, the latter needing to be simply copied to an output buffer --> two independent, parallel datapaths (varint encoded, raw data), presesrving order of course ...taking time to understand fundamentally that an even lower abstraction than twas provided by Protocol Buffer fields how the data was encoded led to a beautiful approach to the hardware design.
 
 #### A brief note on `perf`
 
