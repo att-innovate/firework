@@ -1019,8 +1019,7 @@ I elaborate further on the hardware accelerator design and how it supports the v
 
 #### A brief note on `perf`
 
-- If I could go back, I'd also do - perf/profiling: guage whether specialized hardware could outperform software; analyze cost of overhead of communicating data (lack of experience analyzing system performance, thought the paper provided sufficient motivation, overwhelmed with too many other things to figure out)
-
+If I could go back, I would also use `perf` at this stage to learn more about the *frequency* at which different methods are invoked and the percentage of total execution time the various codepaths (focusing on those belonging to message serialization) account for. `perf` also yields important information such as time spent in the user space application vs. core libraries and even executing <a href="https://github.com/torvalds/linux">kernel</a> code. It may very well be the case that a significant portion of the execution time is spent in areas you weren't aware of and hence didn't target for acceleration (e.g., the overhead from calling `memcpy()` in the `CodedOutputStream::Write*()` methods to serialize **raw data**, a `glibc` function). With this information, you can guage whether specialized hardware could even outperform the software, and if so, which codepaths you should target for optimization (i.e., design hardware to replace). It was a combination of lacking experience in analyzing system performance, thinking the <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44271.pdf">paper</a> provided sufficient motivation, and being overwhelmed with too many unknowns in this project that meant I skipped this step.
 
 ## Hardware Development
 
