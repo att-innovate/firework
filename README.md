@@ -1023,7 +1023,10 @@ If I could go back, I would also use `perf` at this stage to learn more about th
 
 ## Hardware Development
 
-Now, let's see how we can translate WriteVarint32ToArray() into a hardware accelerator and integrate our FPGA peripheral with the HPS.
+- Recap steps 1-3
+- Elaborate on step 3: six `CodedOutputStream` methods --> templates for hardware accelerator design
+
+First, let's see how the six `CodedOutputStream` methods identified in the last section are translated into into a hardware accelerator. Next, we'll see how to integrate the new FPGA peripheral into the Arria 10 GHRD to serve as a co-processor to the SoC's Hard Processor System.
 
 ### 4. Implementing an FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)
 
@@ -1049,6 +1052,27 @@ Now, let's see how we can translate WriteVarint32ToArray() into a hardware accel
     - [protobuf-serializer]
     - Using Quartus Prime (import project, layout, files, etc.) 
     - Running ModelSim testbenches
+
+
+1. Open a terminal and download the entire Firework repository.
+
+```
+cd ~/workspace
+git clone https://github.com/att-innovate/firework.git
+```
+
+2. Open the Quartus Prime Standard Edition software.
+
+```
+quartus &
+```
+
+3. Luckily, we don't have to create a new project using the **New Project Wizard**. `protobuf-serializer` from the Firework repository is a complete Quartus Prime project that we can open, containing the RTL for our hardware accelerator, Quartus Prime Project File (.qpf), and Quartus Prime Settings File (.qsf) which contains all project-wide assignments and settings (e.g., the `10AS066N3F40E2SG` device we're targeting). Note that for historic reasons, the (.qpf) and (.qsf) files are named `varint-encoder.qpf` and `varint-encoder.qsf`, instead of `protobuf-serializer.qpf` and `protobuf-serializer.qsf`, respectfully. `varint-encoder` is the name I originally gave to the hardware accelerator thinking it would only process 32-bit varint data before it eventually morphed into a much more sophisticated piece of hardware. From the *Home* screen, select **Open Project**. 
+
+
+
+![alt text](resources/images/hw-acc-1.png)
+
 
 ### 5. System integration (Qsys)
 
