@@ -199,7 +199,7 @@ sudo firewall-cmd --reload
 ```
 sudo systemctl daemon-reload
 sudo systemctl restart vncserver@:5.service
-sudo systemctl status 
+sudo systemctl status vncserver@:5.service 
 ```
 
 You should see `active (running)` in the output of the last command:
