@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='us-ascii'?>
 <qsys_generation_info>
-<qsys_file path="/home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_index.qsys" />
-<gen_dir path="/home/mladmon/workspace/firework/protobuf-serializer/raw_data_in_index/" />
+<qsys_file path="/home/fpga/workspace/firework/protobuf-serializer/raw_data_in_index.qsys" />
+<gen_dir path="/home/fpga/workspace/firework/protobuf-serializer/raw_data_in_index/" />
 <user_regen_policy value="Always Regenerate IP" />
 <actual_regen_policy value="Always Regenerate IP" />
 <gen_action value="IP Generation Attempted" />

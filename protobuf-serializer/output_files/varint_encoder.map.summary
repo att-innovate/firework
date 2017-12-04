@@ -1,5 +1,5 @@
-Analysis & Synthesis Status : Successful - Wed Jun 21 11:38:26 2017
-Quartus Prime Version : 16.0.0 Build 211 04/27/2016 SJ Standard Edition
+Analysis & Synthesis Status : Successful - Mon Dec  4 16:42:53 2017
+Quartus Prime Version : 16.1.0 Build 196 10/24/2016 SJ Standard Edition
 Revision Name : varint_encoder
 Top-level Entity Name : protobuf_serializer
 Family : Arria 10
