@@ -1,10 +1,10 @@
-Analysis & Synthesis Status : Successful - Wed Jun 21 12:01:44 2017
-Quartus Prime Version : 16.0.0 Build 211 04/27/2016 SJ Standard Edition
+Analysis & Synthesis Status : Successful - Mon Dec  4 16:27:21 2017
+Quartus Prime Version : 16.1.0 Build 196 10/24/2016 SJ Standard Edition
 Revision Name : ghrd_10as066n2
 Top-level Entity Name : ghrd_10as066n2_top
 Family : Arria 10
 Logic utilization (in ALMs) : N/A
-Total registers : 19432
+Total registers : 19435
 Total pins : 143
 Total virtual pins : 0
 Total block memory bits : 3,386,368

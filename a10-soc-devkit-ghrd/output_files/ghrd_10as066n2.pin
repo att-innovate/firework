@@ -1,15 +1,15 @@
- -- Copyright (C) 1991-2016 Altera Corporation. All rights reserved.
- -- Your use of Altera Corporation's design tools, logic functions 
+ -- Copyright (C) 2016  Intel Corporation. All rights reserved.
+ -- Your use of Intel Corporation's design tools, logic functions 
  -- and other software and tools, and its AMPP partner logic 
  -- functions, and any output files from any of the foregoing 
  -- (including device programming or simulation files), and any 
  -- associated documentation or information are expressly subject 
- -- to the terms and conditions of the Altera Program License 
- -- Subscription Agreement, the Altera Quartus Prime License Agreement,
- -- the Altera MegaCore Function License Agreement, or other 
+ -- to the terms and conditions of the Intel Program License 
+ -- Subscription Agreement, the Intel Quartus Prime License Agreement,
+ -- the Intel MegaCore Function License Agreement, or other 
  -- applicable license agreement, including, without limitation, 
  -- that your use is for the sole purpose of programming logic 
- -- devices manufactured by Altera and sold by Altera or its 
+ -- devices manufactured by Intel and sold by Intel or its 
  -- authorized distributors.  Please refer to the applicable 
  -- agreement for further details.
  -- 
@@ -76,7 +76,7 @@
  -- Pin directions (input, output or bidir) are based on device operating in user mode.
  ---------------------------------------------------------------------------------
 
-Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
+Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Standard Edition
 CHIP  "ghrd_10as066n2"  ASSIGNED TO AN: 10AS066N3F40E2SG
 
 Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment : Package Delay
@@ -107,7 +107,7 @@ hps_memory_mem_cke           : A24       : output : SSTL-12           :         
 RESERVED_INPUT_WITH_WEAK_PULLUP : A25       :        :                   :         : 2K        :                 : --           
 hps_memory_mem_odt           : A26       : output : SSTL-12           :         : 2K        : Y               : --           
 GND                          : A27       : gnd    :                   :         :           :                 : --           
-RREF                         : A28       :        :                   :         :           :                 : --           
+GND                          : A28       :        :                   :         :           :                 : --           
 GND                          : A29       : gnd    :                   :         :           :                 : --           
 GND                          : A30       : gnd    :                   :         :           :                 : --           
 GND                          : A31       : gnd    :                   :         :           :                 : --           
@@ -848,7 +848,7 @@ hps_memory_mem_dqs[2]        : AW26      : bidir  : Differential 1.2-V POD :    
 GND                          : AW27      : gnd    :                   :         :           :                 : --           
 hps_memory_mem_dq[19]        : AW28      : bidir  : 1.2-V POD         :         : 2J        : Y               : 237ps        
 GND                          : AW29      : gnd    :                   :         :           :                 : --           
-RREF                         : AW30      :        :                   :         :           :                 : --           
+GND                          : AW30      :        :                   :         :           :                 : --           
 GND                          : AW31      : gnd    :                   :         :           :                 : --           
 GXB_NC                       : AW32      :        :                   :         : 1C        :                 : --           
 GXB_NC                       : AW33      :        :                   :         : 1C        :                 : --           

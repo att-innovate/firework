@@ -1,0 +1,5 @@
+config ghrd_10as066n2_altera_avalon_st_adapter_161_4tryxxy_cfg;
+		design ghrd_10as066n2_altera_avalon_st_adapter_161_4tryxxy;
+		instance ghrd_10as066n2_altera_avalon_st_adapter_161_4tryxxy.error_adapter_0 use ghrd_10as066n2_error_adapter_161.ghrd_10as066n2_error_adapter_161_mg6siqa;
+endconfig
+

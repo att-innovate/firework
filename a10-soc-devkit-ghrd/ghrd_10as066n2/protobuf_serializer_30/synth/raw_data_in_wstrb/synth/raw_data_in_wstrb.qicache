@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='us-ascii'?>
 <qsys_generation_info>
-<qsys_file path="/home/mladmon/workspace/firework/a10_soc_devkit_ghrd/ghrd_10as066n2/protobuf_serializer_30/synth/raw_data_in_wstrb.qsys" />
-<gen_dir path="/home/mladmon/workspace/firework/a10_soc_devkit_ghrd/ghrd_10as066n2/protobuf_serializer_30/synth/raw_data_in_wstrb/" />
+<qsys_file path="/home/fpga/workspace/firework/a10-soc-devkit-ghrd/ghrd_10as066n2/protobuf_serializer_30/synth/raw_data_in_wstrb.qsys" />
+<gen_dir path="/home/fpga/workspace/firework/a10-soc-devkit-ghrd/ghrd_10as066n2/protobuf_serializer_30/synth/raw_data_in_wstrb/" />
 <user_regen_policy value="Always Regenerate IP" />
 <actual_regen_policy value="Always Regenerate IP" />
 <gen_action value="IP Generation Attempted" />

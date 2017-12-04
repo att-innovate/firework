@@ -1,5 +1,0 @@
-config ghrd_10as066n2_altera_emif_a10_hps_160_dm7bgly_cfg;
-		design ghrd_10as066n2_altera_emif_a10_hps_160_dm7bgly;
-		instance ghrd_10as066n2_altera_emif_a10_hps_160_dm7bgly.arch use ghrd_10as066n2_altera_emif_arch_nf_160.ghrd_10as066n2_altera_emif_arch_nf_160_sm6oguy;
-endconfig
-

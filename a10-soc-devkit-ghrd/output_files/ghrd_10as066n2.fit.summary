@@ -1,12 +1,12 @@
-Fitter Status : Successful - Wed Jun 21 12:08:46 2017
-Quartus Prime Version : 16.0.0 Build 211 04/27/2016 SJ Standard Edition
+Fitter Status : Successful - Mon Dec  4 16:34:41 2017
+Quartus Prime Version : 16.1.0 Build 196 10/24/2016 SJ Standard Edition
 Revision Name : ghrd_10as066n2
 Top-level Entity Name : ghrd_10as066n2_top
 Family : Arria 10
 Device : 10AS066N3F40E2SG
-Timing Models : Preliminary
-Logic utilization (in ALMs) : 8,483 / 251,680 ( 3 % )
-Total registers : 19786
+Timing Models : Final
+Logic utilization (in ALMs) : 8,425 / 251,680 ( 3 % )
+Total registers : 19808
 Total pins : 145 / 812 ( 18 % )
 Total virtual pins : 0
 Total block memory bits : 3,386,368 / 43,642,880 ( 8 % )
