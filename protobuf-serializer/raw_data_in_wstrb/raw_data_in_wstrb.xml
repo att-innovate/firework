@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2017.03.02.18:41:56"
- outputDirectory="/home/mladmon/workspace/firework/varint_encoder/raw_data_in_wstrb/">
+ date="2017.12.05.15:06:29"
+ outputDirectory="/home/fpga/workspace/firework/protobuf-serializer/raw_data_in_wstrb/">
  <perimeter>
   <parameter
      name="AUTO_GENERATION_ID"
@@ -24,7 +24,7 @@
   <parameter
      name="AUTO_DEVICE"
      type="String"
-     defaultValue="10AS066N3F40E2SGE2"
+     defaultValue="10AS066N3F40E2SG"
      onHdl="0"
      affectsHdl="1" />
   <parameter
@@ -49,41 +49,41 @@
   </interface>
  </perimeter>
  <entity kind="raw_data_in_wstrb" version="1.0" name="raw_data_in_wstrb">
-  <parameter name="AUTO_GENERATION_ID" value="1488508916" />
-  <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SGE2" />
+  <parameter name="AUTO_GENERATION_ID" value="1512504389" />
+  <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SG" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Arria 10" />
   <parameter name="AUTO_UNIQUE_ID" value="" />
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="2" />
   <generatedFiles>
    <file
-       path="/home/mladmon/workspace/firework/varint_encoder/raw_data_in_wstrb/synth/raw_data_in_wstrb.v"
+       path="/home/fpga/workspace/firework/protobuf-serializer/raw_data_in_wstrb/synth/raw_data_in_wstrb.v"
        attributes="CONTAINS_INLINE_CONFIGURATION" />
    <file
-       path="/home/mladmon/workspace/firework/varint_encoder/raw_data_in_wstrb/synth/raw_data_in_wstrb_cfg.v"
+       path="/home/fpga/workspace/firework/protobuf-serializer/raw_data_in_wstrb/synth/raw_data_in_wstrb_cfg.v"
        attributes="CONTAINS_INLINE_CONFIGURATION" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="/home/mladmon/workspace/firework/varint_encoder/raw_data_in_wstrb/synth/raw_data_in_wstrb.v"
+       path="/home/fpga/workspace/firework/protobuf-serializer/raw_data_in_wstrb/synth/raw_data_in_wstrb.v"
        attributes="CONTAINS_INLINE_CONFIGURATION" />
    <file
-       path="/home/mladmon/workspace/firework/varint_encoder/raw_data_in_wstrb/synth/raw_data_in_wstrb_cfg.v"
+       path="/home/fpga/workspace/firework/protobuf-serializer/raw_data_in_wstrb/synth/raw_data_in_wstrb_cfg.v"
        attributes="CONTAINS_INLINE_CONFIGURATION" />
   </childGeneratedFiles>
   <sourceFiles>
    <file
-       path="/home/mladmon/workspace/firework/varint_encoder/raw_data_in_wstrb.qsys" />
+       path="/home/fpga/workspace/firework/protobuf-serializer/raw_data_in_wstrb.qsys" />
   </sourceFiles>
   <childSourceFiles>
    <file
-       path="/home/mladmon/workspace/altera/16.0/ip/altera/megafunctions/fifo/fifo_hw.tcl" />
+       path="/home/fpga/workspace/intelFPGA/17.1/ip/altera/megafunctions/fifo/fifo_hw.tcl" />
   </childSourceFiles>
   <messages>
    <message level="Info" culprit="raw_data_in_wstrb">"Generating: raw_data_in_wstrb"</message>
-   <message level="Info" culprit="raw_data_in_wstrb">"Generating: raw_data_in_wstrb_fifo_160_sconavq"</message>
+   <message level="Info" culprit="raw_data_in_wstrb">"Generating: raw_data_in_wstrb_fifo_171_ke7pjxy"</message>
   </messages>
  </entity>
- <entity kind="fifo" version="16.0" name="raw_data_in_wstrb_fifo_160_sconavq">
+ <entity kind="fifo" version="17.1" name="raw_data_in_wstrb_fifo_171_ke7pjxy">
   <parameter name="GUI_Full" value="false" />
   <parameter name="GUI_RdUsedw_width" value="8" />
   <parameter name="GUI_AlmostFullThr" value="1" />
@@ -128,22 +128,22 @@
   <parameter name="GUI_Width" value="4" />
   <generatedFiles>
    <file
-       path="/home/mladmon/workspace/firework/varint_encoder/raw_data_in_wstrb/fifo_160/synth/raw_data_in_wstrb_fifo_160_sconavq.v"
+       path="/home/fpga/workspace/firework/protobuf-serializer/raw_data_in_wstrb/fifo_171/synth/raw_data_in_wstrb_fifo_171_ke7pjxy.v"
        attributes="" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="/home/mladmon/workspace/firework/varint_encoder/raw_data_in_wstrb/fifo_160/synth/raw_data_in_wstrb_fifo_160_sconavq.v"
+       path="/home/fpga/workspace/firework/protobuf-serializer/raw_data_in_wstrb/fifo_171/synth/raw_data_in_wstrb_fifo_171_ke7pjxy.v"
        attributes="" />
   </childGeneratedFiles>
   <sourceFiles>
    <file
-       path="/home/mladmon/workspace/altera/16.0/ip/altera/megafunctions/fifo/fifo_hw.tcl" />
+       path="/home/fpga/workspace/intelFPGA/17.1/ip/altera/megafunctions/fifo/fifo_hw.tcl" />
   </sourceFiles>
   <childSourceFiles/>
   <instantiator instantiator="raw_data_in_wstrb" as="fifo_0" />
   <messages>
-   <message level="Info" culprit="raw_data_in_wstrb">"Generating: raw_data_in_wstrb_fifo_160_sconavq"</message>
+   <message level="Info" culprit="raw_data_in_wstrb">"Generating: raw_data_in_wstrb_fifo_171_ke7pjxy"</message>
   </messages>
  </entity>
 </deploy>

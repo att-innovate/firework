@@ -1,18 +1,18 @@
-# system info varint_out_fifo on 2017.03.02.17:55:51
+# system info varint_out_fifo on 2017.12.05.15:07:41
 system_info:
 name,value
-DEVICE,10AS066N3F40E2SGE2
+DEVICE,10AS066N3F40E2SG
 DEVICE_FAMILY,Arria 10
-GENERATION_ID,1488506150
+GENERATION_ID,1512504461
 #
 #
-# Files generated for varint_out_fifo on 2017.03.02.17:55:51
+# Files generated for varint_out_fifo on 2017.12.05.15:07:41
 files:
 filepath,kind,attributes,module,is_top
 sim/varint_out_fifo.v,VERILOG,CONTAINS_INLINE_CONFIGURATION,varint_out_fifo,true
-fifo_160/sim/varint_out_fifo_fifo_160_q2auapq.v,VERILOG,,varint_out_fifo_fifo_160_q2auapq,false
+fifo_171/sim/varint_out_fifo_fifo_171_u2h7cyi.v,VERILOG,,varint_out_fifo_fifo_171_u2h7cyi,false
 #
 # Map from instance-path to kind of module
 instances:
 instancePath,module
-varint_out_fifo.fifo_0,varint_out_fifo_fifo_160_q2auapq
+varint_out_fifo.fifo_0,varint_out_fifo_fifo_171_u2h7cyi

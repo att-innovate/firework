@@ -1,26 +1,25 @@
-// Copyright (C) 1991-2016 Altera Corporation. All rights reserved.
-// Your use of Altera Corporation's design tools, logic functions 
+// Copyright (C) 2017  Intel Corporation. All rights reserved.
+// Your use of Intel Corporation's design tools, logic functions 
 // and other software and tools, and its AMPP partner logic 
 // functions, and any output files from any of the foregoing 
 // (including device programming or simulation files), and any 
 // associated documentation or information are expressly subject 
-// to the terms and conditions of the Altera Program License 
-// Subscription Agreement, the Altera Quartus Prime License Agreement,
-// the Altera MegaCore Function License Agreement, or other 
-// applicable license agreement, including, without limitation, 
-// that your use is for the sole purpose of programming logic 
-// devices manufactured by Altera and sold by Altera or its 
-// authorized distributors.  Please refer to the applicable 
-// agreement for further details.
+// to the terms and conditions of the Intel Program License 
+// Subscription Agreement, the Intel Quartus Prime License Agreement,
+// the Intel FPGA IP License Agreement, or other applicable license
+// agreement, including, without limitation, that your use is for
+// the sole purpose of programming logic devices manufactured by
+// Intel and sold by Intel or its authorized distributors.  Please
+// refer to the applicable agreement for further details.
 
 // VENDOR "Altera"
 // PROGRAM "Quartus Prime"
-// VERSION "Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition"
+// VERSION "Version 17.1.0 Build 590 10/25/2017 SJ Standard Edition"
 
-// DATE "03/02/2017 18:42:12"
+// DATE "12/05/2017 15:06:45"
 
 // 
-// Device: Altera 10AS066N3F40E2SGE2 Package FBGA1517
+// Device: Altera 10AS066N3F40E2SG Package FBGA1517
 // 
 
 // 
@@ -66,7 +65,7 @@ wire \data[3]~input_o ;
 wire \sclr~input_o ;
 
 
-raw_data_in_wstrb_raw_data_in_wstrb_fifo_160_sconavq fifo_0(
+raw_data_in_wstrb_raw_data_in_wstrb_fifo_171_ke7pjxy fifo_0(
 	.q_b_0(\fifo_0|scfifo_component|auto_generated|dpfifo|FIFOram|q_b[0] ),
 	.q_b_1(\fifo_0|scfifo_component|auto_generated|dpfifo|FIFOram|q_b[1] ),
 	.q_b_2(\fifo_0|scfifo_component|auto_generated|dpfifo|FIFOram|q_b[2] ),
@@ -106,7 +105,7 @@ assign q[3] = \fifo_0|scfifo_component|auto_generated|dpfifo|FIFOram|q_b[3] ;
 
 endmodule
 
-module raw_data_in_wstrb_raw_data_in_wstrb_fifo_160_sconavq (
+module raw_data_in_wstrb_raw_data_in_wstrb_fifo_171_ke7pjxy (
 	q_b_0,
 	q_b_1,
 	q_b_2,
@@ -1300,7 +1299,7 @@ defparam ram_block1a0.clk0_core_clock_enable = "ena0";
 defparam ram_block1a0.clk1_output_clock_enable = "ena1";
 defparam ram_block1a0.data_interleave_offset_in_bits = 1;
 defparam ram_block1a0.data_interleave_width_in_bits = 1;
-defparam ram_block1a0.logical_ram_name = "raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram|ALTSYNCRAM";
+defparam ram_block1a0.logical_ram_name = "raw_data_in_wstrb_fifo_171_ke7pjxy:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram|ALTSYNCRAM";
 defparam ram_block1a0.mixed_port_feed_through_mode = "dont_care";
 defparam ram_block1a0.operation_mode = "dual_port";
 defparam ram_block1a0.port_a_address_clear = "none";
@@ -1360,7 +1359,7 @@ defparam ram_block1a1.clk0_core_clock_enable = "ena0";
 defparam ram_block1a1.clk1_output_clock_enable = "ena1";
 defparam ram_block1a1.data_interleave_offset_in_bits = 1;
 defparam ram_block1a1.data_interleave_width_in_bits = 1;
-defparam ram_block1a1.logical_ram_name = "raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram|ALTSYNCRAM";
+defparam ram_block1a1.logical_ram_name = "raw_data_in_wstrb_fifo_171_ke7pjxy:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram|ALTSYNCRAM";
 defparam ram_block1a1.mixed_port_feed_through_mode = "dont_care";
 defparam ram_block1a1.operation_mode = "dual_port";
 defparam ram_block1a1.port_a_address_clear = "none";
@@ -1420,7 +1419,7 @@ defparam ram_block1a2.clk0_core_clock_enable = "ena0";
 defparam ram_block1a2.clk1_output_clock_enable = "ena1";
 defparam ram_block1a2.data_interleave_offset_in_bits = 1;
 defparam ram_block1a2.data_interleave_width_in_bits = 1;
-defparam ram_block1a2.logical_ram_name = "raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram|ALTSYNCRAM";
+defparam ram_block1a2.logical_ram_name = "raw_data_in_wstrb_fifo_171_ke7pjxy:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram|ALTSYNCRAM";
 defparam ram_block1a2.mixed_port_feed_through_mode = "dont_care";
 defparam ram_block1a2.operation_mode = "dual_port";
 defparam ram_block1a2.port_a_address_clear = "none";
@@ -1480,7 +1479,7 @@ defparam ram_block1a3.clk0_core_clock_enable = "ena0";
 defparam ram_block1a3.clk1_output_clock_enable = "ena1";
 defparam ram_block1a3.data_interleave_offset_in_bits = 1;
 defparam ram_block1a3.data_interleave_width_in_bits = 1;
-defparam ram_block1a3.logical_ram_name = "raw_data_in_wstrb_fifo_160_sconavq:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram|ALTSYNCRAM";
+defparam ram_block1a3.logical_ram_name = "raw_data_in_wstrb_fifo_171_ke7pjxy:fifo_0|scfifo:scfifo_component|scfifo_1m91:auto_generated|a_dpfifo_kd91:dpfifo|altsyncram_2fn1:FIFOram|ALTSYNCRAM";
 defparam ram_block1a3.mixed_port_feed_through_mode = "dont_care";
 defparam ram_block1a3.operation_mode = "dual_port";
 defparam ram_block1a3.port_a_address_clear = "none";

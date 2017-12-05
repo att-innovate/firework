@@ -2,7 +2,7 @@
 WORK > DEFAULT
 DEFAULT:           ./libraries/work/             
 work:              ./libraries/work/             
-out_fifo_fifo_160: ./libraries/out_fifo_fifo_160/
+out_fifo_fifo_171: ./libraries/out_fifo_fifo_171/
 altera_ver:        ./libraries/altera_ver/       
 lpm_ver:           ./libraries/lpm_ver/          
 sgate_ver:         ./libraries/sgate_ver/        

@@ -2,7 +2,7 @@
 WORK > DEFAULT
 DEFAULT:                     ./libraries/work/                       
 work:                        ./libraries/work/                       
-raw_data_out_index_fifo_160: ./libraries/raw_data_out_index_fifo_160/
+raw_data_out_index_fifo_171: ./libraries/raw_data_out_index_fifo_171/
 altera_ver:                  ./libraries/altera_ver/                 
 lpm_ver:                     ./libraries/lpm_ver/                    
 sgate_ver:                   ./libraries/sgate_ver/                  

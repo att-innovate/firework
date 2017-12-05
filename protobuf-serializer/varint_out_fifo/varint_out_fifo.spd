@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <simPackage>
  <file
-   path="fifo_160/sim/varint_out_fifo_fifo_160_q2auapq.v"
+   path="fifo_171/sim/varint_out_fifo_fifo_171_u2h7cyi.v"
    type="VERILOG"
-   library="varint_out_fifo_fifo_160" />
+   library="varint_out_fifo_fifo_171" />
  <file
    path="sim/varint_out_fifo.v"
    type="VERILOG"

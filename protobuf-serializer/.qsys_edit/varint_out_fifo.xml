@@ -1251,12 +1251,9 @@
 								<property factory="SplitDockPlaceholderProperty">
 									<placeholder>dock.single.Clock\ Domains\ \-\ Beta</placeholder>
 									<backup-path>
-										<node location="RIGHT" size="0.25" id="1372710005727"/>
-										<node location="LEFT" size="0.6950092421441774" id="1375899667063"/>
-										<node location="TOP" size="0.75" id="1386283918535"/>
-										<node location="LEFT" size="0.3570504527813712" id="1411773916307"/>
-										<node location="TOP" size="0.5092667203867848" id="1411773956584"/>
-										<leaf id="1411773916305"/>
+										<node location="LEFT" size="0.22181146025878004" id="1372710005721"/>
+										<node location="TOP" size="0.504054054054054" id="1375985011088"/>
+										<leaf id="1375985003630"/>
 									</backup-path>
 								</property>
 								<property factory="StackDockPropertyFactory">
@@ -1816,15 +1813,13 @@
 										<property factory="SplitDockPlaceholderProperty">
 											<placeholder>dock.single.Clock\ Domains\ \-\ Beta</placeholder>
 											<backup-path>
-												<node location="RIGHT" size="0.25" id="1372710005727"/>
-												<node location="LEFT" size="0.6950092421441774" id="1375899667063"/>
-												<node location="TOP" size="0.75" id="1386283918535"/>
-												<node location="RIGHT" size="0.7106666666666666" id="1389811727550"/>
-												<leaf id="1375899667061"/>
+												<node location="LEFT" size="0.22181146025878004" id="1372710005721"/>
+												<node location="TOP" size="0.504054054054054" id="1375985011088"/>
+												<leaf id="1375985003630"/>
 											</backup-path>
 										</property>
 										<property factory="StackDockPropertyFactory">
-											<index>1</index>
+											<index>2</index>
 											<placeholder>dock.single.Clock\ Domains\ \-\ Beta</placeholder>
 										</property>
 									</location>

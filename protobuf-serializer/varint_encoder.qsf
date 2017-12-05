@@ -42,7 +42,7 @@ set_global_assignment -name DEVICE 10AS066N3F40E2SG
 set_global_assignment -name TOP_LEVEL_ENTITY protobuf_serializer
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 16.0.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "15:13:50  JANUARY 27, 2017"
-set_global_assignment -name LAST_QUARTUS_VERSION "16.1.0 Standard Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "17.1.0 Standard Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 100
@@ -57,7 +57,7 @@ set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
 set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
 set_global_assignment -name VERILOG_SHOW_LMF_MAPPING_MESSAGES OFF
 set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
-set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH varint -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH Addressbook -section_id eda_simulation
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST ON -section_id eda_simulation
 set_global_assignment -name PROJECT_IP_REGENERATION_POLICY ALWAYS_REGENERATE_IP
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
@@ -82,21 +82,21 @@ set_global_assignment -name VERILOG_FILE fsm_3a.v
 set_global_assignment -name VERILOG_FILE fsm_3b.v
 set_global_assignment -name VERILOG_FILE fsm_3.v
 set_global_assignment -name VERILOG_FILE fsm_4.v
-set_global_assignment -name EDA_TEST_BENCH_NAME addressbook -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id addressbook
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME protobuf_serializer_tb -section_id addressbook
-set_global_assignment -name EDA_TEST_BENCH_NAME varint -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id varint
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME protobuf_serializer_tb1 -section_id varint
-set_global_assignment -name EDA_TEST_BENCH_NAME "raw data" -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id "raw data"
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME protobuf_serializer_tb2 -section_id "raw data"
-set_global_assignment -name EDA_TEST_BENCH_NAME "FIFO full" -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id "FIFO full"
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME protobuf_serializer_tb3 -section_id "FIFO full"
-set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb.v -section_id addressbook
-set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb1.v -section_id varint
-set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb2.v -section_id "raw data"
-set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb3.v -section_id "FIFO full"
 set_global_assignment -name SDC_FILE varint_encoder.sdc
+set_global_assignment -name EDA_TEST_BENCH_NAME Addressbook -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME Varint -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME "Raw Data" -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME "FIFO Full" -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb.v -section_id Addressbook
+set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb1.v -section_id Varint
+set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb2.v -section_id "Raw Data"
+set_global_assignment -name EDA_TEST_BENCH_FILE protobuf_serializer_tb3.v -section_id "FIFO Full"
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

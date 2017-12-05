@@ -59,7 +59,7 @@
   <port name="full" internal="full" />
   <port name="empty" internal="empty" />
  </interface>
- <module name="fifo_0" kind="fifo" version="16.0" enabled="1" autoexport="1">
+ <module name="fifo_0" kind="fifo" version="17.1" enabled="1" autoexport="1">
   <parameter name="DEVICE_FAMILY" value="Arria 10" />
   <parameter name="GUI_AlmostEmpty" value="false" />
   <parameter name="GUI_AlmostEmptyThr" value="1" />

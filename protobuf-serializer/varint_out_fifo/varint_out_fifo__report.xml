@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2017.12.04.16:42:17"
+ date="2017.12.05.15:14:03"
  outputDirectory="/home/fpga/workspace/firework/protobuf-serializer/varint_out_fifo/">
  <perimeter>
   <parameter
@@ -24,7 +24,7 @@
   <parameter
      name="AUTO_DEVICE"
      type="String"
-     defaultValue="10AS066N3F40E2SGE2"
+     defaultValue="10AS066N3F40E2SG"
      onHdl="0"
      affectsHdl="1" />
   <parameter
@@ -51,7 +51,7 @@
   </interface>
  </perimeter>
  <entity kind="varint_out_fifo" version="1.0" name="varint_out_fifo">
-  <parameter name="AUTO_GENERATION_ID" value="1512423736" />
+  <parameter name="AUTO_GENERATION_ID" value="1512504842" />
   <parameter name="AUTO_DEVICE" value="10AS066N3F40E2SG" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Arria 10" />
   <parameter name="AUTO_UNIQUE_ID" value="" />
@@ -78,14 +78,14 @@
   </sourceFiles>
   <childSourceFiles>
    <file
-       path="/home/fpga/workspace/intelFPGA/16.1/ip/altera/megafunctions/fifo/fifo_hw.tcl" />
+       path="/home/fpga/workspace/intelFPGA/17.1/ip/altera/megafunctions/fifo/fifo_hw.tcl" />
   </childSourceFiles>
   <messages>
    <message level="Info" culprit="varint_out_fifo">"Generating: varint_out_fifo"</message>
-   <message level="Info" culprit="varint_out_fifo">"Generating: varint_out_fifo_fifo_161_js5xm3y"</message>
+   <message level="Info" culprit="varint_out_fifo">"Generating: varint_out_fifo_fifo_171_u2h7cyi"</message>
   </messages>
  </entity>
- <entity kind="fifo" version="16.1" name="varint_out_fifo_fifo_161_js5xm3y">
+ <entity kind="fifo" version="17.1" name="varint_out_fifo_fifo_171_u2h7cyi">
   <parameter name="GUI_Full" value="true" />
   <parameter name="GUI_RdUsedw_width" value="8" />
   <parameter name="GUI_AlmostFullThr" value="1" />
@@ -130,22 +130,22 @@
   <parameter name="GUI_Width" value="8" />
   <generatedFiles>
    <file
-       path="/home/fpga/workspace/firework/protobuf-serializer/varint_out_fifo/fifo_161/synth/varint_out_fifo_fifo_161_js5xm3y.v"
+       path="/home/fpga/workspace/firework/protobuf-serializer/varint_out_fifo/fifo_171/synth/varint_out_fifo_fifo_171_u2h7cyi.v"
        attributes="" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="/home/fpga/workspace/firework/protobuf-serializer/varint_out_fifo/fifo_161/synth/varint_out_fifo_fifo_161_js5xm3y.v"
+       path="/home/fpga/workspace/firework/protobuf-serializer/varint_out_fifo/fifo_171/synth/varint_out_fifo_fifo_171_u2h7cyi.v"
        attributes="" />
   </childGeneratedFiles>
   <sourceFiles>
    <file
-       path="/home/fpga/workspace/intelFPGA/16.1/ip/altera/megafunctions/fifo/fifo_hw.tcl" />
+       path="/home/fpga/workspace/intelFPGA/17.1/ip/altera/megafunctions/fifo/fifo_hw.tcl" />
   </sourceFiles>
   <childSourceFiles/>
   <instantiator instantiator="varint_out_fifo" as="fifo_0" />
   <messages>
-   <message level="Info" culprit="varint_out_fifo">"Generating: varint_out_fifo_fifo_161_js5xm3y"</message>
+   <message level="Info" culprit="varint_out_fifo">"Generating: varint_out_fifo_fifo_171_u2h7cyi"</message>
   </messages>
  </entity>
 </deploy>

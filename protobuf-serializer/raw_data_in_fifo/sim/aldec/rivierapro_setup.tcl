@@ -12,7 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
-# ACDS 16.0 211 linux 2017.03.02.16:55:04
+# ACDS 17.1 590 linux 2017.12.05.15:04:47
 # ----------------------------------------
 # Auto-generated simulation script rivierapro_setup.tcl
 # ----------------------------------------
@@ -47,6 +47,8 @@
 # #
 # # Set any compilation options you require (this is unusual).
 # set USER_DEFINED_COMPILE_OPTIONS <compilation options>
+# set USER_DEFINED_VHDL_COMPILE_OPTIONS <compilation options for VHDL>
+# set USER_DEFINED_VERILOG_COMPILE_OPTIONS <compilation options for Verilog>
 # #
 # # Call command to compile the Quartus EDA simulation library.
 # dev_com
@@ -111,11 +113,17 @@ if ![info exists QSYS_SIMDIR] {
 }
 
 if ![info exists QUARTUS_INSTALL_DIR] { 
-  set QUARTUS_INSTALL_DIR "/home/mladmon/workspace/altera/16.0/quartus/"
+  set QUARTUS_INSTALL_DIR "/home/fpga/workspace/intelFPGA/17.1/quartus/"
 }
 
 if ![info exists USER_DEFINED_COMPILE_OPTIONS] { 
   set USER_DEFINED_COMPILE_OPTIONS ""
+}
+if ![info exists USER_DEFINED_VHDL_COMPILE_OPTIONS] { 
+  set USER_DEFINED_VHDL_COMPILE_OPTIONS ""
+}
+if ![info exists USER_DEFINED_VERILOG_COMPILE_OPTIONS] { 
+  set USER_DEFINED_VERILOG_COMPILE_OPTIONS ""
 }
 if ![info exists USER_DEFINED_ELAB_OPTIONS] { 
   set USER_DEFINED_ELAB_OPTIONS ""
@@ -168,46 +176,46 @@ ensure_lib                   ./libraries/twentynm_hssi_ver
 vmap       twentynm_hssi_ver ./libraries/twentynm_hssi_ver
 ensure_lib                   ./libraries/twentynm_hip_ver 
 vmap       twentynm_hip_ver  ./libraries/twentynm_hip_ver 
-ensure_lib                           ./libraries/raw_data_in_fifo_fifo_160
-vmap       raw_data_in_fifo_fifo_160 ./libraries/raw_data_in_fifo_fifo_160
+ensure_lib                           ./libraries/raw_data_in_fifo_fifo_171
+vmap       raw_data_in_fifo_fifo_171 ./libraries/raw_data_in_fifo_fifo_171
 
 # ----------------------------------------
 # Compile device library files
 alias dev_com {
   echo "\[exec\] dev_com"
-  eval vlog -v2k5 $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_primitives.v"                -work altera_ver       
-  vlog -v2k5 $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/220model.v"                         -work lpm_ver          
-  vlog -v2k5 $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/sgate.v"                            -work sgate_ver        
-  vlog -v2k5 $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_mf.v"                        -work altera_mf_ver    
-  vlog  $USER_DEFINED_COMPILE_OPTIONS      "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_lnsim.sv"                    -work altera_lnsim_ver 
-  vlog -v2k5 $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_atoms.v"                   -work twentynm_ver     
-  vlog -v2k5 $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/aldec/twentynm_atoms_ncrypt.v"      -work twentynm_ver     
-  vlog -v2k5 $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/aldec/twentynm_hssi_atoms_ncrypt.v" -work twentynm_hssi_ver
-  vlog -v2k5 $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_hssi_atoms.v"              -work twentynm_hssi_ver
-  vlog -v2k5 $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/aldec/twentynm_hip_atoms_ncrypt.v"  -work twentynm_hip_ver 
-  vlog -v2k5 $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_hip_atoms.v"               -work twentynm_hip_ver 
+  eval vlog -v2k5 $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_primitives.v"                -work altera_ver       
+  vlog -v2k5 $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/220model.v"                         -work lpm_ver          
+  vlog -v2k5 $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/sgate.v"                            -work sgate_ver        
+  vlog -v2k5 $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_mf.v"                        -work altera_mf_ver    
+  vlog  $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS      "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_lnsim.sv"                    -work altera_lnsim_ver 
+  vlog -v2k5 $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_atoms.v"                   -work twentynm_ver     
+  vlog -v2k5 $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/aldec/twentynm_atoms_ncrypt.v"      -work twentynm_ver     
+  vlog -v2k5 $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/aldec/twentynm_hssi_atoms_ncrypt.v" -work twentynm_hssi_ver
+  vlog -v2k5 $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_hssi_atoms.v"              -work twentynm_hssi_ver
+  vlog -v2k5 $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/aldec/twentynm_hip_atoms_ncrypt.v"  -work twentynm_hip_ver 
+  vlog -v2k5 $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_hip_atoms.v"               -work twentynm_hip_ver 
 }
 
 # ----------------------------------------
 # Compile the design files in correct order
 alias com {
   echo "\[exec\] com"
-  eval  vlog -v2k5 $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/../fifo_160/sim/raw_data_in_fifo_fifo_160_v2ho2aa.v" -work raw_data_in_fifo_fifo_160
-  eval  vlog -v2k5 $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/raw_data_in_fifo.v"                                                                 
+  eval  vlog -v2k5 $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/../fifo_171/sim/raw_data_in_fifo_fifo_171_ad2l2zy.v" -work raw_data_in_fifo_fifo_171
+  eval  vlog -v2k5 $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/raw_data_in_fifo.v"                                                                 
 }
 
 # ----------------------------------------
 # Elaborate top level design
 alias elab {
   echo "\[exec\] elab"
-  eval vsim +access +r -t ps $ELAB_OPTIONS -L work -L raw_data_in_fifo_fifo_160 -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L twentynm_ver -L twentynm_hssi_ver -L twentynm_hip_ver $TOP_LEVEL_NAME
+  eval vsim +access +r -t ps $ELAB_OPTIONS -L work -L raw_data_in_fifo_fifo_171 -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L twentynm_ver -L twentynm_hssi_ver -L twentynm_hip_ver $TOP_LEVEL_NAME
 }
 
 # ----------------------------------------
 # Elaborate the top level design with -dbg -O2 option
 alias elab_debug {
   echo "\[exec\] elab_debug"
-  eval vsim -dbg -O2 +access +r -t ps $ELAB_OPTIONS -L work -L raw_data_in_fifo_fifo_160 -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L twentynm_ver -L twentynm_hssi_ver -L twentynm_hip_ver $TOP_LEVEL_NAME
+  eval vsim -dbg -O2 +access +r -t ps $ELAB_OPTIONS -L work -L raw_data_in_fifo_fifo_171 -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L twentynm_ver -L twentynm_hssi_ver -L twentynm_hip_ver $TOP_LEVEL_NAME
 }
 
 # ----------------------------------------
@@ -231,37 +239,41 @@ alias ld_debug "
 alias h {
   echo "List Of Command Line Aliases"
   echo
-  echo "file_copy                     -- Copy ROM/RAM files to simulation directory"
+  echo "file_copy                                         -- Copy ROM/RAM files to simulation directory"
   echo
-  echo "dev_com                       -- Compile device library files"
+  echo "dev_com                                           -- Compile device library files"
   echo
-  echo "com                           -- Compile the design files in correct order"
+  echo "com                                               -- Compile the design files in correct order"
   echo
-  echo "elab                          -- Elaborate top level design"
+  echo "elab                                              -- Elaborate top level design"
   echo
-  echo "elab_debug                    -- Elaborate the top level design with -dbg -O2 option"
+  echo "elab_debug                                        -- Elaborate the top level design with -dbg -O2 option"
   echo
-  echo "ld                            -- Compile all the design files and elaborate the top level design"
+  echo "ld                                                -- Compile all the design files and elaborate the top level design"
   echo
-  echo "ld_debug                      -- Compile all the design files and elaborate the top level design with -dbg -O2"
+  echo "ld_debug                                          -- Compile all the design files and elaborate the top level design with -dbg -O2"
   echo
   echo 
   echo
   echo "List Of Variables"
   echo
-  echo "TOP_LEVEL_NAME                -- Top level module name."
-  echo "                                 For most designs, this should be overridden"
-  echo "                                 to enable the elab/elab_debug aliases."
+  echo "TOP_LEVEL_NAME                                    -- Top level module name."
+  echo "                                                     For most designs, this should be overridden"
+  echo "                                                     to enable the elab/elab_debug aliases."
   echo
-  echo "SYSTEM_INSTANCE_NAME          -- Instantiated system module name inside top level module."
+  echo "SYSTEM_INSTANCE_NAME                              -- Instantiated system module name inside top level module."
   echo
-  echo "QSYS_SIMDIR                   -- Qsys base simulation directory."
+  echo "QSYS_SIMDIR                                       -- Platform Designer base simulation directory."
   echo
-  echo "QUARTUS_INSTALL_DIR           -- Quartus installation directory."
+  echo "QUARTUS_INSTALL_DIR                               -- Quartus installation directory."
   echo
-  echo "USER_DEFINED_COMPILE_OPTIONS  -- User-defined compile options, added to com/dev_com aliases."
+  echo "USER_DEFINED_COMPILE_OPTIONS                      -- User-defined compile options, added to com/dev_com aliases."
   echo
-  echo "USER_DEFINED_ELAB_OPTIONS     -- User-defined elaboration options, added to elab/elab_debug aliases."
+  echo "USER_DEFINED_ELAB_OPTIONS                         -- User-defined elaboration options, added to elab/elab_debug aliases."
+  echo
+  echo "USER_DEFINED_VHDL_COMPILE_OPTIONS                 -- User-defined vhdl compile options, added to com/dev_com aliases."
+  echo
+  echo "USER_DEFINED_VERILOG_COMPILE_OPTIONS              -- User-defined verilog compile options, added to com/dev_com aliases."
 }
 file_copy
 h

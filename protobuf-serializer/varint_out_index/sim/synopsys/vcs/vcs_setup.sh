@@ -12,7 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
-# ACDS 16.0 211 linux 2017.03.02.18:36:20
+# ACDS 17.1 590 linux 2017.12.05.15:08:28
 
 # ----------------------------------------
 # vcs - auto-generated simulation script
@@ -94,14 +94,13 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Altera IP within the design.
 # ----------------------------------------
-# ACDS 16.0 211 linux 2017.03.02.18:36:20
+# ACDS 17.1 590 linux 2017.12.05.15:08:28
 # ----------------------------------------
 # initialize variables
 TOP_LEVEL_NAME="varint_out_index"
 QSYS_SIMDIR="./../../"
-QUARTUS_INSTALL_DIR="/home/mladmon/workspace/altera/16.0/quartus/"
+QUARTUS_INSTALL_DIR="/home/fpga/workspace/intelFPGA/17.1/quartus/"
 SKIP_FILE_COPY=0
-SKIP_ELAB=0
 SKIP_SIM=0
 USER_DEFINED_ELAB_OPTIONS=""
 USER_DEFINED_SIM_OPTIONS="+vcs+finish+100"
@@ -143,7 +142,7 @@ vcs -lca -timescale=1ps/1ps -sverilog +verilog2001ext+.v -ntb_opts dtm $ELAB_OPT
   -v $QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_hssi_atoms.v \
   -v $QUARTUS_INSTALL_DIR/eda/sim_lib/synopsys/twentynm_hip_atoms_ncrypt.v \
   -v $QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_hip_atoms.v \
-  $QSYS_SIMDIR/../fifo_160/sim/varint_out_index_fifo_160_tgkntjy.v \
+  $QSYS_SIMDIR/../fifo_171/sim/varint_out_index_fifo_171_z22fama.v \
   $QSYS_SIMDIR/varint_out_index.v \
   -top $TOP_LEVEL_NAME
 # ----------------------------------------

@@ -12,7 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
-# ACDS 16.0 211 linux 2017.03.02.18:36:20
+# ACDS 17.1 590 linux 2017.12.05.15:08:28
 
 # ----------------------------------------
 # vcsmx - auto-generated simulation script
@@ -55,11 +55,17 @@
 # # simulation libraries and Quartus-generated IP simulation files, and copy
 # # any ROM/RAM initialization files to the simulation directory.
 # #
-# # - If necessary, specify USER_DEFINED_COMPILE_OPTIONS.
+# # - If necessary, specify any compilation options:
+# #   USER_DEFINED_COMPILE_OPTIONS
+# #   USER_DEFINED_VHDL_COMPILE_OPTIONS applied to vhdl compiler
+# #   USER_DEFINED_VERILOG_COMPILE_OPTIONS applied to verilog compiler
+# #
 # source <script generation output directory>/synopsys/vcsmx/vcsmx_setup.sh \
 # SKIP_ELAB=1 \
 # SKIP_SIM=1 \
 # USER_DEFINED_COMPILE_OPTIONS=<compilation options for your design> \
+# USER_DEFINED_VHDL_COMPILE_OPTIONS=<VHDL compilation options for your design> \
+# USER_DEFINED_VERILOG_COMPILE_OPTIONS=<Verilog compilation options for your design> \
 # QSYS_SIMDIR=<script generation output directory>
 # #
 # # Compile all design files and testbench files, including the top level.
@@ -101,12 +107,12 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Altera IP within the design.
 # ----------------------------------------
-# ACDS 16.0 211 linux 2017.03.02.18:36:20
+# ACDS 17.1 590 linux 2017.12.05.15:08:28
 # ----------------------------------------
 # initialize variables
 TOP_LEVEL_NAME="varint_out_index"
 QSYS_SIMDIR="./../../"
-QUARTUS_INSTALL_DIR="/home/mladmon/workspace/altera/16.0/quartus/"
+QUARTUS_INSTALL_DIR="/home/fpga/workspace/intelFPGA/17.1/quartus/"
 SKIP_FILE_COPY=0
 SKIP_DEV_COM=0
 SKIP_COM=0
@@ -141,7 +147,7 @@ fi
 # ----------------------------------------
 # create compilation libraries
 mkdir -p ./libraries/work/
-mkdir -p ./libraries/varint_out_index_fifo_160/
+mkdir -p ./libraries/varint_out_index_fifo_171/
 mkdir -p ./libraries/altera_ver/
 mkdir -p ./libraries/lpm_ver/
 mkdir -p ./libraries/sgate_ver/
@@ -157,24 +163,24 @@ mkdir -p ./libraries/twentynm_hip_ver/
 # ----------------------------------------
 # compile device library files
 if [ $SKIP_DEV_COM -eq 0 ]; then
-  vlogan +v2k $USER_DEFINED_COMPILE_OPTIONS           "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_primitives.v"                   -work altera_ver       
-  vlogan +v2k $USER_DEFINED_COMPILE_OPTIONS           "$QUARTUS_INSTALL_DIR/eda/sim_lib/220model.v"                            -work lpm_ver          
-  vlogan +v2k $USER_DEFINED_COMPILE_OPTIONS           "$QUARTUS_INSTALL_DIR/eda/sim_lib/sgate.v"                               -work sgate_ver        
-  vlogan +v2k $USER_DEFINED_COMPILE_OPTIONS           "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_mf.v"                           -work altera_mf_ver    
-  vlogan +v2k -sverilog $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_lnsim.sv"                       -work altera_lnsim_ver 
-  vlogan +v2k $USER_DEFINED_COMPILE_OPTIONS           "$QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_atoms.v"                      -work twentynm_ver     
-  vlogan +v2k $USER_DEFINED_COMPILE_OPTIONS           "$QUARTUS_INSTALL_DIR/eda/sim_lib/synopsys/twentynm_atoms_ncrypt.v"      -work twentynm_ver     
-  vlogan +v2k $USER_DEFINED_COMPILE_OPTIONS           "$QUARTUS_INSTALL_DIR/eda/sim_lib/synopsys/twentynm_hssi_atoms_ncrypt.v" -work twentynm_hssi_ver
-  vlogan +v2k $USER_DEFINED_COMPILE_OPTIONS           "$QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_hssi_atoms.v"                 -work twentynm_hssi_ver
-  vlogan +v2k $USER_DEFINED_COMPILE_OPTIONS           "$QUARTUS_INSTALL_DIR/eda/sim_lib/synopsys/twentynm_hip_atoms_ncrypt.v"  -work twentynm_hip_ver 
-  vlogan +v2k $USER_DEFINED_COMPILE_OPTIONS           "$QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_hip_atoms.v"                  -work twentynm_hip_ver 
+  vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS           "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_primitives.v"                   -work altera_ver       
+  vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS           "$QUARTUS_INSTALL_DIR/eda/sim_lib/220model.v"                            -work lpm_ver          
+  vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS           "$QUARTUS_INSTALL_DIR/eda/sim_lib/sgate.v"                               -work sgate_ver        
+  vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS           "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_mf.v"                           -work altera_mf_ver    
+  vlogan +v2k -sverilog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QUARTUS_INSTALL_DIR/eda/sim_lib/altera_lnsim.sv"                       -work altera_lnsim_ver 
+  vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS           "$QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_atoms.v"                      -work twentynm_ver     
+  vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS           "$QUARTUS_INSTALL_DIR/eda/sim_lib/synopsys/twentynm_atoms_ncrypt.v"      -work twentynm_ver     
+  vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS           "$QUARTUS_INSTALL_DIR/eda/sim_lib/synopsys/twentynm_hssi_atoms_ncrypt.v" -work twentynm_hssi_ver
+  vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS           "$QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_hssi_atoms.v"                 -work twentynm_hssi_ver
+  vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS           "$QUARTUS_INSTALL_DIR/eda/sim_lib/synopsys/twentynm_hip_atoms_ncrypt.v"  -work twentynm_hip_ver 
+  vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS           "$QUARTUS_INSTALL_DIR/eda/sim_lib/twentynm_hip_atoms.v"                  -work twentynm_hip_ver 
 fi
 
 # ----------------------------------------
 # compile design files in correct order
 if [ $SKIP_COM -eq 0 ]; then
-  vlogan +v2k $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/../fifo_160/sim/varint_out_index_fifo_160_tgkntjy.v" -work varint_out_index_fifo_160
-  vlogan +v2k $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/varint_out_index.v"                                                                 
+  vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/../fifo_171/sim/varint_out_index_fifo_171_z22fama.v" -work varint_out_index_fifo_171
+  vlogan +v2k $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/varint_out_index.v"                                                                 
 fi
 
 # ----------------------------------------

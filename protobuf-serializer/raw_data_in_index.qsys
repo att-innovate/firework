@@ -20,7 +20,7 @@
 }
 ]]></parameter>
  <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
- <parameter name="device" value="10AS066N3F40E2SGE2" />
+ <parameter name="device" value="10AS066N3F40E2SG" />
  <parameter name="deviceFamily" value="Arria 10" />
  <parameter name="deviceSpeedGrade" value="2" />
  <parameter name="fabricMode" value="QSYS" />
@@ -56,7 +56,7 @@
    dir="end">
   <port name="q" internal="q" />
  </interface>
- <module name="fifo_0" kind="fifo" version="16.0" enabled="1" autoexport="1">
+ <module name="fifo_0" kind="fifo" version="17.1" enabled="1" autoexport="1">
   <parameter name="DEVICE_FAMILY" value="Arria 10" />
   <parameter name="GUI_AlmostEmpty" value="false" />
   <parameter name="GUI_AlmostEmptyThr" value="1" />
