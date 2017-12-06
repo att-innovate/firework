@@ -1,26 +1,26 @@
 ## Preface
 
-So, you want to build your very own hardware (HW) accelerator, or more precisely, HW-accelerated system. Perhaps the desire stems from bottlenecks in software you routinely use, and the frequent coffee breaks are beginning to attract dubious looks from your coworkers. Another possibility is that today, your curiosity has exceeded a certain threshold, and satisfaction only comes in the form of a deep intuition for how software is executed by the underlying hardware in a given system. My last conjecture is that you finally got your hands on an FPGA-wielding embedded system and wish to learn more about which system-level optimization knobs are at your disposal. Regardless of the reason, you're here, and I hope this tutorial fulfills your needs as either a starting point for further extension of this work, a template for your own hardware accelerator project, or even as fundamental training. For me, I'm just happy knowing that 15 months of work has helped at least one other individual.
+So, you want to build your very own hardware (HW) accelerator, or more precisely, HW-accelerated system. Perhaps the desire stems from bottlenecks in the software you routinely use, and the frequent coffee breaks are beginning to attract dubious looks from your coworkers. Another possibility is that today, your curiosity has exceeded a certain threshold, and satisfaction only comes in the form of a deep intuition for how software is executed by the underlying hardware in a given system. My last conjecture is that you finally got your hands on an FPGA-wielding development kit and wish to learn more about the system-level optimization knobs that are at your disposal. Regardless of the reason, you're here, and I hope this tutorial fulfills your needs as either a starting point for further extension of this work, a template for your own hardware accelerator project, or even as fundamental training. For me, I'm just happy knowing that 15 months of work has helped at least one other individual.
 
-In this tutorial, my goal is to cover the development of a complete system: from designing a hardware accelerator at the <a href="https://en.wikipedia.org/wiki/Register-transfer_level">RTL level</a> (implemented and running in an <a href="https://en.wikipedia.org/wiki/Field-programmable_gate_array">FPGA</a>) to system integration (with an ARM CPU, system memory, etc.) to writing a device driver (which provides a kernel-level interface to the newly developed hardware) and ultimately, to modifications necessary in the <a href="https://en.wikipedia.org/wiki/User_space">user space</a> application. While the knowledge gained and experience acquired will be extremely rewarding, undertaking a project of this size requires commitment, perseverance, and the ability to debug without the assistance of <a href="https://stackoverflow.com/tour">Stack Overflow</a> or similar forums. I emphasize the last requirement (and it's a good skill to have in general) for two reasons:
-1. *Development at this level is not heavily documented on public forums.* A Google search of a specific error message might yield zero results. Often your only source of information will come from sifting through technical reference manuals, <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/hb/arria-10/a10_5v4.pdf">like this one</a>. Perhaps Firework will help spark a new wave of interest in open source hardware accelerator and system design by making this work seem less daunting. The best resource to my knowledge for community support can be found at <a href="https://rocketboards.org/">RocketBoards.org</a>, although this may only be useful for <a href="https://rocketboards.org/foswiki/Documentation/Board">a certain set of development boards</a>.
-2. *It shows you really understand how things work.* This is especially important when designing hardware and working with embedded systems where bugs could not only arise from user space applications, but also from incompatible system libraries, a device driver, limited system resources, misinterpreting the timing requirements of handshake signals in a bus protocol, errors in your RTL code, or (my personal favorite) from differences between expected and actual behavior of hardware modules.
+In this tutorial, my goal is to cover the development of a complete system, from setting up your development environment to designing a hardware accelerator at the <a href="https://en.wikipedia.org/wiki/Register-transfer_level">RTL level</a> (and implementing it in an <a href="https://en.wikipedia.org/wiki/Field-programmable_gate_array">FPGA</a>) to system integration (for communication with an ARM CPU, system memory, etc.) to writing a device driver (providing a kernel-level interface to the newly developed hardware) and ultimately, to modifying <a href="https://en.wikipedia.org/wiki/User_space">user space</a> applications such that they utilize the hardware accelerator. While the knowledge gained and experience acquired will be extremely rewarding, undertaking a project of this size requires commitment, perseverance, and the ability to debug without the assistance of <a href="https://stackoverflow.com/tour">Stack Overflow</a> or similar forums. I emphasize the last requirement (and it's a good skill to have in general) for two reasons:
+1. *Development at this level is not heavily documented in public forums.* A Google search of a specific error message might yield zero results. Often your only source of information will come from sifting through technical reference manuals <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/hb/arria-10/a10_5v4.pdf">such as this one</a>. Perhaps Firework will help spark a new wave of interest in open sourcing hardware accelerator and system designs by making this work seem less daunting. The best resource to my knowledge for community support can be found at <a href="https://rocketboards.org/">RocketBoards.org</a>, although this may only be useful for <a href="https://rocketboards.org/foswiki/Documentation/Board">a certain set of development boards</a>.
+2. *It shows you really understand how things work.* This is especially important when designing hardware and working with embedded systems, where bugs could not only arise from errors in the user space application, but also from the use of incompatible system libraries, a device driver, limited system resources, misinterpreting the timing requirements of handshake signals in a bus protocol, functional errors in your RTL code, or (my personal favorite) from differences between expected and actual behavior of hardware.
 
-Finally, I'd like to note that I don't claim to be an expert hardware accelerator/system designer *nor that my design is optimal*; the scope of this project alone is enough to lead to several outcomes (and getting the thing to work was a victory as far as I'm concerned). That's the beauty of open source; several minds are greater than one, and I hope that collaboration and the collective knowledge will lead to new and interesting ideas and perhaps better designs. I welcome any and all feedback and recommendations for improvement!
+Before continuing, I'd like to note that I don't claim to be an expert hardware accelerator/system designer *nor that my design is optimal*; the scope of this project alone is enough to lead to several outcomes (and getting the thing to work was a victory as far as I'm concerned). That's the beauty of open source; several minds are greater than one, and I hope that collaboration and the collective knowledge will lead to new and interesting ideas and perhaps better designs. I welcome any and all feedback and recommendations for improvement!
 
 ## Introduction
 
-**Firework** is an *open source HW-accelerated system design* for offloading <a href="https://developers.google.com/protocol-buffers/">Protocol Buffer</a> serialization from the system's CPU. (That was a loaded sentence, I know. If I did my job correctly, by the end of this tutorial it'll make much more sense.) Generally speaking, Firework demonstrates the process of identifying components of software as candidates for hardware acceleration, designing hardware to efficiently perform (and replace) that computation, and building a system that deviates from the traditional paradigm of executing instructions sequentially on a CPU. Before I continue, it's necessary to give the term **system** a precise definition. In the context of hardware acceleration, I define a system as the combination of hardware and software that together perform a specific function. Therefore, the goal of this and any other hardware accelerator project is to improve a system's performance by co-optimizing the hardware and software that comprise that system. It's also worth nothing that the hardware community distinguishes between *hardware acceleration* and *offloading*, although the precise difference is a bit ambiguous. I classify Firework as an attempt to perform the latter since, in my design, I move the computation involved in Protocol Buffer serialization from the system's CPU to a custom processor implemented in an FPGA.
+**Firework** is an *open source HW-accelerated system* designed for offloading <a href="https://developers.google.com/protocol-buffers/">Protocol Buffer</a> serialization from the system's CPU. (That was a loaded sentence, I know. If I did my job correctly, by the end of this tutorial it'll make much more sense.) Generally speaking, Firework demonstrates the process of identifying components of software as candidates for hardware acceleration, designing hardware to efficiently perform (and replace) that computation, and building a system that deviates from the traditional paradigm of executing instructions sequentially on a CPU. Before I continue, it's necessary to give the term **system** a precise definition. In the context of hardware acceleration, I define a system as the combination of hardware and software that together perform a specific function. Therefore, the goal of this and any other hardware accelerator project is to improve a system's performance through the co-optimization of the hardware and software that comprise that system. It's worth noting at this point that the hardware community distinguishes between *hardware acceleration* and *offloading*, although the precise difference is a bit ambiguous. I classify Firework as an attempt to perform the latter since, in my design, I move the computation involved in Protocol Buffer serialization from the system's CPU to a custom processor implemented in the system's FPGA.
 
-One of the goals of Firework was to target software that's deployed across a large-scale, production datacenter. That way, the developed HW-accelerated system could theoretically replace a generic server (or servers) supporting that application. (This work is part of a larger effort to explore forward-looking hardware in the datacenter.) Naturally, the first step was to identify such a candidate software applicaiton. Fortunately, I came across the paper <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44271.pdf">Profiling a warehouse-scale computer</a> whose authors essentially performed the search for me and provided motivation as well; in a three-year study of the workloads running across Google's datacenters, they were able to identify commonly used building blocks (i.e., low-level software) which they've coined the *datacenter tax*. This datacenter tax *"can comprise nearly 30% of cycles across jobs running in the fleet, which makes its constituents prime candidates for hardware specialization in future server systems-on-chips"*. Perfect! The following figure pulled from the paper shows these constituents and their individual contributions to the datacenter tax:
+One goal of Firework was to target software that's deployed across a large-scale, production datacenter. That way, the developed HW-accelerated system could theoretically replace a generic server (or servers) supporting that application. (This work is part of a larger effort to explore forward-looking hardware in datacenter setting.) Naturally, the first step was to identify such a candidate software applicaiton. Fortunately, I came across the paper <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44271.pdf">Profiling a warehouse-scale computer</a> whose authors essentially performed the search for me and provided motivation as well; in a three-year study of the workloads running across Google's fleet of datacenters, they identified a collection of low-level software, which they've coined the *datacenter tax*, that serve as common building blocks for Google's production services. It was found that this datacenter tax *"can comprise nearly 30% of cycles across jobs running in the fleet, which makes its constituents prime candidates for hardware specialization in future server systems-on-chips"*. Perfect! The following figure pulled from the paper identifies these constituents and their individual contributions to the datacenter tax:
 
 ![alt text](resources/images/figure_4.png)
 
-This led to my choice of Protocol Buffers ('protobuf' in the figure, accounting for ~3-4% of all CPU cycles consumed) as the candidate software for hardware acceleration. Protocol Buffers are Google's "language-neutral, platform-neutral extensible mechanism for serializing structured data". In other words, this software (which consists of a compiler and runtime library) is used to efficiently <a href="https://en.wikipedia.org/wiki/Serialization">serialize</a> structured data (e.g., a C++ object) into a stream of bytes that is subsequently stored or sent over the network via <a href="https://en.wikipedia.org/wiki/Remote_procedure_call">RPC</a> to a receiving service that's then able to reconstruct the original data structure from that stream of bytes. Before continuing to the [Prerequisites](README.md#prerequisites) section, I recommend reading <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44271.pdf">Profiling a warehouse-scale computer</a> for more context, going through the <a href="https://developers.google.com/protocol-buffers/docs/cpptutorial">Protocol Buffers C++ tutorial</a> to understand how Protocol Buffers are used, and learning how <a href="https://developers.google.com/protocol-buffers/docs/encoding">Protocol Buffers are encoded</a> as this is essential to the design of the hardware accelerator.
+This led to my choice of <a href="https://developers.google.com/protocol-buffers/">Protocol Buffers</a> ('protobuf' in the figure, accounting for ~3-4% of all CPU cycles consumed) as the candidate software for hardware acceleration. Protocol Buffers are Google's "language-neutral, platform-neutral extensible mechanism for serializing structured data". In other words, this software (which consists of a *compiler* and *runtime library*) is used to efficiently <a href="https://en.wikipedia.org/wiki/Serialization">serialize</a> structured data (e.g., a C++ object) into a stream of bytes that are subsequently stored or transmitted over the network via <a href="https://en.wikipedia.org/wiki/Remote_procedure_call">RPC</a> to a receiving service that's able to reconstruct the original data structure from that stream of bytes and do what it needs with the data. Before continuing to the [Prerequisites](README.md#prerequisites) section, I recommend reading <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44271.pdf">Profiling a warehouse-scale computer</a> for more context, going through the <a href="https://developers.google.com/protocol-buffers/docs/cpptutorial">Protocol Buffers C++ tutorial</a> to understand how Protocol Buffers are used, and learning how Protocol Buffers are <a href="https://developers.google.com/protocol-buffers/docs/encoding">encoded</a>, as this is essential to the design of the hardware accelerator.
 
-I chose the <a href="https://www.altera.com/products/boards_and_kits/dev-kits/altera/arria-10-soc-development-kit.html">Arria 10 SoC Development Kit</a> from Altera (<a href="https://newsroom.intel.com/news-releases/intel-completes-acquisition-of-altera/">now Intel</a>) as the platform for implementing Firework. In the section [Choosing a development board](README.md#1-choosing-a-development-board), I'll discuss why I chose this specific board.
+I chose to use Altera's (<a href="https://newsroom.intel.com/news-releases/intel-completes-acquisition-of-altera/">now Intel's</a>) <a href="https://www.altera.com/products/boards_and_kits/dev-kits/altera/arria-10-soc-development-kit.html">Arria 10 SoC Development Kit</a> as the platform for implementing Firework (i.e., the HW-accelerated system). In the section [Choosing a development board](README.md#1-choosing-a-development-board), I'll discuss what led to the choice of this specific board.
 
-Firework consists of six main components that, together, implement a HW-accelerated system and provide a means of measuring its performance. Each of these components listed below have a brief description and link to their repository.
+Firework consists of *six main components* that together implement a HW-accelerated system and provide a means of measuring its performance. Each of these components are listed below, and I've provided a brief description of what they are and links to their repositories.
 
 #### Firework's six main components
 
@@ -31,7 +31,7 @@ Firework consists of six main components that, together, implement a HW-accelera
 - [protobuf](protobuf): a fork of Google's <a href="https://github.com/google/protobuf">Protocol Buffers</a> open source project. The runtime library is modified to send data to be serialized from user space memory to the protobuf-serializer FPGA peripheral for processing rather than the CPU.
 - [profiling](profiling): this directory contains sample applications and a tutorial on using <a href="http://www.brendangregg.com/perf.html">perf-events</a> on the Arria 10 SoC Development Kit to profile both, *HW-accelerated* and *standard* (software/CPU) systems and hence giving you the ability to compare their performance. Here we "close the loop" (i.e., we finally see how a user space application, compiled once, is executed in the *standard* and *HW-accelerated* systems.
 
-Although Firework covers the design of a hardware accelerator specifically for Protocol Buffer serialization using an Arria 10 SoC Development Kit, I was able to generalize the design process. The following sequence of high-level steps *are general enough to apply to any hardware accelerator project*, and the remainder of this tutorial provides in-depth coverage of each of these steps as they pertain to Firework.
+Although Firework covers the design of a hardware accelerator specifically for *Protocol Buffer serialization using an Arria 10 SoC Development Kit*, I was able to generalize the design process. The following sequence of high-level steps *are general enough to apply to any hardware accelerator project*, and the remainder of this tutorial provides in-depth coverage of each of these steps.
 
 #### High-level steps in building a HW-accelerated system
 
@@ -49,7 +49,7 @@ As a final note, this work can be quite challenging. It's essential to figure ou
 
 ## Prerequisites
 
-Although not explicitly listed as a step, you should already have a project in mind, or at least an idea of which algorithm or software you wish to accelerate. For me, that's Protocol Buffer serialization as described in the introduction.
+Although not explicitly listed as a step, you should already have a project in mind, or at least an idea of which algorithm or software you want to accelerate. Otherwise, follow along with my choice of Protocol Buffers as described in the introduction and used throughout this tutorial.
 
 ### 1. Choosing a development board
 
@@ -73,15 +73,17 @@ Don't underestimate the importance of this step. Acquiring a board can be an inv
 
 ### 2. Setting up your development environment (Installing an OS, VNC server/client, EDA tools, licensing)
 
-Before we get to the fun, we need to put on our IT hats. The next step is to set up your hardware development environment. Your setup is primarily going to be determined by the board you choose, its corresponding set of <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA tools</a> necessary for implementing designs, and the computing resources available to you. The complexity of your project/design could even influence the setup, unfortunately, because it may mean requiring premium, licensed versions of the EDA tools for full functionality. (I think this old school business model is something the hardware industry needs to work on since the cost of the board and software licenses alone adds yet another barrier to hardware innovation. I'm happy to see Amazon taking steps in the right direction; they've begun rolling out <a href="https://aws.amazon.com/ec2/instance-types/f1/">F1 Instances</a> in their EC2 cloud, providing access to Xilinx FPGAs for hardware acceleration. I haven't tried using one myself, but I imagine it's much easier and cheaper than the method I describe below. Sorry for the rant.) For me, working with the Arria 10 SoC Development Kit meant installing <a href="http://dl.altera.com/16.1/?edition=standard&platform=linux&download_manager=direct">Altera's and supported third-party EDA tools</a> on a remote server I had access to via my company's <a href="https://en.wikipedia.org/wiki/Local_area_network">LAN</a>. As it turns out, setting up a hardware development environment on a remote server is not a trivial task. Fortunately for you, I've gone through the process and will cover the steps below. Although your setup may be different (board, tools, etc.), hopefully this section will give you an idea of what it takes to set up your environment.
+Before we get to the fun, we need to put our IT hats on. The next step is to set up your *hardware development environment*. Your setup is primarily going to be influenced by the development board you choose, the corresponding set of <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA tools</a> needed to implement designs on that board, and the computing resources available to you. The complexity of your project's design could also influence your setup; larger, more complex designs might require you to use premium, licensed versions of the EDA tools for full functionality. (Personally, I think this outdated business model is something the hardware industry needs to work on since the cost of the development board and software licenses alone adds yet another barrier to innovation in the hardware space. I'm happy to see Amazon taking steps in the right direction; they've begun rolling out <a href="https://aws.amazon.com/ec2/instance-types/f1/">F1 Instances</a> in their EC2 cloud providing access to Xilinx FPGAs for hardware acceleration. I haven't tried using them myself, but I imagine it's makes getting started with a hardware accelerator project much easier and cheaper than through the method I describe below.) 
 
-I used the following server, operating system, and <a href="https://en.wikipedia.org/wiki/Virtual_Network_Computing">VNC</a> software for remote desktop access in my setup:
+For me, working with the Arria 10 SoC Development Kit meant installing <a href="http://dl.altera.com/?edition=standard&platform=linux&download_manager=direct">then-Altera's EDA tools</a> on a remote server I had access to via my company's <a href="https://en.wikipedia.org/wiki/Local_area_network">LAN</a>. As it turns out, setting up a hardware development environment on a remote server is not a trivial task. Fortunately for you, I've gone through the process and will cover the steps below. Although your setup may be different (board, tools, etc.), hopefully this section will give you an idea of what it takes to set up your environment.
+
+I used the following server, operating system, and <a href="https://en.wikipedia.org/wiki/Virtual_Network_Computing">VNC</a> software (for remote desktop access) in my setup:
 - <a href="http://www.dell.com/downloads/global/products/pedge/dell-poweredge-r720xd-spec-sheet.pdf">Dell PowerEdge R720xd</a> (server running the EDA tools)
 - <a href="https://www.centos.org/download/">CentOS 7</a> (operating system running on the server)
 - <a href="http://tigervnc.org/">TigerVNC</a> (VNC server software running on the server)
 - <a href="https://www.realvnc.com/en/connect/download/viewer/">RealVNC VNC Viewer</a> (VNC client software running on my laptop)
 
-My macbook served as the sole interface to both the remote server (via VNC client) where the EDA tools are installed and the Arria 10 SoC Development Kit (via terminal + minicom serial connection) which sat on my desk. Note that any laptop with the proper VNC client and serial communication software (minicom, PuTTY, etc.) installed should be fine. I'm still fascinated by the setup I ended up with: three computers, two geographic locations, and one keyboard/monitor to access them all simultaneously:
+My macbook served as the sole interface to both the remote server (via VNC client) where I installed the EDA tools and the Arria 10 SoC Development Kit (via a terminal + <a href="https://en.wikipedia.org/wiki/Minicom">minicom</a> serial connection) which sat on my desk. Note that any laptop with the proper VNC client and serial communication software (minicom, <a href="http://www.putty.org/">PuTTY</a>, etc.) installed should be fine. I'm still fascinated by the setup I ended up with: 3 computers, 2 geographic locations, and 1 keyboard/monitor to access them all simultaneously:
 
 ![alt text](resources/images/hw-dev-env.png)
 
@@ -238,104 +240,89 @@ It'll ask for the user's CentOS 7 password. Enter the password and it should lea
 
 Leave the VNC client session open; this is now our main way to interact with the remote server. We'll use it to first install and then use the EDA tools to design our FPGA peripheral hardware.
 
-#### Installing Altera's EDA tools
+#### Installing Intel's EDA tools
 
-To reiterate, some <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA tools</a> are free and some aren't. Some have free versions with limited features, and that may be all you need. Although I used licensed tools, I recommend using free versions where possible. You may even consider choosing a development board based on the free-ness of the toolchain necessary for compiling designs for that board (e.g., I later realized that a licensed Quartus Prime was required to even work with the Arria 10).
+Some <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA tools</a> are free while others require a paid license to work. There may be free versions of tools that normally require a license with limited features, but the features included may be enough to satisfy your needs. Although I used licensed tools, I recommend using free versions when possible. You may even consider choosing a development board based on the "free-ness" of the tools needed for compiling designs for that board (e.g., I later realized that a licensed version of Quartus Prime was required to work with Arria 10 development boards).
 
-I used the following EDA tools in working with the Arria 10 SoC Development Kit: 
+For the hardware development in this project, I used the following EDA tools:
 - <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/overview.html">Quartus Prime Standard Edition</a>
 - <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/features/qts-qsys.html">Qsys System Integration Tool</a>
-- <a href="https://www.altera.com/products/design-software/model---simulation/modelsim-altera-software.html">ModelSim-Intel FPGA Edition</a> (formerly ModelSim Altera Edition)
+- <a href="https://www.altera.com/products/design-software/model---simulation/modelsim-altera-software.html">ModelSim-Intel FPGA Edition</a> (formerly ModelSim-Altera Edition)
 
-Note that although newer versions of the tools have been released, I used `version 16.1` and will continue using these tools throughout the tutorial. Feel free to download the latest release; the general design process is the same, but the interface may look slightly different.
+Note that although I used version `16.0` of these tools during initial development, I've since updated my environment with the latest release of these tools (`17.1` at the time of writing this tutorial) and have updated the designs included in this repository work with them. Although the general design process is the same, I've noticed newer versions of the tools are more stable and include some key bug fixes, one of which I take credit for and describe in the licensing section.
 
 The following steps should be completed on the CentOS 7 server through your open VNC client session.
 
-1. From Intel's <a href="http://dl.altera.com/16.1/?edition=standard&platform=linux&download_manager=direct">Download Center</a>, download `version 16.1` of the *Quartus Prime Standard Edition* software and *device support for the Arria 10* (parts 1, 2, and 3). Select **Linux** as the operating system and **Direct Download** as the download method (setting up the *Akamai DLM3 Download Manager* takes extra effort and is unnecessary for a one-time download). You have a few options for downloading the necessary files. I avoided the *Complete Download* since it's a pretty huge file (23.9GB) and contains unnecessary device support. Instead, download the following individual files from the *Multiple File Download* section: 
+1. From Intel's <a href="http://dl.altera.com/?edition=standard&platform=linux&download_manager=direct">Download Center</a>, download `version 17.1` of the *Quartus Prime Standard Edition* software and *device support for the Arria 10* (parts 1, 2, and 3). Select **Linux** as the operating system and **Direct Download** as the download method (setting up the *Akamai DLM3 Download Manager* takes extra effort and is unnecessary for this one-time download). You have a few options for downloading the necessary files. I avoided the *Complete Download* since it's a pretty huge file (26.8 GB) and contains unnecessary device support. Instead, download the following files from the *Multiple File Download* section:
 - Quartus Prime Standard Edition Software (Device support not included)
-- Quartus Prime Device Package 1 (Arria 10 part 1 & 2)
-- Quartus Prime Device Package 2 (Arria 10 part 3)
-
-Hardware companies have a lot on their plate, and sometimes it's difficult for them to deliver content in a concise, intuitive manner. Several options for how to download the software is an example. Here's another: maximize the page to make the arrows appear that allow you to actually download these files (see red box in the screenshot below).
-
-![alt text](resources/images/download.png)
+- Quartus Prime Device Package 1 (Arria 10)
 
 2. You should now have the following <a href="https://en.wikipedia.org/wiki/Tar_(computing)">tarballs</a> sitting in your `~/Downloads` (or other default) directory:
-- Quartus-16.1.0.196-linux.tar
-- Quartus-16.1.0.196-devices-1.tar
-- Quartus-16.1.0.196-devices-2.tar
+- `Quartus-17.1.0.590-linux.tar`
+- `Quartus-17.1.0.590-devices-1.tar`
 
-Before we begin extracting and installing the software, it's important to choose a directory as the root for all of your FPGA development; several files and directories will be generated as we build the design, and without organization, things can get unwieldy fast. Out of habit, I chose `~/workspace/` and use this in all the code blocks below (if you choose a different location, replace `~/workspace/` with your root in all paths that follow). In the root directory, let's also create directories for each of the components we downloaded (this will make your setup cleaner and easier to navigate in the future as more files/directories are generated or newer versions of the tools are downloaded).
+Before we begin extracting and installing the software, it's important to choose a root directory for all of your development; several files and directories will be generated as we progress through the tutorial, and without organization, things can get unwieldy fast. Out of habit, I chose `~/workspace` as my root directory. In all code blocks to follow in this tutorial, replace every instance of `~/workspace` with the location of your root directory.
 
-```
-mkdir ~/workspace
-cd ~/workspace
-
-mkdir a10-device-1,2 a10-device-3 quartus
-mv ~/Downloads/Quartus-16.1.0.196-devices-1.tar a10-device-1,2
-mv ~/Downloads/Quartus-16.1.0.196-devices-2.tar a10-device-3
-mv ~/Downloads/Quartus-16.1.0.196-linux.tar quartus
-```
-
-3. Extract `Quartus-16.1.0.196-linux.tar` and run the `setup.sh` script.
+3. Extract `Quartus-17.1.0.590-linux.tar` and run the `setup.sh` script.
 
 ```
-cd quartus
-tar -xf Quartus-16.1.0.196-linux.tar
+cd ~/Downloads
+tar -xf Quartus-17.1.0.590-linux.tar
 ./setup.sh
 ```
 
-This will open an installer GUI. Click **Next**, accept the the agreement, and click **Next** again to reach the *Installation directory* window. By default, it chooses `~/intelFPGA/16.1`. Replace this with the root directory you chose followed by `intelFPGA/16.1`. Your window should look similar to the screenshot below.
+This will open an installer GUI. Click **Next**, accept the the agreement, and click **Next** again to reach the *Installation directory* window. By default, it chooses `~/intelFPGA/17.1`. Replace this path with the root directory you chose followed by `intelFPGA/17.1`. Your window should look similar to the screenshot below, with `fpga` replaced by the name of your user:
 
 ![alt text](resources/images/installer.png)
 
-4. Click **Next** to reach the *Select Components* window. Select the following components (your selection may be different if you use free versions):
+4. Click **Next** to reach the *Select Components* window. Select the following components:
 
 ![alt text](resources/images/components.png)
 
-5. Continue clicking **Next** to proceed with the installation until it completes. You'll receive the following *Info* dialog which you can ignore because we'll install Arria 10 device support files next:
+5. Click **Next** twice to proceed with the installation. You'll receive the following *Info* pop-up dialog which you can safely ignore (we'll install Arria 10 device support files next):
 
 ![alt text](resources/images/no-devices.png)
 
-6. Extract `Quartus-16.1.0.196-devices-1.tar` and run the `dev1_setup.sh` script.
+When the installation is complete, the following window appears letting you optionally create a desktop shortcut for Quartus Prime. Click **Finish** to exit the installer.
+
+![alt text](resources/images/installation-complete.png)
+
+6. Extract `Quartus-17.1.0.590-devices-1.tar` and run the `dev1_setup.sh` script.
 
 ```
-cd ~/workspace/a10-device-1,2
-tar -xf Quartus-16.1.0.196-devices-1.tar
+tar -xf Quartus-17.1.0.590-devices-1.tar
 ./dev1_setup.sh
 ```
 
-Following the same steps to install Quartus Prime, let's now set up Arria 10 device support in Quartus Prime. When you reach the *Select Components* window, select all devices (it should only show Arria 10 Part 1 and 2): 
+An installer similar to the one for Quartus Prime will open, and we'll use it to install Arria 10 device support for Quartus Prime. Click **Next**, accept the agreement, and click **Next** again to reach the *Installation directory* window. Like before, replace the default path with your root directory followed by `intelFPGA/17.1`, and click **Next**. This takes us to the *Select Components* window. Check the **Devices** box which automatically selects **Arria 10 Part 1**, **Arria 10 Part 2**, and **Arria 10 Part 3**: 
 
 ![alt text](resources/images/a10-devices.png)
 
-You'll receive another interesting pop-up dialog, this time called *Warning*, letting you know that Arria 10 device support requires three separate installation files. Don't worry Quartus, we'll do this next. Follow the prompts to finish the installation.
+Click **Next** twice to proceed with the installation, and click **Finish** to exit the installer.
 
-![alt text](resources/images/a10-warning.png)
+We now have Quartus Prime Standard Edition, the Qsys System Integration Tool (embedded in Quartus Prime), and ModelSim-Intel FPGA Edition installed with support for Arria 10 devices on the remote CentOS 7 server. Yay!
 
-7. Repeat step 6. again, but this time extract and install part 3 of the Arria 10 device support.
+8. If you didn't create a desktop shortcut, let's add the Quartus Prime binary (`quartus`) to the `PATH` <a href="https://en.wikipedia.org/wiki/Environment_variable">environment variable</a> so you can simply type `quartus` in a terminal to open the tool. I'll leave it to you to decide whether you want to do this permanently (i.e., editing `~/.bashrc`) or temporarily (i.e., `export PATH=$PATH:<path-to-quartus>` in an open terminal). The path to `quartus` is: `~/workspace/intelFPGA/17.1/quartus/bin/`.
 
-To summarize, we now have Quartus Prime Standard Edition, Qsys System Integration Tool (bundled with Quartus Prime), and ModelSim-Intel FPGA Edition installed with support for Arria 10 devices on the remote CentOS 7 server. Yay!
-
-8. Now let's add the Quartus Prime binary, `quartus`, to the `PATH` <a href="https://en.wikipedia.org/wiki/Environment_variable">environment variable</a> so you can simply type `quartus` in an open terminal to run the software. I'll leave it to you to decide whether you want to do this permanently (editing `~/.bashrc`) or temporarily (`export PATH=$PATH:<path-to-quartus>` in an open terminal). The path to `quartus` is: `~/workspace/intelFPGA/16.1/quartus/bin/`.
-
-The first time you open Quartus Prime, a *License Setup Required* dialog will appear. In the next section, we'll set up the license manager and serve the license we acquired from Intel, giving us full access to Quartus Prime Standard Edition, ModelSim-Intel FPGA Edition, and Arria 10 device support.
+If you were to open Quartus Prime now, a *License Setup Required* pop-up dialog would appear (see screeshot below). In the next section, we'll go over how to serve the license we acquire from Intel which gives us full access to Quartus Prime Standard Edition, ModelSim-Intel FPGA Edition, and Arria 10 device support and eliminates this pop-up dialog (in version Quartus Prime `17.1` at least, earlier version may still require initial setup).
 
 ![alt text](resources/images/no-license.png)
 
-#### Setting up the license manager, serving a license
+#### Setting up and serving a license
 
-Remember when I said setting up an environment for hardware development is a nontrivial task? Well, licensing is the crux of its nontrivial-ness. I don't even know where to begin - from the difficulty in identifying which EDA tools or components of these tools (e.g., the MegaCore IP Library in Quartus Prime) require licenses to whether I'll even be using certain tools in my project. And that's only the beginning - where and how to even acquire a license isn't obvious, there are different license types to choose from (*fixed* and *floating*), and when you finally receive a license, you still need to add some not-so-obvious information to the file before it can be properly served by a <a href="https://www.ics.com/files/docs/bx/5/bxref/ref_5f.htm">license manager</a> (that's right, yet another piece of software required to get Quartus Prime and other EDA tools working).
+Remember when I said setting up an environment for hardware development is a nontrivial task? Well, licensing EDA tools is the crux of its nontrivial-ness. I don't even know where to begin, from the difficulty in identifying which EDA tools or features of these tools (e.g., the MegaCore IP Library in Quartus Prime) require licenses to whether I'll even be using certain tools or features for my project. That's only the beginning; where and how to even acquire a license isn't obvious, there are different license types to choose from (*fixed* and *floating*), and when you finally receive a license, you need to add some not-so-obvious information to the file before it can be properly served by a <a href="https://www.ics.com/files/docs/bx/5/bxref/ref_5f.htm">license manager</a> (that's right, yet another piece of software required to get Quartus Prime and other EDA tools working).
 
-Once you have all the proper EDA tools installed and you've acquired the necessary license to unlock their features, serving the license is the final challenge. [queue <a href="https://youtu.be/9jK-NcRmVcw">The Final Countdown</a>] Thanks to an act of incredibly poor engineering, the *fixed license* I acquired is not only tied to the <a href="https://en.wikipedia.org/wiki/MAC_address">MAC address</a> of the <a href="https://en.wikipedia.org/wiki/Network_interface_controller">NIC</a> on my server (which I get, they want to limit its use to one, uniquely-identified computer), but it **ONLY recognizes NICs that are named `eth0` from Linux's perspective**. Well, <a href="https://en.wikipedia.org/wiki/Consistent_Network_Device_Naming">upon further research</a> I found out that CentOS 7's choice of `em1`, `em2`, etc. for naming its network interfaces is actually the modern approach that supersedes the `eth0`, `eth1`, etc. naming convention. To fix this issue, <a href="http://www.sysarchitects.com/em1_to_eth0">like this guy</a>, I had to rename `em1` to `eth0` to finally get Quartus Prime to recognize I'm using the computer this license was made for. Ultimately, what it took was patience, the ability to make sense of the information I had, some guess-and-check work, and reading through this 46-page manual: <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/manual/quartus_install.pdf">Intel FPGA Software Installation and Licensing</a> on licensing. I'll try to spare you the trouble by summarizing the steps below. (Note: it appears they've taken my advice and fixed the `eth0` problem. When my server crashed and I had to reinstall everything, I didn't have to rename `em1` to get the licensing to work!)
+Recall that I mentioned taking credit for a bug that was fixed in later releases of Quartus Prime than the one I originally used (version `16.0`). I'll describe that bug now [queue <a href="https://youtu.be/9jK-NcRmVcw">The Final Countdown</a>]. The license you receive is tied to the <a href="https://en.wikipedia.org/wiki/MAC_address">MAC address</a> of the <a href="https://en.wikipedia.org/wiki/Network_interface_controller">NIC</a> of the computer you're planning to run the software on. The purpose of doing this is to limit the license's use to only one, uniquely-identified computer. That's fine, it's a way of making sure a license only works for the intended user (who paid for it). Well, thanks to an act of incredibly poor engineering, Quartus Prime used to **ONLY recognize NICs that are named `eth0` from Linux's perspective**. <a href="https://en.wikipedia.org/wiki/Consistent_Network_Device_Naming">Upon further investigation</a>, I found out that CentOS 7's choice of `em1`, `em2`, etc. as the names for the network interfaces on my server is actually the modern naming convention used for NICs (the `eth0`, `eth1`, etc. naming convention is obsolete). The only way to get Quartus Prime to recognize I had the proper license being served, <a href="http://www.sysarchitects.com/em1_to_eth0">like this guy</a> I had to rename my `em1` NIC to `eth0`, a non-trivial task. 
 
-1. Acquire the license you need. I wouldn't bother with the <a href="https://www.altera.com/mal-all/mal-signin.html?targetResource=https%3A%2F%2Fsso.altera.com%2Fpf%2Fadapter2adapter.ping%3FSpSessionAuthnAdapterId%3DOTKSiebel%26TargetResource%3Dhttps%253A%252F%252Fmysupport.altera.com%253A443%252FAlteraLicensing%252Flicense%252Findex.html">Self-Service Licensing Center</a>. Instead <a href="https://www.altera.com/about/contact/contact.html">contact an Intel licensing representative</a> directly and ask for a license for *Quartus Prime Standard Edition* and (optionally) *ModelSim-Intel FPGA Edition*. Quartus Prime Standard Edition (or Pro) is <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/download.html">required when working with Arria 10 devices</a> and is used to implement the FPGA hardware design. I used ModelSim-Intel FPGA Edition to <a href="http://quartushelp.altera.com/15.0/mergedProjects/reference/glossary/def_funsim.htm">verify the logic</a> of each subsystem of the RTL design as well as the hardware accelerator as a whole. I haven't tried it myself, but I suspect you may be able to perform the simulations I've included in the tutorial using the free version, ModelSim-Intel FPGA Starter Edition.
+Luckily, I complained about this bug and you won't have to worry about it (Quartus now recognizes all NICs on your machine). I'll try to also spare you from reading this <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/manual/quartus_install.pdf">46-page manual on licensing</a> by summarzing the necessary steps to edit and serve your license below.
 
-2. After the last step, you should've received an email with the license as an attachment. Create and move the license to a directory called `license` in your root directory. I used `scp` to copy the license from my macbook to the CentOS 7 server. Accessing your email from the server directly is another option.
+1. Acquire a license. I wouldn't bother with the <a href="https://www.altera.com/mal-all/mal-signin.html?targetResource=https%3A%2F%2Fsso.altera.com%2Fpf%2Fadapter2adapter.ping%3FSpSessionAuthnAdapterId%3DOTKSiebel%26TargetResource%3Dhttps%253A%252F%252Fmysupport.altera.com%253A443%252FAlteraLicensing%252Flicense%252Findex.html">Self-Service Licensing Center</a>. Instead <a href="https://www.altera.com/about/contact/contact.html">contact an Intel licensing representative</a> directly and ask for a license for *Quartus Prime Standard Edition* and *ModelSim-Intel FPGA Edition*. Quartus Prime Standard Edition (or Pro) is <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/download.html">required when working with Arria 10 devices</a> and is used to implement the FPGA hardware design. I used ModelSim-Intel FPGA Edition to run simulations and perform <a href="http://quartushelp.altera.com/15.0/mergedProjects/reference/glossary/def_funsim.htm">functional verification</a> of each subsystem of the design as well as the hardware accelerator as a whole. Although I haven't tried, you may be able to run the simulations I've included using the free version of ModelSim (ModelSim-Intel FPGA Starter Edition).
+
+2. You should now have received a license from Intel. Create a directory called `license` in your root directory and move the license there. I used `scp` to copy the license from my macbook to the CentOS 7 server (see screenshot below as an example of using this command). Accessing your email from the server directly is another option.
 
 ![alt text](resources/images/scp-license.png)
 
-3. We need to edit the license before it can be served. First, **copy** and rename the license to `/usr/local/flexlm/licenses/license.dat`. This is where we'll tell the FLEXlm license manager to look for a license file called `license.dat` to serve.
+3. We need to edit the license before it can be served. First, **copy** and rename the license to `/usr/local/flexlm/licenses/license.dat`. This is where we'll tell the <a href="https://www.ics.com/files/docs/bx/5/bxref/ref_5f.htm">FLEXlm license manager</a> to look for a license file called `license.dat` to serve.
 
 ```
 sudo mkdir -p /usr/local/flexlm/licenses
@@ -346,8 +333,8 @@ sudo cp ~/workspace/license/1-FQMLCP_License.dat /usr/local/flexlm/licenses/lice
 
 ```
 SERVER <hostname> <MAC address of NIC>
-VENDOR alterad "<your-working-dir>/intelFPGA/16.1/quartus/linux64/alterad"
-VENDOR mgcld "<your-working-dir>/intelFPGA/16.1/modelsim_ae/linuxaloem/mgcld"
+VENDOR alterad "<your-working-dir>/intelFPGA/17.1/quartus/linux64/alterad"
+VENDOR mgcld "<your-working-dir>/intelFPGA/17.1/modelsim_ae/linuxaloem/mgcld"
 USE_SERVER
 ```
 
@@ -359,30 +346,28 @@ You should already know the MAC address of your NIC since it was needed to acqui
 
 ![alt text](resources/images/ifconfig.png)
 
-The next two `VENDOR` lines specify the locations of the Quartus Prime and ModelSim <a href="https://en.wikipedia.org/wiki/Daemon_(computing)">daemons</a> that FLEXlm runs to serve their features. These daemons were included with the Quartus Prime and ModelSim installation.
+The next two `VENDOR` lines specify the locations of the Quartus Prime and ModelSim <a href="https://en.wikipedia.org/wiki/Daemon_(computing)">daemons</a> that FLEXlm runs to serve their features. These daemons were included with the Quartus Prime Standard Edition and ModelSim-Intel FPGA Edition installations.
 
-5. Now we're ready to serve our license! Run the following command to start the FLEXlm license manager and serve our license. The FLEXlm binary was also included in the Quartus Prime installation.
+5. Now we're ready to serve our license! Run the following command to start the FLEXlm license manager and serve our license. Note that FLEXlm was also included in the Quartus Prime installation.
 
 ```
 cd ~/workspace
-intelFPGA/16.1/quartus/linux64/lmgrd -c /usr/local/flexlm/licenses/license.dat
+intelFPGA/17.1/quartus/linux64/lmgrd -c /usr/local/flexlm/licenses/license.dat
 ```
 
-... we were so close! I'm referring to the following error: `/lib64/ld-lsb-x86-64.so.3: bad ELF interpreter: No such file or directory` you probably received the first time running the license manager:
+... and we were so close! I'm referring to the error `/lib64/ld-lsb-x86-64.so.3: bad ELF interpreter: No such file or directory` you probably received the first time running the license manager:
 
 ![alt text](resources/images/license-error.png)
 
-Giving credit to <a href="https://software.intel.com/en-us/articles/flexlm-license-manager-20-may-fail-when-lsb-3-is-not-met">this post</a>, there's nothing a simple <a href="https://en.wikipedia.org/wiki/Symbolic_link">symbolic link</a> can't fix! We have a functional <a href="https://linux.die.net/man/8/ld-linux">program loader</a> running on the CentOS 7 server, I promise; the <a href="https://stackoverflow.com/questions/1951742/how-to-symlink-a-file-in-linux">symlink</a> we'll create let's FLEXlm call it `ld-lsb-x86-64.so.3` if it likes.
+Giving credit to <a href="https://software.intel.com/en-us/articles/flexlm-license-manager-20-may-fail-when-lsb-3-is-not-met">this post</a>, there's nothing a simple <a href="https://en.wikipedia.org/wiki/Symbolic_link">symbolic link</a> can't fix! We have a functional 64-bit <a href="https://linux.die.net/man/8/ld-linux">program loader</a> running on the CentOS 7 server, I promise; the <a href="https://stackoverflow.com/questions/1951742/how-to-symlink-a-file-in-linux">symlink</a> we'll create let's FLEXlm call it `ld-lsb-x86-64.so.3` if it likes.
 
 ```
 sudo ln -s /lib64/ld-linux-x86-64.so.2 /lib64/ld-lsb-x86-64.so.3
 ```
 
-6. Run the command to start FLEXlm again and voila! You'll see a log of information from FLEXlm `(lmgrd)`, the Altera daemon `(alterad)`, and the ModelSim daemon `(mgcld)`. (Completely unrelated, but I'm guessing `lmgrd` stands for "license manager daemon")
+6. Run the command to start FLEXlm again and voila! You'll see a log of information from FLEXlm `(lmgrd)`, the Altera daemon `(alterad)`, and the ModelSim daemon `(mgcld)`. Completely irrelevant, but I'm guessing `lmgrd` stands for *license manager daemon*.
 
-![alt text](resources/images/lmgrd-log.png)
-
-7. Uh-oh! Upon further inspection, we see that FLEXlm failed to launch the ModelSim daemon at time `15:56:59`:
+7. Uh-oh! Upon further inspection, we see that FLEXlm actually failed to launch the ModelSim daemon (`mgcld`) at time `23:42:24`:
 
 ![alt text](resources/images/mgcld-error.png)
 
@@ -397,7 +382,7 @@ That looks familiar! This time it's the 32-bit version of the program loader tha
 So obvious! Shame on us. Let's install the 32-bit program loader, `ld-linux.so.2`, which belongs to the `glibc` package.
 
 ```
-sudo yum install ld-linux-so.2
+sudo yum install ld-linux.so.2
 ```
 
 Note, `i686` in the output refers to Intel's 32-bit <a href="https://en.wikipedia.org/wiki/X86">x86</a> architecture while `x86_64` refers to <a href="https://en.wikipedia.org/wiki/X86-64">64-bit</a> architecture. Let's run `mgcld` again to confirm we fixed the issue.
@@ -406,26 +391,27 @@ Note, `i686` in the output refers to Intel's 32-bit <a href="https://en.wikipedi
 
 That looks promising!
 
-8. Restart FLEXlm to successfully serve both Quartus Prime and ModelSim features this time. We'll use `ps` to identify the currently-running `lmgrd`'s <a href="https://en.wikipedia.org/wiki/Process_identifier">process ID (PID)</a> and kill it with the `kill -9` command.
+8. Restart FLEXlm to successfully serve both Quartus Prime and ModelSim features this time. First, use `ps` to identify the currently-running `lmgrd`'s <a href="https://en.wikipedia.org/wiki/Process_identifier">process ID (PID)</a> and kill it with the `kill -9` command.
 
 ```
 ps aux | grep lmgrd
-kill -9 <PID>
+sudo kill -9 <PID>
 ```
 
 ![alt text](resources/images/ps-aux.png)
 
-Now we can restart FLEXlm:
+Now we can start FLEXlm again:
 
 ```
-~/workspace/intelFPGA/16.1/quartus/linux64/lmgrd -c /usr/local/flexlm/licenses/license.dat
+cd ~/workspace
+intelFPGA/17.1/quartus/linux64/lmgrd -c /usr/local/flexlm/licenses/license.dat
 ```
 
 As long as you don't see any error messages in the log, all features of Quartus Prime and ModelSim should now be properly served. Here's what the tail end of my log looks like:
 
 ![alt text](resources/images/lmgrd-log-final.png)
 
-9. Open Quartus Prime. Again, you'll see the *License Setup Required* dialog appear but this time we're ready to specify the license we're using. Select *If you have a valid license file, specify the locaiton of your license file* option and click **OK**. 
+9. Open Quartus Prime. Note, if you're using version `17.1` or later, the license should automatically be recognized and you can skip ahead to step 11. Otherwise, you'll see the *License Setup Required* pop-up dialog appear again, but this time we're ready to specify the license we're using. Select *If you have a valid license file, specify the locaiton of your license file* option and click **OK**. 
 
 ![alt text](resources/images/license-setup.png)
 
@@ -433,7 +419,7 @@ As long as you don't see any error messages in the log, all features of Quartus 
 
 ![alt text](resources/images/license-location.png)
 
-11. Voila! We now have Quartus Prime Standard Edition running with its features properly licensed and activated!
+11. Voila! We now have Quartus Prime Standard Edition running with its (and ModelSim-Intel FPGA Edition's) features properly licensed and activated!
 
 ![alt text](resources/images/hello-quartus.png)
 
