@@ -1001,11 +1001,11 @@ Wire type `2` is used for length-delimited fields (`string`, `bytes`, `embedded 
 
 The significance here is that this led to a simplificaiton and optimization in the hardware accelerator design: I could build a datapath that consists of two parallel "channels" for processing incoming varint and raw data and stitch together the encoded data into a unified output buffer, presesrving the order in which fields are serialized of course. There isn't a precise way for me to explain how I came to this realization. I simply took the time to fundamentally understand the *operations being performed on data* and *how the data is moving* at a level even lower than the abstraction provided above by the Protocol Buffer language.
 
-I elaborate further on the hardware accelerator design and how it supports the various field types in the section, [Designing and Implementing the hardware accelerator (FPGA peripheral)](README.md#4-design-and-implement-the-hardware-accelerator-fpga-peripheral).
+I elaborate further on the hardware accelerator design and how it supports the various field types in the section, [Design and Implement the hardware accelerator (FPGA peripheral)](README.md#4-design-and-implement-the-hardware-accelerator-fpga-peripheral).
 
 #### A brief note on `perf`
 
-If I could go back, I would also use `perf` at this stage to learn more about the *frequency at which different methods are invoked* and the *percentage of total execution time* the various codepaths, focusing on those belonging to message serialization, account for. `perf` also yields important information on time spent in the *user space application* vs. *core libraries* and even time spent *executing <a href="https://github.com/torvalds/linux">kernel</a> code*. It may very well be the case that a considerable amount of the execution time is spent in areas you weren't aware of and hence didn't target for acceleration (e.g., the overhead of calling `memcpy()` in the `CodedOutputStream::Write*()` methods when serializing **raw data**). With this information, you can guage whether specialized hardware could even outperform the software, and if so, which codepaths you should target for optimization (i.e., design hardware to replace). It was a combination of lacking experience in analyzing system performance, thinking the <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44271.pdf">paper</a> provided sufficient motivation, and being overwhelmed with too many other unknowns in this project that led to me skip this step.
+If I could go back, I would also use `perf` at this stage to learn more about the *frequency at which different methods are invoked* and the *percentage of total execution time* the various codepaths, focusing on those belonging to message serialization, account for. `perf` also yields important information on time spent in the *user space application* vs. *core libraries* and even time spent *executing <a href="https://github.com/torvalds/linux">kernel</a> code*. It may very well be the case that a considerable amount of the execution time is spent in areas you weren't aware of and hence didn't target for acceleration (e.g., the overhead of calling `memcpy()` in the `CodedOutputStream::Write*()` methods when serializing raw data). With this information, you can guage whether specialized hardware could even outperform the software, and if so, which codepaths you should target for optimization (i.e., design hardware to replace). It was a combination of lacking experience in analyzing system performance, thinking the <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44271.pdf">paper</a> provided sufficient motivation, and being overwhelmed with too many other unknowns in this project that led to me skip this step.
 
 ## Hardware Development
 
@@ -1019,10 +1019,10 @@ First, let's see how the six `CodedOutputStream` methods identified in the last 
 - FPGA peripheral, top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim
 
 - Intro
-    - Writing your own RTL vs. OpenCL
+    - Writing custom RTL vs. OpenCL
     - FPGA development flow (Quartus Prime is the main tool in this step, ModelSim for funcitonal verification)
     - RTL design is an art
-    - Choosing an HDL: Verilog-2005(?) vs. SystemVerilog
+    - Choosing an HDL: Verilog-2001 vs. SystemVerilog
     - Already enough complexity: see which hardware modules are available to you in the IP Catalog
     - What determine's top-level I/O? - ARM AMBA AXI4 specification
 - Training 
