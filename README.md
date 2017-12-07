@@ -983,11 +983,11 @@ This brings us to the first of two *key realizations* I had when analzying the c
 
 *1. All logic for serializing fields of any message is contained within the Protocol Buffer runtime library, **NOT** in the compiler-generated code*
 
-This is significant because it means that we don't have *specialized encoding logic* in the compiler-generated code for messages defined in a `.proto` file but rather *a consistent mechanism for serializing fields*: calling one of the six `CodedOutputStream` methods above. It's these methods that serve as templates for designing the <a href="https://en.wikipedia.org/wiki/Datapath">datapath</a> of the hardware accelerator. They also shed light on how data would eventually be communicated from the SoC's ARM Cortex-A9 CPU to the hardware accelerator, leading to my choce of designing the peripheral as an <a href="https://github.com/att-innovate/firework/blob/master/resources/AMBA%20AXI%20and%20ACE%20Protocol%20Specification.pdf">ARM AMBA AXI4</a> slave peripheral. Had the logic been part of the compiler-generated code, it may have been much more difficult or not possible to design a single hardware accelerator for all Protocol Buffer applications.
+This is significant because it means that we don't have *specialized encoding logic* in the compiler-generated code for messages defined in a `.proto` file but rather *a consistent mechanism for serializing fields*: calling one of the six `CodedOutputStream` methods above. It's these methods that serve as templates for designing the <a href="https://en.wikipedia.org/wiki/Datapath">datapath</a> of the hardware accelerator. They also shed light on how data would eventually be communicated from the SoC's ARM Cortex-A9 CPU to the hardware accelerator, leading to my choce of designing the peripheral as an <a href="https://github.com/att-innovate/firework/blob/master/resources/AMBA%20AXI%20and%20ACE%20Protocol%20Specification.pdf">ARM AMBA AXI4</a> slave peripheral. Had the logic been part of the compiler-generated code, it may have been much more difficult or not possible to design a single hardware accelerator that supports serialization of all Protocol Buffer applications.
 
 The second key realization came from thinking about how all the supported field types map to these six methods:  
 
-*2. Keys are encoded as varints, and values of all field types can be categorized as either **varint data** or **raw data***
+*2. Keys are encoded as varints, and values of all field types can be categorized as either **varints** or **raw data***
 
 Let's look more closely at how the supported *field types* map to one of six *wire types* in the following table, pulled from the <a href="https://developers.google.com/protocol-buffers/docs/encoding">Encoding</a> page:
 
@@ -995,11 +995,11 @@ Let's look more closely at how the supported *field types* map to one of six *wi
 
 Note, I chose to omit support for wire types `3` and `4` from the hardware accelerator design because `groups` have been depreciated starting with the **proto3** version of the Protocol Buffers language, and we're working with version `v3.0.2`. 
 
-Wire type `0` is used for field *keys*; the following field types (from the table): `int32`, `int64`, `uint32`, `uint64`, `sint32`, `sint64`, `bool`, `enum`; and the *size* of length-delimited fields. All of these are encoded as **varint data**. 
+Wire type `0` is used for field *keys*; the following field types (from the table): `int32`, `int64`, `uint32`, `uint64`, `sint32`, `sint64`, `bool`, `enum`; and the *size* of length-delimited fields. All of these are encoded as **varints**. 
 
-Wire type `2` is used for length-delimited fields (`string`, `bytes`, `embedded messages`, `packed repeated fields`), and their values can be thought of as *variable-sized* **raw data** that simply needs to be copied byte-for-byte to the output buffer. Wire type `1` is used for 64-bit data (`fixed64`, `sfixed64`, `double`) whose payload is always *8 bytes*, and wire type `5` is used for 32-bit data (`fixed32`, `sfixed32`, `float`) whose payload is always *4 bytes*. Values of these two wire types are also copied byte-for-byte, so you can think of them as **raw data** as well.
+Wire type `2` is used for length-delimited fields (`string`, `bytes`, `embedded messages`, `packed repeated fields`), and their values can be thought of as *variable-sized* **raw data** that simply needs to be copied byte-for-byte to an output buffer. Wire type `1` is used for 64-bit data (`fixed64`, `sfixed64`, `double`) whose payload is always *8 bytes*, and wire type `5` is used for 32-bit data (`fixed32`, `sfixed32`, `float`) whose payload is always *4 bytes*. Values of these two wire types are also copied byte-for-byte, so you can classify them as **raw data** as well.
 
-The significance here is that this led to a simplificaiton and optimization in the hardware accelerator design: I could build a datapath that consists of two parallel "channels" for processing incoming varint and raw data and stitch together the encoded data into a unified output buffer, presesrving the order in which fields are serialized of course. There isn't a precise way for me to explain how I came to this realization. I simply took the time to fundamentally understand the *operations being performed on data* and *how the data is moving* at a level even lower than the abstraction provided above by the Protocol Buffer language.
+This second insight that all serialized data could be classified into two broad categories led to a major simplificaiton and optimization in the hardware accelerator design: I could build a datapath that consists of two parallel channels for processing incoming **varints** and **raw data** and stitch together the encoded data into a unified output buffer, presesrving the order in which the fields are serialized. There isn't a precise way for me to explain how I came to this, and it's a prime example of how RTL design is an art. I took the time to fundamentally understand the *operations being performed on data* and *how the data is moving* at a level even lower than the abstraction provided above by the Protocol Buffer language.
 
 I elaborate further on the hardware accelerator design and how it supports the various field types in the section, [Design and Implement the hardware accelerator (FPGA peripheral)](README.md#4-design-and-implement-the-hardware-accelerator-fpga-peripheral).
 
@@ -1009,10 +1009,9 @@ If I could go back, I would also use `perf` at this stage to learn more about th
 
 ## Hardware Development
 
-- Recap steps 1-3
-- Elaborate on step 3: six `CodedOutputStream` methods --> templates for hardware accelerator design
+If you've made it this far, congratulations! Now that we have our board selected, development environment set up with the necessary EDA tools installed, and understand the process of Protocol Buffer serialization and code that performs it, we're finally ready to begin designing our hardware accelerator. I claimed that last section was *the most important step*; well, this section is *the most interesting step*. It took a lot of preparation to get to this point, and in the following sections, we'll begin to realize our vision.
 
-First, let's see how the six `CodedOutputStream` methods identified in the last section are translated into into a hardware accelerator. Next, we'll see how to integrate the new FPGA peripheral into the Arria 10 GHRD to serve as a co-processor to the SoC's Hard Processor System.
+First, let's see how the six `CodedOutputStream::Write*()` methods identified in the last section are translated into a hardware accelerator design. Then, we'll see how to integrate the newly developed FPGA peripheral into the larger <a href="https://rocketboards.org/foswiki/Documentation/GSRDGhrd">Arria 10 GHRD</a> system, serving as a co-processor to the SoC's ARM Cortex-A9 CPU.
 
 ### 4. Design and Implement the hardware accelerator (FPGA peripheral)
 
