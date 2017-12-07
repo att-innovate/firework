@@ -18,7 +18,7 @@ One goal of Firework was to target software that's deployed across a large-scale
 
 This led to my choice of <a href="https://developers.google.com/protocol-buffers/">Protocol Buffers</a> ('protobuf' in the figure, accounting for ~3-4% of all CPU cycles consumed) as the candidate software for hardware acceleration. Protocol Buffers are Google's "language-neutral, platform-neutral extensible mechanism for serializing structured data". In other words, this software (which consists of a *compiler* and *runtime library*) is used to efficiently <a href="https://en.wikipedia.org/wiki/Serialization">serialize</a> structured data (e.g., a C++ object) into a stream of bytes that are subsequently stored or transmitted over the network via <a href="https://en.wikipedia.org/wiki/Remote_procedure_call">RPC</a> to a receiving service that's able to reconstruct the original data structure from that stream of bytes and do what it needs with the data. Before continuing to the [Prerequisites](README.md#prerequisites) section, I recommend reading <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44271.pdf">Profiling a warehouse-scale computer</a> for more context, going through the <a href="https://developers.google.com/protocol-buffers/docs/cpptutorial">Protocol Buffers C++ tutorial</a> to understand how Protocol Buffers are used, and learning how Protocol Buffers are <a href="https://developers.google.com/protocol-buffers/docs/encoding">encoded</a>, as this is essential to the design of the hardware accelerator.
 
-I chose to use Altera's (<a href="https://newsroom.intel.com/news-releases/intel-completes-acquisition-of-altera/">now Intel's</a>) <a href="https://www.altera.com/products/boards_and_kits/dev-kits/altera/arria-10-soc-development-kit.html">Arria 10 SoC Development Kit</a> as the platform for implementing Firework (i.e., the hardware-accelerated system). In the section [Choosing a development board](README.md#1-choosing-a-development-board), I'll discuss what led to the choice of this specific board.
+I chose to use Altera's (<a href="https://newsroom.intel.com/news-releases/intel-completes-acquisition-of-altera/">now Intel's</a>) <a href="https://www.altera.com/products/boards_and_kits/dev-kits/altera/arria-10-soc-development-kit.html">Arria 10 SoC Development Kit</a> as the platform for implementing Firework (i.e., the hardware-accelerated system). In the section [Choosing a development board](README.md#1-choose-a-development-board), I'll discuss what led to the choice of this specific board.
 
 Firework consists of *six main components* that together implement a hardware-accelerated system and provide a means of measuring its performance. Each of these components are listed below, and I've provided a brief description of what they are and links to their repositories.
 
@@ -35,14 +35,14 @@ Although Firework covers the design of a hardware accelerator specifically for *
 
 #### High-level steps in building a hardware-accelerated system
 
-1. [Choosing a development board](README.md#1-choosing-a-development-board)
-2. [Setting up your development environment (OS, VNC server/client, EDA tools, licensing)](README.md#2-setting-up-your-development-environment-os-vnc-serverclient-eda-tools-licensing)
-3. [Understanding the software you wish to accelerate](README.md#3-understanding-the-software-you-wish-to-accelerate)
-4. [Designing and Implementing the hardware accelerator (FPGA peripheral)](README.md#4-designing-and-implementing-the-hardware-accelerator-fpga-peripheral) 
+1. [Choose a development board](README.md#1-choose-a-development-board)
+2. [Set up your development environment (OS, VNC server/client, EDA tools, licensing)](README.md#2-set-up-your-development-environment-os-vnc-serverclient-eda-tools-licensing)
+3. [Understand the software you wish to accelerate](README.md#3-understand-the-software-you-wish-to-accelerate)
+4. [Design and Implement the hardware accelerator (FPGA peripheral)](README.md#4-design-and-implement-the-hardware-accelerator-fpga-peripheral) 
 5. [System integration (Arria 10 SoC GHRD)](README.md#5-system-integration-arria-10-soc-ghrd)
-6. [Creating an FPGA peripheral-aware Linux image](README.md#6-creating-an-fpga-peripheral-aware-linux-image)
-7. [Writing a device driver (interface between FPGA peripheral and user space application)](README.md#7-writing-a-device-driver-interface-between-fpga-peripheral-and-user-space-application)
-8. [Closing the loop: modifying the user space application](README.md#8-closing-the-loop-modifying-the-user-space-application)
+6. [Create an FPGA peripheral-aware Linux image](README.md#6-create-an-fpga-peripheral-aware-linux-image)
+7. [Write a device driver (interface between FPGA peripheral and user space application)](README.md#7-write-a-device-driver-interface-between-fpga-peripheral-and-user-space-application)
+8. [Closing the loop: modify the user space application](README.md#8-closing-the-loop-modify-the-user-space-application)
 9. [Profiling the hardware-accelerated system](README.md#9-profiling-the-hardware-accelerated-system)
 
 As a final note, this work can be quite challenging. It's essential to figure out a routine that works for you and knowing how to maintain a mental capacity for creativity over long periods of time, as this work is largely an art. For me, taking breaks when I feel the processor that is my brain overheating definitely helps. Another source of longevity are the inspiring words of world-renowned pop star <a href="https://www.youtube.com/watch?v=QGJuMBdaqIw">Katy Perry</a>.
@@ -51,13 +51,13 @@ As a final note, this work can be quite challenging. It's essential to figure ou
 
 Although not explicitly listed as a step, you should already have a project in mind, or at least an idea of which algorithm or software you want to accelerate. Otherwise, follow along with my choice of Protocol Buffers as described in the introduction and used throughout this tutorial.
 
-### 1. Choosing a development board
+### 1. Choose a development board
 
 The first step is to choose a board that's appropriate for your project and goals. Since my objective was to build a hardware-accelerated system for a *datacenter application* that both, improves performance and *frees the CPU resource*, I was in search of a board that's capable of running Linux and could theoretically replace a <a href="https://en.wikipedia.org/wiki/White_box_(computer_hardware)">white box</a> server in a datacenter setting. The <a href="https://www.altera.com/products/boards_and_kits/dev-kits/altera/arria-10-soc-development-kit.html">Arria 10 SoC Development Kit</a> seemed to fit this description perfectly; it combines an <a href="https://www.altera.com/products/fpga/arria-series/arria-10/features.html">Arria 10 FPGA</a> with a <a href="https://developer.arm.com/products/processors/cortex-a/cortex-a9">dual-core ARM Cortex-A9</a> processor (called the <a href="https://www.altera.com/products/soc/portfolio/arria-10-soc/arria10-soc-hps.html">Hard Processor System, or HPS)</a> in a single <a href="https://en.wikipedia.org/wiki/System_on_a_chip">system-on-chip (SoC)</a> package. The FPGA fabric could be used to implement a custom <a href="https://en.wikipedia.org/wiki/Register-transfer_level">RTL</a> design that performs Protocol Buffer serialization while the HPS could be used to support both Linux and the user space application. Plus, think about how cool you'd look with one of these bad boys sitting on your desk:
 
 ![alt text](resources/images/arria10_soc_kit.png)
 
-Although it is easiest to replicate and extend Firework using the Arria 10 SoC Development Kit, the main component - [protobuf-serializer](protobuf-serializer/) (i.e., the *hardware accelerator*) - is written in <a href="https://en.wikipedia.org/wiki/Verilog">Verilog</a> (with the exception of the <a href="https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)">FIFOs</a> used in the design - I pulled them from <a href="https://www.altera.com/en_US/pdfs/literature/ug/archives/ug-fifo-14.1.pdf">Altera's IP Cores library</a>) and is compatible with other ARM-based systems. The <a href="https://en.wikipedia.org/wiki/Modularity">modularity</a> of the hardware accelerator stems from the fact that it's designed as an <a href="https://www.arm.com/products/system-ip/amba-specifications">ARM AMBA AXI</a> *slave peripheral* (i.e., its top-level I/O ports implement an AXI <a href="https://en.wikipedia.org/wiki/Master/slave_(technology)">slave interface</a>) and ARM CPUs serve as AXI *masters*. More details of the hardware accelerator design and ARM AMBA AXI bus protocol are covered in the sections [Designing and Implementing the hardware accelerator (FPGA peripheral)](README.md#4-designing-and-implementing-the-hardware-accelerator-fpga-peripheral) and [System integration (Arria 10 SoC GHRD)](README.md#5-system-integration-arria-10-soc-ghrd).
+Although it is easiest to replicate and extend Firework using the Arria 10 SoC Development Kit, the main component - [protobuf-serializer](protobuf-serializer/) (i.e., the *hardware accelerator*) - is written in <a href="https://en.wikipedia.org/wiki/Verilog">Verilog</a> (with the exception of the <a href="https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)">FIFOs</a> used in the design - I pulled them from <a href="https://www.altera.com/en_US/pdfs/literature/ug/archives/ug-fifo-14.1.pdf">Altera's IP Cores library</a>) and is compatible with other ARM-based systems. The <a href="https://en.wikipedia.org/wiki/Modularity">modularity</a> of the hardware accelerator stems from the fact that it's designed as an <a href="https://www.arm.com/products/system-ip/amba-specifications">ARM AMBA AXI</a> *slave peripheral* (i.e., its top-level I/O ports implement an AXI <a href="https://en.wikipedia.org/wiki/Master/slave_(technology)">slave interface</a>) and ARM CPUs serve as AXI *masters*. More details of the hardware accelerator design and ARM AMBA AXI bus protocol are covered in the sections [Designing and Implementing the hardware accelerator (FPGA peripheral)](README.md#4-design-and-implement-the-hardware-accelerator-fpga-peripheral) and [System integration (Arria 10 SoC GHRD)](README.md#5-system-integration-arria-10-soc-ghrd).
 
 At a minimum, you'll need a board with an FPGA (i.e., programmable logic) to implement a hardware accelerator. Other board requirements are specific to your project and goals. Questions you might ask to determine these requirements include:
 
@@ -71,7 +71,7 @@ At a minimum, you'll need a board with an FPGA (i.e., programmable logic) to imp
 
 Don't underestimate the importance of this step. Acquiring a board can be an investment, and its fit with your project will certainly impact its success. Spending time asking and answering questions like these will also help to reaffirm your understanding of your project and goals.
 
-### 2. Setting up your development environment (OS, VNC server/client, EDA tools, licensing)
+### 2. Set up your development environment (OS, VNC server/client, EDA tools, licensing)
 
 Before we get to the fun, we need to put our IT hats on. The next step is to set up your *hardware development environment*. Your setup is primarily going to be influenced by the development board you choose, the corresponding set of <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA tools</a> needed to implement designs on that board, and the computing resources available to you. The complexity of your project's design could also influence your setup; larger, more complex designs might require you to use premium, licensed versions of the EDA tools for full functionality. (Personally, I think this outdated business model is something the hardware industry needs to work on since the cost of the development board and software licenses alone adds yet another barrier to innovation in the hardware space. I'm happy to see Amazon taking steps in the right direction; they've begun rolling out <a href="https://aws.amazon.com/ec2/instance-types/f1/">F1 Instances</a> in their EC2 cloud providing access to Xilinx FPGAs for hardware acceleration. I haven't tried using them myself, but I imagine it's makes getting started with a hardware accelerator project much easier and cheaper than through the method I describe below.) 
 
@@ -425,7 +425,7 @@ As long as you don't see any error messages in the log, all features of Quartus 
 
 That was quite the process, I know. To summarize, we learned how to remotely interact with a Dell PowerEdge R720xd server using its built-in iDRAC controller, install CentOS 7 on the server with a GNOME Desktop environment, install VNC server and client software on the server and macbook respectively, install the Altera EDA tools (Quartus Prime Standard Edition, ModelSim-Intel FPGA Edition) we'll be using with the Arria 10 SoC Development Kit, and acquire and serve a license for the features we need. With our board selected and hardware development environment set up, we're now ready to begin designing the hardware-accelerated system!
 
-### 3. Understanding the software you wish to accelerate
+### 3. Understand the software you wish to accelerate
 
 *This is perhaps the most important step.* Time spent here will directly impact your approach to the problem, the design of your hardware accelerator, and ultimately your success in imporving system performance. A philosophy I adhere to is that one's understanding of how something works is directly proportional to that individual's ability to debug issues or improve upon its design. When you're attempting to replace components of a large software project with specialized hardware, this is especially true. The goal of this step is to fundamentally understand **the movement of and operations on data**. This will help you identify *performance bottlenecks* in the software. Is the system *memory bandwidth-limited*? Is it *computation-limited*? Answering these questions provides insight into what can be tuned to improve performance.
 
@@ -1001,7 +1001,7 @@ Wire type `2` is used for length-delimited fields (`string`, `bytes`, `embedded 
 
 The significance here is that this led to a simplificaiton and optimization in the hardware accelerator design: I could build a datapath that consists of two parallel "channels" for processing incoming varint and raw data and stitch together the encoded data into a unified output buffer, presesrving the order in which fields are serialized of course. There isn't a precise way for me to explain how I came to this realization. I simply took the time to fundamentally understand the *operations being performed on data* and *how the data is moving* at a level even lower than the abstraction provided above by the Protocol Buffer language.
 
-I elaborate further on the hardware accelerator design and how it supports the various field types in the section, [Designing and Implementing the hardware accelerator (FPGA peripheral)](README.md#4-designing-and-implementing-the-hardware-accelerator-fpga-peripheral).
+I elaborate further on the hardware accelerator design and how it supports the various field types in the section, [Designing and Implementing the hardware accelerator (FPGA peripheral)](README.md#4-design-and-implement-the-hardware-accelerator-fpga-peripheral).
 
 #### A brief note on `perf`
 
@@ -1014,7 +1014,7 @@ If I could go back, I would also use `perf` at this stage to learn more about th
 
 First, let's see how the six `CodedOutputStream` methods identified in the last section are translated into into a hardware accelerator. Next, we'll see how to integrate the new FPGA peripheral into the Arria 10 GHRD to serve as a co-processor to the SoC's Hard Processor System.
 
-### 4. Designing and Implementing the hardware accelerator (FPGA peripheral)
+### 4. Design and Implement the hardware accelerator (FPGA peripheral)
 
 - FPGA peripheral, top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim
 
@@ -1084,7 +1084,7 @@ quartus &
 
 The operating system, device driver, user space application
 
-### 6. Creating an FPGA peripheral-aware Linux image
+### 6. Create an FPGA peripheral-aware Linux image
 
 - Intro
     - Discuss why running Linux is important (mimic's real datacenter setting)
@@ -1104,7 +1104,7 @@ The operating system, device driver, user space application
       - https://rocketboards.org/foswiki/Documentation/A10GSRDV160CompilingLinuxKernel
     - Steps to create bootable microSD card (Rocketboards.org training, repeat here or tell user to follow?)
 
-### 7. Writing a device driver (interface between FPGA peripheral and user space application)
+### 7. Write a device driver (interface between FPGA peripheral and user space application)
 
 - Intro
     - Overview of the driver I wrote (misc device driver)
@@ -1121,7 +1121,7 @@ The operating system, device driver, user space application
     - Installing linux-socfpga source (same source used to create zimage in step 6.)!
     - setting up kbuild environment
 
-### 8. Closing the loop: modifying the user space application
+### 8. Closing the loop: modify the user space application
 
 - Intro
     - Device driver provides the interface
