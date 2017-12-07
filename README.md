@@ -40,7 +40,7 @@ Although Firework covers the design of a hardware accelerator specifically for *
 3. [Understanding the software you wish to accelerate](README.md#3-understanding-the-software-you-wish-to-accelerate)
 4. [Designing and Implementing the hardware accelerator (FPGA peripheral)](README.md#4-designing-and-implementing-the-hardware-accelerator-fpga-peripheral) 
 5. [System integration (Arria 10 SoC GHRD)](README.md#5-system-integration-arria-10-soc-ghrd)
-6. [Creating an FPGA peripheral-aware bootable Linux image](README.md#6-creating-an-fpga-peripheral-aware-bootable-linux-image)
+6. [Creating an FPGA peripheral-aware Linux image](README.md#6-creating-an-fpga-peripheral-aware-linux-image)
 7. [Writing a device driver (interface between FPGA peripheral and user space application)](README.md#7-writing-a-device-driver-interface-between-fpga-peripheral-and-user-space-application)
 8. [Closing the loop: modifying the user space application](README.md#8-closing-the-loop-modifying-the-user-space-application)
 9. [Profiling the hardware-accelerated system](README.md#9-profiling-the-hardware-accelerated-system)
@@ -1084,7 +1084,7 @@ quartus &
 
 The operating system, device driver, user space application
 
-### 6. Creating an FPGA peripheral-aware bootable Linux image
+### 6. Creating an FPGA peripheral-aware Linux image
 
 - Intro
     - Discuss why running Linux is important (mimic's real datacenter setting)
