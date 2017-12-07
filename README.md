@@ -36,10 +36,10 @@ Although Firework covers the design of a hardware accelerator specifically for *
 #### High-level steps in building a hardware-accelerated system
 
 1. [Choosing a development board](README.md#1-choosing-a-development-board)
-2. [Setting up your development environment (Installing an OS, VNC server/client, EDA tools, licensing)](README.md#2-setting-up-your-development-environment-installing-an-os-vnc-serverclient-eda-tools-licensing)
+2. [Setting up your development environment (OS, VNC server/client, EDA tools, licensing)](README.md#2-setting-up-your-development-environment-os-vnc-serverclient-eda-tools-licensing)
 3. [Understanding the software you wish to accelerate](README.md#3-understanding-the-software-you-wish-to-accelerate)
-4. [Implementing an FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)](README.md#4-implementing-an-fpga-peripheral-top-level-io-arm-amba-axi4-verilog-quartus-prime-modelsim) 
-5. [System integration (Qsys)](README.md#5-system-integration-qsys)
+4. [Designing and Implementing the hardware accelerator (FPGA peripheral)](README.md#4-designing-and-implementing-the-hardware-accelerator-fpga-peripheral) 
+5. [System integration](README.md#5-system-integration)
 6. [Creating an FPGA peripheral-aware bootable Linux image](README.md#6-creating-an-fpga-peripheral-aware-bootable-linux-image)
 7. [Writing a device driver (interface between FPGA peripheral and user space application)](README.md#7-writing-a-device-driver-interface-between-fpga-peripheral-and-user-space-application)
 8. [Closing the loop: modifying the user space application](README.md#8-closing-the-loop-modifying-the-user-space-application)
@@ -57,7 +57,7 @@ The first step is to choose a board that's appropriate for your project and goal
 
 ![alt text](resources/images/arria10_soc_kit.png)
 
-Although it is easiest to replicate and extend Firework using the Arria 10 SoC Development Kit, the main component - [protobuf-serializer](protobuf-serializer/) (i.e., the *hardware accelerator*) - is written in <a href="https://en.wikipedia.org/wiki/Verilog">Verilog</a> (with the exception of the <a href="https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)">FIFOs</a> used in the design - I pulled them from <a href="https://www.altera.com/en_US/pdfs/literature/ug/archives/ug-fifo-14.1.pdf">Altera's IP Cores library</a>) and is compatible with other ARM-based systems. The <a href="https://en.wikipedia.org/wiki/Modularity">modularity</a> of the hardware accelerator stems from the fact that it's designed as an <a href="https://www.arm.com/products/system-ip/amba-specifications">ARM AMBA AXI</a> *slave peripheral* (i.e., its top-level I/O ports implement an AXI <a href="https://en.wikipedia.org/wiki/Master/slave_(technology)">slave interface</a>) and ARM CPUs serve as AXI *masters*. More details of the hardware accelerator design and ARM AMBA AXI bus protocol are covered in the sections [Implementing the FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)](README.md#4-implementing-the-fpga-peripheral-top-level-io-arm-amba-axi4-verilog-quartus-prime-modelsim) and [System integration (Qsys)](README.md#5-system-integration-qsys).
+Although it is easiest to replicate and extend Firework using the Arria 10 SoC Development Kit, the main component - [protobuf-serializer](protobuf-serializer/) (i.e., the *hardware accelerator*) - is written in <a href="https://en.wikipedia.org/wiki/Verilog">Verilog</a> (with the exception of the <a href="https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)">FIFOs</a> used in the design - I pulled them from <a href="https://www.altera.com/en_US/pdfs/literature/ug/archives/ug-fifo-14.1.pdf">Altera's IP Cores library</a>) and is compatible with other ARM-based systems. The <a href="https://en.wikipedia.org/wiki/Modularity">modularity</a> of the hardware accelerator stems from the fact that it's designed as an <a href="https://www.arm.com/products/system-ip/amba-specifications">ARM AMBA AXI</a> *slave peripheral* (i.e., its top-level I/O ports implement an AXI <a href="https://en.wikipedia.org/wiki/Master/slave_(technology)">slave interface</a>) and ARM CPUs serve as AXI *masters*. More details of the hardware accelerator design and ARM AMBA AXI bus protocol are covered in the sections [Designing and Implementing the hardware accelerator (FPGA peripheral)](README.md#4-designing-and-implementing-the-hardware-accelerator-fpga-peripheral) and [System integration](README.md#5-system-integration).
 
 At a minimum, you'll need a board with an FPGA (i.e., programmable logic) to implement a hardware accelerator. Other board requirements are specific to your project and goals. Questions you might ask to determine these requirements include:
 
@@ -71,7 +71,7 @@ At a minimum, you'll need a board with an FPGA (i.e., programmable logic) to imp
 
 Don't underestimate the importance of this step. Acquiring a board can be an investment, and its fit with your project will certainly impact its success. Spending time asking and answering questions like these will also help to reaffirm your understanding of your project and goals.
 
-### 2. Setting up your development environment (Installing an OS, VNC server/client, EDA tools, licensing)
+### 2. Setting up your development environment (OS, VNC server/client, EDA tools, licensing)
 
 Before we get to the fun, we need to put our IT hats on. The next step is to set up your *hardware development environment*. Your setup is primarily going to be influenced by the development board you choose, the corresponding set of <a href="https://en.wikipedia.org/wiki/Electronic_design_automation">EDA tools</a> needed to implement designs on that board, and the computing resources available to you. The complexity of your project's design could also influence your setup; larger, more complex designs might require you to use premium, licensed versions of the EDA tools for full functionality. (Personally, I think this outdated business model is something the hardware industry needs to work on since the cost of the development board and software licenses alone adds yet another barrier to innovation in the hardware space. I'm happy to see Amazon taking steps in the right direction; they've begun rolling out <a href="https://aws.amazon.com/ec2/instance-types/f1/">F1 Instances</a> in their EC2 cloud providing access to Xilinx FPGAs for hardware acceleration. I haven't tried using them myself, but I imagine it's makes getting started with a hardware accelerator project much easier and cheaper than through the method I describe below.) 
 
@@ -1001,7 +1001,7 @@ Wire type `2` is used for length-delimited fields (`string`, `bytes`, `embedded 
 
 The significance here is that this led to a simplificaiton and optimization in the hardware accelerator design: I could build a datapath that consists of two parallel "channels" for processing incoming varint and raw data and stitch together the encoded data into a unified output buffer, presesrving the order in which fields are serialized of course. There isn't a precise way for me to explain how I came to this realization. I simply took the time to fundamentally understand the *operations being performed on data* and *how the data is moving* at a level even lower than the abstraction provided above by the Protocol Buffer language.
 
-I elaborate further on the hardware accelerator design and how it supports the various field types in the section, [4. Implementing an FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)](README.md#4-implementing-an-fpga-peripheral-top-level-io-arm-amba-axi4-verilog-quartus-prime-modelsim).
+I elaborate further on the hardware accelerator design and how it supports the various field types in the section, [Designing and Implementing the hardware accelerator (FPGA peripheral)](README.md#4-designing-and-implementing-the-hardware-accelerator-fpga-peripheral).
 
 #### A brief note on `perf`
 
@@ -1014,7 +1014,9 @@ If I could go back, I would also use `perf` at this stage to learn more about th
 
 First, let's see how the six `CodedOutputStream` methods identified in the last section are translated into into a hardware accelerator. Next, we'll see how to integrate the new FPGA peripheral into the Arria 10 GHRD to serve as a co-processor to the SoC's Hard Processor System.
 
-### 4. Implementing an FPGA peripheral (top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim)
+### 4. Designing and Implementing the hardware accelerator (FPGA peripheral)
+
+- FPGA peripheral, top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim
 
 - Intro
     - Writing your own RTL vs. OpenCL
@@ -1060,10 +1062,10 @@ quartus &
 ![alt text](resources/images/hw-acc-1.png)
 
 
-### 5. System integration (Qsys)
+### 5. System integration
 
 - Intro
-    - Qsys is the tool used here
+    - Arria 10 GHRD, Qsys
     - Training that helps: Custom IP Development Using Avalon and AXI Interfaces
     - Interfaces (clock, reset, interrupts, Avalon, AXI, conduits)
     - Most powerful Qsys tool: auto-generated interconnect (you develop an AXI slave interface, simply connect to AXI master component)
