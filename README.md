@@ -1021,21 +1021,58 @@ How did I even come to realize this is how the hardware accelerator we're going 
 
 First, let's look at the online training, examples, and other resources available that were necessary to reach the point of understanding how the hardware accelerator fits in to the larger Arria 10 SoC system. Then, I'll go over the RTL design in quite some detail, explaining how it implements an ARM AMBA AXI4 slave interface and is ready to communicate with an ARM CPU. Finally, we'll see how to use Intel's EDA tools to implement the hardware accelerator design and run gate-level simulations for functional verification. 
 
-#### Training that led to understanding how the FPGA peripheral fits into the larger Arria 10 SoC system
-- Prerequisite: need a background in logic design (Digital Design: FSMs, datapaths, custom processors)
-- Intel FPGA online training (all but Custom IP Development): FPGA development flow (Quartus Prime, Qsys, ModelSim-IntelFPGA Edition, TimeQuest Timing Analyzer)
+#### Training necessary to understand the design and fit of the FPGA peripheral in the Arria 10 GHRD system
+
+As a prerequisite to understanding the hardware accelerator design in the following section, I'm assuming you have a background in or basic understanding of the principles of logic design and digital systems, combinational vs. sequential logic, controllers (<a href="https://en.wikipedia.org/wiki/Finite-state_machine">FSMs</a>), <a href="https://en.wikipedia.org/wiki/Datapath">datapaths</a>, <a href="https://en.wikipedia.org/wiki/Register-transfer_level">RTL design</a>, the use of <a href="https://en.wikipedia.org/wiki/Hardware_description_language">HDLs</a> to implement hardware at a behavioral level, the concept of <a href="https://en.wikipedia.org/wiki/Pipeline_(computing)">pipelining</a>, and designing custom processors. I've essentially listed material covered in the book, <a href="https://www.amazon.com/Digital-Design-RTL-VHDL-Verilog/dp/0470531088">Digital Design</a> by Frank Vahid, and I recommend reviewing this material before proceeding. If at any point you find yourself unfamiliar with a particular topic, you can refer to this book or other sources to learn more and continue with the tutorial.
+
+Another vital source of information is the <a href="https://www.altera.com/support/training/curricula.html">Intel FPGA Technical Training</a>, which provides several free online courses on almost every aspect of building FPGA designs. I selected courses as I saw fit to review certain material, learn about how and when to use the various EDA tools (some I've used in the past, some were new to me), and ultimately to help me understand what I'd need to do in order to build a hardware accelerator using an Arria 10 SoC Development Kit as the platform of choice. There's one class in particular that was the final piece to the puzzle; it provided the last bit of information I needed to finally understand how an FPGA peripheral would eventually integrate into the larger Arria 10 SoC system. Take some time to go through the list of courses available to get a feel for the different aspects of building FPGA designs. Listed below are the courses I recommend covering in that order, ommitting the last course I mentioned which I'll provide at the end of this section after I've discussed other necessary sources of online training.
+
+**Recommended Intel FPGA and other online training:** 
+
+(*Optional*) Background information on programmable logic and FPGAs
+- <a href="https://www.altera.com/support/training/course/odsw1005.html">Basics of Programmable Logic: History of Digital Logic Design</a>
+- <a href="https://www.altera.com/support/training/course/odsw1006.html">Basics of Programmable Logic: FPGA Architecture</a>
+- <a href="https://www.altera.com/support/training/course/odsw1010.html">How to Begin a Simple FPGA Design</a>
+
+HDLs, Verilog
+- <a href="https://www.altera.com/support/training/course/ohdl1120.html">Verilog HDL Basics</a>
+- <a href="http://www.asic-world.com/verilog/veritut.html">Verilog Tutorial - ASIC World</a>
+- <a href="http://www.eecs.umich.edu/courses/eecs270/270lab/270_docs/verilog_ref_comb.pdf">EECS 270 Verilog Reference: Combinational Logic</a>
+- <a href="http://www.eecs.umich.edu/courses/eecs270/270lab/270_docs/verilog_ref_seqv2.pdf">EECS 270 Verilog Reference: Sequential Logic</a>
+
+Quartus Prime
+- <a href="https://www.altera.com/support/training/course/odsw1100.html">Using the Quartus Prime Software: An Introduction</a>
+- <a href="http://www.eecs.umich.edu/courses/eecs270/270lab/270_docs/tutorial.html">EECS 270: Quartus Software Tutorial</a>
+
+ModelSim-Intel FPGA, writing Verilog testbenches
+- <a href="https://www.altera.com/support/training/course/odsw1120.html">Overview of Mentor Graphic's ModelSim Software</a>
+- <a href="http://www.eecs.umich.edu/courses/eecs270/270lab/270_docs/sim_ref.pdf">EECS 270: Quick Reference Simulation Guide</a>
+
+Static timing analysis, using the TimeQuest Timing Analyzer
+- <a href="https://www.altera.com/support/training/course/odsw1115.html">TimeQuest Timing Analyzer: Introduction to Timing Analysis</a>
+- <a href="https://www.altera.com/support/training/course/odsw1116.html">TimeQuest Timing Analyzer: TimeQuest GUI</a>
+- <a href="https://www.altera.com/support/training/course/odsw1117.html">TimeQuest Timing Analyzer: Quartus Prime Integration & Reporting </a>
+- <a href="https://www.altera.com/support/training/course/odsw1118.html">TimeQuest Timing Analyzer: Required SDC Constraints</a>
+
+Qsys System Integration Tool
+- <a href="https://www.altera.com/support/training/course/oqsys1000.html">Introduction to Qsys</a>
+- <a href="https://www.altera.com/support/training/course/oqsyscreate.html">Creating a System Design with Qsys</a>
+- **<a href="https://www.altera.com/support/training/course/oqsys3000.html">Custom IP Development Using Avalon and AXI Interfaces</a>**
+
+
+
 - RocketBoards.org: booting Linux on the Arria 10, "compiling the hardware design", understanding the GHRD Qsys/QP design!
 - Altera SoC Workshop Series: device driver, and HPS2FPGA address space (memory mapped I/O)
-- Custom IP Development Using Avalon and AXI Interfaces: ah-ha! moment.  Develop hardware-accelerator as an AXI4 slave, using Arria 10 GHRD as a starting point, as a memory mapped FPGA peripheral communicating via HPS2FPGA bridge! :D
+- Custom IP Development Using Avalon and AXI Interfaces --> "ah-ha! moment": develop hardware accelerator as an AXI4 slave, integrate into Arria 10 GHRD system as a memory mapped FPGA peripheral communicating via HPS2FPGA bridge :D
 - Read the ARM AMBA AXI4 specification
 
 Now that we know *what needs to be done/how it fits*, we're ready to design the hardware accelerator.
 
 #### The RTL design (FSMs + datapath that implement AXI4 slave interface for read/write transaction)
-- Began designing FSM... quickly realized read/write transactions are independent operations and require separate FSMs --> led to pipelined processor design
+- Began designing FSM... quickly realized read/write transactions are independent, require separate FSMs --> pipelined processor design
 - Go over the design of the processor in detail (processor architecture, FSMs, datapaths :D)
 
-#### Implementation
+#### Implementation using Quartus Prime, ModelSim-Intel FPGA, and Qsys
 
 - Writing custom RTL vs. OpenCL?
 - Verilog-2001 vs. SystemVerilog?
