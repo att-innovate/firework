@@ -1015,31 +1015,32 @@ First, let's see how the six `CodedOutputStream::Write*()` methods identified in
 
 ### 4. Design and Implement the hardware accelerator (FPGA peripheral)
 
-- FPGA peripheral, top-level I/O: ARM AMBA AXI4, Verilog, Quartus Prime, ModelSim
+- Hardware accelerator == FPGA peripheral; not a standalone design --> needs to somehow interact with a CPU running a Linux application
+- How? Went through a shit ton of training until I reached a point where I FINALLY understood how my FPGA peripheral would "fit" (i.e., interact with software running in a Linux environment)... also took a leap of faith "knowing" it would work/makes sense
 
-- Intro
-    - Writing custom RTL vs. OpenCL
-    - FPGA development flow (Quartus Prime is the main tool in this step, ModelSim for funcitonal verification)
-    - RTL design is an art
-    - Choosing an HDL: Verilog-2001 vs. SystemVerilog
-    - Already enough complexity: see which hardware modules are available to you in the IP Catalog
-    - What determine's top-level I/O? - ARM AMBA AXI4 specification
-- Training 
-    - Intel online training
-      - https://www.altera.com/support/training/course/odsw1005.html
-      - https://www.altera.com/support/training/course/odsw1006.html
-      - https://www.altera.com/support/training/course/ohdl1120.html
-      - https://www.altera.com/support/training/course/odsw1100.html
-    - Verilog tutorials
-      - http://www.asic-world.com/verilog/veritut.html
-    - Digital Design by Frank Vahid
-- RTL design
-    - architecture, FSMs, etc.
-- Tutorial
-    - [protobuf-serializer]
-    - Using Quartus Prime (import project, layout, files, etc.) 
-    - Running ModelSim testbenches
+#### Training that led to understanding how the FPGA peripheral "coming to me"
+- Prerequisite: need a background in logic design (Digital Design: FSMs, datapaths, custom processors)
+- Intel FPGA online training (all but Custom IP Development): FPGA development flow (Quartus Prime, Qsys, ModelSim-IntelFPGA Edition, TimeQuest Timing Analyzer)
+- RocketBoards.org: booting Linux on the Arria 10, "compiling the hardware design", understanding the GHRD Qsys/QP design!
+- Altera SoC Workshop Series: device driver, and HPS2FPGA address space (memory mapped I/O)
+- Custom IP Development Using Avalon and AXI Interfaces: ah-ha! moment.  Develop hardware-accelerator as an AXI4 slave, using Arria 10 GHRD as a starting point, as a memory mapped FPGA peripheral communicating via HPS2FPGA bridge! :D
+- Read the ARM AMBA AXI4 specification
 
+#### Journey of a WriteVarint32ToArray() transaction --> FPGA peripheral
+
+#### RTL design (FSMs + datapath that implement AXI4 slave interface for read/write transaction)
+- Began designing FSM... quickly realized read/write transactions are independent operations and require separate FSMs --> led to pipelined processor design
+- Go over the design of the processor in detail (processor architecture, FSMs, datapaths :D)
+
+#### Implementation
+
+- Writing custom RTL vs. OpenCL?
+- Verilog-2001 vs. SystemVerilog?
+- Already enough complexity: see what's available in the IP Catalog (used FIFO IP Cores)
+- What determine's top-level I/O?: Qsys-generated HDL skeleton for AXI4 slave interface :D
+- Quartus Prime project 'protobuf-serializer' --> design entry (Verilog), compilation
+- ModelSim-Intel FPGA Edition: testbenches + gate-level simulation for functional verification
+- Woo hoo! Time to integrate...
 
 1. Open a terminal and download the entire Firework repository.
 
@@ -1055,8 +1056,6 @@ quartus &
 ```
 
 3. Luckily, we don't have to create a new project using the **New Project Wizard**. `protobuf-serializer` from the Firework repository is a complete Quartus Prime project that we can open, containing the RTL for our hardware accelerator, Quartus Prime Project File (.qpf), and Quartus Prime Settings File (.qsf) which contains all project-wide assignments and settings (e.g., the `10AS066N3F40E2SG` device we're targeting). Note that for historic reasons, the (.qpf) and (.qsf) files are named `varint-encoder.qpf` and `varint-encoder.qsf`, instead of `protobuf-serializer.qpf` and `protobuf-serializer.qsf`, respectfully. `varint-encoder` is the name I originally gave to the hardware accelerator thinking it would only process 32-bit varint data before it eventually morphed into a much more sophisticated piece of hardware. From the *Home* screen, select **Open Project**. 
-
-
 
 ![alt text](resources/images/hw-acc-1.png)
 
