@@ -1025,9 +1025,9 @@ First, let's look at the online training, examples, and other resources availabl
 
 As a prerequisite to understanding the hardware accelerator design in the following section, I'm assuming you have a background in or basic understanding of the principles of logic design and digital systems, combinational vs. sequential logic, controllers (<a href="https://en.wikipedia.org/wiki/Finite-state_machine">FSMs</a>), <a href="https://en.wikipedia.org/wiki/Datapath">datapaths</a>, <a href="https://en.wikipedia.org/wiki/Register-transfer_level">RTL design</a>, the use of <a href="https://en.wikipedia.org/wiki/Hardware_description_language">HDLs</a> to implement hardware at a behavioral level, the concept of <a href="https://en.wikipedia.org/wiki/Pipeline_(computing)">pipelining</a>, and designing custom processors. I've essentially listed material covered in the book, <a href="https://www.amazon.com/Digital-Design-RTL-VHDL-Verilog/dp/0470531088">Digital Design</a> by Frank Vahid, and I recommend reviewing this material before proceeding. If at any point you find yourself unfamiliar with a particular topic, you can refer to this book or other sources to learn more and continue with the tutorial.
 
-Another vital source of information is the <a href="https://www.altera.com/support/training/curricula.html">Intel FPGA Technical Training</a>, which provides several free online courses on almost every aspect of building FPGA designs. I selected courses as I saw fit to review certain material, learn about how and when to use the various EDA tools (some I've used in the past, some were new to me), and ultimately to help me understand what I'd need to do in order to build a hardware accelerator using an Arria 10 SoC Development Kit as the platform of choice. There's one class in particular that was the final piece to the puzzle; it provided the last bit of information I needed to finally understand how an FPGA peripheral would eventually integrate into the larger Arria 10 SoC system. Take some time to go through the list of courses available to get a feel for the different aspects of building FPGA designs. Listed below are the courses I recommend covering in that order, ommitting the last course I mentioned which I'll provide at the end of this section after I've discussed other necessary sources of online training.
+Another vital source of information is the <a href="https://www.altera.com/support/training/curricula.html">Intel FPGA Technical Training</a>, which provides several free online courses on almost every aspect of building FPGA designs. I selected courses as I saw fit to review certain material, learn about how and when to use the various EDA tools (some I've used in the past, some were new to me), and ultimately to help me understand what I'd need to do in order to build a hardware accelerator using an Arria 10 SoC Development Kit as the platform of choice. There's one class in particular that was the final piece to the puzzle; it provided the last bit of information I needed to finally understand how an FPGA peripheral would eventually integrate into the larger Arria 10 SoC system. Take some time to go through the list of courses available to get a feel for the different aspects of building FPGA designs. Listed below are the courses I recommend covering in that order. I've purposely ommitted a course that would otherwise come last in this list; I'll mention this course at the end of this section after I've mentioned two other sources of vital information. It's this course that provided the "ah-ha! moment" I needed to finally begin designing the hardware accelerator.
 
-**Recommended Intel FPGA and other online training:** 
+##### Intel FPGA/other online training 
 
 (*Optional*) Background information on programmable logic and FPGAs
 - <a href="https://www.altera.com/support/training/course/odsw1005.html">Basics of Programmable Logic: History of Digital Logic Design</a>
@@ -1057,13 +1057,16 @@ Static timing analysis, using the TimeQuest Timing Analyzer
 Qsys System Integration Tool
 - <a href="https://www.altera.com/support/training/course/oqsys1000.html">Introduction to Qsys</a>
 - <a href="https://www.altera.com/support/training/course/oqsyscreate.html">Creating a System Design with Qsys</a>
-- **<a href="https://www.altera.com/support/training/course/oqsys3000.html">Custom IP Development Using Avalon and AXI Interfaces</a>**
 
-
-
+##### RocketBoards.org
 - RocketBoards.org: booting Linux on the Arria 10, "compiling the hardware design", understanding the GHRD Qsys/QP design!
+
+##### Altera SoC Workshop Series
 - Altera SoC Workshop Series: device driver, and HPS2FPGA address space (memory mapped I/O)
+
+##### Putting the pieces together
 - Custom IP Development Using Avalon and AXI Interfaces --> "ah-ha! moment": develop hardware accelerator as an AXI4 slave, integrate into Arria 10 GHRD system as a memory mapped FPGA peripheral communicating via HPS2FPGA bridge :D
+- <a href="https://www.altera.com/support/training/course/oqsys3000.html">Custom IP Development Using Avalon and AXI Interfaces</a>
 - Read the ARM AMBA AXI4 specification
 
 Now that we know *what needs to be done/how it fits*, we're ready to design the hardware accelerator.
