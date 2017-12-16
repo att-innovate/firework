@@ -1075,9 +1075,11 @@ It's these *Getting Started* tutorials that I recommend going through in the lis
 ##### Putting the pieces together
 - Custom IP Development Using Avalon and AXI Interfaces --> "ah-ha! moment": develop hardware accelerator as an AXI4 slave, integrate into Arria 10 GHRD system as a memory mapped FPGA peripheral communicating via HPS2FPGA bridge :D
 - <a href="https://www.altera.com/support/training/course/oqsys3000.html">Custom IP Development Using Avalon and AXI Interfaces</a>
-- Read the ARM AMBA AXI4 specification
 
 The ARM CPU (**master**) initiates a sequence of *write transactions* sending data to the hardware accelerator (**slave**) for it to serialize. The hardware accelerator must also be capable of responding to subsequent *read transactions*, sending serialized data from its output buffer to the ARM CPU.
+
+##### AMBA AXI and ACE Protocol Specification
+- Read the ARM AMBA AXI4 specification
 
 Now that we know *what needs to be done/how it fits*, we're ready to design the hardware accelerator.
 
