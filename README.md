@@ -1081,7 +1081,7 @@ Once you've gone through tasks **1** and **2** above and have successfully inter
 
 ![alt text](resources/images/ghrd-0.png)
 
-Become intimate with its architecture, various components, connections, interfaces, signals, top-level I/O, addresses assigned to FPGA peripherals ("soft IP"), and design files. For example, you should leave this stage understanding not only how to toggle the LEDs ON/OFF via the provided Linux applications, but also the connections in the Arria 10 GHRD between the *HPS* and *LED PIO* IP core and address mapping that enable this interaction. Refer to **Chapter 22 - PIO Core** of the <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/ug/ug_embedded_ip.pdf">Embedded Peripherals IP User Guide</a> to learn more about Paralell Input/Output (PIO) IP cores and how one is used in the Arria 10 GHRD to control the external LEDs.
+Become intimate with its architecture, various components, connections, interfaces, signals, top-level I/O, addresses assigned to FPGA peripherals ("soft IP"), and design files. For example, you should leave this stage understanding not only how to toggle the LEDs ON/OFF via the provided Linux applications, but also the connections in the Arria 10 GHRD between the *HPS* and *LED PIO* IP core and address mapping that enable this interaction. Refer to *Chapter 22 - PIO Core* of the <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/ug/ug_embedded_ip.pdf">Embedded Peripherals IP User Guide</a> to learn more about Paralell Input/Output (PIO) IP cores and how one is used in the Arria 10 GHRD to control the external LEDs.
 
 ![alt text](resources/images/ghrd-1.png)
 
