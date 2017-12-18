@@ -39,7 +39,7 @@ Although Firework specifically covers the design of a hardware accelerator for *
 2. [Set up your development environment (OS, VNC server/client, EDA tools, licensing)](README.md#2-set-up-your-development-environment-os-vnc-serverclient-eda-tools-licensing)
 3. [Understand the software you wish to accelerate](README.md#3-understand-the-software-you-wish-to-accelerate)
 4. [Design and Implement the hardware accelerator (FPGA peripheral)](README.md#4-design-and-implement-the-hardware-accelerator-fpga-peripheral) 
-5. [System integration (Arria 10 SoC GHRD)](README.md#5-system-integration-arria-10-soc-ghrd)
+5. [System integration (Arria 10 GHRD)](README.md#5-system-integration-arria-10-ghrd)
 6. [Create an FPGA peripheral-aware Linux image](README.md#6-create-an-fpga-peripheral-aware-linux-image)
 7. [Write a device driver (interface between FPGA peripheral and user space application)](README.md#7-write-a-device-driver-interface-between-fpga-peripheral-and-user-space-application)
 8. [Closing the loop: modify the user space application](README.md#8-closing-the-loop-modify-the-user-space-application)
@@ -57,7 +57,7 @@ The first step is to choose a board that's appropriate for your project and goal
 
 ![alt text](resources/images/arria10_soc_kit.png)
 
-Although it is easiest to replicate and extend Firework using the Arria 10 SoC Development Kit, the main component - [protobuf-serializer](protobuf-serializer/) (i.e., the *hardware accelerator*) - is written in <a href="https://en.wikipedia.org/wiki/Verilog">Verilog</a> (with the exception of the <a href="https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)">FIFOs</a> used in the design - I pulled them from <a href="https://www.altera.com/en_US/pdfs/literature/ug/archives/ug-fifo-14.1.pdf">Altera's IP Cores library</a>) and is compatible with other ARM-based systems. The <a href="https://en.wikipedia.org/wiki/Modularity">modularity</a> of the hardware accelerator stems from the fact that it's designed as an <a href="https://www.arm.com/products/system-ip/amba-specifications">ARM AMBA AXI</a> *slave peripheral* (i.e., its top-level I/O ports implement an AXI <a href="https://en.wikipedia.org/wiki/Master/slave_(technology)">slave interface</a>) and ARM CPUs serve as AXI *masters*. More details of the hardware accelerator design and ARM AMBA AXI bus protocol are covered in the sections [Designing and Implementing the hardware accelerator (FPGA peripheral)](README.md#4-design-and-implement-the-hardware-accelerator-fpga-peripheral) and [System integration (Arria 10 SoC GHRD)](README.md#5-system-integration-arria-10-soc-ghrd).
+Although it is easiest to replicate and extend Firework using the Arria 10 SoC Development Kit, the main component - [protobuf-serializer](protobuf-serializer/) (i.e., the *hardware accelerator*) - is written in <a href="https://en.wikipedia.org/wiki/Verilog">Verilog</a> (with the exception of the <a href="https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)">FIFOs</a> used in the design - I pulled them from <a href="https://www.altera.com/en_US/pdfs/literature/ug/archives/ug-fifo-14.1.pdf">Altera's IP Cores library</a>) and is compatible with other ARM-based systems. The <a href="https://en.wikipedia.org/wiki/Modularity">modularity</a> of the hardware accelerator stems from the fact that it's designed as an <a href="https://www.arm.com/products/system-ip/amba-specifications">ARM AMBA AXI</a> *slave peripheral* (i.e., its top-level I/O ports implement an AXI <a href="https://en.wikipedia.org/wiki/Master/slave_(technology)">slave interface</a>) and ARM CPUs serve as AXI *masters*. More details of the hardware accelerator design and ARM AMBA AXI bus protocol are covered in the sections [Designing and Implementing the hardware accelerator (FPGA peripheral)](README.md#4-design-and-implement-the-hardware-accelerator-fpga-peripheral) and [System integration (Arria 10 GHRD)](README.md#5-system-integration-arria-10-ghrd).
 
 At a minimum, you'll need a board with an FPGA (i.e., programmable logic) to implement a hardware accelerator. Other board requirements are specific to your project and goals. Questions you might ask to determine these requirements include:
 
@@ -1066,11 +1066,23 @@ Qsys System Integration Tool
 
 ##### ii. RocketBoards.org
 
-<a href="https://rocketboards.org/">RocketBoards.org</a> is a community of Intel SoC FPGA developers with a multitude of resources available to assist in your own FPGA project. The site includes a <a href="https://forum.rocketboards.org/">forum</a> where you can ask fellow developers for help on certain issues, Arria 10-specific <a href="https://rocketboards.org/foswiki/Documentation/WebHome">documentation</a>, example FPGA designs, Intel FPGA development kit reference designs, and a series of *Getting Started* tutorials that show you how to get up and running with the Arria 10 SoC Development Kit (and other boards): 
+<a href="https://rocketboards.org/">RocketBoards.org</a> is a site that provides a multitude of resources and information you'll need for your own SoC/FPGA project, including access to a community of other Intel SoC FPGA developers. The site includes a <a href="https://forum.rocketboards.org/">forum</a> where you can ask fellow developers questions or for help on solving certain issues, example FPGA designs, Intel FPGA development kit reference designs (e.g., Arria 10 <a href="https://rocketboards.org/foswiki/Documentation/A10GSRDV171UserManual">GSRD</a> and <a href="https://rocketboards.org/foswiki/Documentation/A10GSRD151GHRDOverview">GHRD</a>), Arria 10-specific and other <a href="https://rocketboards.org/foswiki/Documentation/WebHome">documentation</a>, and a series of *Getting Started* tutorials that show you how to get up and running with the Arria 10 SoC Development Kit:
 
 ![alt text](resources/images/rocketboards.png)
 
-It's these *Getting Started* tutorials that I recommend going through in the list above to become familiar with the Arria 10 SoC Development Kit and its various hardware and software components. For now, I recommend going through **1 - Booting Linux from SD Card** and **2 - Sample Linux Applications** to boot Linux on the board for the first time and see how the Arria 10 GHRD's example FPGA peripherals are accessed from software running in Linux. Tutorials **4, 5, 7, 8, and 9** are also relevant but hold off on them for now. They'll be revisited in later sections of this tutorial after we've built the hardware accelerator.
+Take some time to go through this website and become familiar with the various resources available. Once you've done that, I recommend going to the *<a href="https://rocketboards.org/foswiki/Main/GettingStarted">Getting Started</a>* page, selecting the proper **Board** and **Tool Version**, and going through the various **Tasks** to become familiar with using the Arria 10 SoC Development Kit and its various hardware and software components. Although all tasks provide useful information, I recommend completing:
+
+- **1 - Booting Linux from SD Card**
+- **2 - Sample Linux Applications** 
+
+for now to boot and interact with Linux on the Arria 10 SoC Development Kit for the first time and to see how the Arria 10 GHRD's example FPGA peripherals are accessed from software running in Linux. Tasks **4, 5, 7, 8, and 9** are also relevant, but hold off on them for now. We'll revisit them in later sections of the tutorial after we've built the hardware accelerator.
+
+Once you've gone through tasks **1** and **2** above (successfully interacting with the Arria 10 GHRD's example hardware modules (e.g., LED PIO) via Linux applications), a useful exercise now is to apply what you've learned in the previous section on using Quartus Prime and Qsys to **successfully compile the Arria 10 GHRD's Quartus Prime project and go through its Qsys system design**. Become intimate with its architecture, various components, connections, interfaces, signals, top-level I/O, addresses assigned to FPGA peripherals ("soft IP"), and design files. For example, you should leave this stage understanding not only how to toggle the LEDs ON/OFF via the provided Linux applications, but also the connections in the Arria 10 GHRD between the *HPS* and *LED PIO* IP core and address mapping that enable this interaction. Refer to **Chapter 22 - PIO Core** of the <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/ug/ug_embedded_ip.pdf">Embedded Peripherals IP User Guide</a> to learn more about Paralell Input/Output (PIO) IP cores and how one is used in the Arria 10 GHRD to control the external LEDs.
+
+![alt text](resources/images/ghrd-1.png)
+![alt text](resources/images/ghrd-2.png)
+
+This is an important prerequisite for the next section, [System integration (Arria 10 GHRD)](README.md#5-system-integration-arria-10-ghrd), as we'll add the hardware accelerator we develop here to the Arria 10 GHRD!
 
 ##### iii. Altera SoC Workshop Series
 - Altera SoC Workshop Series: device driver, and HPS2FPGA address space (memory mapped I/O)
@@ -1120,7 +1132,7 @@ quartus &
 ![alt text](resources/images/hw-acc-1.png)
 
 
-### 5. System integration (Arria 10 SoC GHRD)
+### 5. System integration (Arria 10 GHRD)
 
 - Intro
     - Arria 10 GHRD, Qsys
