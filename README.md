@@ -1081,7 +1081,7 @@ Once you've gone through tasks **1** and **2** above and have successfully inter
 
 ![alt text](resources/images/ghrd-0.png)
 
-Become intimate with its architecture, various components, connections, interfaces, signals, top-level I/O, addresses assigned to FPGA peripherals ("soft IP"), and design files. For example, you should leave this stage understanding not only how to toggle the LEDs ON/OFF via the provided Linux applications, but also the connections in the Arria 10 GHRD between the *HPS* and *LED PIO* IP core and address mapping that enable this interaction. Refer to *Chapter 22 - PIO Core* of the <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/ug/ug_embedded_ip.pdf">Embedded Peripherals IP User Guide</a> to learn more about Paralell Input/Output (PIO) IP cores and how one is used in the Arria 10 GHRD to control the external LEDs.
+Become intimate with its architecture, various components, connections, interfaces, signals, top-level I/O, addresses assigned to FPGA peripherals ("soft IP"), and design files. For example, you should leave this stage knowing not only how to toggle the LEDs ON/OFF via the provided Linux applications, but also understanding the connections in the Arria 10 GHRD between the *<a href="https://www.altera.com/products/soc/portfolio/arria-10-soc/arria10-soc-hps.html">HPS</a>* and *LED PIO* IP core and address mapping that enable this interaction. Refer to *Chapter 22 - PIO Core* of the <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/ug/ug_embedded_ip.pdf">Embedded Peripherals IP User Guide</a> to learn more about Paralell Input/Output (PIO) IP cores and how one is used in the Arria 10 GHRD to control the external LEDs.
 
 ![alt text](resources/images/ghrd-1.png)
 
@@ -1090,7 +1090,22 @@ Become intimate with its architecture, various components, connections, interfac
 This is an important prerequisite for the next section, [System integration (Arria 10 GHRD)](README.md#5-system-integration-arria-10-ghrd), as we'll add the hardware accelerator we develop here to the Arria 10 GHRD!
 
 ##### iii. Altera SoC Workshop Series
-- Altera SoC Workshop Series: device driver, and HPS2FPGA address space (memory mapped I/O)
+You should now be familiar with the FPGA design process, using Quartus Prime and Qsys to implement FPGA and system designs, running Linux on the Arria 10 SoC Development Kit, and the Arria 10 GHRD architecture. Next, it's important to understand *how Linux applications interact with "soft IP", or user-defined peripherals (e.g., our protobuf-serializer hardware accelerator) in the Arria 10 SoC's FPGA fabric*. The <a href="https://rocketboards.org/foswiki/Documentation/AlteraSoCWorkshopSeries">Altera SoC Workshop Series</a> is your one-stop shop for learning about the **mechanisms** that enable user space access of custom FPGA peripherals, including:
+
+- the ARM CPU's **<a href="https://en.wikipedia.org/wiki/Physical_address">physical</a> address map** and specifically, the address space reserved for **<a href="https://en.wikipedia.org/wiki/Memory-mapped_I/O">memory-mapped I/O</a> peripherals**
+- the **HPS2FPGA and other bridges** (i.e., communication channels) between the <a href="https://www.altera.com/products/soc/portfolio/arria-10-soc/arria10-soc-hps.html">Arria 10 HPS</a> and FPGA fabric
+- and writing **Linux device drivers** for memory-mapped FPGA peripherals in Altera SoCs (covers general Linux driver development techniques and walks through example drivers written for the Arria 10 GHRD's FPGA peripherals)
+
+The Altera SoC Workshop Series consists of 3 workshops:
+- <a href="https://rocketboards.org/foswiki/Documentation/WS1IntroToAlteraSoCDevices">WS1 - Altera SoC Devices Introduction for SW Developers</a>
+- <a href="https://rocketboards.org/foswiki/Documentation/WS2LinuxKernelIntroductionForAlteraSoCDevices">WS2 - Linux Kernel Introduction for Altera SoC Devices</a>
+- <a href="https://rocketboards.org/foswiki/Documentation/WS3DevelopingDriversForAlteraSoCLinux">WS3 - Developing Drivers for Altera SoC Linux</a>
+
+Each workshop consists of *presentation material* (slides in the form of a .pdf file) and a *take-home lab*, but all we care about are the slides. While all three workshops provide useful information, there's a lot of overlap and irrelevant information so I'll do my best to summarize key slides and information here. We'll focus on **workshops 1 and 2** for now; **workshop 3 is essential to driver development** and is the main material of the later section, [7. Write a device driver (interface between FPGA peripheral and user space application)](README.md#7-write-a-device-driver-interface-between-fpga-peripheral-and-user-space-application). Regardless, I recommend taking some time now to review the presentations from all three workshops, but don't worry about trying to understand every little detail.
+
+Honestly, some of the information in these presentations are so fundamental to understanding *how to build FPGA designs that interact with the Arria 10 HPS* that it makes me wonder why it's buried in such an obscure location. If all the sources of relevant information I've identified in this and other subsections of [a. Relevant training, examples, and other online resources](README.md#a-relevant-training-examples-and-other-online-resources) were succinctly contained in some `README` file, "Quick Start Guide", or "Fundamental Training for Building FPGA Designs on the Arria 10 SoC" when you first visit the Arria 10 SoC Development Kit's homepage or even open the box, it would've literally shaved months off of all the searching around and prep work/learning I had to do before I could begin working on my design. Without further ado, here's the important information drawn from workshops 1 and 2 that are relevant to building FPGA designs for the Arria 10 SoC.
+
+[Insert screenshots + descriptions here]
 
 ##### iv. Putting the pieces together
 - Custom IP Development Using Avalon and AXI Interfaces --> "ah-ha! moment": develop hardware accelerator as an AXI4 slave, integrate into Arria 10 GHRD system as a memory mapped FPGA peripheral communicating via HPS2FPGA bridge :D
