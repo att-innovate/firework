@@ -1021,19 +1021,19 @@ If you've worked with <a href="https://en.wikipedia.org/wiki/Field-programmable_
 
 How did I come to realize that this is the role our hardware accelerator would play within the larger Arria 10 SoC? It required a lot of patience and piecing together information from various sources. The following is a list of separate initiatives I undertook that, although not comprehensive, I later identified as key contributors to obtaining the information I needed to begin designing the hardware accelerator:
 - Going through several courses Intel provides for free in their <a href="https://www.altera.com/support/training/curricula.html">online FPGA Technical Training</a> curricula which covers everything from the general FPGA design process to how their EDA tools are used at the various stages of design, simulation, and testing (functional verificaiton, static timing analysis, etc.) and more
+- Going through <a href="https://rocketboards.org/">RocketBoards.org</a>'s series of *Getting Started* tutorials and spending time to fundamentally understand the <a href="https://rocketboards.org/foswiki/Documentation/GSRDGhrd">Arria 10 GHRD</a> architecture, design files, Quartus Prime and Qsys projects, example FPGA peripherals and how they're accessed from Linux. I realized the GHRD would be the starting point for *my own Qsys system design* where the hardware accelerator would be added to it as another component 
 - Going through the <a href="https://rocketboards.org/foswiki/Documentation/AlteraSoCWorkshopSeries">Altera SoC Workshop Series</a> presentations on software development for Altera SoCs and writing Linux device drivers for *memory-mapped FPGA peripherals*
-- Spending time to fundamentally understand the <a href="https://rocketboards.org/foswiki/Documentation/GSRDGhrd">Arria 10 GHRD</a> architecture, design files, Quartus Prime and Qsys projects, example FPGA peripherals and how they're accessed from Linux. I realized the GHRD would be the starting point for my own *Qsys system design*, and the hardware accelerator would be added to it as a component 
 - Learning about the *FPGA-to-HPS*, *lightweight HPS-to-FPGA*, and *HPS-to-FPGA* interfaces that provide a means of connecting the Arria 10 SoC's <a href="https://www.altera.com/products/soc/portfolio/arria-10-soc/arria10-soc-hps.html">Hard Processor System (HPS)</a> (~synonymous to "ARM CPU") to designs residing in the FPGA fabric. Here I learned that certain <a href="https://en.wikipedia.org/wiki/Address_space">address spaces</a> are reserved for communicating with FPGA peripherals over these interfaces and how to assign addresses to said peripherals in the <a href="https://www.altera.com/products/design-software/fpga-design/quartus-prime/features/qts-platform-designer.html">Qsys system</a>
 - Going through <a href="https://www.altera.com/support/training/course/oqsys3000.html"> one course in particular</a> from the *Advanced Hardware* series of Intel's online FPGA Technical Trianing which connected all the information I had acquired up to this point and finally answered the question of how the hardware accelerator would integrate into the larger Arria 10 SoC
 - Reading the <a href="https://github.com/att-innovate/firework/blob/master/resources/AMBA%20AXI%20and%20ACE%20Protocol%20Specification.pdf">AMBA AXI and ACE Protocol Specification</a> to learn about the *<a href="https://en.wikipedia.org/wiki/Bus_(computing)">system bus</a>* (or interconnect) used to build ARM-based SoCs and specifically, the signals that comprise *<a href="https://www.xilinx.com/products/intellectual-property/axi.html#details">AXI4 interfaces</a>* - the interface our hardware accelerator's top-level I/O ports would have to implement!
 
-The remainder of this section is broken down into three parts. First, I'll elaborate on the above initiatives and walk the reader through understanding how hardware accelerators are built on Arria 10 SoC platforms. I'll conclude this part with a discussion on the course that [put all the pieces together](README.md#iv-putting-the-pieces-together) followed by an overview of the [AMBA AXI4 interface](README.md#v-amba-axi-and-ace-protocol-specification) the hardware accelerator implements. Next, I'll go over the hardware accelerator's RTL design: its high-level architecture, various pipeline stages, datapaths, FSMs, and how it's designed to communicate with an ARM CPU. Finally, I'll show how to implement the RTL design as a Quartus Prime project (using <a href="https://en.wikipedia.org/wiki/Verilog#Verilog_2001">Verilog</a> to capture its behavior) and verify its functional correctness by running gate-level simulations using the ModelSim-Intel FPGA simulation tool.
+The remainder of this section is broken down into three parts. First, I'll elaborate on the initiatives above and walk the reader through the resources and useful exercises that helped me build intuition on how hardware accelerators are built on Arria 10 SoC platforms. I'll conclude this part by discussing the one course that [put all the pieces together](README.md#putting-the-pieces-together) and providing an overview of the [AMBA AXI4 interface](README.md#amba-axi-and-ace-protocol-specification) that the hardware accelerator implements. Next, I'll present the hardware accelerator's RTL design (high-level architecture, pipeline stages, datapaths, FSMs, etc.) and show how it implements the `CodedOutputStream::Write*()` methods identified in the last section. Finally, I'll show how to implement the RTL design as a Quartus Prime project (using <a href="https://en.wikipedia.org/wiki/Verilog#Verilog_2001">Verilog</a> to capture its behavior) and verify its functional correctness by using the ModelSim-Intel FPGA simulation tool to run gate-level simulations.
 
-#### a. Relevant training, examples, and other online resources
+#### a. Understanding how to build hardware accelerators on the Arria 10 SoC platform
 
-Let's take a look at the online training, examples, resources, etc. that were prerequisites for being able to design the hardware accelerator, starting with Intel's online training.
+Let's take a look at the online training, examples, resources, etc. that provided the necessary intuition for building hardware accelerators on the Arria 10 SoC platform, starting with Intel's online FPGA Technical Training.
 
-##### i. Intel FPGA (and other) online training
+##### Intel FPGA (and other) online training
 
 The <a href="https://www.altera.com/support/training/curricula.html">Intel FPGA Technical Training</a> provides free online courses on almost every aspect of the FPGA design process and using their EDA tools at the various stages. Of the courses available, below are the ones that I found relevant to this project. Some provided necessary context for what we're trying to achieve, others were simply review material, and others I needed to understand how and when to use their EDA tools at the various stages of design. Go through them as necessary; if you're already familiar with a particular topic or tool, then feel free to skip the training. At a minimum, I recommend going through the bolded courses as a refresher on how to use Quartus Prime to *implement RTL designs* and Qsys to *build complete systems*.
 
@@ -1064,7 +1064,7 @@ Qsys System Integration Tool
 - **<a href="https://www.altera.com/support/training/course/oqsys1000.html">Introduction to Qsys</a>**
 - **<a href="https://www.altera.com/support/training/course/oqsyscreate.html">Creating a System Design with Qsys</a>**
 
-##### ii. RocketBoards.org
+##### RocketBoards.org
 
 <a href="https://rocketboards.org/">RocketBoards.org</a> is a site that provides a multitude of resources and information you'll need for your own SoC/FPGA project, including access to a community of other Intel SoC FPGA developers. The site includes a <a href="https://forum.rocketboards.org/">forum</a> where you can ask fellow developers questions or for help on solving certain issues, example FPGA designs, Intel FPGA development kit reference designs (e.g., Arria 10 <a href="https://rocketboards.org/foswiki/Documentation/A10GSRDV171UserManual">GSRD</a> and <a href="https://rocketboards.org/foswiki/Documentation/A10GSRD151GHRDOverview">GHRD</a>), Arria 10-specific and other <a href="https://rocketboards.org/foswiki/Documentation/WebHome">documentation</a>, and a series of *Getting Started* tutorials that show you how to get up and running with the Arria 10 SoC Development Kit:
 
@@ -1089,7 +1089,7 @@ Become intimate with its architecture, various components, connections, interfac
 
 This is an important prerequisite for the next section, [System integration (Arria 10 GHRD)](README.md#5-system-integration-arria-10-ghrd), as we'll add the hardware accelerator we develop here to the Arria 10 GHRD!
 
-##### iii. Altera SoC Workshop Series
+##### Altera SoC Workshop Series
 You should now be familiar with the FPGA design process, using Quartus Prime and Qsys to implement FPGA and system designs, running Linux on the Arria 10 SoC Development Kit, and the Arria 10 GHRD architecture. Next, it's important to understand *how Linux applications interact with "soft IP", or user-defined peripherals (e.g., our protobuf-serializer hardware accelerator) in the Arria 10 SoC's FPGA fabric*. The <a href="https://rocketboards.org/foswiki/Documentation/AlteraSoCWorkshopSeries">Altera SoC Workshop Series</a> is your one-stop shop for learning about the **mechanisms** that enable user space access of custom FPGA peripherals, including:
 
 - the ARM CPU's **<a href="https://en.wikipedia.org/wiki/Physical_address">physical</a> address map** and specifically, the address space reserved for **<a href="https://en.wikipedia.org/wiki/Memory-mapped_I/O">memory-mapped I/O</a> peripherals**
@@ -1152,13 +1152,13 @@ A funny sidenote - I noticed at the time of creating this tutorial that the slid
 
 The picture of how our hardware accelerator fits into the larger Arria 10 SoC is much clearer now. Now we know that the HPS (ARM CPUs) running the Protocol Buffer applicaiton will send data to the hardware accelerator by writing to certain addresses within these ranges. There are still a few details that remain unsolved (e.g., how to assign addresses within these ranges to our hardware accelerator, how to access these addresses from user space applications, etc.), but rest assured, we'll find answers in the next section and in *Workshop 3* as the last bullet above suggests.
 
-##### iv. Putting the pieces together
+##### Putting the pieces together
 - Custom IP Development Using Avalon and AXI Interfaces --> "ah-ha! moment": develop hardware accelerator as an AXI4 slave, integrate into Arria 10 GHRD system as a memory mapped FPGA peripheral communicating via HPS2FPGA bridge :D
 - <a href="https://www.altera.com/support/training/course/oqsys3000.html">Custom IP Development Using Avalon and AXI Interfaces</a>
 
 The ARM CPU (**AXI master**) initiates a sequence of *write transactions* sending data to the hardware accelerator (**AXI slave**) for it to serialize. The hardware accelerator must also be capable of responding to subsequent *read transactions*, sending serialized data from its output buffer to the ARM CPU.
 
-##### v. AMBA AXI and ACE Protocol Specification
+##### AMBA AXI and ACE Protocol Specification
 - Read the ARM AMBA AXI4 specification
 
 Now that we know *what needs to be done/how it fits*, we're ready to design the hardware accelerator.
