@@ -1029,40 +1029,39 @@ How did I come to realize that this is the role our hardware accelerator would p
 
 The remainder of this section is broken down into three parts. First, I'll elaborate on the initiatives above and walk the reader through the resources and useful exercises that helped me build intuition on how hardware accelerators are built on Arria 10 SoC platforms. I'll conclude this part by discussing the one course that [put all the pieces together](README.md#putting-the-pieces-together) and providing an overview of the [AMBA AXI4 interface](README.md#amba-axi-and-ace-protocol-specification) that the hardware accelerator implements. Next, I'll present the hardware accelerator's RTL design (high-level architecture, pipeline stages, datapaths, FSMs, etc.) and show how it implements the `CodedOutputStream::Write*()` methods identified in the last section. Finally, I'll show how to implement the RTL design as a Quartus Prime project (using <a href="https://en.wikipedia.org/wiki/Verilog#Verilog_2001">Verilog</a> to capture its behavior) and verify its functional correctness by using the ModelSim-Intel FPGA simulation tool to run gate-level simulations.
 
-#### a. Understanding how to build hardware accelerators on the Arria 10 SoC platform
+#### a. Building hardware accelerators on the Arria 10 SoC platform
 
-Let's take a look at the online training, examples, resources, etc. that provided the necessary intuition for building hardware accelerators on the Arria 10 SoC platform, starting with Intel's online FPGA Technical Training.
+Let's take a look at the available online training, examples, and other resources that helped me understand how to build hardware accelerators on the Arria 10 SoC platform, starting with Intel's online FPGA Technical Training.
 
-##### Intel FPGA (and other) online training
+##### Intel FPGA Technical Training and other online resources
 
-The <a href="https://www.altera.com/support/training/curricula.html">Intel FPGA Technical Training</a> provides free online courses on almost every aspect of the FPGA design process and using their EDA tools at the various stages. Of the courses available, below are the ones that I found relevant to this project. Some provided necessary context for what we're trying to achieve, others were simply review material, and others I needed to understand how and when to use their EDA tools at the various stages of design. Go through them as necessary; if you're already familiar with a particular topic or tool, then feel free to skip the training. At a minimum, I recommend going through the bolded courses as a refresher on how to use Quartus Prime to *implement RTL designs* and Qsys to *build complete systems*.
+If you don't have prior experience working with FPGAs or using design tools such as Quartus Prime, then Intel's <a href="https://www.altera.com/support/training/curricula.html">FPGA Technical Training</a> curricula is a great starting point. Intel provides several free online courses that cover almost every aspect of the FPGA design process: from the history of programmable logic devices to the use of HDLs (Verilog, VHDL) for capturing circuit behavior, tutorials on using Quartus Prime, Qsys, and other tools at the various stages (and levels) of design, performing static timing analysis, using on-chip logic analyzers for debugging, and much more. Take some time to go through the catalog and select the courses that you feel necessary to fill voids in your skillset. Of the courses available, below are the ones that I found relevant to this project. If you're already familiar with a particular topic or tool, then feel free to skip the training. At a minimum, I recommend going through the bolded courses as a refresher on how to use Quartus Prime to *implement RTL designs* and Qsys to *build complete systems*.
 
 (*Optional*) Background information on programmable logic and FPGAs
 - <a href="https://www.altera.com/support/training/course/odsw1005.html">Basics of Programmable Logic: History of Digital Logic Design</a>
 - <a href="https://www.altera.com/support/training/course/odsw1006.html">Basics of Programmable Logic: FPGA Architecture</a>
 - <a href="https://www.altera.com/support/training/course/odsw1010.html">How to Begin a Simple FPGA Design</a>
 
-HDLs, Verilog
+Verilog, Quartus Prime
 - <a href="https://www.altera.com/support/training/course/ohdl1120.html">Verilog HDL Basics</a>
 - <a href="http://www.asic-world.com/verilog/veritut.html">Verilog Tutorial - ASIC World</a>
-
-Quartus Prime
 - **<a href="https://www.altera.com/support/training/course/odsw1100.html">Using the Quartus Prime Software: An Introduction</a>**
-- <a href="http://www.eecs.umich.edu/courses/eecs270/270lab/270_docs/tutorial.html">EECS 270: Quartus Software Tutorial</a>
 
-ModelSim-Intel FPGA, writing Verilog testbenches
+ModelSim-Intel FPGA tool, writing testbenches, functional verification
 - <a href="https://www.altera.com/support/training/course/odsw1120.html">Overview of Mentor Graphic's ModelSim Software</a>
 - **<a href="http://www.eecs.umich.edu/courses/eecs270/270lab/270_docs/tutorial.html">EECS 270: Quartus Software Tutorial</a>** (focusing on section **C. Simulation**) 
 
-TimeQuest Timing Analyzer, performing static timing analysis
+Static timing analysis, TimeQuest Timing Analyzer, SDC Constraints
 - <a href="https://www.altera.com/support/training/course/odsw1115.html">TimeQuest Timing Analyzer: Introduction to Timing Analysis</a>
 - <a href="https://www.altera.com/support/training/course/odsw1116.html">TimeQuest Timing Analyzer: TimeQuest GUI</a>
 - <a href="https://www.altera.com/support/training/course/odsw1117.html">TimeQuest Timing Analyzer: Quartus Prime Integration & Reporting </a>
 - <a href="https://www.altera.com/support/training/course/odsw1118.html">TimeQuest Timing Analyzer: Required SDC Constraints</a>
 
-Qsys System Integration Tool
+Qsys, system design
 - **<a href="https://www.altera.com/support/training/course/oqsys1000.html">Introduction to Qsys</a>**
 - **<a href="https://www.altera.com/support/training/course/oqsyscreate.html">Creating a System Design with Qsys</a>**
+
+Leaving this section, you should have a solid grasp on writing behavioral and structural Verilog, going from design entry to a generated programming file using Quartus Prime, writing Verilog testbenches, running gate-level simulations using ModelSim-Intel FPGA for functional verification, using Qsys to build complete digital systems. Static timing analysis is also an important step in the design process, but I'll be honest I skipped this step. I was pretty confident that wherever the critical path in my design may be, it would meet basic timing requirements (and luckily I was right). Unless you have experience building sophisticated digital circuits, I don't recommend skipping this step.
 
 ##### RocketBoards.org
 
