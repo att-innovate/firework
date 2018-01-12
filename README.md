@@ -1031,9 +1031,9 @@ The remainder of this section is broken down into three parts. First, I'll elabo
 
 #### a. Building hardware accelerators on the Arria 10 SoC platform
 
-Let's take a look at the available online training, examples, and other resources that helped me understand how to build hardware accelerators on the Arria 10 SoC platform, starting with Intel's online FPGA Technical Training.
+Let's take a look at the online training, examples, and other available resources that provide the necessary context for building hardware accelerators on the Arria 10 SoC platform.
 
-##### Intel FPGA Technical Training and other online resources
+##### Intel FPGA Technical Training (and other online resources)
 
 If you don't have prior experience working with FPGAs or using design tools such as Quartus Prime, then Intel's <a href="https://www.altera.com/support/training/curricula.html">FPGA Technical Training</a> curricula is a great starting point. Intel provides several free online courses that cover almost every aspect of the FPGA design process: from the history of programmable logic devices to the use of HDLs (Verilog, VHDL) for capturing circuit behavior, tutorials on using Quartus Prime, Qsys, and other tools at the various stages (and levels) of design, performing static timing analysis, using on-chip logic analyzers for debugging, and much more. Take some time to go through the catalog and select the courses that you feel necessary to fill voids in your skillset. Of the courses available, below are the ones that I found relevant to this project. If you're already familiar with a particular topic or tool, then feel free to skip the training. At a minimum, I recommend going through the bolded courses as a refresher on how to use Verilog + Quartus Prime to implement RTL designs and Qsys to build complete systems.
 
@@ -1061,7 +1061,7 @@ Qsys, system design
 - **<a href="https://www.altera.com/support/training/course/oqsys1000.html">Introduction to Qsys</a>**
 - **<a href="https://www.altera.com/support/training/course/oqsyscreate.html">Creating a System Design with Qsys</a>**
 
-Leaving this section, you should have a solid grasp on writing behavioral and structural Verilog, going from design entry to a generated programming file using Quartus Prime, writing Verilog testbenches, running gate-level simulations using ModelSim-Intel FPGA for functional verification, using Qsys to build complete digital systems. Static timing analysis is also an important step in the design process, but I'll be honest I skipped this step. I was pretty confident that wherever the critical path in my design may be, it would meet basic timing requirements (and luckily I was right). Unless you have experience building sophisticated digital circuits, I don't recommend skipping this step.
+Leaving this section, you should have a solid grasp on writing behavioral and structural Verilog, going from design entry to a generated programming file using Quartus Prime, writing Verilog testbenches, running gate-level simulations using ModelSim (for functional verification), and using Qsys to build complete digital systems. Static timing analysis is also an important step in the design process, but I'll be honest I skipped this step. I was pretty confident that the various paths in my design would meet basic timing requirements, and luckily I was right. Unless you have experience building sophisticated digital circuits, I don't recommend skipping this step.
 
 ##### RocketBoards.org
 
