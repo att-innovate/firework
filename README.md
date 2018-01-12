@@ -1162,13 +1162,13 @@ The ARM CPU (**AXI master**) initiates a sequence of *write transactions* sendin
 
 Now that we know *what needs to be done/how it fits*, we're ready to design the hardware accelerator.
 
-#### b. The hardware accelerator RTL design: an AXI4 slave peripheral (top-level I/O, FSMs, and datapath)
+#### b. The hardware accelerator RTL design: an AXI4 slave peripheral
 As a prerequisite to understanding the hardware accelerator design in the following section, I'm assuming you have a background in or basic understanding of the principles of logic design and digital systems, combinational vs. sequential logic, controllers (<a href="https://en.wikipedia.org/wiki/Finite-state_machine">FSMs</a>), <a href="https://en.wikipedia.org/wiki/Datapath">datapaths</a>, <a href="https://en.wikipedia.org/wiki/Register-transfer_level">RTL design</a>, the use of <a href="https://en.wikipedia.org/wiki/Hardware_description_language">HDLs</a> to implement hardware at a behavioral level, the concept of <a href="https://en.wikipedia.org/wiki/Pipeline_(computing)">pipelining</a>, and designing custom processors. I've essentially listed material covered in the book, <a href="https://www.amazon.com/Digital-Design-RTL-VHDL-Verilog/dp/0470531088">Digital Design</a> by Frank Vahid, and I recommend reviewing this material before proceeding. If at any point you find yourself unfamiliar with a particular topic, you can refer to this book or other sources to learn more and continue with the tutorial.
 
 - Began designing FSM... quickly realized read/write transactions are independent, require separate FSMs --> pipelined processor design
-- Go over the design of the processor in detail (processor architecture, FSMs, datapaths :D)
+- Go over the design of the processor in detail (processor architecture, top-level I/O, FSMs, datapaths)
 
-#### c. Implementation using Quartus Prime, ModelSim-Intel FPGA, and Qsys
+#### c. Implementing the RTL design using Quartus Prime and ModelSim-Intel FPGA
 
 - Writing custom RTL vs. OpenCL?
 - Verilog-2001 vs. SystemVerilog?
