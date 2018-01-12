@@ -1035,7 +1035,7 @@ Let's take a look at the available online training, examples, and other resource
 
 ##### Intel FPGA Technical Training and other online resources
 
-If you don't have prior experience working with FPGAs or using design tools such as Quartus Prime, then Intel's <a href="https://www.altera.com/support/training/curricula.html">FPGA Technical Training</a> curricula is a great starting point. Intel provides several free online courses that cover almost every aspect of the FPGA design process: from the history of programmable logic devices to the use of HDLs (Verilog, VHDL) for capturing circuit behavior, tutorials on using Quartus Prime, Qsys, and other tools at the various stages (and levels) of design, performing static timing analysis, using on-chip logic analyzers for debugging, and much more. Take some time to go through the catalog and select the courses that you feel necessary to fill voids in your skillset. Of the courses available, below are the ones that I found relevant to this project. If you're already familiar with a particular topic or tool, then feel free to skip the training. At a minimum, I recommend going through the bolded courses as a refresher on how to use Quartus Prime to *implement RTL designs* and Qsys to *build complete systems*.
+If you don't have prior experience working with FPGAs or using design tools such as Quartus Prime, then Intel's <a href="https://www.altera.com/support/training/curricula.html">FPGA Technical Training</a> curricula is a great starting point. Intel provides several free online courses that cover almost every aspect of the FPGA design process: from the history of programmable logic devices to the use of HDLs (Verilog, VHDL) for capturing circuit behavior, tutorials on using Quartus Prime, Qsys, and other tools at the various stages (and levels) of design, performing static timing analysis, using on-chip logic analyzers for debugging, and much more. Take some time to go through the catalog and select the courses that you feel necessary to fill voids in your skillset. Of the courses available, below are the ones that I found relevant to this project. If you're already familiar with a particular topic or tool, then feel free to skip the training. At a minimum, I recommend going through the bolded courses as a refresher on how to use Verilog + Quartus Prime to implement RTL designs and Qsys to build complete systems.
 
 (*Optional*) Background information on programmable logic and FPGAs
 - <a href="https://www.altera.com/support/training/course/odsw1005.html">Basics of Programmable Logic: History of Digital Logic Design</a>
@@ -1044,7 +1044,7 @@ If you don't have prior experience working with FPGAs or using design tools such
 
 Verilog, Quartus Prime
 - <a href="https://www.altera.com/support/training/course/ohdl1120.html">Verilog HDL Basics</a>
-- <a href="http://www.asic-world.com/verilog/veritut.html">Verilog Tutorial - ASIC World</a>
+- **<a href="http://www.asic-world.com/verilog/veritut.html">Verilog Tutorial - ASIC World</a>**
 - **<a href="https://www.altera.com/support/training/course/odsw1100.html">Using the Quartus Prime Software: An Introduction</a>**
 
 ModelSim-Intel FPGA tool, writing testbenches, functional verification
